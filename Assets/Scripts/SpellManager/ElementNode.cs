@@ -12,10 +12,12 @@ public class ElementNode{
 
 	public SelfSpell getSelfSpell(List<Element> elements){
 		//TODO
+		return null;
 	}
 
 	public TargetSpell getTargetSpell(List<Element> elements){
 		//TODO
+		return null;
 	}
 
 	public void setSelfSpell(SelfSpell selfSpell, List<Element> elements){
