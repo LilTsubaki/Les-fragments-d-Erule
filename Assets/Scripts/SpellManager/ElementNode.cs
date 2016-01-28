@@ -4,12 +4,23 @@ using System.Collections.Generic;
 
 public class ElementNode{
 
-	private Dictionary<Element,ElementNode> _nodes;
+	protected Dictionary<Element,SpellNode> _nodes;
 
-	public ElementNode():this(Element.GetElement (0)){}
+	private static ElementNode Node;
 
-	public ElementNode(Element element){
-		_nodes = new Dictionary<Element, ElementNode> ();
+	public static ElementNode GetInstance(){
+		if (Node == null)
+			Node = new ElementNode ();
+
+		return Node;
+	}
+
+	private ElementNode():this(Element.GetElement (0)){
+		
+	}
+
+	protected ElementNode(Element element){
+		_nodes = new Dictionary<Element, SpellNode> ();
 		foreach (var elem in Element.GetElements()) {
 			if (element._id <= elem._id) {
 				_nodes [elem] = null;
@@ -17,22 +28,116 @@ public class ElementNode{
 		}
 	}
 
-	public SelfSpell GetSelfSpell(List<Element> elements){
-		//TODO
-		return null;
+	public SelfSpell GetSelfSpell(ref Queue<Element> elements){
+		if(elements.Count==0)
+			return null;
+		
+		Element element = elements.Dequeue ();
+
+		if (!_nodes.ContainsKey (element))
+			return null;
+		
+		if (_nodes [element] == null) {
+			return null;
+		}
+		else {
+			return _nodes [element].GetSelfSpell (ref elements);
+		}
 	}
 
-	public TargetSpell GetTargetSpell(List<Element> elements){
-		//TODO
-		return null;
+	public TargetSpell GetTargetSpell(ref Queue<Element> elements){
+		if(elements.Count==0)
+			return null;
+
+		Element element = elements.Dequeue ();
+
+		if (!_nodes.ContainsKey (element))
+			return null;
+		
+		if (_nodes [element] == null) {
+			return null;
+		}
+		else {
+			return _nodes [element].GetTargetSpell(ref elements);
+		}
 	}
 
-	public void SetSelfSpell(SelfSpell selfSpell, List<Element> elements){
-		//TODO
+	public void SetSelfSpell(ref SelfSpell selfSpell, ref Queue<Element> elements){
+		if (elements.Count == 0)
+			return;
+
+		Element element = elements.Dequeue ();
+
+		if (!_nodes.ContainsKey (element))
+			return;
+
+		if (_nodes [element] == null) {
+			_nodes [element]= new SpellNode(element);
+		}
+
+		_nodes [element].SetSelfSpell (ref selfSpell, ref elements);
+		
 	}
 
-	public void SetTargetSpell(TargetSpell targetSpell, List<Element> elements){
-		//TODO
+	public void SetTargetSpell(ref TargetSpell targetSpell, ref Queue<Element> elements){
+		if (elements.Count == 0)
+			return;
+
+		Element element = elements.Dequeue ();
+
+		if (!_nodes.ContainsKey (element))
+			return;
+
+		if (_nodes [element] == null) {
+			_nodes [element]= new SpellNode(element);
+		}
+
+		_nodes [element].SetTargetSpell (ref targetSpell, ref elements);
+	}
+
+
+	protected class SpellNode: ElementNode
+	{
+		public SpellNode (Element element):base(element){}
+
+		public SelfSpell _selfSpell;
+
+		public TargetSpell _targetSpell;
+
+
+		new public void SetSelfSpell(ref SelfSpell selfSpell, ref Queue<Element> elements){
+			if (elements.Count == 0)
+				_selfSpell = selfSpell;
+
+			Element element = elements.Dequeue ();
+
+			if (!_nodes.ContainsKey (element))
+				return;
+
+
+			if (_nodes [element] == null) {
+				_nodes [element]= new SpellNode(element);
+			}
+
+			_nodes [element].SetSelfSpell (ref selfSpell, ref elements);
+
+		}
+
+		new public void SetTargetSpell(ref TargetSpell targetSpell, ref Queue<Element> elements){
+			if (elements.Count == 0)
+				_targetSpell = targetSpell;
+
+			Element element = elements.Dequeue ();
+
+			if (!_nodes.ContainsKey (element))
+				return;
+
+			if (_nodes [element] == null) {
+				_nodes [element]= new SpellNode(element);
+			}
+
+			_nodes [element].SetTargetSpell (ref targetSpell, ref elements);
+		}
 	}
 		
 }
