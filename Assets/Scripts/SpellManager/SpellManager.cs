@@ -18,5 +18,6 @@ public class SpellManager
 
         return _spellManager;
     }
-
+   
+    
 }
