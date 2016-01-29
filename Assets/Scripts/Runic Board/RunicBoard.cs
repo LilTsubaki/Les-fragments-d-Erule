@@ -33,7 +33,7 @@ public class RunicBoard : MonoBehaviour {
     /// <param name="rune">The rune to place</param>
     /// <param name="position">The position where the rune will be placed</param>
     /// <returns>If the rune was succesfully placed</returns>
-    private bool PlaceRuneOnBoard(Rune rune, uint position)
+    private bool PlaceRuneOnBoard(ref Rune rune, uint position)
     {
         // If no runes are on the board, places the rune in the center
         if (runesOnBoard.Count == 0)
@@ -49,7 +49,7 @@ public class RunicBoard : MonoBehaviour {
         }
 
         // If runes are placed around this position, place the rune
-        List<uint> neighbours = GetNeighbours(position);
+        List<uint> neighbours = GetNeighboursPositions(position);
         for(int i = 0; i < neighbours.Count; i++)
         {
             if (runesOnBoard.ContainsKey(neighbours[i]))
@@ -83,6 +83,24 @@ public class RunicBoard : MonoBehaviour {
     }
 
     /// <summary>
+    /// Change a rune's position if it doesn't break the chain to the center.
+    /// </summary>
+    /// <param name="actualPosition">The actual position if the rune to move</param>
+    /// <param name="newPosition">Where to place the rune</param>
+    /// <returns>If the rune was moved succefully</returns>
+    private bool ChangeRunePosition(uint actualPosition, uint newPosition)
+    {
+        Rune rune;
+        if (runesOnBoard.TryGetValue(actualPosition, out rune))
+        {
+            Logger.Error("ChangeRunePosition : no rune detected at " + actualPosition);
+            return false;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// Remove all runes from the runic board and put them back in the hand.
     /// </summary>
     private void RemoveAllRunes()
@@ -99,22 +117,21 @@ public class RunicBoard : MonoBehaviour {
     /// <summary>
     /// Check if the position exists on the board.
     /// </summary>
-    /// <param name="i"></param>
+    /// <param name="p">The position</param>
     /// <returns></returns>
-    bool PositionExists(uint i)
+    private bool PositionExists(uint p)
     {
-        if (i != 3 && i >= 0 && i <= 20)
+        if (p != 3 && p != 17 && p >= 0 && p <= 20)
             return true;
         return false;
     }
 
-
     /// <summary>
-    /// Get adjacent positions to the one in parameter.
+    /// Get adjacent positions to the one in parameter. 
     /// </summary>
     /// <param name="position"></param>
     /// <returns></returns>
-    public List<uint> GetNeighbours(uint position)
+    private List<uint> GetNeighboursPositions(uint position)
     {
         List<uint> neighbours = new List<uint>();
 
@@ -143,6 +160,22 @@ public class RunicBoard : MonoBehaviour {
             neighbours.Add(n6);
 
         return neighbours;
+    }
+
+    private List<Rune> GetNeighBoursRunes(uint position)
+    {
+        List<uint> positions = GetNeighboursPositions(position);
+        List<Rune> runes = new List<Rune>();
+
+        for (int i = 0; i < positions.Count; i++)
+        {
+            Rune rune;
+            if (runesOnBoard.TryGetValue(positions[i], out rune))
+            {
+                runes.Add(rune);
+            }
+        }
+        return runes;
     }
 
     /// <summary>
