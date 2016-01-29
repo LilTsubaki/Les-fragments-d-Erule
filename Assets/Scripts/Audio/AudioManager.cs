@@ -37,6 +37,9 @@ public class AudioManager
     /// </summary>
     private Dictionary<int, AudioPlayer> _idPlayers;
 
+    /// <summary>
+    /// Constructor of the AudioManager. Must only be called from GetInstance.
+    /// </summary>
     private AudioManager()
     {
         // Creation of the root Game Object containing every audio related Game Object
