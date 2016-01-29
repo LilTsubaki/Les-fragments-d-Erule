@@ -54,5 +54,8 @@ public class SpellManager
             _areas.Add(a.getId(), a);
         }
 
+        
+         //_areas[1].rotateArea(Direction.EnumDirection.SouthWest).displayAreaTest();
+        
     }
 }

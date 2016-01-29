@@ -13,7 +13,10 @@ class Node
     List<Node> _nodes;
     Direction.EnumDirection _direction;
 
-    public Node() { }
+    public Node()
+    {
+        _nodes = new List<Node>();
+    }
 
     /// <summary>
     /// Constructor
@@ -45,6 +48,26 @@ class Node
             _nodes.Add(n);
         }
 
+    }
+
+    public Node rotateNode(int rotateValue)
+    {
+        Node n = new Node();
+        n._direction = Direction.Rotate(_direction, rotateValue);
+        for(int i = 0; i < _nodes.Count; i++)
+        {
+            n._nodes.Add(_nodes[i].rotateNode(rotateValue));
+        }
+        return n;
+    }
+
+    public void displayNodeTest()
+    {
+        Debug.Log("direction : " + _direction);
+        for(int i = 0; i < _nodes.Count; i++)
+        {
+            _nodes[i].displayNodeTest();
+        }
     }
 }
 

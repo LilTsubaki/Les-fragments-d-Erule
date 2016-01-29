@@ -13,7 +13,10 @@ class Area
     private Orientation.EnumOrientation _orientation;
     private List<Node> _nodes;
 
-    public Area() {}
+    public Area()
+    {
+        _nodes = new List<Node>();
+    }
 
     /// <summary>
     /// Constructor
@@ -52,8 +55,44 @@ class Area
 
     }
 
+    public Area rotateArea(Direction.EnumDirection cible)
+    {
+        List<Node> nodes = new List<Node>();
+        int rotateValue = 0;
+
+        if (_orientation == Orientation.EnumOrientation.Line)
+        {
+            rotateValue = Direction.GetDiff(Direction.EnumDirection.East, cible);            
+        }
+
+        if (_orientation == Orientation.EnumOrientation.Diagonal)
+        {
+            rotateValue = Direction.GetDiff(Direction.EnumDirection.DiagonalSouthEast, cible);
+        }
+
+        if (rotateValue % 2 == 0)
+        {
+            for (int i = 0; i < _nodes.Count; i++)
+            {
+                nodes.Add(_nodes[i].rotateNode(rotateValue));
+            }
+        }
+
+        return new Area(_id, _orientation, nodes);
+    }
+
     public int getId()
     {
         return _id;
+    }
+
+    public void displayAreaTest()
+    {
+        Debug.Log("id area : " + _id);
+        Debug.Log("orientation : " + _orientation);
+        for(int i = 0; i < _nodes.Count; i++)
+        {
+            _nodes[i].displayNodeTest();
+        }
     }
 }
