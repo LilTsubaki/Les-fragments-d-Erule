@@ -195,9 +195,12 @@ public class RunicBoard : MonoBehaviour {
 
         for (int i = 0; i < positions.Count; i++)
         {
-            bool connected = IsConnectedToCenter(positions[i], ref explored);
-            if (connected)
-                return true;
+            if (!explored.Contains(positions[i]))
+            {
+                bool connected = IsConnectedToCenter(positions[i], ref explored);
+                if (connected)
+                    return true;
+            }
         }
 
         return false;
