@@ -18,6 +18,7 @@ public class RunicBoard : MonoBehaviour {
         if (!runesOnBoard.ContainsKey(position) && runesInHand.Remove(rune))
         {
             runesOnBoard.Add(position, rune);
+            rune.positionOnBoard = (int)position;
             return true;
         }
         return false;
@@ -36,6 +37,7 @@ public class RunicBoard : MonoBehaviour {
         {
             runesOnBoard.Remove(position);
             runesInHand.Add(rune);
+            rune.positionOnBoard = -1;
             return true;
         }
         return false;
