@@ -21,7 +21,8 @@ class Direction
         NorthWest = 8,
         DiagonalNorth = 9,
         NorthEast = 10,
-        DiagonalNorthEast = 11
+        DiagonalNorthEast = 11,
+        Default = 12
     }
 
     /// <summary>
@@ -70,9 +71,23 @@ class Direction
             case "diagonalNorthEast":
                 orientation = EnumDirection.DiagonalNorthEast;
                 break;
+            case "default":
+                orientation = EnumDirection.Default;
+                break;
         }
         return orientation;
     }
 
+    public static int GetDiff(EnumDirection source, EnumDirection dest)
+    {
+        Logger.Error(((dest - source) + 12) % 12);
+        return ((dest - source)+12)%12;
+    }
+
+    public static EnumDirection Rotate(EnumDirection source, int rotateValue)
+    {
+        Logger.Error("source : " + source.ToString() + " Dest : " + ((EnumDirection)(((int)source + rotateValue) % 12)).ToString());
+        return (EnumDirection)(((int)source + rotateValue) % 12);
+    }
 }
 
