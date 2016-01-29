@@ -20,5 +20,51 @@ class Direction
         NorthEast = 10,
         DiagonalNorthEast = 11
     }
+
+    public static EnumDirection stringToDirection(String strDir)
+    {
+        EnumDirection orientation = new EnumDirection();
+        switch (strDir)
+        {
+            case "east":
+                orientation = EnumDirection.East;
+                break;
+            case "diagonalSouthEast":
+                orientation = EnumDirection.DiagonalSouthEast;
+                break;
+            case "southEast":
+                orientation = EnumDirection.SouthEast;
+                break;
+            case "diagonalSouth":
+                orientation = EnumDirection.DiagonalSouth;
+                break;
+            case "southWest":
+                orientation = EnumDirection.SouthWest;
+                break;
+            case "diagonalSouthWest":
+                orientation = EnumDirection.DiagonalSouthWest;
+                break;
+            case "west":
+                orientation = EnumDirection.West;
+                break;
+            case "diagonalNorthWest":
+                orientation = EnumDirection.DiagonalNorthWest;
+                break;
+            case "northWest":
+                orientation = EnumDirection.NorthWest;
+                break;
+            case "diagonalNorth":
+                orientation = EnumDirection.DiagonalNorth;
+                break;
+            case "northEast":
+                orientation = EnumDirection.NorthEast;
+                break;
+            case "diagonalNorthEast":
+                orientation = EnumDirection.DiagonalNorthEast;
+                break;
+        }
+        return orientation;
+    }
+
 }
 

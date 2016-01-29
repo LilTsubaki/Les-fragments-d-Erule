@@ -37,15 +37,22 @@ public class SpellManager
         _areas = new Dictionary<int, Area>();
         _effects = new Dictionary<int, Effect>();
 
-        JSONObject jsRanges = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
-        JSONObject rangeArray = (JSONObject)jsRanges.list[0];
-        foreach (JSONObject range in rangeArray.list)
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
+        JSONObject array = js.list[0];
+        foreach (JSONObject range in array.list)
         {
             Range r = new Range(range);
             _ranges.Add(r.getId(), r);
         }
         //Debug.Log(_ranges.Count);
 
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
+        array = js.list[0];
+        foreach (JSONObject area in array.list)
+        {
+            Area a = new Area(area);
+            _areas.Add(a.getId(), a);
+        }
 
     }
 }

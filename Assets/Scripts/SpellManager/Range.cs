@@ -9,11 +9,6 @@ using UnityEngine;
 /// </summary>
 class Range
 {
-    /// <summary>
-    /// Describe how you can target with the spell
-    /// </summary>
-
-
     private int _id;
     private int _minRange;
     private int _maxRange;
