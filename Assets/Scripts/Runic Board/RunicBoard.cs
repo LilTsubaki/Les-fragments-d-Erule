@@ -49,14 +49,18 @@ public class RunicBoard : MonoBehaviour {
         return false;
     }
 
-    private bool RemoveAllRunes()
+    /// <summary>
+    /// Remove all runes from the runic board and put them back in the hand.
+    /// </summary>
+    private void RemoveAllRunes()
     {
         foreach(KeyValuePair<uint, Rune> kvp in runesOnBoard)
         {
-            runesInHand.Add(kvp.Value);
+            Rune rune = kvp.Value;
+            rune.positionOnBoard = -1;
+            runesInHand.Add(rune);
         }
         runesOnBoard.Clear();
-        return false;
     }
 
 	// Use this for initialization
