@@ -7,6 +7,12 @@ public class RunicBoard : MonoBehaviour {
     List<Rune> runesInHand;
     Dictionary<uint, Rune> runesOnBoard;
 
+    public void Awake()
+    {
+        runesInHand = new List<Rune>();
+        runesOnBoard = new Dictionary<uint, Rune>();
+    }
+
     /// <summary>
     /// Put a rune on the board at this position.
     /// </summary>
