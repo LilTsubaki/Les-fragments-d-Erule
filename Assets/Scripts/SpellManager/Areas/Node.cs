@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Define a node for a spell pattern 
+/// Each Node have an enumDirection and a list of childs Node and 
+/// </summary>
 class Node
 {
     List<Node> _nodes;
@@ -11,12 +15,21 @@ class Node
 
     public Node() { }
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="nodes"></param>
+    /// <param name="direction"></param>
     public Node(List<Node> nodes, Direction.EnumDirection direction)
     {
         _nodes = nodes;
         _direction = direction;
     }
 
+    /// <summary>
+    /// Constructor from jsonobject
+    /// </summary>
+    /// <param name="js"></param>
     public Node(JSONObject js)
     {
         _nodes = new List<Node>();

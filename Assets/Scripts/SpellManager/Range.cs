@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// Describe Spell Range
+/// define Spell Range
 /// </summary>
 class Range
 {

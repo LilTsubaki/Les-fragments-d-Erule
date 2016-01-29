@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Define a spell pattern
+/// </summary>
 class Area
 {
     private int _id;
@@ -12,6 +15,12 @@ class Area
 
     public Area() {}
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="orientation"></param>
+    /// <param name="nodes"></param>
     public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes)
     {
         _id = id;
@@ -19,6 +28,10 @@ class Area
         _nodes = nodes;
     }
 
+    /// <summary>
+    /// Constructor from jsonobject
+    /// </summary>
+    /// <param name="js"></param>
     public Area(JSONObject js)
     {
         /*Debug.Log(js.ToString());

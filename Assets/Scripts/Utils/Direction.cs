@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// Define the a direction for a spell pattern
+/// </summary>
 class Direction
 {
     public enum EnumDirection
@@ -21,6 +24,11 @@ class Direction
         DiagonalNorthEast = 11
     }
 
+    /// <summary>
+    /// return an EnumDirection from a string
+    /// </summary>
+    /// <param name="strDir"></param>
+    /// <returns></returns>
     public static EnumDirection stringToDirection(String strDir)
     {
         EnumDirection orientation = new EnumDirection();
