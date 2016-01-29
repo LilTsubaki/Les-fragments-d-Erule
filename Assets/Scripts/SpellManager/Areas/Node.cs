@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// Define a node for a spell pattern 
-/// Each Node have an enumDirection and a list of childs Node and 
+/// Each Node have an enumDirection and a list of childs Node 
 /// </summary>
 class Node
 {
