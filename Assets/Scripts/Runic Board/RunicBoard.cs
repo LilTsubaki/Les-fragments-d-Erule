@@ -49,7 +49,7 @@ public class RunicBoard : MonoBehaviour {
         }
 
         // If runes are placed around this position, place the rune
-        List<uint> neighbours = GetNeighboursPositions(position);
+        List<uint> neighbours = GetAdjacentPositions(position);
         for(int i = 0; i < neighbours.Count; i++)
         {
             if (runesOnBoard.ContainsKey(neighbours[i]))
@@ -131,7 +131,7 @@ public class RunicBoard : MonoBehaviour {
     /// </summary>
     /// <param name="position"></param>
     /// <returns></returns>
-    private List<uint> GetNeighboursPositions(uint position)
+    private List<uint> GetAdjacentPositions(uint position)
     {
         List<uint> neighbours = new List<uint>();
 
@@ -162,20 +162,45 @@ public class RunicBoard : MonoBehaviour {
         return neighbours;
     }
 
-    private List<Rune> GetNeighBoursRunes(uint position)
+    private List<uint> GetNeighBoursPosition(uint position)
     {
-        List<uint> positions = GetNeighboursPositions(position);
-        List<Rune> runes = new List<Rune>();
+        List<uint> positions = GetAdjacentPositions(position);
+        List<uint> neighboursPosition = new List<uint>();
 
         for (int i = 0; i < positions.Count; i++)
         {
             Rune rune;
             if (runesOnBoard.TryGetValue(positions[i], out rune))
             {
-                runes.Add(rune);
+                neighboursPosition.Add(positions[i]);
             }
         }
-        return runes;
+        return neighboursPosition;
+    }
+
+    public bool IsConnectedToCenter(uint position, ref List<uint> explored)
+    {
+        if (position == 10)
+        {
+            return true;
+        }
+
+        if (explored == null)
+        {
+            explored = new List<uint>();
+        }
+
+        explored.Add(position);
+        List<uint> positions = GetNeighBoursPosition(position);
+
+        for (int i = 0; i < positions.Count; i++)
+        {
+            bool connected = IsConnectedToCenter(positions[i], ref explored);
+            if (connected)
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
