@@ -41,7 +41,6 @@ public class AudioPlayer : MonoBehaviour {
     {
         _fadeOut = false;
         _fadeIn = true;
-        _power = 0;
     }
 
     public void FadeOut()

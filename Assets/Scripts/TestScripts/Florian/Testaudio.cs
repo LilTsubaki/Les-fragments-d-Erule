@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
 
 public class Testaudio : MonoBehaviour {
 
-    int idMusic;
+    int music;
 
 	// Use this for initialization
 	void Start () {
-        idMusic = -1;
+        music = -1;
 	}
 	
 	// Update is called once per frame
@@ -15,19 +16,16 @@ public class Testaudio : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            idMusic = AudioManager.GetInstance().Play("music", true);
+            music = AudioManager.GetInstance().Play("music", true);
         }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AudioManager.GetInstance().Mute();
-        }
+       
         if (Input.GetKeyDown(KeyCode.I))
         {
-            AudioManager.GetInstance().FadeIn(idMusic);
+            AudioManager.GetInstance().FadeIn(music);
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            AudioManager.GetInstance().FadeOut(idMusic);
+            AudioManager.GetInstance().FadeOut(music);
         }
 
 	}

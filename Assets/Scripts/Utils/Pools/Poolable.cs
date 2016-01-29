@@ -12,13 +12,13 @@ public interface Poolable<T>
 	bool IsReady();
 
 	/// <summary>
-	/// Copy the specified t.
+	/// Copy the specified t to this.
 	/// </summary>
 	/// <param name="t">T.</param>
 	void Copy(T t);
 
 	/// <summary>
-	/// Pick this instance.
+	/// Pick this instance. Used to initialize the object's members.
 	/// </summary>
 	void Pick();
 }
