@@ -96,6 +96,11 @@ public class RunicBoard : MonoBehaviour {
         runesOnBoard.Clear();
     }
 
+    /// <summary>
+    /// Check if the position exists on the board.
+    /// </summary>
+    /// <param name="i"></param>
+    /// <returns></returns>
     bool PositionExists(uint i)
     {
         if (i != 3 && i >= 0 && i <= 20)
@@ -103,6 +108,12 @@ public class RunicBoard : MonoBehaviour {
         return false;
     }
 
+
+    /// <summary>
+    /// Get adjacent positions to the one in parameter.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public List<uint> GetNeighbours(uint position)
     {
         List<uint> neighbours = new List<uint>();
