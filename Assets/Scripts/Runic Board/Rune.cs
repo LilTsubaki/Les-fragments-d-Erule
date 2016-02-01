@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rune : {
+public class Rune {
 
     internal Element element;
     internal int positionOnBoard;

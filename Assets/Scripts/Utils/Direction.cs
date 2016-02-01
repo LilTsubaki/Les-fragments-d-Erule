@@ -6,7 +6,7 @@ using System.Text;
 /// <summary>
 /// Define the a direction for a spell pattern
 /// </summary>
-class Direction
+public class Direction
 {
     public enum EnumDirection
     {
