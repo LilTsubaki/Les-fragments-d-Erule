@@ -61,6 +61,24 @@ class Node
         return n;
     }
 
+    public void NodeToHexagon(List<Direction.EnumDirection> dirs, ref List<Hexagon> hexas, Hexagon root)
+    {
+        Hexagon currentHexa;
+        currentHexa = root.GetTarget(dirs);
+
+        if(currentHexa != null)
+        {
+            hexas.Add(currentHexa);
+        }
+
+        for(int i = 0; i < _nodes.Count; i++)
+        {
+            dirs.Add(_nodes[i]._direction);
+            NodeToHexagon(dirs, ref hexas, root);
+        }
+    }
+
+
     public void displayNodeTest()
     {
         Debug.Log("direction : " + _direction);
@@ -68,6 +86,11 @@ class Node
         {
             _nodes[i].displayNodeTest();
         }
+    }
+
+    public Direction.EnumDirection getDirection()
+    {
+        return _direction;
     }
 }
 
