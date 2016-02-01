@@ -17,7 +17,7 @@ public class Hexagon
 		_board = board;
 	}
 
-	public Hexagon GetTarget(List<Direction> directions){
+	public Hexagon GetTarget(List<Direction.EnumDirection> directions){
 		int x = 0;
 		int y = 0;
 
@@ -124,7 +124,7 @@ public class Hexagon
 		return _board.GetHexagone (_posX + 2, _posY + 1);
 	}
 
-	public Hexagon GetHexa(Direction dir)
+	public Hexagon GetHexa(Direction.EnumDirection dir)
 	{
 		switch (dir)
 		{
@@ -155,7 +155,6 @@ public class Hexagon
 		default:
 			return null;
 		}
-		return null;
 	}
 
 }
