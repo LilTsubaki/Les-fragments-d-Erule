@@ -36,6 +36,7 @@ public class SpellManager
         _ranges = new Dictionary<int, Range>();
         _areas = new Dictionary<int, Area>();
         _effects = new Dictionary<int, Effect>();
+        _elementNode = ElementNode.GetInstance();
 
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
         JSONObject array = js.list[0];
@@ -44,7 +45,6 @@ public class SpellManager
             Range r = new Range(range);
             _ranges.Add(r.getId(), r);
         }
-        //Debug.Log(_ranges.Count);
 
         js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
         array = js.list[0];

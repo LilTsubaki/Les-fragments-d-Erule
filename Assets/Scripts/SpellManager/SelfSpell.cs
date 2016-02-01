@@ -2,7 +2,7 @@
 
 public class SelfSpell:Spell
 {
-	public SelfSpell ()
+	public SelfSpell (uint id) :base(id)
 	{
 	}
 }

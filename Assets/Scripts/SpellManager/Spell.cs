@@ -2,9 +2,9 @@
 
 public class Spell
 {
-    public readonly int _id;
+    public readonly uint _id;
 
-    public Spell (int id)
+    public Spell (uint id)
 	{
         _id = id;
 	}
