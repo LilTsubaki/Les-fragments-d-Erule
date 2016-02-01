@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-class Effect
+public class Effect
 {
-    private int _id;
+	private readonly uint _id;
 
     public Effect() { }
 }
