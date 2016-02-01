@@ -86,7 +86,7 @@ public class Direction
 
     public static EnumDirection Rotate(EnumDirection source, int rotateValue)
     {
-        Logger.Error("source : " + source.ToString() + " Dest : " + ((EnumDirection)(((int)source + rotateValue) % 12)).ToString());
+        //Logger.Error("source : " + source.ToString() + " Dest : " + ((EnumDirection)(((int)source + rotateValue) % 12)).ToString());
         return (EnumDirection)(((int)source + rotateValue) % 12);
     }
 }

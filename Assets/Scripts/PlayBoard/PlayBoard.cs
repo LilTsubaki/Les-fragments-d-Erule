@@ -34,9 +34,9 @@ public class PlayBoard  {
 			List<Hexagon> list = new List<Hexagon> ();
 			list.Capacity = height;
 			for (var j = 0; j < height; ++j) {
-				list [j] = null;
+				list.Add(new Hexagon(-1,-1, this));
 			}
-			_grid [i] = list;
+			_grid.Add(list);
 		}
 	}
 
@@ -60,21 +60,21 @@ public class PlayBoard  {
 	/// </summary>
 	/// <returns><c>true</c>, if hexagone was set, <c>false</c> otherwise.</returns>
 	/// <param name="hex">Hex.</param>
-	/// <param name="remplace">If set to <c>true</c> remplace.</param>
-	public bool SetHexagone(Hexagon hex, bool remplace=true){
+	/// <param name="replace">If set to <c>true</c> replace.</param>
+	public bool SetHexagone(Hexagon hex, bool replace=true){
 
 		int x = hex._posX;
 		int y = hex._posY;
 
 		if (x >= 0 && x < _width && y >= 0 && y < _height) {
 
-			if (_grid [x] [y] == null) {
+			if (_grid [x] [y]._posX<0) {
 
 				_grid [x] [y] = hex;
 				return true;
 			} 
 			else {
-				if (remplace) {
+				if (replace) {
 					_grid [x] [y] = hex;
 					return true;
 				}
@@ -94,10 +94,10 @@ public class PlayBoard  {
 	/// <returns>The hexagone if sucess.</returns>
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
-	/// <param name="remplace">If set to <c>true</c> remplace.</param>
-	public Hexagon CreateHexagone(int x, int y, bool remplace=false){
+	/// <param name="replace">If set to <c>true</c> replace.</param>
+	public Hexagon CreateHexagone(int x, int y, bool replace=false){
 		Hexagon hex = new Hexagon (x, y, this);
-		if (SetHexagone (hex, remplace)) {
+		if (SetHexagone (hex, replace)) {
 			return hex;
 		}
 		else {
@@ -116,7 +116,7 @@ public class PlayBoard  {
 		if (x >= 0 && x < _width && y >= 0 && y < _height) {
 			Hexagon hex =_grid [x] [y];
 
-			_grid [x] [y] = null;
+			_grid [x] [y] = new Hexagon(-1,-1,this);
 
 			return hex;
 		}

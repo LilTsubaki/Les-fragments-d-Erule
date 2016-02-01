@@ -47,7 +47,6 @@ class Node
             Node n = new Node(node);
             _nodes.Add(n);
         }
-
     }
 
     public Node rotateNode(int rotateValue)
@@ -65,8 +64,8 @@ class Node
     {
         Hexagon currentHexa;
         currentHexa = root.GetTarget(dirs);
-
-        if(currentHexa != null)
+        
+        if(currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0)
         {
             hexas.Add(currentHexa);
         }
@@ -74,7 +73,8 @@ class Node
         for(int i = 0; i < _nodes.Count; i++)
         {
             dirs.Add(_nodes[i]._direction);
-            NodeToHexagon(dirs, ref hexas, root);
+            _nodes[i].NodeToHexagon(dirs, ref hexas, root);
+            dirs.RemoveAt(dirs.Count - 1);
         }
     }
 

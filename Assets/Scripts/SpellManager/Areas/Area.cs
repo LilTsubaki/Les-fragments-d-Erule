@@ -96,10 +96,10 @@ class Area
     {
         List<Hexagon> turnedArea = new List<Hexagon>();
         turnedArea.Add(source);
-        //rotate the area using directiion as target
+        //rotate the area using direction as target
         Area area = rotateArea(direction);
 
-        if(area._nodes.Count !=0)
+        if (area._nodes.Count !=0)
         {
             for(int i = 0; i < area._nodes.Count; i++)
             {
