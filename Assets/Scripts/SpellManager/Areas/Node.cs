@@ -47,7 +47,6 @@ class Node
             Node n = new Node(node);
             _nodes.Add(n);
         }
-
     }
 
     public Node rotateNode(int rotateValue)
@@ -61,6 +60,25 @@ class Node
         return n;
     }
 
+    public void NodeToHexagon(List<Direction.EnumDirection> dirs, ref List<Hexagon> hexas, Hexagon root)
+    {
+        Hexagon currentHexa;
+        currentHexa = root.GetTarget(dirs);
+        
+        if(currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0)
+        {
+            hexas.Add(currentHexa);
+        }
+
+        for(int i = 0; i < _nodes.Count; i++)
+        {
+            dirs.Add(_nodes[i]._direction);
+            _nodes[i].NodeToHexagon(dirs, ref hexas, root);
+            dirs.RemoveAt(dirs.Count - 1);
+        }
+    }
+
+
     public void displayNodeTest()
     {
         Debug.Log("direction : " + _direction);
@@ -68,6 +86,11 @@ class Node
         {
             _nodes[i].displayNodeTest();
         }
+    }
+
+    public Direction.EnumDirection getDirection()
+    {
+        return _direction;
     }
 }
 
