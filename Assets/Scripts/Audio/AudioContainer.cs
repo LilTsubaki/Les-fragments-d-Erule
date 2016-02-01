@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// The container of AudioPlayers in the pool of AudioManager.
+/// </summary>
 public class AudioContainer : Poolable<AudioContainer>
 {
-
+    /// <summary>
+    /// The GameObject that has an AudioPlayer.
+    /// </summary>
     internal GameObject _audioGameObject;
 
     public void Copy(AudioContainer t)
@@ -16,6 +20,9 @@ public class AudioContainer : Poolable<AudioContainer>
         return !_audioGameObject.GetComponent<AudioPlayer>()._audio.isPlaying;
     }
 
+    /// <summary>
+    /// The reset of the instance. Puts the power of he volume to 1 and disables fading behaviours.
+    /// </summary>
     public void Pick()
     {
         AudioPlayer ap = _audioGameObject.GetComponent<AudioPlayer>();

@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
-using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// The class managing the AudioSources. It uses MaxAudioContainers different sources.
+/// </summary>
 public class AudioManager
 {
+    /// <summary>
+    /// Max AudioContainer pool size.
+    /// </summary>
     private static int MaxAudioContainers = 20;
 
+    /// <summary>
+    /// The different spatializations possible to use when playing a sound.
+    /// </summary>
     public enum spatialization : int { AUDIO_2D = 0, AUDIO_3D = 1 };
     /// <summary>
     /// The Pool containing the AudioContainers.
