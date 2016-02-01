@@ -21,10 +21,55 @@ public class RunicBoard : MonoBehaviour {
     List<Rune> runesInHand;
     Dictionary<uint, Rune> runesOnBoard;
 
+    public void LogHand()
+    {
+        Logger.Debug("*** RUNES IN HAND ***");
+        for (int i = 0; i < runesInHand.Count; i++)
+        {
+            Logger.Debug("Element " + runesInHand[i]._element._name + ", Position " + runesInHand[i]._positionOnBoard);
+        }
+    }
+
+    public void LogRunesOnBoard()
+    {
+        Logger.Debug("*** RUNES ON BOARD ***");
+        foreach (KeyValuePair<uint, Rune> kvp in runesOnBoard)
+        {
+            Logger.Debug("Element " + kvp.Value._element._name + ", Position " + kvp.Key);
+        }
+    }
+
     public void Awake()
     {
         runesInHand = new List<Rune>();
         runesOnBoard = new Dictionary<uint, Rune>();
+    }
+
+    public void Start()
+    {
+        Logger.logLvl = Logger.Type.TRACE;
+        //Testing !
+        Rune r1 = new Rune(Element.GetElement(0), -1);
+        runesInHand.Add(r1);
+        Rune r2 = new Rune(Element.GetElement(1), -1);
+        runesInHand.Add(r2);
+        Rune r3 = new Rune(Element.GetElement(2), -1);
+        runesInHand.Add(r3);
+        Rune r4 = new Rune(Element.GetElement(2), -1);
+        runesInHand.Add(r4);
+        Rune r5 = new Rune(Element.GetElement(3), -1);
+        runesInHand.Add(r5);
+        Rune r6 = new Rune(Element.GetElement(3), -1);
+        runesInHand.Add(r6);
+
+        PlaceRuneOnBoard(ref r2, 10);
+        PlaceRuneOnBoard(ref r3, 14);
+        PlaceRuneOnBoard(ref r4, 13);
+        PlaceRuneOnBoard(ref r5, 8);
+        PlaceRuneOnBoard(ref r6, 4);
+
+        LogHand();
+        LogRunesOnBoard();
     }
 
     /// <summary>
@@ -55,7 +100,7 @@ public class RunicBoard : MonoBehaviour {
             if (runesOnBoard.ContainsKey(neighbours[i]))
             {
                 runesOnBoard.Add(position, rune);
-                rune.positionOnBoard = (int)position;
+                rune._positionOnBoard = (int)position;
                 return true;
             }
         }
@@ -76,7 +121,7 @@ public class RunicBoard : MonoBehaviour {
         {
             runesOnBoard.Remove(position);
             runesInHand.Add(rune);
-            rune.positionOnBoard = -1;
+            rune._positionOnBoard = -1;
             return true;
         }
         return false;
@@ -108,7 +153,7 @@ public class RunicBoard : MonoBehaviour {
         foreach(KeyValuePair<uint, Rune> kvp in runesOnBoard)
         {
             Rune rune = kvp.Value;
-            rune.positionOnBoard = -1;
+            rune._positionOnBoard = -1;
             runesInHand.Add(rune);
         }
         runesOnBoard.Clear();
@@ -155,7 +200,7 @@ public class RunicBoard : MonoBehaviour {
         if (PositionExists(n5))
             neighbours.Add(n5);
 
-        uint n6 = position - 5;
+        uint n6 = position + 5;
         if (PositionExists(n6))
             neighbours.Add(n6);
 
@@ -215,16 +260,11 @@ public class RunicBoard : MonoBehaviour {
         List<Element> elements = new List<Element>();
         foreach (KeyValuePair<uint, Rune> kvp in runesOnBoard)
         {
-            elements.Add(kvp.Value.element);
+            elements.Add(kvp.Value._element);
         }
 
         return elements;
     }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {

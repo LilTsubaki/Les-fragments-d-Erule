@@ -3,11 +3,17 @@ using System.Collections;
 
 public class Rune {
 
-    internal Element element;
-    internal int positionOnBoard;
+    internal Element _element;
+    internal int _positionOnBoard;
+
+    public Rune(Element element, int positionOnBoard)
+    {
+        _element = element;
+        _positionOnBoard = positionOnBoard;
+    }
 
     public bool IsOnBoard()
     {
-        return (positionOnBoard != -1);
+        return (_positionOnBoard != -1);
     }
 }
