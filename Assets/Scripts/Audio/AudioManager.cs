@@ -3,14 +3,14 @@ using UnityEngine.Audio;
 using System.Collections.Generic;
 
 /// <summary>
-/// The class managing the AudioSources. It uses MaxAudioContainers different sources.
+/// The class managing the AudioSources. It uses MaxAudioContainers different sources. The AudioClips have to be registered in AudioDatas, by group of sound.
 /// </summary>
 public class AudioManager
 {
     /// <summary>
     /// Max AudioContainer pool size.
     /// </summary>
-    private static int MaxAudioContainers = 20;
+    private static int _MaxAudioContainers = 20;
 
     /// <summary>
     /// The different spatializations possible to use when playing a sound.
@@ -67,7 +67,7 @@ public class AudioManager
 
         AudioContainer ac = new AudioContainer();
         ac._audioGameObject = obj;
-        _audioContainers = new Pool<AudioContainer>(ac, MaxAudioContainers);
+        _audioContainers = new Pool<AudioContainer>(ac, _MaxAudioContainers);
         _sounds = new Dictionary<string, AudioData>();
 
         _isMuted = new Dictionary<string, bool>();
