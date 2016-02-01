@@ -86,6 +86,31 @@ class Area
         return _id;
     }
 
+    /// <summary>
+    /// return an hexagon list that macthes the area 
+    /// </summary>
+    /// <param name="direction">Direction between target and player</param>
+    /// <param name="hexa">target</param>
+    /// <returns></returns>
+    public List<Hexagon> AreaToHexa(Direction.EnumDirection direction, Hexagon source)
+    {
+        List<Hexagon> turnedArea = new List<Hexagon>();
+        turnedArea.Add(source);
+        //rotate the area using direction as target
+        Area area = rotateArea(direction);
+
+        if (area._nodes.Count !=0)
+        {
+            for(int i = 0; i < area._nodes.Count; i++)
+            {
+                List<Direction.EnumDirection> dirs = new List<Direction.EnumDirection>();
+                dirs.Add(area._nodes[i].getDirection());
+                area._nodes[i].NodeToHexagon(dirs, ref turnedArea, source);
+            }
+        }
+        return turnedArea;
+    }
+
     public void displayAreaTest()
     {
         Debug.Log("id area : " + _id);

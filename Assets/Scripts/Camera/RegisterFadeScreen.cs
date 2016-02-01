@@ -5,21 +5,21 @@ using UnityEngine.UI;
 public class RegisterFadeScreen : MonoBehaviour
 {
 
-    Image image;
-    bool fadeIn;
-    float remainingTime;
+    Image _image;
+    bool _fadeIn;
+    float _remainingTime;
 
     void Start()
     {
-        image = gameObject.transform.GetComponent<Image>();
-        fadeIn = true;
-        remainingTime = 0;
+        _image = gameObject.transform.GetComponent<Image>();
+        _fadeIn = true;
+        _remainingTime = 0;
         CameraManager.GetInstance().SetFadeScreen(this);
     }
 
     void Update()
     {
-        if (fadeIn)
+        if (_fadeIn)
         {
             FadeIn();
         }
@@ -31,24 +31,24 @@ public class RegisterFadeScreen : MonoBehaviour
 
     public void Reverse()
     {
-        fadeIn = !fadeIn;
-        remainingTime = 1;
+        _fadeIn = !_fadeIn;
+        _remainingTime = 1;
     }
 
     void FadeIn()
     {
-        float a = Mathf.Clamp01(remainingTime / 1);
-        Color c = new Color(image.color.r, image.color.g, image.color.b, a);
-        image.color = c;
-        remainingTime = Mathf.Clamp01(remainingTime - Time.deltaTime);
+        float a = Mathf.Clamp01(_remainingTime / 1);
+        Color c = new Color(_image.color.r, _image.color.g, _image.color.b, a);
+        _image.color = c;
+        _remainingTime = Mathf.Clamp01(_remainingTime - Time.deltaTime);
     }
 
     void FadeOut()
     {
-        float a = Mathf.Clamp01(1 - remainingTime / 1);
-        Color c = new Color(image.color.r, image.color.g, image.color.b, a);
-        image.color = c;
-        remainingTime = Mathf.Clamp01(remainingTime - Time.deltaTime);
+        float a = Mathf.Clamp01(1 - _remainingTime / 1);
+        Color c = new Color(_image.color.r, _image.color.g, _image.color.b, a);
+        _image.color = c;
+        _remainingTime = Mathf.Clamp01(_remainingTime - Time.deltaTime);
     }
 
     public void FadeTime()

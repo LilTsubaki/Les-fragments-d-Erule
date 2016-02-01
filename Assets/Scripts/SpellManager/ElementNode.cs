@@ -50,20 +50,21 @@ public class ElementNode{
 	/// </summary>
 	/// <returns>The self spell.</returns>
 	/// <param name="elements">Elements.</param>
-	public SelfSpell GetSelfSpell(ref Queue<Element> elements){
+	public SelfSpell GetSelfSpell(Queue<Element> elements){
 		if(elements.Count==0)
 			return null;
-		
-		Element element = elements.Dequeue ();
 
-		if (!_nodes.ContainsKey (element))
+        Element element = elements.Dequeue ();
+        Logger.Trace(element._name);
+
+        if (!_nodes.ContainsKey (element))
 			return null;
 		
 		if (_nodes [element] == null) {
 			return null;
 		}
 		else {
-			return _nodes [element].GetSelfSpell (ref elements);
+			return _nodes [element].GetSelfSpell (elements);
 		}
 	}
 
@@ -72,20 +73,21 @@ public class ElementNode{
 	/// </summary>
 	/// <returns>The target spell.</returns>
 	/// <param name="elements">Elements.</param>
-	public TargetSpell GetTargetSpell(ref Queue<Element> elements){
+	public TargetSpell GetTargetSpell(Queue<Element> elements){
 		if(elements.Count==0)
 			return null;
 
-		Element element = elements.Dequeue ();
+        Element element = elements.Dequeue ();
+        Logger.Trace(element._name);
 
-		if (!_nodes.ContainsKey (element))
+        if (!_nodes.ContainsKey (element))
 			return null;
 		
 		if (_nodes [element] == null) {
 			return null;
 		}
 		else {
-			return _nodes [element].GetTargetSpell(ref elements);
+			return _nodes [element].GetTargetSpell(elements);
 		}
 	}
 
@@ -94,20 +96,22 @@ public class ElementNode{
 	/// </summary>
 	/// <param name="selfSpell">Self spell.</param>
 	/// <param name="elements">Elements.</param>
-	public void SetSelfSpell(ref SelfSpell selfSpell, ref Queue<Element> elements){
+	public void SetSelfSpell(ref SelfSpell selfSpell, Queue<Element> elements){
 		if (elements.Count == 0)
 			return;
 
-		Element element = elements.Dequeue ();
+        Element element = elements.Dequeue ();
+        Logger.Trace(element._name);
 
-		if (!_nodes.ContainsKey (element))
+
+        if (!_nodes.ContainsKey (element))
 			return;
 
 		if (_nodes [element] == null) {
 			_nodes [element]= new SpellNode(element);
 		}
 
-		_nodes [element].SetSelfSpell (ref selfSpell, ref elements);
+		_nodes [element].SetSelfSpell (ref selfSpell,elements);
 		
 	}
 
@@ -116,20 +120,21 @@ public class ElementNode{
 	/// </summary>
 	/// <param name="targetSpell">Target spell.</param>
 	/// <param name="elements">Elements.</param>
-	public void SetTargetSpell(ref TargetSpell targetSpell, ref Queue<Element> elements){
+	public void SetTargetSpell(ref TargetSpell targetSpell,Queue<Element> elements){
 		if (elements.Count == 0)
 			return;
 
-		Element element = elements.Dequeue ();
+        Element element = elements.Dequeue ();
+        Logger.Trace(element._name);
 
-		if (!_nodes.ContainsKey (element))
+        if (!_nodes.ContainsKey (element))
 			return;
 
 		if (_nodes [element] == null) {
 			_nodes [element]= new SpellNode(element);
 		}
 
-		_nodes [element].SetTargetSpell (ref targetSpell, ref elements);
+		_nodes [element].SetTargetSpell (ref targetSpell, elements);
 	}
 
 
@@ -159,13 +164,18 @@ public class ElementNode{
 		/// </summary>
 		/// <param name="selfSpell">Self spell.</param>
 		/// <param name="elements">Elements.</param>
-		new public void SetSelfSpell(ref SelfSpell selfSpell, ref Queue<Element> elements){
+		new public void SetSelfSpell(ref SelfSpell selfSpell, Queue<Element> elements){
 			if (elements.Count == 0)
-				_selfSpell = selfSpell;
+            {
+                _selfSpell = selfSpell;
+                return;
+            }
+				
 
 			Element element = elements.Dequeue ();
+            Logger.Trace(element._name);
 
-			if (!_nodes.ContainsKey (element))
+            if (!_nodes.ContainsKey (element))
 				return;
 
 
@@ -173,7 +183,7 @@ public class ElementNode{
 				_nodes [element]= new SpellNode(element);
 			}
 
-			_nodes [element].SetSelfSpell (ref selfSpell, ref elements);
+			_nodes [element].SetSelfSpell (ref selfSpell, elements);
 
 		}
 
@@ -182,21 +192,76 @@ public class ElementNode{
 		/// </summary>
 		/// <param name="targetSpell">Target spell.</param>
 		/// <param name="elements">Elements.</param>
-		new public void SetTargetSpell(ref TargetSpell targetSpell, ref Queue<Element> elements){
+		new public void SetTargetSpell(ref TargetSpell targetSpell, Queue<Element> elements){
 			if (elements.Count == 0)
-				_targetSpell = targetSpell;
+            {
+                _targetSpell = targetSpell;
+                return;
+            }
+				
 
-			Element element = elements.Dequeue ();
+            Element element = elements.Dequeue ();
+            Logger.Trace(element._name);
 
-			if (!_nodes.ContainsKey (element))
+            if (!_nodes.ContainsKey (element))
 				return;
 
 			if (_nodes [element] == null) {
 				_nodes [element]= new SpellNode(element);
 			}
 
-			_nodes [element].SetTargetSpell (ref targetSpell, ref elements);
+			_nodes [element].SetTargetSpell (ref targetSpell, elements);
 		}
-	}
+
+        /// <summary>
+        /// Gets the self spell.
+        /// </summary>
+        /// <returns>The self spell.</returns>
+        /// <param name="elements">Elements.</param>
+        new public SelfSpell GetSelfSpell(Queue<Element> elements)
+        {
+            if (elements.Count == 0)
+                return _selfSpell;
+
+            Element element = elements.Dequeue();
+            Logger.Trace(element._name);
+
+            if (!_nodes.ContainsKey(element))
+                return null;
+
+            if (_nodes[element] == null)
+            {
+                return null;
+            }
+            else {
+                return _nodes[element].GetSelfSpell(elements);
+            }
+        }
+
+        /// <summary>
+        /// Gets the target spell.
+        /// </summary>
+        /// <returns>The target spell.</returns>
+        /// <param name="elements">Elements.</param>
+        new public TargetSpell GetTargetSpell(Queue<Element> elements)
+        {
+            if (elements.Count == 0)
+                return _targetSpell;
+
+            Element element = elements.Dequeue();
+            Logger.Trace(element._name);
+
+            if (!_nodes.ContainsKey(element))
+                return null;
+
+            if (_nodes[element] == null)
+            {
+                return null;
+            }
+            else {
+                return _nodes[element].GetTargetSpell(elements);
+            }
+        }
+    }
 		
 }
