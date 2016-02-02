@@ -10,5 +10,9 @@ public class Effect
 	{
 		_id = id;
 	}
+
+	public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
+		throw NotImplementedException ();
+	}
 }
 
