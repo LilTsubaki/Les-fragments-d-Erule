@@ -1,20 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Hexagon.
 /// </summary>
-public class Hexagon
+public class Hexagon : IAStar<Hexagon>
 {
 	public readonly int _posX;
 	public readonly int _posY;
 
 	public readonly PlayBoard _board;
 
+    public bool _isEmpty;
+
 	public Hexagon (int x, int y, PlayBoard board)
 	{
 		_posX = x;
 		_posY = y;
 		_board = board;
+        _isEmpty = false;
 	}
 
     public bool hasValidPosition()
@@ -164,4 +168,24 @@ public class Hexagon
 		}
 	}
 
+    public List<Hexagon> GetNeighbours()
+    {
+        List<Hexagon> neighbours = new List<Hexagon>();
+        return neighbours;
+    }
+
+    public int Distance(Hexagon t)
+    {
+        int diffX = t._posX - _posX;
+        int diffY = t._posY - _posY;
+        if ((diffX >= 0 && diffY >= 0) || (diffX <= 0 && diffY <= 0))
+            return Math.Max(Math.Abs(diffX), Math.Abs(diffY));
+
+        return Math.Abs(diffX) + Math.Abs(diffY);
+    }
+
+    public int Cost()
+    {
+        return 1;
+    }
 }
