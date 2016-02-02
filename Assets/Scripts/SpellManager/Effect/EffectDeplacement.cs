@@ -4,10 +4,11 @@
 public class EffectDeplacement : EffectDirect
 {
 	protected uint _nbDeplacement;
-	protected Hexagon _source;
-	public EffectDeplacement (uint id, uint nbDeplacement, Hexagon source): base(id)
+
+    public EffectDeplacement() : base() { }
+
+	public EffectDeplacement (uint id, uint nbDeplacement): base(id)
 	{
 		_nbDeplacement = nbDeplacement;
-		_source = source;
 	}
 }

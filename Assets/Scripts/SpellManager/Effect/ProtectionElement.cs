@@ -8,5 +8,12 @@ public class ProtectionElement : ProtectionGlobal
 	{
 		_element = element;
 	}
+
+    public ProtectionElement(JSONObject js) : base()
+    {
+        _id = (uint)js.GetField(js.keys[0]).n;
+        _protection = (uint)js.GetField(js.keys[1]).n;
+        _element = Element.GetElement((int)js.GetField(js.keys[2]).n);
+    }
 }
 

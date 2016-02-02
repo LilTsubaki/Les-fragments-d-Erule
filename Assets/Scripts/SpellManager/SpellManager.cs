@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class SpellManager
@@ -8,6 +10,7 @@ public class SpellManager
     private Dictionary<int, Area> _areas;
     private Dictionary<int, Range> _ranges;
     private Dictionary<int, EffectDirect> _directEffects;
+    private Dictionary<int, EffectOnTime> _onTimeEffects;
     private ElementNode _elementNode;
 
     public ElementNode ElementNode
@@ -41,6 +44,7 @@ public class SpellManager
         _ranges = new Dictionary<int, Range>();
         _areas = new Dictionary<int, Area>();
         _directEffects = new Dictionary<int, EffectDirect>();
+        _onTimeEffects = new Dictionary<int, EffectOnTime>();
         _elementNode = ElementNode.GetInstance();
 
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
@@ -79,6 +83,32 @@ public class SpellManager
 
             _elementNode.SetSelfSpell(ref selfSpell, elements);
             _elementNode.SetTargetSpell(ref targetSpell, elements);
+        }
+
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/directEffect.json");
+        array = js.list[0];
+        foreach (JSONObject directEffect in array.list)
+        {
+            //Logger.Error(directEffect.GetField(directEffect.keys[0]));
+            Type t = Type.GetType(directEffect.GetField(directEffect.keys[0]).str);
+
+            if (t == null)
+            {
+                throw new Exception("Type " + directEffect.GetField(directEffect.keys[0]).str + " not found.");
+            }
+
+            try
+            {
+                Type[] argTypes = new Type[] { typeof(JSONObject) };
+                object[] argValues = new object[] { directEffect.GetField(directEffect.keys[1]) };
+                ConstructorInfo ctor = t.GetConstructor(argTypes);
+                Effect ef = (Effect)ctor.Invoke(argValues);
+            }
+            catch
+            {
+                throw new Exception("contructor not found.");
+            }
+            
         }
     }
 }

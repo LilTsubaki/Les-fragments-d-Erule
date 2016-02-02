@@ -8,5 +8,13 @@ public class DamageElement : EffectMinMax
 	{
 		_element = element;
 	}
+
+    public DamageElement(JSONObject js) : base()
+    {
+        _id = (uint)js.GetField(js.keys[0]).n;
+        _min = (uint)js.GetField(js.keys[1]).n;
+        _max = (uint)js.GetField(js.keys[2]).n;
+        _element = Element.GetElement((int)js.GetField(js.keys[3]).n);
+    }
 }
 
