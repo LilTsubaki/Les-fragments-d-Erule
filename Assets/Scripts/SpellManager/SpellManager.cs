@@ -53,5 +53,23 @@ public class SpellManager
             Area a = new Area(area);
             _areas.Add(a.getId(), a);
         }
+
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/spell.json");
+        array = js.list[0];
+        foreach (JSONObject spell in array.list)
+        {
+            Queue<Element> elements = new Queue<Element>();
+            JSONObject runeArray = spell.GetField(spell.keys[0]);
+            foreach (JSONObject rune in array.list)
+            {
+                elements.Enqueue(Element.GetElement((int)rune.n));
+            }
+
+            SelfSpell selfSpell= new SelfSpell(spell.GetField(spell.keys[1]));
+            TargetSpell targetSpell = new TargetSpell(spell.GetField(spell.keys[2]));
+
+            _elementNode.SetSelfSpell(ref selfSpell, elements);
+            _elementNode.SetTargetSpell(ref targetSpell, elements);
+        }
     }
 }

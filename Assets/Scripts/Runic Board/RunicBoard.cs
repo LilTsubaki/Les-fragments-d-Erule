@@ -21,6 +21,9 @@ public class RunicBoard : MonoBehaviour {
     List<Rune> runesInHand;
     Dictionary<uint, Rune> runesOnBoard;
 
+    /// <summary>
+    /// Display in console runes in Hand 
+    /// </summary>
     public void LogHand()
     {
         Logger.Debug("*** RUNES IN HAND ***");
@@ -30,6 +33,9 @@ public class RunicBoard : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Display in console runes on board
+    /// </summary>
     public void LogRunesOnBoard()
     {
         Logger.Debug("*** RUNES ON BOARD ***");
@@ -68,6 +74,17 @@ public class RunicBoard : MonoBehaviour {
         PlaceRuneOnBoard(ref r5, 8);
         PlaceRuneOnBoard(ref r6, 4);
 
+        //RemoveRuneFromBoard(4);
+
+        //RemoveAllRunes();
+
+        //ChangeRunePosition(4, 15);
+
+        //List<uint> explored = new List<uint>();
+        //Debug.Log("Connected to center ? " + IsConnectedToCenter(0, ref explored, ref runesOnBoard));
+
+        ChangeRunePosition(4, 5);
+
         LogHand();
         LogRunesOnBoard();
     }
@@ -84,6 +101,8 @@ public class RunicBoard : MonoBehaviour {
         if (runesOnBoard.Count == 0)
         {
             runesOnBoard.Add(10, rune);
+            rune._positionOnBoard = 10;
+            runesInHand.Remove(rune);
             return true;
         }
 
@@ -101,6 +120,7 @@ public class RunicBoard : MonoBehaviour {
             {
                 runesOnBoard.Add(position, rune);
                 rune._positionOnBoard = (int)position;
+                runesInHand.Remove(rune);
                 return true;
             }
         }
@@ -135,8 +155,28 @@ public class RunicBoard : MonoBehaviour {
     /// <returns>If the rune was moved succefully</returns>
     private bool ChangeRunePosition(uint actualPosition, uint newPosition)
     {
-        Rune rune;
-        if (runesOnBoard.TryGetValue(actualPosition, out rune))
+        Rune runeToMove;
+        if (runesOnBoard.TryGetValue(actualPosition, out runeToMove))
+        {
+            // Copy of the runes on board without the rune we want to move
+            Dictionary<uint, Rune> tempRunesOnBoard = new Dictionary<uint, Rune>(runesOnBoard);
+            tempRunesOnBoard.Remove(actualPosition);
+            tempRunesOnBoard.Add(newPosition, runeToMove);
+            //List<uint> explored = new List<uint>();
+
+            if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+            {
+                runesOnBoard.Add(newPosition, runeToMove);
+                runesOnBoard.Remove(actualPosition);
+                Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
+            }
+            else
+            {
+                Logger.Debug("Could not move rune from " + actualPosition + " to " + newPosition);
+            }
+
+        }
+        else
         {
             Logger.Error("ChangeRunePosition : no rune detected at " + actualPosition);
             return false;
@@ -207,7 +247,23 @@ public class RunicBoard : MonoBehaviour {
         return neighbours;
     }
 
-    private List<uint> GetNeighBoursPosition(uint position)
+    /// <summary>
+    /// Get positions of runes adjacent to the position in parameter using runesOnBoard
+    /// </summary>
+    /// <param name="position">The position to test</param>
+    /// <returns></returns>
+    private List<uint> GetNeighboursPosition(uint position)
+    {
+        return GetNeighboursPosition(position, runesOnBoard);
+    }
+
+    /// <summary>
+    /// get positions of runes adjacent to the position in paramater, using the board in paramater
+    /// </summary>
+    /// <param name="position">The position to test</param>
+    /// <param name="board">The board to test</param>
+    /// <returns></returns>
+    private List<uint> GetNeighboursPosition(uint position, Dictionary<uint, Rune> board)
     {
         List<uint> positions = GetAdjacentPositions(position);
         List<uint> neighboursPosition = new List<uint>();
@@ -215,7 +271,7 @@ public class RunicBoard : MonoBehaviour {
         for (int i = 0; i < positions.Count; i++)
         {
             Rune rune;
-            if (runesOnBoard.TryGetValue(positions[i], out rune))
+            if (board.TryGetValue(positions[i], out rune))
             {
                 neighboursPosition.Add(positions[i]);
             }
@@ -223,7 +279,31 @@ public class RunicBoard : MonoBehaviour {
         return neighboursPosition;
     }
 
-    public bool IsConnectedToCenter(uint position, ref List<uint> explored)
+    /// <summary>
+    /// Check if every runes placed on the board are correctly connected to the center
+    /// </summary>
+    /// <param name="board">The board to test</param>
+    /// <returns>true if everything is connected, false otherwise</returns>
+    public bool EverythingIsConnecterToCenter(ref Dictionary<uint, Rune> board)
+    {
+        bool isConnected = true;
+        foreach(KeyValuePair<uint, Rune> kvp in board)
+        {
+            List<uint> explored = new List<uint>();
+            isConnected = IsConnectedToCenter(kvp.Key, ref explored, ref board);
+            Logger.Debug(kvp.Key + " connected ? " + isConnected);
+        }
+        return isConnected;
+    }
+
+    /// <summary>
+    /// Return if the position is connected to the center
+    /// </summary>
+    /// <param name="position">The position to test</param>
+    /// <param name="explored">List of explored positions</param>
+    /// <param name="board">The board to test</param>
+    /// <returns></returns>
+    public bool IsConnectedToCenter(uint position, ref List<uint> explored, ref Dictionary<uint, Rune> board)
     {
         if (position == 10)
         {
@@ -236,13 +316,13 @@ public class RunicBoard : MonoBehaviour {
         }
 
         explored.Add(position);
-        List<uint> positions = GetNeighBoursPosition(position);
+        List<uint> positions = GetNeighboursPosition(position, board);
 
         for (int i = 0; i < positions.Count; i++)
         {
             if (!explored.Contains(positions[i]))
             {
-                bool connected = IsConnectedToCenter(positions[i], ref explored);
+                bool connected = IsConnectedToCenter(positions[i], ref explored, ref board);
                 if (connected)
                     return true;
             }
