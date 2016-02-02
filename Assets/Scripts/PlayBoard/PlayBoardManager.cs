@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class PlayBoardManager
 {
-	private PlayBoardManager Instance;
+	private static PlayBoardManager Instance;
 
-	public PlayBoardManager GetInstance(){
+	public static PlayBoardManager GetInstance(){
 		if (Instance == null) {
 			Instance = new PlayBoardManager ();
 		}

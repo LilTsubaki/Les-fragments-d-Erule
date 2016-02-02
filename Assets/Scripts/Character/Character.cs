@@ -36,6 +36,20 @@ public class Character
 
     public void ReceiveDamage(uint value, Element element)
     {
+        uint positiveElementResistance;
+        uint negativeElementResistance;
+
+        _protections.TryGetValue(element, out positiveElementResistance);
+        _protectionsNegative.TryGetValue(element, out negativeElementResistance);
+
+        uint finalValue = (positiveElementResistance - negativeElementResistance) + (_globalProtection - _globalNegativeProtection);
+        float percentage = (100 - finalValue) / 100;
+        value = (uint)(value * percentage);
+
+        if (_lifeCurrent - value < 0)
+            _lifeCurrent = 0;
+        else
+            _lifeCurrent -= value;
         
     }
 }

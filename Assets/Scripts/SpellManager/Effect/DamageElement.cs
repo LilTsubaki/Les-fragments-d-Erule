@@ -20,12 +20,10 @@ public class DamageElement : EffectMinMax
 
     new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        //TODO
-        //la normalement on a un liste qu'on récupère a partir de la liste des hexagons mais ya personne qui 'la codé donc je suis bézé
-        List<Character> chars = new List<Character>();
+        List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            c.ReceiveDamage((uint)new Random().Next((int)_min, (int)_max + 1));
+            c.ReceiveDamage((uint)new Random().Next((int)_min, (int)_max + 1), _element);
         }
     }
 }
