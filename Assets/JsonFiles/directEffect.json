@@ -1,0 +1,32 @@
+{
+	"effect" :
+	[
+		{
+			"id" : 0,
+			"type" :
+			{
+				"class" : "heal",
+				"minValue" : 0,
+				"maxValue" : 10
+			}
+		},
+		{
+			"id" : 1,
+			"type" :
+			{
+				"class" : "damageElement",
+				"minValue" : 0,
+				"maxValue" : 10
+			}
+		},
+		{
+			"id" : 2,
+			"type" :
+			{
+				"class" : "protectionNegativeElement",
+				"element" : 0,
+				"protection" : 2
+			}
+		}
+	]
+}

@@ -7,7 +7,7 @@ public class SpellManager
 
     private Dictionary<int, Area> _areas;
     private Dictionary<int, Range> _ranges;
-    private Dictionary<int, Effect> _effects;
+    private Dictionary<int, EffectDirect> _directEffects;
     private ElementNode _elementNode;
 
     private SpellManager() { }
@@ -35,7 +35,7 @@ public class SpellManager
     {
         _ranges = new Dictionary<int, Range>();
         _areas = new Dictionary<int, Area>();
-        _effects = new Dictionary<int, Effect>();
+        _directEffects = new Dictionary<int, EffectDirect>();
         _elementNode = ElementNode.GetInstance();
 
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
