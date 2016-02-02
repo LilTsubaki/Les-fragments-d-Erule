@@ -45,5 +45,11 @@ public class Element : IComparable{
 
         return element._id - _id;
     }
+
+    public static Queue<Element> GetSortedQueueFromList(List<Element> elements)
+    {
+        elements.Sort();
+        return new Queue<Element>(elements);
+    }
 		
 }
