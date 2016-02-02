@@ -2,7 +2,7 @@
 
 public class RangeUp: RangeModification
 {
-	public RangeUp (uint range): base(range)
+	public RangeUp (uint id, uint range): base(id, range)
 	{
 	}
 }

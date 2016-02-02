@@ -6,6 +6,9 @@ public class Effect
 {
 	private readonly uint _id;
 
-    public Effect() { }
+	public Effect(uint id) 
+	{
+		_id = id;
+	}
 }
 

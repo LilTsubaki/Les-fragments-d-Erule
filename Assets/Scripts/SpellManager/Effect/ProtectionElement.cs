@@ -4,7 +4,7 @@
 public class ProtectionElement : ProtectionGlobal
 {
 	Element _element;
-	public ProtectionElement (uint protection, Element element):base(protection)
+	public ProtectionElement (uint id, uint protection, Element element):base(id, protection)
 	{
 		_element = element;
 	}

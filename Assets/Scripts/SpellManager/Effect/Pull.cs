@@ -2,7 +2,7 @@
 
 public class Pull : EffectDeplacement
 {
-	public Pull (uint nbDeplacement, Hexagon source) : base (nbDeplacement, source)
+	public Pull (uint id, uint nbDeplacement, Hexagon source) : base (id, nbDeplacement, source)
 	{
 	}
 }
