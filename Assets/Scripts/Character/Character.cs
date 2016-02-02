@@ -3,19 +3,33 @@ using System.Collections.Generic;
 
 public class Character
 {
+	public static uint MaxProtection = 50;
 	public readonly uint _lifeMax;
 	public uint _lifeCurrent;
 	Hexagon _position;
 	public uint _currentActionPoints;
-	Dictionary<Element, uint> _protections;
-	Dictionary<Element, uint> _protectionsNegative;
-	uint _globalProtection;
-	uint _globalNegativeProtection;
+
+	private Dictionary<Element, uint> _protections;
+	private Dictionary<Element, uint> _protectionsNegative;
+
+	private uint _globalProtection;
+	private uint _globalNegativeProtection;
+
+	private uint _sommeProtection;
+	private uint _sommeNegativeProtection;
+
 
 	public Character (uint lifeMax, Hexagon position)
 	{
 		_protections = new Dictionary<Element, uint> ();
 		_protectionsNegative = new Dictionary<Element, uint> ();
+
+		_globalProtection = 0;
+		_globalNegativeProtection = 0;
+
+		_sommeProtection = 0;
+		_sommeNegativeProtection = 0;
+
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 		_position = position;
@@ -52,4 +66,64 @@ public class Character
             _lifeCurrent -= value;
         
     }
+
+	public void ReceiveGlobalProtection(uint protection){
+		
+		uint val = Math.Min (protection, _globalNegativeProtection);
+
+		_globalNegativeProtection -= val;
+		_sommeNegativeProtection -= val;
+
+		protection -= val;
+
+		uint max = MaxProtection - _sommeProtection;
+
+		_globalProtection += Math.Min (max, protection);
+		_sommeProtection += Math.Min (max, protection);
+	}
+
+	public void ReceiveGlobalNegativeProtection(uint protection){
+
+		uint val = Math.Min (protection, _globalProtection);
+
+		_globalProtection -= val;
+		_sommeProtection -= val;
+
+		protection -= val;
+
+		uint max = MaxProtection - _sommeNegativeProtection;
+
+		_globalNegativeProtection += Math.Min (max, protection);
+		_sommeNegativeProtection += Math.Min (max, protection);
+	}
+
+	public void ReceiveElementProtection(uint protection, Element element){
+		
+		uint val = Math.Min (protection, _protectionsNegative[element]);
+
+		_protectionsNegative[element] -= val;
+		_sommeNegativeProtection -= val;
+
+		protection -= val;
+
+		uint max = MaxProtection - _sommeProtection;
+
+		_protections[element] += Math.Min (max, protection);
+		_sommeProtection += Math.Min (max, protection);
+	}
+
+	public void ReceiveElementNegativeProtection(uint protection, Element element){
+		
+		uint val = Math.Min (protection, _protections[element]);
+
+		_protections[element] -= val;
+		_sommeProtection -= val;
+
+		protection -= val;
+
+		uint max = MaxProtection - _sommeNegativeProtection;
+
+		_protectionsNegative[element] += Math.Min (max, protection);
+		_sommeProtection += Math.Min (max, protection);
+	}
 }
