@@ -12,6 +12,8 @@ public class Character
 
 	public Character (uint lifeMax, Hexagon position)
 	{
+		_protections = new Dictionary<Element, uint> ();
+		_protectionsNegative = new Dictionary<Element, uint> ();
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 		_position = position;
