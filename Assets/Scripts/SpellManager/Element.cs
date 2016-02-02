@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-public class Element{
+public class Element : IComparable{
 
 	public readonly int _id;
 	public readonly string _name;
@@ -33,6 +33,17 @@ public class Element{
 		Elements.Add(new Element ("Earth"));
 		Elements.Add(new Element ("Wood"));
 		Elements.Add(new Element ("Metal"));
-}
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (obj == null)
+            throw new ArgumentException("Object is null");
+        Element element = obj as Element;
+        if (element == null)
+            throw new ArgumentException("Object is not an element");
+
+        return element._id - _id;
+    }
 		
 }
