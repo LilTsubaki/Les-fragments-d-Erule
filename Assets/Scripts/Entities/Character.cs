@@ -18,6 +18,8 @@ public class Character : Entity
 	private uint _sommeProtection;
 	private uint _sommeNegativeProtection;
 
+    private Dictionary<uint, PlayerOnTimeEffect> _onTimeEffects;
+
 
 	public Character (uint lifeMax, Hexagon position) : base(position)
 	{
@@ -37,6 +39,8 @@ public class Character : Entity
 			_protections [e] = 0;
 			_protectionsNegative [e] = 0;
 		}
+
+        _onTimeEffects = new Dictionary<uint, PlayerOnTimeEffect>();
 	}
 
     public void ReceiveHeal(uint value)
