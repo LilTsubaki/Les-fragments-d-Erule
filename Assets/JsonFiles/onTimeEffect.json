@@ -2,14 +2,22 @@
 	"onTimeEffect" :
 	[
 		{
-			"id" : 0,
-			"idDirectEffect" : 0,
-			"nbTurn" : 2
+			"class" : "GroundOnTimeEffect",
+			"attributs" :
+			{
+				"id" : 0,
+				"idDirectEffect" : 0,
+				"nbTurn" : 2
+			}			
 		},
 		{
-			"id" : 1,
-			"idDirectEffect" : 2,
-			"nbTurn" : 2
+			"class" : "PlayerOnTimeEffect",
+			"attributs" :
+			{
+				"id" : 1,
+				"idDirectEffect" : 2,
+				"nbTurn" : 2
+			}
 		}
 	]
 }

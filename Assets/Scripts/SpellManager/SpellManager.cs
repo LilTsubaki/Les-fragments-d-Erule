@@ -115,8 +115,26 @@ public class SpellManager
         array = js.list[0];
         foreach (JSONObject onTimeEffect in array.list)
         {
-            EffectOnTime eot = new EffectOnTime(onTimeEffect);
-            _onTimeEffects.Add(eot.getId(), eot);
+            Type t = Type.GetType(onTimeEffect.GetField(onTimeEffect.keys[0]).str);
+
+            if (t == null)
+            {
+                throw new Exception("Type " + onTimeEffect.GetField(onTimeEffect.keys[0]).str + " not found.");
+            }
+            try
+            {
+                Type[] argTypes = new Type[] { typeof(JSONObject) };
+                object[] argValues = new object[] { onTimeEffect.GetField(onTimeEffect.keys[1]) };
+                ConstructorInfo ctor = t.GetConstructor(argTypes);
+                Effect ef = (Effect)ctor.Invoke(argValues);
+                _onTimeEffects.Add(ef.getId(), (EffectOnTime)ef);
+            }
+            catch
+            {
+                throw new Exception("contructor not found.");
+            }
+            /*EffectOnTime eot = new EffectOnTime(onTimeEffect);
+            _onTimeEffects.Add(eot.getId(), eot);*/
         }
     }
 
