@@ -16,7 +16,7 @@ public class TestCamera : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            CameraManager.GetInstance().ZoomInOrthographic(2, 0.1f);
+            CameraManager.GetInstance().ZoomInPerspective(2, 0.5f);
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -24,7 +24,7 @@ public class TestCamera : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
-            CameraManager.GetInstance().ZoomOutOrthographic(2, 0.1f);
+            CameraManager.GetInstance().ZoomOutPerspective(2, 1);
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
@@ -35,7 +35,7 @@ public class TestCamera : MonoBehaviour {
             CameraManager.GetInstance().LookAt(aim);
         }
 
-        CameraManager.GetInstance().AroundY(aim.transform.position, 2);
+        //CameraManager.GetInstance().AroundY(aim.transform.position, 2);
 
         /*if (started)
         {
@@ -46,13 +46,13 @@ public class TestCamera : MonoBehaviour {
 
     void GetFirst()
     {
-        CameraManager.GetInstance().FadeTo("First");
+        CameraManager.GetInstance().FadeTo("First", 0.2f);
         Invoke("GetSecond", 3);
     }
 
     void GetSecond()
     {
-        CameraManager.GetInstance().FadeTo("Second");
+        CameraManager.GetInstance().FadeTo("Second", 0.2f);
         Invoke("GetFirst", 3);
     }
 }

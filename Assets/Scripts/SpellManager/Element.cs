@@ -34,7 +34,6 @@ public class Element : IComparable{
 		Elements.Add(new Element ("Wood"));
 		Elements.Add(new Element ("Metal"));
     }
-
     public int CompareTo(object obj)
     {
         if (obj == null)
@@ -45,5 +44,4 @@ public class Element : IComparable{
 
         return _id - element._id;
     }
-		
 }

@@ -2,7 +2,7 @@
 
 public class Heal : EffectMinMax
 {
-	public Heal (uint min, uint max) : base(min, max) 
+	public Heal (uint id, uint min, uint max) : base(id, min, max) 
 	{
 	}
 }

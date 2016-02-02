@@ -2,7 +2,7 @@
 
 public class EffectDirect : Effect
 {
-	public EffectDirect ()
+	public EffectDirect (uint id): base(id)
 	{
 	}
 }

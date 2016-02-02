@@ -96,7 +96,7 @@ public class CameraManager
     }
 
     /// <summary>
-    /// Turns the active Camera around a center, around the Y axe. If speed is positive, turns clockwise. If speed is negative, turns counterclockwise.
+    /// Turns the active Camera around a center, around the Y axis. If speed is positive, turns clockwise. If speed is negative, turns counterclockwise.
     /// </summary>
     /// <param name="center">The center of the rotation.</param>
     /// <param name="speed">The speed of the rotation.</param>
@@ -115,28 +115,45 @@ public class CameraManager
         _active.transform.LookAt(go.transform);
     }
 
-    public void MoveForward(float speed)
+    /// <summary>
+    /// Makes the active Camera move once along its forward direction.
+    /// </summary>
+    /// <param name="transitionTime">The time in seconds to finish the movement.</param>
+    public void MoveForward(float transitionTime)
     {
         Transform t = _active.transform;
-        MoveTo(t.position + t.forward, speed);
+        MoveTo(t.position + t.forward, transitionTime);
     }
 
-    public void MoveBackward(float speed)
+    /// <summary>
+    /// Makes the active Camera move once along its backward direction.
+    /// </summary>
+    /// <param name="transitionTime">The time in seconds to finish the movement.</param>
+    public void MoveBackward(float transitionTime)
     {
         Transform t = _active.transform;
-        MoveTo(t.position - t.forward, speed);
+        MoveTo(t.position - t.forward, transitionTime);
     }
 
-    public void ZoomInPerspective(float times, float speed)
+    /// <summary>
+    /// Zooms the active Camera in if its projection is in perspective by moving it along its forward direction.
+    /// </summary>
+    /// <param name="times">The number of times to move the Camera.</param>
+    /// <param name="transitonTime">The time in seconds to finish the zoom. If 0, changed to 0.0001.</param>
+    public void ZoomInPerspective(float times, float transitonTime)
     {
-        if(times < 0)
+        if (transitonTime == 0)
+        {
+            transitonTime = 0.0001f;
+        }
+        if (times < 0)
         {
             Logger.Warning("You should use ZoomOutPerspective instead (ZoomInPerspective with times < 0 ).");
         }
         if (!_active.GetComponent<Camera>().orthographic)
         {
             Transform t = _active.transform;
-            MoveTo(t.position + t.forward* times, speed);
+            MoveTo(t.position + t.forward* times, transitonTime);
         }
         else
         {
@@ -144,8 +161,17 @@ public class CameraManager
         }
     }
 
-    public void ZoomOutPerspective(float times, float speed)
+    /// <summary>
+    /// Zooms the active Camera out if its projection is in perspective by moving it along its backward direction.
+    /// </summary>
+    /// <param name="times">The number of times to move the Camera.</param>
+    /// <param name="transtionTime">The time in seconds to finish the zoom. If 0, changed to 0.0001.</param>
+    public void ZoomOutPerspective(float times, float transtionTime)
     {
+        if(transtionTime == 0)
+        {
+            transtionTime = 0.0001f;
+        }
         if (times < 0)
         {
             Logger.Warning("You should use ZoomInPerspective instead (ZoomOutPerspective with times < 0 ).");
@@ -153,7 +179,7 @@ public class CameraManager
         if (!_active.GetComponent<Camera>().orthographic)
         {
             Transform t = _active.transform;
-            MoveTo(t.position - t.forward * times, speed);
+            MoveTo(t.position - t.forward * times, transtionTime);
         }
         else
         {
@@ -161,62 +187,129 @@ public class CameraManager
         }
     }
 
-    public void MoveTo(Vector3 pos, float speed)
+    /// <summary>
+    /// Moves the active Camera to the specified position.
+    /// </summary>
+    /// <param name="pos">The position to move the active Camera to.</param>
+    /// <param name="transitionTime">The time in seconds to finish the movement.</param>
+    public void MoveTo(Vector3 pos, float transitionTime)
     {
-        _active.GetComponent<RegisterCamera>().MoveTo(pos, speed);
+        _active.GetComponent<RegisterCamera>().MoveTo(pos, transitionTime);
     }
 
-    public void ZoomInOrthographic(float orthoSize, float speed)
+    /// <summary>
+    /// Zooms the active Camera in by raising its orthographic size by a certain amount.
+    /// </summary>
+    /// <param name="orthoSize">The amount to increase the size.</param>
+    /// <param name="transitionTime">The time in seconds to finish the zoom.</param>
+    public void ZoomInOrthographic(float orthoSize, float transitionTime)
     {
-        float finalSize = _active.GetComponent<Camera>().orthographicSize - orthoSize;
-        if(finalSize < 0)
+        if(transitionTime == 0)
         {
-            Logger.Warning(_activeName + " is now reversed (Destination size : " + finalSize + " )");
+            transitionTime = 0.0001f;
         }
-        _active.GetComponent<RegisterCamera>().ZoomOrthoTo(finalSize, speed);
-    }
-
-    public void ZoomOutOrthographic(float orthoSize, float speed)
-    {
-        float finalSize = _active.GetComponent<Camera>().orthographicSize + orthoSize;
-        _active.GetComponent<RegisterCamera>().ZoomOrthoTo(finalSize, speed);
-    }
-
-    public void ZoomToOrthographic(float orthoSize, float speed)
-    {
-        if (orthoSize < 0)
+        if(transitionTime < 0)
         {
-            Logger.Warning(_activeName + " is now reversed (Destination size : " + orthoSize + " )");
+            Logger.Warning("Trying to use ZoomInOrthographic with a negative transition time.");
         }
-        _active.GetComponent<RegisterCamera>().ZoomOrthoTo(orthoSize, speed);
+        if (_active.GetComponent<Camera>().orthographic)
+        {
+            float finalSize = _active.GetComponent<Camera>().orthographicSize - orthoSize;
+            ZoomToOrthographic(finalSize, transitionTime);
+        }
+        else
+        {
+            Logger.Warning("Using ZoomInOrthographic with a perspective Camera named " + _activeName + ".");
+        }
     }
 
+    /// <summary>
+    /// Zooms the active Camera out by lowering its orthographic size by a certain amount.
+    /// </summary>
+    /// <param name="orthoSize">The amount to decrease the size.</param>
+    /// <param name="transitionTime">The time in seconds to finish the zoom.</param>
+    public void ZoomOutOrthographic(float orthoSize, float transitionTime)
+    {
+        if (transitionTime == 0)
+        {
+            transitionTime = 0.0001f;
+        }
+        if (transitionTime < 0)
+        {
+            Logger.Warning("Trying to use ZoomOutOrthographic with a negative transition time.");
+        }
+        if (_active.GetComponent<Camera>().orthographic)
+        {
+            float finalSize = _active.GetComponent<Camera>().orthographicSize + orthoSize;
+            ZoomToOrthographic(finalSize, transitionTime);
+        }
+        else
+        {
+            Logger.Warning("Using ZoomOutOrthographic with a perspective Camera named " + _activeName + ".");
+        }
+    }
+
+    /// <summary>
+    /// Zooms the active Camera by changing its orthographic size to a new value.
+    /// </summary>
+    /// <param name="orthoSize">The new value of the orthographic size.</param>
+    /// <param name="transitionTime">The time in seconds to finish the zoom.</param>
+    public void ZoomToOrthographic(float orthoSize, float transitionTime)
+    {
+        if (_active.GetComponent<Camera>().orthographic)
+        {
+            if (orthoSize < 0)
+            {
+                Logger.Warning(_activeName + " will be reversed (Destination size : " + orthoSize + " )");
+            }
+            _active.GetComponent<RegisterCamera>().ZoomOrthoTo(orthoSize, transitionTime);
+        }
+        else
+        {
+            Logger.Warning("Using ZoomToOrthographic with a perspective Camera named " + _activeName + ".");
+        }
+    }
+
+    /// <summary>
+    /// Changes the field of view of the active Camera to a new value.
+    /// </summary>
+    /// <param name="angle">The new field of view angle of the active Camera.</param>
     public void Fov(float angle)
     {
         _active.fieldOfView = angle;
     }
 
-    public bool StartAnimation()
+    /// <summary>
+    /// Activates a trigger in the animator on the active Camera.
+    /// </summary>
+    /// <param name="animatorTriggerName">The trigger to activate.</param>
+    /// <returns>True if the active Camera has an animator. Else false.</returns>
+    public bool StartAnimation(string animatorTriggerName)
     {
         Animator anim = _active.gameObject.GetComponent<Animator>();
         if (anim != null)
         {
-            anim.SetBool("Go", true);
+            anim.SetTrigger(animatorTriggerName);
             return true;
         }
         return false;
     }
 
-    public void FadeTo(string cameraName)
+    /// <summary>
+    /// Fades to another Camera if there is not any other fading effect being played.
+    /// </summary>
+    /// <param name="cameraName">The name of the Camera to fade to.</param>
+    /// <param name="transitionTime">The duration of the transition, in seconds.</param>
+    public void FadeTo(string cameraName, float transitionTime)
     {
         if (IsStable())
         {
             if (_cameras.ContainsKey(cameraName))
             {
                 _isStable = false;
-                _fadescreen.Reverse();
+                _fadescreen.Reverse(transitionTime);
                 _nextCamera = cameraName;
-                _fadescreen.FadeTime();
+                _fadescreen.FadeTime(transitionTime*0.5f);
             }
             else
                 Logger.Error("Does not exist : " + cameraName);
@@ -227,6 +320,36 @@ public class CameraManager
         }
     }
 
+    /// <summary>
+    /// Fade to another Camera if there is not any other fading effect beign played. Activates a trigger on the animator of the next Camera.
+    /// </summary>
+    /// <param name="cameraName">The name of the Camera to fade to.</param>
+    /// <param name="transitionTime">The duration of the transition, in seconds.</param>
+    /// <param name="animTriggerName">The name of the trigger to activate.</param>
+    public void FadeToAnim(string cameraName, float transitionTime, string animTriggerName)
+    {
+        if (IsStable())
+        {
+            if (_cameras.ContainsKey(cameraName))
+            {
+                _isStable = false;
+                _fadescreen.Reverse(transitionTime);
+                _fadescreen.SetAnimation(animTriggerName);
+                _nextCamera = cameraName;
+                _fadescreen.FadeTimeAnim(transitionTime*0.5f);
+            }
+            else
+                Logger.Error("Does not exist : " + cameraName);
+        }
+        else
+        {
+            Logger.Warning("Camera already being changed.");
+        }
+    }
+
+    /// <summary>
+    /// Switches to the Camera marked as next.
+    /// </summary>
     public void ActivateMain()
     {
         _active.enabled = false;
@@ -236,10 +359,24 @@ public class CameraManager
         _active.gameObject.GetComponent<AudioListener>().enabled = true;
         _activeName = _nextCamera;
         _nextCamera = "";
-        Logger.Trace("Has animation started ? " + StartAnimation());
         _isStable = true;
     }
 
+
+    /// <summary>
+    /// Switches to the Camera marked as next and activates the given trigger.
+    /// </summary>
+    /// <param name="anim">The name of the trigger to activate.</param>
+    public void ActivateMainStartAnim(string anim)
+    {
+        ActivateMain();
+        Logger.Trace("Has animation started ? " + StartAnimation(anim));
+    }
+
+    /// <summary>
+    /// Returns if there is not any transition between two Cameras being played.
+    /// </summary>
+    /// <returns>True if there is not any transition being played.</returns>
     public bool IsStable()
     {
         return _isStable;
