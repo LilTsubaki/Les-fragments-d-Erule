@@ -12,7 +12,7 @@ public class EffectMinMax
 	}
 
 	public uint GetRandom(){
-		return (uint) (new Random ().Next (_min, _max));
+		return (uint) (new Random ().Next ((int)_min, (int)_max));
 	}
 }
 
