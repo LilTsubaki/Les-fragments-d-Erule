@@ -63,12 +63,16 @@ public class SpellManager
         array = js.list[0];
         foreach (JSONObject spell in array.list)
         {
-            Queue<Element> elements = new Queue<Element>();
+            List<Element> elementsList = new List<Element>();
+            Queue<Element> elements;
             JSONObject runeArray = spell.GetField(spell.keys[0]);
-            foreach (JSONObject rune in array.list)
+            foreach (JSONObject rune in runeArray.list)
             {
-                elements.Enqueue(Element.GetElement((int)rune.n));
+                elementsList.Add(Element.GetElement((int)rune.n));
+                Logger.Trace((int)rune.n);
             }
+            elementsList.Sort();
+            elements = new Queue<Element>(elementsList);
 
             SelfSpell selfSpell= new SelfSpell(spell.GetField(spell.keys[1]));
             TargetSpell targetSpell = new TargetSpell(spell.GetField(spell.keys[2]));

@@ -43,13 +43,7 @@ public class Element : IComparable{
         if (element == null)
             throw new ArgumentException("Object is not an element");
 
-        return element._id - _id;
-    }
-
-    public static Queue<Element> GetSortedQueueFromList(List<Element> elements)
-    {
-        elements.Sort();
-        return new Queue<Element>(elements);
+        return _id - element._id;
     }
 		
 }
