@@ -11,14 +11,13 @@ public class Hexagon : IAStar<Hexagon>
 
 	public readonly PlayBoard _board;
 
-    public bool _isEmpty;
+    public Entity _entity;
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
 		_posX = x;
 		_posY = y;
 		_board = board;
-        _isEmpty = false;
 	}
 
     public bool hasValidPosition()
@@ -168,9 +167,40 @@ public class Hexagon : IAStar<Hexagon>
 		}
 	}
 
+    public bool isReachable()
+    {
+        return _entity == null && hasValidPosition();
+    }
+
     public List<Hexagon> GetNeighbours()
     {
         List<Hexagon> neighbours = new List<Hexagon>();
+
+        Hexagon E = GetEast();
+        Hexagon NE = GetNorthEast();
+        Hexagon SE = GetSouthEast();
+        Hexagon W = GetWest();
+        Hexagon NW = GetNorthWest();
+        Hexagon SW = GetSouthWest();
+
+        if (E.isReachable())
+            neighbours.Add(E);
+
+        if (NE.isReachable())
+            neighbours.Add(NE);
+
+        if (SE.isReachable())
+            neighbours.Add(SE);
+
+        if (W.isReachable())
+            neighbours.Add(W);
+
+        if (NW.isReachable())
+            neighbours.Add(NW);
+
+        if (SW.isReachable())
+            neighbours.Add(SW);
+
         return neighbours;
     }
 
