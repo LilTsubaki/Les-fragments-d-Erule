@@ -5,7 +5,7 @@ public class Spell
 {
     protected uint _id;
     protected uint _areaId;
-    protected List<uint> _effectsAreaIds;
+    protected Effects _effectsArea;
 
     public Spell (uint id)
 	{
