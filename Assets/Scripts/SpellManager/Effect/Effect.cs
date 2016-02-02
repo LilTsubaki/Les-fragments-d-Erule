@@ -12,5 +12,10 @@ public class Effect
 	{
 		_id = id;
 	}
+
+    public uint getId()
+    {
+        return _id;
+    }
 }
 
