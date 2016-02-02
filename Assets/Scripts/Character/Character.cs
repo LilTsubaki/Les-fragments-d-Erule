@@ -23,4 +23,17 @@ public class Character
 			_protectionsNegative [e] = 0;
 		}
 	}
+
+    public void ReceiveHeal(uint value)
+    {
+        if (_lifeCurrent + value > _lifeMax)
+            _lifeCurrent = _lifeMax;
+        else
+            _lifeCurrent += value;
+    }
+
+    public void ReceiveDamage(uint value, Element element)
+    {
+        
+    }
 }

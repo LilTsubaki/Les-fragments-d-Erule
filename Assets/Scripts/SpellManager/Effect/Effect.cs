@@ -14,7 +14,7 @@ public class Effect
 	}
 
 	public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
-		throw NotImplementedException ();
+		throw new NotImplementedException ();
 	}
 
     public uint getId()
