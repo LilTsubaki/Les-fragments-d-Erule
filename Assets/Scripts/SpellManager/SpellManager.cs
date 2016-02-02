@@ -10,6 +10,11 @@ public class SpellManager
     private Dictionary<int, Effect> _effects;
     private ElementNode _elementNode;
 
+    public ElementNode ElementNode
+    {
+        get { return _elementNode; }
+    }
+
     private SpellManager() { }
 
     /// <summary>
