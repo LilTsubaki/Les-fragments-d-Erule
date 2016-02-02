@@ -2,8 +2,10 @@
 
 public class EffectMinMax : EffectDirect
 {
-	private uint _min;
-	private uint _max;
+	protected uint _min;
+    protected uint _max;
+
+    public EffectMinMax() : base() { }
 
 	public EffectMinMax (uint id, uint min, uint max): base(id)
 	{

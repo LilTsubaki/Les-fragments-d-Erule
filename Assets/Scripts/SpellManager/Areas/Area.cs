@@ -12,6 +12,7 @@ class Area
     private int _id;
     private Orientation.EnumOrientation _orientation;
     private List<Node> _nodes;
+    private bool _rootUsed;
 
     public Area()
     {
@@ -37,15 +38,12 @@ class Area
     /// <param name="js"></param>
     public Area(JSONObject js)
     {
-        /*Debug.Log(js.ToString());
-        Debug.Log((int)js.GetField(js.keys[0]).n);
-        Debug.Log(Orientation.stringToOrientation(js.GetField(js.keys[1]).str));*/
-
         _nodes = new List<Node>();
         _id = (int)js.GetField(js.keys[0]).n;
         _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
-        JSONObject array = js.GetField(js.keys[2]);
-        //Debug.Log(array.Count);
+        _rootUsed = js.GetField(js.keys[2]).b;
+
+        JSONObject array = js.GetField(js.keys[3]);
 
         foreach (JSONObject node in array.list)
         {
@@ -95,7 +93,8 @@ class Area
     public List<Hexagon> AreaToHexa(Direction.EnumDirection direction, Hexagon source)
     {
         List<Hexagon> turnedArea = new List<Hexagon>();
-        turnedArea.Add(source);
+        if(_rootUsed)
+            turnedArea.Add(source);
         //rotate the area using direction as target
         Area area = rotateArea(direction);
 

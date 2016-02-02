@@ -1,0 +1,90 @@
+{
+	"effect" :
+	[
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 0,
+				"minValue" : 0,
+				"maxValue" : 10
+			}			
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 1,	
+				"minValue" : 0,
+				"maxValue" : 10,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 2,
+				"protection" : 2,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
+			{
+				"id" : 3,
+				"protection" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 4,
+				"protection" : 2,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 5,				
+				"protection" : 2
+			}			
+		},
+		{
+			"class" : "RangeUp",
+			"attributs" :
+			{
+				"id" : 6,				
+				"range" : 2
+			}	
+		},
+		{
+			"class" : "RangeDown",
+			"attributs" :
+			{
+				"id" : 7,
+				"range" : 2
+			}
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 8,
+				"nbDeplacement" : 2
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 9,
+				"nbDeplacement" : 2
+			}
+		}
+	]
+}

@@ -68,11 +68,11 @@ public class RunicBoard : MonoBehaviour {
         Rune r6 = new Rune(Element.GetElement(3), -1);
         runesInHand.Add(r6);
 
-        PlaceRuneOnBoard(ref r2, 10);
+        PlaceRuneOnBoard(ref r6, 10);
         PlaceRuneOnBoard(ref r3, 14);
         PlaceRuneOnBoard(ref r4, 13);
         PlaceRuneOnBoard(ref r5, 8);
-        PlaceRuneOnBoard(ref r6, 4);
+        PlaceRuneOnBoard(ref r2, 4);
 
         //RemoveRuneFromBoard(4);
 
@@ -83,10 +83,12 @@ public class RunicBoard : MonoBehaviour {
         //List<uint> explored = new List<uint>();
         //Debug.Log("Connected to center ? " + IsConnectedToCenter(0, ref explored, ref runesOnBoard));
 
-        ChangeRunePosition(4, 5);
+        //ChangeRunePosition(4, 5);
 
-        LogHand();
-        LogRunesOnBoard();
+        //LogHand();
+        //LogRunesOnBoard();
+
+        Logger.Debug("Can launch spell ? " + CanLaunchSpell());
     }
 
     /// <summary>
@@ -334,16 +336,38 @@ public class RunicBoard : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    /// <returns>A List of Element from runes that are on the board.</returns>
-    public List<Element> GetElements()
+    /// <returns>A Queue of Element from runes that are on the board.</returns>
+    public Queue<Element> GetSortedElementQueue()
     {
-        List<Element> elements = new List<Element>();
+        List<Element> elementsList = new List<Element>();
         foreach (KeyValuePair<uint, Rune> kvp in runesOnBoard)
         {
-            elements.Add(kvp.Value._element);
+            elementsList.Add(kvp.Value._element);
         }
+        elementsList.Sort();
 
-        return elements;
+        Queue<Element> elementsQueue = new Queue<Element>(elementsList);
+
+        return elementsQueue;
+    }
+
+    /// <summary>
+    /// Check if the combination of runes exists in the database
+    /// </summary>
+    /// <returns></returns>
+    public bool CanLaunchSpell()
+    {
+        Queue<Element> elements = GetSortedElementQueue();
+        Logger.Debug("*** Elements in queue ***");
+        //foreach(Element e in elements)
+        //{
+        //    Logger.Debug("E : " + e._id + ", " + e._name);
+        //}
+        SpellManager sm = SpellManager.getInstance();
+        if (sm.ElementNode.GetSelfSpell(elements) != null)
+            return true;
+
+        return false;
     }
 	
 	// Update is called once per frame

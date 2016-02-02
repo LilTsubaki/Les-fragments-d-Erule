@@ -2,8 +2,10 @@
 
 public class EffectOnTime : Effect
 {
-	private EffectDirect _effectDirect;
-	private uint _nbTurn;
+	protected EffectDirect _effectDirect;
+    protected uint _nbTurn;
+
+    public EffectOnTime() : base() { }
 
 	public EffectOnTime (uint id, EffectDirect effectDirect, uint nbTurn): base(id)
 	{
