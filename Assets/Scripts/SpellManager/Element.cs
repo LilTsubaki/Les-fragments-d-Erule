@@ -33,6 +33,6 @@ public class Element{
 		Elements.Add(new Element ("Earth"));
 		Elements.Add(new Element ("Wood"));
 		Elements.Add(new Element ("Metal"));
-}
+    }
 		
 }
