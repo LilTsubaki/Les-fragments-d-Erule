@@ -9,6 +9,8 @@ public class Character
 	public uint _currentActionPoints;
 	Dictionary<Element, uint> _protections;
 	Dictionary<Element, uint> _protectionsNegative;
+	uint _globalProtection;
+	uint _globalNegativeProtection;
 
 	public Character (uint lifeMax, Hexagon position)
 	{
