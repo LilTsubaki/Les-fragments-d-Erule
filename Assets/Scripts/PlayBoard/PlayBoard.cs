@@ -52,7 +52,7 @@ public class PlayBoard  {
 			return _grid [x] [y];
 		}
 
-		return null;
+		return new Hexagon(-1, -1, this);
 	}
 
 	/// <summary>

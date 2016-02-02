@@ -17,6 +17,13 @@ public class Hexagon
 		_board = board;
 	}
 
+    public bool hasValidPosition()
+    {
+        if (_posX == -1 && _posY == -1)
+            return false;
+        return true;
+    }
+
 	public Hexagon GetTarget(List<Direction.EnumDirection> directions){
 		int x = 0;
 		int y = 0;
