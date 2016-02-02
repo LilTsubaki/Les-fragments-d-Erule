@@ -4,6 +4,7 @@
 		{
 			"id" : 0,
 			"orientation" : "any",
+			"rootUsed" : true,
 			"nodes":
 			[]
 				
@@ -11,22 +12,27 @@
 		{
 			"id" : 1,
 			"orientation" : "line",
+			"rootUsed" : true,
 			"nodes":
 			[
 				{
 					"direction" : "east",
+					"nodeUsed" : true,
 					"nodes" :
 					[
 						{
 							"direction" : "east",
+							"nodeUsed" : true,
 							"nodes" :[]
 						},
 						{
 							"direction" : "northEast",
+							"nodeUsed" : true,
 							"nodes" :[]
 						},
 						{
 							"direction" : "southEast",
+							"nodeUsed" : true,
 							"nodes" :[]
 						}
 					]
@@ -36,14 +42,17 @@
 		{
 			"id" : 2,
 			"orientation" : "diagonal",
+			"rootUsed" : true,
 			"nodes":
 			[
 				{
 					"direction" : "east",
+					"nodeUsed" : true,
 					"nodes" :[]
 				},
 				{
 					"direction" : "west",
+					"nodeUsed" : true,
 					"nodes" :[]
 				}
 			]

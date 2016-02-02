@@ -10,8 +10,9 @@ using UnityEngine;
 /// </summary>
 class Node
 {
-    List<Node> _nodes;
-    Direction.EnumDirection _direction;
+    private List<Node> _nodes;
+    private Direction.EnumDirection _direction;
+    private bool _nodeUsed;
 
     public Node()
     {
@@ -39,8 +40,8 @@ class Node
 
         //Debug.Log(Direction.stringToDirection(js.GetField(js.keys[0]).str));
         _direction = Direction.stringToDirection(js.GetField(js.keys[0]).str);
-
-        JSONObject array = js.GetField(js.keys[1]);
+        _nodeUsed =  js.GetField(js.keys[1]).b;
+        JSONObject array = js.GetField(js.keys[2]);
         //Debug.Log("nb sous node : " + array.Count);
         foreach (JSONObject node in array.list)
         {
@@ -65,7 +66,7 @@ class Node
         Hexagon currentHexa;
         currentHexa = root.GetTarget(dirs);
         
-        if(currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0)
+        if(currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0 && _nodeUsed)
         {
             hexas.Add(currentHexa);
         }

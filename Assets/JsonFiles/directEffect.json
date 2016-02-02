@@ -2,30 +2,88 @@
 	"effect" :
 	[
 		{
-			"id" : 0,
-			"type" :
+			"class" : "Heal",
+			"attributs" :
 			{
-				"class" : "heal",
+				"id" : 0,
 				"minValue" : 0,
 				"maxValue" : 10
+			}			
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 1,	
+				"minValue" : 0,
+				"maxValue" : 10,
+				"element" : 0
 			}
 		},
 		{
-			"id" : 1,
-			"type" :
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
 			{
-				"class" : "damageElement",
-				"minValue" : 0,
-				"maxValue" : 10
+				"id" : 2,
+				"protection" : 2,
+				"element" : 0
 			}
 		},
 		{
-			"id" : 2,
-			"type" :
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
 			{
-				"class" : "protectionNegativeElement",
-				"element" : 0,
+				"id" : 3,
 				"protection" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 4,
+				"protection" : 2,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 5,				
+				"protection" : 2
+			}			
+		},
+		{
+			"class" : "RangeUp",
+			"attributs" :
+			{
+				"id" : 6,				
+				"range" : 2
+			}	
+		},
+		{
+			"class" : "RangeDown",
+			"attributs" :
+			{
+				"id" : 7,
+				"range" : 2
+			}
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 8,
+				"nbDeplacement" : 2
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 9,
+				"nbDeplacement" : 2
 			}
 		}
 	]
