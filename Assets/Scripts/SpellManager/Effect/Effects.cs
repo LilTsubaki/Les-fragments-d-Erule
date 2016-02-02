@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 
-class Effects
+public class Effects
 {
     private List<int> _ids;
 
     public Effects(JSONObject js)
     {
         _ids = new List<int>();
-        JSONObject idArray = (JSONObject) js.list[0];
 
-        foreach (JSONObject id in idArray.list)
+        foreach (JSONObject id in js.list)
         {
             _ids.Add((int)id.n);
         }
