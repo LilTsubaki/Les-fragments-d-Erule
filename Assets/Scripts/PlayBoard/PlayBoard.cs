@@ -140,7 +140,7 @@ public class PlayBoard  {
     public bool FindPathForCharacter(Character character, Hexagon hexagon)
     {
         _astar.reset();
-        List<Hexagon> hexagons = _astar.CalculateBestPath(character._position, hexagon);
+        List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
         if (hexagon != null)
         {
             character._pathToFollow = hexagons;

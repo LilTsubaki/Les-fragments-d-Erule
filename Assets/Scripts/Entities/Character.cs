@@ -8,7 +8,6 @@ public class Character : Entity
 	public static uint MaxProtection = 50;
 	public readonly uint _lifeMax;
 	public uint _lifeCurrent;
-	public Hexagon _position;
 	public uint _currentActionPoints;
 
     public List<Hexagon> _pathToFollow;
