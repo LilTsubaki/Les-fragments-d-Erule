@@ -13,11 +13,15 @@ public class Hexagon : IAStar<Hexagon>
 
     public Entity _entity;
 
+    public Dictionary<uint, GroundOnTimeAppliedEffect> _onTimeEffects;
+
 	public Hexagon (int x, int y, PlayBoard board)
 	{
 		_posX = x;
 		_posY = y;
 		_board = board;
+
+        _onTimeEffects = new Dictionary<uint, GroundOnTimeAppliedEffect>();
 	}
 
     public bool hasValidPosition()
@@ -217,5 +221,51 @@ public class Hexagon : IAStar<Hexagon>
     public int Cost()
     {
         return 1;
+    }
+
+    /// <summary>
+    /// Adds an effect to the Hexagon. If already registered, refreshed it.
+    /// </summary>
+    /// <param name="effect">The effect to add to the Hexagon.</param>
+    public void AddOnTimeEffect(GroundOnTimeAppliedEffect effect)
+    {
+        _onTimeEffects[effect.GetId()] = effect;
+    }
+
+    /// <summary>
+    /// Removes an effect from the Hexagon.
+    /// </summary>
+    /// <param name="effect"></param>
+    public void RemoveOnTimeEffect(GroundOnTimeAppliedEffect effect)
+    {
+        _onTimeEffects.Remove(effect.GetId());
+    }
+
+    /// <summary>
+    /// Apply every effect affecting the Hexagon.
+    /// </summary>
+    public void ApplyOnTimeEffects()
+    {
+        List<Hexagon> list = new List<Hexagon>();
+        list.Add(this);
+        foreach (GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
+        {
+            effect.ApplyEffect(list, this, effect.GetCaster());
+        }
+    }
+
+    /// <summary>
+    /// Reduces the remaining time of the effects casted by a Character. If on have no turn remaining, removes it.
+    /// </summary>
+    /// <param name="c"></param>
+    public void ReduceOnTimeEffectsCastedBy(Character c)
+    {
+        foreach(GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
+        {
+            if(effect.GetCaster() == c)
+            {
+                effect.ReduceNbTurn(this);
+            }
+        }
     }
 }
