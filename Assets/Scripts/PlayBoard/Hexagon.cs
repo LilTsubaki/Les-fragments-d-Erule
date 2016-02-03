@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Hexagon.
 /// </summary>
-public class Hexagon
+public class Hexagon : IAStar<Hexagon>
 {
 	public readonly int _posX;
 	public readonly int _posY;
 
 	public readonly PlayBoard _board;
+
+    public Entity _entity;
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
@@ -164,4 +167,55 @@ public class Hexagon
 		}
 	}
 
+    public bool isReachable()
+    {
+        return _entity == null && hasValidPosition();
+    }
+
+    public List<Hexagon> GetNeighbours()
+    {
+        List<Hexagon> neighbours = new List<Hexagon>();
+
+        Hexagon E = GetEast();
+        Hexagon NE = GetNorthEast();
+        Hexagon SE = GetSouthEast();
+        Hexagon W = GetWest();
+        Hexagon NW = GetNorthWest();
+        Hexagon SW = GetSouthWest();
+
+        if (E.isReachable())
+            neighbours.Add(E);
+
+        if (NE.isReachable())
+            neighbours.Add(NE);
+
+        if (SE.isReachable())
+            neighbours.Add(SE);
+
+        if (W.isReachable())
+            neighbours.Add(W);
+
+        if (NW.isReachable())
+            neighbours.Add(NW);
+
+        if (SW.isReachable())
+            neighbours.Add(SW);
+
+        return neighbours;
+    }
+
+    public int Distance(Hexagon t)
+    {
+        int diffX = t._posX - _posX;
+        int diffY = t._posY - _posY;
+        if ((diffX >= 0 && diffY >= 0) || (diffX <= 0 && diffY <= 0))
+            return Math.Max(Math.Abs(diffX), Math.Abs(diffY));
+
+        return Math.Abs(diffX) + Math.Abs(diffY);
+    }
+
+    public int Cost()
+    {
+        return 1;
+    }
 }

@@ -13,31 +13,38 @@ public class PlayBoard  {
 	/// <summary>
 	/// The width of board.
 	/// </summary>
-	private int _width;
+	private uint _width;
 
 	/// <summary>
 	/// The height of board.
 	/// </summary>
-	private int _height;
+	private uint _height;
+
+    private Character _character1;
+    private Character _character2;
+
+    AStar<Hexagon> _astar;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="PlayBoard"/> class.
 	/// </summary>
 	/// <param name="width">Width of board</param>
 	/// <param name="height">Height of board</param>
-	public PlayBoard(int width, int height){
+	public PlayBoard(uint width, uint height){
 		_width = width;
 		_height = height;
 		_grid = new List<List<Hexagon>>();
-		_grid.Capacity = width;
+		_grid.Capacity = (int)width;
 		for (var i = 0; i < width; ++i) {
 			List<Hexagon> list = new List<Hexagon> ();
-			list.Capacity = height;
+			list.Capacity = (int)height;
 			for (var j = 0; j < height; ++j) {
 				list.Add(new Hexagon(-1,-1, this));
 			}
 			_grid.Add(list);
 		}
+
+        _astar = new AStar<Hexagon>();
 	}
 
 	/// <summary>
@@ -124,6 +131,22 @@ public class PlayBoard  {
 		return null;
 	}
 
-
+    /// <summary>
+    /// Register the path a character can follow later. The path is registered in character._pathToFollow
+    /// </summary>
+    /// <param name="character">The character to move</param>
+    /// <param name="hexagon">The hexagon the character will try to reach</param>
+    /// <returns>If a path exists</returns>
+    public bool FindPathForCharacter(Character character, Hexagon hexagon)
+    {
+        _astar.reset();
+        List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
+        if (hexagon != null)
+        {
+            character._pathToFollow = hexagons;
+            return true;
+        }
+        return false;
+    }
 
 }

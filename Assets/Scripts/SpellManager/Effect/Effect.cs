@@ -17,7 +17,7 @@ public class Effect
 		throw new NotImplementedException ();
 	}
 
-    public uint getId()
+    public uint GetId()
     {
         return _id;
     }

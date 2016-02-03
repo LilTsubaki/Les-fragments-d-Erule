@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 public class ProtectionElement : ProtectionGlobal
@@ -15,5 +16,13 @@ public class ProtectionElement : ProtectionGlobal
         _protection = (uint)js.GetField(js.keys[1]).n;
         _element = Element.GetElement((int)js.GetField(js.keys[2]).n);
     }
+
+	new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
+		List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
+
+		foreach(var ch in characters){
+			ch.ReceiveElementProtection (_protection, _element);
+		}
+	}
 }
 
