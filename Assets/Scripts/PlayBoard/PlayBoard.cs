@@ -13,12 +13,12 @@ public class PlayBoard  {
 	/// <summary>
 	/// The width of board.
 	/// </summary>
-	private int _width;
+	private uint _width;
 
 	/// <summary>
 	/// The height of board.
 	/// </summary>
-	private int _height;
+	private uint _height;
 
     private Character _character1;
     private Character _character2;
@@ -30,14 +30,14 @@ public class PlayBoard  {
 	/// </summary>
 	/// <param name="width">Width of board</param>
 	/// <param name="height">Height of board</param>
-	public PlayBoard(int width, int height){
+	public PlayBoard(uint width, uint height){
 		_width = width;
 		_height = height;
 		_grid = new List<List<Hexagon>>();
-		_grid.Capacity = width;
+		_grid.Capacity = (int)width;
 		for (var i = 0; i < width; ++i) {
 			List<Hexagon> list = new List<Hexagon> ();
-			list.Capacity = height;
+			list.Capacity = (int)height;
 			for (var j = 0; j < height; ++j) {
 				list.Add(new Hexagon(-1,-1, this));
 			}

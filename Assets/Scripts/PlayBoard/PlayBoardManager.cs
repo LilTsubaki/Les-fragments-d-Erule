@@ -28,8 +28,15 @@ public class PlayBoardManager
 	}
 
 	public List<Character> GetCharacterInArea(List<Hexagon> hexagons){
+		List<Character> chars = new List<Character> ();
 
-		throw new NotImplementedException ();
+		foreach (var hex in hexagons) {
+			if (_character1.Position.Equals (hex))
+				chars.Add (_character1);
+			if (_character2.Position.Equals (hex))
+				chars.Add (_character2);
+		}
+		return chars;
 
 	}
 }
