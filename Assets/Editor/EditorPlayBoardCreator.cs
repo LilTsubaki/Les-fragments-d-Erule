@@ -11,8 +11,20 @@ public class EditorPlayBoardCreator : Editor {
 		PlayBoardCreator creator = (PlayBoardCreator)target;
 
 		if (GUILayout.Button ("Create Hexagon")) {
-			creator.BuildHexagone ();
+			creator.BuildHexagon ();
 		}
+
+		if (GUILayout.Button ("Remove Hexagon")) {
+			creator.RemoveHexagon ();
+		}
+
+		if (GUILayout.Button ("Create Obstacle")) {
+			creator.BuildObstacle ();
+		}
+		if (GUILayout.Button ("Remove Obstacle")) {
+			creator.RemoveObstacle ();
+		}
+
 	}
 
 }
