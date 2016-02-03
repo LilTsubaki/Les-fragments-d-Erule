@@ -25,6 +25,7 @@ public class Character : Entity
 
     private Dictionary<uint, PlayerOnTimeAppliedEffect> _onTimeEffects;
 
+    private int _rangeModifier;
 
 	public Character (uint lifeMax, Hexagon position) : base(position)
 	{
@@ -39,6 +40,8 @@ public class Character : Entity
 
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
+
+        _rangeModifier = 0;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;
@@ -165,5 +168,10 @@ public class Character : Entity
         {
             effect.ApplyEffect(hexagons, _position, this);
         }
+    }
+
+    public void ReceiveRangeModifier(int value)
+    {
+        _rangeModifier += value;
     }
 }

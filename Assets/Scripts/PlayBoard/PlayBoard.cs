@@ -102,8 +102,8 @@ public class PlayBoard  {
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
 	/// <param name="replace">If set to <c>true</c> replace.</param>
-	public Hexagon CreateHexagone(int x, int y, bool replace=false){
-		Hexagon hex = new Hexagon (x, y, this);
+	public Hexagon CreateHexagone(uint x, uint y, bool replace=false){
+		Hexagon hex = new Hexagon ((int)x, (int)y, this);
 		if (SetHexagone (hex, replace)) {
 			return hex;
 		}
@@ -118,12 +118,12 @@ public class PlayBoard  {
 	/// <returns>The hexagone removed.</returns>
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
-	public Hexagon RemoveHexagone(int x, int y){
+	public Hexagon RemoveHexagone(uint x, uint y){
 
-		if (x >= 0 && x < _width && y >= 0 && y < _height) {
-			Hexagon hex =_grid [x] [y];
+		if (x < _width && y < _height) {
+			Hexagon hex =_grid [(int)x] [(int)y];
 
-			_grid [x] [y] = new Hexagon(-1,-1,this);
+			_grid [(int)x] [(int)y] = new Hexagon(-1,-1,this);
 
 			return hex;
 		}

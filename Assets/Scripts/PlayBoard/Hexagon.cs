@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Hexagon.
@@ -14,6 +15,8 @@ public class Hexagon : IAStar<Hexagon>
     public Entity _entity;
 
     public Dictionary<uint, GroundOnTimeAppliedEffect> _onTimeEffects;
+
+	public GameObject _gameObject;
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
@@ -235,7 +238,7 @@ public class Hexagon : IAStar<Hexagon>
     /// <summary>
     /// Removes an effect from the Hexagon.
     /// </summary>
-    /// <param name="effect"></param>
+    /// <param name="effect">The effect to remove.</param>
     public void RemoveOnTimeEffect(GroundOnTimeAppliedEffect effect)
     {
         _onTimeEffects.Remove(effect.GetId());
@@ -257,7 +260,7 @@ public class Hexagon : IAStar<Hexagon>
     /// <summary>
     /// Reduces the remaining time of the effects casted by a Character. If on have no turn remaining, removes it.
     /// </summary>
-    /// <param name="c"></param>
+    /// <param name="c">The caster we have to decrease the effects number of turn.</param>
     public void ReduceOnTimeEffectsCastedBy(Character c)
     {
         foreach(GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
