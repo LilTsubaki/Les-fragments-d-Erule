@@ -13,12 +13,12 @@ public class PlayBoard  {
 	/// <summary>
 	/// The width of board.
 	/// </summary>
-	private uint _width;
+	public readonly uint _width;
 
 	/// <summary>
 	/// The height of board.
 	/// </summary>
-	private uint _height;
+	public readonly uint _height;
 
     private Character _character1;
     private Character _character2;
@@ -149,4 +149,8 @@ public class PlayBoard  {
         return false;
     }
 
+    public List<List<Hexagon>> GetGrid()
+    {
+        return _grid;
+    }
 }
