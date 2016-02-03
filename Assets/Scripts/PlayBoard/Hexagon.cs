@@ -18,6 +18,10 @@ public class Hexagon : IAStar<Hexagon>
 
 	public GameObject _gameObject;
 
+	public static bool isHexagonSet(Hexagon hex){
+		return hex != null && hex._posX >= 0 && hex._posY >= 0;
+	}
+
 	public Hexagon (int x, int y, PlayBoard board)
 	{
 		_posX = x;
