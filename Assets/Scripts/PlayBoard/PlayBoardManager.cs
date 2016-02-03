@@ -5,6 +5,11 @@ public class PlayBoardManager
 {
 	private static PlayBoardManager Instance;
 	private PlayBoard _board;
+
+	public PlayBoard Board{
+		get { return _board; }
+	}
+
 	private Character _character1;
 	private Character _character2;
 

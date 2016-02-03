@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Hexagon.
@@ -12,6 +13,8 @@ public class Hexagon : IAStar<Hexagon>
 	public readonly PlayBoard _board;
 
     public Entity _entity;
+
+	public GameObject _gameObject;
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
