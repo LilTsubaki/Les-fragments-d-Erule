@@ -21,6 +21,8 @@ public class Character
 		_lifeCurrent = lifeMax;
 		_position = position;
         _rangeModifier = 0;
+        _globalProtection = 0;
+        _globalNegativeProtection = 0;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;
