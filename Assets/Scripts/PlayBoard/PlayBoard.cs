@@ -20,6 +20,11 @@ public class PlayBoard  {
 	/// </summary>
 	private int _height;
 
+    private Character _character1;
+    private Character _character2;
+
+    AStar<Hexagon> _astar;
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="PlayBoard"/> class.
 	/// </summary>
@@ -38,6 +43,8 @@ public class PlayBoard  {
 			}
 			_grid.Add(list);
 		}
+
+        _astar = new AStar<Hexagon>();
 	}
 
 	/// <summary>
@@ -124,6 +131,22 @@ public class PlayBoard  {
 		return null;
 	}
 
-
+    /// <summary>
+    /// Register the path a character can follow later. The path is registered in character._pathToFollow
+    /// </summary>
+    /// <param name="character">The character to move</param>
+    /// <param name="hexagon">The hexagon the character will try to reach</param>
+    /// <returns>If a path exists</returns>
+    public bool FindPathForCharacter(Character character, Hexagon hexagon)
+    {
+        _astar.reset();
+        List<Hexagon> hexagons = _astar.CalculateBestPath(character._position, hexagon);
+        if (hexagon != null)
+        {
+            character._pathToFollow = hexagons;
+            return true;
+        }
+        return false;
+    }
 
 }

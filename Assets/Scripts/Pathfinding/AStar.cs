@@ -1,23 +1,24 @@
 using System.Collections.Generic;
 using System.Collections;
-	public class AStar<T> where T:IAStar<T>
-	{
+
+public class AStar<T> where T:IAStar<T>
+{
 	public List<AStarNode<T>> open;
 	public List<T> close;
 	public T start;
 	public T end;
 
-		public AStar ()
-		{
+	public AStar ()
+	{
+	    open=new List<AStarNode<T>>();
+	    close=new List<T>();
+	}
+
+	public void reset()
+    {
 		open=new List<AStarNode<T>>();
 		close=new List<T>();
-		}
-
-		public void reset(){
-		open=new List<AStarNode<T>>();
-		close=new List<T>();
-		}
-
+	}
 
 	public List<T> CalculateBestPath(T s,T e)
 	{
@@ -48,12 +49,13 @@ using System.Collections;
 		return null;
 	}
 
-	public void AddToOpen(AStarNode<T> p){
+	public void AddToOpen(AStarNode<T> p)
+    {
 		List<T> v=p.t.GetNeighbours();
-		foreach (T h in v) {
-
-			if(h!=null&&!close.Contains(h)){
-
+		foreach (T h in v)
+        {
+			if(h!=null&&!close.Contains(h))
+            {
 				AStarNode<T> n=new AStarNode<T>(h,p);
 				if(!OpenContainsNode(n))
 					open.Add(n);
@@ -61,12 +63,15 @@ using System.Collections;
 		}
 	}
 
-	public AStarNode<T> GetBest(List<AStarNode<T>> ns){
+	public AStarNode<T> GetBest(List<AStarNode<T>> ns)
+    {
 		double min = int.MaxValue;
 		AStarNode<T> resu=null;
-		foreach (AStarNode<T> n in ns) {
+		foreach (AStarNode<T> n in ns)
+        {
 			double h=n.Cost()+n.t.Distance(end);
-			if(h<min){
+			if(h<min)
+            {
 				min=h;
 				resu=n;
 			}
@@ -75,16 +80,13 @@ using System.Collections;
 
 	}
 
-	public bool OpenContainsNode(AStarNode<T> n){
-		foreach (AStarNode<T> no in open) {
+	public bool OpenContainsNode(AStarNode<T> n)
+    {
+		foreach (AStarNode<T> no in open)
+        {
 			if(no.t.Equals(n.t))
 				return true;
 		}
 		return false;
 	}
-
-
-
-		
-	}
-
+}
