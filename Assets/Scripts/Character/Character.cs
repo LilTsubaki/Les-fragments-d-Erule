@@ -11,6 +11,7 @@ public class Character
 	Dictionary<Element, uint> _protectionsNegative;
 	uint _globalProtection;
 	uint _globalNegativeProtection;
+    int _rangeModifier;
 
 	public Character (uint lifeMax, Hexagon position)
 	{
@@ -19,6 +20,7 @@ public class Character
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 		_position = position;
+        _rangeModifier = 0;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;
@@ -49,7 +51,13 @@ public class Character
         if (_lifeCurrent - value < 0)
             _lifeCurrent = 0;
         else
-            _lifeCurrent -= value;
-        
+            _lifeCurrent -= value; 
     }
+
+    public void ReceiveRangeModifier(int value)
+    {
+        //TODO penser a mettre une fourchette si  besoin
+        _rangeModifier += value;
+    }
+
 }
