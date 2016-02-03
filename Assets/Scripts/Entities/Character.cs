@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 public class Character : Entity
 {
+    public enum State { Moving, CastingSpell, Waiting }
+
 	public static uint MaxProtection = 50;
 	public readonly uint _lifeMax;
 	public uint _lifeCurrent;
-	Hexagon _position;
 	public uint _currentActionPoints;
+
+    public List<Hexagon> _pathToFollow;
+
+    public State _state;
 
 	private Dictionary<Element, uint> _protections;
 	private Dictionary<Element, uint> _protectionsNegative;

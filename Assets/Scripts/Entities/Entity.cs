@@ -2,7 +2,14 @@
 using System.Collections;
 
 public class Entity {
-    Hexagon _position;
+    protected Hexagon _position;
+
+    public Hexagon Position
+    {
+        get { return _position; }
+        set { _position = value; }
+    }
+
 
     public Entity(Hexagon position)
     {
