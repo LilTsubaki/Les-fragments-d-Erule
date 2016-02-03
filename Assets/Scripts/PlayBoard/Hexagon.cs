@@ -275,4 +275,19 @@ public class Hexagon : IAStar<Hexagon>
             }
         }
     }
+
+    public JSONObject HexaToJSON()
+    {
+        JSONObject hexa = new JSONObject(JSONObject.Type.OBJECT);
+        hexa.AddField("posX", _posX);
+        hexa.AddField("posY", _posY);
+        hexa.AddField("gameObject", _gameObject.name);
+
+        if(_entity!=null && _entity is Obstacle)
+        {
+            hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
+        }
+
+        return hexa;
+    }
 }

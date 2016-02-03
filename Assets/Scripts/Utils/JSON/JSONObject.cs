@@ -1144,4 +1144,33 @@ public class JSONObject {
 		}
 	}
 #endif
+
+    public static void BoardToJSON(string fileName)
+    {
+        PlayBoard  board= PlayBoardManager.GetInstance().Board;
+        JSONObject obj = new JSONObject(JSONObject.Type.OBJECT);
+        JSONObject arr = new JSONObject(JSONObject.Type.ARRAY);
+       
+        obj.AddField("Width", board._width);
+        obj.AddField("Height", board._height);
+        obj.AddField("Hexagons", arr);
+
+        for (int i = 0; i < board._width; i++)
+        {
+            for (int j = 0; j < board._height; j++)
+            {
+                Hexagon hex = board.GetHexagone(i, j);
+                if(hex._posX > -1)
+                {        
+                    arr.Add(hex.HexaToJSON());
+                }  
+            }
+        }
+
+        string json = obj.Print();
+        Logger.Debug(json);
+        File.WriteAllText(Application.dataPath + "/JsonFiles/"+ fileName + ".json", json);
+    }
+
+
 }

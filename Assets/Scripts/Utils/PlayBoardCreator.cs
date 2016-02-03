@@ -29,7 +29,7 @@ public class PlayBoardCreator : MonoBehaviour {
 			GameObject go = Instantiate<GameObject> (hexagon);
 			go.transform.position=new Vector3(0.866f*x-0.433f*y,z,0.75f*y);
 			go.transform.parent = board.transform;
-			go.name = "( " + x + " , " + y + " )";
+            go.name = hexagon.name;//"( " + x + " , " + y + " )";
 			hex._gameObject = go;
 		}
 	}
@@ -55,7 +55,7 @@ public class PlayBoardCreator : MonoBehaviour {
 				GameObject go = Instantiate<GameObject> (obstacle);
 				go.transform.position=new Vector3(0.866f*x-0.433f*y,z+0.5f,0.75f*y);
 				go.transform.parent = hex._gameObject.transform;
-				go.name = "obstacle";
+				go.name = obstacle.name;
 				Obstacle o =new Obstacle (hex);
 				o._gameobject = go;
 				hex._entity = o;
