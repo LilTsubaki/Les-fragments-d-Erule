@@ -103,7 +103,7 @@ public class SpellManager
                 object[] argValues = new object[] { directEffect.GetField(directEffect.keys[1]) };
                 ConstructorInfo ctor = t.GetConstructor(argTypes);
                 Effect ef = (Effect)ctor.Invoke(argValues);
-                _directEffects.Add(ef.getId(), (EffectDirect)ef);
+                _directEffects.Add(ef.GetId(), (EffectDirect)ef);
             }
             catch
             {
@@ -127,7 +127,7 @@ public class SpellManager
                 object[] argValues = new object[] { onTimeEffect.GetField(onTimeEffect.keys[1]) };
                 ConstructorInfo ctor = t.GetConstructor(argTypes);
                 Effect ef = (Effect)ctor.Invoke(argValues);
-                _onTimeEffects.Add(ef.getId(), (EffectOnTime)ef);
+                _onTimeEffects.Add(ef.GetId(), (EffectOnTime)ef);
             }
             catch
             {

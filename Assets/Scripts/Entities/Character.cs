@@ -18,7 +18,7 @@ public class Character : Entity
 	private uint _sommeProtection;
 	private uint _sommeNegativeProtection;
 
-    private Dictionary<uint, PlayerOnTimeEffect> _onTimeEffects;
+    private Dictionary<uint, PlayerOnTimeAppliedEffect> _onTimeEffects;
 
 
 	public Character (uint lifeMax, Hexagon position) : base(position)
@@ -40,7 +40,7 @@ public class Character : Entity
 			_protectionsNegative [e] = 0;
 		}
 
-        _onTimeEffects = new Dictionary<uint, PlayerOnTimeEffect>();
+        _onTimeEffects = new Dictionary<uint, PlayerOnTimeAppliedEffect>();
 	}
 
     public void ReceiveHeal(uint value)
@@ -129,4 +129,36 @@ public class Character : Entity
 		_protectionsNegative[element] += Math.Min (max, protection);
 		_sommeProtection += Math.Min (max, protection);
 	}
+
+    /// <summary>
+    /// Adds a PlayerOnTimeAppliedEffect to the Character.
+    /// </summary>
+    /// <param name="effect">The effect to affect the Character by.</param>
+    public void ReceiveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
+    {
+        _onTimeEffects[effect.GetId()] = effect;
+    }
+
+    /// <summary>
+    /// Removes a PlayerOnTimeAppliedEffect from the Character. Used when no longer active.
+    /// </summary>
+    /// <param name="effect">The effect to remove.</param>
+    public void RemoveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
+    {
+        Logger.Trace("Removing effect " + effect.GetId() + ".");
+        _onTimeEffects.Remove(effect.GetId());
+    }
+
+    /// <summary>
+    /// Applies every effect the Character is affected by.
+    /// </summary>
+    public void ApplyOnTimeEffects()
+    {
+        List<Hexagon> hexagons = new List<Hexagon>();
+        hexagons.Add(_position);
+        foreach (PlayerOnTimeAppliedEffect effect in _onTimeEffects.Values)
+        {
+            effect.ApplyEffect(hexagons, _position, this);
+        }
+    }
 }
