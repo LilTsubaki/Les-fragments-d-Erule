@@ -26,8 +26,13 @@ public class EditorPlayBoardCreator : Editor {
 		}
         if (GUILayout.Button("Save Board"))
         {
-            //creator.RemoveObstacle();
-            JSONObject.BoardToJSON("testBoard");
+            creator.SaveBoard();
+            
+        }
+        if (GUILayout.Button("Load Board"))
+        {
+            creator.LoadBoard();
+         
         }
     }
 

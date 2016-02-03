@@ -1172,5 +1172,45 @@ public class JSONObject {
         File.WriteAllText(Application.dataPath + "/JsonFiles/"+ fileName + ".json", json);
     }
 
+    public static PlayBoard JSONToBoard(ref GameObject board, String fileName)
+    {
+        board = new GameObject("Board");
 
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/" + fileName +".json");
+        
+        uint width = (uint)js.GetField("Width").n;
+        uint height = (uint)js.GetField("Height").n;
+
+        PlayBoard playBoard= new PlayBoard(width, height);
+
+        JSONObject array = js.GetField("Hexagons");
+
+        foreach (JSONObject hexa in array.list)
+        {
+            Hexagon hexagon = playBoard.CreateHexagone((uint)hexa.GetField("posX").n, (uint)hexa.GetField("posY").n);
+            GameObject prefab = (GameObject)Resources.Load("Prefabs/" + hexa.GetField("gameObject").str, typeof(GameObject));
+            hexagon._gameObject =GameObject.Instantiate(prefab);
+            hexagon._gameObject.name = hexa.GetField("gameObject").str;
+            hexagon._gameObject.transform.parent = board.transform;
+            //TODO pos Z
+            hexagon._gameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, 0.0f, 0.75f * hexagon._posY);
+
+            if (hexa.GetField("obstacle") != null) { 
+                string obstacleName = hexa.GetField("obstacle").str;
+                if (obstacleName != null)
+                {
+                    GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + obstacleName, typeof(GameObject));
+                    Obstacle obs = new Obstacle(hexagon);
+                    obs._gameobject= GameObject.Instantiate(prefabObstacle);
+                    obs._gameobject.transform.parent = hexagon._gameObject.transform;
+                    obs._gameobject.name = obstacleName;
+                    //TODO pos Z
+                    obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, 0.0f+0.5f, 0.75f * hexagon._posY);
+                }
+            }
+
+        }
+
+        return playBoard;
+    }
 }

@@ -85,6 +85,33 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &658646141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 658646142}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &658646142
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 658646141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &678089348
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +220,7 @@ GameObject:
   - 4: {fileID: 1906259158}
   - 114: {fileID: 1906259159}
   m_Layer: 0
-  m_Name: Board
+  m_Name: BoardCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,9 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0420a30a1d26ab846a3f57bc6ecb5226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 1906259157}
+  board: {fileID: 658646141}
   hexagon: {fileID: 100002, guid: 25c4bcb467ed9fc418c81ab587994d84, type: 3}
   obstacle: {fileID: 100002, guid: 25c4bcb467ed9fc418c81ab587994d84, type: 3}
+  boardName: testBoard
   width: 10
   height: 10
   x: 0

@@ -6,6 +6,7 @@ public class PlayBoardCreator : MonoBehaviour {
 	public GameObject board;
 	public GameObject hexagon;
 	public GameObject obstacle;
+    public string boardName;
 	public uint width;
 	public uint height;
 	[Range(0,50)]
@@ -80,6 +81,17 @@ public class PlayBoardCreator : MonoBehaviour {
 
 		}
 	}
+
+    public void SaveBoard()
+    {
+        JSONObject.BoardToJSON(boardName);
+    }
+
+    public void LoadBoard()
+    {
+        Destroy(board);
+        PlayBoardManager.GetInstance().Board=JSONObject.JSONToBoard(ref board, boardName);
+    }
 
 
 }

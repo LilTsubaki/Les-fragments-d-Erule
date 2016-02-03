@@ -8,6 +8,7 @@ public class PlayBoardManager
 
 	public PlayBoard Board{
 		get { return _board; }
+        set { _board = value; }
 	}
 
 	private Character _character1;
