@@ -53,6 +53,14 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
+    void InputUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+    }
+
     void Awake()
     {
         List<Rune> hand = new List<Rune>();

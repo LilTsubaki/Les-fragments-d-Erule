@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rune {
-
+public class Rune : MonoBehaviour
+{
     internal Element _element;
     internal int _positionOnBoard;
 
@@ -10,10 +10,5 @@ public class Rune {
     {
         _element = element;
         _positionOnBoard = positionOnBoard;
-    }
-
-    public bool IsOnBoard()
-    {
-        return (_positionOnBoard != -1);
     }
 }

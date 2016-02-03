@@ -1,46 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &195330
+--- !u!1 &196996
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 437700}
-  - 33: {fileID: 3359958}
-  - 23: {fileID: 2341724}
-  - 95: {fileID: 9521144}
+  - 4: {fileID: 474732}
+  - 33: {fileID: 3341124}
+  - 23: {fileID: 2361606}
+  - 95: {fileID: 9555388}
+  - 114: {fileID: 11462938}
   m_Layer: 0
-  m_Name: RuneWater
-  m_TagString: Untagged
+  m_Name: RuneMetal
+  m_TagString: Runes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &437700
+--- !u!4 &474732
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195330}
+  m_GameObject: {fileID: 196996}
   m_LocalRotation: {x: -0.7071068, y: -0.000000115202326, z: -0.7071067, w: -0.00000011520231}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2341724
+--- !u!23 &2361606
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195330}
+  m_GameObject: {fileID: 196996}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8e15ba98d3f53cc45ac8da7f63d7b0c6, type: 2}
+  - {fileID: 2100000, guid: 5a3bf3f926cf8404a9403a849527cc9d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -56,20 +57,20 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3359958
+--- !u!33 &3341124
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195330}
+  m_GameObject: {fileID: 196996}
   m_Mesh: {fileID: 4300000, guid: 61dc71721f6eae74d86e441f0d7ccc6c, type: 3}
---- !u!95 &9521144
+--- !u!95 &9555388
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195330}
+  m_GameObject: {fileID: 196996}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 61dc71721f6eae74d86e441f0d7ccc6c, type: 3}
   m_Controller: {fileID: 0}
@@ -80,6 +81,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11462938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a337d3e189e689f4d8ebfb612ebe5414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -107,7 +119,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Runes
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 195330}
+  m_RootGameObject: {fileID: 196996}
   m_IsPrefabParent: 1
