@@ -293,6 +293,7 @@ public class Hexagon : IAStar<Hexagon>
         JSONObject hexa = new JSONObject(JSONObject.Type.OBJECT);
         hexa.AddField("posX", _posX);
         hexa.AddField("posY", _posY);
+        hexa.AddField("posZ", _gameObject.transform.localPosition.z);
         hexa.AddField("gameObject", _gameObject.name);
 
         if(_entity!=null && _entity is Obstacle)
