@@ -7,12 +7,12 @@ public class PlayBoardCreator : MonoBehaviour {
 	public GameObject hexagon;
 	public GameObject obstacle;
     public string boardName;
-	public uint width;
-	public uint height;
+	public int width;
+	public int height;
 	[Range(0,50)]
-	public uint x;
+	public int x;
 	[Range(0,50)]
-	public uint y;
+	public int y;
 
 	public float z;
 
@@ -31,7 +31,7 @@ public class PlayBoardCreator : MonoBehaviour {
 			go.transform.position=new Vector3(0.866f*x-0.433f*y,z,0.75f*y);
 			go.transform.parent = board.transform;
             go.name = hexagon.name;//"( " + x + " , " + y + " )";
-			hex._gameObject = go;
+			hex.GameObject = go;
 		}
 	}
 
@@ -40,9 +40,9 @@ public class PlayBoardCreator : MonoBehaviour {
 		RemoveObstacle ();
 		Hexagon hex = PlayBoardManager.GetInstance ().Board.RemoveHexagone(x,y);
 		if (hex != null && !(hex._posX<0)) {
-			if (hex._gameObject != null) {
-				Destroy (hex._gameObject);
-				hex._gameObject = null;
+			if (hex.GameObject != null) {
+				Destroy (hex.GameObject);
+				hex.GameObject = null;
 			}
 				
 		}
@@ -50,12 +50,12 @@ public class PlayBoardCreator : MonoBehaviour {
 
 	public void BuildObstacle()
 	{
-		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone((int)x,(int)y);
+		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
 		if (hex != null && !(hex._posX<0)) {
-			if (hex._gameObject != null && hex._entity==null) {
+			if (hex.GameObject != null && hex._entity==null) {
 				GameObject go = Instantiate<GameObject> (obstacle);
 				go.transform.position=new Vector3(0.866f*x-0.433f*y,z+0.5f,0.75f*y);
-				go.transform.parent = hex._gameObject.transform;
+				go.transform.parent = hex.GameObject.transform;
 				go.name = obstacle.name;
 				Obstacle o =new Obstacle (hex);
 				o._gameobject = go;
@@ -68,9 +68,9 @@ public class PlayBoardCreator : MonoBehaviour {
 
 	public void RemoveObstacle()
 	{
-		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone((int)x,(int)y);
+		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
 		if (hex != null && !(hex._posX<0)) {
-			if (hex._gameObject != null && hex._entity!=null) {
+			if (hex.GameObject != null && hex._entity!=null) {
 				if (hex._entity is Obstacle) {
 					Obstacle o = (Obstacle)hex._entity;
 					Destroy (o._gameobject);
@@ -91,6 +91,8 @@ public class PlayBoardCreator : MonoBehaviour {
     {
         Destroy(board);
         PlayBoardManager.GetInstance().Board=JSONObject.JSONToBoard(ref board, boardName);
+        width = PlayBoardManager.GetInstance().Board._width;
+        height = PlayBoardManager.GetInstance().Board._height;
     }
 
 

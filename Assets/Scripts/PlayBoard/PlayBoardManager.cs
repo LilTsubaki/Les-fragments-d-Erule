@@ -26,12 +26,19 @@ public class PlayBoardManager
 	{
 	}
 
-	public void Init(uint width, uint height, Character character1, Character character2){
+	public void Init(int width, int height, Character character1, Character character2){
 
 		_board = new PlayBoard (width, height);
 		_character1 = character1;
 		_character2 = character2;
 	}
+
+    public void Init(PlayBoard pb, Character character1, Character character2)
+    {
+        _board = pb;
+        _character1 = character1;
+        _character2 = character2;
+    }
 
 	public List<Character> GetCharacterInArea(List<Hexagon> hexagons){
 		List<Character> chars = new List<Character> ();

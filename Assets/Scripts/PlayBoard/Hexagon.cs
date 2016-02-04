@@ -16,7 +16,20 @@ public class Hexagon : IAStar<Hexagon>
 
     public Dictionary<uint, GroundOnTimeAppliedEffect> _onTimeEffects;
 
-	public GameObject _gameObject;
+    private GameObject _gameObject;
+	public GameObject GameObject
+    {
+        get { return _gameObject; }
+        set {
+            _gameObject = value;
+            _gameObject.layer = LayerMask.NameToLayer("Hexagon");
+            if (_gameObject.GetComponent<HexagonBehaviour>() == null)
+            {
+                _gameObject.AddComponent<HexagonBehaviour>();
+            }
+            _gameObject.GetComponent<HexagonBehaviour>()._hexagon = this;
+        }
+    }
 
 	public static bool isHexagonSet(Hexagon hex){
 		return hex != null && hex._posX >= 0 && hex._posY >= 0;
@@ -27,13 +40,12 @@ public class Hexagon : IAStar<Hexagon>
 		_posX = x;
 		_posY = y;
 		_board = board;
-
         _onTimeEffects = new Dictionary<uint, GroundOnTimeAppliedEffect>();
 	}
 
     public bool hasValidPosition()
     {
-        if (_posX == -1 && _posY == -1)
+        if (_posX < 0 || _posY < 0)
             return false;
         return true;
     }

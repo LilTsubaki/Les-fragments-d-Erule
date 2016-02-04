@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Character : Entity
 {
+    public GameObject _gameObject;
+
     public enum State { Moving, CastingSpell, Waiting }
 
 	public static uint MaxProtection = 50;
@@ -10,7 +13,34 @@ public class Character : Entity
 	public uint _lifeCurrent;
 	public uint _currentActionPoints;
 
-    public List<Hexagon> _pathToFollow;
+    private List<Hexagon> _pathToFollow;
+
+    public List<Hexagon> PathToFollow
+    {
+        get
+        {
+            return _pathToFollow;
+        }
+
+        set
+        {
+            _pathToFollow = value;
+        }
+    }
+
+    private int _currentStep;
+    public int CurrentStep
+    {
+        get
+        {
+            return _currentStep;
+        }
+
+        set
+        {
+            _currentStep = value;
+        }
+    }
 
     public State _state;
 
@@ -27,8 +57,14 @@ public class Character : Entity
 
     private int _rangeModifier;
 
-	public Character (uint lifeMax, Hexagon position) : base(position)
+    
+
+    public Character (uint lifeMax, Hexagon position, GameObject go) : base(position)
 	{
+        _gameObject = GameObject.Instantiate(go);
+        _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.5f, 0);
+        _gameObject.GetComponent<CharacterBehaviour>()._character = this;
+
 		_protections = new Dictionary<Element, uint> ();
 		_protectionsNegative = new Dictionary<Element, uint> ();
 
@@ -49,6 +85,7 @@ public class Character : Entity
 		}
 
         _onTimeEffects = new Dictionary<uint, PlayerOnTimeAppliedEffect>();
+        _state = State.Waiting;
 	}
 
     public void ReceiveHeal(uint value)

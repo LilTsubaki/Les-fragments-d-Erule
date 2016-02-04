@@ -13,12 +13,12 @@ public class PlayBoard  {
 	/// <summary>
 	/// The width of board.
 	/// </summary>
-	public readonly uint _width;
+	public readonly int _width;
 
 	/// <summary>
 	/// The height of board.
 	/// </summary>
-	public readonly uint _height;
+	public readonly int _height;
 
     private Character _character1;
     private Character _character2;
@@ -30,7 +30,7 @@ public class PlayBoard  {
 	/// </summary>
 	/// <param name="width">Width of board</param>
 	/// <param name="height">Height of board</param>
-	public PlayBoard(uint width, uint height){
+	public PlayBoard(int width, int height){
 		_width = width;
 		_height = height;
 		_grid = new List<List<Hexagon>>();
@@ -102,8 +102,8 @@ public class PlayBoard  {
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
 	/// <param name="replace">If set to <c>true</c> replace.</param>
-	public Hexagon CreateHexagone(uint x, uint y, bool replace=false){
-		Hexagon hex = new Hexagon ((int)x, (int)y, this);
+	public Hexagon CreateHexagone(int x, int y, bool replace=false){
+		Hexagon hex = new Hexagon (x, y, this);
 		if (SetHexagone (hex, replace)) {
 			return hex;
 		}
@@ -118,12 +118,12 @@ public class PlayBoard  {
 	/// <returns>The hexagone removed.</returns>
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
-	public Hexagon RemoveHexagone(uint x, uint y){
+	public Hexagon RemoveHexagone(int x, int y){
 
 		if (x < _width && y < _height) {
-			Hexagon hex =_grid [(int)x] [(int)y];
+			Hexagon hex =_grid [x] [y];
 
-			_grid [(int)x] [(int)y] = new Hexagon(-1,-1,this);
+			_grid [x] [y] = new Hexagon(-1,-1,this);
 
 			return hex;
 		}
@@ -143,7 +143,7 @@ public class PlayBoard  {
         List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
         if (hexagon != null)
         {
-            character._pathToFollow = hexagons;
+            character.PathToFollow = hexagons;
             return true;
         }
         return false;
