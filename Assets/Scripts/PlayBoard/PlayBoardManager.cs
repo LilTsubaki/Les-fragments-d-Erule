@@ -11,7 +11,23 @@ public class PlayBoardManager
         set { _board = value; }
 	}
 
-	private Character _character1;
+    public Character Character1
+    {
+        get
+        {
+            return _character1;
+        }
+    }
+
+    public Character Character2
+    {
+        get
+        {
+            return _character2;
+        }
+    }
+
+    private Character _character1;
 	private Character _character2;
 
 	public static PlayBoardManager GetInstance(){
@@ -26,12 +42,14 @@ public class PlayBoardManager
 	{
 	}
 
-	public void Init(int width, int height, Character character1, Character character2){
+    public void Init(int width, int height, Character character1, Character character2)
+    {
 
-		_board = new PlayBoard (width, height);
-		_character1 = character1;
-		_character2 = character2;
-	}
+        _board = new PlayBoard(width, height);
+        _character1 = character1;
+        _character2 = character2;
+    }
+        
 
     public void Init(PlayBoard pb, Character character1, Character character2)
     {
@@ -44,10 +62,10 @@ public class PlayBoardManager
 		List<Character> chars = new List<Character> ();
 
 		foreach (var hex in hexagons) {
-			if (_character1.Position.Equals (hex))
-				chars.Add (_character1);
-			if (_character2.Position.Equals (hex))
-				chars.Add (_character2);
+			if (Character1.Position.Equals (hex))
+				chars.Add (Character1);
+			if (Character2.Position.Equals (hex))
+				chars.Add (Character2);
 		}
 		return chars;
 

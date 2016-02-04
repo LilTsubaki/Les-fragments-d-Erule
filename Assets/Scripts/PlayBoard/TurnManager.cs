@@ -5,12 +5,30 @@ using System.Text;
 
 public class TurnManager
 {
-    private TurnManager _turnManager;
+    private static TurnManager _turnManager;
 
-    public TurnManager GetInstance()
+    private int _turnNumber;
+    private bool _firstPlayer;
+
+    private TurnManager()
+    {
+        _firstPlayer = new Random().Next(100) % 2 == 0;
+        _turnNumber = 0;
+    }
+
+    public static TurnManager GetInstance()
     {
         if (_turnManager == null)
-            return new TurnManager();
+            _turnManager = new TurnManager();
         return _turnManager;
+    }
+
+    public bool isMyTurn(Character charac)
+    {
+        if((_turnNumber%2 == 0 ^ _firstPlayer) && PlayBoardManager.GetInstance().Character1 == charac)
+            return true;
+        if ((_turnNumber % 2 == 1 ^ _firstPlayer) && PlayBoardManager.GetInstance().Character2 == charac)
+            return true;
+        return false;
     }
 }
