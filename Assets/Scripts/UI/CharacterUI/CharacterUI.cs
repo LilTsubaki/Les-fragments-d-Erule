@@ -37,6 +37,7 @@ public class CharacterUI : MonoBehaviour {
     End testing parameters
     *******************************************************************/
 
+    public bool _isOnLeft;
     private List<Image> _listActionPoints;
 
     //Resistances
@@ -72,12 +73,14 @@ public class CharacterUI : MonoBehaviour {
             n.transform.SetParent(_actionPoints.transform);
             n.enabled = true;
             Vector3 pos = n.gameObject.transform.position;
-            pos.x = 10 + i * (20 + 5);
+            if(_isOnLeft)
+                pos.x = 10 + i * (20 + 5);
+            else
+                pos.x = -10 - i * (20 + 5);
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
             
             _listActionPoints.Add(n);
         }
-        Debug.Log(_listActionPoints.Count);
     }
 
     // Update is called once per frame
