@@ -31,4 +31,9 @@ public class TurnManager
             return true;
         return false;
     }
+
+    public void EndTurn()
+    {
+        _turnNumber++;
+    }
 }
