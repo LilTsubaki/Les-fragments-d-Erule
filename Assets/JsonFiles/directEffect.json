@@ -2,79 +2,2760 @@
 	"effect" :
 	[
 		{
-			"class" : "Heal",
+			"class" : "DamageElement",
 			"attributs" :
 			{
-				"id" : 0,
-				"minValue" : 0,
-				"maxValue" : 10
-			}			
+				"id" : 0,	
+				"minValue" : 20,
+				"maxValue" : 40,
+				"element" : 0
+			}
 		},
 		{
 			"class" : "DamageElement",
 			"attributs" :
 			{
 				"id" : 1,	
-				"minValue" : 0,
-				"maxValue" : 10,
+				"minValue" : 41,
+				"maxValue" : 80,
 				"element" : 0
 			}
 		},
 		{
-			"class" : "ProtectionNegativeElement",
+			"class" : "DamageElement",
 			"attributs" :
 			{
-				"id" : 2,
-				"protection" : 2,
+				"id" : 2,	
+				"minValue" : 81,
+				"maxValue" : 120,
 				"element" : 0
 			}
 		},
 		{
-			"class" : "ProtectionNegativeGlobal",
+			"class" : "DamageElement",
 			"attributs" :
 			{
-				"id" : 3,
-				"protection" : 2
-			}
-		},
-		{
-			"class" : "ProtectionElement",
-			"attributs" :
-			{
-				"id" : 4,
-				"protection" : 2,
+				"id" : 3,	
+				"minValue" : 121,
+				"maxValue" : 160,
 				"element" : 0
 			}
 		},
 		{
-			"class" : "ProtectionGlobal",
+			"class" : "DamageElement",
 			"attributs" :
 			{
-				"id" : 5,				
-				"protection" : 2
-			}			
+				"id" : 4,	
+				"minValue" : 161,
+				"maxValue" : 200,
+				"element" : 0
+			}
 		},
 		{
-			"class" : "RangeUp",
+			"class" : "DamageElement",
 			"attributs" :
 			{
-				"id" : 6,				
-				"range" : 2
-			}	
+				"id" : 5,	
+				"minValue" : 201,
+				"maxValue" : 240,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 6,	
+				"minValue" : 241,
+				"maxValue" : 280,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 7,	
+				"minValue" : 281,
+				"maxValue" : 320,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 8,	
+				"minValue" : 321,
+				"maxValue" : 360,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 9,	
+				"minValue" : 361,
+				"maxValue" : 400,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 10,	
+				"minValue" : 401,
+				"maxValue" : 440,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 11,	
+				"minValue" : 441,
+				"maxValue" : 480,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 12,	
+				"minValue" : 481,
+				"maxValue" : 520,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 13,	
+				"minValue" : 521,
+				"maxValue" : 560,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 14,	
+				"minValue" : 561,
+				"maxValue" : 600,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 15,	
+				"minValue" : 601,
+				"maxValue" : 640,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 16,
+				"minValue" : 641,
+				"maxValue" : 680,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 17,	
+				"minValue" : 681,
+				"maxValue" : 720,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 18,	
+				"minValue" : 721,
+				"maxValue" : 760,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 19,	
+				"minValue" : 761,
+				"maxValue" : 800,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 20,	
+				"minValue" : 50,
+				"maxValue" : 75,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 21,	
+				"minValue" : 76,
+				"maxValue" : 100,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 22,	
+				"minValue" : 101,
+				"maxValue" : 125,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 23,	
+				"minValue" : 126,
+				"maxValue" : 150,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 24,	
+				"minValue" : 151,
+				"maxValue" : 175,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 25,	
+				"minValue" : 176,
+				"maxValue" : 200,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 26,	
+				"minValue" : 201,
+				"maxValue" : 225,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 27,	
+				"minValue" : 226,
+				"maxValue" : 250,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 28,	
+				"minValue" : 251,
+				"maxValue" : 275,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 29,	
+				"minValue" : 276,
+				"maxValue" : 300,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 30,	
+				"minValue" : 301,
+				"maxValue" : 325,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 31,	
+				"minValue" : 326,
+				"maxValue" : 350,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 32,	
+				"minValue" : 351,
+				"maxValue" : 375,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 33,	
+				"minValue" : 376,
+				"maxValue" : 400,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 34,	
+				"minValue" : 401,
+				"maxValue" : 425,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 35,	
+				"minValue" : 426,
+				"maxValue" : 450,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 36,	
+				"minValue" : 451,
+				"maxValue" : 475,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 37,	
+				"minValue" : 476,
+				"maxValue" : 500,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 38,	
+				"minValue" : 501,
+				"maxValue" : 525,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 39,	
+				"minValue" : 526,
+				"maxValue" : 550,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 40,	
+				"minValue" : 551,
+				"maxValue" : 575,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 41,	
+				"minValue" : 576,
+				"maxValue" : 600,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 42,	
+				"minValue" : 601,
+				"maxValue" : 625,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 43,	
+				"minValue" : 626,
+				"maxValue" : 650,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 44,	
+				"minValue" : 651,
+				"maxValue" : 675,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 45,	
+				"minValue" : 676,
+				"maxValue" : 700,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 46,	
+				"minValue" : 701,
+				"maxValue" : 725,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 47,	
+				"minValue" : 726,
+				"maxValue" : 750,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 48,	
+				"minValue" : 751,
+				"maxValue" : 775,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 49,	
+				"minValue" : 776,
+				"maxValue" : 800,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 50,	
+				"minValue" : 801,
+				"maxValue" : 825,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 51,	
+				"minValue" : 826,
+				"maxValue" : 850,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 52,	
+				"minValue" : 851,
+				"maxValue" : 875,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 53,	
+				"minValue" : 876,
+				"maxValue" : 900,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 54,	
+				"minValue" : 901,
+				"maxValue" : 925,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 55,	
+				"minValue" : 926,
+				"maxValue" : 950,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 56,	
+				"minValue" : 951,
+				"maxValue" : 975,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 57,	
+				"minValue" : 976,
+				"maxValue" : 1000,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 58,	
+				"minValue" : 1001,
+				"maxValue" : 1025,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 59,	
+				"minValue" : 50,
+				"maxValue" : 75,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 60,	
+				"minValue" : 76,
+				"maxValue" : 100,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 61,	
+				"minValue" : 101,
+				"maxValue" : 125,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 62,	
+				"minValue" : 126,
+				"maxValue" : 150,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 63,	
+				"minValue" : 151,
+				"maxValue" : 175,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 64,	
+				"minValue" : 176,
+				"maxValue" : 200,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 65,	
+				"minValue" : 201,
+				"maxValue" : 225,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 66,	
+				"minValue" : 226,
+				"maxValue" : 250,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 67,	
+				"minValue" : 251,
+				"maxValue" : 275,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 68,	
+				"minValue" : 276,
+				"maxValue" : 300,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 69,	
+				"minValue" : 301,
+				"maxValue" : 325,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 70,	
+				"minValue" : 326,
+				"maxValue" : 350,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 71,	
+				"minValue" : 351,
+				"maxValue" : 375,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 72,	
+				"minValue" : 376,
+				"maxValue" : 400,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 73,	
+				"minValue" : 401,
+				"maxValue" : 425,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 74,	
+				"minValue" : 426,
+				"maxValue" : 450,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 75,	
+				"minValue" : 451,
+				"maxValue" : 475,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 76,	
+				"minValue" : 476,
+				"maxValue" : 500,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 77,	
+				"minValue" : 501,
+				"maxValue" : 525,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 78,	
+				"minValue" : 526,
+				"maxValue" : 550,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 79,	
+				"minValue" : 551,
+				"maxValue" : 575,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 80,	
+				"minValue" : 576,
+				"maxValue" : 600,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 81,	
+				"minValue" : 601,
+				"maxValue" : 625,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 82,	
+				"minValue" : 626,
+				"maxValue" : 650,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 83,	
+				"minValue" : 651,
+				"maxValue" : 675,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 84,	
+				"minValue" : 676,
+				"maxValue" : 700,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 85,	
+				"minValue" : 701,
+				"maxValue" : 725,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 86,	
+				"minValue" : 726,
+				"maxValue" : 750,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 87,	
+				"minValue" : 751,
+				"maxValue" : 775,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 88,	
+				"minValue" : 776,
+				"maxValue" : 800,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 89,	
+				"minValue" : 801,
+				"maxValue" : 825,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 90,	
+				"minValue" : 826,
+				"maxValue" : 850,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 91,	
+				"minValue" : 851,
+				"maxValue" : 875,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 92,	
+				"minValue" : 876,
+				"maxValue" : 900,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 93,	
+				"minValue" : 901,
+				"maxValue" : 925,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 94,	
+				"minValue" : 926,
+				"maxValue" : 950,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 95,	
+				"minValue" : 951,
+				"maxValue" : 975,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 96,	
+				"minValue" : 976,
+				"maxValue" : 1000,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 97,	
+				"minValue" : 1001,
+				"maxValue" : 1025,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 98,	
+				"minValue" : 50,
+				"maxValue" : 75,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 99,	
+				"minValue" : 76,
+				"maxValue" : 100,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 100,	
+				"minValue" : 101,
+				"maxValue" : 125,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 101,	
+				"minValue" : 126,
+				"maxValue" : 150,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 102,	
+				"minValue" : 151,
+				"maxValue" : 175,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 103,	
+				"minValue" : 176,
+				"maxValue" : 200,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 104,	
+				"minValue" : 201,
+				"maxValue" : 225,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 105,	
+				"minValue" : 226,
+				"maxValue" : 250,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 106,	
+				"minValue" : 251,
+				"maxValue" : 275,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 107,	
+				"minValue" : 276,
+				"maxValue" : 300,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 108,	
+				"minValue" : 301,
+				"maxValue" : 325,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 109,	
+				"minValue" : 326,
+				"maxValue" : 350,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 110,	
+				"minValue" : 351,
+				"maxValue" : 375,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 111,	
+				"minValue" : 376,
+				"maxValue" : 400,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 112,	
+				"minValue" : 401,
+				"maxValue" : 425,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 113,	
+				"minValue" : 426,
+				"maxValue" : 450,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 114,	
+				"minValue" : 451,
+				"maxValue" : 475,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 115,	
+				"minValue" : 476,
+				"maxValue" : 500,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 116,	
+				"minValue" : 501,
+				"maxValue" : 525,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 117,	
+				"minValue" : 526,
+				"maxValue" : 550,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 118,	
+				"minValue" : 551,
+				"maxValue" : 575,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 119,	
+				"minValue" : 576,
+				"maxValue" : 600,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 120,	
+				"minValue" : 601,
+				"maxValue" : 625,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 121,	
+				"minValue" : 626,
+				"maxValue" : 650,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 122,	
+				"minValue" : 651,
+				"maxValue" : 675,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 123,	
+				"minValue" : 676,
+				"maxValue" : 700,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 124,	
+				"minValue" : 701,
+				"maxValue" : 725,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 125,	
+				"minValue" : 726,
+				"maxValue" : 750,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 126,	
+				"minValue" : 751,
+				"maxValue" : 775,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 127,	
+				"minValue" : 776,
+				"maxValue" : 800,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 128,	
+				"minValue" : 801,
+				"maxValue" : 825,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 129,	
+				"minValue" : 826,
+				"maxValue" : 850,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 130,	
+				"minValue" : 851,
+				"maxValue" : 875,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 131,	
+				"minValue" : 876,
+				"maxValue" : 900,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 132,	
+				"minValue" : 901,
+				"maxValue" : 925,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 133,	
+				"minValue" : 926,
+				"maxValue" : 950,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 134,	
+				"minValue" : 951,
+				"maxValue" : 975,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 135,	
+				"minValue" : 976,
+				"maxValue" : 1000,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 136,	
+				"minValue" : 1001,
+				"maxValue" : 1025,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 137,	
+				"minValue" : 50,
+				"maxValue" : 75,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 138,	
+				"minValue" : 76,
+				"maxValue" : 100,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 139,	
+				"minValue" : 101,
+				"maxValue" : 125,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 140,	
+				"minValue" : 126,
+				"maxValue" : 150,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 141,	
+				"minValue" : 151,
+				"maxValue" : 175,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 142,	
+				"minValue" : 176,
+				"maxValue" : 200,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 143,	
+				"minValue" : 201,
+				"maxValue" : 225,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 144,	
+				"minValue" : 226,
+				"maxValue" : 250,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 145,	
+				"minValue" : 251,
+				"maxValue" : 275,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 146,	
+				"minValue" : 276,
+				"maxValue" : 300,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 147,	
+				"minValue" : 301,
+				"maxValue" : 325,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 148,	
+				"minValue" : 326,
+				"maxValue" : 350,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 149,	
+				"minValue" : 351,
+				"maxValue" : 375,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 150,	
+				"minValue" : 376,
+				"maxValue" : 400,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 151,	
+				"minValue" : 401,
+				"maxValue" : 425,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 152,	
+				"minValue" : 426,
+				"maxValue" : 450,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 153,	
+				"minValue" : 451,
+				"maxValue" : 475,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 154,	
+				"minValue" : 476,
+				"maxValue" : 500,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 155,	
+				"minValue" : 501,
+				"maxValue" : 525,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 156,	
+				"minValue" : 526,
+				"maxValue" : 550,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 157,	
+				"minValue" : 551,
+				"maxValue" : 575,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 158,	
+				"minValue" : 576,
+				"maxValue" : 600,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 159,	
+				"minValue" : 601,
+				"maxValue" : 625,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 160,	
+				"minValue" : 626,
+				"maxValue" : 650,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 161,	
+				"minValue" : 651,
+				"maxValue" : 675,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 162,	
+				"minValue" : 676,
+				"maxValue" : 700,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 163,	
+				"minValue" : 701,
+				"maxValue" : 725,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 164,	
+				"minValue" : 726,
+				"maxValue" : 750,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 165,	
+				"minValue" : 751,
+				"maxValue" : 775,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 166,	
+				"minValue" : 776,
+				"maxValue" : 800,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 167,	
+				"minValue" : 801,
+				"maxValue" : 825,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 168,	
+				"minValue" : 826,
+				"maxValue" : 850,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 169,	
+				"minValue" : 851,
+				"maxValue" : 875,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 170,	
+				"minValue" : 876,
+				"maxValue" : 900,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 171,	
+				"minValue" : 901,
+				"maxValue" : 925,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 172,	
+				"minValue" : 926,
+				"maxValue" : 950,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 173,	
+				"minValue" : 951,
+				"maxValue" : 975,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 174,	
+				"minValue" : 976,
+				"maxValue" :1000,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 175,	
+				"minValue" : 1001,
+				"maxValue" : 1025,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 176,	
+				"minValue" : 50,
+				"maxValue" : 75,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 177,	
+				"minValue" : 76,
+				"maxValue" : 100,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 178,	
+				"minValue" : 101,
+				"maxValue" : 125,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 179,	
+				"minValue" : 126,
+				"maxValue" : 150,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 180,	
+				"minValue" : 151,
+				"maxValue" : 175,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 181,	
+				"minValue" : 176,
+				"maxValue" : 200,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 182,	
+				"minValue" : 201,
+				"maxValue" : 225,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 183,	
+				"minValue" : 226,
+				"maxValue" : 250,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 184,	
+				"minValue" : 251,
+				"maxValue" : 275,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 185,	
+				"minValue" : 276,
+				"maxValue" : 300,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 186,	
+				"minValue" : 301,
+				"maxValue" : 325,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 187,	
+				"minValue" : 326,
+				"maxValue" : 350,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 188,	
+				"minValue" : 351,
+				"maxValue" : 375,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 189,	
+				"minValue" : 376,
+				"maxValue" : 400,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 190,	
+				"minValue" : 401,
+				"maxValue" : 425,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 191,	
+				"minValue" : 426,
+				"maxValue" : 450,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 192,	
+				"minValue" : 451,
+				"maxValue" : 475,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 193,	
+				"minValue" : 476,
+				"maxValue" : 500,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 194,	
+				"minValue" : 501,
+				"maxValue" : 525,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 195,	
+				"minValue" : 526,
+				"maxValue" : 550,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 196,	
+				"minValue" : 551,
+				"maxValue" : 575,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 197,	
+				"minValue" : 576,
+				"maxValue" : 600,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 198,	
+				"minValue" : 601,
+				"maxValue" : 625,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 199,	
+				"minValue" : 626,
+				"maxValue" : 650,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 200,	
+				"minValue" : 651,
+				"maxValue" : 675,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 201,	
+				"minValue" : 676,
+				"maxValue" : 700,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 202,	
+				"minValue" : 701,
+				"maxValue" : 725,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 203,	
+				"minValue" : 726,
+				"maxValue" : 750,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 204,	
+				"minValue" : 751,
+				"maxValue" : 775,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 205,	
+				"minValue" : 776,
+				"maxValue" : 800,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 206,	
+				"minValue" : 801,
+				"maxValue" : 825,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 207,	
+				"minValue" : 826,
+				"maxValue" : 850,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 208,	
+				"minValue" : 851,
+				"maxValue" : 875,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 209,	
+				"minValue" : 876,
+				"maxValue" : 900,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 210,	
+				"minValue" : 901,
+				"maxValue" : 925,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 211,	
+				"minValue" : 926,
+				"maxValue" : 950,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 212,	
+				"minValue" : 951,
+				"maxValue" : 975,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 213,	
+				"minValue" : 976,
+				"maxValue" :1000,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "DamageElement",
+			"attributs" :
+			{
+				"id" : 214,	
+				"minValue" : 1001,
+				"maxValue" : 1025,
+				"element" : 5
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 215,
+				"minValue" : 25,
+				"maxValue" : 50
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 216,
+				"minValue" : 51,
+				"maxValue" : 75
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 217,
+				"minValue" : 76,
+				"maxValue" : 100
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 218,
+				"minValue" : 101,
+				"maxValue" : 125
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 219,
+				"minValue" : 126,
+				"maxValue" : 150
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 220,
+				"minValue" : 151,
+				"maxValue" : 175
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 221,
+				"minValue" : 176,
+				"maxValue" : 200
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 222,
+				"minValue" : 201,
+				"maxValue" : 225
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 223,
+				"minValue" : 226,
+				"maxValue" : 250
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 224,
+				"minValue" : 251,
+				"maxValue" : 275
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 225,
+				"minValue" : 276,
+				"maxValue" : 300
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 226,
+				"minValue" : 301,
+				"maxValue" : 325
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 227,
+				"minValue" : 326,
+				"maxValue" : 350
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 228,
+				"minValue" : 351,
+				"maxValue" : 375
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 229,
+				"minValue" : 376,
+				"maxValue" : 400
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 230,
+				"minValue" : 401,
+				"maxValue" : 425
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 231,
+				"minValue" : 426,
+				"maxValue" : 450
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 232,
+				"minValue" : 451,
+				"maxValue" : 475
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 233,
+				"minValue" : 476,
+				"maxValue" : 500
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 234,
+				"minValue" : 501,
+				"maxValue" : 525
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 235,
+				"minValue" : 526,
+				"maxValue" : 550
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 236,
+				"minValue" : 551,
+				"maxValue" : 575
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 237,
+				"minValue" : 576,
+				"maxValue" : 600
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 238,
+				"minValue" : 601,
+				"maxValue" : 625
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 239,
+				"minValue" : 626,
+				"maxValue" : 650
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 240,
+				"minValue" : 651,
+				"maxValue" : 675
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 241,
+				"minValue" : 676,
+				"maxValue" : 700
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 242,
+				"minValue" : 701,
+				"maxValue" : 725
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 243,
+				"minValue" : 726,
+				"maxValue" : 750
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 244,
+				"minValue" : 751,
+				"maxValue" : 775
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 245,
+				"minValue" : 776,
+				"maxValue" : 800
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 246,
+				"minValue" : 801,
+				"maxValue" : 825
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 247,
+				"minValue" : 826,
+				"maxValue" : 850
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 248,
+				"minValue" : 851,
+				"maxValue" : 875
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 249,
+				"minValue" : 876,
+				"maxValue" : 900
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 250,
+				"minValue" : 901,
+				"maxValue" : 925
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 251,
+				"minValue" : 926,
+				"maxValue" : 950
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 252,
+				"minValue" : 20,
+				"maxValue" : 40
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 253,
+				"minValue" : 41,
+				"maxValue" : 80
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 254,
+				"minValue" : 81,
+				"maxValue" : 120
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 255,
+				"minValue" : 121,
+				"maxValue" : 160
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 256,
+				"minValue" : 161,
+				"maxValue" : 200
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 257,
+				"minValue" : 201,
+				"maxValue" : 240
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 258,
+				"minValue" : 241,
+				"maxValue" : 280
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 259,
+				"minValue" : 281,
+				"maxValue" : 320
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 260,
+				"minValue" : 321,
+				"maxValue" : 360
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 261,
+				"minValue" : 361,
+				"maxValue" : 400
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 262,
+				"minValue" : 401,
+				"maxValue" : 440
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 263,
+				"minValue" : 441,
+				"maxValue" : 480
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 264,
+				"minValue" : 481,
+				"maxValue" : 520
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 265,
+				"minValue" : 521,
+				"maxValue" : 560
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 266,
+				"minValue" : 561,
+				"maxValue" : 600
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 267,
+				"minValue" : 601,
+				"maxValue" : 640
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 268,
+				"minValue" : 641,
+				"maxValue" : 680
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 269,
+				"minValue" : 681,
+				"maxValue" : 720
+			}
+		},
+		{
+			"class" : "Heal",
+			"attributs" :
+			{
+				"id" : 270,
+				"minValue" : 721,
+				"maxValue" : 740
+			}
 		},
 		{
 			"class" : "RangeDown",
 			"attributs" :
 			{
-				"id" : 7,
+				"id" : 271,
+				"range" : 1
+			}
+		},
+		{
+			"class" : "RangeDown",
+			"attributs" :
+			{
+				"id" : 272,
 				"range" : 2
+			}
+		},
+		{
+			"class" : "RangeDown",
+			"attributs" :
+			{
+				"id" : 273,
+				"range" : 3
+			}
+		},
+		{
+			"class" : "RangeUp",
+			"attributs" :
+			{
+				"id" : 274,				
+				"range" : 1
+			}	
+		},
+		{
+			"class" : "RangeUp",
+			"attributs" :
+			{
+				"id" : 275,				
+				"range" : 2
+			}	
+		},
+		{
+			"class" : "RangeUp",
+			"attributs" :
+			{
+				"id" : 276,				
+				"range" : 3
+			}	
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 277,
+				"nbDeplacement" : 1
 			}
 		},
 		{
 			"class" : "Push",
 			"attributs" :
 			{
-				"id" : 8,
+				"id" : 278,
+				"nbDeplacement" : 2
+			}
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 279,
+				"nbDeplacement" : 3
+			}
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 280,
+				"nbDeplacement" : 4
+			}
+		},
+		{
+			"class" : "Push",
+			"attributs" :
+			{
+				"id" : 281,
+				"nbDeplacement" : 5
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 282,
+				"nbDeplacement" : 1
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 283,
 				"nbDeplacement" : 2
 			}
 		},
@@ -82,8 +2763,448 @@
 			"class" : "Pull",
 			"attributs" :
 			{
-				"id" : 9,
-				"nbDeplacement" : 2
+				"id" : 284,
+				"nbDeplacement" : 3
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 285,
+				"nbDeplacement" : 4
+			}
+		},
+		{
+			"class" : "Pull",
+			"attributs" :
+			{
+				"id" : 286,
+				"nbDeplacement" : 5
+			}
+		},
+		{
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
+			{
+				"id" : 287,
+				"protection" : 1
+			}
+		},
+		{
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
+			{
+				"id" : 288,
+				"protection" : 3
+			}
+		},
+		{
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
+			{
+				"id" : 289,
+				"protection" : 5
+			}
+		},
+		{
+			"class" : "ProtectionNegativeGlobal",
+			"attributs" :
+			{
+				"id" : 290,
+				"protection" : 10
+			}
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 291,				
+				"protection" : 1
+			}			
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 292,				
+				"protection" : 3
+			}			
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 293,				
+				"protection" : 5
+			}			
+		},
+		{
+			"class" : "ProtectionGlobal",
+			"attributs" :
+			{
+				"id" : 294,				
+				"protection" : 10
+			}			
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 295,
+				"protection" : 1,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 296,
+				"protection" : 3,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 297,
+				"protection" : 5,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 298,
+				"protection" : 10,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 299,
+				"protection" : 1,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 300,
+				"protection" : 3,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 301,
+				"protection" : 5,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 302,
+				"protection" : 10,
+				"element" : 0
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 303,
+				"protection" : 1,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 304,
+				"protection" : 3,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 305,
+				"protection" : 5,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 306,
+				"protection" : 10,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 307,
+				"protection" : 1,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 308,
+				"protection" : 3,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 309,
+				"protection" : 5,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 310,
+				"protection" : 10,
+				"element" : 1
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 311,
+				"protection" : 1,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 312,
+				"protection" : 3,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 313,
+				"protection" : 5,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 314,
+				"protection" : 10,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 315,
+				"protection" : 1,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 316,
+				"protection" : 3,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 317,
+				"protection" : 5,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 318,
+				"protection" : 10,
+				"element" : 2
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 319,
+				"protection" : 1,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 320,
+				"protection" : 3,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 321,
+				"protection" : 5,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 322,
+				"protection" : 10,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 323,
+				"protection" : 1,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 324,
+				"protection" : 3,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 325,
+				"protection" : 5,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 326,
+				"protection" : 10,
+				"element" : 3
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 327,
+				"protection" : 1,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 328,
+				"protection" : 3,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 329,
+				"protection" : 5,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionNegativeElement",
+			"attributs" :
+			{
+				"id" : 330,
+				"protection" : 10,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 331,
+				"protection" : 1,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 332,
+				"protection" : 3,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 333,
+				"protection" : 5,
+				"element" : 4
+			}
+		},
+		{
+			"class" : "ProtectionElement",
+			"attributs" :
+			{
+				"id" : 334,
+				"protection" : 10,
+				"element" : 4
 			}
 		}
 	]
