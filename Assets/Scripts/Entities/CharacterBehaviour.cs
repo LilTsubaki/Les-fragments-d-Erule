@@ -29,9 +29,6 @@ public class CharacterBehaviour : MonoBehaviour
                     
                     PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
                     _character.CurrentStep = 0;
-                    Logger.Error("from : " + _character.Position._posX + " " + _character.Position._posY);
-                    Logger.Error("dest : " + hexa._posX + " " + hexa._posY);
-                    Logger.Error(_character.PathToFollow.Count);
 
                     if (_character.PathToFollow != null && _character.PathToFollow.Count > 0)
                         _character._state = Character.State.Moving;
@@ -64,7 +61,6 @@ public class CharacterBehaviour : MonoBehaviour
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     //fieldOfView();
-                    Logger.Error("new pos : " + _character.PathToFollow[0]._posX + " " + _character.PathToFollow[0]);
                     _character.Position = _character.PathToFollow[0];
                     _character._state = Character.State.Waiting;
                 }
