@@ -5,13 +5,59 @@
 			"id" : 0,
 			"orientation" : "any",
 			"rootUsed" : true,
-			"nodes":
-			[]
-				
+			"nodes":[]
 		},
 		{
 			"id" : 1,
 			"orientation" : "line",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :[]
+				},
+				{
+					"direction" : "northEast",
+					"nodeUsed" : true,
+					"nodes" :[]
+				},
+				{
+					"direction" : "southEast",
+					"nodeUsed" : true,
+					"nodes" :[]
+				}
+			]
+		},
+		{
+			"id" : 2,
+			"orientation" : "diagonal",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :[]
+				},
+				{
+					"direction" : "southEast",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "east",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : 3,
+			"orientation" : "any",
 			"rootUsed" : true,
 			"nodes":
 			[
@@ -34,26 +80,282 @@
 							"direction" : "southEast",
 							"nodeUsed" : true,
 							"nodes" :[]
+						},
+						{
+							"direction" : "southWest",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "southWest",
+									"nodeUsed" : true,
+									"nodes" : []
+								},
+								{
+									"direction" : "southEast",
+									"nodeUsed" : true,
+									"nodes" : []
+								}
+							]
+						},
+						{
+							"direction" : "northWest",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "northWest",
+									"nodeUsed" : true,
+									"nodes" : []
+								},
+								{
+									"direction" : "northEast",
+									"nodeUsed" : true,
+									"nodes" : []
+								}
+							]
 						}
+						
+					]
+				},
+				{
+					"direction" : "west",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "west",
+							"nodeUsed" : true,
+							"nodes" :[]
+						},
+						{
+							"direction" : "northEast",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "northWest",
+									"nodeUsed" : true,
+									"nodes" : []
+								}
+							]
+						},
+						{
+							"direction" : "southEast",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "southWest",
+									"nodeUsed" : true,
+									"nodes" : []
+								}
+							]
+						},
+						{
+							"direction" : "southWest",
+							"nodeUsed" : true,
+							"nodes" :[]
+						},
+						{
+							"direction" : "northWest",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+						
 					]
 				}
 			]
 		},
 		{
-			"id" : 2,
+			"id" : 4,
 			"orientation" : "diagonal",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "southEast",
+					"nodeUsed" : true,
+					"nodes" :[]
+				},
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :[]
+				}
+			]
+		},
+		{
+			"id" : 5,
+			"orientation" : "line",
 			"rootUsed" : true,
 			"nodes":
 			[
 				{
 					"direction" : "east",
 					"nodeUsed" : true,
-					"nodes" :[]
+					"nodes" :
+					[
+						{
+							"direction" : "east",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "east",
+									"nodeUsed" : true,
+									"nodes" :
+									[
+										{
+											"direction" : "east",
+											"nodeUsed" : true,
+											"nodes" :
+											[
+												{
+													"direction" : "east",
+													"nodeUsed" : true,
+													"nodes" :[]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : 6,
+			"orientation" : "any",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "northWest",
+							"nodeUsed" : true,
+							"nodes" :[]
+						},
+						{
+							"direction" : "southWest",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+					]
 				},
 				{
 					"direction" : "west",
 					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "northEast",
+							"nodeUsed" : true,
+							"nodes" :[]
+						},
+						{
+							"direction" : "southEast",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : 7,
+			"orientation" : "line",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "east",
+							"nodeUsed" : true,
+							"nodes" :
+							[
+								{
+									"direction" : "east",
+									"nodeUsed" : true,
+									"nodes" :
+									[]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : 8,
+			"orientation" : "line",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "east",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : 9,
+			"orientation" : "line",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "northEast",
+					"nodeUsed" : true,
 					"nodes" :[]
+				},
+				{
+					"direction" : "southEast",
+					"nodeUsed" : true,
+					"nodes" :[]
+				}
+			]
+		},
+		{
+			"id" : 10,
+			"orientation" : "line",
+			"rootUsed" : true,
+			"nodes":
+			[
+				{
+					"direction" : "east",
+					"nodeUsed" : true,
+					"nodes" :
+					[
+						{
+							"direction" : "northEast",
+							"nodeUsed" : true,
+							"nodes" :[]
+						},
+						{
+							"direction" : "southEast",
+							"nodeUsed" : true,
+							"nodes" :[]
+						}
+					]
 				}
 			]
 		}
