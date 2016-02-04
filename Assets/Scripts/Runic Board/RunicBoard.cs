@@ -18,10 +18,10 @@ using System.Collections.Generic;
 
 public class RunicBoard {
 
-    List<Rune> _runesInHand;
+    Dictionary<uint, Rune> _runesInHand;
     Dictionary<uint, Rune> _runesOnBoard;
 
-    public List<Rune> RunesInHand
+    public Dictionary<uint, Rune> RunesInHand
     {
         get
         {
@@ -43,9 +43,9 @@ public class RunicBoard {
     public void LogHand()
     {
         Logger.Debug("*** RUNES IN HAND ***");
-        for (int i = 0; i < _runesInHand.Count; i++)
+        foreach (KeyValuePair<uint, Rune> kvp in _runesInHand)
         {
-            Logger.Debug("Element " + _runesInHand[i]._element._name + ", Position " + _runesInHand[i]._positionOnBoard);
+            Logger.Debug("Element " + kvp.Value.Element._name + ", Position Hand " + kvp.Value.PositionInHand + ", Position Board " + kvp.Value.PositionOnBoard);
         }
     }
 
@@ -57,18 +57,17 @@ public class RunicBoard {
         Logger.Debug("*** RUNES ON BOARD ***");
         foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
         {
-            Logger.Debug("Element " + kvp.Value._element._name + ", Position " + kvp.Key);
+            Logger.Debug("Element " + kvp.Value.Element._name + ", Position " + kvp.Key);
         }
     }
 
     public RunicBoard()
     {
-        _runesInHand = new List<Rune>();
+        _runesInHand = new Dictionary<uint, Rune>();
         _runesOnBoard = new Dictionary<uint, Rune>();
-        Testing();
     }
 
-    public RunicBoard(List<Rune> hand)
+    public RunicBoard(Dictionary<uint, Rune> hand)
     {
         _runesInHand = hand;
         _runesOnBoard = new Dictionary<uint, Rune>();
@@ -78,24 +77,26 @@ public class RunicBoard {
     {
         Logger.logLvl = Logger.Type.TRACE;
         //Testing !
-        Rune r1 = new Rune(Element.GetElement(0), -1);
-        _runesInHand.Add(r1);
-        Rune r2 = new Rune(Element.GetElement(1), -1);
-        _runesInHand.Add(r2);
-        Rune r3 = new Rune(Element.GetElement(2), -1);
-        _runesInHand.Add(r3);
-        Rune r4 = new Rune(Element.GetElement(2), -1);
-        _runesInHand.Add(r4);
-        Rune r5 = new Rune(Element.GetElement(3), -1);
-        _runesInHand.Add(r5);
-        Rune r6 = new Rune(Element.GetElement(3), -1);
-        _runesInHand.Add(r6);
+        Rune r1 = new Rune(Element.GetElement(0), -1, 0);
+        _runesInHand.Add(r1.PositionInHand, r1);
+        Rune r2 = new Rune(Element.GetElement(1), -1, 1);
+        _runesInHand.Add(r2.PositionInHand, r2);
+        Rune r3 = new Rune(Element.GetElement(2), -1, 2);
+        _runesInHand.Add(r3.PositionInHand, r3);
+        Rune r4 = new Rune(Element.GetElement(2), -1, 3);
+        _runesInHand.Add(r4.PositionInHand, r4);
+        Rune r5 = new Rune(Element.GetElement(3), -1, 4);
+        _runesInHand.Add(r5.PositionInHand, r5);
+        Rune r6 = new Rune(Element.GetElement(3), -1, 5);
+        _runesInHand.Add(r6.PositionInHand, r6);
 
-        PlaceRuneOnBoard(ref r6, 12);
-        PlaceRuneOnBoard(ref r3, 13);
-        PlaceRuneOnBoard(ref r4, 14);
-        PlaceRuneOnBoard(ref r5, 6);
-        PlaceRuneOnBoard(ref r2, 5);
+        //LogHand();
+        
+        //PlaceRuneOnBoard(0, 12);
+        //PlaceRuneOnBoard(1, 13);
+        //PlaceRuneOnBoard(2, 14);
+        //PlaceRuneOnBoard(3, 6);
+        //PlaceRuneOnBoard(4, 5);
 
         //RemoveRuneFromBoard(4);
 
@@ -117,17 +118,19 @@ public class RunicBoard {
     /// <summary>
     /// Verify if you can place a rune at the position, and place it if it is OK.
     /// </summary>
-    /// <param name="rune">The rune to place</param>
+    /// <param name="index">The index in runesInHand list</param>
     /// <param name="position">The position where the rune will be placed</param>
     /// <returns>If the rune was succesfully placed</returns>
-    public bool PlaceRuneOnBoard(ref Rune rune, uint position)
+    public bool PlaceRuneOnBoard(uint index, uint position)
     {
+        Rune rune;
+        _runesInHand.TryGetValue(index, out rune);
         // If no runes are on the board, places the rune in the center
         if (_runesOnBoard.Count == 0)
         {
             _runesOnBoard.Add(12, rune);
-            rune._positionOnBoard = 12;
-            _runesInHand.Remove(rune);
+            rune.PositionOnBoard = 12;
+            _runesInHand.Remove(index);
             return true;
         }
 
@@ -144,12 +147,11 @@ public class RunicBoard {
             if (_runesOnBoard.ContainsKey(neighbours[i]))
             {
                 _runesOnBoard.Add(position, rune);
-                rune._positionOnBoard = (int)position;
-                _runesInHand.Remove(rune);
+                rune.PositionOnBoard = (int)position;
+                _runesInHand.Remove(index);
                 return true;
             }
         }
-
         return false;
     }
 
@@ -165,8 +167,8 @@ public class RunicBoard {
         if (runeFound)
         {
             _runesOnBoard.Remove(position);
-            _runesInHand.Add(rune);
-            rune._positionOnBoard = -1;
+            _runesInHand.Add(rune.PositionInHand, rune);
+            rune.PositionOnBoard = -1;
             return true;
         }
         return false;
@@ -218,8 +220,8 @@ public class RunicBoard {
         foreach(KeyValuePair<uint, Rune> kvp in _runesOnBoard)
         {
             Rune rune = kvp.Value;
-            rune._positionOnBoard = -1;
-            _runesInHand.Add(rune);
+            rune.PositionOnBoard = -1;
+            _runesInHand.Add(rune.PositionInHand, rune);
         }
         _runesOnBoard.Clear();
     }
@@ -365,7 +367,7 @@ public class RunicBoard {
         List<Element> elementsList = new List<Element>();
         foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
         {
-            elementsList.Add(kvp.Value._element);
+            elementsList.Add(kvp.Value.Element);
         }
         elementsList.Sort();
 

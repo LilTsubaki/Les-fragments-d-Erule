@@ -3,12 +3,53 @@ using System.Collections;
 
 public class Rune : MonoBehaviour
 {
-    internal Element _element;
-    internal int _positionOnBoard;
+    private Element _element;
+    private int _positionOnBoard;
+    private uint _positionInHand;
 
-    public Rune(Element element, int positionOnBoard)
+    public Element Element
     {
-        _element = element;
-        _positionOnBoard = positionOnBoard;
+        get
+        {
+            return _element;
+        }
+
+        set
+        {
+            _element = value;
+        }
+    }
+
+    public int PositionOnBoard
+    {
+        get
+        {
+            return _positionOnBoard;
+        }
+
+        set
+        {
+            _positionOnBoard = value;
+        }
+    }
+
+    public uint PositionInHand
+    {
+        get
+        {
+            return _positionInHand;
+        }
+
+        set
+        {
+            _positionInHand = value;
+        }
+    }
+
+    public Rune(Element element, int positionOnBoard, uint positionInHand)
+    {
+        Element = element;
+        PositionOnBoard = positionOnBoard;
+        PositionInHand = positionInHand;
     }
 }
