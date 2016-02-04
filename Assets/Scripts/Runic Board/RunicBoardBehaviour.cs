@@ -63,7 +63,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     void Awake()
     {
-        List<Rune> hand = new List<Rune>();
+        /*List<Rune> hand = new List<Rune>();
         Rune r1 = new Rune(Element.GetElement(0), -1);
         hand.Add(r1);
         Rune r2 = new Rune(Element.GetElement(1), -1);
@@ -77,9 +77,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
         Rune r6 = new Rune(Element.GetElement(4), -1);
         hand.Add(r6);
         Rune r7 = new Rune(Element.GetElement(3), -1);
-        hand.Add(r7);
+        hand.Add(r7);*/
 
-        _board = new RunicBoard(hand);
+        _board = new RunicBoard();
 
         DisplayRunesInHand();
     }

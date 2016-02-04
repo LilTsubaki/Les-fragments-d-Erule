@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 /*
          ___   
-     ___/12 \___
- ___/ 7 \___/16 \___
-/ 2 \___/11 \___/20 \
-\___/ 6 \___/15 \___/
-/ 1 \___/10 \___/19 \
-\___/ 5 \___/14 \___/
-/ 0 \___/ 9 \___/18 \
-\___/ 4 \___/13 \___/
-    \___/ 8 \___/
+     ___/14 \___
+ ___/ 8 \___/19 \___
+/ 2 \___/13 \___/24 \
+\___/ 7 \___/18 \___/
+/ 1 \___/12 \___/23 \
+\___/ 6 \___/17 \___/
+/ 0 \___/11 \___/22 \
+\___/ 5 \___/16 \___/
+    \___/10 \___/
         \___/
 */
 
@@ -65,6 +65,7 @@ public class RunicBoard {
     {
         _runesInHand = new List<Rune>();
         _runesOnBoard = new Dictionary<uint, Rune>();
+        Testing();
     }
 
     public RunicBoard(List<Rune> hand)
@@ -90,11 +91,11 @@ public class RunicBoard {
         Rune r6 = new Rune(Element.GetElement(3), -1);
         _runesInHand.Add(r6);
 
-        PlaceRuneOnBoard(ref r6, 10);
-        PlaceRuneOnBoard(ref r3, 14);
-        PlaceRuneOnBoard(ref r4, 13);
-        PlaceRuneOnBoard(ref r5, 8);
-        PlaceRuneOnBoard(ref r2, 4);
+        PlaceRuneOnBoard(ref r6, 12);
+        PlaceRuneOnBoard(ref r3, 13);
+        PlaceRuneOnBoard(ref r4, 14);
+        PlaceRuneOnBoard(ref r5, 6);
+        PlaceRuneOnBoard(ref r2, 5);
 
         //RemoveRuneFromBoard(4);
 
@@ -107,10 +108,10 @@ public class RunicBoard {
 
         //ChangeRunePosition(4, 5);
 
-        //LogHand();
-        //LogRunesOnBoard();
+        LogHand();
+        LogRunesOnBoard();
 
-        Logger.Debug("Can launch spell ? " + CanLaunchSpell());
+        //Logger.Debug("Can launch spell ? " + CanLaunchSpell());
     }
 
     /// <summary>
@@ -124,8 +125,8 @@ public class RunicBoard {
         // If no runes are on the board, places the rune in the center
         if (_runesOnBoard.Count == 0)
         {
-            _runesOnBoard.Add(10, rune);
-            rune._positionOnBoard = 10;
+            _runesOnBoard.Add(12, rune);
+            rune._positionOnBoard = 12;
             _runesInHand.Remove(rune);
             return true;
         }
@@ -230,7 +231,7 @@ public class RunicBoard {
     /// <returns></returns>
     private bool PositionExists(uint p)
     {
-        if (p != 3 && p != 17 && p >= 0 && p <= 20)
+        if (p != 3 && p != 4 && p != 9 && p != 15 && p != 20 && p != 21 && p >= 0 && p <= 24)
             return true;
         return false;
     }
@@ -244,11 +245,11 @@ public class RunicBoard {
     {
         List<uint> neighbours = new List<uint>();
 
-        uint n1 = position - 5;
+        uint n1 = position - 6;
         if (PositionExists(n1))
             neighbours.Add(n1);
 
-        uint n2 = position - 4;
+        uint n2 = position - 5;
         if (PositionExists(n2))
             neighbours.Add(n2);
 
@@ -260,11 +261,11 @@ public class RunicBoard {
         if (PositionExists(n4))
             neighbours.Add(n4);
 
-        uint n5 = position + 4;
+        uint n5 = position + 5;
         if (PositionExists(n5))
             neighbours.Add(n5);
 
-        uint n6 = position + 5;
+        uint n6 = position + 6;
         if (PositionExists(n6))
             neighbours.Add(n6);
 
@@ -329,7 +330,7 @@ public class RunicBoard {
     /// <returns></returns>
     public bool IsConnectedToCenter(uint position, ref List<uint> explored, ref Dictionary<uint, Rune> board)
     {
-        if (position == 10)
+        if (position == 12)
         {
             return true;
         }
