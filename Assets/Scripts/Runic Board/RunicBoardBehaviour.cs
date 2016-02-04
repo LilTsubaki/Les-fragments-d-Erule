@@ -15,6 +15,8 @@ public class RunicBoardBehaviour : MonoBehaviour {
     public GameObject _woodRuneAsset;
     public GameObject _waterRuneAsset;
 
+    private GameObject _heldRune;
+
     private void DisplayRunesInHand()
     {
         foreach(KeyValuePair<uint, Rune> kvp in _board.RunesInHand)
@@ -46,9 +48,13 @@ public class RunicBoardBehaviour : MonoBehaviour {
                     break;
             }
 
+            // Set transformation
             rune.transform.SetParent(parent);
             rune.transform.localPosition = new Vector3(0, 0.3f, 0);
             rune.transform.Rotate(new Vector3(0, 1, 0), 90);
+
+            // Associate Rune object and gameObject
+            rune.GetComponent<RuneBehaviour>()._rune = kvp.Value;
         }
     }
 
@@ -56,7 +62,55 @@ public class RunicBoardBehaviour : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            if(Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes")))
+            {
+                _heldRune = hitInfo.collider.gameObject;
+                RuneBehaviour runeBehaviour = hitInfo.collider.gameObject.GetComponent<RuneBehaviour>();
+                if (runeBehaviour != null)
+                {
+                    runeBehaviour._state = RuneBehaviour.State.Held;
+                    runeBehaviour._initialPosition = hitInfo.transform.position;
+                }
+            }
+        }
 
+        if (Input.GetMouseButtonUp(0) && _heldRune != null)
+        {
+            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+
+            bool runeIsOnBoard = false;
+
+            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes Slot")))
+            {
+                RuneSlotBehaviour runeSlotBehaviour = hitInfo.collider.gameObject.GetComponent<RuneSlotBehaviour>();
+                if (runeSlotBehaviour != null)
+                {
+                    Rune rune = _heldRune.GetComponent<RuneBehaviour>()._rune;
+                    int positionOnBoard = runeSlotBehaviour._position;
+                    rune.PositionOnBoard = positionOnBoard;
+                    runeIsOnBoard = _board.PlaceRuneOnBoard(rune.PositionInHand, (uint)positionOnBoard);
+                    if (runeIsOnBoard)
+                    {
+                        _heldRune.transform.SetParent(hitInfo.collider.transform);
+                    }
+                }
+            }
+
+            RuneBehaviour runeBehaviour = _heldRune.GetComponent<RuneBehaviour>();
+
+            if (runeIsOnBoard)
+            {
+                runeBehaviour._state = RuneBehaviour.State.Static;
+            }
+            else
+            {
+                runeBehaviour._state = RuneBehaviour.State.BeingReleased;
+            }
+
+            _heldRune = null;
         }
     }
 
@@ -88,6 +142,6 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        InputUpdate();
 	}
 }
