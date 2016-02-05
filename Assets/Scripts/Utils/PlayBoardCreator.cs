@@ -6,6 +6,7 @@ public class PlayBoardCreator : MonoBehaviour {
 	public GameObject board;
 	public GameObject hexagon;
 	public GameObject obstacle;
+	public GameObject underground;
     public string boardName;
 	public int width;
 	public int height;
@@ -76,6 +77,36 @@ public class PlayBoardCreator : MonoBehaviour {
 					Destroy (o._gameobject);
 					hex._entity = null;
 				}
+
+			}
+
+		}
+	}
+
+	public void BuildUnderground()
+	{
+		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
+		if (hex != null && !(hex._posX<0)) {
+			if (hex.GameObject != null && hex.Underground==null) {
+				GameObject go = Instantiate<GameObject> (underground);
+				go.transform.position=new Vector3(0.866f*x-0.433f*y,z-0.5f,0.75f*y);
+				go.transform.parent = hex.GameObject.transform;
+				go.name = underground.name;
+				hex.Underground = go;
+
+			}
+
+		}
+	}
+
+	public void RemoveUnderground()
+	{
+		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
+		if (hex != null && !(hex._posX<0)) {
+			if (hex.GameObject != null && hex.Underground!=null) {
+					
+				Destroy (hex.Underground);
+				hex.Underground = null;
 
 			}
 
