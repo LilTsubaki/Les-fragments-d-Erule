@@ -124,32 +124,34 @@ public class RunicBoard {
     public int PlaceRuneOnBoard(uint index, uint position)
     {
         Rune rune;
-        _runesInHand.TryGetValue(index, out rune);
-        // If no runes are on the board, places the rune in the center
-        if (_runesOnBoard.Count == 0)
+        if(_runesInHand.TryGetValue(index, out rune))
         {
-            _runesOnBoard.Add(12, rune);
-            rune.PositionOnBoard = 12;
-            _runesInHand.Remove(index);
-            return 12;
-        }
-
-        // The player cannot place a rune if a rune is already in place at the position
-        if (_runesOnBoard.ContainsKey(position))
-        {
-            return -1;
-        }
-
-        // If runes are placed around this position, place the rune
-        List<uint> neighbours = GetAdjacentPositions(position);
-        for(int i = 0; i < neighbours.Count; i++)
-        {
-            if (_runesOnBoard.ContainsKey(neighbours[i]))
+            // If no runes are on the board, places the rune in the center
+            if (_runesOnBoard.Count == 0)
             {
-                _runesOnBoard.Add(position, rune);
-                rune.PositionOnBoard = (int)position;
+                _runesOnBoard.Add(12, rune);
+                rune.PositionOnBoard = 12;
                 _runesInHand.Remove(index);
-                return (int)position;
+                return 12;
+            }
+
+            // The player cannot place a rune if a rune is already in place at the position
+            if (_runesOnBoard.ContainsKey(position))
+            {
+                return -1;
+            }
+
+            // If runes are placed around this position, place the rune
+            List<uint> neighbours = GetAdjacentPositions(position);
+            for(int i = 0; i < neighbours.Count; i++)
+            {
+                if (_runesOnBoard.ContainsKey(neighbours[i]))
+                {
+                    _runesOnBoard.Add(position, rune);
+                    rune.PositionOnBoard = (int)position;
+                    _runesInHand.Remove(index);
+                    return (int)position;
+                }
             }
         }
         return -1;
@@ -185,25 +187,31 @@ public class RunicBoard {
         Rune runeToMove;
         if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove))
         {
-            // Copy of the runes on board without the rune we want to move
-            Dictionary<uint, Rune> tempRunesOnBoard = new Dictionary<uint, Rune>(_runesOnBoard);
-            tempRunesOnBoard.Remove(actualPosition);
-            tempRunesOnBoard.Add(newPosition, runeToMove);
-            //List<uint> explored = new List<uint>();
-
-            if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+            if (!_runesOnBoard.ContainsKey(newPosition))
             {
-                _runesOnBoard.Add(newPosition, runeToMove);
-                _runesOnBoard.Remove(actualPosition);
-                runeToMove.PositionOnBoard = (int)newPosition;
-                Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
-                return true;
+                // Copy of the runes on board without the rune we want to move
+                Dictionary<uint, Rune> tempRunesOnBoard = new Dictionary<uint, Rune>(_runesOnBoard);
+                tempRunesOnBoard.Remove(actualPosition);
+                tempRunesOnBoard.Add(newPosition, runeToMove);
+                //List<uint> explored = new List<uint>();
+
+                if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+                {
+                    _runesOnBoard.Add(newPosition, runeToMove);
+                    _runesOnBoard.Remove(actualPosition);
+                    runeToMove.PositionOnBoard = (int)newPosition;
+                    Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
+                    return true;
+                }
+                else
+                {
+                    Logger.Debug("Could not move rune from " + actualPosition + " to " + newPosition);
+                }
             }
             else
             {
-                Logger.Debug("Could not move rune from " + actualPosition + " to " + newPosition);
+                Logger.Debug("A rune is already on " + newPosition);
             }
-
         }
         else
         {
@@ -321,6 +329,8 @@ public class RunicBoard {
             List<uint> explored = new List<uint>();
             isConnected = IsConnectedToCenter(kvp.Key, ref explored, ref board);
             Logger.Debug(kvp.Key + " connected ? " + isConnected);
+            if (!isConnected)
+                return false;
         }
         return isConnected;
     }
