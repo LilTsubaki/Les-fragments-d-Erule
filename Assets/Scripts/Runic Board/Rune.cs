@@ -55,6 +55,6 @@ public class Rune
 
     public bool IsOnBoard()
     {
-        return _positionOnBoard > 0;
+        return _positionOnBoard >= 0;
     }
 }
