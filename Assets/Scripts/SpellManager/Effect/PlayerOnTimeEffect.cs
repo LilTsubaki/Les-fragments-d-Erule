@@ -19,7 +19,7 @@ public class PlayerOnTimeEffect : EffectOnTime
     /// <param name="hexagons">The Hexagons affected by the Effect.</param>
     /// <param name="target">The Hexagon aimed.</param>
     /// <param name="caster">The caster of the effect.</param>
-    public new void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach(Character c in chars)

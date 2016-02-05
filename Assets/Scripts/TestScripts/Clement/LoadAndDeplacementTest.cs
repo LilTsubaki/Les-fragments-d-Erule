@@ -37,35 +37,20 @@ public class LoadAndDeplacementTest : MonoBehaviour
         List<int> effectIds = testSp._effects.GetIds();
 
         List<Hexagon> rangeTest = new List<Hexagon>();
-        for(int  i = 0; i < PlayBoardManager.GetInstance().Board._width; i++)
+        rangeTest.Add(hexaStart1);
+        /*for(int  i = 0; i < PlayBoardManager.GetInstance().Board._width; i++)
         {
             for (int j = 0; j < PlayBoardManager.GetInstance().Board._height; j++)
             {
                 rangeTest.Add(PlayBoardManager.GetInstance().Board.GetHexagone(i, j));
             }
-        }
+        }*/
 
 
         for (int i = 0; i < effectIds.Count; i++)
         {
             EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
-            try
-            {
-                Heal heal = (Heal)effectTest;
-                heal.ApplyEffect(rangeTest, hexaStart2, player1);
-            }
-            catch
-            {
-                try
-                {
-                    ProtectionElement protection = (ProtectionElement)effectTest;
-                    protection.ApplyEffect(rangeTest, hexaStart2, player1);
-                }
-                catch
-                {
-                    Logger.Error("je ne suis pas un directEffect aeuaeuaueuaeua");
-                } 
-            }            
+            effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
         }
     }
 

@@ -158,6 +158,7 @@ public class Character : Entity
 
 		_protections[element] += Math.Min (max, protection);
 		_sommeProtection += Math.Min (max, protection);
+        Logger.Trace("nouvelle valeur : " + _sommeProtection);
 	}
 
 	public void ReceiveElementNegativeProtection(uint protection, Element element){

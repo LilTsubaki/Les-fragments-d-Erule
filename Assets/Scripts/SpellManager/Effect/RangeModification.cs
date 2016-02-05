@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-public class RangeModification : EffectDirect
+public abstract class RangeModification : EffectDirect
 {
 	protected int _range;
 
@@ -11,5 +11,6 @@ public class RangeModification : EffectDirect
 	{
 		_range = range;
 	}
+
 }
 

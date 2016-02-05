@@ -12,7 +12,7 @@ public class GroundOnTimeAppliedEffect : EffectOnTime {
         _caster = caster;
     }
 
-    public new void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         if (_nbTurn > 0)
         {

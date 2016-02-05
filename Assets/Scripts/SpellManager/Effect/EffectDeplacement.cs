@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-public class EffectDeplacement : EffectDirect
+public abstract class EffectDeplacement : EffectDirect
 {
 	protected uint _nbDeplacement;
 
@@ -11,4 +11,5 @@ public class EffectDeplacement : EffectDirect
 	{
 		_nbDeplacement = nbDeplacement;
 	}
+
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class EffectDirect : Effect
+public abstract class EffectDirect : Effect
 {
     public EffectDirect() : base() { }
 

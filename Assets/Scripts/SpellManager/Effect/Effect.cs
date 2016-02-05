@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-public class Effect
+public abstract class Effect
 {
     protected uint _id;
 
@@ -13,9 +13,7 @@ public class Effect
 		_id = id;
 	}
 
-	public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
-		throw new NotImplementedException ();
-	}
+    public abstract void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster);
 
     public uint GetId()
     {

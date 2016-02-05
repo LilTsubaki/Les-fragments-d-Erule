@@ -15,7 +15,7 @@ public class DamageElement : EffectMinMax
         _element = Element.GetElement((int)js.GetField(js.keys[3]).n);
     }
 
-    new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)

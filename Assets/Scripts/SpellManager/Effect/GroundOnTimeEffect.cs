@@ -18,7 +18,7 @@ public class GroundOnTimeEffect : EffectOnTime
     /// <param name="hexagons">The Hexagons in the area of effect.</param>
     /// <param name="target">The Hexagon aimed.</param>
     /// <param name="caster">The caster of the effect.</param>
-    public new void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         foreach(Hexagon hexa in hexagons)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class Push : EffectDeplacement
 {
@@ -10,6 +11,11 @@ public class Push : EffectDeplacement
     {
         _id = (uint)js.GetField(js.keys[0]).n;
         _nbDeplacement = (uint)js.GetField(js.keys[1]).n;
+    }
+
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    {
+        throw new NotImplementedException();
     }
 }
 
