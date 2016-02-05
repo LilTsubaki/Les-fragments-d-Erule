@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class EffectMinMax : EffectDirect
+public abstract class EffectMinMax : EffectDirect
 {
 	protected uint _min;
     protected uint _max;

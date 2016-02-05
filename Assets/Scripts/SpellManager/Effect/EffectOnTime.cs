@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class EffectOnTime : Effect
+public abstract class EffectOnTime : Effect
 {
 	protected EffectDirect _effectDirect;
     protected uint _nbTurn;

@@ -13,7 +13,7 @@ public class RangeUp: RangeModification
         _range = (int)js.GetField(js.keys[1]).n;
     }
 
-    new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)

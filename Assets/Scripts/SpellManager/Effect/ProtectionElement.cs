@@ -17,7 +17,7 @@ public class ProtectionElement : ProtectionGlobal
         _element = Element.GetElement((int)js.GetField(js.keys[2]).n);
     }
 
-	new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         Logger.Trace("Apply protection effect");
         List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);

@@ -17,7 +17,7 @@ public class ProtectionGlobal : EffectDirect
         _protection = (uint)js.GetField(js.keys[1]).n;
     }
 
-	new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
+	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
 		List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
