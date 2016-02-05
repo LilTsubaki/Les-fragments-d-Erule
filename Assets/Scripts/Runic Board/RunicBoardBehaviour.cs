@@ -60,6 +60,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     void InputUpdate()
     {
+        // If mouse is pressed, check if a rune is underneath. If a rune is found, put his gameObject in _heldRune.
         if (Input.GetMouseButtonDown(0))
         {
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -81,7 +82,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
 
-            bool runeIsOnBoard = false;
+            RuneBehaviour runeBehaviour = _heldRune.GetComponent<RuneBehaviour>();
+
+            bool hasBeenMoved = false;
 
             if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes Slot")))
             {
@@ -89,19 +92,48 @@ public class RunicBoardBehaviour : MonoBehaviour {
                 if (runeSlotBehaviour != null)
                 {
                     Rune rune = _heldRune.GetComponent<RuneBehaviour>()._rune;
-                    int positionOnBoard = runeSlotBehaviour._position;
-                    rune.PositionOnBoard = positionOnBoard;
-                    runeIsOnBoard = _board.PlaceRuneOnBoard(rune.PositionInHand, (uint)positionOnBoard);
-                    if (runeIsOnBoard)
+                    int slotPosition = runeSlotBehaviour._position;
+                    if (rune.IsOnBoard())
                     {
-                        _heldRune.transform.SetParent(hitInfo.collider.transform);
+                        if(_board.ChangeRunePosition((uint)rune.PositionOnBoard, (uint)slotPosition))
+                        {
+                            _heldRune.transform.SetParent(hitInfo.collider.transform);
+                            _heldRune.transform.localPosition = new Vector3(0, 0.3f, 0);
+                            hasBeenMoved = true;
+                        }
+                        else
+                        {
+                            hasBeenMoved = false;
+                        }
                     }
+                    else
+                    {
+                        int newPositionOnBoard = _board.PlaceRuneOnBoard(rune.PositionInHand, (uint)slotPosition);
+                        if (newPositionOnBoard >= 0)
+                        {
+                            hasBeenMoved = true;
+                            Transform parent;
+                            if (newPositionOnBoard == 12)
+                            {
+                                parent = _boardGO.transform.GetChild(9).transform;
+                            }
+                            else
+                            {
+                                parent = hitInfo.collider.transform;
+                            }
+                            _heldRune.transform.SetParent(parent);
+                            _heldRune.transform.localPosition = new Vector3(0, 0.3f, 0);
+                        }
+                        else
+                        {
+                            hasBeenMoved = false;
+                        }
+                    }
+
                 }
             }
 
-            RuneBehaviour runeBehaviour = _heldRune.GetComponent<RuneBehaviour>();
-
-            if (runeIsOnBoard)
+            if (hasBeenMoved)
             {
                 runeBehaviour._state = RuneBehaviour.State.Static;
             }

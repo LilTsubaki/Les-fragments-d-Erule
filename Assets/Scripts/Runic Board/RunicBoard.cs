@@ -120,8 +120,8 @@ public class RunicBoard {
     /// </summary>
     /// <param name="index">The index in runesInHand list</param>
     /// <param name="position">The position where the rune will be placed</param>
-    /// <returns>If the rune was succesfully placed</returns>
-    public bool PlaceRuneOnBoard(uint index, uint position)
+    /// <returns>Where the rune was placed on the board</returns>
+    public int PlaceRuneOnBoard(uint index, uint position)
     {
         Rune rune;
         _runesInHand.TryGetValue(index, out rune);
@@ -131,13 +131,13 @@ public class RunicBoard {
             _runesOnBoard.Add(12, rune);
             rune.PositionOnBoard = 12;
             _runesInHand.Remove(index);
-            return true;
+            return 12;
         }
 
         // The player cannot place a rune if a rune is already in place at the position
         if (_runesOnBoard.ContainsKey(position))
         {
-            return false;
+            return -1;
         }
 
         // If runes are placed around this position, place the rune
@@ -149,10 +149,10 @@ public class RunicBoard {
                 _runesOnBoard.Add(position, rune);
                 rune.PositionOnBoard = (int)position;
                 _runesInHand.Remove(index);
-                return true;
+                return (int)position;
             }
         }
-        return false;
+        return -1;
     }
 
     /// <summary>
@@ -195,7 +195,9 @@ public class RunicBoard {
             {
                 _runesOnBoard.Add(newPosition, runeToMove);
                 _runesOnBoard.Remove(actualPosition);
+                runeToMove.PositionOnBoard = (int)newPosition;
                 Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
+                return true;
             }
             else
             {

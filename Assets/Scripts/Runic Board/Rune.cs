@@ -52,4 +52,9 @@ public class Rune
         PositionOnBoard = positionOnBoard;
         PositionInHand = positionInHand;
     }
+
+    public bool IsOnBoard()
+    {
+        return _positionOnBoard > 0;
+    }
 }

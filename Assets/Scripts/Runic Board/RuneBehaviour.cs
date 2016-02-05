@@ -40,7 +40,7 @@ public class RuneBehaviour : MonoBehaviour {
                 transform.position = Vector3.Slerp(transform.position, _initialPosition, step);
                 //transform.position = Vector3.MoveTowards(transform.position, _initialPosition, Mathf.Lerp(0, Vector3.Distance(_initialPosition, transform.position), 0.1f));
 
-                if (Vector3.SqrMagnitude(transform.position - _initialPosition) < 0.0001)
+                if (Vector3.SqrMagnitude(transform.position - _initialPosition) < 0.00001)
                 {
                     _state = State.Static;
                 }
