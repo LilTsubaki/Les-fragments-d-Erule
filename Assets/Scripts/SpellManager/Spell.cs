@@ -6,6 +6,7 @@ public class Spell
     protected uint _id;
     protected uint _areaId;
     protected Effects _effectsArea;
+	protected Effects _effectsAreaCrit;
 
     public Spell (uint id)
 	{
