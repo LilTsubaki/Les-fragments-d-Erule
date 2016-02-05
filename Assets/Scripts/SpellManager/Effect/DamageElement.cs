@@ -17,6 +17,7 @@ public class DamageElement : EffectMinMax
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
+        Logger.Trace("Apply elem damage effect");
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
