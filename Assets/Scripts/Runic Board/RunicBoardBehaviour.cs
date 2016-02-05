@@ -76,12 +76,13 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
-    private void ResetRunes()
+    public void ResetRunes()
     {
         _board.RemoveAllRunes();
         for (int i = 0; i < _runesGO.Count; i++)
         {
             _runesGO[i].transform.SetParent(_runesGO[i].GetComponent<RuneBehaviour>()._initialParent);
+            _runesGO[i].transform.localPosition = new Vector3(0, 0.3f, 0);
         }
     }
 

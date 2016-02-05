@@ -78,7 +78,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
     public void EndOfTurn()
     {
         TurnManager.GetInstance().EndTurn();
-        _runicBoard.GetComponent<RunicBoardBehaviour>().Board.RemoveAllRunes();
+        _runicBoard.GetComponent<RunicBoardBehaviour>().ResetRunes();
     }
 
     public void tryingToDoSpell()
