@@ -10,6 +10,8 @@ public class RuneBehaviour : MonoBehaviour {
 
     internal Vector3 _initialPosition;
 
+    internal Transform _initialParent;
+
     private float _runeSpeed;
 
     void Awake()
