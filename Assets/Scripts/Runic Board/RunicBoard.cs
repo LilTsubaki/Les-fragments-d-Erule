@@ -234,6 +234,9 @@ public class RunicBoard {
             _runesInHand.Add(rune.PositionInHand, rune);
         }
         _runesOnBoard.Clear();
+
+        LogHand();
+        LogRunesOnBoard();
     }
 
     /// <summary>

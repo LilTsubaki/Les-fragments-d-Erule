@@ -5,30 +5,40 @@ using System;
 
 public class LoadAndDeplacementTest : MonoBehaviour
 {
+    public GameObject _runicBoard;
     public string _boardName;
     public GameObject _player1GameObject;
     public GameObject _player2GameObject;
 
     private GameObject board;
 
+    PlayBoard playBoard;
+    Hexagon hexaStart1;
+    Hexagon hexaStart2;
+
+    Character player1;
+    Character player2;
+    List<Hexagon> rangeTest;
+
     void Awake()
     {
-        PlayBoard playBoard = JSONObject.JSONToBoard(ref board, _boardName);
-        Hexagon hexaStart1 = playBoard.GetHexagone(0, 0);
-        Hexagon hexaStart2 = playBoard.GetHexagone(6, 6);
+        playBoard = JSONObject.JSONToBoard(ref board, _boardName);
+        hexaStart1 = playBoard.GetHexagone(0, 0);
+        hexaStart2 = playBoard.GetHexagone(6, 6);
 
-        Character player1 = new Character(4000, hexaStart1, _player1GameObject);
-        Character player2 = new Character(14298, hexaStart2, _player2GameObject);
+        player1 = new Character(4000, hexaStart1, _player1GameObject);
+        player2 = new Character(14298, hexaStart2, _player2GameObject);
         PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
 
-
+        rangeTest = new List<Hexagon>();
+        rangeTest.Add(hexaStart1);
 
         Logger.logLvl = Logger.Type.TRACE;
 
         SpellManager.getInstance();
         Logger.Trace("spellManager initialized");
 
-        Queue<Element> elements = new Queue<Element>();
+        /*Queue<Element> elements = new Queue<Element>();
         elements.Enqueue(Element.GetElement(3));
         elements.Enqueue(Element.GetElement(3));
 
@@ -36,8 +46,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         Logger.Trace(testSp._effects.GetIds().Count);
         List<int> effectIds = testSp._effects.GetIds();
 
-        List<Hexagon> rangeTest = new List<Hexagon>();
-        rangeTest.Add(hexaStart1);
+        
         /*for(int  i = 0; i < PlayBoardManager.GetInstance().Board._width; i++)
         {
             for (int j = 0; j < PlayBoardManager.GetInstance().Board._height; j++)
@@ -47,11 +56,11 @@ public class LoadAndDeplacementTest : MonoBehaviour
         }*/
 
 
-        for (int i = 0; i < effectIds.Count; i++)
+        /*for (int i = 0; i < effectIds.Count; i++)
         {
             EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
             effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
-        }
+        }*/
     }
 
 	// Use this for initialization
@@ -69,5 +78,20 @@ public class LoadAndDeplacementTest : MonoBehaviour
     public void EndOfTurn()
     {
         TurnManager.GetInstance().EndTurn();
+        _runicBoard.GetComponent<RunicBoardBehaviour>().Board.RemoveAllRunes();
+    }
+
+    public void tryingToDoSpell()
+    {
+        Queue<Element> elements = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementQueue();
+        SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+
+        List<int> effectIds = testSp._effects.GetIds();
+
+        for (int i = 0; i < effectIds.Count; i++)
+        {
+            EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
+            effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
+        }
     }
 }

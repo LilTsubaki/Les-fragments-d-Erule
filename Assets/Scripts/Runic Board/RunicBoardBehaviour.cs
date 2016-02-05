@@ -17,9 +17,22 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     private GameObject _heldRune;
 
+    public RunicBoard Board
+    {
+        get
+        {
+            return _board;
+        }
+
+        set
+        {
+            _board = value;
+        }
+    }
+
     private void DisplayRunesInHand()
     {
-        foreach(KeyValuePair<uint, Rune> kvp in _board.RunesInHand)
+        foreach(KeyValuePair<uint, Rune> kvp in Board.RunesInHand)
         {
             Transform parent = _handGO.transform.GetChild((int)kvp.Key);
             GameObject rune = new GameObject();
@@ -95,7 +108,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                     int slotPosition = runeSlotBehaviour._position;
                     if (rune.IsOnBoard())
                     {
-                        if(_board.ChangeRunePosition((uint)rune.PositionOnBoard, (uint)slotPosition))
+                        if(Board.ChangeRunePosition((uint)rune.PositionOnBoard, (uint)slotPosition))
                         {
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
                             _heldRune.transform.localPosition = new Vector3(0, 0.3f, 0);
@@ -108,7 +121,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                     }
                     else
                     {
-                        int newPositionOnBoard = _board.PlaceRuneOnBoard(rune.PositionInHand, (uint)slotPosition);
+                        int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (uint)slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
                             hasBeenMoved = true;
@@ -153,7 +166,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
         hand.Add(r1.PositionInHand, r1);
         Rune r2 = new Rune(Element.GetElement(1), -1, 1);
         hand.Add(r2.PositionInHand, r2);
-        Rune r3 = new Rune(Element.GetElement(2), -1, 2);
+        Rune r3 = new Rune(Element.GetElement(3), -1, 2);
         hand.Add(r3.PositionInHand, r3);
         Rune r4 = new Rune(Element.GetElement(3), -1, 3);
         hand.Add(r4.PositionInHand, r4);
@@ -162,7 +175,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
         Rune r6 = new Rune(Element.GetElement(5), -1, 5);
         hand.Add(r6.PositionInHand, r6);
 
-        _board = new RunicBoard(hand);
+        Board = new RunicBoard(hand);
 
         DisplayRunesInHand();
     }
