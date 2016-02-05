@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rune : MonoBehaviour
+public class Rune
 {
     private Element _element;
     private int _positionOnBoard;

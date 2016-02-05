@@ -6,12 +6,14 @@ public class Effects
 
     public Effects(JSONObject js)
     {
-        _ids = new List<int>();
+		
+		_ids = new List<int> ();
 
-        foreach (JSONObject id in js.list)
-        {
-            _ids.Add((int)id.n);
-        }
+		if (js != null) {
+			foreach (JSONObject id in js.list) {
+				_ids.Add ((int)id.n);
+			}
+		}
     }
 
     public List<int> GetIds()

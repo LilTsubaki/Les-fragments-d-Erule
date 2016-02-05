@@ -11,11 +11,11 @@ public class TargetSpell:Spell
 
     public TargetSpell(JSONObject js) : base(js)
     {
-        
         Id = (uint)js.GetField(js.keys[0]).n;
-        _areaId = (uint)js.GetField(js.keys[1]).n;
-        _effectsArea = new Effects(js.GetField(js.keys[2]));
-        _rangeId = (uint)js.GetField(js.keys[3]).n;
+		_areaId = (uint)js.GetField("areaId").n;
+		_effectsArea = new Effects(js.GetField("effectsAreaIds"));
+		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
+		_rangeId = (uint)js.GetField("rangeId").n;
     }
 
 }
