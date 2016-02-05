@@ -9,8 +9,8 @@ public class SpellManager
 
     private Dictionary<int, Area> _areas;
     private Dictionary<int, Range> _ranges;
-    private Dictionary<uint, EffectDirect> _directEffects;
-    private Dictionary<uint, EffectOnTime> _onTimeEffects;
+    private Dictionary<uint, Effect> _directEffects;
+   // private Dictionary<uint, EffectOnTime> _onTimeEffects;
     private ElementNode _elementNode;
 
     public ElementNode ElementNode
@@ -43,8 +43,8 @@ public class SpellManager
     {
         _ranges = new Dictionary<int, Range>();
         _areas = new Dictionary<int, Area>();
-        _directEffects = new Dictionary<uint, EffectDirect>();
-        _onTimeEffects = new Dictionary<uint, EffectOnTime>();
+        _directEffects = new Dictionary<uint, Effect>();
+        //_onTimeEffects = new Dictionary<uint, EffectOnTime>();
         _elementNode = ElementNode.GetInstance();
 
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
@@ -133,7 +133,7 @@ public class SpellManager
                 object[] argValues = new object[] { onTimeEffect.GetField(onTimeEffect.keys[1]) };
                 ConstructorInfo ctor = t.GetConstructor(argTypes);
                 Effect ef = (Effect)ctor.Invoke(argValues);
-                _onTimeEffects.Add(ef.GetId(), (EffectOnTime)ef);
+                _directEffects.Add(ef.GetId(), (EffectOnTime)ef);
             }
             catch
             {
@@ -143,9 +143,9 @@ public class SpellManager
         Logger.Error("onTimeEffect.json read");
     }
 
-    public EffectDirect getDirectEffectById(uint id)
+    public Effect getDirectEffectById(uint id)
     {
-        EffectDirect value;
+        Effect value;
         _directEffects.TryGetValue(id, out value);
         return value;
     }

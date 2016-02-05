@@ -8,7 +8,14 @@ public class GroundOnTimeEffect : EffectOnTime
     public GroundOnTimeEffect(JSONObject js) :base()
     {
         _id = (uint)js.GetField(js.keys[0]).n;
-        _effectDirect = SpellManager.getInstance().getDirectEffectById((uint)js.GetField(js.keys[1]).n);
+        try
+        {
+            _effectDirect = (EffectDirect)SpellManager.getInstance().getDirectEffectById((uint)js.GetField(js.keys[1]).n);
+        }
+        catch
+        {
+            Logger.Error("this is not a directeffect");
+        }
         _nbTurn = (uint)js.GetField(js.keys[2]).n;
     }
 

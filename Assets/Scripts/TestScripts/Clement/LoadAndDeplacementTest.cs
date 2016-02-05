@@ -90,7 +90,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
         for (int i = 0; i < effectIds.Count; i++)
         {
-            EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
+            Effect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
             effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
         }
     }
