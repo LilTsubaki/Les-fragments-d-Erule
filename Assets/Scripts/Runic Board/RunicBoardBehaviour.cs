@@ -17,6 +17,8 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     private GameObject _heldRune;
 
+    private List<GameObject> _runesGO;
+
     public RunicBoard Board
     {
         get
@@ -61,13 +63,25 @@ public class RunicBoardBehaviour : MonoBehaviour {
                     break;
             }
 
+            _runesGO.Add(rune);
+
             // Set transformation
+            rune.GetComponent<RuneBehaviour>()._initialParent = parent;
             rune.transform.SetParent(parent);
             rune.transform.localPosition = new Vector3(0, 0.3f, 0);
             rune.transform.Rotate(new Vector3(0, 1, 0), 90);
 
             // Associate Rune object and gameObject
             rune.GetComponent<RuneBehaviour>()._rune = kvp.Value;
+        }
+    }
+
+    private void ResetRunes()
+    {
+        _board.RemoveAllRunes();
+        for (int i = 0; i < _runesGO.Count; i++)
+        {
+            _runesGO[i].transform.SetParent(_runesGO[i].GetComponent<RuneBehaviour>()._initialParent);
         }
     }
 
@@ -161,6 +175,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     void Awake()
     {
+        _runesGO = new List<GameObject>();
         Dictionary<uint, Rune> hand = new Dictionary<uint, Rune>();
         Rune r1 = new Rune(Element.GetElement(0), -1, 0);
         hand.Add(r1.PositionInHand, r1);
