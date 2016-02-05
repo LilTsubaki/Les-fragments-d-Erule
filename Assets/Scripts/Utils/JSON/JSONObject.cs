@@ -1192,8 +1192,22 @@ public class JSONObject {
             hexagon.GameObject =GameObject.Instantiate(prefab);
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
-            //TODO pos Z
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+
+
+			if (hexa.GetField("underground") != null) { 
+				string undergroundName = hexa.GetField("underground").str;
+				if (undergroundName != null)
+				{
+					GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + undergroundName, typeof(GameObject));
+					GameObject underground= GameObject.Instantiate(prefabObstacle);
+					underground.transform.parent = hexagon.GameObject.transform;
+					underground.name = undergroundName;
+					underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n - 0.5f, 0.75f * hexagon._posY);
+					hexagon.Underground = underground;
+				}
+			}
+
 
             if (hexa.GetField("obstacle") != null) { 
                 string obstacleName = hexa.GetField("obstacle").str;
@@ -1204,7 +1218,6 @@ public class JSONObject {
                     obs._gameobject= GameObject.Instantiate(prefabObstacle);
                     obs._gameobject.transform.parent = hexagon.GameObject.transform;
                     obs._gameobject.name = obstacleName;
-                    //TODO pos Z
                     obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.5f, 0.75f * hexagon._posY);
                 }
             }

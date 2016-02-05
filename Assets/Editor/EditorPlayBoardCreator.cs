@@ -24,6 +24,14 @@ public class EditorPlayBoardCreator : Editor {
 		if (GUILayout.Button ("Remove Obstacle")) {
 			creator.RemoveObstacle ();
 		}
+
+		if (GUILayout.Button ("Create Underground")) {
+			creator.BuildUnderground ();
+		}
+		if (GUILayout.Button ("Remove Underground")) {
+			creator.RemoveUnderground ();
+		}
+
         if (GUILayout.Button("Save Board"))
         {
             creator.SaveBoard();
