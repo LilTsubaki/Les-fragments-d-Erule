@@ -3,13 +3,26 @@ using System.Collections.Generic;
 
 public class Spell
 {
-    protected uint _id;
+    private uint id;
     protected uint _areaId;
     protected Effects _effectsArea;
 
+    public uint Id
+    {
+        get
+        {
+            return id;
+        }
+
+        set
+        {
+            id = value;
+        }
+    }
+
     public Spell (uint id)
 	{
-        _id = id;
+        Id = id;
 	}
 
     public Spell (JSONObject js)

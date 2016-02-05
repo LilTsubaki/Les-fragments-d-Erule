@@ -35,5 +35,7 @@ public class TurnManager
     public void EndTurn()
     {
         _turnNumber++;
+        //penser à appliquer les effets des buffs/debuffs sur les joeuurs
+        //+ reset ce qu'il y a à reset
     }
 }

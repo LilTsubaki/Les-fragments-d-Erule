@@ -17,8 +17,10 @@ public class ProtectionElement : ProtectionGlobal
         _element = Element.GetElement((int)js.GetField(js.keys[2]).n);
     }
 
-	new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
-		List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
+	new public void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    {
+        Logger.Trace("Apply protection effect");
+        List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
 			ch.ReceiveElementProtection (_protection, _element);
