@@ -211,4 +211,28 @@ public class Character : Entity
     {
         _rangeModifier += value;
     }
+
+    public uint GetElementResistance(Element elem)
+    {
+        uint res = 0;
+        _protections.TryGetValue(elem, out res);
+        return res;
+    }
+
+    public uint GetElementWeakness(Element elem)
+    {
+        uint res = 0;
+        _protectionsNegative.TryGetValue(elem, out res);
+        return res;
+    }
+
+    public uint GetGlobalResistance()
+    {
+        return _globalProtection;
+    }
+
+    public uint GetGlobalWeakness()
+    {
+        return _globalNegativeProtection;
+    }
 }

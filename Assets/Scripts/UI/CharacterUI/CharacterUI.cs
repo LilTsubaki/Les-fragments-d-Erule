@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CharacterUI : MonoBehaviour {
 
-    Character _character;
+    CharacterBehaviour _characterBehaviour;
 
     public Text _name;
     public Image _characterImage;
@@ -62,8 +62,8 @@ public class CharacterUI : MonoBehaviour {
     void Start () {
         _name.text = "Xx-S0rc310r-xX";
         //_life.maxValue = _character._lifeMax;
-        _life.maxValue = 3000;
-        _life.value = _life.maxValue;
+        _life.maxValue = _characterBehaviour._character._lifeMax;
+        _life.value = _characterBehaviour._character._lifeMax;
 
         _listActionPoints = new List<Image>();
 
@@ -91,8 +91,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateLife()
     {
-        uint nbPoints = _nbPoints;
-        //uint nbPoints = _character._currentActionPoints;
+        uint nbPoints = _characterBehaviour._character._currentActionPoints;
         for (int i = 0; i < _listActionPoints.Count; ++i)
         {
             if (i < nbPoints)
@@ -105,44 +104,51 @@ public class CharacterUI : MonoBehaviour {
             }
         }
 
-        int life = 2000;
-        //int life = _character._lifeCurrent;
+        uint life = _characterBehaviour._character._lifeCurrent;
         _life.value = life;
     }
 
     void UpdateResistances()
     {
+        float midSize = _resMask.sizeDelta.x / 2 / Character.MaxProtection;
 
-        float tileMaxSize = 0.02f * _resMask.sizeDelta.x/12;
-
-        // Order Fire Water Earth Air Wood Metal
-        int posFire = _resFire > 0 ? _resFire : 0;
+        // Order : Fire Water Air Earth Wood Metal
+        /*int posFire = _resFire > 0 ? _resFire : 0;
         int posWater = _resWater > 0 ? _resWater : 0;
         int posEarth = _resEarth > 0 ? _resEarth : 0;
         int posAir = _resAir > 0 ? _resAir : 0;
         int posWood = _resWood > 0 ? _resWood : 0;
-        int posMetal = _resMetal > 0 ? _resMetal : 0;
+        int posMetal = _resMetal > 0 ? _resMetal : 0;*/
 
-        _resPosFire.sizeDelta = new Vector2(posFire*tileMaxSize, _resPosFire.sizeDelta.y);
-        _resPosWater.sizeDelta = new Vector2(posWater * tileMaxSize, _resPosWater.sizeDelta.y);
-        _resPosEarth.sizeDelta = new Vector2(posEarth * tileMaxSize, _resPosEarth.sizeDelta.y);
-        _resPosAir.sizeDelta = new Vector2(posAir * tileMaxSize, _resPosAir.sizeDelta.y);
-        _resPosWood.sizeDelta = new Vector2(posWood * tileMaxSize, _resPosWood.sizeDelta.y);
-        _resPosMetal.sizeDelta = new Vector2(posMetal * tileMaxSize, _resPosMetal.sizeDelta.y);
+        Character chara = _characterBehaviour._character;
 
-        int negFire = _resFire < 0 ? -_resFire : 0;
-        int negWater = _resWater < 0 ? -_resWater : 0;
-        int negEarth = _resEarth < 0 ? -_resEarth : 0;
-        int negAir = _resAir < 0 ? -_resAir : 0;
-        int negWood = _resWood < 0 ? -_resWood : 0;
-        int negMetal = _resMetal < 0 ? -_resMetal : 0;
+        uint posFire = chara.GetElementResistance(Element.GetElement(0));
+        uint posWater = chara.GetElementResistance(Element.GetElement(1));
+        uint posAir = chara.GetElementResistance(Element.GetElement(2));
+        uint posEarth = chara.GetElementResistance(Element.GetElement(3));
+        uint posWood = chara.GetElementResistance(Element.GetElement(4));
+        uint posMetal = chara.GetGlobalResistance();
 
-        _resNegFire.sizeDelta = new Vector2(negFire * tileMaxSize, _resNegFire.sizeDelta.y);
-        _resNegWater.sizeDelta = new Vector2(negWater * tileMaxSize, _resNegWater.sizeDelta.y);
-        _resNegEarth.sizeDelta = new Vector2(negEarth * tileMaxSize, _resNegEarth.sizeDelta.y);
-        _resNegAir.sizeDelta = new Vector2(negAir * tileMaxSize, _resNegAir.sizeDelta.y);
-        _resNegWood.sizeDelta = new Vector2(negWood * tileMaxSize, _resNegWood.sizeDelta.y);
-        _resNegMetal.sizeDelta = new Vector2(negMetal * tileMaxSize, _resNegMetal.sizeDelta.y);
+        _resPosFire.sizeDelta = new Vector2(posFire*midSize, _resPosFire.sizeDelta.y);
+        _resPosWater.sizeDelta = new Vector2(posWater * midSize, _resPosWater.sizeDelta.y);
+        _resPosAir.sizeDelta = new Vector2(posAir * midSize, _resPosAir.sizeDelta.y);
+        _resPosEarth.sizeDelta = new Vector2(posEarth * midSize, _resPosEarth.sizeDelta.y);
+        _resPosWood.sizeDelta = new Vector2(posWood * midSize, _resPosWood.sizeDelta.y);
+        _resPosMetal.sizeDelta = new Vector2(posMetal * midSize, _resPosMetal.sizeDelta.y);
+
+        uint negFire = chara.GetElementWeakness(Element.GetElement(0));
+        uint negWater = chara.GetElementWeakness(Element.GetElement(1));
+        uint negAir = chara.GetElementWeakness(Element.GetElement(2));
+        uint negEarth = chara.GetElementWeakness(Element.GetElement(3));
+        uint negWood = chara.GetElementWeakness(Element.GetElement(4));
+        uint negMetal = chara.GetGlobalWeakness();
+
+        _resNegFire.sizeDelta = new Vector2(negFire * midSize, _resNegFire.sizeDelta.y);
+        _resNegWater.sizeDelta = new Vector2(negWater * midSize, _resNegWater.sizeDelta.y);
+        _resNegAir.sizeDelta = new Vector2(negAir * midSize, _resNegAir.sizeDelta.y);
+        _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
+        _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
+        _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
 
     }
 }

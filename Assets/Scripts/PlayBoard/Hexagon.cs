@@ -31,6 +31,17 @@ public class Hexagon : IAStar<Hexagon>
         }
     }
 
+	private GameObject _underground;
+
+	public GameObject Underground {
+		get {
+			return _underground;
+		}
+		set {
+			_underground = value;
+		}
+	}
+
 	public static bool isHexagonSet(Hexagon hex){
 		return hex != null && hex._posX >= 0 && hex._posY >= 0;
 	}
@@ -295,6 +306,9 @@ public class Hexagon : IAStar<Hexagon>
         hexa.AddField("posY", _posY);
         hexa.AddField("posZ", _gameObject.transform.localPosition.y);
         hexa.AddField("gameObject", _gameObject.name);
+
+		if(_underground!=null)
+			hexa.AddField("underground", _underground.name);
 
         if(_entity!=null && _entity is Obstacle)
         {
