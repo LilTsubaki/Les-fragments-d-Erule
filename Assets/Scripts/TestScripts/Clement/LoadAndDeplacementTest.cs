@@ -83,16 +83,19 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
     public void tryingToDoSpell()
     {
-        Queue<Element> elements = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementQueue();
+		List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour> ().Board.GetSortedElementList ();
+		Queue<Element> elements = new Queue<Element>(elementsList);
         TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
 
         Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
         Logger.Trace(rangeTest.Orientation);
 
 
-        /*SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+		elements = new Queue<Element>(elementsList);
+        SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+		Logger.Trace(testSp);
 
-        List<int> effectIds = testSp._effects.GetIds();
+        /*List<int> effectIds = testSp._effects.GetIds();
 
         for (int i = 0; i < effectIds.Count; i++)
         {

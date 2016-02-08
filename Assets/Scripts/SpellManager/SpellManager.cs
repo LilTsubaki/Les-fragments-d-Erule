@@ -85,6 +85,8 @@ public class SpellManager
             TargetSpell targetSpell = new TargetSpell(spell.GetField(spell.keys[2]));
 
             _elementNode.SetTargetSpell(ref targetSpell, elements);
+
+			elements = new Queue<Element>(elementsList);
             _elementNode.SetSelfSpell(ref selfSpell, elements);
             
         }

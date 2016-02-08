@@ -391,6 +391,22 @@ public class RunicBoard {
         return elementsQueue;
     }
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns>A List of Element from runes that are on the board.</returns>
+	public List<Element> GetSortedElementList()
+	{
+		List<Element> elementsList = new List<Element>();
+		foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
+		{
+			elementsList.Add(kvp.Value.Element);
+		}
+		elementsList.Sort();
+
+		return elementsList;
+	}
+
     /// <summary>
     /// Check if the combination of runes exists in the database
     /// </summary>
