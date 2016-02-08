@@ -192,6 +192,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
         hand.Add(r6.PositionInHand, r6);
 
         Board = new RunicBoard(hand);
+        RunicBoardManager.GetInstance().RegisterBoard(Board);
 
         DisplayRunesInHand();
     }
