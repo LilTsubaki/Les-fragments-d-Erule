@@ -54,6 +54,10 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(_character.PathToFollow != null && _character.PathToFollow.Count > 0)
         {
+            if(_character.CurrentStep == 0)
+            {
+                PlayBoardManager.GetInstance().Board.ResetBoard();
+            }
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep]))
             {
                 //_character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep].onPlayerEnter(this);

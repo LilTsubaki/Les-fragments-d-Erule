@@ -87,9 +87,24 @@ public class LoadAndDeplacementTest : MonoBehaviour
 		Queue<Element> elements = new Queue<Element>(elementsList);
         TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
 
+        //SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+        if (testTsp == null)
+            Logger.Error("Je suis nul a chier aeuaeuueauea");
+
         Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
         Logger.Trace(rangeTest.Orientation);
 
+        List<Hexagon>range = playBoard.GetRange(rangeTest, player1.Position);
+        Logger.Trace("taille list range : " + range.Count);
+        for(int i = 0; i < range.Count; i++)
+        {
+            if(range[i].GameObject != null)
+            {
+                range[i].Targetable = true;
+                range[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
+                range[i].PreviousColor = Color.blue;
+            }
+        }
 
 		elements = new Queue<Element>(elementsList);
         SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);

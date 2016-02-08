@@ -28,6 +28,32 @@ public class Range
         }
     }
 
+    public int MaxRange
+    {
+        get
+        {
+            return _maxRange;
+        }
+
+        set
+        {
+            _maxRange = value;
+        }
+    }
+
+    public int MinRange
+    {
+        get
+        {
+            return _minRange;
+        }
+
+        set
+        {
+            _minRange = value;
+        }
+    }
+
     /// <summary>
     /// Default constructor
     /// </summary>
@@ -44,8 +70,8 @@ public class Range
     public Range(uint id, int minRange, int maxRange, bool piercing, Orientation.EnumOrientation orientation)
     {
         _id = id;
-        _minRange = minRange;
-        _maxRange = maxRange;
+        MinRange = minRange;
+        MaxRange = maxRange;
         _piercing = piercing;
         Orientation = orientation;
     }
@@ -62,8 +88,8 @@ public class Range
         Debug.Log(js.GetField(js.keys[3]).b);
         Debug.Log(Orientation.stringToOrientation(js.GetField(js.keys[4]).str));*/
         _id = (uint)js.GetField(js.keys[0]).n;
-        _minRange = (int)js.GetField(js.keys[1]).n;
-        _maxRange = (int)js.GetField(js.keys[2]).n;
+        MinRange = (int)js.GetField(js.keys[1]).n;
+        MaxRange = (int)js.GetField(js.keys[2]).n;
         _piercing = js.GetField(js.keys[3]).b;
         Orientation = global::Orientation.stringToOrientation(js.GetField(js.keys[4]).str);
     }

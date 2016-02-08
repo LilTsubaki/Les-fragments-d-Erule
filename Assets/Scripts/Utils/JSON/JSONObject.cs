@@ -1193,9 +1193,10 @@ public class JSONObject {
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+            hexagon.DefaultColor = Color.white;
+            hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.white;
 
-
-			if (hexa.GetField("underground") != null) { 
+            if (hexa.GetField("underground") != null) { 
 				string undergroundName = hexa.GetField("underground").str;
 				if (undergroundName != null)
 				{
