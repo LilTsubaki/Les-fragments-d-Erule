@@ -14,6 +14,19 @@ public class Node
     private Direction.EnumDirection _direction;
     private bool _nodeUsed;
 
+    public bool NodeUsed
+    {
+        get
+        {
+            return _nodeUsed;
+        }
+
+        set
+        {
+            _nodeUsed = value;
+        }
+    }
+
     public Node()
     {
         _nodes = new List<Node>();
@@ -53,6 +66,7 @@ public class Node
     public Node rotateNode(int rotateValue)
     {
         Node n = new Node();
+        n._nodeUsed = _nodeUsed;
         n._direction = Direction.Rotate(_direction, rotateValue);
         for(int i = 0; i < _nodes.Count; i++)
         {
@@ -65,10 +79,12 @@ public class Node
     {
         Hexagon currentHexa;
         currentHexa = root.GetTarget(dirs);
-        
-        if(currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0 && _nodeUsed)
+
+        //Logger.Error("posx : " + currentHexa._posX + "posy : " + currentHexa._posY + "used : " +NodeUsed);
+        if (currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0 && NodeUsed)
         {
             hexas.Add(currentHexa);
+            //Logger.Error("size ---------------->" + hexas.Count);
         }
 
         for(int i = 0; i < _nodes.Count; i++)
@@ -82,7 +98,7 @@ public class Node
 
     public void displayNodeTest()
     {
-        Debug.Log("direction : " + _direction);
+        //Debug.Log("direction : " + _direction);
         for(int i = 0; i < _nodes.Count; i++)
         {
             _nodes[i].displayNodeTest();

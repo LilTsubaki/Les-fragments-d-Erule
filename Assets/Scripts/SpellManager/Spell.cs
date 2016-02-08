@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Spell
 {
     private uint id;
-    protected uint _areaId;
+    private uint areaId;
     protected Effects _effectsArea;
 	protected Effects _effectsAreaCrit;
 
@@ -18,6 +18,19 @@ public class Spell
         set
         {
             id = value;
+        }
+    }
+
+    public uint AreaId
+    {
+        get
+        {
+            return areaId;
+        }
+
+        set
+        {
+            areaId = value;
         }
     }
 

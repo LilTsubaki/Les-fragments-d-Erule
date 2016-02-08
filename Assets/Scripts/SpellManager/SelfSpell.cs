@@ -13,7 +13,7 @@ public class SelfSpell:Spell
     public SelfSpell(JSONObject js) : base(js)
     {
         Id = (uint)js.GetField(js.keys[0]).n;
-        _areaId = (uint)js.GetField("areaId").n;
+        AreaId = (uint)js.GetField("areaId").n;
 		_effectsArea = new Effects(js.GetField("effectsAreaIds"));
 		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
 		_effects = new Effects(js.GetField("effectsIds"));

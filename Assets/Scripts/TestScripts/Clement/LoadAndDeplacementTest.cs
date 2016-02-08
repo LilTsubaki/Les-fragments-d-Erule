@@ -92,7 +92,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
         Logger.Trace(rangeTest.Orientation);
 
-        List<Hexagon>range = playBoard.GetRange(rangeTest, player1.Position);
+        List<Hexagon>range = playBoard.GetRange(rangeTest, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
         Logger.Trace("taille list range : " + range.Count);
         for(int i = 0; i < range.Count; i++)
         {

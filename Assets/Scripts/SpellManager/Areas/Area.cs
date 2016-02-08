@@ -42,6 +42,7 @@ public class Area
         _id = (uint)js.GetField(js.keys[0]).n;
         _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
         _rootUsed = js.GetField(js.keys[2]).b;
+        Logger.Error("rootused ---------> : " + _rootUsed);
 
         JSONObject array = js.GetField(js.keys[3]);
 
@@ -104,9 +105,11 @@ public class Area
             {
                 List<Direction.EnumDirection> dirs = new List<Direction.EnumDirection>();
                 dirs.Add(area._nodes[i].getDirection());
+                //Logger.Error("lalalalalalalal : " + area._nodes[i].NodeUsed);
                 area._nodes[i].NodeToHexagon(dirs, ref turnedArea, source);
             }
         }
+        //Logger.Error("turnedArea" + turnedArea.Count);
         return turnedArea;
     }
 

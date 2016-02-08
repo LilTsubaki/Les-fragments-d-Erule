@@ -12,7 +12,7 @@ public class TargetSpell:Spell
     public TargetSpell(JSONObject js) : base(js)
     {
         Id = (uint)js.GetField(js.keys[0]).n;
-		_areaId = (uint)js.GetField("areaId").n;
+		AreaId = (uint)js.GetField("areaId").n;
 		_effectsArea = new Effects(js.GetField("effectsAreaIds"));
 		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
 		_rangeId = (uint)js.GetField("rangeId").n;

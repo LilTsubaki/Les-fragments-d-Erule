@@ -158,7 +158,7 @@ public class PlayBoard  {
     public List<Hexagon> GetRange(Range r, Hexagon source)
     {
         List<Hexagon> hexas = new List<Hexagon>();
-        //hexas.Add(source);
+        hexas.Add(source);
         if (r.Orientation == Orientation.EnumOrientation.Any)
         {
             for(int i = 0; i < _width; i++)
@@ -219,6 +219,7 @@ public class PlayBoard  {
                 if (hexa._posX !=-1)
                 {
                     hexa.GameObject.GetComponentInChildren<Renderer>().material.color = hexa.DefaultColor;
+                    hexa.PreviousColor = hexa.DefaultColor;
                     hexa.Targetable = false;
                 }        
             }

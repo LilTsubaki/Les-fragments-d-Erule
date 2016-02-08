@@ -126,6 +126,33 @@ public class Direction
         return ((dest - source)+12)%12;
     }
 
+    public static EnumDirection GetLineDirection(Hexagon source, Hexagon destination)
+    {
+        if (source._posY == destination._posY)
+        {
+            if (destination._posX > source._posX)
+                return EnumDirection.East;
+            if (destination._posX < source._posX)
+                return EnumDirection.West;
+        }
+        if(destination._posX == destination._posY)
+        {
+            if (destination._posX > source._posX)
+                return EnumDirection.NorthEast;
+            if (destination._posX < source._posX)
+                return EnumDirection.SouthWest;
+        }
+        if(source._posX == destination._posX)
+        {
+            if (destination._posY > source._posY)
+                return EnumDirection.NorthWest;
+            if (destination._posY < source._posY)
+                return EnumDirection.SouthEast;
+        }
+
+        return EnumDirection.Default;
+    }
+
     public static EnumDirection Rotate(EnumDirection source, int rotateValue)
     {
         //Logger.Error("source : " + source.ToString() + " Dest : " + ((EnumDirection)(((int)source + rotateValue) % 12)).ToString());

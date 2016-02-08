@@ -68,7 +68,14 @@ public class PlayBoardManager
 				chars.Add (Character2);
 		}
 		return chars;
-
 	}
+
+    public Character GetCurrentPlayer()
+    {
+        if (TurnManager.GetInstance().isMyTurn(Character1))
+            return Character1;
+        else
+            return Character2;
+    }
 }
 
