@@ -100,7 +100,6 @@ public class RunicBoardBehaviour : MonoBehaviour {
                 if (runeBehaviour != null)
                 {
                     runeBehaviour._state = RuneBehaviour.State.Held;
-                    runeBehaviour._initialPosition = hitInfo.transform.position;
                 }
             }
         }
