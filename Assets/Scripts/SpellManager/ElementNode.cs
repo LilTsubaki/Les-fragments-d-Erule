@@ -169,7 +169,7 @@ public class ElementNode{
 		/// </summary>
 		/// <param name="selfSpell">Self spell.</param>
 		/// <param name="elements">Elements.</param>
-		public override void SetSelfSpell(ref SelfSpell selfSpell, Queue<Element> elements){
+		new public void SetSelfSpell(ref SelfSpell selfSpell, Queue<Element> elements){
 			if (elements.Count == 0)
             {
                 _selfSpell = selfSpell;
@@ -197,7 +197,7 @@ public class ElementNode{
 		/// </summary>
 		/// <param name="targetSpell">Target spell.</param>
 		/// <param name="elements">Elements.</param>
-		public override void SetTargetSpell(ref TargetSpell targetSpell, Queue<Element> elements){
+		new public void SetTargetSpell(ref TargetSpell targetSpell, Queue<Element> elements){
 			if (elements.Count == 0)
             {
                 _targetSpell = targetSpell;
@@ -223,7 +223,7 @@ public class ElementNode{
         /// </summary>
         /// <returns>The self spell.</returns>
         /// <param name="elements">Elements.</param>
-		public override SelfSpell GetSelfSpell(Queue<Element> elements)
+        new public SelfSpell GetSelfSpell(Queue<Element> elements)
         {
             if (elements.Count == 0)
                 return _selfSpell;
@@ -248,7 +248,7 @@ public class ElementNode{
         /// </summary>
         /// <returns>The target spell.</returns>
         /// <param name="elements">Elements.</param>
-        public override TargetSpell GetTargetSpell(Queue<Element> elements)
+        new public TargetSpell GetTargetSpell(Queue<Element> elements)
         {
             if (elements.Count == 0)
                 return _targetSpell;
