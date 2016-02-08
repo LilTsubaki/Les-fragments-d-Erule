@@ -8,7 +8,7 @@ public class SpellManager
     private static SpellManager _SpellManager;
 
     private Dictionary<int, Area> _areas;
-    private Dictionary<int, Range> _ranges;
+    private Dictionary<uint, Range> _ranges;
     private Dictionary<uint, Effect> _directEffects;
    // private Dictionary<uint, EffectOnTime> _onTimeEffects;
     private ElementNode _elementNode;
@@ -41,7 +41,7 @@ public class SpellManager
     /// </summary>
     private void init()
     {
-        _ranges = new Dictionary<int, Range>();
+        _ranges = new Dictionary<uint, Range>();
         _areas = new Dictionary<int, Area>();
         _directEffects = new Dictionary<uint, Effect>();
         //_onTimeEffects = new Dictionary<uint, EffectOnTime>();
@@ -84,8 +84,9 @@ public class SpellManager
             SelfSpell selfSpell = new SelfSpell(spell.GetField(spell.keys[1]));
             TargetSpell targetSpell = new TargetSpell(spell.GetField(spell.keys[2]));
 
-            _elementNode.SetSelfSpell(ref selfSpell, elements);
             _elementNode.SetTargetSpell(ref targetSpell, elements);
+            _elementNode.SetSelfSpell(ref selfSpell, elements);
+            
         }
         Logger.Error("spell.json read");
 
@@ -117,7 +118,7 @@ public class SpellManager
         }
         Logger.Error("directEffect.json read");
 
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
+        /*js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
         array = js.list[0];
         foreach (JSONObject onTimeEffect in array.list)
         {
@@ -140,13 +141,20 @@ public class SpellManager
                 throw new Exception("contructor not found.");
             }
         }
-        Logger.Error("onTimeEffect.json read");
+        Logger.Error("onTimeEffect.json read");*/
     }
 
-    public Effect getDirectEffectById(uint id)
+    public Effect GetDirectEffectById(uint id)
     {
         Effect value;
         _directEffects.TryGetValue(id, out value);
         return value;
+    }
+
+    public Range GetRangeById(uint id)
+    {
+        Range range;
+        _ranges.TryGetValue(id, out range);
+        return range;
     }
 }

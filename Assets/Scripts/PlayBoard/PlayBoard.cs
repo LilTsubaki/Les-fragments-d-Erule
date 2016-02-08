@@ -153,4 +153,23 @@ public class PlayBoard  {
     {
         return _grid;
     }
+
+    public List<Hexagon> GetRange(Range r, Hexagon source)
+    {
+        List<Hexagon> hexas = new List<Hexagon>();
+        hexas.Add(source);
+        if(r.Orientation == Orientation.EnumOrientation.Any)
+        {
+
+        }
+        else if(r.Orientation == Orientation.EnumOrientation.Line)
+        {
+
+        }
+        else if(r.Orientation == Orientation.EnumOrientation.Diagonal)
+        {
+
+        }
+        return hexas;
+    }
 }

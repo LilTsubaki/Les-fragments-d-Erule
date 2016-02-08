@@ -81,13 +81,18 @@ public class ElementNode{
         Logger.Trace(element._name);
 
         if (!_nodes.ContainsKey (element))
-			return null;
+        {
+            return null;
+        }
+			
 		
-		if (_nodes [element] == null) {
-			return null;
+		if (_nodes [element] == null)
+        {
+            return null;
 		}
-		else {
-			return _nodes [element].GetTargetSpell(elements);
+		else
+        {
+            return _nodes [element].GetTargetSpell(elements);
 		}
 	}
 

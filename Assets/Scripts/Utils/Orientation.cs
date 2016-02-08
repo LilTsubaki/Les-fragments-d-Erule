@@ -9,7 +9,7 @@ using System.Text;
 /// if enumOrientation is set to "Diagonal" you only can target in diagonal
 /// if enumOrientation is set to "Any" you can target anywhere
 /// </summary>
-class Orientation
+public class Orientation
 { 
     public enum EnumOrientation
     {
