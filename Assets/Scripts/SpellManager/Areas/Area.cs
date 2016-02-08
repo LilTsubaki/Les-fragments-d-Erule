@@ -7,9 +7,9 @@ using UnityEngine;
 /// <summary>
 /// Define a spell pattern
 /// </summary>
-class Area
+public class Area
 {
-    private int _id;
+    private uint _id;
     private Orientation.EnumOrientation _orientation;
     private List<Node> _nodes;
     private bool _rootUsed;
@@ -25,7 +25,7 @@ class Area
     /// <param name="id"></param>
     /// <param name="orientation"></param>
     /// <param name="nodes"></param>
-    public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes)
+    public Area(uint id, Orientation.EnumOrientation orientation, List<Node> nodes)
     {
         _id = id;
         _orientation = orientation;
@@ -39,7 +39,7 @@ class Area
     public Area(JSONObject js)
     {
         _nodes = new List<Node>();
-        _id = (int)js.GetField(js.keys[0]).n;
+        _id = (uint)js.GetField(js.keys[0]).n;
         _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
         _rootUsed = js.GetField(js.keys[2]).b;
 
@@ -79,7 +79,7 @@ class Area
         return new Area(_id, _orientation, nodes);
     }
 
-    public int getId()
+    public uint getId()
     {
         return _id;
     }

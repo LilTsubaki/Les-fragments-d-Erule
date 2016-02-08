@@ -88,8 +88,6 @@ public class LoadAndDeplacementTest : MonoBehaviour
         TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
 
         //SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
-        if (testTsp == null)
-            Logger.Error("Je suis nul a chier aeuaeuueauea");
 
         Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
         Logger.Trace(rangeTest.Orientation);

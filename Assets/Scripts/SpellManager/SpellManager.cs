@@ -7,7 +7,7 @@ public class SpellManager
 {
     private static SpellManager _SpellManager;
 
-    private Dictionary<int, Area> _areas;
+    private Dictionary<uint, Area> _areas;
     private Dictionary<uint, Range> _ranges;
     private Dictionary<uint, Effect> _directEffects;
    // private Dictionary<uint, EffectOnTime> _onTimeEffects;
@@ -42,7 +42,7 @@ public class SpellManager
     private void init()
     {
         _ranges = new Dictionary<uint, Range>();
-        _areas = new Dictionary<int, Area>();
+        _areas = new Dictionary<uint, Area>();
         _directEffects = new Dictionary<uint, Effect>();
         //_onTimeEffects = new Dictionary<uint, EffectOnTime>();
         _elementNode = ElementNode.GetInstance();
@@ -120,7 +120,7 @@ public class SpellManager
         }
         Logger.Error("directEffect.json read");
 
-        /*js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
         array = js.list[0];
         foreach (JSONObject onTimeEffect in array.list)
         {
@@ -143,7 +143,7 @@ public class SpellManager
                 throw new Exception("contructor not found.");
             }
         }
-        Logger.Error("onTimeEffect.json read");*/
+        Logger.Error("onTimeEffect.json read");
     }
 
     public Effect GetDirectEffectById(uint id)
@@ -158,5 +158,12 @@ public class SpellManager
         Range range;
         _ranges.TryGetValue(id, out range);
         return range;
+    }
+
+    public Area GetAreaById(uint id)
+    {
+        Area area;
+        _areas.TryGetValue(id, out area);
+        return area;
     }
 }
