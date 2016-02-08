@@ -78,6 +78,48 @@ public class Direction
         return orientation;
     }
 
+    public static List<EnumDirection> GetLineEnum()
+    {
+        List<EnumDirection> directions = new List<EnumDirection>();
+        directions.Add(EnumDirection.East);
+        directions.Add(EnumDirection.SouthEast);
+        directions.Add(EnumDirection.SouthWest);
+        directions.Add(EnumDirection.West);
+        directions.Add(EnumDirection.NorthWest);
+        directions.Add(EnumDirection.NorthEast);
+        return directions;
+    }
+
+    public static List<EnumDirection> GetDiagonalEnum()
+    {
+        List<EnumDirection> directions = new List<EnumDirection>();
+        directions.Add(EnumDirection.DiagonalNorth);
+        directions.Add(EnumDirection.DiagonalNorthEast);
+        directions.Add(EnumDirection.DiagonalNorthWest);
+        directions.Add(EnumDirection.DiagonalSouth);
+        directions.Add(EnumDirection.DiagonalSouthEast);
+        directions.Add(EnumDirection.DiagonalSouthWest);
+        return directions;
+    }
+
+    public static List<EnumDirection> GetAnyEnum()
+    {
+        List<EnumDirection> directions = new List<EnumDirection>();
+        directions.Add(EnumDirection.East);
+        directions.Add(EnumDirection.SouthEast);
+        directions.Add(EnumDirection.SouthWest);
+        directions.Add(EnumDirection.West);
+        directions.Add(EnumDirection.NorthWest);
+        directions.Add(EnumDirection.NorthEast);
+        directions.Add(EnumDirection.DiagonalNorth);
+        directions.Add(EnumDirection.DiagonalNorthEast);
+        directions.Add(EnumDirection.DiagonalNorthWest);
+        directions.Add(EnumDirection.DiagonalSouth);
+        directions.Add(EnumDirection.DiagonalSouthEast);
+        directions.Add(EnumDirection.DiagonalSouthWest);
+        return directions;
+    }
+
     public static int GetDiff(EnumDirection source, EnumDirection dest)
     {
         Logger.Error(((dest - source) + 12) % 12);

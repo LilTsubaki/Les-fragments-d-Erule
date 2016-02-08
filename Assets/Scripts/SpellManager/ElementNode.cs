@@ -37,10 +37,12 @@ public class ElementNode{
 	/// </summary>
 	/// <param name="element">Element.</param>
 	protected ElementNode(Element element){
-		_nodes = new Dictionary<Element, SpellNode> ();
-		foreach (var elem in Element.GetElements()) {
-			if (element._id <= elem._id) {
-				_nodes [elem] = null;
+		if (element != null) {
+			_nodes = new Dictionary<Element, SpellNode> ();
+			foreach (var elem in Element.GetElements()) {
+				if (element._id <= elem._id) {
+					_nodes [elem] = new SpellNode (null);
+				}
 			}
 		}
 	}
@@ -60,7 +62,7 @@ public class ElementNode{
         if (!_nodes.ContainsKey (element))
 			return null;
 		
-		if (_nodes [element] == null) {
+		if (_nodes [element]._nodes == null) {
 			return null;
 		}
 		else {
@@ -81,13 +83,18 @@ public class ElementNode{
         Logger.Trace(element._name);
 
         if (!_nodes.ContainsKey (element))
-			return null;
+        {
+            return null;
+        }
+			
 		
-		if (_nodes [element] == null) {
-			return null;
+		if (_nodes [element]._nodes == null)
+        {
+            return null;
 		}
-		else {
-			return _nodes [element].GetTargetSpell(elements);
+		else
+        {
+            return _nodes [element].GetTargetSpell(elements);
 		}
 	}
 
@@ -107,7 +114,7 @@ public class ElementNode{
         if (!_nodes.ContainsKey (element))
 			return;
 
-		if (_nodes [element] == null) {
+		if (_nodes [element]._nodes == null) {
 			_nodes [element]= new SpellNode(element);
 		}
 
@@ -130,7 +137,7 @@ public class ElementNode{
         if (!_nodes.ContainsKey (element))
 			return;
 
-		if (_nodes [element] == null) {
+		if (_nodes [element]._nodes == null) {
 			_nodes [element]= new SpellNode(element);
 		}
 
@@ -179,7 +186,7 @@ public class ElementNode{
 				return;
 
 
-			if (_nodes [element] == null) {
+			if (_nodes [element]._nodes == null) {
 				_nodes [element]= new SpellNode(element);
 			}
 
@@ -206,7 +213,7 @@ public class ElementNode{
             if (!_nodes.ContainsKey (element))
 				return;
 
-			if (_nodes [element] == null) {
+			if (_nodes [element]._nodes == null) {
 				_nodes [element]= new SpellNode(element);
 			}
 
@@ -229,7 +236,7 @@ public class ElementNode{
             if (!_nodes.ContainsKey(element))
                 return null;
 
-            if (_nodes[element] == null)
+			if (_nodes [element]._nodes == null)
             {
                 return null;
             }
@@ -254,7 +261,7 @@ public class ElementNode{
             if (!_nodes.ContainsKey(element))
                 return null;
 
-            if (_nodes[element] == null)
+			if (_nodes [element]._nodes == null)
             {
                 return null;
             }

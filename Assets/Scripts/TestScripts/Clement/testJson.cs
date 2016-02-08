@@ -23,7 +23,7 @@ public class testJson : MonoBehaviour
 
         for(int i =0; i < effectIds.Count; i++)
         {
-            Effect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
+            Effect effectTest = SpellManager.getInstance().GetDirectEffectById((uint)effectIds[i]);
             
         }
 

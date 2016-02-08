@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Play board.
@@ -152,5 +153,75 @@ public class PlayBoard  {
     public List<List<Hexagon>> GetGrid()
     {
         return _grid;
+    }
+
+    public List<Hexagon> GetRange(Range r, Hexagon source)
+    {
+        List<Hexagon> hexas = new List<Hexagon>();
+        //hexas.Add(source);
+        if (r.Orientation == Orientation.EnumOrientation.Any)
+        {
+            for(int i = 0; i < _width; i++)
+            {
+                for(int j = 0; j < _height;j++)
+                {
+                    if(source.Distance(_grid[i][j]) >= r.MinRange && source.Distance(_grid[i][j]) <= r.MaxRange && source.Distance(_grid[i][j]) > 0)
+                    {
+                        hexas.Add(_grid[i][j]);
+                    }
+                }
+            }
+        }
+        else if (r.Orientation == Orientation.EnumOrientation.Line)
+        {
+            List<Direction.EnumDirection> dirs = Direction.GetLineEnum();
+            foreach (Direction.EnumDirection dir in dirs)
+            {
+                List<Direction.EnumDirection> directions = new List<Direction.EnumDirection>();
+                for (int i = 1; i < r.MinRange; i++)
+                {
+                    directions.Add(dir);
+                }
+                for (int i = r.MinRange; i <= r.MaxRange; i++)
+                {
+                    directions.Add(dir);
+                    hexas.Add(source.GetTarget(directions));
+                }
+            }
+        }
+        else if (r.Orientation == Orientation.EnumOrientation.Diagonal)
+        {
+            List<Direction.EnumDirection> dirs = Direction.GetDiagonalEnum();
+            foreach (Direction.EnumDirection dir in dirs)
+            {
+                List<Direction.EnumDirection> directions = new List<Direction.EnumDirection>();
+                for (int i = 2; i < r.MinRange; i+=2)
+                {
+                    directions.Add(dir);
+                }
+                for (int i = r.MinRange; i <= r.MaxRange; i+=2)
+                {
+                    directions.Add(dir);
+                    hexas.Add(source.GetTarget(directions));
+                }
+            }
+        }
+        return hexas;
+    }
+
+    public void ResetBoard()
+    {
+        for(int i = 0; i < _width; i++)
+        {
+            for(int j = 0; j < _height; j++)
+            {
+                Hexagon hexa = _grid[i][j];
+                if (hexa._posX !=-1)
+                {
+                    hexa.GameObject.GetComponentInChildren<Renderer>().material.color = hexa.DefaultColor;
+                    hexa.Targetable = false;
+                }        
+            }
+        }
     }
 }

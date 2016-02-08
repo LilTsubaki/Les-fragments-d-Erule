@@ -16,6 +16,10 @@ public class Hexagon : IAStar<Hexagon>
 
     public Dictionary<uint, GroundOnTimeAppliedEffect> _onTimeEffects;
 
+    private bool _targetable;
+    private Color _defaultColor;
+    private Color _previousColor;
+
     private GameObject _gameObject;
 	public GameObject GameObject
     {
@@ -42,13 +46,53 @@ public class Hexagon : IAStar<Hexagon>
 		}
 	}
 
-	public static bool isHexagonSet(Hexagon hex){
+    public bool Targetable
+    {
+        get
+        {
+            return _targetable;
+        }
+
+        set
+        {
+            _targetable = value;
+        }
+    }
+
+    public Color PreviousColor
+    {
+        get
+        {
+            return _previousColor;
+        }
+
+        set
+        {
+            _previousColor = value;
+        }
+    }
+
+    public Color DefaultColor
+    {
+        get
+        {
+            return _defaultColor;
+        }
+
+        set
+        {
+            _defaultColor = value;
+        }
+    }
+
+    public static bool isHexagonSet(Hexagon hex){
 		return hex != null && hex._posX >= 0 && hex._posY >= 0;
 	}
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
-		_posX = x;
+        Targetable = false;
+        _posX = x;
 		_posY = y;
 		_board = board;
         _onTimeEffects = new Dictionary<uint, GroundOnTimeAppliedEffect>();
