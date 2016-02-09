@@ -153,6 +153,33 @@ public class Direction
                 return EnumDirection.SouthEast;
         }
 
+        int newPosX = destination._posX - source._posX;
+        int newPosY = destination._posY - source._posY;
+
+        if(Math.Abs(newPosX) == Math.Abs(newPosY))
+        {
+            if (newPosY > 0)
+                return EnumDirection.DiagonalNorthWest;
+            if (newPosY < 0)
+                return EnumDirection.DiagonalSouthEast;
+        }
+
+        if(newPosX == 2*newPosY)
+        {
+            if (newPosX > 0)
+                return EnumDirection.DiagonalNorthEast;
+            if (newPosX < 0)
+                return EnumDirection.DiagonalSouthWest;
+        }
+        
+        if(newPosY%2 ==0 && newPosY != 0)
+        {
+            if (newPosY > 0)
+                return EnumDirection.DiagonalNorth;
+            if (newPosY < 0)
+                return EnumDirection.DiagonalSouth;
+        }
+
         //diagonal todo
          
         return EnumDirection.Default;
