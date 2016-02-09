@@ -23,8 +23,8 @@ public class LoadAndDeplacementTest : MonoBehaviour
     void Awake()
     {
         playBoard = JSONObject.JSONToBoard(ref board, _boardName);
-        hexaStart1 = playBoard.GetHexagone(0, 0);
-        hexaStart2 = playBoard.GetHexagone(6, 6);
+        hexaStart1 = playBoard.GetHexagone(6, 6);
+        hexaStart2 = playBoard.GetHexagone(12, 12);
 
         player1 = new Character(4000, hexaStart1, _player1GameObject);
         player2 = new Character(14298, hexaStart2, _player2GameObject);
@@ -93,7 +93,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         Logger.Trace(rangeTest.Orientation);
 
         List<Hexagon>range = playBoard.GetRange(rangeTest, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
-        Logger.Trace("taille list range : " + range.Count);
+        //Logger.Trace("taille list range : " + range.Count);
         for(int i = 0; i < range.Count; i++)
         {
             if(range[i].GameObject != null)
