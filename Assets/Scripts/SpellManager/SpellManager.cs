@@ -112,7 +112,7 @@ public class SpellManager
             Range r = new Range(range);
             _ranges.Add(r.getId(), r);
         }
-        Logger.Error("Range.json read");
+        Logger.Debug("Range.json read");
 
 
         js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
@@ -122,7 +122,7 @@ public class SpellManager
             Area a = new Area(area);
             _areas.Add(a.getId(), a);
         }
-        Logger.Error("Area.json read");
+        Logger.Debug("Area.json read");
 
         js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/spell.json");
         array = js.list[0];
@@ -148,7 +148,7 @@ public class SpellManager
             _elementNode.SetSelfSpell(ref selfSpell, elements);
             
         }
-        Logger.Error("spell.json read");
+        Logger.Debug("spell.json read");
 
 
         js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/directEffect.json");
@@ -176,7 +176,7 @@ public class SpellManager
                 throw new Exception("contructor not found.");
             }
         }
-        Logger.Error("directEffect.json read");
+        Logger.Debug("directEffect.json read");
 
         js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
         array = js.list[0];
@@ -201,7 +201,7 @@ public class SpellManager
                 throw new Exception("contructor not found.");
             }
         }
-        Logger.Error("onTimeEffect.json read");
+        Logger.Debug("onTimeEffect.json read");
     }
 
     public Effect GetDirectEffectById(uint id)

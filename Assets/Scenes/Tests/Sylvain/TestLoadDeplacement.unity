@@ -385,7 +385,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -481,7 +481,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -502,7 +502,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 917317182}
   m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 2.69, y: 6.32, z: -4.68}
+  m_LocalPosition: {x: 9.66, y: 6.32, z: -4.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _runicBoard: {fileID: 1544903359}
-  _boardName: testBoard
+  _boardName: playtest
   _player1GameObject: {fileID: 108858, guid: ee2dde14b5fb70c479c9e2cc97242689, type: 2}
   _player2GameObject: {fileID: 108858, guid: ee2dde14b5fb70c479c9e2cc97242689, type: 2}
 --- !u!1 &1157260970
@@ -652,7 +652,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 449756, guid: 7e96152ac21302a46858a35e9f4ee341, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.75
+      value: 12.13
       objectReference: {fileID: 0}
     - target: {fileID: 449756, guid: 7e96152ac21302a46858a35e9f4ee341, type: 2}
       propertyPath: m_LocalPosition.y
@@ -660,7 +660,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449756, guid: 7e96152ac21302a46858a35e9f4ee341, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.62
+      value: -6.84
       objectReference: {fileID: 0}
     - target: {fileID: 449756, guid: 7e96152ac21302a46858a35e9f4ee341, type: 2}
       propertyPath: m_LocalRotation.x
