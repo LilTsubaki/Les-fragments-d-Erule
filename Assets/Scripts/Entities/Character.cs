@@ -5,8 +5,8 @@ using UnityEngine;
 public class Character : Entity
 {
     public GameObject _gameObject;
-
-    public enum State { Moving, CastingSpell, Waiting }
+    
+    public enum State { Moving, CastingSpell, Waiting, Translating }
 
 	public static uint MaxProtection = 50;
 	public readonly uint _lifeMax;
@@ -245,6 +245,8 @@ public class Character : Entity
     /// <returns></returns>
     public Hexagon TranslateCharacter(Direction.EnumDirection direction, uint count)
     {
+        Logger.Debug("Count : " + count + ", Hexagon : " + _position._posX + ", " + _position._posY);
+
         if (count == 0)
             return _position;
 

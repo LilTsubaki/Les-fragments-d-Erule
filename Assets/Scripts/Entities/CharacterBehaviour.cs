@@ -5,6 +5,15 @@ public class CharacterBehaviour : MonoBehaviour
 {
     public Character _character;
 
+    public float _movementSpeed;
+    public float _translateSpeed;
+
+    void Awake()
+    {
+        _movementSpeed = 4.0f;
+        _translateSpeed = 8.0f;
+    }
+
 	// Use this for initialization
 	void Start () {
 	
@@ -35,19 +44,41 @@ public class CharacterBehaviour : MonoBehaviour
                 }
             }
         }
-        if (_character._state == Character.State.Moving)
-        {
-            Move();
-        }
 
+        /*if (TurnManager.GetInstance().isMyTurn(_character) && Input.GetKeyDown(KeyCode.Z))
+        {
+            _character.TranslateCharacter(Direction.EnumDirection.East, 4);
+            _character._state = Character.State.Translating;
+        }*/
+
+        switch (_character._state)
+        {
+            case Character.State.Moving:
+                Move();
+                break;
+            case Character.State.Translating:
+                Translate();
+                break;
+            default:
+                break;
+        }
     }
 
-    bool goTo(Hexagon hexa)
+    bool goTo(Hexagon hexa, float speed)
     {
-        //Debug.Log("go to : " + hexa.x + "  " + hexa.y);
+        float step = speed * Time.deltaTime;
         Vector3 temp = new Vector3(0.0f, 0.5f, 0.0f);
-        transform.position = Vector3.MoveTowards(transform.position, hexa.GameObject.transform.position + temp, 0.05f);
-        return Mathf.Approximately(Vector3.SqrMagnitude(hexa.GameObject.transform.position + temp  - transform.position), 0);
+        transform.position = Vector3.MoveTowards(transform.position, hexa.GameObject.transform.position + temp, step);
+        return Mathf.Approximately(Vector3.SqrMagnitude(hexa.GameObject.transform.position + temp - transform.position), 0);
+    }
+
+    void Translate()
+    {
+        if(goTo(_character.Position, _translateSpeed))
+        {
+            Logger.Debug("STOP");
+            _character._state = Character.State.Waiting;
+        }
     }
 
     void Move()
@@ -58,7 +89,7 @@ public class CharacterBehaviour : MonoBehaviour
             {
                 PlayBoardManager.GetInstance().Board.ResetBoard();
             }
-            if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep]))
+            if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
                 //_character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep].onPlayerEnter(this);
                 _character.CurrentStep++;
