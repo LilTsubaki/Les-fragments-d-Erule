@@ -29,11 +29,11 @@ public class RuneBehaviour : MonoBehaviour {
         _runeSpeed = 10.0f;
         _upPosition = new Vector3(0, 0.3f, 0);
         _upOffsetWhenHeld = new Vector3(0, 0.15f, 0);
-        _plane = new Plane(gameObject.transform.up, _upPosition + _upOffsetWhenHeld);
     }
 
     // Use this for initialization
     void Start () {
+        _plane = new Plane(transform.up, transform.position + _upOffsetWhenHeld);
 	}
 	
 	// Update is called once per frame
@@ -68,7 +68,7 @@ public class RuneBehaviour : MonoBehaviour {
                 transform.localPosition = Vector3.Slerp(transform.localPosition, _upPosition, step);
                 //transform.position = Vector3.MoveTowards(transform.position, _initialPosition, Mathf.Lerp(0, Vector3.Distance(_initialPosition, transform.position), 0.1f));
 
-                if (Vector3.SqrMagnitude(transform.localPosition - new Vector3(0, 0.3f, 0)) < 0.00001)
+                if (Vector3.SqrMagnitude(transform.localPosition - _upPosition) < 0.00001)
                 {
                     _state = State.Static;
                 }
