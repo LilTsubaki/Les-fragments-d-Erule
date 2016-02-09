@@ -42,7 +42,7 @@ public class Area
         _id = (uint)js.GetField(js.keys[0]).n;
         _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
         _rootUsed = js.GetField(js.keys[2]).b;
-        Logger.Error("rootused ---------> : " + _rootUsed);
+        //Logger.Error("rootused ---------> : " + _rootUsed);
 
         JSONObject array = js.GetField(js.keys[3]);
 
@@ -97,7 +97,11 @@ public class Area
         if(_rootUsed)
             turnedArea.Add(source);
         //rotate the area using direction as target
-        Area area = rotateArea(direction);
+        Area area;
+        if (direction != Direction.EnumDirection.Default)
+            area = rotateArea(direction);
+        else
+            area = this;
 
         if (area._nodes.Count !=0)
         {

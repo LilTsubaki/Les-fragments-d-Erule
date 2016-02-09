@@ -49,7 +49,7 @@ public class HexagonBehaviour : MonoBehaviour
 
                 Area area = SpellManager.getInstance().GetAreaById(testTsp.AreaId);
                 Direction.EnumDirection newDirection = Direction.GetDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _hexagon);
-                //Logger.Error("new direction : " + newDirection);
+                Logger.Error("new direction : " + newDirection);
 
                 finalArea = area.AreaToHexa(newDirection, _hexagon);
                 //Logger.Error("nb hexa final area : " + finalArea.Count);

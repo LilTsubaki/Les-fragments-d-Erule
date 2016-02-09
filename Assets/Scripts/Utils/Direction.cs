@@ -128,6 +128,8 @@ public class Direction
 
     public static EnumDirection GetDirection(Hexagon source, Hexagon destination)
     {
+        Logger.Error("source : " + source._posX + " | " + source._posY);
+        Logger.Error("destination : " + destination._posX + " | " + destination._posY);
         //TOFINISH
         if (source._posY == destination._posY)
         {
@@ -136,7 +138,7 @@ public class Direction
             if (destination._posX < source._posX)
                 return EnumDirection.West;
         }
-        if(destination._posX == destination._posY)
+        if (destination._posX-source._posX == destination._posY-source._posY)
         {
             if (destination._posX > source._posX)
                 return EnumDirection.NorthEast;
