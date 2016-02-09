@@ -32,7 +32,10 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
-    private void DisplayRunesInHand()
+    /// <summary>
+    /// Iinstatiante runes game object and display them in the hand
+    /// </summary>
+    private void InstantiateRunesInHand()
     {
         foreach(KeyValuePair<uint, Rune> kvp in Board.RunesInHand)
         {
@@ -76,6 +79,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Remove all runes from the board, and put them back in the hand of the player
+    /// </summary>
     public void ResetRunes()
     {
         _board.RemoveAllRunes();
@@ -172,7 +178,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
         Board = new RunicBoard(hand);
         RunicBoardManager.GetInstance().RegisterBoard(Board);
 
-        DisplayRunesInHand();
+        InstantiateRunesInHand();
     }
 
 	// Use this for initialization

@@ -3,6 +3,12 @@ using System.Collections;
 
 public class RuneBehaviour : MonoBehaviour {
 
+    /// <summary>
+    /// Static : When the rune is not moving.
+    /// Held : When the rune is being held by the player.
+    /// BeingReleased : When the player releases the rune. After a while, goes to the state Static.
+    /// BeingTaken : When the player takes the rune. After a while, goes to the state Held.
+    /// </summary>
     internal enum State { Static, Held, BeingReleased, BeingTaken }
 
     internal Rune _rune;
