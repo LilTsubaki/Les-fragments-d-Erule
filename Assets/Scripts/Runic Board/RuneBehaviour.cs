@@ -11,15 +11,17 @@ public class RuneBehaviour : MonoBehaviour {
     internal Transform _initialParent;
 
     private float _runeSpeed;
+    // Runes move on this plane
+    private Plane _plane;
     
     void Awake()
     {
         _runeSpeed = 10.0f;
+        _plane = new Plane(gameObject.transform.up, gameObject.transform.position + new Vector3(0, 0.15f, 0));
     }
 
     // Use this for initialization
     void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -27,10 +29,9 @@ public class RuneBehaviour : MonoBehaviour {
         switch(_state)
         {
             case State.Held:
-                Plane plane = new Plane(gameObject.transform.up, gameObject.transform.position);
                 Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 float distance;
-                if (plane.Raycast(camRay, out distance))
+                if (_plane.Raycast(camRay, out distance))
                 {
                     gameObject.transform.position = camRay.GetPoint(distance);
                 }

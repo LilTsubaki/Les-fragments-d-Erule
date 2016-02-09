@@ -81,8 +81,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
         _board.RemoveAllRunes();
         for (int i = 0; i < _runesGO.Count; i++)
         {
-            _runesGO[i].transform.SetParent(_runesGO[i].GetComponent<RuneBehaviour>()._initialParent);
-            _runesGO[i].transform.localPosition = new Vector3(0, 0.3f, 0);
+            RuneBehaviour rb = _runesGO[i].GetComponent<RuneBehaviour>();
+            _runesGO[i].transform.SetParent(rb._initialParent);
+            rb._state = RuneBehaviour.State.BeingReleased;
         }
     }
 
@@ -204,5 +205,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         InputUpdate();
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            ResetRunes();
+        }
 	}
 }
