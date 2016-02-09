@@ -47,7 +47,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         /*if (TurnManager.GetInstance().isMyTurn(_character) && Input.GetKeyDown(KeyCode.Z))
         {
-            _character.TranslateCharacter(Direction.EnumDirection.East, 4);
+            _character.TranslateCharacter(Direction.EnumDirection.East, 12);
             _character._state = Character.State.Translating;
         }*/
 
@@ -76,7 +76,6 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(goTo(_character.Position, _translateSpeed))
         {
-            Logger.Debug("STOP");
             _character._state = Character.State.Waiting;
         }
     }
