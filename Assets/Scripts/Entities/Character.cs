@@ -236,4 +236,25 @@ public class Character : Entity
     {
         return _globalNegativeProtection;
     }
+
+    /// <summary>
+    /// Translate the character given a direction, it stops if the hexagon in the direction is not reachable
+    /// </summary>
+    /// <param name="direction">Direction where the character is translated</param>
+    /// <param name="count">Number of hexagon the character is translated</param>
+    /// <returns></returns>
+    public Hexagon TranslateCharacter(Direction.EnumDirection direction, uint count)
+    {
+        if (count == 0)
+            return _position;
+
+        Hexagon target = _position.GetHexa(direction);
+        if (!target.isReachable())
+            return _position;
+        else
+        {
+            _position = target;
+            return TranslateCharacter(direction, count - 1);
+        }
+    }
 }
