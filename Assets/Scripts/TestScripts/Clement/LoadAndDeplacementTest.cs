@@ -83,37 +83,40 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
     public void tryingToDoSpell()
     {
-		List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour> ().Board.GetSortedElementList ();
-		Queue<Element> elements = new Queue<Element>(elementsList);
-        TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
-
-        //SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
-
-        Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
-        Logger.Trace(rangeTest.Orientation);
-
-        List<Hexagon>range = playBoard.GetRange(rangeTest, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
-        //Logger.Trace("taille list range : " + range.Count);
-        for(int i = 0; i < range.Count; i++)
+        if(PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
         {
-            if(range[i].GameObject != null)
+            List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementList();
+            Queue<Element> elements = new Queue<Element>(elementsList);
+            TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
+
+            //SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+
+            Range rangeTest = SpellManager.getInstance().GetRangeById(testTsp._rangeId);
+            Logger.Trace(rangeTest.Orientation);
+
+            List<Hexagon> range = playBoard.GetRange(rangeTest, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
+            //Logger.Trace("taille list range : " + range.Count);
+            for (int i = 0; i < range.Count; i++)
             {
-                range[i].Targetable = true;
-                range[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
-                range[i].PreviousColor = Color.blue;
+                if (range[i].GameObject != null)
+                {
+                    range[i].Targetable = true;
+                    range[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
+                    range[i].PreviousColor = Color.blue;
+                }
             }
+
+            elements = new Queue<Element>(elementsList);
+            SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+            Logger.Trace(testSp);
+
+            /*List<int> effectIds = testSp._effects.GetIds();
+
+            for (int i = 0; i < effectIds.Count; i++)
+            {
+                Effect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
+                effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
+            }*/
         }
-
-		elements = new Queue<Element>(elementsList);
-        SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
-		Logger.Trace(testSp);
-
-        /*List<int> effectIds = testSp._effects.GetIds();
-
-        for (int i = 0; i < effectIds.Count; i++)
-        {
-            Effect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
-            effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
-        }*/
     }
 }

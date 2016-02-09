@@ -145,7 +145,7 @@ public class Direction
             if (destination._posX < source._posX)
                 return EnumDirection.SouthWest;
         }
-        if(source._posX == destination._posX)
+        if (source._posX == destination._posX)
         {
             if (destination._posY > source._posY)
                 return EnumDirection.NorthWest;
@@ -153,29 +153,35 @@ public class Direction
                 return EnumDirection.SouthEast;
         }
 
-        //TO TEST
-        if (destination._posX < source._posX && Math.Abs(destination._posY) == Math.Abs(destination._posX))
-            return EnumDirection.DiagonalNorthWest;
+        int newPosX = destination._posX - source._posX;
+        int newPosY = destination._posY - source._posY;
 
-        if (destination._posX > source._posX && Math.Abs(destination._posY) == Math.Abs(destination._posX))
-            return EnumDirection.DiagonalSouthEast;
-
-        if(destination._posX < source._posX && destination._posY < source._posY)
+        if(Math.Abs(newPosX) == Math.Abs(newPosY))
         {
-            if (destination._posY == destination._posX / 2)
-                return EnumDirection.SouthWest;
-            if (destination._posX == destination._posY / 2)
+            if (newPosY > 0)
+                return EnumDirection.DiagonalNorthWest;
+            if (newPosY < 0)
+                return EnumDirection.DiagonalSouthEast;
+        }
+
+        if(newPosX == 2*newPosY)
+        {
+            if (newPosX > 0)
+                return EnumDirection.DiagonalNorthEast;
+            if (newPosX < 0)
+                return EnumDirection.DiagonalSouthWest;
+        }
+        
+        if(newPosY%2 ==0 && newPosY != 0)
+        {
+            if (newPosY > 0)
+                return EnumDirection.DiagonalNorth;
+            if (newPosY < 0)
                 return EnumDirection.DiagonalSouth;
         }
 
-        if (destination._posX > source._posX && destination._posY > source._posY)
-        {
-            if (destination._posY == destination._posX / 2)
-                return EnumDirection.NorthEast;
-            if (destination._posX == destination._posY / 2)
-                return EnumDirection.DiagonalNorth;
-        }
-
+        //diagonal todo
+         
         return EnumDirection.Default;
     }
 
