@@ -100,7 +100,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                 RuneBehaviour runeBehaviour = hitInfo.collider.gameObject.GetComponent<RuneBehaviour>();
                 if (runeBehaviour != null)
                 {
-                    runeBehaviour._state = RuneBehaviour.State.Held;
+                    runeBehaviour._state = RuneBehaviour.State.BeingTaken;
                 }
             }
         }
@@ -111,9 +111,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
             RaycastHit hitInfo;
 
             RuneBehaviour runeBehaviour = _heldRune.GetComponent<RuneBehaviour>();
-
-            bool hasBeenMoved = false;
-
+            
             if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes Slot")))
             {
                 RuneSlotBehaviour runeSlotBehaviour = hitInfo.collider.gameObject.GetComponent<RuneSlotBehaviour>();
@@ -126,12 +124,6 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         if(Board.ChangeRunePosition((uint)rune.PositionOnBoard, (uint)slotPosition))
                         {
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
-                            _heldRune.transform.localPosition = new Vector3(0, 0.3f, 0);
-                            hasBeenMoved = true;
-                        }
-                        else
-                        {
-                            hasBeenMoved = false;
                         }
                     }
                     else
@@ -139,7 +131,6 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (uint)slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            hasBeenMoved = true;
                             Transform parent;
                             if (newPositionOnBoard == 12)
                             {
@@ -150,26 +141,13 @@ public class RunicBoardBehaviour : MonoBehaviour {
                                 parent = hitInfo.collider.transform;
                             }
                             _heldRune.transform.SetParent(parent);
-                            _heldRune.transform.localPosition = new Vector3(0, 0.3f, 0);
-                        }
-                        else
-                        {
-                            hasBeenMoved = false;
                         }
                     }
 
                 }
             }
-
-            if (hasBeenMoved)
-            {
-                runeBehaviour._state = RuneBehaviour.State.Static;
-            }
-            else
-            {
-                runeBehaviour._state = RuneBehaviour.State.BeingReleased;
-            }
-
+            
+            runeBehaviour._state = RuneBehaviour.State.BeingReleased;
             _heldRune = null;
         }
     }

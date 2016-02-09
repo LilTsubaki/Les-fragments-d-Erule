@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RuneBehaviour : MonoBehaviour {
 
-    internal enum State { Static, Held, BeingReleased }
+    internal enum State { Static, Held, BeingReleased, BeingTaken }
 
     internal Rune _rune;
     internal State _state;
@@ -13,11 +13,17 @@ public class RuneBehaviour : MonoBehaviour {
     private float _runeSpeed;
     // Runes move on this plane
     private Plane _plane;
+    // Local Position of the rune
+    private Vector3 _upPosition;
+    // Offset added to the local position when held
+    private Vector3 _upOffsetWhenHeld;
     
     void Awake()
     {
         _runeSpeed = 10.0f;
-        _plane = new Plane(gameObject.transform.up, gameObject.transform.position + new Vector3(0, 0.15f, 0));
+        _upPosition = new Vector3(0, 0.3f, 0);
+        _upOffsetWhenHeld = new Vector3(0, 0.15f, 0);
+        _plane = new Plane(gameObject.transform.up, _upPosition + _upOffsetWhenHeld);
     }
 
     // Use this for initialization
@@ -26,19 +32,34 @@ public class RuneBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        switch(_state)
+        float step;
+        Ray camRay;
+        float distance;
+
+        switch (_state)
         {
+            case State.BeingTaken:
+                camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (_plane.Raycast(camRay, out distance))
+                {
+                    step = 4 * _runeSpeed * Time.deltaTime;
+                    transform.position = Vector3.Slerp(transform.position, camRay.GetPoint(distance), step);
+                    if (Vector3.SqrMagnitude(transform.position - camRay.GetPoint(distance)) < 0.0001)
+                    {
+                        _state = State.Held;
+                    }
+                }
+                break;
             case State.Held:
-                Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                float distance;
+                camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (_plane.Raycast(camRay, out distance))
                 {
                     gameObject.transform.position = camRay.GetPoint(distance);
                 }
                 break;
             case State.BeingReleased:
-                float step = _runeSpeed * Time.deltaTime;
-                transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(0,0.3f,0), step);
+                step = _runeSpeed * Time.deltaTime;
+                transform.localPosition = Vector3.Slerp(transform.localPosition, _upPosition, step);
                 //transform.position = Vector3.MoveTowards(transform.position, _initialPosition, Mathf.Lerp(0, Vector3.Distance(_initialPosition, transform.position), 0.1f));
 
                 if (Vector3.SqrMagnitude(transform.localPosition - new Vector3(0, 0.3f, 0)) < 0.00001)
