@@ -122,12 +122,13 @@ public class Direction
 
     public static int GetDiff(EnumDirection source, EnumDirection dest)
     {
-        Logger.Error(((dest - source) + 12) % 12);
+        //Logger.Error(((dest - source) + 12) % 12);
         return ((dest - source)+12)%12;
     }
 
-    public static EnumDirection GetLineDirection(Hexagon source, Hexagon destination)
+    public static EnumDirection GetDirection(Hexagon source, Hexagon destination)
     {
+        //TOFINISH
         if (source._posY == destination._posY)
         {
             if (destination._posX > source._posX)
@@ -148,6 +149,29 @@ public class Direction
                 return EnumDirection.NorthWest;
             if (destination._posY < source._posY)
                 return EnumDirection.SouthEast;
+        }
+
+        //TO TEST
+        if (destination._posX < source._posX && Math.Abs(destination._posY) == Math.Abs(destination._posX))
+            return EnumDirection.DiagonalNorthWest;
+
+        if (destination._posX > source._posX && Math.Abs(destination._posY) == Math.Abs(destination._posX))
+            return EnumDirection.DiagonalSouthEast;
+
+        if(destination._posX < source._posX && destination._posY < source._posY)
+        {
+            if (destination._posY == destination._posX / 2)
+                return EnumDirection.SouthWest;
+            if (destination._posX == destination._posY / 2)
+                return EnumDirection.DiagonalSouth;
+        }
+
+        if (destination._posX > source._posX && destination._posY > source._posY)
+        {
+            if (destination._posY == destination._posX / 2)
+                return EnumDirection.NorthEast;
+            if (destination._posX == destination._posY / 2)
+                return EnumDirection.DiagonalNorth;
         }
 
         return EnumDirection.Default;
