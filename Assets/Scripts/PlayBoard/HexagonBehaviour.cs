@@ -17,8 +17,28 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_hexagon.Targetable)
+        {
+            if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawLine(ray.origin, ray.direction * 20);
+                RaycastHit rch;
+                //int layermask = (1 << LayerMask.NameToLayer("Default"));
+                int layermask = LayerMask.GetMask("Hexagon");
 
+                if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+                {
+                    Hexagon hexa = rch.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
+                    if (hexa != null && hexa.Equals(_hexagon))
+                    {
+                        SpellManager.getInstance().ApplyEffects(finalArea, hexa);
+                    }
+                }
+            }
+        }
     }
+
 
     void OnMouseEnter()
     {
@@ -26,14 +46,8 @@ public class HexagonBehaviour : MonoBehaviour
         {
             if(_hexagon == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
             {
-                List<Element> elementsList = RunicBoardManager.GetInstance().GetBoardPlayer1().GetSortedElementList();
-                Queue<Element> elements = new Queue<Element>(elementsList);
-                SelfSpell self = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
 
-                Area area = SpellManager.getInstance().GetAreaById(self.AreaId);
-                //Direction.EnumDirection newDirection = Direction.GetLineDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _hexagon);
-
-                finalArea = area.AreaToHexa(Direction.EnumDirection.East, _hexagon);
+                finalArea = SpellManager.getInstance().CurrentSelfArea.AreaToHexa(Direction.EnumDirection.East, _hexagon);
                 //Logger.Error("nb hexa final area : " + finalArea.Count);
                 for (int i = 0; i < finalArea.Count; i++)
                 {
@@ -42,16 +56,9 @@ public class HexagonBehaviour : MonoBehaviour
                 }
             }
             else
-            {
-                List<Element> elementsList = RunicBoardManager.GetInstance().GetBoardPlayer1().GetSortedElementList();
-                Queue<Element> elements = new Queue<Element>(elementsList);
-                TargetSpell testTsp = SpellManager.getInstance().ElementNode.GetTargetSpell(elements);
-
-                Area area = SpellManager.getInstance().GetAreaById(testTsp.AreaId);
+            {     
                 Direction.EnumDirection newDirection = Direction.GetDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _hexagon);
-                Logger.Debug("new direction : " + newDirection);
-
-                finalArea = area.AreaToHexa(newDirection, _hexagon);
+                finalArea = SpellManager.getInstance().CurrentTargetArea.AreaToHexa(newDirection, _hexagon);
                 //Logger.Error("nb hexa final area : " + finalArea.Count);
                 for (int i = 0; i < finalArea.Count; i++)
                 {

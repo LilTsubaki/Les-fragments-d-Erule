@@ -14,7 +14,7 @@ public class SelfSpell:Spell
     {
         Id = (uint)js.GetField(js.keys[0]).n;
         AreaId = (uint)js.GetField("areaId").n;
-		_effectsArea = new Effects(js.GetField("effectsAreaIds"));
+		EffectsArea = new Effects(js.GetField("effectsAreaIds"));
 		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
 		_effects = new Effects(js.GetField("effectsIds"));
 		_effectsCrit = new Effects(js.GetField("effectsCritIds"));

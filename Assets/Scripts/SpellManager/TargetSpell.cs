@@ -13,7 +13,7 @@ public class TargetSpell:Spell
     {
         Id = (uint)js.GetField(js.keys[0]).n;
 		AreaId = (uint)js.GetField("areaId").n;
-		_effectsArea = new Effects(js.GetField("effectsAreaIds"));
+		EffectsArea = new Effects(js.GetField("effectsAreaIds"));
 		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
 		_rangeId = (uint)js.GetField("rangeId").n;
     }
