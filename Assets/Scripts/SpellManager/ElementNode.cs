@@ -144,6 +144,27 @@ public class ElementNode{
 		_nodes [element].SetTargetSpell (ref targetSpell, elements);
 	}
 
+    /// <summary>
+    /// Does the node have no child ?
+    /// </summary>
+    /// <param name="elements">The Queue of elements composing the spell.</param>
+    /// <returns>True if there is no further child. Else false.</returns>
+    public bool IsTerminal(Queue<Element> elements)
+    {
+        if(elements.Count == 0)
+        {
+            return _nodes == null;
+        }
+        else
+        {
+            Element element = elements.Dequeue();
+            if (!_nodes.ContainsKey(element))
+            {
+                throw new System.Exception("Elements not sorted");
+            }
+            return _nodes[element].IsTerminal(elements);
+        }
+    }
 
 	/// <summary>
 	/// Spell node.
