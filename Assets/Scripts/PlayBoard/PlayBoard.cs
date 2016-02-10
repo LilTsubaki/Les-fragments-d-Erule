@@ -163,6 +163,19 @@ public class PlayBoard  {
 
     public List<Hexagon> GetRange(Range r, Hexagon source)
     {
+        int valueRange; 
+        if (r.Orientation == Orientation.EnumOrientation.Diagonal)
+        {
+            valueRange = r.MaxRange + PlayBoardManager.GetInstance().GetCurrentPlayer().RangeModifier * 2;
+        }
+        else
+        {
+            valueRange = r.MaxRange + PlayBoardManager.GetInstance().GetCurrentPlayer().RangeModifier;
+        }
+
+        if (valueRange < r.MinRange)
+            valueRange = r.MinRange;
+
         List<Hexagon> hexas = new List<Hexagon>();
         hexas.Add(source);
         if (r.Orientation == Orientation.EnumOrientation.Any)
@@ -171,7 +184,7 @@ public class PlayBoard  {
             {
                 for(int j = 0; j < _height;j++)
                 {
-                    if(source.Distance(_grid[i][j]) >= r.MinRange && source.Distance(_grid[i][j]) <= r.MaxRange && source.Distance(_grid[i][j]) > 0)
+                    if(source.Distance(_grid[i][j]) >= r.MinRange && source.Distance(_grid[i][j]) <= valueRange && source.Distance(_grid[i][j]) > 0)
                     {
                         hexas.Add(_grid[i][j]);
                     }
@@ -188,7 +201,7 @@ public class PlayBoard  {
                 {
                     directions.Add(dir);
                 }
-                for (int i = r.MinRange; i <= r.MaxRange; i++)
+                for (int i = r.MinRange; i <= valueRange; i++)
                 {
                     directions.Add(dir);
                     hexas.Add(source.GetTarget(directions));
@@ -205,7 +218,7 @@ public class PlayBoard  {
                 {
                     directions.Add(dir);
                 }
-                for (int i = r.MinRange; i <= r.MaxRange; i+=2)
+                for (int i = r.MinRange; i <= valueRange; i+=2)
                 {
                     directions.Add(dir);
                     hexas.Add(source.GetTarget(directions));

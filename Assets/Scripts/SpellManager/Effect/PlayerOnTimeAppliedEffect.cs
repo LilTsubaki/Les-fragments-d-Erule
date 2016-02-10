@@ -22,6 +22,7 @@ public class PlayerOnTimeAppliedEffect : EffectOnTime {
         {
             foreach(Character c in PlayBoardManager.GetInstance().GetCharacterInArea(hexagons))
             {
+                Logger.Trace("Removing effect from " + c.Name);
                 c.RemoveOnTimeEffect(this);
             }
         }

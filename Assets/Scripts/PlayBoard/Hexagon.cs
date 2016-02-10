@@ -15,6 +15,7 @@ public class Hexagon : IAStar<Hexagon>
     public Entity _entity;
 
     public Dictionary<int, GroundOnTimeAppliedEffect> _onTimeEffects;
+    public List<int> _onTimeEffectsToRemove;
 
     private bool _targetable;
     private Color _defaultColor;
@@ -96,7 +97,9 @@ public class Hexagon : IAStar<Hexagon>
 		_posY = y;
 		_board = board;
         _onTimeEffects = new Dictionary<int, GroundOnTimeAppliedEffect>();
-	}
+        _onTimeEffectsToRemove = new List<int>();
+
+    }
 
     public bool hasValidPosition()
     {
@@ -330,7 +333,7 @@ public class Hexagon : IAStar<Hexagon>
     /// <param name="effect">The effect to remove.</param>
     public void RemoveOnTimeEffect(GroundOnTimeAppliedEffect effect)
     {
-        _onTimeEffects.Remove(effect.GetId());
+        _onTimeEffectsToRemove.Add(effect.GetId());
     }
 
     /// <summary>
@@ -358,6 +361,14 @@ public class Hexagon : IAStar<Hexagon>
             {
                 effect.ReduceNbTurn(this);
             }
+        }
+    }
+
+    public void RemoveMarkedOnTimeEffects()
+    {
+        foreach(int id in _onTimeEffectsToRemove)
+        {
+            _onTimeEffects.Remove(id);
         }
     }
 
