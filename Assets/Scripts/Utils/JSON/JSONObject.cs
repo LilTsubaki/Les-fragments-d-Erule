@@ -1221,6 +1221,7 @@ public class JSONObject {
                     obs._gameobject.transform.parent = hexagon.GameObject.transform;
                     obs._gameobject.name = obstacleName;
                     obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.5f, 0.75f * hexagon._posY);
+                    obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
                 }
             }
 
