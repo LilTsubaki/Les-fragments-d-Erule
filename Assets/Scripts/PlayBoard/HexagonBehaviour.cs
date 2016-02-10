@@ -35,6 +35,8 @@ public class HexagonBehaviour : MonoBehaviour
                         SpellManager.getInstance().ApplyEffects(finalArea, hexa);
                         PlayBoardManager.GetInstance().Board.ResetBoard();
                         SpellManager.getInstance().InitRange();
+                        //to remove after tests
+                        OnMouseEnter();
                     }
                 }
             }
