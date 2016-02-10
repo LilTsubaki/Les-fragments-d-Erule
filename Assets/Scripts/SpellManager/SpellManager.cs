@@ -243,7 +243,7 @@ public class SpellManager
                 }
                 else
                 {
-                    if(PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]) && ranges[i].isReachable())
+                    if(PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]) && ranges[i].isVisible())
                     {
                         ranges[i].Targetable = true;
                         ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;

@@ -245,6 +245,24 @@ public class Hexagon : IAStar<Hexagon>
 		}
 	}
 
+    public bool isVisible()
+    {
+        if(_entity != null)
+        {
+            if ((PlayBoardManager.GetInstance().Character1.Position == this || PlayBoardManager.GetInstance().Character2.Position == this) && hasValidPosition())
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (hasValidPosition())
+                return true;
+            else
+                return false;
+        }
+    }
+
     public bool isReachable()
     {
         return _entity == null && hasValidPosition();
