@@ -23,7 +23,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
     void Awake()
     {
         playBoard = JSONObject.JSONToBoard(ref board, _boardName);
-        hexaStart1 = playBoard.GetHexagone(6, 6);
+        hexaStart1 = playBoard.GetHexagone(8, 8);
         hexaStart2 = playBoard.GetHexagone(12, 12);
 
         player1 = new Character(4000, hexaStart1, _player1GameObject);
