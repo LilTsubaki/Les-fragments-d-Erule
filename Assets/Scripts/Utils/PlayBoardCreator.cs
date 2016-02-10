@@ -59,6 +59,7 @@ public class PlayBoardCreator : MonoBehaviour {
 				go.transform.position=new Vector3(0.866f*x-0.433f*y,z+0.5f,0.75f*y);
 				go.transform.parent = hex.GameObject.transform;
 				go.name = obstacle.name;
+                go.layer = LayerMask.NameToLayer("Obstacle");
 				Obstacle o =new Obstacle (hex);
 				o._gameobject = go;
 				hex._entity = o;
