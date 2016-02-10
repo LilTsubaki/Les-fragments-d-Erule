@@ -19,6 +19,7 @@ public class Client : MonoBehaviour{
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         StartCoroutine("WaitHosts");
+        Logger.logLvl = Logger.Type.TRACE;
     }
 
     void Update()
@@ -38,6 +39,7 @@ public class Client : MonoBehaviour{
     {
         _udpClient = new UdpClient(port);
         _udpClient.EnableBroadcast = true;
+        _isRunning = true;
     }
 
     public void SearchHost()
@@ -51,14 +53,33 @@ public class Client : MonoBehaviour{
         IPEndPoint ep = new IPEndPoint(broadcast, broadcastPort);
 
         _udpClient.Send(data, data.Length, ep);
-        Logger.Warning("SEND TA MERE");
     }
 
     IEnumerator WaitHosts()
     {
         while (_isRunning && _searchingHosts)
         {
-           
+            //Logger.Warning(" blop " + _udpClient.Available);
+           if(_udpClient.Available >= 4)
+            {
+                IPEndPoint ip = new IPEndPoint(IPAddress.Any, broadcastPort);
+                byte[] data = _udpClient.Receive(ref ip);
+
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(data);
+
+                int id = BitConverter.ToInt32(data, 0);
+                Logger.Warning("id host : " + id + " / " + ip.Address.ToString());
+                switch (id)
+                {
+                    case 1:
+                        Logger.Warning("YOLOLOLOLOLO" + ip.Address.ToString());
+                        break;
+                    default:
+                        Logger.Error("Nope.");
+                        break;
+                }
+            }
 
             yield return null;
         }
