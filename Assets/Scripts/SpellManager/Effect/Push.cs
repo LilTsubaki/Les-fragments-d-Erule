@@ -18,17 +18,18 @@ public class Push : EffectDeplacement
     {
         for (int i = 0; i < hexagons.Count; i++)
         {
-            if (hexagons[i]._entity != null && target._entity is Character)
+            if (hexagons[i]._entity != null && hexagons[i]._entity is Character)
             {
                 Character character = (Character)hexagons[i]._entity;
                 Hexagon source = caster.Position;
                 Direction.EnumDirection direction = Direction.GetDirection(source, hexagons[i]);
                 character.TranslateCharacter(direction, _nbDeplacement);
                 character._state = Character.State.Translating;
+                Logger.Trace("Hexagon " + i + " has a character");
             }
             else
             {
-                Logger.Trace("Hexagon doesn't have a character");
+                Logger.Trace("Hexagon " + i + " doesn't have a character");
             }
         }
     }
