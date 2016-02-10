@@ -162,17 +162,17 @@ public class RunicBoardBehaviour : MonoBehaviour {
     {
         _runesGO = new List<GameObject>();
         Dictionary<uint, Rune> hand = new Dictionary<uint, Rune>();
-        Rune r1 = new Rune(Element.GetElement(0), -1, 0);
+        Rune r1 = new Rune(Element.GetElement(4), -1, 0);
         hand.Add(r1.PositionInHand, r1);
-        Rune r2 = new Rune(Element.GetElement(1), -1, 1);
+        Rune r2 = new Rune(Element.GetElement(4), -1, 1);
         hand.Add(r2.PositionInHand, r2);
-        Rune r3 = new Rune(Element.GetElement(3), -1, 2);
+        Rune r3 = new Rune(Element.GetElement(5), -1, 2);
         hand.Add(r3.PositionInHand, r3);
-        Rune r4 = new Rune(Element.GetElement(3), -1, 3);
+        Rune r4 = new Rune(Element.GetElement(5), -1, 3);
         hand.Add(r4.PositionInHand, r4);
-        Rune r5 = new Rune(Element.GetElement(4), -1, 4);
+        Rune r5 = new Rune(Element.GetElement(0), -1, 4);
         hand.Add(r5.PositionInHand, r5);
-        Rune r6 = new Rune(Element.GetElement(5), -1, 5);
+        Rune r6 = new Rune(Element.GetElement(1), -1, 5);
         hand.Add(r6.PositionInHand, r6);
 
         Board = new RunicBoard(hand);
