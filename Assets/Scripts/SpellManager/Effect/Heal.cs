@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 public class Heal : EffectMinMax
 {
-    public Heal(uint id, uint min, uint max, Element element) : base(id, min, max, element)
+    public Heal(int id, int min, int max, Element element) : base(id, min, max, element)
     {
     }
 
     public Heal(JSONObject js)
     {
-        _id = (uint)js.GetField(js.keys[0]).n;
-        _min = (uint)js.GetField(js.keys[1]).n;
-        _max = (uint)js.GetField(js.keys[2]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
+        _min = (int)js.GetField(js.keys[1]).n;
+        _max = (int)js.GetField(js.keys[2]).n;
         //déccommenter pour les heals elems
         //_element = Element.GetElement((int)js.GetField(js.keys[3]).n);
     }
@@ -22,7 +22,7 @@ public class Heal : EffectMinMax
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            uint heal = (uint)new Random().Next((int)_min, (int)_max + 1);
+            int heal = (int)new Random().Next((int)_min, (int)_max + 1);
             Logger.Trace("Apply heal effect : " + heal);
             c.ReceiveHeal(heal);
         }

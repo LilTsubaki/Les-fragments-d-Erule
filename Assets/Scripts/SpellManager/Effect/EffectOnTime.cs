@@ -3,11 +3,11 @@
 public abstract class EffectOnTime : Effect
 {
 	protected EffectDirect _effectDirect;
-    protected uint _nbTurn;
+    protected int _nbTurn;
 
     public EffectOnTime() : base() { }
 
-	public EffectOnTime (uint id, EffectDirect effectDirect, uint nbTurn): base(id)
+	public EffectOnTime (int id, EffectDirect effectDirect, int nbTurn): base(id)
 	{
 		_effectDirect = effectDirect;
 		_nbTurn = nbTurn;

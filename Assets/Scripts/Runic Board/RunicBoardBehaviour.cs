@@ -37,7 +37,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
     /// </summary>
     private void InstantiateRunesInHand()
     {
-        foreach(KeyValuePair<uint, Rune> kvp in Board.RunesInHand)
+        foreach(KeyValuePair<int, Rune> kvp in Board.RunesInHand)
         {
             Transform parent = _handGO.transform.GetChild((int)kvp.Key);
             GameObject rune = new GameObject();
@@ -127,14 +127,14 @@ public class RunicBoardBehaviour : MonoBehaviour {
                     int slotPosition = runeSlotBehaviour._position;
                     if (rune.IsOnBoard())
                     {
-                        if(Board.ChangeRunePosition((uint)rune.PositionOnBoard, (uint)slotPosition))
+                        if(Board.ChangeRunePosition((int)rune.PositionOnBoard, (int)slotPosition))
                         {
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
                         }
                     }
                     else
                     {
-                        int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (uint)slotPosition);
+                        int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (int)slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
                             Transform parent;
@@ -161,7 +161,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
     void Awake()
     {
         _runesGO = new List<GameObject>();
-        Dictionary<uint, Rune> hand = new Dictionary<uint, Rune>();
+        Dictionary<int, Rune> hand = new Dictionary<int, Rune>();
         Rune r1 = new Rune(Element.GetElement(4), -1, 0);
         hand.Add(r1.PositionInHand, r1);
         Rune r2 = new Rune(Element.GetElement(4), -1, 1);

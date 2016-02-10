@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Area
 {
-    private uint _id;
+    private int _id;
     private Orientation.EnumOrientation _orientation;
     private List<Node> _nodes;
     private bool _rootUsed;
@@ -25,7 +25,7 @@ public class Area
     /// <param name="id"></param>
     /// <param name="orientation"></param>
     /// <param name="nodes"></param>
-    public Area(uint id, Orientation.EnumOrientation orientation, List<Node> nodes)
+    public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes)
     {
         _id = id;
         _orientation = orientation;
@@ -39,7 +39,7 @@ public class Area
     public Area(JSONObject js)
     {
         _nodes = new List<Node>();
-        _id = (uint)js.GetField(js.keys[0]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
         _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
         _rootUsed = js.GetField(js.keys[2]).b;
         //Logger.Error("rootused ---------> : " + _rootUsed);
@@ -80,7 +80,7 @@ public class Area
         return new Area(_id, _orientation, nodes);
     }
 
-    public uint getId()
+    public int getId()
     {
         return _id;
     }

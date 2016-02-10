@@ -2,21 +2,21 @@
 
 public abstract class EffectMinMax : EffectDirect
 {
-	protected uint _min;
-    protected uint _max;
+	protected int _min;
+    protected int _max;
     protected Element _element;
 
     public EffectMinMax() : base() { }
 
-	public EffectMinMax (uint id, uint min, uint max, Element element): base(id)
+	public EffectMinMax (int id, int min, int max, Element element): base(id)
 	{
 		_min = min;
 		_max = max;
         _element = element;
 	}
 
-	public uint GetRandom(){
-		return (uint) (new Random ().Next ((int)_min, (int)_max));
+	public int GetRandom(){
+		return (int) (new Random ().Next ((int)_min, (int)_max));
 	}
 }
 

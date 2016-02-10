@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class Spell
 {
-    private uint id;
-    private uint areaId;
+    private int id;
+    private int areaId;
     private Effects effectsArea;
     protected Effects _effectsAreaCrit;
 
-    public uint Id
+    public int Id
     {
         get
         {
@@ -21,7 +21,7 @@ public class Spell
         }
     }
 
-    public uint AreaId
+    public int AreaId
     {
         get
         {
@@ -47,7 +47,7 @@ public class Spell
         }
     }
 
-    public Spell (uint id)
+    public Spell (int id)
 	{
         Id = id;
 	}

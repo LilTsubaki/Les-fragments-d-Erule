@@ -7,16 +7,16 @@ public class GroundOnTimeEffect : EffectOnTime
 {
     public GroundOnTimeEffect(JSONObject js) :base()
     {
-        _id = (uint)js.GetField(js.keys[0]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
         try
         {
-            _effectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((uint)js.GetField(js.keys[1]).n);
+            _effectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {
             Logger.Error("this is not a ontimeeffect");
         }
-        _nbTurn = (uint)js.GetField(js.keys[2]).n;
+        _nbTurn = (int)js.GetField(js.keys[2]).n;
     }
 
     /// <summary>

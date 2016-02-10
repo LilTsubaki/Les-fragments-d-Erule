@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 public class RangeUp: RangeModification
 {
-	public RangeUp (uint id, int range): base(id, range)
+	public RangeUp (int id, int range): base(id, range)
 	{
 	}
 
     public RangeUp(JSONObject js) : base()
     {
-        _id = (uint)js.GetField(js.keys[0]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
         _range = (int)js.GetField(js.keys[1]).n;
     }
 

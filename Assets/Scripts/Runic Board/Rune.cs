@@ -5,7 +5,7 @@ public class Rune
 {
     private Element _element;
     private int _positionOnBoard;
-    private uint _positionInHand;
+    private int _positionInHand;
 
     public Element Element
     {
@@ -33,7 +33,7 @@ public class Rune
         }
     }
 
-    public uint PositionInHand
+    public int PositionInHand
     {
         get
         {
@@ -46,7 +46,7 @@ public class Rune
         }
     }
 
-    public Rune(Element element, int positionOnBoard, uint positionInHand)
+    public Rune(Element element, int positionOnBoard, int positionInHand)
     {
         Element = element;
         PositionOnBoard = positionOnBoard;

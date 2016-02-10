@@ -5,7 +5,7 @@ public abstract class EffectDirect : Effect
 {
     public EffectDirect() : base() { }
 
-	public EffectDirect (uint id): base(id)
+	public EffectDirect (int id): base(id)
 	{
 	}
 }

@@ -10,6 +10,9 @@ public class LoadAndDeplacementTest : MonoBehaviour
     public GameObject _player1GameObject;
     public GameObject _player2GameObject;
 
+    public CharacterUI _uiPlayer1;
+    public CharacterUI _uiPlayer2;
+
     private GameObject board;
 
     PlayBoard playBoard;
@@ -29,6 +32,11 @@ public class LoadAndDeplacementTest : MonoBehaviour
         player1 = new Character(4000, hexaStart1, _player1GameObject);
         player2 = new Character(14298, hexaStart2, _player2GameObject);
         PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
+
+        player1.Name = "Player 1";
+        _uiPlayer1.SetCharacter(player1);
+        player2.Name = "Player 2";
+        _uiPlayer2.SetCharacter(player2);
 
         rangeTest = new List<Hexagon>();
         rangeTest.Add(hexaStart1);
@@ -58,7 +66,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
         /*for (int i = 0; i < effectIds.Count; i++)
         {
-            EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((uint)effectIds[i]);
+            EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((int)effectIds[i]);
             effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
         }*/
     }

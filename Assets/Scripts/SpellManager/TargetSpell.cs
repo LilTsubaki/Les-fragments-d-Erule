@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 public class TargetSpell:Spell
 {
-    public readonly uint _rangeId;
+    public readonly int _rangeId;
 
-	public TargetSpell(uint id) : base(id)
+	public TargetSpell(int id) : base(id)
     {
 	}
 
     public TargetSpell(JSONObject js) : base(js)
     {
-        Id = (uint)js.GetField(js.keys[0]).n;
-		AreaId = (uint)js.GetField("areaId").n;
+        Id = (int)js.GetField(js.keys[0]).n;
+		AreaId = (int)js.GetField("areaId").n;
 		EffectsArea = new Effects(js.GetField("effectsAreaIds"));
 		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
-		_rangeId = (uint)js.GetField("rangeId").n;
+		_rangeId = (int)js.GetField("rangeId").n;
     }
 
 }

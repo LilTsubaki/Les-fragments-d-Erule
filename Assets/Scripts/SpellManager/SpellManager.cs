@@ -7,10 +7,10 @@ public class SpellManager
 {
     private static SpellManager _SpellManager;
 
-    private Dictionary<uint, Area> _areas;
-    private Dictionary<uint, Range> _ranges;
-    private Dictionary<uint, Effect> _directEffects;
-   // private Dictionary<uint, EffectOnTime> _onTimeEffects;
+    private Dictionary<int, Area> _areas;
+    private Dictionary<int, Range> _ranges;
+    private Dictionary<int, Effect> _directEffects;
+   // private Dictionary<int, EffectOnTime> _onTimeEffects;
     private ElementNode _elementNode;
 
     private Range _CurrentRange;
@@ -99,10 +99,10 @@ public class SpellManager
     /// </summary>
     private void init()
     {
-        _ranges = new Dictionary<uint, Range>();
-        _areas = new Dictionary<uint, Area>();
-        _directEffects = new Dictionary<uint, Effect>();
-        //_onTimeEffects = new Dictionary<uint, EffectOnTime>();
+        _ranges = new Dictionary<int, Range>();
+        _areas = new Dictionary<int, Area>();
+        _directEffects = new Dictionary<int, Effect>();
+        //_onTimeEffects = new Dictionary<int, EffectOnTime>();
         _elementNode = ElementNode.GetInstance();
 
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
@@ -204,28 +204,28 @@ public class SpellManager
         Logger.Debug("onTimeEffect.json read");
     }
 
-    public Effect GetDirectEffectById(uint id)
+    public Effect GetDirectEffectById(int id)
     {
         Effect value;
         _directEffects.TryGetValue(id, out value);
         return value;
     }
 
-    public Range GetRangeById(uint id)
+    public Range GetRangeById(int id)
     {
         Range range;
         _ranges.TryGetValue(id, out range);
         return range;
     }
 
-    public Area GetAreaById(uint id)
+    public Area GetAreaById(int id)
     {
         Area area;
         _areas.TryGetValue(id, out area);
         return area;
     }
 
-    public void InitRange(uint rangeId)
+    public void InitRange(int rangeId)
     {
         _CurrentRange = GetRangeById(rangeId);
 
@@ -281,7 +281,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((uint)effectIds[i]);
+                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
@@ -292,7 +292,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((uint)effectIds[i]);
+                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
@@ -306,7 +306,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((uint)effectIds[i]);
+                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }

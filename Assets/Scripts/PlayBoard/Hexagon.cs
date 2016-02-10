@@ -14,7 +14,7 @@ public class Hexagon : IAStar<Hexagon>
 
     public Entity _entity;
 
-    public Dictionary<uint, GroundOnTimeAppliedEffect> _onTimeEffects;
+    public Dictionary<int, GroundOnTimeAppliedEffect> _onTimeEffects;
 
     private bool _targetable;
     private Color _defaultColor;
@@ -95,7 +95,7 @@ public class Hexagon : IAStar<Hexagon>
         _posX = x;
 		_posY = y;
 		_board = board;
-        _onTimeEffects = new Dictionary<uint, GroundOnTimeAppliedEffect>();
+        _onTimeEffects = new Dictionary<int, GroundOnTimeAppliedEffect>();
 	}
 
     public bool hasValidPosition()

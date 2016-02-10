@@ -18,10 +18,10 @@ using System.Collections.Generic;
 
 public class RunicBoard {
 
-    Dictionary<uint, Rune> _runesInHand;
-    Dictionary<uint, Rune> _runesOnBoard;
+    Dictionary<int, Rune> _runesInHand;
+    Dictionary<int, Rune> _runesOnBoard;
 
-    public Dictionary<uint, Rune> RunesInHand
+    public Dictionary<int, Rune> RunesInHand
     {
         get
         {
@@ -29,7 +29,7 @@ public class RunicBoard {
         }
     }
 
-    public Dictionary<uint, Rune> RunesOnBoard
+    public Dictionary<int, Rune> RunesOnBoard
     {
         get
         {
@@ -43,7 +43,7 @@ public class RunicBoard {
     public void LogHand()
     {
         Logger.Debug("*** RUNES IN HAND ***");
-        foreach (KeyValuePair<uint, Rune> kvp in _runesInHand)
+        foreach (KeyValuePair<int, Rune> kvp in _runesInHand)
         {
             Logger.Debug("Element " + kvp.Value.Element._name + ", Position Hand " + kvp.Value.PositionInHand + ", Position Board " + kvp.Value.PositionOnBoard);
         }
@@ -55,7 +55,7 @@ public class RunicBoard {
     public void LogRunesOnBoard()
     {
         Logger.Debug("*** RUNES ON BOARD ***");
-        foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
+        foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
             Logger.Debug("Element " + kvp.Value.Element._name + ", Position " + kvp.Key);
         }
@@ -63,14 +63,14 @@ public class RunicBoard {
 
     public RunicBoard()
     {
-        _runesInHand = new Dictionary<uint, Rune>();
-        _runesOnBoard = new Dictionary<uint, Rune>();
+        _runesInHand = new Dictionary<int, Rune>();
+        _runesOnBoard = new Dictionary<int, Rune>();
     }
 
-    public RunicBoard(Dictionary<uint, Rune> hand)
+    public RunicBoard(Dictionary<int, Rune> hand)
     {
         _runesInHand = hand;
-        _runesOnBoard = new Dictionary<uint, Rune>();
+        _runesOnBoard = new Dictionary<int, Rune>();
     }
 
     public void Testing()
@@ -104,7 +104,7 @@ public class RunicBoard {
 
         //ChangeRunePosition(4, 15);
 
-        //List<uint> explored = new List<uint>();
+        //List<int> explored = new List<int>();
         //Debug.Log("Connected to center ? " + IsConnectedToCenter(0, ref explored, ref runesOnBoard));
 
         //ChangeRunePosition(4, 5);
@@ -121,7 +121,7 @@ public class RunicBoard {
     /// <param name="index">The index in runesInHand list</param>
     /// <param name="position">The position where the rune will be placed</param>
     /// <returns>Where the rune was placed on the board</returns>
-    public int PlaceRuneOnBoard(uint index, uint position)
+    public int PlaceRuneOnBoard(int index, int position)
     {
         Rune rune;
         if(_runesInHand.TryGetValue(index, out rune))
@@ -142,7 +142,7 @@ public class RunicBoard {
             }
 
             // If runes are placed around this position, place the rune
-            List<uint> neighbours = GetAdjacentPositions(position);
+            List<int> neighbours = GetAdjacentPositions(position);
             for(int i = 0; i < neighbours.Count; i++)
             {
                 if (_runesOnBoard.ContainsKey(neighbours[i]))
@@ -162,7 +162,7 @@ public class RunicBoard {
     /// </summary>
     /// <param name="position">The position where the rune is expected to be</param>
     /// <returns>If the rune was succesfully removed</returns>
-    public bool RemoveRuneFromBoard(uint position)
+    public bool RemoveRuneFromBoard(int position)
     {
         Rune rune;
         bool runeFound = _runesOnBoard.TryGetValue(position, out rune);
@@ -182,7 +182,7 @@ public class RunicBoard {
     /// <param name="actualPosition">The actual position if the rune to move</param>
     /// <param name="newPosition">Where to place the rune</param>
     /// <returns>If the rune was moved succefully</returns>
-    public bool ChangeRunePosition(uint actualPosition, uint newPosition)
+    public bool ChangeRunePosition(int actualPosition, int newPosition)
     {
         Rune runeToMove;
         if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove))
@@ -190,10 +190,10 @@ public class RunicBoard {
             if (!_runesOnBoard.ContainsKey(newPosition))
             {
                 // Copy of the runes on board without the rune we want to move
-                Dictionary<uint, Rune> tempRunesOnBoard = new Dictionary<uint, Rune>(_runesOnBoard);
+                Dictionary<int, Rune> tempRunesOnBoard = new Dictionary<int, Rune>(_runesOnBoard);
                 tempRunesOnBoard.Remove(actualPosition);
                 tempRunesOnBoard.Add(newPosition, runeToMove);
-                //List<uint> explored = new List<uint>();
+                //List<int> explored = new List<int>();
 
                 if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
                 {
@@ -227,7 +227,7 @@ public class RunicBoard {
     /// </summary>
     public void RemoveAllRunes()
     {
-        foreach(KeyValuePair<uint, Rune> kvp in _runesOnBoard)
+        foreach(KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
             Rune rune = kvp.Value;
             rune.PositionOnBoard = -1;
@@ -244,7 +244,7 @@ public class RunicBoard {
     /// </summary>
     /// <param name="p">The position</param>
     /// <returns></returns>
-    private bool PositionExists(uint p)
+    private bool PositionExists(int p)
     {
         if (p != 3 && p != 4 && p != 9 && p != 15 && p != 20 && p != 21 && p >= 0 && p <= 24)
             return true;
@@ -256,31 +256,31 @@ public class RunicBoard {
     /// </summary>
     /// <param name="position"></param>
     /// <returns></returns>
-    private List<uint> GetAdjacentPositions(uint position)
+    private List<int> GetAdjacentPositions(int position)
     {
-        List<uint> neighbours = new List<uint>();
+        List<int> neighbours = new List<int>();
 
-        uint n1 = position - 6;
+        int n1 = position - 6;
         if (PositionExists(n1))
             neighbours.Add(n1);
 
-        uint n2 = position - 5;
+        int n2 = position - 5;
         if (PositionExists(n2))
             neighbours.Add(n2);
 
-        uint n3 = position - 1;
+        int n3 = position - 1;
         if (PositionExists(n3))
             neighbours.Add(n3);
 
-        uint n4 = position + 1;
+        int n4 = position + 1;
         if (PositionExists(n4))
             neighbours.Add(n4);
 
-        uint n5 = position + 5;
+        int n5 = position + 5;
         if (PositionExists(n5))
             neighbours.Add(n5);
 
-        uint n6 = position + 6;
+        int n6 = position + 6;
         if (PositionExists(n6))
             neighbours.Add(n6);
 
@@ -292,7 +292,7 @@ public class RunicBoard {
     /// </summary>
     /// <param name="position">The position to test</param>
     /// <returns></returns>
-    private List<uint> GetNeighboursPosition(uint position)
+    private List<int> GetNeighboursPosition(int position)
     {
         return GetNeighboursPosition(position, _runesOnBoard);
     }
@@ -303,10 +303,10 @@ public class RunicBoard {
     /// <param name="position">The position to test</param>
     /// <param name="board">The board to test</param>
     /// <returns></returns>
-    private List<uint> GetNeighboursPosition(uint position, Dictionary<uint, Rune> board)
+    private List<int> GetNeighboursPosition(int position, Dictionary<int, Rune> board)
     {
-        List<uint> positions = GetAdjacentPositions(position);
-        List<uint> neighboursPosition = new List<uint>();
+        List<int> positions = GetAdjacentPositions(position);
+        List<int> neighboursPosition = new List<int>();
 
         for (int i = 0; i < positions.Count; i++)
         {
@@ -324,12 +324,12 @@ public class RunicBoard {
     /// </summary>
     /// <param name="board">The board to test</param>
     /// <returns>true if everything is connected, false otherwise</returns>
-    public bool EverythingIsConnecterToCenter(ref Dictionary<uint, Rune> board)
+    public bool EverythingIsConnecterToCenter(ref Dictionary<int, Rune> board)
     {
         bool isConnected = true;
-        foreach(KeyValuePair<uint, Rune> kvp in board)
+        foreach(KeyValuePair<int, Rune> kvp in board)
         {
-            List<uint> explored = new List<uint>();
+            List<int> explored = new List<int>();
             isConnected = IsConnectedToCenter(kvp.Key, ref explored, ref board);
             Logger.Debug(kvp.Key + " connected ? " + isConnected);
             if (!isConnected)
@@ -345,7 +345,7 @@ public class RunicBoard {
     /// <param name="explored">List of explored positions</param>
     /// <param name="board">The board to test</param>
     /// <returns></returns>
-    public bool IsConnectedToCenter(uint position, ref List<uint> explored, ref Dictionary<uint, Rune> board)
+    public bool IsConnectedToCenter(int position, ref List<int> explored, ref Dictionary<int, Rune> board)
     {
         if (position == 12)
         {
@@ -354,11 +354,11 @@ public class RunicBoard {
 
         if (explored == null)
         {
-            explored = new List<uint>();
+            explored = new List<int>();
         }
 
         explored.Add(position);
-        List<uint> positions = GetNeighboursPosition(position, board);
+        List<int> positions = GetNeighboursPosition(position, board);
 
         for (int i = 0; i < positions.Count; i++)
         {
@@ -380,7 +380,7 @@ public class RunicBoard {
     public Queue<Element> GetSortedElementQueue()
     {
         List<Element> elementsList = new List<Element>();
-        foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
+        foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
             elementsList.Add(kvp.Value.Element);
         }
@@ -398,7 +398,7 @@ public class RunicBoard {
 	public List<Element> GetSortedElementList()
 	{
 		List<Element> elementsList = new List<Element>();
-		foreach (KeyValuePair<uint, Rune> kvp in _runesOnBoard)
+		foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
 		{
 			elementsList.Add(kvp.Value.Element);
 		}

@@ -3,12 +3,12 @@
 
 public abstract class EffectDeplacement : EffectDirect
 {
-	protected uint _nbDeplacement;
-    protected uint _damage;
+	protected int _nbDeplacement;
+    protected int _damage;
 
     public EffectDeplacement() : base() { }
 
-	public EffectDeplacement (uint id, uint nbDeplacement, uint damage): base(id)
+	public EffectDeplacement (int id, int nbDeplacement, int damage): base(id)
 	{
 		_nbDeplacement = nbDeplacement;
         _damage = damage;

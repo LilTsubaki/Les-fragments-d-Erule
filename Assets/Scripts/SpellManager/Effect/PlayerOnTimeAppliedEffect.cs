@@ -4,7 +4,7 @@ public class PlayerOnTimeAppliedEffect : EffectOnTime {
 
     protected Character _caster;
 
-	public PlayerOnTimeAppliedEffect(uint id, EffectDirect effectDirect, uint nbTurn, Character caster)
+	public PlayerOnTimeAppliedEffect(int id, EffectDirect effectDirect, int nbTurn, Character caster)
     {
         _id = id;
         _effectDirect = effectDirect;
