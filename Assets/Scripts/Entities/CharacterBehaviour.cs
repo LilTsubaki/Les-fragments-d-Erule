@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterBehaviour : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class CharacterBehaviour : MonoBehaviour
 
     public float _movementSpeed;
     public float _translateSpeed;
+
+    private List<Hexagon> finalArea;
 
     void Awake()
     {
@@ -98,6 +101,47 @@ public class CharacterBehaviour : MonoBehaviour
                     _character.Position = _character.PathToFollow[0];
                     _character._state = Character.State.Waiting;
                 }
+            }
+        }
+    }
+
+    void OnMouseEnter()
+    {
+        if (_character.Position.Targetable)
+        {
+            if (_character.Position == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
+            {
+
+                finalArea = SpellManager.getInstance().CurrentSelfArea.AreaToHexa(Direction.EnumDirection.East, _character.Position);
+                //Logger.Error("nb hexa final area : " + finalArea.Count);
+                for (int i = 0; i < finalArea.Count; i++)
+                {
+                    //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
+                    finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                }
+            }
+            else
+            {
+                Direction.EnumDirection newDirection = Direction.GetDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _character.Position);
+                finalArea = SpellManager.getInstance().CurrentTargetArea.AreaToHexa(newDirection, _character.Position);
+                //Logger.Error("nb hexa final area : " + finalArea.Count);
+                for (int i = 0; i < finalArea.Count; i++)
+                {
+                    //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
+                    finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+                }
+                //_character.Position.GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+            }
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (_character.Position.Targetable)
+        {
+            for (int i = 0; i < finalArea.Count; i++)
+            {
+                finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = finalArea[i].PreviousColor;
             }
         }
     }
