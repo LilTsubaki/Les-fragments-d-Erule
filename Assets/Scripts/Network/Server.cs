@@ -109,7 +109,7 @@ public class Server : MonoBehaviour{
 
     IEnumerator Listen()
     {
-        while (_isRunning)
+		while (_isRunning && _searchingClient)
         {
             TcpClient client=ListenConnections();
             if (client != null)

@@ -286,14 +286,29 @@ public class PlayBoard  {
             if (Physics.Raycast(rayTest, out rch, Vector3.Distance(coll1, coll2), layermask))
             {
                 //Logger.Error(rch.transform.gameObject.layer);
-                if (destination == rch.transform.parent.GetComponent<HexagonBehaviour>()._hexagon)
+                if(rch.transform.parent != null)
                 {
-                    ++cptHit;
-                    continue;
+                    if (destination == rch.transform.parent.GetComponent<HexagonBehaviour>()._hexagon)
+                    {
+                        ++cptHit;
+                        continue;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
-                    continue;
+                    if(destination == rch.transform.GetComponent<CharacterBehaviour>()._character.Position)
+                    {
+                        ++cptHit;
+                        continue;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
 
             }

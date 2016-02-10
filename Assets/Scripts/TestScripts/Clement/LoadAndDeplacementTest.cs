@@ -30,7 +30,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         hexaStart2 = playBoard.GetHexagone(12, 12);
 
         player1 = new Character(4000, hexaStart1, _player1GameObject);
-        player2 = new Character(14298, hexaStart2, _player2GameObject);
+        player2 = new Character(4000, hexaStart2, _player2GameObject);
         PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
 
         player1.Name = "Player 1";

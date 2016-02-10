@@ -81,7 +81,7 @@ public class Node
         currentHexa = root.GetTarget(dirs);
 
         //Logger.Error("posx : " + currentHexa._posX + "posy : " + currentHexa._posY + "used : " +NodeUsed);
-        if (currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0 && NodeUsed)
+        if (currentHexa != null && currentHexa._posX >=0 && currentHexa._posY >= 0 && NodeUsed && currentHexa.isVisible())
         {
             hexas.Add(currentHexa);
             //Logger.Error("size ---------------->" + hexas.Count);
