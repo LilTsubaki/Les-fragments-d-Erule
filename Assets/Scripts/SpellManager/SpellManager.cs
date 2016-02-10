@@ -233,7 +233,7 @@ public class SpellManager
         //Logger.Trace("taille list range : " + range.Count);
         for (int i = 0; i < ranges.Count; i++)
         {
-            if (ranges[i].GameObject != null)
+            if (ranges[i].GameObject != null && PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]))
             {
                 ranges[i].Targetable = true;
                 ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
