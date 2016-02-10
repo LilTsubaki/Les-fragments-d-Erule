@@ -12,7 +12,8 @@ GameObject:
   - 65: {fileID: 6525336}
   - 23: {fileID: 2369266}
   - 114: {fileID: 11416524}
-  m_Layer: 0
+  - 64: {fileID: 6471724}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +65,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108858}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &6471724
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 25c4bcb467ed9fc418c81ab587994d84, type: 3}
 --- !u!65 &6525336
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -87,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9e82c4542b8b842960e74fdad7aca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementSpeed: 0
+  _translateSpeed: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -117,6 +132,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 25c4bcb467ed9fc418c81ab587994d84, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
