@@ -17,11 +17,12 @@ public class DamageElement : EffectMinMax
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        Logger.Trace("Apply elem damage effect");
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            c.ReceiveDamage((uint)new Random().Next((int)_min, (int)_max + 1), _element);
+            uint damage = (uint)new Random().Next((int)_min, (int)_max + 1);
+            Logger.Trace("Apply elem damage effect" + damage);
+            c.ReceiveDamage(damage, _element);
         }
     }
 }

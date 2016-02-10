@@ -19,7 +19,7 @@ public class ProtectionElement : ProtectionGlobal
 
 	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        Logger.Trace("Apply protection effect");
+        Logger.Trace("Apply protection element effect : " + _protection + " element : " + _element);
         List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){

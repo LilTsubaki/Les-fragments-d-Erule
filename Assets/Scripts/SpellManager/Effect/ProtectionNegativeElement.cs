@@ -18,8 +18,10 @@ public class ProtectionNegativeElement : ProtectionNegativeGlobal
     }
 
 
-	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
-		List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
+	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    {
+        Logger.Trace("Apply negative protection element effect : " + _protection + " element : " + _element);
+        List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
 			ch.ReceiveElementNegativeProtection (_protection, _element);

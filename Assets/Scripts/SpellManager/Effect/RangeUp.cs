@@ -15,6 +15,7 @@ public class RangeUp: RangeModification
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
+        Logger.Trace("Apply range up effect : " + _range);
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {

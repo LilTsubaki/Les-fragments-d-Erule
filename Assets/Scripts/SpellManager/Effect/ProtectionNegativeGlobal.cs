@@ -18,8 +18,10 @@ public class ProtectionNegativeGlobal : EffectDirect
         _protection = (uint)js.GetField(js.keys[1]).n;
     }
 
-	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster){
-		List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
+	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
+    {
+        Logger.Trace("Apply negative protection element effect : " + _protection);
+        List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
 			ch.ReceiveGlobalNegativeProtection (_protection);

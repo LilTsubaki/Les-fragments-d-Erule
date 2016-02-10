@@ -18,11 +18,13 @@ public class Heal : EffectMinMax
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        Logger.Trace("Apply heal effect");
+        
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            c.ReceiveHeal((uint)new Random().Next((int)_min, (int)_max + 1));
+            uint heal = (uint)new Random().Next((int)_min, (int)_max + 1);
+            Logger.Trace("Apply heal effect : " + heal);
+            c.ReceiveHeal(heal);
         }
     }
 }
