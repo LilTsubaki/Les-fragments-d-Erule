@@ -285,7 +285,8 @@ public class PlayBoard  {
             int layermask = LayerMask.GetMask("Obstacle");
             if (Physics.Raycast(rayTest, out rch, Vector3.Distance(coll1, coll2), layermask))
             {
-                if (destination == rch.transform.parent.GetComponent<Hexagon>())
+                //Logger.Error(rch.transform.gameObject.layer);
+                if (destination == rch.transform.parent.GetComponent<HexagonBehaviour>()._hexagon)
                 {
                     ++cptHit;
                     continue;

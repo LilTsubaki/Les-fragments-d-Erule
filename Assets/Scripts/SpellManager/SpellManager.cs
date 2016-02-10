@@ -233,11 +233,23 @@ public class SpellManager
         //Logger.Trace("taille list range : " + range.Count);
         for (int i = 0; i < ranges.Count; i++)
         {
-            if (ranges[i].GameObject != null && PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]))
+            if (ranges[i].GameObject != null)
             {
-                ranges[i].Targetable = true;
-                ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
-                ranges[i].PreviousColor = Color.blue;
+                if(_CurrentRange.Piercing)
+                {
+                    ranges[i].Targetable = true;
+                    ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
+                    ranges[i].PreviousColor = Color.blue;
+                }
+                else
+                {
+                    if(PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]) && ranges[i].isReachable())
+                    {
+                        ranges[i].Targetable = true;
+                        ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
+                        ranges[i].PreviousColor = Color.blue;
+                    }
+                }
             }
         }
     }
