@@ -4,7 +4,7 @@ public class GroundOnTimeAppliedEffect : EffectOnTime {
 
     protected Character _caster;
 
-    public GroundOnTimeAppliedEffect(uint id, EffectDirect effectDirect, uint nbTurn, Character caster)
+    public GroundOnTimeAppliedEffect(int id, EffectDirect effectDirect, int nbTurn, Character caster)
     {
         _id = id;
         _effectDirect = effectDirect;

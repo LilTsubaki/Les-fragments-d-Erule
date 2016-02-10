@@ -8,10 +8,12 @@ public class Character : Entity
     
     public enum State { Moving, CastingSpell, Waiting, Translating }
 
-	public static uint MaxProtection = 50;
-	public readonly uint _lifeMax;
-	public uint _lifeCurrent;
-	public uint _currentActionPoints;
+	public static int MaxProtection = 50;
+	public readonly int _lifeMax;
+	public int _lifeCurrent;
+	public int _currentActionPoints;
+
+    private string _name;
 
     private List<Hexagon> _pathToFollow;
 
@@ -42,31 +44,44 @@ public class Character : Entity
         }
     }
 
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+
+        set
+        {
+            _name = value;
+        }
+    }
+
     public State _state;
 
-	private Dictionary<Element, uint> _protections;
-	private Dictionary<Element, uint> _protectionsNegative;
+	private Dictionary<Element, int> _protections;
+	private Dictionary<Element, int> _protectionsNegative;
 
-	private uint _globalProtection;
-	private uint _globalNegativeProtection;
+	private int _globalProtection;
+	private int _globalNegativeProtection;
 
-	private uint _sommeProtection;
-	private uint _sommeNegativeProtection;
+	private int _sommeProtection;
+	private int _sommeNegativeProtection;
 
-    private Dictionary<uint, PlayerOnTimeAppliedEffect> _onTimeEffects;
+    private Dictionary<int, PlayerOnTimeAppliedEffect> _onTimeEffects;
 
     private int _rangeModifier;
 
     
 
-    public Character (uint lifeMax, Hexagon position, GameObject go) : base(position)
+    public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
         _gameObject = GameObject.Instantiate(go);
         _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.5f, 0);
         _gameObject.GetComponent<CharacterBehaviour>()._character = this;
 
-		_protections = new Dictionary<Element, uint> ();
-		_protectionsNegative = new Dictionary<Element, uint> ();
+		_protections = new Dictionary<Element, int> ();
+		_protectionsNegative = new Dictionary<Element, int> ();
 
 		_globalProtection = 0;
 		_globalNegativeProtection = 0;
@@ -84,11 +99,11 @@ public class Character : Entity
 			_protectionsNegative [e] = 0;
 		}
 
-        _onTimeEffects = new Dictionary<uint, PlayerOnTimeAppliedEffect>();
+        _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _state = State.Waiting;
 	}
 
-    public void ReceiveHeal(uint value)
+    public void ReceiveHeal(int value)
     {
         if (_lifeCurrent + value > _lifeMax)
             _lifeCurrent = _lifeMax;
@@ -96,17 +111,18 @@ public class Character : Entity
             _lifeCurrent += value;
     }
 
-    public void ReceiveDamage(uint value, Element element)
+    public void ReceiveDamage(int value, Element element)
     {
-        uint positiveElementResistance;
-        uint negativeElementResistance;
+        int positiveElementResistance;
+        int negativeElementResistance;
 
         _protections.TryGetValue(element, out positiveElementResistance);
         _protectionsNegative.TryGetValue(element, out negativeElementResistance);
 
-        uint finalValue = (positiveElementResistance - negativeElementResistance) + (_globalProtection - _globalNegativeProtection);
-        float percentage = (100 - finalValue) / 100;
-        value = (uint)(value * percentage);
+        int finalValue = (positiveElementResistance - negativeElementResistance) + (_globalProtection - _globalNegativeProtection);
+        float percentage = (100 - finalValue) / 100.0f;
+        value = (int)(value * percentage);
+
 
         if (_lifeCurrent - value < 0)
             _lifeCurrent = 0;
@@ -115,62 +131,62 @@ public class Character : Entity
         
     }
 
-	public void ReceiveGlobalProtection(uint protection){
+	public void ReceiveGlobalProtection(int protection){
 		
-		uint val = Math.Min (protection, _globalNegativeProtection);
+		int val = Math.Min (protection, _globalNegativeProtection);
 
 		_globalNegativeProtection -= val;
 		_sommeNegativeProtection -= val;
 
 		protection -= val;
 
-		uint max = MaxProtection - _sommeProtection;
+		int max = MaxProtection - _sommeProtection;
 
 		_globalProtection += Math.Min (max, protection);
 		_sommeProtection += Math.Min (max, protection);
 	}
 
-	public void ReceiveGlobalNegativeProtection(uint protection){
+	public void ReceiveGlobalNegativeProtection(int protection){
 
-		uint val = Math.Min (protection, _globalProtection);
+		int val = Math.Min (protection, _globalProtection);
 
 		_globalProtection -= val;
 		_sommeProtection -= val;
 
 		protection -= val;
 
-		uint max = MaxProtection - _sommeNegativeProtection;
+		int max = MaxProtection - _sommeNegativeProtection;
 
 		_globalNegativeProtection += Math.Min (max, protection);
 		_sommeNegativeProtection += Math.Min (max, protection);
 	}
 
-	public void ReceiveElementProtection(uint protection, Element element){
+	public void ReceiveElementProtection(int protection, Element element){
 		
-		uint val = Math.Min (protection, _protectionsNegative[element]);
+		int val = Math.Min (protection, _protectionsNegative[element]);
 
 		_protectionsNegative[element] -= val;
 		_sommeNegativeProtection -= val;
 
 		protection -= val;
 
-		uint max = MaxProtection - _sommeProtection;
+		int max = MaxProtection - _sommeProtection;
 
 		_protections[element] += Math.Min (max, protection);
 		_sommeProtection += Math.Min (max, protection);
         Logger.Trace("nouvelle valeur : " + _sommeProtection);
 	}
 
-	public void ReceiveElementNegativeProtection(uint protection, Element element){
+	public void ReceiveElementNegativeProtection(int protection, Element element){
 		
-		uint val = Math.Min (protection, _protections[element]);
+		int val = Math.Min (protection, _protections[element]);
 
 		_protections[element] -= val;
 		_sommeProtection -= val;
 
 		protection -= val;
 
-		uint max = MaxProtection - _sommeNegativeProtection;
+		int max = MaxProtection - _sommeNegativeProtection;
 
 		_protectionsNegative[element] += Math.Min (max, protection);
 		_sommeProtection += Math.Min (max, protection);
@@ -213,26 +229,26 @@ public class Character : Entity
         _rangeModifier += value;
     }
 
-    public uint GetElementResistance(Element elem)
+    public int GetElementResistance(Element elem)
     {
-        uint res = 0;
+        int res = 0;
         _protections.TryGetValue(elem, out res);
         return res;
     }
 
-    public uint GetElementWeakness(Element elem)
+    public int GetElementWeakness(Element elem)
     {
-        uint res = 0;
+        int res = 0;
         _protectionsNegative.TryGetValue(elem, out res);
         return res;
     }
 
-    public uint GetGlobalResistance()
+    public int GetGlobalResistance()
     {
         return _globalProtection;
     }
 
-    public uint GetGlobalWeakness()
+    public int GetGlobalWeakness()
     {
         return _globalNegativeProtection;
     }
@@ -243,7 +259,7 @@ public class Character : Entity
     /// <param name="direction">Direction where the character is translated</param>
     /// <param name="count">Number of hexagon the character is translated</param>
     /// <returns></returns>
-    public Hexagon TranslateCharacter(Direction.EnumDirection direction, uint count)
+    public Hexagon TranslateCharacter(Direction.EnumDirection direction, int count)
     {
         Logger.Debug("Count : " + count + ", Hexagon : " + _position._posX + ", " + _position._posY);
 

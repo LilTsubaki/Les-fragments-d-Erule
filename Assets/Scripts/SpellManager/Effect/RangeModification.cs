@@ -7,7 +7,7 @@ public abstract class RangeModification : EffectDirect
 
     public RangeModification() : base() { }
 
-	public RangeModification (uint id, int range): base(id)
+	public RangeModification (int id, int range): base(id)
 	{
 		_range = range;
 	}

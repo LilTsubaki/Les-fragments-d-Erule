@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CharacterUI : MonoBehaviour {
 
-    CharacterBehaviour _characterBehaviour;
+    Character _character;
 
     public Text _name;
     public Image _characterImage;
@@ -17,7 +17,7 @@ public class CharacterUI : MonoBehaviour {
     Testing parameters
     ******************************************************************/
     [Range(0,7)]
-    public uint _nbPoints;
+    public int _nbPoints;
 
     [Range(-50, 50)]
     public int _resFire;
@@ -60,10 +60,8 @@ public class CharacterUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _name.text = "Xx-S0rc310r-xX";
+        //_name.text = "Xx-S0rc310r-xX";
         //_life.maxValue = _character._lifeMax;
-        _life.maxValue = _characterBehaviour._character._lifeMax;
-        _life.value = _characterBehaviour._character._lifeMax;
 
         _listActionPoints = new List<Image>();
 
@@ -91,7 +89,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateLife()
     {
-        uint nbPoints = _characterBehaviour._character._currentActionPoints;
+        int nbPoints = _character._currentActionPoints;
         for (int i = 0; i < _listActionPoints.Count; ++i)
         {
             if (i < nbPoints)
@@ -104,7 +102,7 @@ public class CharacterUI : MonoBehaviour {
             }
         }
 
-        uint life = _characterBehaviour._character._lifeCurrent;
+        int life = _character._lifeCurrent;
         _life.value = life;
     }
 
@@ -120,14 +118,14 @@ public class CharacterUI : MonoBehaviour {
         int posWood = _resWood > 0 ? _resWood : 0;
         int posMetal = _resMetal > 0 ? _resMetal : 0;*/
 
-        Character chara = _characterBehaviour._character;
+        Character chara = _character;
 
-        uint posFire = chara.GetElementResistance(Element.GetElement(0));
-        uint posWater = chara.GetElementResistance(Element.GetElement(1));
-        uint posAir = chara.GetElementResistance(Element.GetElement(2));
-        uint posEarth = chara.GetElementResistance(Element.GetElement(3));
-        uint posWood = chara.GetElementResistance(Element.GetElement(4));
-        uint posMetal = chara.GetGlobalResistance();
+        int posFire = chara.GetElementResistance(Element.GetElement(0));
+        int posWater = chara.GetElementResistance(Element.GetElement(1));
+        int posAir = chara.GetElementResistance(Element.GetElement(2));
+        int posEarth = chara.GetElementResistance(Element.GetElement(3));
+        int posWood = chara.GetElementResistance(Element.GetElement(4));
+        int posMetal = chara.GetGlobalResistance();
 
         _resPosFire.sizeDelta = new Vector2(posFire*midSize, _resPosFire.sizeDelta.y);
         _resPosWater.sizeDelta = new Vector2(posWater * midSize, _resPosWater.sizeDelta.y);
@@ -136,12 +134,12 @@ public class CharacterUI : MonoBehaviour {
         _resPosWood.sizeDelta = new Vector2(posWood * midSize, _resPosWood.sizeDelta.y);
         _resPosMetal.sizeDelta = new Vector2(posMetal * midSize, _resPosMetal.sizeDelta.y);
 
-        uint negFire = chara.GetElementWeakness(Element.GetElement(0));
-        uint negWater = chara.GetElementWeakness(Element.GetElement(1));
-        uint negAir = chara.GetElementWeakness(Element.GetElement(2));
-        uint negEarth = chara.GetElementWeakness(Element.GetElement(3));
-        uint negWood = chara.GetElementWeakness(Element.GetElement(4));
-        uint negMetal = chara.GetGlobalWeakness();
+        int negFire = chara.GetElementWeakness(Element.GetElement(0));
+        int negWater = chara.GetElementWeakness(Element.GetElement(1));
+        int negAir = chara.GetElementWeakness(Element.GetElement(2));
+        int negEarth = chara.GetElementWeakness(Element.GetElement(3));
+        int negWood = chara.GetElementWeakness(Element.GetElement(4));
+        int negMetal = chara.GetGlobalWeakness();
 
         _resNegFire.sizeDelta = new Vector2(negFire * midSize, _resNegFire.sizeDelta.y);
         _resNegWater.sizeDelta = new Vector2(negWater * midSize, _resNegWater.sizeDelta.y);
@@ -150,5 +148,13 @@ public class CharacterUI : MonoBehaviour {
         _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
         _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
 
+    }
+
+    public void SetCharacter(Character character)
+    {
+        _character = character;
+        _life.maxValue = _character._lifeMax;
+        _life.value = _character._lifeMax;
+        _name.text = _character.Name;
     }
 }

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 public abstract class Effect
 {
-    protected uint _id;
+    protected int _id;
 
     public Effect() { }
 
-	public Effect(uint id) 
+	public Effect(int id) 
 	{
 		_id = id;
 	}
 
     public abstract void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster);
 
-    public uint GetId()
+    public int GetId()
     {
         return _id;
     }

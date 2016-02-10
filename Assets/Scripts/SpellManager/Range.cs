@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Range
 {
-    private uint _id;
+    private int _id;
     private int _minRange;
     private int _maxRange;
     private bool _piercing;
@@ -80,7 +80,7 @@ public class Range
     /// <param name="maxRange"></param>
     /// <param name="piercing"></param>
     /// <param name="orientation"></param>
-    public Range(uint id, int minRange, int maxRange, bool piercing, Orientation.EnumOrientation orientation)
+    public Range(int id, int minRange, int maxRange, bool piercing, Orientation.EnumOrientation orientation)
     {
         _id = id;
         MinRange = minRange;
@@ -100,7 +100,7 @@ public class Range
         Debug.Log((int)js.GetField(js.keys[2]).n);
         Debug.Log(js.GetField(js.keys[3]).b);
         Debug.Log(Orientation.stringToOrientation(js.GetField(js.keys[4]).str));*/
-        _id = (uint)js.GetField(js.keys[0]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
         MinRange = (int)js.GetField(js.keys[1]).n;
         MaxRange = (int)js.GetField(js.keys[2]).n;
         Piercing = js.GetField(js.keys[3]).b;
@@ -109,7 +109,7 @@ public class Range
 
     
 
-    public uint getId()
+    public int getId()
     {
         return _id;
     }

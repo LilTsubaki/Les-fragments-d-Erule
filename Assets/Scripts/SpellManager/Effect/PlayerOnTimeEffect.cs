@@ -8,18 +8,18 @@ public class PlayerOnTimeEffect : EffectOnTime
 {
     public PlayerOnTimeEffect(JSONObject js) : base()
     {
-        _id = (uint)js.GetField(js.keys[0]).n;
+        _id = (int)js.GetField(js.keys[0]).n;
 
         try
         {
-            _effectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((uint)js.GetField(js.keys[1]).n);
+            _effectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {
             Logger.Error(_id + " -->this is not a directeffect");
         }
        
-        _nbTurn = (uint)js.GetField(js.keys[2]).n;
+        _nbTurn = (int)js.GetField(js.keys[2]).n;
     }
 
     /// <summary>
