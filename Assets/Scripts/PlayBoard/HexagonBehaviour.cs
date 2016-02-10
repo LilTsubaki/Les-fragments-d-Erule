@@ -33,6 +33,8 @@ public class HexagonBehaviour : MonoBehaviour
                     if (hexa != null && hexa.Equals(_hexagon))
                     {
                         SpellManager.getInstance().ApplyEffects(finalArea, hexa);
+                        PlayBoardManager.GetInstance().Board.ResetBoard();
+                        SpellManager.getInstance().InitRange();
                     }
                 }
             }

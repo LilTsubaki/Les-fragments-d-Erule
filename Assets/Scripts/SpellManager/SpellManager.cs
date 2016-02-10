@@ -225,9 +225,9 @@ public class SpellManager
         return area;
     }
 
-    public void InitRange(int rangeId)
+    public void InitRange()
     {
-        _CurrentRange = GetRangeById(rangeId);
+        
 
         List<Hexagon> ranges= PlayBoardManager.GetInstance().Board.GetRange(_CurrentRange, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
         //Logger.Trace("taille list range : " + range.Count);
@@ -235,7 +235,7 @@ public class SpellManager
         {
             if (ranges[i].GameObject != null)
             {
-                if(_CurrentRange.Piercing)
+                if(_CurrentRange.Piercing && ranges[i].isVisible())
                 {
                     ranges[i].Targetable = true;
                     ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
@@ -264,7 +264,8 @@ public class SpellManager
         CurrentSelfSpell = ElementNode.GetSelfSpell(tempElements);
         CurrentSelfArea = GetAreaById(CurrentSelfSpell.AreaId);
 
-        InitRange(CurrentTargetSpell._rangeId);       
+        _CurrentRange = GetRangeById(CurrentTargetSpell._rangeId);
+        InitRange();       
     }
 
     public void ApplyEffects(List<Hexagon> finalArea, Hexagon target)
