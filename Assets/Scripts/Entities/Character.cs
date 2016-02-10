@@ -57,6 +57,19 @@ public class Character : Entity
         }
     }
 
+    public int RangeModifier
+    {
+        get
+        {
+            return _rangeModifier;
+        }
+
+        set
+        {
+            _rangeModifier = value;
+        }
+    }
+
     public State _state;
 
 	private Dictionary<Element, int> _protections;
@@ -69,6 +82,7 @@ public class Character : Entity
 	private int _sommeNegativeProtection;
 
     private Dictionary<int, PlayerOnTimeAppliedEffect> _onTimeEffects;
+    private List<int> _onTimeEffectsToRemove;
 
     private int _rangeModifier;
 
@@ -92,7 +106,7 @@ public class Character : Entity
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 
-        _rangeModifier = 0;
+        RangeModifier = 0;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;
@@ -100,6 +114,7 @@ public class Character : Entity
 		}
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
+        _onTimeEffectsToRemove = new List<int>();
         _state = State.Waiting;
 	}
 
@@ -189,7 +204,7 @@ public class Character : Entity
 		int max = MaxProtection - _sommeNegativeProtection;
 
 		_protectionsNegative[element] += Math.Min (max, protection);
-		_sommeProtection += Math.Min (max, protection);
+		_sommeNegativeProtection += Math.Min (max, protection);
 	}
 
     /// <summary>
@@ -208,7 +223,8 @@ public class Character : Entity
     public void RemoveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
     {
         Logger.Trace("Removing effect " + effect.GetId() + ".");
-        _onTimeEffects.Remove(effect.GetId());
+        _onTimeEffectsToRemove.Add(effect.GetId());
+        Logger.Trace("Removed");
     }
 
     /// <summary>
@@ -220,13 +236,23 @@ public class Character : Entity
         hexagons.Add(_position);
         foreach (PlayerOnTimeAppliedEffect effect in _onTimeEffects.Values)
         {
+            Logger.Trace("Applying OnTimeEffect " + effect.GetId());
             effect.ApplyEffect(hexagons, _position, this);
+        }
+    }
+
+
+    public void RemoveMarkedOnTimeEffects()
+    {
+        foreach (int id in _onTimeEffectsToRemove)
+        {
+            _onTimeEffects.Remove(id);
         }
     }
 
     public void ReceiveRangeModifier(int value)
     {
-        _rangeModifier += value;
+        RangeModifier += value;
     }
 
     public int GetElementResistance(Element elem)

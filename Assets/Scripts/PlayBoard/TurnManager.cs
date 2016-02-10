@@ -32,10 +32,28 @@ public class TurnManager
         return false;
     }
 
+    public void BeginTurn()
+    {
+        PlayBoardManager.GetInstance().GetCurrentPlayer().ApplyOnTimeEffects();
+        PlayBoardManager.GetInstance().GetCurrentPlayer().RemoveMarkedOnTimeEffects();
+        List<List<Hexagon>> hexagons = PlayBoardManager.GetInstance().Board.GetGrid();
+        for(int i = 0; i < hexagons.Count; ++i)
+        {
+            foreach(Hexagon hex in hexagons[i])
+            {
+                hex.ApplyOnTimeEffects();
+                hex.RemoveMarkedOnTimeEffects();
+            }
+        }
+
+    }
+
     public void EndTurn()
     {
         _turnNumber++;
         PlayBoardManager.GetInstance().Board.ResetBoard();
+
+        BeginTurn();
         //penser à appliquer les effets des buffs/debuffs sur les joeuurs
         //+ reset ce qu'il y a à reset
     }

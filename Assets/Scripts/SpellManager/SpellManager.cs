@@ -227,10 +227,9 @@ public class SpellManager
 
     public void InitRange()
     {
-        
-
         List<Hexagon> ranges= PlayBoardManager.GetInstance().Board.GetRange(_CurrentRange, PlayBoardManager.GetInstance().GetCurrentPlayer().Position);
         //Logger.Trace("taille list range : " + range.Count);
+        
         for (int i = 0; i < ranges.Count; i++)
         {
             if (ranges[i].GameObject != null)
