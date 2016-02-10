@@ -24,30 +24,52 @@ public class Server : MonoBehaviour{
         _clients = new List<TcpClient>();
         StartListening(playPort);
         _udpClient = new UdpClient(broadcastPort);
+
         _searchingClient = true;
         _udpClient.EnableBroadcast = true;
+		Logger.Warning(broadcastPort);
 
+		StartCoroutine("WaitingClient");
 
-
-        _udpClient.BeginReceive(new AsyncCallback(CallbackImHost), null);
-    }
-
-   public void CallbackImHost(IAsyncResult ar)
-   {
-        Logger.Warning("TA MERE");
-        IPEndPoint ip=new IPEndPoint(IPAddress.Any, broadcastPort);
-        byte[] data =_udpClient.Receive(ref ip);
-
-        if (BitConverter.IsLittleEndian)
-            Array.Reverse(data);
-
-        int id = BitConverter.ToInt32(data, 0);
-
-        if (id == 0)
-            Logger.Warning("id: "+id);
 
 
     }
+
+
+	void Update()
+	{
+		
+	}
+
+	public IEnumerator WaitingClient(){
+		while (_isRunning && _searchingClient) {
+			if(_udpClient.Available>=4){
+				
+				IPEndPoint ip=new IPEndPoint(IPAddress.Any, broadcastPort);
+				byte[] data =_udpClient.Receive(ref ip);
+
+				if (BitConverter.IsLittleEndian)
+					Array.Reverse(data);
+
+				int id = BitConverter.ToInt32(data, 0);
+
+				if (id == 0){
+					Logger.Warning("id: "+id);
+
+				
+
+
+					byte[] data2;
+					data2 = BitConverter.GetBytes(1);
+					if (BitConverter.IsLittleEndian)
+						Array.Reverse(data2);
+
+					_udpClient.Send(data2, data.Length, ip);
+				}
+			}
+			yield return null;
+		}
+	}
 
     private void StartListening(int port)
     {
