@@ -25,7 +25,7 @@ public class Pull : EffectDeplacement
             {
                 Character character = (Character)hexagons[i]._entity;
                 Hexagon source = caster.Position;
-                Direction.EnumDirection direction = Direction.GetDirection(hexagons[i], source);
+                Direction.EnumDirection direction = Direction.GetDirection(target, source);
                 character.TranslateCharacter(direction, _nbDeplacement);
                 character._state = Character.State.Translating;
                 Logger.Trace("Hexagon "+ i +" has a character");

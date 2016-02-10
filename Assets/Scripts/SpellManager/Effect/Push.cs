@@ -22,7 +22,7 @@ public class Push : EffectDeplacement
             {
                 Character character = (Character)hexagons[i]._entity;
                 Hexagon source = caster.Position;
-                Direction.EnumDirection direction = Direction.GetDirection(source, hexagons[i]);
+                Direction.EnumDirection direction = Direction.GetDirection(source, target);
                 character.TranslateCharacter(direction, _nbDeplacement);
                 character._state = Character.State.Translating;
                 Logger.Trace("Hexagon " + i + " has a character");

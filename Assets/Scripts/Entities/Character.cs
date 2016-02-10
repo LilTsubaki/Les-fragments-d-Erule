@@ -255,7 +255,10 @@ public class Character : Entity
             return _position;
         else
         {
+            _position._entity = null;
+            target._entity = this;
             _position = target;
+
             return TranslateCharacter(direction, count - 1);
         }
     }
