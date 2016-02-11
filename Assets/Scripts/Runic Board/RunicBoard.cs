@@ -267,6 +267,8 @@ public class RunicBoard {
             _runesInHand.Add(rune.PositionInHand, rune);
         }
 
+        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints += _runesOnBoard.Count;
+
         _runesOnBoard.Clear();
     }
 
