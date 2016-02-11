@@ -137,6 +137,10 @@ public class Server : MonoBehaviour{
                         stream.Flush();
                         break;
 
+				case 2:
+					ReadRunicBoard (client);
+					break;
+
                     default:
                         Logger.Warning("Default id");
                         break;
@@ -147,5 +151,23 @@ public class Server : MonoBehaviour{
         }
        
     }
+
+	void ReadRunicBoard(TcpClient client){
+		Logger.Trace ("ReadRunicBoard");
+
+		Dictionary<int,Rune> map = NetworkUtils.ReadRunicBoard (client.GetStream ());
+		RunicBoard rBoard=RunicBoardManager.GetInstance ().GetBoardPlayer1 ();
+		rBoard.RunesOnBoard = map;
+		rBoard.LogRunesOnBoard ();
+
+
+		NetworkUtils.WriteInt (3, client.GetStream());
+		SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (rBoard.GetSortedElementQueue ());
+		NetworkUtils.WriteBool (spell!=null, client.GetStream());
+		NetworkUtils.WriteBool (SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
+
+		client.GetStream().Flush();
+
+	}
 
 }

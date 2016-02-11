@@ -33,6 +33,8 @@ public class ServerBehaviour : MonoBehaviour {
 		Logger.logLvl = Logger.Type.TRACE;
 
 		SpellManager.getInstance();
+		RunicBoardManager.GetInstance ().RegisterBoard (new RunicBoard ());
+
 
 	}
 	

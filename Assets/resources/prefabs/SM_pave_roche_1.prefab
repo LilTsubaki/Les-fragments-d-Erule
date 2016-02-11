@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 422866}
   - 33: {fileID: 3353086}
   - 23: {fileID: 2393726}
-  m_Layer: 0
+  - 64: {fileID: 6490832}
+  m_Layer: 8
   m_Name: SM_pave_roche_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,13 +63,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180614}
   m_Mesh: {fileID: 4300000, guid: 41155c31f3b7c054399d08eab9c39a7d, type: 3}
+--- !u!64 &6490832
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 41155c31f3b7c054399d08eab9c39a7d, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180614}

@@ -31,6 +31,22 @@ public class NetworkUtils {
         return BitConverter.ToInt32(data, 0);
     }
 
+	public static void WriteBool(bool b, NetworkStream stream)
+	{
+		byte[] data;
+		data = BitConverter.GetBytes(b);
+
+		stream.Write(data,0, sizeof(bool));
+	}
+
+	public static bool ReadBool(NetworkStream stream)
+	{
+		byte[] data = new byte[sizeof(bool)];
+
+		stream.Read(data, 0, sizeof(bool));
+		return BitConverter.ToBoolean(data, 0);
+	}
+
 
     public static void WriteChar(char c, NetworkStream stream)
     {
