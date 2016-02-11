@@ -148,9 +148,12 @@ public class PlayBoard  {
     {
         _astar.reset();
         List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
-        if (hexagon != null)
+        int lengthOfPath = hexagons.Count;
+        Logger.Debug(lengthOfPath);
+        if (hexagons != null && PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints >= lengthOfPath)
         {
             character.PathToFollow = hexagons;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints -= lengthOfPath;
             return true;
         }
         return false;
