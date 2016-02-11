@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class RunicBoardManager{
 
@@ -8,7 +8,14 @@ public class RunicBoardManager{
     private RunicBoard _boardPlayer1;
     //private RunicBoard _boardPlayer2;
 
-    RunicBoardManager() { }
+    private Dictionary<int, CompatibilityMalus> _compatibilityMaluses;
+    private Dictionary<string, Compatibility> _compatibilities;
+
+    RunicBoardManager()
+    {
+        _compatibilityMaluses = new Dictionary<int, CompatibilityMalus>();
+        _compatibilities = new Dictionary<string, Compatibility>();
+    }
 
     public static RunicBoardManager GetInstance()
     {
@@ -33,4 +40,31 @@ public class RunicBoardManager{
     {
         return _boardPlayer2;
     }*/
+
+    private void Init()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/compatibilityMalus.json");
+        JSONObject array = js.list[0];
+        foreach(JSONObject malus in array.list)
+        {
+            CompatibilityMalus m = new CompatibilityMalus(malus);
+            _compatibilityMaluses.Add(m.Id, m);
+        }
+
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/compatibility.json");
+        array = js.list[0];
+        foreach(JSONObject comp in array.list)
+        {
+            string id = "";
+            foreach(JSONObject elem in comp.GetField(comp.keys[0]).list)
+            {
+                id += elem.n;
+            }
+            int idMalus = (int) comp.GetField(comp.keys[1]).n;
+            CompatibilityMalus mal;
+            _compatibilityMaluses.TryGetValue(idMalus, out mal);
+            Compatibility compa = new Compatibility(id, mal);
+            _compatibilities.Add(id, compa);
+        }
+    }
 }
