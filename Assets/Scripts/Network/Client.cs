@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System;
 using System.Net;
+using System.Threading;
 
 public class Client : MonoBehaviour{
 
@@ -20,7 +21,8 @@ public class Client : MonoBehaviour{
         _tcpClient = new TcpClient();
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
-        StartCoroutine("WaitHosts");
+        Thread newThread = new Thread(WaitHosts);
+        newThread.Start();
         ClientManager.GetInstance().Init(this);
     }
 
@@ -59,7 +61,7 @@ public class Client : MonoBehaviour{
         _udpClient.Send(data, data.Length, ep);
     }
 
-    IEnumerator WaitHosts()
+    void WaitHosts()
     {
         while (_isRunning && _searchingHosts)
         {
@@ -79,14 +81,13 @@ public class Client : MonoBehaviour{
                     case 1:
                         Logger.Warning("Connect to " + ip.Address.ToString());
                         Connect(ip.Address.ToString(), playPort);
+                        _searchingHosts = false;
                         break;
                     default:
                         Logger.Error("Nope.");
                         break;
                 }
             }
-
-            yield return null;
         }
 
     }

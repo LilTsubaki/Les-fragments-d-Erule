@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System;
+using System.Threading;
 
 public class Server : MonoBehaviour{
 
@@ -11,7 +12,7 @@ public class Server : MonoBehaviour{
     public int playPort;
 
     TcpListener _listener;
-    List<TcpClient> _clients;
+    List<ServerListener> _clients;
 
     UdpClient _udpClient;
 
@@ -21,7 +22,7 @@ public class Server : MonoBehaviour{
 
     public void Awake()
     {
-        _clients = new List<TcpClient>();
+        _clients = new List<ServerListener>();
         
         _udpClient = new UdpClient(broadcastPort);
 		_udpClient.EnableBroadcast = true;
@@ -30,7 +31,11 @@ public class Server : MonoBehaviour{
 		_isRunning = true;
         
 		StartListening(playPort);
-		StartCoroutine("WaitingClient");
+        
+		//StartCoroutine("WaitingClient");
+        Thread newThread =new Thread(WaitingClient);
+        newThread.Start();
+
 
     }
 
@@ -40,7 +45,7 @@ public class Server : MonoBehaviour{
 		
 	}
 
-	public IEnumerator WaitingClient(){
+	public void WaitingClient(){
 		while (_isRunning && _searchingClient) {
 			if(_udpClient.Available>=4){
 				
@@ -66,7 +71,6 @@ public class Server : MonoBehaviour{
 					_udpClient.Send(data2, data.Length, ip);
 				}
 			}
-			yield return null;
 		}
 	}
 
@@ -76,7 +80,9 @@ public class Server : MonoBehaviour{
         {
 			_listener = new TcpListener(IPAddress.Any, port);
             _listener.Start();
-            StartCoroutine("Listen");
+            //StartCoroutine("Listen");
+            Thread newThread = new Thread(Listen);
+            newThread.Start();
         }
         catch
         { }
@@ -89,7 +95,6 @@ public class Server : MonoBehaviour{
             if (_listener.Pending())
             {
                 TcpClient client = _listener.AcceptTcpClient();
-                _clients.Add(client);
                 return client;
             }
         }
@@ -104,7 +109,7 @@ public class Server : MonoBehaviour{
         _isRunning = false;
     }
 
-    IEnumerator Listen()
+    void Listen()
     {
 		while (_isRunning && _searchingClient)
         {
@@ -112,62 +117,16 @@ public class Server : MonoBehaviour{
             if (client != null)
             {
                 Logger.Trace("Client found");
-                StartCoroutine("ListenClient", client);
+                //StartCoroutine("ListenClient", client);
+                ServerListener listener = new ServerListener(this, client);
+                _clients.Add(listener);
+                Thread newThread = new Thread(listener.ListenClient);
+                newThread.Start();
+
+                
             }
-            yield return null;
                 
         }
     }
-
-    IEnumerator ListenClient(TcpClient client)
-    {
-        while (_isRunning)
-        {
-            NetworkStream stream = client.GetStream();
-            if (stream.DataAvailable)
-            {
-                
-                int id = NetworkUtils.ReadInt(stream);
-                Logger.Warning("id: " + id);
-
-                switch (id)
-                {
-                    case 0:
-                        NetworkUtils.WriteInt(1, stream);
-                        stream.Flush();
-                        break;
-
-				case 2:
-					ReadRunicBoard (client);
-					break;
-
-                    default:
-                        Logger.Warning("Default id");
-                        break;
-                }
-            }
-
-            yield return null;
-        }
-       
-    }
-
-	void ReadRunicBoard(TcpClient client){
-		Logger.Trace ("ReadRunicBoard");
-
-		Dictionary<int,Rune> map = NetworkUtils.ReadRunicBoard (client.GetStream ());
-		RunicBoard rBoard=RunicBoardManager.GetInstance ().GetBoardPlayer1 ();
-		rBoard.RunesOnBoard = map;
-		rBoard.LogRunesOnBoard ();
-
-
-		NetworkUtils.WriteInt (3, client.GetStream());
-		SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (rBoard.GetSortedElementQueue ());
-		NetworkUtils.WriteBool (spell!=null, client.GetStream());
-		NetworkUtils.WriteBool (SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
-
-		client.GetStream().Flush();
-
-	}
 
 }
