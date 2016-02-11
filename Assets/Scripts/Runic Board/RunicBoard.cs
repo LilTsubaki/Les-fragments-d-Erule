@@ -235,8 +235,8 @@ public class RunicBoard {
         }
         _runesOnBoard.Clear();
 
-        LogHand();
-        LogRunesOnBoard();
+        //LogHand();
+        //LogRunesOnBoard();
     }
 
     /// <summary>

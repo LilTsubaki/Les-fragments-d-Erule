@@ -77,5 +77,13 @@ public class PlayBoardManager
         else
             return Character2;
     }
+
+    public Character GetOtherPlayer()
+    {
+        if (TurnManager.GetInstance().isMyTurn(Character1))
+            return Character2;
+        else
+            return Character1;
+    }
 }
 
