@@ -35,6 +35,11 @@ public class RunicBoard {
         {
             return _runesOnBoard;
         }
+
+        set
+        {
+            _runesOnBoard = value;
+        }
     }
 
     /// <summary>

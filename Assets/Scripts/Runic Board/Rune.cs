@@ -53,6 +53,13 @@ public class Rune
         PositionInHand = positionInHand;
     }
 
+    public Rune(Element element, int positionOnBoard)
+    {
+        Element = element;
+        PositionOnBoard = positionOnBoard;
+        PositionInHand = -1;
+    }
+
     public bool IsOnBoard()
     {
         return _positionOnBoard >= 0;

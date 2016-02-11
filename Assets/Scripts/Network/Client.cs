@@ -15,11 +15,12 @@ public class Client : MonoBehaviour{
 
     public void Awake()
     {
+       
         _tcpClient = new TcpClient();
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         StartCoroutine("WaitHosts");
-        Logger.logLvl = Logger.Type.TRACE;
+        ClientManager.GetInstance().Init(this);
     }
 
     void Update()
@@ -27,11 +28,13 @@ public class Client : MonoBehaviour{
          if (Input.GetMouseButtonDown(1))
          {
             SearchHost();
+            //Connect("159.84.141.84", playPort);
          }
     }
 
     public void Connect(string host, int port)
     {
+        Logger.Trace("Try Connect to " + host + ":" + port);
         _tcpClient.Connect(host, port);
     }
 
@@ -73,7 +76,8 @@ public class Client : MonoBehaviour{
                 switch (id)
                 {
                     case 1:
-                        Logger.Warning("YOLOLOLOLOLO" + ip.Address.ToString());
+                        Logger.Warning("Connect to " + ip.Address.ToString());
+                        Connect(ip.Address.ToString(), playPort);
                         break;
                     default:
                         Logger.Error("Nope.");
@@ -84,6 +88,14 @@ public class Client : MonoBehaviour{
             yield return null;
         }
 
+    }
+
+
+    public void SendBoard()
+    {
+        NetworkUtils.WriteInt(2, _tcpClient.GetStream());
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        _tcpClient.GetStream().Flush();
     }
 
 }

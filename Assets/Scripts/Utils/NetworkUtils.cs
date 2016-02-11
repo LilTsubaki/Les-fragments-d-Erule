@@ -3,6 +3,7 @@ using System.Collections;
 using System.Net.Sockets;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 public class NetworkUtils {
 
@@ -70,6 +71,40 @@ public class NetworkUtils {
 
         return sw.ToString();
 
+    }
+
+    public static void WriteElement(Element element, NetworkStream stream)
+    {
+       WriteInt(element._id, stream);
+    }
+
+    public static Element ReadElement(NetworkStream stream)
+    {
+        return Element.GetElement(ReadInt(stream));
+    }
+     
+    public static void WriteRunicBoard(RunicBoard runicBoard, NetworkStream stream)
+    {
+        WriteInt(runicBoard.RunesOnBoard.Count, stream);
+        foreach (KeyValuePair<int, Rune> entry in runicBoard.RunesOnBoard)
+        {
+            WriteInt(entry.Key, stream);
+            WriteElement(entry.Value.Element, stream);
+        }
+    }
+
+    public static Dictionary<int, Rune> ReadRunicBoard(NetworkStream stream)
+    {
+        Dictionary<int, Rune> map = new Dictionary<int, Rune>();
+        int nbRune = ReadInt(stream);
+        for(int i = 0; i<nbRune; ++i)
+        {
+            int position = ReadInt(stream);
+            Rune rune = new Rune(ReadElement(stream), position);
+            map.Add(position, rune);
+        }
+
+        return map;
     }
 
 }
