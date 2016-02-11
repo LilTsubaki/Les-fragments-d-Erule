@@ -125,16 +125,34 @@ public class RunicBoardBehaviour : MonoBehaviour {
                 {
                     Rune rune = _heldRune.GetComponent<RuneBehaviour>()._rune;
                     int slotPosition = runeSlotBehaviour._position;
+                    // Rune is currently on board
                     if (rune.IsOnBoard())
                     {
-                        if(Board.ChangeRunePosition((int)rune.PositionOnBoard, (int)slotPosition))
+                        // Rune is released on board
+                        if(runeSlotBehaviour.isBoard)
                         {
-                            _heldRune.transform.SetParent(hitInfo.collider.transform);
+                            Logger.Debug("BOARD");
+                            if (Board.ChangeRunePosition(rune.PositionOnBoard, slotPosition))
+                            {
+                                _heldRune.transform.SetParent(hitInfo.collider.transform);
+                            }
+                        }
+                        // Rune is released in hand
+                        else
+                        {
+                            Logger.Debug("HAND");
+                            if (_board.RemoveRuneFromBoard(rune.PositionOnBoard))
+                            {
+                                Transform hand = hitInfo.collider.transform.parent;
+                                Transform slot = hand.GetChild(rune.PositionInHand);
+                                _heldRune.transform.SetParent(slot);
+                            }
                         }
                     }
+                    // Rune is currently in hand
                     else
                     {
-                        int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (int)slotPosition);
+                        int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
                             Transform parent;
