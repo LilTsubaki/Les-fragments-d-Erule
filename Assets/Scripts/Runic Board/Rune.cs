@@ -7,6 +7,9 @@ public class Rune
     private int _positionOnBoard;
     private int _positionInHand;
 
+    // The turn (given by TurnManager._turnNumber) when the rune was last placed.
+    private int _turnUsed;
+
     public Element Element
     {
         get
@@ -43,6 +46,19 @@ public class Rune
         set
         {
             _positionInHand = value;
+        }
+    }
+
+    public int TurnUsed
+    {
+        get
+        {
+            return _turnUsed;
+        }
+
+        set
+        {
+            _turnUsed = value;
         }
     }
 

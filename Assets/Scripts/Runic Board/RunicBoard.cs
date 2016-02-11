@@ -140,6 +140,7 @@ public class RunicBoard {
                 // If no runes are on the board, places the rune in the center
                 if (_runesOnBoard.Count == 0)
                 {
+                    rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
                     _runesOnBoard.Add(12, rune);
                     rune.PositionOnBoard = 12;
                     _runesInHand.Remove(index);
@@ -159,6 +160,7 @@ public class RunicBoard {
                 {
                     if (_runesOnBoard.ContainsKey(neighbours[i]))
                     {
+                        rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
                         _runesOnBoard.Add(position, rune);
                         rune.PositionOnBoard = position;
                         _runesInHand.Remove(index);
@@ -182,10 +184,14 @@ public class RunicBoard {
         bool runeFound = _runesOnBoard.TryGetValue(position, out rune);
         if (runeFound)
         {
-            _runesOnBoard.Remove(position);
-            _runesInHand.Add(rune.PositionInHand, rune);
-            rune.PositionOnBoard = -1;
-            return true;
+            if (rune.TurnUsed == TurnManager.GetInstance().TurnNumber)
+            {
+                _runesOnBoard.Remove(position);
+                _runesInHand.Add(rune.PositionInHand, rune);
+                rune.PositionOnBoard = -1;
+                PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
+                return true;
+            }
         }
         return false;
     }
