@@ -120,6 +120,7 @@ public class Character : Entity
 
     public void ReceiveHeal(int value)
     {
+        Logger.Debug("Receive heal value : " + value);
         if (_lifeCurrent + value > _lifeMax)
             _lifeCurrent = _lifeMax;
         else
@@ -128,6 +129,7 @@ public class Character : Entity
 
     public void ReceiveDamage(int value, Element element)
     {
+        Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
         int positiveElementResistance;
         int negativeElementResistance;
 
@@ -147,8 +149,10 @@ public class Character : Entity
     }
 
 	public void ReceiveGlobalProtection(int protection){
-		
-		int val = Math.Min (protection, _globalNegativeProtection);
+
+        Logger.Debug("Receive global protection : " + protection);
+
+        int val = Math.Min (protection, _globalNegativeProtection);
 
 		_globalNegativeProtection -= val;
 		_sommeNegativeProtection -= val;
@@ -163,7 +167,9 @@ public class Character : Entity
 
 	public void ReceiveGlobalNegativeProtection(int protection){
 
-		int val = Math.Min (protection, _globalProtection);
+        Logger.Debug("Receive global negative protection : " + protection);
+
+        int val = Math.Min (protection, _globalProtection);
 
 		_globalProtection -= val;
 		_sommeProtection -= val;
@@ -177,8 +183,10 @@ public class Character : Entity
 	}
 
 	public void ReceiveElementProtection(int protection, Element element){
-		
-		int val = Math.Min (protection, _protectionsNegative[element]);
+
+        Logger.Debug("Receive element protection : " + protection + " for element : " + element._name);
+
+        int val = Math.Min (protection, _protectionsNegative[element]);
 
 		_protectionsNegative[element] -= val;
 		_sommeNegativeProtection -= val;
@@ -193,8 +201,10 @@ public class Character : Entity
 	}
 
 	public void ReceiveElementNegativeProtection(int protection, Element element){
-		
-		int val = Math.Min (protection, _protections[element]);
+
+        Logger.Debug("Receive element negative protection : " + protection + " for element : " + element._name);
+
+        int val = Math.Min (protection, _protections[element]);
 
 		_protections[element] -= val;
 		_sommeProtection -= val;
@@ -252,6 +262,8 @@ public class Character : Entity
 
     public void ReceiveRangeModifier(int value)
     {
+        Logger.Debug("Receive range modifier : " + value);
+
         RangeModifier += value;
     }
 
