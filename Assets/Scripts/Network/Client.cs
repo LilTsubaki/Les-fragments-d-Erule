@@ -103,9 +103,16 @@ public class Client : MonoBehaviour{
     }
     public SendBoardResponse SendBoard()
     {
+        int begin = System.DateTime.Now.Millisecond;
+        Logger.Debug(begin);
+
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
+        
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
+
+        Logger.Debug("After flush " + (System.DateTime.Now.Millisecond - begin));
+        begin = System.DateTime.Now.Millisecond;
 
         int id;
         do
@@ -114,9 +121,17 @@ public class Client : MonoBehaviour{
         }
         while (ReadMessage(id)) ;
 
+        Logger.Debug("id " + id);
+
+        Logger.Debug("After do while " + (System.DateTime.Now.Millisecond - begin));
+        begin = System.DateTime.Now.Millisecond;
+
         if (id == 3)
         {
-            return new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            Logger.Debug("After do while " + (System.DateTime.Now.Millisecond - begin));
+            begin = System.DateTime.Now.Millisecond;
+            return sbr;
         }
 
         else
