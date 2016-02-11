@@ -137,29 +137,38 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (int)slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
-                            if(response._exist)
+                            Transform parent;
+                            if (newPositionOnBoard == 12)
                             {
-                                Transform parent;
-                                if (newPositionOnBoard == 12)
-                                {
-                                    parent = _boardGO.transform.GetChild(9).transform;
-                                }
-                                else
-                                {
-                                    parent = hitInfo.collider.transform;
-                                }
-                                _heldRune.transform.SetParent(parent);
+                                parent = _boardGO.transform.GetChild(9).transform;
                             }
                             else
                             {
-                                Board.RemoveRuneFromBoard(slotPosition);
+                                parent = hitInfo.collider.transform;
                             }
-                            
+
+                            _heldRune.transform.SetParent(parent);
+
+                            /* SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
+                             if(response._exist)
+                             {
+                                 Transform parent;
+                                 if (newPositionOnBoard == 12)
+                                 {
+                                     parent = _boardGO.transform.GetChild(9).transform;
+                                 }
+                                 else
+                                 {
+                                     parent = hitInfo.collider.transform;
+                                 }
+                                 _heldRune.transform.SetParent(parent);
+                             }
+                             else
+                             {
+                                 Board.RemoveRuneFromBoard(slotPosition);
+                             }*/
                         }
-
                     }
-
                 }
             }
             

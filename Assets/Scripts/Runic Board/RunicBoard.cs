@@ -132,34 +132,39 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        Rune rune;
-        if(_runesInHand.TryGetValue(index, out rune))
+        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints > 0)
         {
-            // If no runes are on the board, places the rune in the center
-            if (_runesOnBoard.Count == 0)
+            Rune rune;
+            if(_runesInHand.TryGetValue(index, out rune))
             {
-                _runesOnBoard.Add(12, rune);
-                rune.PositionOnBoard = 12;
-                _runesInHand.Remove(index);
-                return 12;
-            }
-
-            // The player cannot place a rune if a rune is already in place at the position
-            if (_runesOnBoard.ContainsKey(position))
-            {
-                return -1;
-            }
-
-            // If runes are placed around this position, place the rune
-            List<int> neighbours = GetAdjacentPositions(position);
-            for(int i = 0; i < neighbours.Count; i++)
-            {
-                if (_runesOnBoard.ContainsKey(neighbours[i]))
+                // If no runes are on the board, places the rune in the center
+                if (_runesOnBoard.Count == 0)
                 {
-                    _runesOnBoard.Add(position, rune);
-                    rune.PositionOnBoard = (int)position;
+                    _runesOnBoard.Add(12, rune);
+                    rune.PositionOnBoard = 12;
                     _runesInHand.Remove(index);
-                    return (int)position;
+                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints--;
+                    return 12;
+                }
+
+                // The player cannot place a rune if a rune is already in place at the position
+                if (_runesOnBoard.ContainsKey(position))
+                {
+                    return -1;
+                }
+
+                // If runes are placed around this position, place the rune
+                List<int> neighbours = GetAdjacentPositions(position);
+                for(int i = 0; i < neighbours.Count; i++)
+                {
+                    if (_runesOnBoard.ContainsKey(neighbours[i]))
+                    {
+                        _runesOnBoard.Add(position, rune);
+                        rune.PositionOnBoard = position;
+                        _runesInHand.Remove(index);
+                        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints--;
+                        return position;
+                    }
                 }
             }
         }
@@ -208,7 +213,7 @@ public class RunicBoard {
                 {
                     _runesOnBoard.Add(newPosition, runeToMove);
                     _runesOnBoard.Remove(actualPosition);
-                    runeToMove.PositionOnBoard = (int)newPosition;
+                    runeToMove.PositionOnBoard = newPosition;
                     Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
                     return true;
                 }
