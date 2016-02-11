@@ -186,11 +186,24 @@ public class RunicBoard {
         {
             if (rune.TurnUsed == TurnManager.GetInstance().TurnNumber)
             {
-                _runesOnBoard.Remove(position);
-                _runesInHand.Add(rune.PositionInHand, rune);
-                rune.PositionOnBoard = -1;
-                PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
-                return true;
+                Dictionary<int, Rune> tempRunesOnBoard = new Dictionary<int, Rune>(_runesOnBoard);
+                tempRunesOnBoard.Remove(position);
+                if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+                {
+                    _runesOnBoard.Remove(position);
+                    _runesInHand.Add(rune.PositionInHand, rune);
+                    rune.PositionOnBoard = -1;
+                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
+                    return true;
+                }
+                else
+                {
+                    Logger.Debug("Could not remove rune from " + position + " : not every runes are connected");
+                }
+            }
+            else
+            {
+                Logger.Debug("Could not remove rune from " + position + " : the rune was not placed on this turn");
             }
         }
         return false;
@@ -253,10 +266,26 @@ public class RunicBoard {
             rune.PositionOnBoard = -1;
             _runesInHand.Add(rune.PositionInHand, rune);
         }
-        _runesOnBoard.Clear();
 
-        //LogHand();
-        //LogRunesOnBoard();
+        _runesOnBoard.Clear();
+    }
+
+    /// <summary>
+    /// Remove all runes that were placed on the current turn.
+    /// </summary>
+    public void RemoveAllRunesFromThisTurn()
+    {
+        List<int> markedToDelete = new List<int>();
+        foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
+        {
+            if (kvp.Value.TurnUsed == TurnManager.GetInstance().TurnNumber)
+                markedToDelete.Add(kvp.Key);
+        }
+
+        for (int i = 0; i < markedToDelete.Count; i++)
+        {
+            _runesOnBoard.Remove(markedToDelete[i]);
+        }
     }
 
     /// <summary>
