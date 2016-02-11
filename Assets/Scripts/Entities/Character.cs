@@ -138,7 +138,7 @@ public class Character : Entity
 
         _maxActionPoints = 4;
         _currentActionPoints = 1;
-        _turnNumber = 0;
+        _turnNumber = 1;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;

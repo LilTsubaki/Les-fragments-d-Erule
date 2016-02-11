@@ -8,11 +8,11 @@ public class TurnManager
     private static TurnManager _turnManager;
 
     private int _turnNumber;
-    private bool _firstPlayer;
+    private bool _secondPlayerStarted;
 
     private TurnManager()
     {
-        _firstPlayer = new Random().Next(100) % 2 == 0;
+        _secondPlayerStarted = new Random().Next(100) % 2 == 0;
         _turnNumber = 0;
     }
 
@@ -28,9 +28,9 @@ public class TurnManager
 
     public bool isMyTurn(Character charac)
     {
-        if((_turnNumber % 2 == 0 ^ _firstPlayer) && PlayBoardManager.GetInstance().Character1 == charac)
+        if((_turnNumber % 2 == 0 ^ _secondPlayerStarted) && PlayBoardManager.GetInstance().Character1 == charac)
             return true;
-        if ((_turnNumber % 2 == 1 ^ _firstPlayer) && PlayBoardManager.GetInstance().Character2 == charac)
+        if ((_turnNumber % 2 == 1 ^ _secondPlayerStarted) && PlayBoardManager.GetInstance().Character2 == charac)
             return true;
         return false;
     }
@@ -38,19 +38,9 @@ public class TurnManager
     public void BeginTurn()
     {
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
-        Character otherPlayer = PlayBoardManager.GetInstance().GetOtherPlayer();
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
-        currentPlayer.TurnNumber++;
-
-        if (currentPlayer.TurnNumber < 15 && ((currentPlayer.TurnNumber) % 5 == 0))
-        {
-            otherPlayer.CurrentActionPoints++;
-        }
-
-        Logger.Debug("PA currentPlayer : " + currentPlayer.CurrentActionPoints);
-        Logger.Debug("PA otherPlayer : " + otherPlayer.CurrentActionPoints);
-
+        
         List<List<Hexagon>> hexagons = PlayBoardManager.GetInstance().Board.GetGrid();
         for(int i = 0; i < hexagons.Count; ++i)
         {
@@ -64,6 +54,17 @@ public class TurnManager
 
     public void EndTurn()
     {
+        Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
+        Character otherPlayer = PlayBoardManager.GetInstance().GetOtherPlayer();
+        currentPlayer.ApplyOnTimeEffects();
+        currentPlayer.RemoveMarkedOnTimeEffects();
+
+        currentPlayer.TurnNumber++;
+        currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
+
+        Logger.Debug("PA currentPlayer : " + currentPlayer.CurrentActionPoints);
+        Logger.Debug("PA otherPlayer : " + otherPlayer.CurrentActionPoints);
+
         _turnNumber++;
         PlayBoardManager.GetInstance().Board.ResetBoard();
 
