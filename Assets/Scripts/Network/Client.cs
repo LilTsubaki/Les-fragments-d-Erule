@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System;
 using System.Net;
@@ -89,13 +90,39 @@ public class Client : MonoBehaviour{
         }
 
     }
+    
+    public bool ReadMessage(int id)
+    {
+        switch (id)
+        {
+            default:
+                return false;
+        }
 
-
-    public void SendBoard()
+    }
+    public SendBoardResponse SendBoard()
     {
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
+
+        int id;
+        do
+        {
+            id = NetworkUtils.ReadInt(_tcpClient.GetStream());
+        }
+        while (ReadMessage(id)) ;
+
+        if (id == 3)
+        {
+            return new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+        }
+
+        else
+        {
+            return null;
+        }
+
     }
 
 }

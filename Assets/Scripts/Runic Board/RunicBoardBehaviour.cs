@@ -137,17 +137,27 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, (int)slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            Transform parent;
-                            if (newPositionOnBoard == 12)
+                            SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
+                            if(response._exist)
                             {
-                                parent = _boardGO.transform.GetChild(9).transform;
+                                Transform parent;
+                                if (newPositionOnBoard == 12)
+                                {
+                                    parent = _boardGO.transform.GetChild(9).transform;
+                                }
+                                else
+                                {
+                                    parent = hitInfo.collider.transform;
+                                }
+                                _heldRune.transform.SetParent(parent);
                             }
                             else
                             {
-                                parent = hitInfo.collider.transform;
+                                Board.RemoveRuneFromBoard(slotPosition);
                             }
-                            _heldRune.transform.SetParent(parent);
+                            
                         }
+
                     }
 
                 }
