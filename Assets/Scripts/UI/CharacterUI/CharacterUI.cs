@@ -9,6 +9,7 @@ public class CharacterUI : MonoBehaviour {
     public Text _name;
     public Image _characterImage;
     public Slider _life;
+    public Text _lifePointsText;
     public GameObject _actionPoints;
     public Image _point;
 
@@ -16,7 +17,7 @@ public class CharacterUI : MonoBehaviour {
     /******************************************************************
     Testing parameters
     ******************************************************************/
-    [Range(0,7)]
+    [Range(0,4)]
     public int _nbPoints;
 
     [Range(-50, 50)]
@@ -60,16 +61,15 @@ public class CharacterUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //_name.text = "Xx-S0rc310r-xX";
-        //_life.maxValue = _character._lifeMax;
 
         _listActionPoints = new List<Image>();
 
-        for (int i = 0; i < 7; ++i)
+        for (int i = 0; i < Character._maxActionPoints; ++i)
         {
             Image n = Instantiate(_point);
             n.transform.SetParent(_actionPoints.transform);
             n.enabled = true;
+            n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if(_isOnLeft)
                 pos.x = 10 + i * (20 + 5);
@@ -84,26 +84,58 @@ public class CharacterUI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         UpdateLife();
+        UpdateActionPoints();
         UpdateResistances();
 	}
 
     void UpdateLife()
     {
-        int nbPoints = _character.CurrentActionPoints;
-        for (int i = 0; i < _listActionPoints.Count; ++i)
+        if (_character != null)
         {
-            if (i < nbPoints)
+            _life.value = _character._lifeCurrent;
+            _lifePointsText.text = _character._lifeCurrent.ToString();
+        }
+    }
+
+    void UpdateActionPoints()
+    {
+        Color colorActive = new Color(0, 0.2f, 1, 1);
+        Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+
+        if (_character != null)
+        {
+            int nbPoints = _character.CurrentActionPoints;
+            for (int i = 0; i < _listActionPoints.Count; ++i)
             {
-                _listActionPoints[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                _listActionPoints[i].gameObject.SetActive(false);
+                Color c;
+                if (i < nbPoints)
+                {
+                    c = colorActive;
+                }
+                else
+                {
+                    c = colorEmpty;
+                }
+                _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
             }
         }
-
-        int life = _character._lifeCurrent;
-        _life.value = life;
+        else
+        {
+            int nbPoints = _nbPoints;
+            for (int i = 0; i < _listActionPoints.Count; ++i)
+            {
+                Color c = _listActionPoints[i].gameObject.GetComponent<Image>().color;
+                if (i < nbPoints)
+                {
+                    c = colorActive;
+                }
+                else
+                {
+                    c = colorEmpty;
+                }
+                _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
+            }
+        }
     }
 
     void UpdateResistances()
