@@ -7,6 +7,7 @@ public class PlayBoardCreator : MonoBehaviour {
 	public GameObject hexagon;
 	public GameObject obstacle;
 	public GameObject underground;
+	public GameObject cursor;
     public string boardName;
 	public int width;
 	public int height;
@@ -21,6 +22,11 @@ public class PlayBoardCreator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayBoardManager.GetInstance ().Init (width, height, null, null);
+	}
+
+	void FixedUpdate(){
+		if (cursor != null)
+			cursor.transform.position = new Vector3(0.866f * x - 0.433f * y, z, 0.75f * y);
 	}
 
 	public void BuildHexagon()
