@@ -11,9 +11,13 @@ public class Character : Entity
 	public static int MaxProtection = 50;
 	public readonly int _lifeMax;
 	public int _lifeCurrent;
-	public int _currentActionPoints;
+
+    public static int _maxActionPoints;
+    private int _currentActionPoints;
 
     private string _name;
+
+    private int _turnNumber;
 
     private List<Hexagon> _pathToFollow;
 
@@ -70,6 +74,32 @@ public class Character : Entity
         }
     }
 
+    public int TurnNumber
+    {
+        get
+        {
+            return _turnNumber;
+        }
+
+        set
+        {
+            _turnNumber = value;
+        }
+    }
+
+    public int CurrentActionPoints
+    {
+        get
+        {
+            return _currentActionPoints;
+        }
+
+        set
+        {
+            _currentActionPoints = value;
+        }
+    }
+
     public State _state;
 
 	private Dictionary<Element, int> _protections;
@@ -85,8 +115,6 @@ public class Character : Entity
     private List<int> _onTimeEffectsToRemove;
 
     private int _rangeModifier;
-
-    
 
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
@@ -106,7 +134,11 @@ public class Character : Entity
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 
-        RangeModifier = 0;
+        _rangeModifier = 0;
+
+        _maxActionPoints = 4;
+        _currentActionPoints = 1;
+        _turnNumber = 0;
 
 		foreach (var e in Element.GetElements()) {
 			_protections [e] = 0;

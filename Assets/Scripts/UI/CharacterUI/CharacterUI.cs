@@ -89,7 +89,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateLife()
     {
-        int nbPoints = _character._currentActionPoints;
+        int nbPoints = _character.CurrentActionPoints;
         for (int i = 0; i < _listActionPoints.Count; ++i)
         {
             if (i < nbPoints)
