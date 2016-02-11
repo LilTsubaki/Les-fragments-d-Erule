@@ -85,6 +85,52 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &182364225
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497546, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &182364226 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 126400, guid: fd565bea77ee7d74a9c873d650b27059, type: 2}
+  m_PrefabInternal: {fileID: 182364225}
 --- !u!1 &658646141
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &678089348
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1906259159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +299,8 @@ MonoBehaviour:
   hexagon: {fileID: 180614, guid: 0d8bcc528875a2d4ea3408c2de46bead, type: 2}
   obstacle: {fileID: 147714, guid: 565e18f4d3423b24c906b825c63f38b2, type: 2}
   underground: {fileID: 170682, guid: 2b44253d03d06784fa1c14a51451ebee, type: 2}
-  boardName: testAsset
+  cursor: {fileID: 182364226}
+  boardName: rockValley_V2
   width: 7
   height: 7
   x: 0
