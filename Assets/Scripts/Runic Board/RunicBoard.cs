@@ -21,6 +21,10 @@ public class RunicBoard {
     Dictionary<int, Rune> _runesInHand;
     Dictionary<int, Rune> _runesOnBoard;
 
+    private int _idPerfection = 22;
+    private int _idSublimation = 14;
+    private int _idStability = 0;
+
     public Dictionary<int, Rune> RunesInHand
     {
         get
@@ -429,5 +433,32 @@ public class RunicBoard {
             return true;
 
         return false;
+    }
+
+    public void GetPolesInfluence(out float perfection, out float sublimation, out float stability)
+    {
+        Hexagon hexPerfection = new Hexagon(_idPerfection / 5, _idPerfection % 5, null);
+        Hexagon hexSublimation = new Hexagon(_idSublimation / 5, _idSublimation % 5, null);
+        Hexagon hexStability = new Hexagon(_idStability / 5, _idStability % 5, null);
+
+        float perfect = 0;
+        float subli = 0;
+        float stabi = 0;
+
+        foreach(int id in _runesOnBoard.Keys)
+        {
+            Hexagon hexRune = new Hexagon(id / 5, id % 5, null);
+            int distPerfection = hexRune.Distance(hexPerfection);
+            int distSublimation = hexRune.Distance(hexSublimation);
+            int distStability = hexRune.Distance(hexStability);
+
+            perfect += Mathf.Ceil((4 - distPerfection) * 2.5f);
+            subli += Mathf.Ceil((4 - distSublimation) * 2.5f);
+            stabi += Mathf.Ceil((4 - distStability) * 2.5f);
+        }
+
+        perfection = perfect * 0.01f;
+        sublimation = subli * 0.01f;
+        stability = stabi * 0.01f;
     }
 }
