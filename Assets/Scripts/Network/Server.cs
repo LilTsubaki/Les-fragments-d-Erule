@@ -22,16 +22,15 @@ public class Server : MonoBehaviour{
     public void Awake()
     {
         _clients = new List<TcpClient>();
-        StartListening(playPort);
+        
         _udpClient = new UdpClient(broadcastPort);
+		_udpClient.EnableBroadcast = true;
 
         _searchingClient = true;
-        _udpClient.EnableBroadcast = true;
-		Logger.Warning(broadcastPort);
-
+		_isRunning = true;
+        
+		StartListening(playPort);
 		StartCoroutine("WaitingClient");
-
-
 
     }
 
@@ -75,10 +74,8 @@ public class Server : MonoBehaviour{
     {
         try
         {
-            IPAddress ipAddress = Dns.GetHostEntry("localhost").AddressList[0];
-            _listener = new TcpListener(ipAddress, port);
+			_listener = new TcpListener(IPAddress.Any, port);
             _listener.Start();
-            _isRunning = true;
             StartCoroutine("Listen");
         }
         catch
@@ -114,7 +111,7 @@ public class Server : MonoBehaviour{
             TcpClient client=ListenConnections();
             if (client != null)
             {
-                Logger.Warning("Client found");
+                Logger.Trace("Client found");
                 StartCoroutine("ListenClient", client);
             }
             yield return null;
