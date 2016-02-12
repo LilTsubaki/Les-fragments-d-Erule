@@ -19,6 +19,6 @@ public class TestReseau : MonoBehaviour {
 
     public void tryingToDoSpell()
     {
-        ClientManager.GetInstance()._client.SendBoard();        
+        ClientManager.GetInstance()._client.SendMakeSpell();        
     }
 }

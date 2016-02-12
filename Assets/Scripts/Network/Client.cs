@@ -19,26 +19,35 @@ public class Client : MonoBehaviour{
     {
        
         _tcpClient = new TcpClient();
+        _tcpClient.NoDelay = true;
+        _tcpClient.Client.NoDelay = true;
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         Thread newThread = new Thread(WaitHosts);
         newThread.Start();
         ClientManager.GetInstance().Init(this);
+        
     }
 
     void Update()
     {
-         if (Input.GetMouseButtonDown(1))
+         /*if (Input.GetMouseButtonDown(1))
          {
             SearchHost();
             //Connect("159.84.141.84", playPort);
-         }
+         }*/
     }
 
     public void Connect(string host, int port)
     {
         Logger.Trace("Try Connect to " + host + ":" + port);
         _tcpClient.Connect(host, port);
+    }
+
+    public void Disconnect()
+    {
+        _tcpClient.Close();
+        Logger.Warning("disconnected");
     }
 
     public void InitBroadCast(int port)
@@ -101,11 +110,38 @@ public class Client : MonoBehaviour{
         }
 
     }
-    public SendBoardResponse SendBoard()
+
+    public void SendMakeSpell()
     {
-        NetworkUtils.WriteInt(2, _tcpClient.GetStream());
+        NetworkUtils.WriteInt(4, _tcpClient.GetStream());
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
+
+
+        int id;
+        do
+        {
+            id = NetworkUtils.ReadInt(_tcpClient.GetStream());
+        }
+        while (ReadMessage(id));
+
+
+        if (id == 5)
+        {
+            SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+        }
+    }
+
+
+    public SendBoardResponse SendBoard()
+    {
+        int begin = System.DateTime.Now.Millisecond;
+
+        NetworkUtils.WriteInt(2, _tcpClient.GetStream());
+        
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        _tcpClient.GetStream().Flush();
+
 
         int id;
         do
@@ -113,10 +149,12 @@ public class Client : MonoBehaviour{
             id = NetworkUtils.ReadInt(_tcpClient.GetStream());
         }
         while (ReadMessage(id)) ;
+        
 
         if (id == 3)
         {
-            return new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            return sbr;
         }
 
         else

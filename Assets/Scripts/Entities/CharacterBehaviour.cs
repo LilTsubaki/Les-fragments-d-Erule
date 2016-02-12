@@ -38,21 +38,14 @@ public class CharacterBehaviour : MonoBehaviour
                 Hexagon hexa = rch.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
                 if (hexa != null)
                 {
-                    
-                    PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
+                    bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
                     _character.CurrentStep = 0;
 
-                    if (_character.PathToFollow != null && _character.PathToFollow.Count > 0)
+                    if (pathFound && _character.PathToFollow.Count > 0)
                         _character._state = Character.State.Moving;
                 }
             }
         }
-
-        /*if (TurnManager.GetInstance().isMyTurn(_character) && Input.GetKeyDown(KeyCode.Z))
-        {
-            _character.TranslateCharacter(Direction.EnumDirection.East, 12);
-            _character._state = Character.State.Translating;
-        }*/
 
         switch (_character._state)
         {

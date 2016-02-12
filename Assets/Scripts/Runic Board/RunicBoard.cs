@@ -21,6 +21,10 @@ public class RunicBoard {
     Dictionary<int, Rune> _runesInHand;
     Dictionary<int, Rune> _runesOnBoard;
 
+    private int _idPerfection = 22;
+    private int _idSublimation = 14;
+    private int _idStability = 0;
+
     public Dictionary<int, Rune> RunesInHand
     {
         get
@@ -128,34 +132,41 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        Rune rune;
-        if(_runesInHand.TryGetValue(index, out rune))
+        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints > 0)
         {
-            // If no runes are on the board, places the rune in the center
-            if (_runesOnBoard.Count == 0)
+            Rune rune;
+            if(_runesInHand.TryGetValue(index, out rune))
             {
-                _runesOnBoard.Add(12, rune);
-                rune.PositionOnBoard = 12;
-                _runesInHand.Remove(index);
-                return 12;
-            }
-
-            // The player cannot place a rune if a rune is already in place at the position
-            if (_runesOnBoard.ContainsKey(position))
-            {
-                return -1;
-            }
-
-            // If runes are placed around this position, place the rune
-            List<int> neighbours = GetAdjacentPositions(position);
-            for(int i = 0; i < neighbours.Count; i++)
-            {
-                if (_runesOnBoard.ContainsKey(neighbours[i]))
+                // If no runes are on the board, places the rune in the center
+                if (_runesOnBoard.Count == 0)
                 {
-                    _runesOnBoard.Add(position, rune);
-                    rune.PositionOnBoard = (int)position;
+                    rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
+                    _runesOnBoard.Add(12, rune);
+                    rune.PositionOnBoard = 12;
                     _runesInHand.Remove(index);
-                    return (int)position;
+                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints--;
+                    return 12;
+                }
+
+                // The player cannot place a rune if a rune is already in place at the position
+                if (_runesOnBoard.ContainsKey(position))
+                {
+                    return -1;
+                }
+
+                // If runes are placed around this position, place the rune
+                List<int> neighbours = GetAdjacentPositions(position);
+                for(int i = 0; i < neighbours.Count; i++)
+                {
+                    if (_runesOnBoard.ContainsKey(neighbours[i]))
+                    {
+                        rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
+                        _runesOnBoard.Add(position, rune);
+                        rune.PositionOnBoard = position;
+                        _runesInHand.Remove(index);
+                        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints--;
+                        return position;
+                    }
                 }
             }
         }
@@ -173,10 +184,27 @@ public class RunicBoard {
         bool runeFound = _runesOnBoard.TryGetValue(position, out rune);
         if (runeFound)
         {
-            _runesOnBoard.Remove(position);
-            _runesInHand.Add(rune.PositionInHand, rune);
-            rune.PositionOnBoard = -1;
-            return true;
+            if (rune.TurnUsed == TurnManager.GetInstance().TurnNumber)
+            {
+                Dictionary<int, Rune> tempRunesOnBoard = new Dictionary<int, Rune>(_runesOnBoard);
+                tempRunesOnBoard.Remove(position);
+                if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+                {
+                    _runesOnBoard.Remove(position);
+                    _runesInHand.Add(rune.PositionInHand, rune);
+                    rune.PositionOnBoard = -1;
+                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
+                    return true;
+                }
+                else
+                {
+                    Logger.Debug("Could not remove rune from " + position + " : not every runes are connected");
+                }
+            }
+            else
+            {
+                Logger.Debug("Could not remove rune from " + position + " : the rune was not placed on this turn");
+            }
         }
         return false;
     }
@@ -204,7 +232,7 @@ public class RunicBoard {
                 {
                     _runesOnBoard.Add(newPosition, runeToMove);
                     _runesOnBoard.Remove(actualPosition);
-                    runeToMove.PositionOnBoard = (int)newPosition;
+                    runeToMove.PositionOnBoard = newPosition;
                     Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
                     return true;
                 }
@@ -238,10 +266,28 @@ public class RunicBoard {
             rune.PositionOnBoard = -1;
             _runesInHand.Add(rune.PositionInHand, rune);
         }
-        _runesOnBoard.Clear();
 
-        //LogHand();
-        //LogRunesOnBoard();
+        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints += _runesOnBoard.Count;
+
+        _runesOnBoard.Clear();
+    }
+
+    /// <summary>
+    /// Remove all runes that were placed on the current turn.
+    /// </summary>
+    public void RemoveAllRunesFromThisTurn()
+    {
+        List<int> markedToDelete = new List<int>();
+        foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
+        {
+            if (kvp.Value.TurnUsed == TurnManager.GetInstance().TurnNumber)
+                markedToDelete.Add(kvp.Key);
+        }
+
+        for (int i = 0; i < markedToDelete.Count; i++)
+        {
+            _runesOnBoard.Remove(markedToDelete[i]);
+        }
     }
 
     /// <summary>
@@ -429,5 +475,32 @@ public class RunicBoard {
             return true;
 
         return false;
+    }
+
+    public void GetPolesInfluence(out float perfection, out float sublimation, out float stability)
+    {
+        Hexagon hexPerfection = new Hexagon(_idPerfection / 5, _idPerfection % 5, null);
+        Hexagon hexSublimation = new Hexagon(_idSublimation / 5, _idSublimation % 5, null);
+        Hexagon hexStability = new Hexagon(_idStability / 5, _idStability % 5, null);
+
+        float perfect = 0;
+        float subli = 0;
+        float stabi = 0;
+
+        foreach(int id in _runesOnBoard.Keys)
+        {
+            Hexagon hexRune = new Hexagon(id / 5, id % 5, null);
+            int distPerfection = hexRune.Distance(hexPerfection);
+            int distSublimation = hexRune.Distance(hexSublimation);
+            int distStability = hexRune.Distance(hexStability);
+
+            perfect += Mathf.Ceil((4 - distPerfection) * 2.5f);
+            subli += Mathf.Ceil((4 - distSublimation) * 2.5f);
+            stabi += Mathf.Ceil((4 - distStability) * 2.5f);
+        }
+
+        perfection = perfect * 0.01f;
+        sublimation = subli * 0.01f;
+        stability = stabi * 0.01f;
     }
 }

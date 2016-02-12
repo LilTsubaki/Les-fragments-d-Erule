@@ -10,6 +10,19 @@ public class TurnManager
     private int _turnNumber;
     private bool _secondPlayerStarted;
 
+    public int TurnNumber
+    {
+        get
+        {
+            return _turnNumber;
+        }
+
+        set
+        {
+            _turnNumber = value;
+        }
+    }
+
     private TurnManager()
     {
         _secondPlayerStarted = new Random().Next(100) % 2 == 0;
@@ -61,9 +74,6 @@ public class TurnManager
 
         currentPlayer.TurnNumber++;
         currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
-
-        Logger.Debug("PA currentPlayer : " + currentPlayer.CurrentActionPoints);
-        Logger.Debug("PA otherPlayer : " + otherPlayer.CurrentActionPoints);
 
         _turnNumber++;
         PlayBoardManager.GetInstance().Board.ResetBoard();

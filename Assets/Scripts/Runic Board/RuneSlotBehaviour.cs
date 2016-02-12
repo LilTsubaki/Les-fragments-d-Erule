@@ -4,6 +4,7 @@ using System.Collections;
 public class RuneSlotBehaviour : MonoBehaviour {
 
     public int _position;
+    public bool isBoard;
 
 	// Use this for initialization
 	void Start () {
