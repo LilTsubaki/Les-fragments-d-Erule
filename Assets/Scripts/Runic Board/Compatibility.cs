@@ -13,4 +13,9 @@ public class Compatibility {
         _id = id;
         _malus = malus;
     }
+
+    public float GetCompatibilityMalus()
+    {
+        return _malus.Power;
+    }
 }

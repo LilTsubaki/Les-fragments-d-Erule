@@ -188,7 +188,7 @@ public class RunicBoard {
             {
                 Dictionary<int, Rune> tempRunesOnBoard = new Dictionary<int, Rune>(_runesOnBoard);
                 tempRunesOnBoard.Remove(position);
-                if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+                if (EverythingIsConnectedToCenter(ref tempRunesOnBoard))
                 {
                     _runesOnBoard.Remove(position);
                     _runesInHand.Add(rune.PositionInHand, rune);
@@ -228,7 +228,7 @@ public class RunicBoard {
                 tempRunesOnBoard.Add(newPosition, runeToMove);
                 //List<int> explored = new List<int>();
 
-                if (EverythingIsConnecterToCenter(ref tempRunesOnBoard))
+                if (EverythingIsConnectedToCenter(ref tempRunesOnBoard))
                 {
                     _runesOnBoard.Add(newPosition, runeToMove);
                     _runesOnBoard.Remove(actualPosition);
@@ -375,7 +375,7 @@ public class RunicBoard {
     /// </summary>
     /// <param name="board">The board to test</param>
     /// <returns>true if everything is connected, false otherwise</returns>
-    public bool EverythingIsConnecterToCenter(ref Dictionary<int, Rune> board)
+    public bool EverythingIsConnectedToCenter(ref Dictionary<int, Rune> board)
     {
         bool isConnected = true;
         foreach(KeyValuePair<int, Rune> kvp in board)
@@ -502,5 +502,31 @@ public class RunicBoard {
         perfection = perfect * 0.01f;
         sublimation = subli * 0.01f;
         stability = stabi * 0.01f;
+    }
+
+    public List<KeyValuePair<Element, Element>> GetRuneLinks()
+    {
+        Dictionary<int, KeyValuePair<Element, Element>> dict = new Dictionary<int, KeyValuePair<Element, Element>>();
+        foreach(int pos in _runesOnBoard.Keys)
+        {
+            List<int> neighbours = GetNeighboursPosition(pos);
+            foreach(int idNeigh in neighbours)
+            {
+                int idLink = pos + idNeigh;
+                if (!dict.ContainsKey(idLink))
+                {
+                    KeyValuePair<Element, Element> link = new KeyValuePair<Element, Element>(_runesOnBoard[pos].Element, _runesOnBoard[idNeigh].Element);
+                    dict.Add(idLink, link);
+                }
+            }
+        }
+
+        List<KeyValuePair<Element, Element>> listLink = new List<KeyValuePair<Element, Element>>();
+        foreach(int id in dict.Keys)
+        {
+            listLink.Add(dict[id]);
+        }
+
+        return listLink;
     }
 }
