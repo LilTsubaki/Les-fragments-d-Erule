@@ -19,6 +19,7 @@ public class SpellManager
     private SelfSpell _CurrentSelfSpell;
     private Area _CurrentSelfArea;
 
+    private Queue<Element> _spellToInit;
     public ElementNode ElementNode
     {
         get { return _elementNode; }
@@ -204,6 +205,11 @@ public class SpellManager
         Logger.Debug("onTimeEffect.json read");
     }
 
+    public void SetSpellToInit(Queue<Element> queue)
+    {
+        _spellToInit = queue;
+    }
+
     public Effect GetDirectEffectById(int id)
     {
         Effect value;
@@ -250,6 +256,15 @@ public class SpellManager
                     }
                 }
             }
+        }
+    }
+
+    public void InitSpell()
+    {
+        if(_spellToInit != null)
+        {
+            InitSpell(_spellToInit);
+            _spellToInit = null;
         }
     }
 

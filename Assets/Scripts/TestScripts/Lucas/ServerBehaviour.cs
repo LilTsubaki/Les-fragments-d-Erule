@@ -40,8 +40,8 @@ public class ServerBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        tryingToDoSpell();
+    }
 
 	public void EndOfTurn()
 	{
@@ -52,11 +52,7 @@ public class ServerBehaviour : MonoBehaviour {
 	{
 		if(PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
 		{
-			/*List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementList();
-			Queue<Element> elements = new Queue<Element>(elementsList);
-			SpellManager.getInstance().InitSpell(elements);*/
-
-
+            SpellManager.getInstance().InitSpell();
 		}
 	}
 }

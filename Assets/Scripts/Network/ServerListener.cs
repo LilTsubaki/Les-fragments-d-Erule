@@ -15,6 +15,8 @@ public class ServerListener
     {
         _server = server;
         _client = client;
+        _client.NoDelay = true;
+        _client.Client.NoDelay = true;
         _isRunning = true;
     }
 
@@ -41,14 +43,18 @@ public class ServerListener
                         ReadRunicBoard(_client);
                         break;
 
+                    case 4:
+                        ReadMakeSpell(_client);
+                        break;
+
                     default:
                         Logger.Warning("Default id");
                         break;
                 }
             }
         }
-        _client.GetStream().Close();
         _client.Close();
+        _server.RemoveClient(this);
 
     }
 
@@ -71,10 +77,34 @@ public class ServerListener
 
 
         NetworkUtils.WriteInt(3, client.GetStream());
-        //Queue<Element> que = rBoard.GetSortedElementQueue();
-        //SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
-        NetworkUtils.WriteBool(false, client.GetStream());//spell!=null, client.GetStream());
-        NetworkUtils.WriteBool(false, client.GetStream());// SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
+        Queue<Element> que = rBoard.GetSortedElementQueue();
+        SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
+        NetworkUtils.WriteBool(spell!=null, client.GetStream());
+        NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
+
+        client.GetStream().Flush();
+
+    }
+
+    void ReadMakeSpell(TcpClient client)
+    {
+        Logger.Trace("ReadMakeSpell");
+
+        Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(client.GetStream());
+        RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
+        rBoard.RunesOnBoard = map;
+        rBoard.LogRunesOnBoard();
+
+
+        NetworkUtils.WriteInt(5, client.GetStream());
+        Queue<Element> que = rBoard.GetSortedElementQueue();
+        SelfSpell spell = SpellManager.getInstance().ElementNode.GetSelfSpell(que);
+        if(spell != null)
+        {
+            SpellManager.getInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
+        }
+        NetworkUtils.WriteBool(spell != null, client.GetStream());
+        NetworkUtils.WriteBool(SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()), client.GetStream());
 
         client.GetStream().Flush();
 

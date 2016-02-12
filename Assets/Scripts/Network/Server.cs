@@ -31,16 +31,23 @@ public class Server : MonoBehaviour{
 		_isRunning = true;
         
 		StartListening(playPort);
-        
-		//StartCoroutine("WaitingClient");
         Thread newThread =new Thread(WaitingClient);
         newThread.Start();
 
 
     }
 
+    public void OnDestroy()
+    {
+        _isRunning = false;
 
-	void Update()
+        _searchingClient = false;
+
+        _udpClient.Close();
+    }
+
+
+    void Update()
 	{
 		
 	}
@@ -72,7 +79,8 @@ public class Server : MonoBehaviour{
 				}
 			}
 		}
-	}
+        _udpClient.Close();
+      }
 
     private void StartListening(int port)
     {
@@ -127,6 +135,11 @@ public class Server : MonoBehaviour{
             }
                 
         }
+    }
+
+    public void RemoveClient(ServerListener client)
+    {
+        _clients.Remove(client);
     }
 
 }
