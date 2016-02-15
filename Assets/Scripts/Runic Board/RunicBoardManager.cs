@@ -5,12 +5,16 @@ public class RunicBoardManager{
 
     static private RunicBoardManager _instance;
 
+    public RunicBoardBehaviour _runicBoardBehaviour;
+
     private RunicBoard _boardPlayer1;
-    //private RunicBoard _boardPlayer2;
 
     private Dictionary<int, CompatibilityMalus> _compatibilityMaluses;
     private Dictionary<string, Compatibility> _compatibilities;
     private Dictionary<int, RuneNumberInfluence> _runeNumberInfluences;
+
+    
+
 
     RunicBoardManager()
     {
@@ -137,5 +141,9 @@ public class RunicBoardManager{
         _boardPlayer1.GetPolesInfluence(out perfection, out sublimation, out stability);
     }
 
+    public void RegisterBoardBehaviour(RunicBoardBehaviour runicBoardBehaviour)
+    {
+        _runicBoardBehaviour = runicBoardBehaviour;
+    }
 
 }

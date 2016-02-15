@@ -32,6 +32,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
+
+
+
     /// <summary>
     /// Iinstatiante runes game object and display them in the hand
     /// </summary>
@@ -82,6 +85,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
     /// <summary>
     /// Remove all runes from the board, and put them back in the hand of the player
     /// </summary>
+    /// 
     public void ResetRunes()
     {
         _board.RemoveAllRunes();
@@ -90,6 +94,21 @@ public class RunicBoardBehaviour : MonoBehaviour {
             RuneBehaviour rb = _runesGO[i].GetComponent<RuneBehaviour>();
             _runesGO[i].transform.SetParent(rb._initialParent);
             rb._state = RuneBehaviour.State.BeingReleased;
+        }
+    }
+    public void ResetRunes(int runeKept)
+    {
+        switch (runeKept)
+        {
+            case 0:
+                ResetRunes();
+                break;
+            case 1:
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
+                break;
+            case 2:
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
+                break;
         }
     }
 
@@ -214,6 +233,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
         Board = new RunicBoard(hand);
         RunicBoardManager.GetInstance().RegisterBoard(Board);
+        RunicBoardManager.GetInstance().RegisterBoardBehaviour(this);
 
         InstantiateRunesInHand();
     }

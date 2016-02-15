@@ -75,10 +75,14 @@ public class Client : MonoBehaviour{
     {
         if (_resetBoard)
         {
-            switch(_runeKept)
+            RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes(_runeKept);
+            /*
+            switch (_runeKept)
             {
+
+                
                 case 0:
-                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+                    RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes();
                     break;
                 case 1:
                     RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
@@ -87,6 +91,7 @@ public class Client : MonoBehaviour{
                     RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
                     break;
             }
+            */
             _resetBoard = false;
         }
     }
@@ -132,6 +137,7 @@ public class Client : MonoBehaviour{
 
             case 11:
                 //TODO
+                Logger.Debug("receive reset board request");
                 bool fail = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
