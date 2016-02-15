@@ -16,6 +16,19 @@ public class Client : MonoBehaviour{
     bool _searchingHosts;
     Character _currentCharacter;
 
+    public Character CurrentCharacter
+    {
+        get
+        {
+            return _currentCharacter;
+        }
+
+        set
+        {
+            _currentCharacter = value;
+        }
+    }
+
     public void Awake()
     {
        
@@ -176,14 +189,20 @@ public class Client : MonoBehaviour{
         while (ReadMessage(id));
 
 
-        if (id == 7)
+        if (id == 6)
         {
             return NetworkUtils.ReadCharacter(_tcpClient.GetStream());
         }
 
         else
         {
-            return null;
+            if(id == 8)
+            {
+                Logger.Error("Connection refused");
+                return null;
+            }
+            else
+                return null;
         }
     }
 }
