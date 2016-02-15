@@ -207,4 +207,27 @@ public class Server : MonoBehaviour{
             return;
         }
     }
+
+    public void ApplyEffects(Character character, bool fail, bool crit, int runes)
+    {
+
+
+        if (_client1 != null)
+        {
+            _client1.UpdateCharacter();
+            if (_client1._ch == character)
+            {
+                _client1.ResetBoard(fail, crit, runes);
+            }
+        }
+
+        if (_client2 != null)
+        {
+            _client2.UpdateCharacter();
+            if (_client2._ch == character)
+            {
+                _client1.ResetBoard(fail, crit, runes);
+            }
+        }
+    }
 }
