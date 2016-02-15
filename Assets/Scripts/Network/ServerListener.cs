@@ -159,4 +159,16 @@ public class ServerListener
 
         _client.GetStream().Flush();
     }
+
+    public void ResetBoard(bool fail, bool crit, int runes)
+    {
+        Logger.Trace("ResetBoard");
+
+        NetworkUtils.WriteInt(11, _client.GetStream());
+        NetworkUtils.WriteBool(fail, _client.GetStream());
+        NetworkUtils.WriteBool(crit, _client.GetStream());
+        NetworkUtils.WriteInt(runes, _client.GetStream());
+
+        _client.GetStream().Flush();
+    }
 }

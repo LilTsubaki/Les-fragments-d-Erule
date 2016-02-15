@@ -286,6 +286,11 @@ public class SpellManager
     {
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
 
+        bool fail = false;
+        bool crit = false;
+        int runes = 0;
+       
+
         List<int> effectIds;
 
         if (target == currentPlayer.Position )
@@ -327,7 +332,10 @@ public class SpellManager
                 }
             }
         }
-        
+
+
+        ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, fail, crit, runes);
+
     }
 
     /// <summary>
