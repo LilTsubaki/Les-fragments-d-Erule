@@ -287,12 +287,12 @@ public class SpellManager
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
 
 
-        bool fail = false;
-        bool crit = false;
-        int runes = 0;
-
         float perfection, sublimation, stability;
         RunicBoardManager.GetInstance().GetBoardPlayer1().GetPolesInfluence(out perfection, out sublimation, out stability);
+
+        bool fail = ProcessStability(stability);
+        bool crit = ProcessSublimation(sublimation);
+        int runes = ProcessPerfection(perfection);
 
         List<int> effectIds;
 

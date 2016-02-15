@@ -13,6 +13,9 @@ public class CharacterUI : MonoBehaviour {
     public GameObject _actionPoints;
     public Image _point;
 
+    [Range(1,2)]
+    public int _player;
+
 
     /******************************************************************
     Testing parameters
@@ -61,6 +64,15 @@ public class CharacterUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        if(_player == 1)
+        {
+            UIManager.GetInstance().RegisterUiCharacter1(this);
+        }
+        else
+        {
+            UIManager.GetInstance().RegisterUiCharacter2(this);
+        }
 
         _listActionPoints = new List<Image>();
 
