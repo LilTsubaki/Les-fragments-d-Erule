@@ -21,8 +21,8 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     {
         GameObject runeGO = GameObject.Instantiate(prefab);
         runeGO.transform.SetParent(parent);
-        runeGO.transform.Rotate(new Vector3(0, 1, 0), 90);
         runeGO.transform.localPosition = new Vector3(0, 0.3f, 0);
+        runeGO.transform.rotation = prefab.transform.rotation;
         runeGO.GetComponent<RuneBehaviour>()._rune = new Rune(element, -1, -1);
     }
 
@@ -46,6 +46,11 @@ public class DeckSelectionBehaviour : MonoBehaviour {
             if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes")))
             {
                 _heldRune = hitInfo.collider.gameObject;
+                RuneBehaviour behaviourHeldRune = _heldRune.GetComponent<RuneBehaviour>();
+                if (behaviourHeldRune._rune.PositionInHand < 0)
+                {
+                    InstantiateRune(_heldRune, behaviourHeldRune._rune.Element, _heldRune.transform.parent);
+                }
                 RuneBehaviour runeBehaviour = hitInfo.collider.gameObject.GetComponent<RuneBehaviour>();
                 if (runeBehaviour != null)
                 {
@@ -76,6 +81,10 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                             runeSlotBehaviour._runeGO = _heldRune;
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
                         }
+                        else
+                        {
+                            Destroy(_heldRune);
+                        }
                     }
                     // Rune is already in hand
                     else
@@ -102,6 +111,10 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                         }
                     }
                 }
+            }
+            else
+            {
+                Destroy(_heldRune);
             }
 
             runeBehaviour._state = RuneBehaviour.State.BeingReleased;

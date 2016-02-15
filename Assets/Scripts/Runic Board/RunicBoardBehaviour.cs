@@ -72,7 +72,6 @@ public class RunicBoardBehaviour : MonoBehaviour {
             rune.GetComponent<RuneBehaviour>()._initialParent = parent;
             rune.transform.SetParent(parent);
             rune.transform.localPosition = new Vector3(0, 0.3f, 0);
-            rune.transform.Rotate(new Vector3(0, 1, 0), 90);
 
             // Associate Rune object and gameObject
             rune.GetComponent<RuneBehaviour>()._rune = kvp.Value;
