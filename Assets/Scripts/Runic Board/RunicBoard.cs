@@ -172,7 +172,10 @@ public class RunicBoard {
         }
         else
         {
-            Logger.Error("Not enough action points");
+            if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0)
+                Logger.Error("Not Your turn");
+            else
+                Logger.Error("Not enough action points");
         }
         return -1;
     }
@@ -197,7 +200,7 @@ public class RunicBoard {
                     _runesOnBoard.Remove(position);
                     _runesInHand.Add(rune.PositionInHand, rune);
                     rune.PositionOnBoard = -1;
-                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
+                    ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints++;
                     return true;
                 }
                 else
@@ -271,7 +274,7 @@ public class RunicBoard {
             _runesInHand.Add(rune.PositionInHand, rune);
         }
 
-        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints += _runesOnBoard.Count;
+        ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints += _runesOnBoard.Count;
 
         _runesOnBoard.Clear();
     }

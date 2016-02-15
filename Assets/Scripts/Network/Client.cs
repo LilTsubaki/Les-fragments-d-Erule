@@ -16,6 +16,11 @@ public class Client : MonoBehaviour{
     bool _searchingHosts;
     bool _isMyTurn;
     bool _isListening;
+
+    bool _isListeningThreadReading;
+    bool _isMainThreadReading;
+
+
     Character _currentCharacter;
 
     public Character CurrentCharacter
@@ -52,6 +57,8 @@ public class Client : MonoBehaviour{
         _tcpClient.Client.NoDelay = true;
         IsMyTurn = false;
         _isListening = true;
+        _isListeningThreadReading = false;
+        _isMainThreadReading = false;
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         Thread newThread = new Thread(WaitHosts);
@@ -82,9 +89,12 @@ public class Client : MonoBehaviour{
         while (_isListening)
         {
             NetworkStream stream = _tcpClient.GetStream();
-            if (stream.DataAvailable)
+            if (stream.DataAvailable && _isMainThreadReading == false)
             {
+
+                _isListeningThreadReading = true;
                 ReadMessage(NetworkUtils.ReadInt(stream));
+                _isListeningThreadReading = false;
             }
         }
     }
@@ -93,14 +103,17 @@ public class Client : MonoBehaviour{
     {
         switch (id)
         {
-            /*case 6:
+            //end of turn
+            case 9:
                 _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                return true;*/
+                return true;
 
-            case 9:
-                IsMyTurn = !IsMyTurn;
-                return true; 
+            //updating char infos
+            case 10:
+                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
+                return true;
 
             default:
                 return false;
@@ -168,6 +181,9 @@ public class Client : MonoBehaviour{
 
     public void SendMakeSpell()
     {
+        while (_isListeningThreadReading) ;
+
+        _isMainThreadReading = true;
         NetworkUtils.WriteInt(4, _tcpClient.GetStream());
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
@@ -185,11 +201,16 @@ public class Client : MonoBehaviour{
         {
             SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
         }
+        _isMainThreadReading = false;
     }
 
 
     public SendBoardResponse SendBoard()
     {
+
+        while (_isListeningThreadReading) ;
+
+        _isMainThreadReading = true;
         Logger.Debug("send board");
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
         
@@ -208,18 +229,23 @@ public class Client : MonoBehaviour{
         if (id == 3)
         {
             SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            _isMainThreadReading = false;
             return sbr;
         }
 
         else
         {
+            _isMainThreadReading = false;
             return null;
         }
-
+        
     }
 
     public void RequestCharacter()
     {
+        while (_isListeningThreadReading);
+
+        _isMainThreadReading = true;
         Logger.Debug("send request character");
         NetworkUtils.WriteInt(7, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
@@ -246,5 +272,6 @@ public class Client : MonoBehaviour{
                 Logger.Error("Connection refused");
             }
         }
+        _isMainThreadReading = false;
     }
 }
