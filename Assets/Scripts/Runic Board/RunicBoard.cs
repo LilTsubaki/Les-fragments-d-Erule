@@ -132,8 +132,8 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints > 0)
-        {
+        //if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints > 0)
+        //{
             Rune rune;
             if(_runesInHand.TryGetValue(index, out rune))
             {
@@ -169,7 +169,7 @@ public class RunicBoard {
                     }
                 }
             }
-        }
+        //}
         return -1;
     }
 

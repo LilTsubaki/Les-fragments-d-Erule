@@ -34,7 +34,6 @@ public class TurnManager
         if (_turnManager == null)
         {
             _turnManager = new TurnManager();
-            _turnManager.BeginTurn();
         }
         return _turnManager;
     }
