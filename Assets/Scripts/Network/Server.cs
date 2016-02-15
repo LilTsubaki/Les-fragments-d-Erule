@@ -14,6 +14,9 @@ public class Server : MonoBehaviour{
     TcpListener _listener;
     List<ServerListener> _clients;
 
+    ServerListener _client1;
+    ServerListener _client2;
+
     UdpClient _udpClient;
 
     bool _isRunning = false;
@@ -81,6 +84,40 @@ public class Server : MonoBehaviour{
 		}
         _udpClient.Close();
       }
+
+    public bool Register(ServerListener serverListener)
+    {
+        if (_client1 == null)
+        {
+            _client1 = serverListener;
+            _client1._ch = PlayBoardManager.GetInstance().Character1;
+            return true;
+        }
+
+        if (_client2 == null)
+        {
+            _client2 = serverListener;
+            _client2._ch = PlayBoardManager.GetInstance().Character2;
+            _searchingClient = false;
+            CleanClient();
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public void CleanClient()
+    {
+        foreach (var client in _clients)
+        {
+            if (client != _client1 && client != _client2)
+            {
+                client.Stop();
+                _clients.Remove(client);
+            }
+        }
+    }
 
     private void StartListening(int port)
     {

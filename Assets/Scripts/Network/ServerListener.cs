@@ -49,7 +49,10 @@ public class ServerListener
                         break;
 
                     case 7:
-                        SendCharacter();
+                        if (_server.Register(this))
+                            SendCharacter();
+                        else
+                            RefuseCharacter();
                         break;
 
                     default:
@@ -120,6 +123,14 @@ public class ServerListener
         Logger.Trace("SendCharacter");
         NetworkUtils.WriteInt(6, _client.GetStream());
         NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+
+        _client.GetStream().Flush();
+    }
+
+    void RefuseCharacter()
+    {
+        Logger.Trace("RefuseCharacter");
+        NetworkUtils.WriteInt(8, _client.GetStream());
 
         _client.GetStream().Flush();
     }
