@@ -14,6 +14,7 @@ public class Client : MonoBehaviour{
     UdpClient _udpClient;
     bool _isRunning;
     bool _searchingHosts;
+    Character _currentCharacter;
 
     public void Awake()
     {
@@ -135,8 +136,6 @@ public class Client : MonoBehaviour{
 
     public SendBoardResponse SendBoard()
     {
-        int begin = System.DateTime.Now.Millisecond;
-
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
         
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
@@ -164,4 +163,27 @@ public class Client : MonoBehaviour{
 
     }
 
+    public Character RequestCharacter()
+    {
+        NetworkUtils.WriteInt(7, _tcpClient.GetStream());
+        _tcpClient.GetStream().Flush();
+
+        int id;
+        do
+        {
+            id = NetworkUtils.ReadInt(_tcpClient.GetStream());
+        }
+        while (ReadMessage(id));
+
+
+        if (id == 7)
+        {
+            return NetworkUtils.ReadCharacter();
+        }
+
+        else
+        {
+            return null;
+        }
+    }
 }
