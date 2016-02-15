@@ -97,15 +97,7 @@ public class TestCompatibilityPoles : MonoBehaviour
             Queue<Element> elements = new Queue<Element>(elementsList);
             SpellManager.getInstance().InitSpell(elements);*/
 
-            float baseChance = RunicBoardManager.GetInstance().GetBaseStabilityByRuneNumber();
-            float coef = RunicBoardManager.GetInstance().GetReductionCoefficientByRuneNumber();
-            float malus = RunicBoardManager.GetInstance().GetTotalCompatibilityMalus();
-            float perf, subli, stab;
-            RunicBoardManager.GetInstance().GetBoardPlayer1().GetPolesInfluence(out perf, out subli, out stab);
-
-            Logger.Debug("Chances to success : " + baseChance + " - (" + malus + " / " + coef + "). Poles : perfection " + perf + " / sublimation " + subli + " / stab " + stab);
-            float totalStability = (baseChance - (malus / coef))*0.01f + stab;
-            Logger.Debug("Total [ Chances :" + totalStability + ", Sublimation : " + subli + ", Perfection : " + perf + "]");
+            
 
         }
     }
