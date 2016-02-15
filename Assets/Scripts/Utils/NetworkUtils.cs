@@ -123,4 +123,56 @@ public class NetworkUtils {
         return map;
     }
 
+    public static void WriteCharacter(Character ch, NetworkStream stream)
+    {
+        WriteInt(ch._lifeMax, stream);
+        WriteInt(ch._lifeCurrent, stream);
+        WriteInt(ch.CurrentActionPoints, stream);
+        WriteString(ch.Name, stream);
+        WriteInt(ch.TurnNumber, stream);
+
+        WriteInt(ch.Protections.Count, stream);
+        foreach (var pro in ch.Protections)
+        {
+            WriteElement(pro.Key, stream);
+            WriteInt(pro.Value, stream);
+        }
+
+        WriteInt(ch.ProtectionsNegative.Count, stream);
+        foreach (var pro in ch.ProtectionsNegative)
+        {
+            WriteElement(pro.Key, stream);
+            WriteInt(pro.Value, stream);
+        }
+
+        WriteInt(ch.GlobalProtection, stream);
+        WriteInt(ch.GlobalNegativeProtection, stream);
+    }
+
+    public static Character ReadCharacter(NetworkStream stream)
+    {
+        Character ch = new Character(ReadInt(stream));
+        ch._lifeCurrent = ReadInt(stream);
+        ch.CurrentActionPoints = ReadInt( stream);
+        ch.Name = ReadString(stream);
+        ch.TurnNumber = ReadInt(stream);
+
+        int count= ReadInt(stream);
+        for (int i=0; i<count; ++i)
+        {
+            ch.Protections.Add(ReadElement(stream), ReadInt(stream));
+        }
+
+        count = ReadInt(stream);
+        for (int i = 0; i < count; ++i)
+        {
+            ch.ProtectionsNegative.Add(ReadElement(stream), ReadInt(stream));
+        }
+
+        ch.GlobalProtection = ReadInt(stream);
+        ch.GlobalNegativeProtection = ReadInt(stream);
+
+        return ch;
+    }
+
 }

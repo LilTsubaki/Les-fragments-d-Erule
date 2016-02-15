@@ -9,6 +9,7 @@ public class ServerListener
 {
     public Server _server;
     public TcpClient _client;
+    public Character _ch;
     public bool _isRunning;
 
     public ServerListener(Server server, TcpClient client)
@@ -40,11 +41,15 @@ public class ServerListener
                         break;
 
                     case 2:
-                        ReadRunicBoard(_client);
+                        ReadRunicBoard();
                         break;
 
                     case 4:
-                        ReadMakeSpell(_client);
+                        ReadMakeSpell();
+                        break;
+
+                    case 7:
+                        SendCharacter();
                         break;
 
                     default:
@@ -66,47 +71,56 @@ public class ServerListener
     }
 
 
-    void ReadRunicBoard(TcpClient client)
+    void ReadRunicBoard()
     {
         Logger.Trace("ReadRunicBoard");
 
-        Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(client.GetStream());
+        Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
         rBoard.RunesOnBoard = map;
         rBoard.LogRunesOnBoard();
 
 
-        NetworkUtils.WriteInt(3, client.GetStream());
+        NetworkUtils.WriteInt(3, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
         SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
-        NetworkUtils.WriteBool(spell!=null, client.GetStream());
+        NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
 
-        client.GetStream().Flush();
+        _client.GetStream().Flush();
 
     }
 
-    void ReadMakeSpell(TcpClient client)
+    void ReadMakeSpell()
     {
         Logger.Trace("ReadMakeSpell");
 
-        Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(client.GetStream());
+        Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
         rBoard.RunesOnBoard = map;
         rBoard.LogRunesOnBoard();
 
 
-        NetworkUtils.WriteInt(5, client.GetStream());
+        NetworkUtils.WriteInt(5, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
         SelfSpell spell = SpellManager.getInstance().ElementNode.GetSelfSpell(que);
         if(spell != null)
         {
             SpellManager.getInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
         }
-        NetworkUtils.WriteBool(spell != null, client.GetStream());
-        NetworkUtils.WriteBool(SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()), client.GetStream());
+        NetworkUtils.WriteBool(spell != null, _client.GetStream());
+        NetworkUtils.WriteBool(SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()), _client.GetStream());
 
-        client.GetStream().Flush();
+        _client.GetStream().Flush();
 
+    }
+
+    void SendCharacter()
+    {
+        Logger.Trace("SendCharacter");
+        NetworkUtils.WriteInt(6, _client.GetStream());
+        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+
+        _client.GetStream().Flush();
     }
 }

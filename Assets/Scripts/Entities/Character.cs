@@ -100,6 +100,84 @@ public class Character : Entity
         }
     }
 
+    public Dictionary<Element, int> Protections
+    {
+        get
+        {
+            return _protections;
+        }
+
+        set
+        {
+            _protections = value;
+        }
+    }
+
+    public Dictionary<Element, int> ProtectionsNegative
+    {
+        get
+        {
+            return _protectionsNegative;
+        }
+
+        set
+        {
+            _protectionsNegative = value;
+        }
+    }
+
+    public int GlobalProtection
+    {
+        get
+        {
+            return _globalProtection;
+        }
+
+        set
+        {
+            _globalProtection = value;
+        }
+    }
+
+    public int GlobalNegativeProtection
+    {
+        get
+        {
+            return _globalNegativeProtection;
+        }
+
+        set
+        {
+            _globalNegativeProtection = value;
+        }
+    }
+
+    public int SommeProtection
+    {
+        get
+        {
+            return _sommeProtection;
+        }
+
+        set
+        {
+            _sommeProtection = value;
+        }
+    }
+
+    public int SommeNegativeProtection
+    {
+        get
+        {
+            return _sommeNegativeProtection;
+        }
+
+        set
+        {
+            _sommeNegativeProtection = value;
+        }
+    }
+
     public State _state;
 
 	private Dictionary<Element, int> _protections;
@@ -116,20 +194,26 @@ public class Character : Entity
 
     private int _rangeModifier;
 
+    public Character(int lifeMax)
+    {
+        _lifeMax = lifeMax;
+        Protections = new Dictionary<Element, int>();
+        ProtectionsNegative = new Dictionary<Element, int>();
+    }
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
         _gameObject = GameObject.Instantiate(go);
         _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.5f, 0);
         _gameObject.GetComponent<CharacterBehaviour>()._character = this;
 
-		_protections = new Dictionary<Element, int> ();
-		_protectionsNegative = new Dictionary<Element, int> ();
+		Protections = new Dictionary<Element, int> ();
+		ProtectionsNegative = new Dictionary<Element, int> ();
 
-		_globalProtection = 0;
-		_globalNegativeProtection = 0;
+		GlobalProtection = 0;
+		GlobalNegativeProtection = 0;
 
-		_sommeProtection = 0;
-		_sommeNegativeProtection = 0;
+		SommeProtection = 0;
+		SommeNegativeProtection = 0;
 
 		_lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
@@ -141,8 +225,8 @@ public class Character : Entity
         _turnNumber = 1;
 
 		foreach (var e in Element.GetElements()) {
-			_protections [e] = 0;
-			_protectionsNegative [e] = 0;
+			Protections [e] = 0;
+			ProtectionsNegative [e] = 0;
 		}
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
@@ -165,10 +249,10 @@ public class Character : Entity
         int positiveElementResistance;
         int negativeElementResistance;
 
-        _protections.TryGetValue(element, out positiveElementResistance);
-        _protectionsNegative.TryGetValue(element, out negativeElementResistance);
+        Protections.TryGetValue(element, out positiveElementResistance);
+        ProtectionsNegative.TryGetValue(element, out negativeElementResistance);
 
-        int finalValue = (positiveElementResistance - negativeElementResistance) + (_globalProtection - _globalNegativeProtection);
+        int finalValue = (positiveElementResistance - negativeElementResistance) + (GlobalProtection - GlobalNegativeProtection);
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
 
@@ -184,69 +268,69 @@ public class Character : Entity
 
         Logger.Debug("Receive global protection : " + protection);
 
-        int val = Math.Min (protection, _globalNegativeProtection);
+        int val = Math.Min (protection, GlobalNegativeProtection);
 
-		_globalNegativeProtection -= val;
-		_sommeNegativeProtection -= val;
+		GlobalNegativeProtection -= val;
+		SommeNegativeProtection -= val;
 
 		protection -= val;
 
-		int max = MaxProtection - _sommeProtection;
+		int max = MaxProtection - SommeProtection;
 
-		_globalProtection += Math.Min (max, protection);
-		_sommeProtection += Math.Min (max, protection);
+		GlobalProtection += Math.Min (max, protection);
+		SommeProtection += Math.Min (max, protection);
 	}
 
 	public void ReceiveGlobalNegativeProtection(int protection){
 
         Logger.Debug("Receive global negative protection : " + protection);
 
-        int val = Math.Min (protection, _globalProtection);
+        int val = Math.Min (protection, GlobalProtection);
 
-		_globalProtection -= val;
-		_sommeProtection -= val;
+		GlobalProtection -= val;
+		SommeProtection -= val;
 
 		protection -= val;
 
-		int max = MaxProtection - _sommeNegativeProtection;
+		int max = MaxProtection - SommeNegativeProtection;
 
-		_globalNegativeProtection += Math.Min (max, protection);
-		_sommeNegativeProtection += Math.Min (max, protection);
+		GlobalNegativeProtection += Math.Min (max, protection);
+		SommeNegativeProtection += Math.Min (max, protection);
 	}
 
 	public void ReceiveElementProtection(int protection, Element element){
 
         Logger.Debug("Receive element protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, _protectionsNegative[element]);
+        int val = Math.Min (protection, ProtectionsNegative[element]);
 
-		_protectionsNegative[element] -= val;
-		_sommeNegativeProtection -= val;
+		ProtectionsNegative[element] -= val;
+		SommeNegativeProtection -= val;
 
 		protection -= val;
 
-		int max = MaxProtection - _sommeProtection;
+		int max = MaxProtection - SommeProtection;
 
-		_protections[element] += Math.Min (max, protection);
-		_sommeProtection += Math.Min (max, protection);
-        Logger.Trace("nouvelle valeur : " + _sommeProtection);
+		Protections[element] += Math.Min (max, protection);
+		SommeProtection += Math.Min (max, protection);
+        Logger.Trace("nouvelle valeur : " + SommeProtection);
 	}
 
 	public void ReceiveElementNegativeProtection(int protection, Element element){
 
         Logger.Debug("Receive element negative protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, _protections[element]);
+        int val = Math.Min (protection, Protections[element]);
 
-		_protections[element] -= val;
-		_sommeProtection -= val;
+		Protections[element] -= val;
+		SommeProtection -= val;
 
 		protection -= val;
 
-		int max = MaxProtection - _sommeNegativeProtection;
+		int max = MaxProtection - SommeNegativeProtection;
 
-		_protectionsNegative[element] += Math.Min (max, protection);
-		_sommeNegativeProtection += Math.Min (max, protection);
+		ProtectionsNegative[element] += Math.Min (max, protection);
+		SommeNegativeProtection += Math.Min (max, protection);
 	}
 
     /// <summary>
@@ -302,25 +386,25 @@ public class Character : Entity
     public int GetElementResistance(Element elem)
     {
         int res = 0;
-        _protections.TryGetValue(elem, out res);
+        Protections.TryGetValue(elem, out res);
         return res;
     }
 
     public int GetElementWeakness(Element elem)
     {
         int res = 0;
-        _protectionsNegative.TryGetValue(elem, out res);
+        ProtectionsNegative.TryGetValue(elem, out res);
         return res;
     }
 
     public int GetGlobalResistance()
     {
-        return _globalProtection;
+        return GlobalProtection;
     }
 
     public int GetGlobalWeakness()
     {
-        return _globalNegativeProtection;
+        return GlobalNegativeProtection;
     }
 
     /// <summary>
