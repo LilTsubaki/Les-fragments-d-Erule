@@ -25,6 +25,7 @@ public class Server : MonoBehaviour{
 
     public void Awake()
     {
+        ServerManager.GetInstance().Init(this);
         _clients = new List<ServerListener>();
         
         _udpClient = new UdpClient(broadcastPort);
@@ -47,6 +48,11 @@ public class Server : MonoBehaviour{
         _searchingClient = false;
 
         _udpClient.Close();
+
+        foreach(var cli in _clients)
+        {
+            cli.Stop();
+        }
     }
 
 
@@ -179,4 +185,26 @@ public class Server : MonoBehaviour{
         _clients.Remove(client);
     }
 
+    public void EndTurn()
+    {
+        if(_client1!=null)
+            _client1.EndTurn();
+        if (_client2 != null)
+            _client2.EndTurn();
+    }
+
+    public void UpdateCharacter(Character character)
+    {
+        if(_client1 != null && _client1._ch == character)
+        {
+            _client1.UpdateCharacter();
+            return;
+        }
+
+        if (_client2 !=null && _client2._ch == character )
+        {
+            _client2.UpdateCharacter();
+            return;
+        }
+    }
 }
