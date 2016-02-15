@@ -132,6 +132,15 @@ public class ServerListener
         _client.GetStream().Flush();
     }
 
+    public void UpdateCharacter()
+    {
+        Logger.Trace("UpdateCharacter");
+        NetworkUtils.WriteInt(10, _client.GetStream());
+        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+
+        _client.GetStream().Flush();
+    }
+
     void RefuseCharacter()
     {
         Logger.Trace("RefuseCharacter");

@@ -1,7 +1,4 @@
-﻿
-
-
-class ClientManager
+﻿class ClientManager
 {
     private static ClientManager manager;
 
