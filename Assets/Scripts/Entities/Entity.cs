@@ -14,6 +14,10 @@ public class Entity {
             _position._entity= this; }
     }
 
+    public Entity()
+    {
+
+    }
 
     public Entity(Hexagon position)
     {
