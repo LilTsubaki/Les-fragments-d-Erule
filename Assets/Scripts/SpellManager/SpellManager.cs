@@ -329,4 +329,43 @@ public class SpellManager
         }
         
     }
+
+    /// <summary>
+    /// Processes the effects of the perfection pole. It can prevent some runes from returning into the hand.
+    /// </summary>
+    /// <param name="perfection">The percentage of chance to keep runes due to the perfection pole.</param>
+    public void ProcessPerfection(float perfection)
+    {
+        bool ignoreSecond = true;
+        float keepCentral = UnityEngine.Random.value;
+        float keepSecond = 0;
+
+        if(keepCentral < perfection)
+        {
+            if(perfection > 0.2f)
+            {
+                keepSecond = UnityEngine.Random.value;
+                if(keepSecond < perfection)
+                {
+                    ignoreSecond = false;
+                }
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
+            }
+        }
+        else
+        {
+            RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+        }
+    }
+
+    /*/// <summary>
+    /// Processes the effects of the sublimation pole. It can inflict more effects from a spell.
+    /// </summary>
+    /// <param name="sublimation">The percentage of chance to add effects to a spell due to the sublimation pole.</param>
+    /// <returns></returns>
+    public bool ProcessSublimation(float sublimation)
+    {
+
+    }*/
+
 }
