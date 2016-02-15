@@ -47,6 +47,11 @@ public class Server : MonoBehaviour{
         _searchingClient = false;
 
         _udpClient.Close();
+
+        foreach(var cli in _clients)
+        {
+            cli.Stop();
+        }
     }
 
 
@@ -177,6 +182,12 @@ public class Server : MonoBehaviour{
     public void RemoveClient(ServerListener client)
     {
         _clients.Remove(client);
+    }
+
+    public void EndTurn()
+    {
+        _client1.EndTurn();
+        _client2.EndTurn();
     }
 
 }

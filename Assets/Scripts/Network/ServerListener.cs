@@ -87,6 +87,10 @@ public class ServerListener
         NetworkUtils.WriteInt(3, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
         SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
+        if(spell != null)
+        {
+            _ch.CurrentActionPoints--;
+        }
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 
@@ -123,6 +127,7 @@ public class ServerListener
         Logger.Trace("SendCharacter");
         NetworkUtils.WriteInt(6, _client.GetStream());
         NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+        NetworkUtils.WriteBool(TurnManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
         _client.GetStream().Flush();
     }
@@ -131,6 +136,17 @@ public class ServerListener
     {
         Logger.Trace("RefuseCharacter");
         NetworkUtils.WriteInt(8, _client.GetStream());
+
+        _client.GetStream().Flush();
+    }
+
+    public void EndTurn()
+    {
+        Logger.Trace("EndTurn");
+
+        NetworkUtils.WriteInt(9, _client.GetStream());
+        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+        NetworkUtils.WriteBool(TurnManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
         _client.GetStream().Flush();
     }
