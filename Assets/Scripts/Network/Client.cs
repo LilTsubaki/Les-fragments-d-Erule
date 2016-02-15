@@ -20,6 +20,7 @@ public class Client : MonoBehaviour{
     bool _isListeningThreadReading;
     bool _isMainThreadReading;
 
+    bool _resetBoard;
 
     Character _currentCharacter;
 
@@ -59,6 +60,7 @@ public class Client : MonoBehaviour{
         _isListening = true;
         _isListeningThreadReading = false;
         _isMainThreadReading = false;
+        _resetBoard = false;
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         Thread newThread = new Thread(WaitHosts);
@@ -69,6 +71,13 @@ public class Client : MonoBehaviour{
 
     void Update()
     {
+        if (_resetBoard)
+        {
+            RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+            _resetBoard = false;
+        }
+            
+
          /*if (Input.GetMouseButtonDown(1))
          {
             SearchHost();
@@ -113,6 +122,14 @@ public class Client : MonoBehaviour{
             case 10:
                 _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
+                return true;
+
+            case 11:
+                //TODO
+                bool fail = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                int rune = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                _resetBoard = true;
                 return true;
 
             default:
