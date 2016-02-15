@@ -85,7 +85,7 @@ public class ServerListener
         Queue<Element> que = rBoard.GetSortedElementQueue();
         SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
-        NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), client.GetStream());
+        NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 
         _client.GetStream().Flush();
 

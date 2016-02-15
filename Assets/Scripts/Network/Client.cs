@@ -178,7 +178,7 @@ public class Client : MonoBehaviour{
 
         if (id == 7)
         {
-            return NetworkUtils.ReadCharacter();
+            return NetworkUtils.ReadCharacter(_tcpClient.GetStream());
         }
 
         else
