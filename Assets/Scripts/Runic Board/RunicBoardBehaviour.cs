@@ -93,6 +93,20 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
+    public void ResetRunesExceptHistory(bool ignoreSecond)
+    {
+        _board.RemoveAllRunesExceptHistory(ignoreSecond);
+        for(int i = 0; i < _runesGO.Count; ++i)
+        {
+            RuneBehaviour rb = _runesGO[i].GetComponent<RuneBehaviour>();
+            if(rb._rune.PositionOnBoard == -1)
+            {
+                _runesGO[i].transform.SetParent(rb._initialParent);
+                rb._state = RuneBehaviour.State.BeingReleased;
+            }
+        }
+    }
+
     void InputUpdate()
     {
         // If mouse is pressed, check if a rune is underneath. If a rune is found, put his gameObject in _heldRune.
