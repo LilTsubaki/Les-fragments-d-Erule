@@ -95,9 +95,12 @@ public class CharacterUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        UpdateLife();
-        UpdateActionPoints();
-        UpdateResistances();
+        if (_character != null)
+        {
+            UpdateLife();
+            UpdateActionPoints();
+            UpdateResistances();
+        }
 	}
 
     void UpdateLife()
@@ -171,7 +174,7 @@ public class CharacterUI : MonoBehaviour {
         int posWood = chara.GetElementResistance(Element.GetElement(4));
         int posMetal = chara.GetGlobalResistance();
 
-        _resPosFire.sizeDelta = new Vector2(posFire*midSize, _resPosFire.sizeDelta.y);
+        _resPosFire.sizeDelta = new Vector2(posFire * midSize, _resPosFire.sizeDelta.y);
         _resPosWater.sizeDelta = new Vector2(posWater * midSize, _resPosWater.sizeDelta.y);
         _resPosAir.sizeDelta = new Vector2(posAir * midSize, _resPosAir.sizeDelta.y);
         _resPosEarth.sizeDelta = new Vector2(posEarth * midSize, _resPosEarth.sizeDelta.y);
@@ -191,7 +194,6 @@ public class CharacterUI : MonoBehaviour {
         _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
         _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
         _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
-
     }
 
     public void SetCharacter(Character character)
