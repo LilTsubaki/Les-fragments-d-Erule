@@ -21,6 +21,7 @@ public class Client : MonoBehaviour{
     bool _isMainThreadReading;
 
     bool _resetBoard;
+    int _runeKept;
 
     Character _currentCharacter;
 
@@ -65,6 +66,7 @@ public class Client : MonoBehaviour{
         _searchingHosts = true;
         Thread newThread = new Thread(WaitHosts);
         newThread.Start();
+        _runeKept = 0;
         ClientManager.GetInstance().Init(this);
         
     }
@@ -73,16 +75,20 @@ public class Client : MonoBehaviour{
     {
         if (_resetBoard)
         {
-            RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+            switch(_runeKept)
+            {
+                case 0:
+                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+                    break;
+                case 1:
+                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
+                    break;
+                case 2:
+                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
+                    break;
+            }
             _resetBoard = false;
         }
-            
-
-         /*if (Input.GetMouseButtonDown(1))
-         {
-            SearchHost();
-            //Connect("159.84.141.84", playPort);
-         }*/
     }
 
     public void Connect(string host, int port)
@@ -128,7 +134,7 @@ public class Client : MonoBehaviour{
                 //TODO
                 bool fail = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                int rune = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
                 _resetBoard = true;
                 return true;
 
