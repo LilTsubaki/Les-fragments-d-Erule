@@ -114,6 +114,10 @@ public class DeckSelectionBehaviour : MonoBehaviour {
             }
             else
             {
+                if (_heldRune.GetComponent<RuneBehaviour>()._rune.PositionInHand >= 0)
+                {
+                    _deckSelection.RemoveRuneFromHand(_heldRune.GetComponent<RuneBehaviour>()._rune.PositionInHand);
+                }
                 Destroy(_heldRune);
             }
 
