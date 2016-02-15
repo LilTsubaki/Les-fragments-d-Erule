@@ -132,7 +132,7 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0)
+        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0 && ClientManager.GetInstance()._client.IsMyTurn)
         {
             Rune rune;
             if(_runesInHand.TryGetValue(index, out rune))
@@ -169,6 +169,10 @@ public class RunicBoard {
                     }
                 }
             }
+        }
+        else
+        {
+            Logger.Error("Not enough action points");
         }
         return -1;
     }
@@ -218,7 +222,7 @@ public class RunicBoard {
     public bool ChangeRunePosition(int actualPosition, int newPosition)
     {
         Rune runeToMove;
-        if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove))
+        if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove) && ClientManager.GetInstance()._client.IsMyTurn)
         {
             if (!_runesOnBoard.ContainsKey(newPosition))
             {

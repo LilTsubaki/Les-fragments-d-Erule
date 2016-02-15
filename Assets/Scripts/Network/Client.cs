@@ -14,6 +14,8 @@ public class Client : MonoBehaviour{
     UdpClient _udpClient;
     bool _isRunning;
     bool _searchingHosts;
+    bool _isMyTurn;
+    bool _isListening;
     Character _currentCharacter;
 
     public Character CurrentCharacter
@@ -29,12 +31,27 @@ public class Client : MonoBehaviour{
         }
     }
 
+    public bool IsMyTurn
+    {
+        get
+        {
+            return _isMyTurn;
+        }
+
+        set
+        {
+            _isMyTurn = value;
+        }
+    }
+
     public void Awake()
     {
        
         _tcpClient = new TcpClient();
         _tcpClient.NoDelay = true;
         _tcpClient.Client.NoDelay = true;
+        IsMyTurn = false;
+        _isListening = true;
         InitBroadCast(broadcastPort);
         _searchingHosts = true;
         Thread newThread = new Thread(WaitHosts);
@@ -56,6 +73,39 @@ public class Client : MonoBehaviour{
     {
         Logger.Trace("Try Connect to " + host + ":" + port);
         _tcpClient.Connect(host, port);
+        Thread newThread = new Thread(WaitingMessage);
+        newThread.Start();
+    }
+
+    public void WaitingMessage()
+    {
+        while (_isListening)
+        {
+            NetworkStream stream = _tcpClient.GetStream();
+            if (stream.DataAvailable)
+            {
+                ReadMessage(NetworkUtils.ReadInt(stream));
+            }
+        }
+    }
+
+    public bool ReadMessage(int id)
+    {
+        switch (id)
+        {
+            /*case 6:
+                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                return true;*/
+
+            case 9:
+                IsMyTurn = !IsMyTurn;
+                return true; 
+
+            default:
+                return false;
+        }
+
     }
 
     public void Disconnect()
@@ -114,16 +164,7 @@ public class Client : MonoBehaviour{
         }
 
     }
-    
-    public bool ReadMessage(int id)
-    {
-        switch (id)
-        {
-            default:
-                return false;
-        }
 
-    }
 
     public void SendMakeSpell()
     {
@@ -149,6 +190,7 @@ public class Client : MonoBehaviour{
 
     public SendBoardResponse SendBoard()
     {
+        Logger.Debug("send board");
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
         
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
@@ -176,8 +218,9 @@ public class Client : MonoBehaviour{
 
     }
 
-    public Character RequestCharacter()
+    public void RequestCharacter()
     {
+        Logger.Debug("send request character");
         NetworkUtils.WriteInt(7, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
@@ -191,7 +234,9 @@ public class Client : MonoBehaviour{
 
         if (id == 6)
         {
-            return NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+            Logger.Debug("read character");
+            _currentCharacter =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+            _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
         }
 
         else
@@ -199,10 +244,7 @@ public class Client : MonoBehaviour{
             if(id == 8)
             {
                 Logger.Error("Connection refused");
-                return null;
             }
-            else
-                return null;
         }
     }
 }

@@ -155,7 +155,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            Transform parent;
+                            /*Transform parent;
                             if (newPositionOnBoard == 12)
                             {
                                 parent = _boardGO.transform.GetChild(9).transform;
@@ -165,9 +165,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
                                 parent = hitInfo.collider.transform;
                             }
 
-                            _heldRune.transform.SetParent(parent);
+                            _heldRune.transform.SetParent(parent);*/
 
-                            /* SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
+                             SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
                              if(response._exist)
                              {
                                  Transform parent;
@@ -184,7 +184,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                              else
                              {
                                  Board.RemoveRuneFromBoard(slotPosition);
-                             }*/
+                             }
                         }
                     }
                 }
