@@ -23,6 +23,8 @@ public class Client : MonoBehaviour{
     bool _resetBoard;
     int _runeKept;
 
+    public CharacterUI _characterUI;
+
     Character _currentCharacter;
 
     public Character CurrentCharacter
@@ -292,6 +294,7 @@ public class Client : MonoBehaviour{
         {
             Logger.Debug("read character");
             _currentCharacter =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+            _characterUI.SetCharacter(_currentCharacter);
             _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
         }
 
