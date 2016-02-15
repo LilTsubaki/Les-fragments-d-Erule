@@ -14,18 +14,18 @@ public class DeckSelection {
         }
     }
     
-    public void placeRuneInHand(Rune rune, int position)
+    public void PlaceRuneInHand(Rune rune, int position)
     {
         rune.PositionInHand = position;
         _runesInHand.Add(position, rune);
     }
 
-    public void removeRuneFromHand(int position)
+    public void RemoveRuneFromHand(int position)
     {
         _runesInHand.Remove(position);
     }
 
-    public void changeRunePosition(int oldPosition, int newPosition)
+    public void ChangeRunePosition(int oldPosition, int newPosition)
     {
         Rune runeToMove;
         if (_runesInHand.TryGetValue(oldPosition, out runeToMove))
