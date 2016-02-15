@@ -127,6 +127,7 @@ public class Client : MonoBehaviour{
             case 9:
                 _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                Logger.Debug("nb action points : " + _currentCharacter.CurrentActionPoints);
                 return true;
 
             //updating char infos
@@ -301,6 +302,16 @@ public class Client : MonoBehaviour{
                 Logger.Error("Connection refused");
             }
         }
+        _isMainThreadReading = false;
+    }
+
+    public void SendEndTurn()
+    {
+        while (_isListeningThreadReading) ;
+
+        _isMainThreadReading = true;
+        NetworkUtils.WriteInt(12, _tcpClient.GetStream());
+        _tcpClient.GetStream().Flush();
         _isMainThreadReading = false;
     }
 }

@@ -295,7 +295,7 @@ public class RunicBoard {
             _runesInHand.Add(rune.PositionInHand, rune);
         }
 
-        ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints += _runesOnBoard.Count;
+        //ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints += _runesOnBoard.Count;
 
         _runesOnBoard.Clear();
 
