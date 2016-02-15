@@ -286,6 +286,14 @@ public class SpellManager
     {
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
 
+
+        float perfection, sublimation, stability;
+        RunicBoardManager.GetInstance().GetBoardPlayer1().GetPolesInfluence(out perfection, out sublimation, out stability);
+
+        bool fail = ProcessStability(stability);
+        bool crit = ProcessSublimation(sublimation);
+        int runes = ProcessPerfection(perfection);
+
         List<int> effectIds;
 
         if (target == currentPlayer.Position )
@@ -327,6 +335,70 @@ public class SpellManager
                 }
             }
         }
-        
+
+
+        ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, fail, crit, runes);
+
     }
+
+    /// <summary>
+    /// Processes the effects of the perfection pole. It can prevent some runes from returning into the hand.
+    /// </summary>
+    /// <param name="perfection">The percentage of chance to keep runes due to the perfection pole.</param>
+    /// <returns>The number of rune to keep.</returns>
+    public int ProcessPerfection(float perfection)
+    {
+        bool ignoreSecond = true;
+        float keepCentral = UnityEngine.Random.value;
+        float keepSecond = 0;
+
+        if(keepCentral < perfection)
+        {
+            if(perfection > 0.2f)
+            {
+                keepSecond = UnityEngine.Random.value;
+                if(keepSecond < perfection)
+                {
+                    ignoreSecond = false;
+                }
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
+                if(ignoreSecond)
+                {
+                    return 1;
+                }
+                return 2;
+            }
+        }
+        else
+        {
+            RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
+        }
+        return 0;
+    }
+
+    /// <summary>
+    /// Processes the effects of the sublimation pole. It can inflict more effects from a spell.
+    /// </summary>
+    /// <param name="sublimation">The percentage of chance to add effects to a spell due to the sublimation pole.</param>
+    /// <returns>True if effects are to be added. Else false.</returns>
+    public bool ProcessSublimation(float sublimation)
+    {
+        return sublimation > UnityEngine.Random.value;
+    }
+
+    /// <summary>
+    /// Processes the effects of the stability pole on the chances to cast a spell successfully. 
+    /// </summary>
+    /// <param name="stability">The percentage of chance to cast successfully to add to the compatibility between runes.</param>
+    /// <returns>True if the cast succeded. Else false.</returns>
+    public bool ProcessStability(float stability)
+    {
+        float baseChance = RunicBoardManager.GetInstance().GetBaseStabilityByRuneNumber();
+        float coef = RunicBoardManager.GetInstance().GetReductionCoefficientByRuneNumber();
+        float malus = RunicBoardManager.GetInstance().GetTotalCompatibilityMalus();
+        float totalStability = (baseChance - (malus / coef)) * 0.01f + stability;
+
+        return totalStability > UnityEngine.Random.value;
+    }
+
 }

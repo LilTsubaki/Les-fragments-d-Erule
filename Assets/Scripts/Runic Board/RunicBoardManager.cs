@@ -5,12 +5,16 @@ public class RunicBoardManager{
 
     static private RunicBoardManager _instance;
 
+    public RunicBoardBehaviour _runicBoardBehaviour;
+
     private RunicBoard _boardPlayer1;
-    //private RunicBoard _boardPlayer2;
 
     private Dictionary<int, CompatibilityMalus> _compatibilityMaluses;
     private Dictionary<string, Compatibility> _compatibilities;
     private Dictionary<int, RuneNumberInfluence> _runeNumberInfluences;
+
+    
+
 
     RunicBoardManager()
     {
@@ -94,7 +98,6 @@ public class RunicBoardManager{
         _compatibilities.TryGetValue(idCompa, out c);
         if(c != null)
         {
-            Logger.Debug("Compatibility malus : " + idCompa + " / " + c.GetCompatibilityMalus());
             return c.GetCompatibilityMalus();
         }
         Logger.Error("Unkown compatibility id : " + idCompa + ". Malus set to 0.");
@@ -116,14 +119,31 @@ public class RunicBoardManager{
     public float GetBaseStabilityByRuneNumber()
     {
         int nb = _boardPlayer1.RunesOnBoard.Count;
-        return _runeNumberInfluences[nb].BaseStability;
+        RuneNumberInfluence stability;
+        _runeNumberInfluences.TryGetValue(nb, out stability);
+        if(stability != null)
+            return stability.BaseStability;
+        return 0;
     }
 
     public float GetReductionCoefficientByRuneNumber()
     {
         int nb = _boardPlayer1.RunesOnBoard.Count;
-        return _runeNumberInfluences[nb].ReductionCoefficient;
+        RuneNumberInfluence coef;
+        _runeNumberInfluences.TryGetValue(nb, out coef);
+        if (coef!= null)
+            return coef.ReductionCoefficient;
+        return 1;
     }
 
+    public void GetPolesInfluence(out float perfection, out float sublimation, out float stability)
+    {
+        _boardPlayer1.GetPolesInfluence(out perfection, out sublimation, out stability);
+    }
+
+    public void RegisterBoardBehaviour(RunicBoardBehaviour runicBoardBehaviour)
+    {
+        _runicBoardBehaviour = runicBoardBehaviour;
+    }
 
 }

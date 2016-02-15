@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917317188}
+      - m_Target: {fileID: 917317189}
         m_MethodName: EndOfTurn
         m_Mode: 1
         m_Arguments:
@@ -446,7 +446,7 @@ GameObject:
   - 92: {fileID: 917317185}
   - 124: {fileID: 917317184}
   - 81: {fileID: 917317183}
-  - 114: {fileID: 917317188}
+  - 114: {fileID: 917317189}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -521,7 +521,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &917317188
+--- !u!114 &917317189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 917317182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0183c8a5379634b8a345858e73ee90, type: 3}
+  m_Script: {fileID: 11500000, guid: 64892afd5ec93b64ba3dcdb3636a2304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _runicBoard: {fileID: 1544903359}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917317188}
+      - m_Target: {fileID: 917317189}
         m_MethodName: tryingToDoSpell
         m_Mode: 1
         m_Arguments:
@@ -822,11 +822,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22494220, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.09090909
       objectReference: {fileID: 0}
     - target: {fileID: 22494220, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
@@ -1096,15 +1096,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.9090909
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}

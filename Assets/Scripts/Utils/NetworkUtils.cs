@@ -67,7 +67,11 @@ public class NetworkUtils {
 
     public static void WriteString(string str, NetworkStream stream)
     {
-
+        if (str == null)
+        {
+            WriteInt(0, stream);
+            return;
+        }
         WriteInt(str.Length, stream);
 
         foreach(var c in str)

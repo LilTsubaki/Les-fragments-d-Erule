@@ -32,6 +32,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
         }
     }
 
+
+
+
     /// <summary>
     /// Iinstatiante runes game object and display them in the hand
     /// </summary>
@@ -81,6 +84,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
     /// <summary>
     /// Remove all runes from the board, and put them back in the hand of the player
     /// </summary>
+    /// 
     public void ResetRunes()
     {
         _board.RemoveAllRunes();
@@ -89,6 +93,35 @@ public class RunicBoardBehaviour : MonoBehaviour {
             RuneBehaviour rb = _runesGO[i].GetComponent<RuneBehaviour>();
             _runesGO[i].transform.SetParent(rb._initialParent);
             rb._state = RuneBehaviour.State.BeingReleased;
+        }
+    }
+    public void ResetRunes(int runeKept)
+    {
+        switch (runeKept)
+        {
+            case 0:
+                ResetRunes();
+                break;
+            case 1:
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
+                break;
+            case 2:
+                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
+                break;
+        }
+    }
+
+    public void ResetRunesExceptHistory(bool ignoreSecond)
+    {
+        _board.RemoveAllRunesExceptHistory(ignoreSecond);
+        for(int i = 0; i < _runesGO.Count; ++i)
+        {
+            RuneBehaviour rb = _runesGO[i].GetComponent<RuneBehaviour>();
+            if(rb._rune.PositionOnBoard == -1)
+            {
+                _runesGO[i].transform.SetParent(rb._initialParent);
+                rb._state = RuneBehaviour.State.BeingReleased;
+            }
         }
     }
 
@@ -154,7 +187,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            Transform parent;
+                            /*Transform parent;
                             if (newPositionOnBoard == 12)
                             {
                                 parent = _boardGO.transform.GetChild(9).transform;
@@ -164,9 +197,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
                                 parent = hitInfo.collider.transform;
                             }
 
-                            _heldRune.transform.SetParent(parent);
+                            _heldRune.transform.SetParent(parent);*/
 
-                            /* SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
+                             SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
                              if(response._exist)
                              {
                                  Transform parent;
@@ -183,7 +216,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                              else
                              {
                                  Board.RemoveRuneFromBoard(slotPosition);
-                             }*/
+                             }
                         }
                     }
                 }
@@ -213,6 +246,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
         Board = new RunicBoard(hand);
         RunicBoardManager.GetInstance().RegisterBoard(Board);
+        RunicBoardManager.GetInstance().RegisterBoardBehaviour(this);
 
         InstantiateRunesInHand();
     }

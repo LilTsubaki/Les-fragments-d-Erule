@@ -46,6 +46,7 @@ public class ServerBehaviour : MonoBehaviour {
 	public void EndOfTurn()
 	{
 		TurnManager.GetInstance().EndTurn();
+        ServerManager.GetInstance()._server.EndTurn();
 	}
 
 	public void tryingToDoSpell()

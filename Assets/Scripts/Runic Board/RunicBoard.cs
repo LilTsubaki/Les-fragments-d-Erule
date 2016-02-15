@@ -21,6 +21,8 @@ public class RunicBoard {
     Dictionary<int, Rune> _runesInHand;
     Dictionary<int, Rune> _runesOnBoard;
 
+    int _secondPlaced;
+
     private int _idPerfection = 22;
     private int _idSublimation = 14;
     private int _idStability = 0;
@@ -43,6 +45,19 @@ public class RunicBoard {
         set
         {
             _runesOnBoard = value;
+        }
+    }
+
+    public int SecondPlaced
+    {
+        get
+        {
+            return _secondPlaced;
+        }
+
+        set
+        {
+            _secondPlaced = value;
         }
     }
 
@@ -132,7 +147,7 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0)
+        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0 && ClientManager.GetInstance()._client.IsMyTurn)
         {
             Rune rune;
             if(_runesInHand.TryGetValue(index, out rune))
@@ -165,10 +180,19 @@ public class RunicBoard {
                         rune.PositionOnBoard = position;
                         _runesInHand.Remove(index);
                         ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints--;
+                        if (_runesOnBoard.Count == 2) // Keep in mind what was the second rune placed for perfection pole
+                            SecondPlaced = position;
                         return position;
                     }
                 }
             }
+        }
+        else
+        {
+            if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0)
+                Logger.Error("Not Your turn");
+            else
+                Logger.Error("Not enough action points");
         }
         return -1;
     }
@@ -190,10 +214,12 @@ public class RunicBoard {
                 tempRunesOnBoard.Remove(position);
                 if (EverythingIsConnectedToCenter(ref tempRunesOnBoard))
                 {
+                    if (_runesOnBoard.Count == 2)
+                        SecondPlaced = -1;
                     _runesOnBoard.Remove(position);
                     _runesInHand.Add(rune.PositionInHand, rune);
                     rune.PositionOnBoard = -1;
-                    PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints++;
+                    ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints++;
                     return true;
                 }
                 else
@@ -218,7 +244,7 @@ public class RunicBoard {
     public bool ChangeRunePosition(int actualPosition, int newPosition)
     {
         Rune runeToMove;
-        if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove))
+        if (_runesOnBoard.TryGetValue(actualPosition, out runeToMove) && ClientManager.GetInstance()._client.IsMyTurn)
         {
             if (!_runesOnBoard.ContainsKey(newPosition))
             {
@@ -234,6 +260,8 @@ public class RunicBoard {
                     _runesOnBoard.Remove(actualPosition);
                     runeToMove.PositionOnBoard = newPosition;
                     Logger.Debug("Rune moved from " + actualPosition + " to " + newPosition);
+                    if (RunesOnBoard.Count == 2)
+                        SecondPlaced = newPosition;
                     return true;
                 }
                 else
@@ -267,9 +295,11 @@ public class RunicBoard {
             _runesInHand.Add(rune.PositionInHand, rune);
         }
 
-        PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints += _runesOnBoard.Count;
+        //ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints += _runesOnBoard.Count;
 
         _runesOnBoard.Clear();
+
+        SecondPlaced = -1;
     }
 
     /// <summary>
@@ -287,6 +317,32 @@ public class RunicBoard {
         for (int i = 0; i < markedToDelete.Count; i++)
         {
             _runesOnBoard.Remove(markedToDelete[i]);
+        }
+
+        if(_runesOnBoard.Count < 2)
+        {
+            SecondPlaced = -1;
+        }
+    }
+
+
+    public void RemoveAllRunesExceptHistory(bool ignoreSecond)
+    {
+        List<int> ids = new List<int>();
+        foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
+        {
+            Rune rune = kvp.Value;
+            if (rune.PositionOnBoard != 10 && (rune.PositionOnBoard != SecondPlaced || ignoreSecond))
+            {
+                ids.Add(rune.PositionOnBoard);
+                rune.PositionOnBoard = -1;
+                _runesInHand.Add(rune.PositionInHand, rune);
+            }
+        }
+
+        for(int i = 0; i < ids.Count; ++i)
+        {
+            _runesOnBoard.Remove(ids[i]);
         }
     }
 
@@ -477,6 +533,12 @@ public class RunicBoard {
         return false;
     }
 
+    /// <summary>
+    /// Calculates the percentage acquired from the influence of each pole on every rune.
+    /// </summary>
+    /// <param name="perfection">The perfection percentage.</param>
+    /// <param name="sublimation">The sublimation percentage.</param>
+    /// <param name="stability">The stability percentage.</param>
     public void GetPolesInfluence(out float perfection, out float sublimation, out float stability)
     {
         Hexagon hexPerfection = new Hexagon(_idPerfection / 5, _idPerfection % 5, null);
@@ -504,6 +566,10 @@ public class RunicBoard {
         stability = stabi * 0.01f;
     }
 
+    /// <summary>
+    /// Creates a list containing every unique link between two runes placed on the board.
+    /// </summary>
+    /// <returns></returns>
     public List<KeyValuePair<Element, Element>> GetRuneLinks()
     {
         Dictionary<int, KeyValuePair<Element, Element>> dict = new Dictionary<int, KeyValuePair<Element, Element>>();

@@ -154,6 +154,7 @@ public class PlayBoard  {
         {
             character.PathToFollow = hexagons;
             PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints -= lengthOfPath;
+            ServerManager.GetInstance()._server.UpdateCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
             return true;
         }
         return false;

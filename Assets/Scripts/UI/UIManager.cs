@@ -18,7 +18,44 @@ public class UIManager
     private Stack<GameObject> _open;
 
     /// <summary>
-    /// Constructor of the UIManageR. Must only be called in GetInstance.
+    /// The UI used to show player 1 information.
+    /// </summary>
+    private CharacterUI _uiPlayer1;
+
+    /// <summary>
+    /// The UI used to show player 2 information.
+    /// </summary>
+    private CharacterUI _uiPlayer2;
+
+    public CharacterUI UiPlayer1
+    {
+        get
+        {
+            return _uiPlayer1;
+        }
+
+        set
+        {
+            _uiPlayer1 = value;
+        }
+    }
+
+    public CharacterUI UiPlayer2
+    {
+        get
+        {
+            return _uiPlayer2;
+        }
+
+        set
+        {
+            _uiPlayer2 = value;
+        }
+    }
+
+
+    /// <summary>
+    /// Constructor of the UIManager. Must only be called in GetInstance.
     /// </summary>
     private UIManager()
     {
@@ -53,6 +90,16 @@ public class UIManager
             return true;
         }
         return false;
+    }
+
+    public void RegisterUiCharacter1(CharacterUI charaUi)
+    {
+        UiPlayer1 = charaUi;
+    }
+
+    public void RegisterUiCharacter2(CharacterUI charaUi)
+    {
+        UiPlayer2 = charaUi;
     }
 
     /// <summary>
