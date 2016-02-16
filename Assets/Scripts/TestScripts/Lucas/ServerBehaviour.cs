@@ -41,6 +41,7 @@ public class ServerBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         tryingToDoSpell();
+        resetBoard();
     }
 
 	public void EndOfTurn()
@@ -49,7 +50,16 @@ public class ServerBehaviour : MonoBehaviour {
         ServerManager.GetInstance()._server.EndTurn();
 	}
 
-	public void tryingToDoSpell()
+    public void resetBoard()
+    {
+        if (PlayBoardManager.GetInstance().Board._reset)
+        {
+            PlayBoardManager.GetInstance().Board._reset = false;
+            PlayBoardManager.GetInstance().Board.ResetBoard();
+        }
+    }
+
+    public void tryingToDoSpell()
 	{
 		if(PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
 		{
