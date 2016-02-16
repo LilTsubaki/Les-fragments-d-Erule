@@ -393,7 +393,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   broadcastPort: 4000
   playPort: 14298
-  _characterUI: {fileID: 1681498961}
 --- !u!1 &538292762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,15 +1368,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.9090909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
@@ -1387,12 +1386,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22499674, guid: 72500e10552f9af4ebb747e72f57457e,
     type: 2}
   m_PrefabInternal: {fileID: 1681498959}
---- !u!114 &1681498961 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11427788, guid: 72500e10552f9af4ebb747e72f57457e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1681498959}
-  m_Script: {fileID: 11500000, guid: 0113aba3d5c68df4e87dcd72c9e256ec, type: 3}
 --- !u!1 &2007102671
 GameObject:
   m_ObjectHideFlags: 0

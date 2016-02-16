@@ -237,7 +237,7 @@ public class Server : MonoBehaviour{
             _client2.UpdateCharacter();
             if (_client2._ch == character)
             {
-                _client1.ResetBoard(fail, crit, runes);
+                _client2.ResetBoard(fail, crit, runes);
             }
         }
     }
