@@ -111,6 +111,7 @@ public class CharacterUI : MonoBehaviour {
             UpdateLife();
             UpdateActionPoints();
             UpdateResistances();
+            UpdateTurn();
         }
 	}
 
@@ -206,5 +207,17 @@ public class CharacterUI : MonoBehaviour {
         _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
         _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
         _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
+    }
+
+    void UpdateTurn()
+    {
+        if (ClientManager.GetInstance()._client.IsMyTurn)
+        {
+            _characterImage.color = Color.green;
+        }
+        else
+        {
+            _characterImage.color = Color.red;
+        }
     }
 }
