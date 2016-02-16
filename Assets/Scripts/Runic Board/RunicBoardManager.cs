@@ -7,14 +7,26 @@ public class RunicBoardManager{
 
     public RunicBoardBehaviour _runicBoardBehaviour;
 
-    private RunicBoard _boardPlayer1;
+    private RunicBoard _boardPlayer;
 
     private Dictionary<int, CompatibilityMalus> _compatibilityMaluses;
     private Dictionary<string, Compatibility> _compatibilities;
     private Dictionary<int, RuneNumberInfluence> _runeNumberInfluences;
 
-    
+    private Dictionary<int, Rune> _tempHand;
 
+    public Dictionary<int, Rune> TempHand
+    {
+        get
+        {
+            return _tempHand;
+        }
+
+        set
+        {
+            _tempHand = value;
+        }
+    }
 
     RunicBoardManager()
     {
@@ -35,18 +47,18 @@ public class RunicBoardManager{
 
     public void RegisterBoard(RunicBoard board)
     {
-        _boardPlayer1 = board;
+        _boardPlayer = board;
+    }
+
+    public void RegisterBoardBehaviour(RunicBoardBehaviour runicBoardBehaviour)
+    {
+        _runicBoardBehaviour = runicBoardBehaviour;
     }
 
     public RunicBoard GetBoardPlayer1()
     {
-        return _boardPlayer1;
+        return _boardPlayer;
     }
-
-    /*public RunicBoard GetBoardPlayer2()
-    {
-        return _boardPlayer2;
-    }*/
 
     private void Init()
     {
@@ -106,7 +118,7 @@ public class RunicBoardManager{
 
     public float GetTotalCompatibilityMalus()
     {
-        List<KeyValuePair<Element, Element>> listLink = _boardPlayer1.GetRuneLinks();
+        List<KeyValuePair<Element, Element>> listLink = _boardPlayer.GetRuneLinks();
         float totalMalus = 0;
         foreach(KeyValuePair<Element, Element> link in listLink)
         {
@@ -118,7 +130,7 @@ public class RunicBoardManager{
 
     public float GetBaseStabilityByRuneNumber()
     {
-        int nb = _boardPlayer1.RunesOnBoard.Count;
+        int nb = _boardPlayer.RunesOnBoard.Count;
         RuneNumberInfluence stability;
         _runeNumberInfluences.TryGetValue(nb, out stability);
         if(stability != null)
@@ -128,7 +140,7 @@ public class RunicBoardManager{
 
     public float GetReductionCoefficientByRuneNumber()
     {
-        int nb = _boardPlayer1.RunesOnBoard.Count;
+        int nb = _boardPlayer.RunesOnBoard.Count;
         RuneNumberInfluence coef;
         _runeNumberInfluences.TryGetValue(nb, out coef);
         if (coef!= null)
@@ -138,12 +150,8 @@ public class RunicBoardManager{
 
     public void GetPolesInfluence(out float perfection, out float sublimation, out float stability)
     {
-        _boardPlayer1.GetPolesInfluence(out perfection, out sublimation, out stability);
+        _boardPlayer.GetPolesInfluence(out perfection, out sublimation, out stability);
     }
 
-    public void RegisterBoardBehaviour(RunicBoardBehaviour runicBoardBehaviour)
-    {
-        _runicBoardBehaviour = runicBoardBehaviour;
-    }
 
 }

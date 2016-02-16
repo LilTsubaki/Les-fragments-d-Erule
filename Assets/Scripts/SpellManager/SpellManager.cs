@@ -20,6 +20,9 @@ public class SpellManager
     private Area _CurrentSelfArea;
 
     private Queue<Element> _spellToInit;
+
+    private Dictionary<int, Dictionary<Element, int>> _failDamage;
+
     public ElementNode ElementNode
     {
         get { return _elementNode; }
@@ -95,17 +98,8 @@ public class SpellManager
         return _SpellManager;
     }
 
-    /// <summary>
-    /// Read json files to fill dictionaries
-    /// </summary>
-    private void init()
+    private void LoadRange()
     {
-        _ranges = new Dictionary<int, Range>();
-        _areas = new Dictionary<int, Area>();
-        _directEffects = new Dictionary<int, Effect>();
-        //_onTimeEffects = new Dictionary<int, EffectOnTime>();
-        _elementNode = ElementNode.GetInstance();
-
         JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
         JSONObject array = js.list[0];
         foreach (JSONObject range in array.list)
@@ -114,19 +108,24 @@ public class SpellManager
             _ranges.Add(r.getId(), r);
         }
         Logger.Debug("Range.json read");
+    }
 
-
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
-        array = js.list[0];
+    private void LoadArea()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
+        JSONObject array = js.list[0];
         foreach (JSONObject area in array.list)
         {
             Area a = new Area(area);
             _areas.Add(a.getId(), a);
         }
         Logger.Debug("Area.json read");
+    }
 
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/spell.json");
-        array = js.list[0];
+    private void LoadSpell()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/spell.json");
+        JSONObject array = js.list[0];
         foreach (JSONObject spell in array.list)
         {
             List<Element> elementsList = new List<Element>();
@@ -145,15 +144,17 @@ public class SpellManager
 
             _elementNode.SetTargetSpell(ref targetSpell, elements);
 
-			elements = new Queue<Element>(elementsList);
+            elements = new Queue<Element>(elementsList);
             _elementNode.SetSelfSpell(ref selfSpell, elements);
-            
+
         }
         Logger.Debug("spell.json read");
+    }
 
-
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/directEffect.json");
-        array = js.list[0];
+    public void LoadDirectEffect()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/directEffect.json");
+        JSONObject array = js.list[0];
         foreach (JSONObject directEffect in array.list)
         {
             //Logger.Error(directEffect.GetField(directEffect.keys[0]));
@@ -178,9 +179,12 @@ public class SpellManager
             }
         }
         Logger.Debug("directEffect.json read");
+    }
 
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
-        array = js.list[0];
+    public void LoadOnTimeEffect()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
+        JSONObject array = js.list[0];
         foreach (JSONObject onTimeEffect in array.list)
         {
             Type t = Type.GetType(onTimeEffect.GetField(onTimeEffect.keys[0]).str);
@@ -203,6 +207,50 @@ public class SpellManager
             }
         }
         Logger.Debug("onTimeEffect.json read");
+    }
+
+    public void LoadFailDamage()
+    {
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/failDamage.json");
+        JSONObject array = js.list[0];
+        _failDamage = new Dictionary<int, Dictionary<Element, int>>();
+        foreach (JSONObject failDamage in array.list)
+        {
+            int nbRunes = (int)(failDamage.GetField("nbRunes").f);
+            Dictionary<Element, int> damages = new Dictionary<Element, int>();
+            foreach (JSONObject obj in failDamage.GetField("damages").list)
+            {
+                Element elem = Element.GetElement((int)(obj.GetField("element").f));
+                damages.Add(elem, (int)(obj.GetField("damage").f));
+
+            }
+            _failDamage.Add(nbRunes, damages);
+        }
+        Logger.Debug("failDamage.json read");
+    }
+
+    /// <summary>
+    /// Read json files to fill dictionaries
+    /// </summary>
+    private void init()
+    {
+        _ranges = new Dictionary<int, Range>();
+        _areas = new Dictionary<int, Area>();
+        _directEffects = new Dictionary<int, Effect>();
+        //_onTimeEffects = new Dictionary<int, EffectOnTime>();
+        _elementNode = ElementNode.GetInstance();
+
+        LoadRange();
+
+        LoadArea();
+
+        LoadSpell();
+
+        LoadDirectEffect();
+
+        LoadOnTimeEffect();
+
+        LoadFailDamage();
     }
 
     public void SetSpellToInit(Queue<Element> queue)
@@ -288,7 +336,7 @@ public class SpellManager
 
 
         float perfection, sublimation, stability;
-        RunicBoardManager.GetInstance().GetBoardPlayer1().GetPolesInfluence(out perfection, out sublimation, out stability);
+        RunicBoardManager.GetInstance().GetPolesInfluence(out perfection, out sublimation, out stability);
 
         bool fail = ProcessStability(stability);
         bool crit = ProcessSublimation(sublimation);
@@ -320,6 +368,32 @@ public class SpellManager
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
             }
+
+            // If the spell is critically casted, we add the critical effects
+            if (crit)
+            {
+                effectIds = CurrentSelfSpell.EffectsAreaCrit.GetIds();
+                if (effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
+                }
+
+                effectIds = CurrentSelfSpell._effectsCrit.GetIds();
+                if(effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
+                }
+            }
         }
         else
         {
@@ -332,6 +406,20 @@ public class SpellManager
                     Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                }
+            }
+            // If the spell is critically casted, we add the critical effects
+            if (crit)
+            {
+                effectIds = CurrentTargetSpell.EffectsAreaCrit.GetIds();
+                if(effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
                 }
             }
         }
@@ -354,14 +442,14 @@ public class SpellManager
 
         if(keepCentral < perfection)
         {
-            if(perfection > 0.2f)
+            if(perfection >= 0.2f)
             {
                 keepSecond = UnityEngine.Random.value;
                 if(keepSecond < perfection)
                 {
                     ignoreSecond = false;
                 }
-                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
+                //RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
                 if(ignoreSecond)
                 {
                     return 1;
@@ -369,10 +457,10 @@ public class SpellManager
                 return 2;
             }
         }
-        else
+        /*else
         {
             RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
-        }
+        }*/
         return 0;
     }
 
@@ -383,7 +471,7 @@ public class SpellManager
     /// <returns>True if effects are to be added. Else false.</returns>
     public bool ProcessSublimation(float sublimation)
     {
-        return sublimation > UnityEngine.Random.value;
+        return sublimation >= UnityEngine.Random.value;
     }
 
     /// <summary>
@@ -398,7 +486,7 @@ public class SpellManager
         float malus = RunicBoardManager.GetInstance().GetTotalCompatibilityMalus();
         float totalStability = (baseChance - (malus / coef)) * 0.01f + stability;
 
-        return totalStability > UnityEngine.Random.value;
+        return totalStability >= UnityEngine.Random.value;
     }
 
 }

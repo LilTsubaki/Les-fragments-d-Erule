@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class CharacterUI : MonoBehaviour {
 
-    Character _character;
+    public Character _character
+    {
+        get
+        {
+            if(ClientManager.GetInstance()._client != null)
+                return ClientManager.GetInstance()._client.CurrentCharacter;
+
+            return null;
+        }
+    }
 
     public Text _name;
     public Image _characterImage;
@@ -62,6 +71,8 @@ public class CharacterUI : MonoBehaviour {
     public RectTransform _resNegWood;
     public RectTransform _resNegMetal;
 
+   
+
     // Use this for initialization
     void Start () {
 
@@ -100,6 +111,7 @@ public class CharacterUI : MonoBehaviour {
             UpdateLife();
             UpdateActionPoints();
             UpdateResistances();
+            UpdateTurn();
         }
 	}
 
@@ -108,6 +120,7 @@ public class CharacterUI : MonoBehaviour {
         if (_character != null)
         {
             _life.value = _character._lifeCurrent;
+            _life.maxValue = _character._lifeMax;
             _lifePointsText.text = _character._lifeCurrent.ToString();
         }
     }
@@ -196,11 +209,15 @@ public class CharacterUI : MonoBehaviour {
         _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
     }
 
-    public void SetCharacter(Character character)
+    void UpdateTurn()
     {
-        _character = character;
-        _life.maxValue = _character._lifeMax;
-        _life.value = _character._lifeMax;
-        _name.text = _character.Name;
+        if (ClientManager.GetInstance()._client.IsMyTurn)
+        {
+            _characterImage.color = Color.green;
+        }
+        else
+        {
+            _characterImage.color = Color.red;
+        }
     }
 }

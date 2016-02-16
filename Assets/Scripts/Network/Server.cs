@@ -201,6 +201,7 @@ public class Server : MonoBehaviour{
         if (_client2 != null)
             _client2.EndTurn();
 
+        
         currrentTimeout = timeout;
     }
 

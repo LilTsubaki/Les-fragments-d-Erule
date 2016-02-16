@@ -82,7 +82,7 @@ public class HexagonBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (_hexagon.Targetable)
+        if (_hexagon.Targetable && finalArea != null)
         {
             for (int i = 0; i < finalArea.Count; i++)
             {

@@ -21,6 +21,7 @@ public class Client : MonoBehaviour{
     bool _isMainThreadReading;
 
     bool _resetBoard;
+    bool _lockedMode;
     int _runeKept;
 
     Character _currentCharacter;
@@ -29,12 +30,12 @@ public class Client : MonoBehaviour{
     {
         get
         {
-            return _currentCharacter;
+            return CurrentCharacter1;
         }
 
         set
         {
-            _currentCharacter = value;
+            CurrentCharacter1 = value;
         }
     }
 
@@ -51,9 +52,35 @@ public class Client : MonoBehaviour{
         }
     }
 
+    public bool LockedMode
+    {
+        get
+        {
+            return _lockedMode;
+        }
+
+        set
+        {
+            _lockedMode = value;
+        }
+    }
+
+    public Character CurrentCharacter1
+    {
+        get
+        {
+            return _currentCharacter;
+        }
+
+        set
+        {
+            _currentCharacter = value;
+        }
+    }
+
     public void Awake()
     {
-       
+        _lockedMode = false;
         _tcpClient = new TcpClient();
         _tcpClient.NoDelay = true;
         _tcpClient.Client.NoDelay = true;
@@ -76,22 +103,9 @@ public class Client : MonoBehaviour{
         if (_resetBoard)
         {
             RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes(_runeKept);
-            /*
-            switch (_runeKept)
-            {
+            if(ClientManager.GetInstance()._client.LockedMode)
+                UIManager.GetInstance().ToggleButton.GetComponent<ToggleBehaviour>().SwitchMode();
 
-                
-                case 0:
-                    RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes();
-                    break;
-                case 1:
-                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
-                    break;
-                case 2:
-                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
-                    break;
-            }
-            */
             _resetBoard = false;
         }
     }
@@ -125,18 +139,16 @@ public class Client : MonoBehaviour{
         {
             //end of turn
             case 9:
-                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                Logger.Debug("nb action points : " + _currentCharacter.CurrentActionPoints);
+                Logger.Debug("nb action points : " + CurrentCharacter1.CurrentActionPoints);
+                _lockedMode = false;
                 return true;
 
             //updating char infos
             case 10:
-                Character c = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-                _currentCharacter.Copy(c);
-
-                Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
-                Logger.Debug("Current life : " + _currentCharacter._lifeCurrent);
+                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Logger.Debug("current action points : " + CurrentCharacter1.CurrentActionPoints);
                 return true;
 
             case 11:
@@ -294,8 +306,7 @@ public class Client : MonoBehaviour{
         if (id == 6)
         {
             Logger.Debug("read character");
-            _currentCharacter =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-            UIManager.GetInstance().UiPlayer2.SetCharacter(_currentCharacter);
+            CurrentCharacter1 =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
             _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
         }
 
@@ -317,5 +328,19 @@ public class Client : MonoBehaviour{
         NetworkUtils.WriteInt(12, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
         _isMainThreadReading = false;
+    }
+
+    public void SendMovementMode()
+    {
+        if(_isMyTurn)
+        {
+            while (_isListeningThreadReading) ;
+
+            _isMainThreadReading = true;
+            NetworkUtils.WriteInt(13, _tcpClient.GetStream());
+            _tcpClient.GetStream().Flush();
+            _isMainThreadReading = false;
+        }
+
     }
 }
