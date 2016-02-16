@@ -17,6 +17,19 @@ public class DeckSelectionBehaviour : MonoBehaviour {
 
     private GameObject _heldRune;
 
+    public DeckSelection DeckSelection
+    {
+        get
+        {
+            return _deckSelection;
+        }
+
+        set
+        {
+            _deckSelection = value;
+        }
+    }
+
     void InstantiateRune(GameObject prefab, Element element, Transform parent)
     {
         GameObject runeGO = GameObject.Instantiate(prefab);
@@ -76,7 +89,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                     // Rune is not in hand
                     if (rune.PositionInHand < 0)
                     {
-                        if(_deckSelection.PlaceRuneInHand(rune, runeSlotBehaviour._position))
+                        if(DeckSelection.PlaceRuneInHand(rune, runeSlotBehaviour._position))
                         {
                             runeSlotBehaviour._runeGO = _heldRune;
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
@@ -89,7 +102,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                     // Rune is already in hand
                     else
                     {
-                        if(_deckSelection.ChangeRunePosition(rune.PositionInHand, runeSlotBehaviour._position))
+                        if(DeckSelection.ChangeRunePosition(rune.PositionInHand, runeSlotBehaviour._position))
                         {
                             if (runeSlotBehaviour._runeGO != null)
                             {
@@ -116,7 +129,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
             {
                 if (_heldRune.GetComponent<RuneBehaviour>()._rune.PositionInHand >= 0)
                 {
-                    _deckSelection.RemoveRuneFromHand(_heldRune.GetComponent<RuneBehaviour>()._rune.PositionInHand);
+                    DeckSelection.RemoveRuneFromHand(_heldRune.GetComponent<RuneBehaviour>()._rune.PositionInHand);
                 }
                 Destroy(_heldRune);
             }
@@ -128,7 +141,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
 
     void Awake()
     {
-        _deckSelection = new DeckSelection();
+        DeckSelection = new DeckSelection();
         InstantiateRunes();
     }
 

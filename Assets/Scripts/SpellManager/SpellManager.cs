@@ -449,7 +449,7 @@ public class SpellManager
                 {
                     ignoreSecond = false;
                 }
-                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
+                //RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
                 if(ignoreSecond)
                 {
                     return 1;
@@ -457,10 +457,10 @@ public class SpellManager
                 return 2;
             }
         }
-        else
+        /*else
         {
             RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
-        }
+        }*/
         return 0;
     }
 
