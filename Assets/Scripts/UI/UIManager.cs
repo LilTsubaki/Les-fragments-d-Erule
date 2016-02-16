@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class UIManager
@@ -27,6 +28,9 @@ public class UIManager
     /// </summary>
     private CharacterUI _uiPlayer2;
 
+    private Button _toggleButton;
+
+
     public CharacterUI UiPlayer1
     {
         get
@@ -50,6 +54,19 @@ public class UIManager
         set
         {
             _uiPlayer2 = value;
+        }
+    }
+
+    public Button ToggleButton
+    {
+        get
+        {
+            return _toggleButton;
+        }
+
+        set
+        {
+            _toggleButton = value;
         }
     }
 

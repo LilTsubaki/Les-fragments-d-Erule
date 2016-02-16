@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class TestReseau : MonoBehaviour {
 
 
-    public GameObject _runicBoard;
 
     // Use this for initialization
     void Start () {
@@ -21,4 +20,5 @@ public class TestReseau : MonoBehaviour {
     {
         ClientManager.GetInstance()._client.SendMakeSpell();        
     }
+
 }

@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d06e1d89de5394bbc03c4dd753c285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runicBoard: {fileID: 0}
 --- !u!1 &308636485
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +291,6 @@ GameObject:
   - 92: {fileID: 414008959}
   - 124: {fileID: 414008958}
   - 81: {fileID: 414008957}
-  - 114: {fileID: 414008962}
   - 114: {fileID: 414008963}
   m_Layer: 0
   m_Name: Main Camera
@@ -368,18 +366,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &414008962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 414008956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d06e1d89de5394bbc03c4dd753c285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _runicBoard: {fileID: 703461039}
 --- !u!114 &414008963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,10 +650,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673954732}
---- !u!1 &703461039 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 175284, guid: 7e96152ac21302a46858a35e9f4ee341, type: 2}
-  m_PrefabInternal: {fileID: 2018283443}
 --- !u!1 &992205522
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,8 +878,9 @@ GameObject:
   - 222: {fileID: 1031884935}
   - 114: {fileID: 1031884934}
   - 114: {fileID: 1031884933}
+  - 114: {fileID: 1031884936}
   m_Layer: 0
-  m_Name: Button
+  m_Name: toggleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -960,8 +943,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414008962}
-        m_MethodName: tryingToDoSpell
+      - m_Target: {fileID: 1031884936}
+        m_MethodName: SwitchMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1006,6 +989,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1031884931}
+--- !u!114 &1031884936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031884931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b6b7f3d19cdaf41a04f670931662b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472672511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1066,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'SpellMaker
+  m_Text: 'Swtich mode
 
 '
 --- !u!222 &1472672514
@@ -1368,15 +1362,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.9090909
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11427788, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: _player

@@ -147,7 +147,7 @@ public class RunicBoard {
     /// <returns>Where the rune was placed on the board</returns>
     public int PlaceRuneOnBoard(int index, int position)
     {
-        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0 && ClientManager.GetInstance()._client.IsMyTurn)
+        if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0 && ClientManager.GetInstance()._client.IsMyTurn && !ClientManager.GetInstance()._client.LockedMode)
         {
             Rune rune;
             if(_runesInHand.TryGetValue(index, out rune))
@@ -192,7 +192,10 @@ public class RunicBoard {
             if (ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints > 0)
                 Logger.Error("Not Your turn");
             else
-                Logger.Error("Not enough action points");
+                if(!ClientManager.GetInstance()._client.LockedMode)
+                    Logger.Error("Unlock Runic board !!");
+                else
+                    Logger.Error("Not enough action points");
         }
         return -1;
     }
