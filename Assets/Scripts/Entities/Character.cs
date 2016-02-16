@@ -234,6 +234,23 @@ public class Character : Entity
         _state = State.Waiting;
 	}
 
+    public void Copy(Character c)
+    {
+        _lifeCurrent = c._lifeCurrent;
+        CurrentActionPoints = c.CurrentActionPoints;
+        Name = c.Name;
+        TurnNumber = c.TurnNumber;
+
+        Protections = c.Protections;
+        ProtectionsNegative = c.ProtectionsNegative;
+
+        GlobalProtection = c.GlobalProtection;
+        GlobalNegativeProtection = c.GlobalNegativeProtection;
+
+        SommeProtection = c.SommeProtection;
+        SommeNegativeProtection = c.SommeNegativeProtection;
+    }
+
     public void ReceiveHeal(int value)
     {
         Logger.Debug("Receive heal value : " + value);

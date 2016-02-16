@@ -23,8 +23,6 @@ public class Client : MonoBehaviour{
     bool _resetBoard;
     int _runeKept;
 
-    public CharacterUI _characterUI;
-
     Character _currentCharacter;
 
     public Character CurrentCharacter
@@ -134,8 +132,11 @@ public class Client : MonoBehaviour{
 
             //updating char infos
             case 10:
-                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Character c = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                _currentCharacter.Copy(c);
+
                 Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
+                Logger.Debug("Current life : " + _currentCharacter._lifeCurrent);
                 return true;
 
             case 11:
@@ -294,7 +295,7 @@ public class Client : MonoBehaviour{
         {
             Logger.Debug("read character");
             _currentCharacter =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-            _characterUI.SetCharacter(_currentCharacter);
+            UIManager.GetInstance().UiPlayer2.SetCharacter(_currentCharacter);
             _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
         }
 
