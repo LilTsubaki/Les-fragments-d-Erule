@@ -288,7 +288,7 @@ public class SpellManager
 
 
         float perfection, sublimation, stability;
-        RunicBoardManager.GetInstance().GetBoardPlayer1().GetPolesInfluence(out perfection, out sublimation, out stability);
+        RunicBoardManager.GetInstance().GetPolesInfluence(out perfection, out sublimation, out stability);
 
         bool fail = ProcessStability(stability);
         bool crit = ProcessSublimation(sublimation);
@@ -320,6 +320,32 @@ public class SpellManager
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
             }
+
+            // If the spell is critically casted, we add the critical effects
+            if (crit)
+            {
+                effectIds = CurrentSelfSpell.EffectsAreaCrit.GetIds();
+                if (effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
+                }
+
+                effectIds = CurrentSelfSpell._effectsCrit.GetIds();
+                if(effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
+                }
+            }
         }
         else
         {
@@ -332,6 +358,20 @@ public class SpellManager
                     Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                }
+            }
+            // If the spell is critically casted, we add the critical effects
+            if (crit)
+            {
+                effectIds = CurrentTargetSpell.EffectsAreaCrit.GetIds();
+                if(effectIds.Count != 0)
+                {
+                    for (int i = 0; i < effectIds.Count; i++)
+                    {
+                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        if (effectTest != null)
+                            effectTest.ApplyEffect(finalArea, target, currentPlayer);
+                    }
                 }
             }
         }

@@ -6,7 +6,7 @@ public class Spell
     private int id;
     private int areaId;
     private Effects effectsArea;
-    protected Effects _effectsAreaCrit;
+    private Effects effectsAreaCrit;
 
     public int Id
     {
@@ -44,6 +44,19 @@ public class Spell
         set
         {
             effectsArea = value;
+        }
+    }
+
+    public Effects EffectsAreaCrit
+    {
+        get
+        {
+            return effectsAreaCrit;
+        }
+
+        set
+        {
+            effectsAreaCrit = value;
         }
     }
 

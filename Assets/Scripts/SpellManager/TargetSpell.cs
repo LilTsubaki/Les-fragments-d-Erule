@@ -14,7 +14,7 @@ public class TargetSpell:Spell
         Id = (int)js.GetField(js.keys[0]).n;
 		AreaId = (int)js.GetField("areaId").n;
 		EffectsArea = new Effects(js.GetField("effectsAreaIds"));
-		_effectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
+		EffectsAreaCrit = new Effects(js.GetField("effectsAreaCritIds"));
 		_rangeId = (int)js.GetField("rangeId").n;
     }
 
