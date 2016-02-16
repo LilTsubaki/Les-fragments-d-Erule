@@ -34,7 +34,6 @@ public class PlayBoardCreator : MonoBehaviour {
 		Hexagon hex = PlayBoardManager.GetInstance ().Board.CreateHexagone (x, y);
         if (hex != null && !(hex._posX < 0))
         {
-
             GameObject go = Instantiate<GameObject>(hexagon);
             go.transform.position = new Vector3(0.866f * x - 0.433f * y, z, 0.75f * y);
             go.transform.parent = board.transform;
@@ -42,6 +41,22 @@ public class PlayBoardCreator : MonoBehaviour {
             hex.GameObject = go;
         }   
 	}
+
+    public void BuildSpawnHexagon()
+    {
+        Hexagon hex = PlayBoardManager.GetInstance().Board.CreateHexagone(x, y);
+        if (hex != null && !(hex._posX < 0))
+        {
+            hex.IsSpawn = true;
+            GameObject go = Instantiate<GameObject>(hexagon);
+            go.transform.position = new Vector3(0.866f * x - 0.433f * y, z, 0.75f * y);
+            go.transform.parent = board.transform;
+            go.name = hexagon.name;
+            go.layer = LayerMask.NameToLayer("Spawn");
+            go.GetComponentInChildren<Renderer>().material.color = Color.green;
+            hex.GameObject = go;
+        }
+    }
 
 	public void RemoveHexagon()
 	{
@@ -53,7 +68,6 @@ public class PlayBoardCreator : MonoBehaviour {
 				Destroy (hex.GameObject);
 				hex.GameObject = null;
 			}
-				
 		}
 	}
 

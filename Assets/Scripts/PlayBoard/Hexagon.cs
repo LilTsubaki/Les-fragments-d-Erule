@@ -21,6 +21,8 @@ public class Hexagon : IAStar<Hexagon>
     private Color _defaultColor;
     private Color _previousColor;
 
+    private bool _isSpawn;
+
     private GameObject _gameObject;
 	public GameObject GameObject
     {
@@ -83,6 +85,19 @@ public class Hexagon : IAStar<Hexagon>
         set
         {
             _defaultColor = value;
+        }
+    }
+
+    public bool IsSpawn
+    {
+        get
+        {
+            return _isSpawn;
+        }
+
+        set
+        {
+            _isSpawn = value;
         }
     }
 
@@ -380,12 +395,18 @@ public class Hexagon : IAStar<Hexagon>
         hexa.AddField("posZ", _gameObject.transform.localPosition.y);
         hexa.AddField("gameObject", _gameObject.name);
 
+
 		if(_underground!=null)
 			hexa.AddField("underground", _underground.name);
 
         if(_entity!=null && _entity is Obstacle)
         {
             hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
+        }
+
+        if (IsSpawn)
+        {
+            hexa.AddField("isSpawn", _isSpawn);
         }
 
         return hexa;

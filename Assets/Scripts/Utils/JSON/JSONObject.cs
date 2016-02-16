@@ -1181,15 +1181,15 @@ public class JSONObject {
         int width = (int)js.GetField("Width").n;
         int height = (int)js.GetField("Height").n;
 
-        PlayBoard playBoard= new PlayBoard(width, height);
+        PlayBoard playBoard = new PlayBoard(width, height);
 
         JSONObject array = js.GetField("Hexagons");
-
+        
         foreach (JSONObject hexa in array.list)
         {
             Hexagon hexagon = playBoard.CreateHexagone((int)hexa.GetField("posX").n, (int)hexa.GetField("posY").n);
             GameObject prefab = (GameObject)Resources.Load("Prefabs/" + hexa.GetField("gameObject").str, typeof(GameObject));
-            hexagon.GameObject =GameObject.Instantiate(prefab);
+            hexagon.GameObject = GameObject.Instantiate(prefab);
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
@@ -1206,6 +1206,18 @@ public class JSONObject {
             hexagon.DefaultColor = Color.gray;
 			hexagon.PreviousColor = Color.gray;
 			hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.gray;
+
+            if (hexa.GetField("isSpawn") != null)
+            {
+                hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                hexagon.GameObject.layer = LayerMask.NameToLayer("Spawn");
+                playBoard.Spawns.Add(hexagon);
+                hexagon.IsSpawn = true;
+            }
+            else
+            {
+                hexagon.IsSpawn = false;
+            }
 
             if (hexa.GetField("underground") != null) { 
 				string undergroundName = hexa.GetField("underground").str;
@@ -1254,7 +1266,6 @@ public class JSONObject {
 					obs._gameobject.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
                 }
             }
-
         }
 
         return playBoard;

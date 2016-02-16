@@ -14,7 +14,12 @@ public class EditorPlayBoardCreator : Editor {
 			creator.BuildHexagon ();
 		}
 
-		if (GUILayout.Button ("Remove Hexagon")) {
+        if (GUILayout.Button("Create Spawn Hexagon"))
+        {
+            creator.BuildSpawnHexagon();
+        }
+
+        if (GUILayout.Button ("Remove Hexagon")) {
 			creator.RemoveHexagon ();
 		}
 
