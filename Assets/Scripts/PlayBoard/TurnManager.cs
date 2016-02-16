@@ -76,7 +76,7 @@ public class TurnManager
 
         _turnNumber++;
         //PlayBoardManager.GetInstance().Board.ResetBoard();
-
+        PlayBoardManager.GetInstance().Board.ResetBoard();
         BeginTurn();
         //penser à appliquer les effets des buffs/debuffs sur les joeuurs
         //+ reset ce qu'il y a à reset
