@@ -132,11 +132,9 @@ public class Client : MonoBehaviour{
 
             //updating char infos
             case 10:
-                Character c = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-                _currentCharacter.Copy(c);
-
+                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                UIManager.GetInstance().UiPlayer2.SetCharacter(_currentCharacter);
                 Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
-                Logger.Debug("Current life : " + _currentCharacter._lifeCurrent);
                 return true;
 
             case 11:

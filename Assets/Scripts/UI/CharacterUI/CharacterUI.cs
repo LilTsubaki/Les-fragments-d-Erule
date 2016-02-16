@@ -199,8 +199,8 @@ public class CharacterUI : MonoBehaviour {
     public void SetCharacter(Character character)
     {
         _character = character;
-        _life.maxValue = _character._lifeMax;
-        _life.value = _character._lifeMax;
+        _life.value = character._lifeCurrent;
+        _life.maxValue = character._lifeMax;
         _name.text = _character.Name;
     }
 }
