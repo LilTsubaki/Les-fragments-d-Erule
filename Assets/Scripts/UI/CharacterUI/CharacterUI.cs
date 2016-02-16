@@ -201,6 +201,7 @@ public class CharacterUI : MonoBehaviour {
         _character = character;
         _life.value = character._lifeCurrent;
         _life.maxValue = character._lifeMax;
+        _nbPoints = character.CurrentActionPoints;
         _name.text = _character.Name;
     }
 }

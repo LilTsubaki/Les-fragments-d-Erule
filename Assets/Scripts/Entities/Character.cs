@@ -12,7 +12,7 @@ public class Character : Entity
 	public readonly int _lifeMax;
 	public int _lifeCurrent;
 
-    public static int _maxActionPoints;
+    public static int _maxActionPoints = 4;
     private int _currentActionPoints;
 
     private string _name;
