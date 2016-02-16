@@ -8,6 +8,9 @@ using System.Threading;
 
 public class Server : MonoBehaviour{
 
+    float timeout=30;
+    public float currrentTimeout;
+
     public int broadcastPort;
     public int playPort;
 
@@ -25,6 +28,7 @@ public class Server : MonoBehaviour{
 
     public void Awake()
     {
+        currrentTimeout = timeout;
         ServerManager.GetInstance().Init(this);
         _clients = new List<ServerListener>();
         
@@ -56,9 +60,14 @@ public class Server : MonoBehaviour{
     }
 
 
-    void Update()
+    void FixedUpdate()
 	{
-		
+        currrentTimeout -= Time.fixedDeltaTime;
+        if (currrentTimeout <= 0)
+        {
+            TurnManager.GetInstance().EndTurn();
+            ServerManager.GetInstance()._server.EndTurn();
+        }
 	}
 
 	public void WaitingClient(){
@@ -191,6 +200,8 @@ public class Server : MonoBehaviour{
             _client1.EndTurn();
         if (_client2 != null)
             _client2.EndTurn();
+
+        currrentTimeout = timeout;
     }
 
     public void UpdateCharacter(Character character)

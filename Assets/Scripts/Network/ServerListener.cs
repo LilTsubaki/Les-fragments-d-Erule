@@ -55,6 +55,15 @@ public class ServerListener
                             RefuseCharacter();
                         break;
 
+                    case 12:
+                        if (TurnManager.GetInstance().isMyTurn(_ch))
+                        {
+                            TurnManager.GetInstance().EndTurn();
+                            ServerManager.GetInstance()._server.EndTurn();
+                        }
+                        
+                        break;
+
                     default:
                         Logger.Warning("Default id");
                         break;

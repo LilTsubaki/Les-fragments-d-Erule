@@ -75,7 +75,7 @@ public class TurnManager
         currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
 
         _turnNumber++;
-        PlayBoardManager.GetInstance().Board.ResetBoard();
+        //PlayBoardManager.GetInstance().Board.ResetBoard();
 
         BeginTurn();
         //penser à appliquer les effets des buffs/debuffs sur les joeuurs
