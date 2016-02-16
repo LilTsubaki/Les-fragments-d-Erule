@@ -13,20 +13,37 @@ public class DeckSelection {
             return _runesInHand;
         }
     }
+
+    public DeckSelection()
+    {
+        _runesInHand = new Dictionary<int, Rune>();
+    }
     
-    public void placeRuneInHand(Rune rune, int position)
+    public bool PlaceRuneInHand(Rune rune, int position)
     {
-        rune.PositionInHand = position;
-        _runesInHand.Add(position, rune);
+        if (!_runesInHand.ContainsKey(position))
+        {
+            rune.PositionInHand = position;
+            _runesInHand.Add(position, rune);
+            Logger.Debug("Rune placed at " + position);
+            return true;
+        }
+        Logger.Debug("Could not place rune at " + position);
+        return false;
     }
 
-    public void removeRuneFromHand(int position)
+    public bool RemoveRuneFromHand(int position)
     {
-        _runesInHand.Remove(position);
+        return _runesInHand.Remove(position);
     }
 
-    public void changeRunePosition(int oldPosition, int newPosition)
+    public bool ChangeRunePosition(int oldPosition, int newPosition)
     {
+        if (oldPosition == newPosition)
+        {
+            return false;
+        }
+
         Rune runeToMove;
         if (_runesInHand.TryGetValue(oldPosition, out runeToMove))
         {
@@ -42,17 +59,21 @@ public class DeckSelection {
 
                 _runesInHand.Add(newPosition, runeToMove);
                 _runesInHand.Add(oldPosition, runeToReplace);
+                return true;
             }
             else
             {
                 Logger.Debug("Changed from " + oldPosition + " to " + newPosition);
+                runeToMove.PositionInHand = newPosition;
                 _runesInHand.Remove(oldPosition);
                 _runesInHand.Add(newPosition, runeToMove);
+                return true;
             }
         }
         else
         {
             Logger.Debug("No runes at " + oldPosition);
+            return false;
         }
     }
 
