@@ -19,23 +19,32 @@ public class ToggleBehaviour : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        if (!ClientManager.GetInstance()._client.LockedMode)
+        {
+            gameObject.GetComponentInChildren<Text>().text = "Lock Spell";
+        }
+        else
+        {
+            gameObject.GetComponentInChildren<Text>().text = "Unlock Spell";
+        }
+    }
 
     public void SwitchMode()
     {
         if(ClientManager.GetInstance()._client.IsMyTurn)
         {
-            if (ClientManager.GetInstance()._client.LockedMode)
+            
+           
+             if (!ClientManager.GetInstance()._client.LockedMode)
             {
-                gameObject.GetComponentInChildren<Text>().text = "Lock Spell";
                 ClientManager.GetInstance()._client.SendMovementMode();
             }
             else
             {
-                gameObject.GetComponentInChildren<Text>().text = "Unlock Spell";
                 ClientManager.GetInstance()._client.SendMakeSpell();
             }
+
             ClientManager.GetInstance()._client.LockedMode = !ClientManager.GetInstance()._client.LockedMode;
         }   
     }

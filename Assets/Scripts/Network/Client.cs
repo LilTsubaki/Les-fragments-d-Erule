@@ -30,12 +30,12 @@ public class Client : MonoBehaviour{
     {
         get
         {
-            return _currentCharacter;
+            return CurrentCharacter1;
         }
 
         set
         {
-            _currentCharacter = value;
+            CurrentCharacter1 = value;
         }
     }
 
@@ -62,6 +62,19 @@ public class Client : MonoBehaviour{
         set
         {
             _lockedMode = value;
+        }
+    }
+
+    public Character CurrentCharacter1
+    {
+        get
+        {
+            return _currentCharacter;
+        }
+
+        set
+        {
+            _currentCharacter = value;
         }
     }
 
@@ -126,16 +139,16 @@ public class Client : MonoBehaviour{
         {
             //end of turn
             case 9:
-                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                Logger.Debug("nb action points : " + _currentCharacter.CurrentActionPoints);
+                Logger.Debug("nb action points : " + CurrentCharacter1.CurrentActionPoints);
+                _lockedMode = false;
                 return true;
 
             //updating char infos
             case 10:
-                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-                UIManager.GetInstance().UiPlayer2.SetCharacter(_currentCharacter);
-                Logger.Debug("current action points : " + _currentCharacter.CurrentActionPoints);
+                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Logger.Debug("current action points : " + CurrentCharacter1.CurrentActionPoints);
                 return true;
 
             case 11:
@@ -293,8 +306,7 @@ public class Client : MonoBehaviour{
         if (id == 6)
         {
             Logger.Debug("read character");
-            _currentCharacter =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-            UIManager.GetInstance().UiPlayer2.SetCharacter(_currentCharacter);
+            CurrentCharacter1 =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
             _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
         }
 

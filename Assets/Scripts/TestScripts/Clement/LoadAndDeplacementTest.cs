@@ -34,9 +34,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
 
         player1.Name = "Player 1";
-        _uiPlayer1.SetCharacter(player1);
         player2.Name = "Player 2";
-        _uiPlayer2.SetCharacter(player2);
 
         rangeTest = new List<Hexagon>();
         rangeTest.Add(hexaStart1);
