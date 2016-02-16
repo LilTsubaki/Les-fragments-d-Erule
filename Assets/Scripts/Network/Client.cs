@@ -21,6 +21,7 @@ public class Client : MonoBehaviour{
     bool _isMainThreadReading;
 
     bool _resetBoard;
+    bool _lockedMode;
     int _runeKept;
 
     Character _currentCharacter;
@@ -51,9 +52,22 @@ public class Client : MonoBehaviour{
         }
     }
 
+    public bool LockedMode
+    {
+        get
+        {
+            return _lockedMode;
+        }
+
+        set
+        {
+            _lockedMode = value;
+        }
+    }
+
     public void Awake()
     {
-       
+        _lockedMode = false;
         _tcpClient = new TcpClient();
         _tcpClient.NoDelay = true;
         _tcpClient.Client.NoDelay = true;
@@ -76,22 +90,9 @@ public class Client : MonoBehaviour{
         if (_resetBoard)
         {
             RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes(_runeKept);
-            /*
-            switch (_runeKept)
-            {
+            if(ClientManager.GetInstance()._client.LockedMode)
+                UIManager.GetInstance().ToggleButton.GetComponent<ToggleBehaviour>().SwitchMode();
 
-                
-                case 0:
-                    RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes();
-                    break;
-                case 1:
-                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
-                    break;
-                case 2:
-                    RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
-                    break;
-            }
-            */
             _resetBoard = false;
         }
     }
@@ -315,5 +316,19 @@ public class Client : MonoBehaviour{
         NetworkUtils.WriteInt(12, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
         _isMainThreadReading = false;
+    }
+
+    public void SendMovementMode()
+    {
+        if(_isMyTurn)
+        {
+            while (_isListeningThreadReading) ;
+
+            _isMainThreadReading = true;
+            NetworkUtils.WriteInt(13, _tcpClient.GetStream());
+            _tcpClient.GetStream().Flush();
+            _isMainThreadReading = false;
+        }
+
     }
 }
