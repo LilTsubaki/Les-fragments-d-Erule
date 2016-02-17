@@ -25,9 +25,6 @@ public class CharacterBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(TurnManager.GetInstance().isMyTurn(_character))
-            PlayBoardManager.GetInstance().Board.ColorAccessibleHexagons(_character);
-
 
         if (Input.GetMouseButtonDown(1) && TurnManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
         {

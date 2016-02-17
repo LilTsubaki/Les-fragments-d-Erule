@@ -76,6 +76,9 @@ public class TurnManager
 
     public void BeginTurn()
     {
+
+        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
@@ -103,7 +106,6 @@ public class TurnManager
 
         _turnNumber++;
         PlayBoardManager.GetInstance().Board._reset = true;
-        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
         BeginTurn();
 
 
