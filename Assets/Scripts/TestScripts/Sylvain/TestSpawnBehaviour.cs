@@ -83,6 +83,10 @@ public class TestSpawnBehaviour : MonoBehaviour {
                 break;
             case State.spawnDone:
                 PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
+                foreach (Hexagon spawn in _playBoard.Spawns)
+                {
+                    spawn.GameObject.GetComponentInChildren<Renderer>().material.color = spawn.DefaultColor;
+                }
                 break;
             default:
                 break;
