@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -23,6 +24,11 @@ public class Client : MonoBehaviour{
     bool _resetBoard;
     bool _lockedMode;
     int _runeKept;
+
+    public GameObject _buttonHost;
+    public GameObject _scrollPanel;
+    Dictionary<string, int> _hostsReceived;
+    bool _newHost;
 
     Character _currentCharacter;
 
@@ -95,7 +101,7 @@ public class Client : MonoBehaviour{
         newThread.Start();
         _runeKept = 0;
         ClientManager.GetInstance().Init(this);
-        
+        _hostsReceived = new Dictionary<string, int>();
     }
 
     void Update()
@@ -108,6 +114,17 @@ public class Client : MonoBehaviour{
 
             _resetBoard = false;
         }
+
+        if (_newHost)
+        {
+            foreach(KeyValuePair<string, int> host in _hostsReceived)
+            {
+                AddHostToScene(host.Key, host.Value);
+            }
+
+            _hostsReceived.Clear();
+            _newHost = false;
+        }
     }
 
     void OnDestroy()
@@ -118,8 +135,27 @@ public class Client : MonoBehaviour{
         Disconnect();
     }
 
+    private void AddHostToScene(string host, int port)
+    {
+        GameObject connectButton = Instantiate(_buttonHost);
+        connectButton.SetActive(true);
+        Button button = connectButton.GetComponent<Button>();
+        connectButton.transform.SetParent(_scrollPanel.transform);
+        connectButton.transform.localPosition = new Vector3(_scrollPanel.transform.childCount*80, -20);
+        button.GetComponentInChildren<Text>().text = host + ":" + port;
+        button.onClick.AddListener(delegate { Connect(host, port); RequestCharacter(); });
+    }
+
+    private void addHostToList(string host, int port)
+    {
+        _hostsReceived.Add(host, port);
+        _newHost = true;
+    }
+
     public void Connect(string host, int port)
     {
+        UIManager.GetInstance().HideAll();
+        UIManager.GetInstance().ShowPanel("PanelGame");
         Logger.Trace("Try Connect to " + host + ":" + port);
         _tcpClient.Connect(host, port);
         Thread newThread = new Thread(WaitingMessage);
@@ -198,6 +234,8 @@ public class Client : MonoBehaviour{
         IPEndPoint ep = new IPEndPoint(broadcast, broadcastPort);
 
         _udpClient.Send(data, data.Length, ep);
+
+        UIManager.GetInstance().ShowPanel("PanelServers");
     }
 
     void WaitHosts()
@@ -219,7 +257,8 @@ public class Client : MonoBehaviour{
                 {
                     case 1:
                         Logger.Warning("Connect to " + ip.Address.ToString());
-                        Connect(ip.Address.ToString(), playPort);
+                        //Connect(ip.Address.ToString(), playPort);
+                        addHostToList(ip.Address.ToString(), playPort);
                         _searchingHosts = false;
                         break;
                     default:

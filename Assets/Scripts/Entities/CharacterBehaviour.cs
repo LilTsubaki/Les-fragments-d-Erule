@@ -25,6 +25,7 @@ public class CharacterBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
         if (Input.GetMouseButtonDown(1) && TurnManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -93,6 +94,7 @@ public class CharacterBehaviour : MonoBehaviour
                     //fieldOfView();
                     _character.Position = _character.PathToFollow[0];
                     _character._state = Character.State.Waiting;
+                    PlayBoardManager.GetInstance().Board._colorAccessible = true;
                 }
             }
         }
