@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Hexagon : IAStar<Hexagon>
 {
+    public enum Boost:int { Nothing, Air, Earth, Fire, Metal, Water, Wood }
+
 	public readonly int _posX;
 	public readonly int _posY;
 
@@ -22,6 +24,8 @@ public class Hexagon : IAStar<Hexagon>
     private Color _previousColor;
 
     private bool _isSpawn;
+
+    private Boost _boostElement;
 
     private GameObject _gameObject;
 
@@ -102,6 +106,19 @@ public class Hexagon : IAStar<Hexagon>
         }
     }
 
+    public Boost BoostElement
+    {
+        get
+        {
+            return _boostElement;
+        }
+
+        set
+        {
+            _boostElement = value;
+        }
+    }
+
     public static bool isHexagonSet(Hexagon hex){
 		return hex != null && hex._posX >= 0 && hex._posY >= 0;
 	}
@@ -114,7 +131,7 @@ public class Hexagon : IAStar<Hexagon>
 		_board = board;
         _onTimeEffects = new Dictionary<int, GroundOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
-
+        _boostElement = Boost.Nothing;
     }
 
     public bool hasValidPosition()
@@ -408,6 +425,11 @@ public class Hexagon : IAStar<Hexagon>
         if (IsSpawn)
         {
             hexa.AddField("isSpawn", _isSpawn);
+        }
+
+        if (_boostElement != Boost.Nothing)
+        {
+            hexa.AddField("boost", (int)_boostElement);
         }
 
         return hexa;

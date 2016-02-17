@@ -58,6 +58,41 @@ public class PlayBoardCreator : MonoBehaviour {
         }
     }
 
+    public void ApplyBoost(Hexagon.Boost boost)
+    {
+        Hexagon hex = PlayBoardManager.GetInstance().Board.GetHexagone(x, y);
+        if (hex != null && !(hex._posX < 0))
+        {
+            hex.BoostElement = boost;
+            // Air, Earth, Fire, Metal, Water, Wood, Nothing
+            switch (boost)
+            {
+                case Hexagon.Boost.Air:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.7f, 0.7f, 1.0f);
+                    break;
+                case Hexagon.Boost.Earth:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(47.0f/255.0f, 105.0f / 255.0f, 27.0f / 255.0f);
+                    break;
+                case Hexagon.Boost.Fire:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.5f, 0, 0);
+                    break;
+                case Hexagon.Boost.Metal:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
+                    break;
+                case Hexagon.Boost.Water:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0, 0, 0.5f);
+                    break;
+                case Hexagon.Boost.Wood:
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(212.0f / 255.0f, 161.0f / 255.0f, 144.0f / 255.0f);
+                    break;
+                case Hexagon.Boost.Nothing:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 	public void RemoveHexagon()
 	{
 		RemoveObstacle ();
@@ -84,9 +119,7 @@ public class PlayBoardCreator : MonoBehaviour {
 				Obstacle o =new Obstacle (hex);
 				o._gameobject = go;
 				hex._entity = o;
-
 			}
-
 		}
 	}
 
@@ -100,9 +133,7 @@ public class PlayBoardCreator : MonoBehaviour {
 					Destroy (o._gameobject);
 					hex._entity = null;
 				}
-
 			}
-
 		}
 	}
 
@@ -116,9 +147,7 @@ public class PlayBoardCreator : MonoBehaviour {
 				go.transform.parent = hex.GameObject.transform;
 				go.name = underground.name;
 				hex.Underground = go;
-
 			}
-
 		}
 	}
 
@@ -127,12 +156,9 @@ public class PlayBoardCreator : MonoBehaviour {
 		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
 		if (hex != null && !(hex._posX<0)) {
 			if (hex.GameObject != null && hex.Underground!=null) {
-					
 				Destroy (hex.Underground);
 				hex.Underground = null;
-
 			}
-
 		}
 	}
 
@@ -144,10 +170,8 @@ public class PlayBoardCreator : MonoBehaviour {
     public void LoadBoard()
     {
         Destroy(board);
-        PlayBoardManager.GetInstance().Board=JSONObject.JSONToBoard(ref board, boardName);
+        PlayBoardManager.GetInstance().Board = JSONObject.JSONToBoard(ref board, boardName);
         width = PlayBoardManager.GetInstance().Board._width;
         height = PlayBoardManager.GetInstance().Board._height;
     }
-
-
 }

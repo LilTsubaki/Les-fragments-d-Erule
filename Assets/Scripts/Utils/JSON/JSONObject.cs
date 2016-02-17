@@ -1219,6 +1219,37 @@ public class JSONObject {
                 hexagon.IsSpawn = false;
             }
 
+            if (hexa.GetField("boost") != null)
+            {
+                hexagon.BoostElement = (Hexagon.Boost)((int)(hexa.GetField("boost").f));
+
+                switch (hexagon.BoostElement)
+                {
+                    case Hexagon.Boost.Air:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.7f, 0.7f, 1.0f);
+                        break;
+                    case Hexagon.Boost.Earth:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(47.0f / 255.0f, 105.0f / 255.0f, 27.0f / 255.0f);
+                        break;
+                    case Hexagon.Boost.Fire:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.5f, 0, 0);
+                        break;
+                    case Hexagon.Boost.Metal:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
+                        break;
+                    case Hexagon.Boost.Water:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0, 0, 0.5f);
+                        break;
+                    case Hexagon.Boost.Wood:
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(212.0f / 255.0f, 161.0f / 255.0f, 144.0f / 255.0f);
+                        break;
+                    case Hexagon.Boost.Nothing:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (hexa.GetField("underground") != null) { 
 				string undergroundName = hexa.GetField("underground").str;
 				if (undergroundName != null)

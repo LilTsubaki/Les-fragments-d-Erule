@@ -26,13 +26,47 @@ public class EditorPlayBoardCreator : Editor {
 		if (GUILayout.Button ("Create Obstacle")) {
 			creator.BuildObstacle ();
 		}
+
 		if (GUILayout.Button ("Remove Obstacle")) {
 			creator.RemoveObstacle ();
 		}
 
-		if (GUILayout.Button ("Create Underground")) {
+        // Boosts
+        if (GUILayout.Button("Apply boost Air"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Air);
+        }
+
+        if (GUILayout.Button("Apply boost Earth"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Earth);
+        }
+
+        if (GUILayout.Button("Apply boost Fire"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Fire);
+        }
+
+        if (GUILayout.Button("Apply boost Metal"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Metal);
+        }
+
+        if (GUILayout.Button("Apply boost Water"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Water);
+        }
+
+        if (GUILayout.Button("Apply boost Wood"))
+        {
+            creator.ApplyBoost(Hexagon.Boost.Wood);
+        }
+
+
+        if (GUILayout.Button ("Create Underground")) {
 			creator.BuildUnderground ();
 		}
+
 		if (GUILayout.Button ("Remove Underground")) {
 			creator.RemoveUnderground ();
 		}
@@ -40,8 +74,8 @@ public class EditorPlayBoardCreator : Editor {
         if (GUILayout.Button("Save Board"))
         {
             creator.SaveBoard();
-            
         }
+
         if (GUILayout.Button("Load Board"))
         {
             creator.LoadBoard();
