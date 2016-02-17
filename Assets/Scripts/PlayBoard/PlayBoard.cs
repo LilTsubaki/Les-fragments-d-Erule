@@ -277,7 +277,8 @@ public class PlayBoard  {
                 {
                     if (_grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
                     {
-                        if (_astar.CalculateBestPath(player.Position, _grid[i][j]).Count <= player.CurrentActionPoints)
+                        List<Hexagon> path = _astar.CalculateBestPath(player.Position, _grid[i][j]);
+                        if (path!=null && path.Count <= player.CurrentActionPoints)
                         {
                             _grid[i][j].PreviousColor = _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color;
                             _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;

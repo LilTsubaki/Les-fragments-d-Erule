@@ -36,10 +36,15 @@ public class ServerBehaviour : MonoBehaviour {
 		RunicBoardManager.GetInstance ().RegisterBoard (new RunicBoard ());
 
 
-	}
+        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        PlayBoardManager.GetInstance().Board.ColorAccessibleHexagons(PlayBoardManager.GetInstance().GetCurrentPlayer());
         tryingToDoSpell();
         resetBoard();
     }
