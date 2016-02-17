@@ -24,6 +24,7 @@ public class Hexagon : IAStar<Hexagon>
     private bool _isSpawn;
 
     private GameObject _gameObject;
+
 	public GameObject GameObject
     {
         get { return _gameObject; }

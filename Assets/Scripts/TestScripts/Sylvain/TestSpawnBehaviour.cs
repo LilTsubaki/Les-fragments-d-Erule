@@ -23,9 +23,6 @@ public class TestSpawnBehaviour : MonoBehaviour {
     {
 
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
-        //player1 = new Character(4000, hexaStart1, _player1GameObject);
-        //player2 = new Character(4000, hexaStart2, _player2GameObject);
-        //PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
     }
 
     // Use this for initialization
@@ -33,27 +30,62 @@ public class TestSpawnBehaviour : MonoBehaviour {
 	    
 	}
 
-    void UpdatePosition(ref Character character)
+    public void changeState()
     {
-
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
         switch (_state)
         {
             case State.player1Picking:
-                UpdatePosition(ref _player1);
+                _state = State.player2Picking;
                 break;
             case State.player2Picking:
-                UpdatePosition(ref _player2);
-                break;
-            case State.spawnDone:
+                _state = State.spawnDone;
                 break;
             default:
                 break;
         }
+    }
 
+    void UpdatePositionCharacter(ref Character character)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Spawn")))
+            {
+                Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
+                if (spawn.isReachable())
+                {
+                    if (character == null)
+                    {
+                        character = new Character(4000, spawn, _player1GameObject);
+                    }
+                    else
+                    {
+                        character.Position = spawn;
+                        spawn._entity = character;
+                        character._gameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.5f, 0);
+                    }
+                }
+            }
+        }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        switch (_state)
+        {
+            case State.player1Picking:
+                UpdatePositionCharacter(ref _player1);
+                break;
+            case State.player2Picking:
+                UpdatePositionCharacter(ref _player2);
+                break;
+            case State.spawnDone:
+                PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
+                break;
+            default:
+                break;
+        }
 	}
 }
