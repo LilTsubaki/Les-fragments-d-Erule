@@ -266,18 +266,22 @@ public class PlayBoard  {
 
     public void ColorAccessibleHexagons(Character player)
     {
-        ResetBoard();
-
-        for(int i = 0; i < _width; i++)
+        if (_colorAccessible)
         {
-            for(int j = 0; j < _height; j++)
+            _colorAccessible = false;
+            ResetBoard();
+
+            for (int i = 0; i < _width; i++)
             {
-                if(_grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
+                for (int j = 0; j < _height; j++)
                 {
-                    if(_astar.CalculateBestPath(player.Position, _grid[i][j]).Count <= player.CurrentActionPoints)
+                    if (_grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
                     {
-                        _grid[i][j].PreviousColor = _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color;
-                        _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                        if (_astar.CalculateBestPath(player.Position, _grid[i][j]).Count <= player.CurrentActionPoints)
+                        {
+                            _grid[i][j].PreviousColor = _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color;
+                            _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                        }
                     }
                 }
             }
