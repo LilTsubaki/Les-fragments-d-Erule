@@ -272,7 +272,7 @@ public class PlayBoard  {
         {
             for(int j = 0; j < _height; j++)
             {
-                if(_grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
+                if(_grid[i][j] != player.Position && _grid[i][j].Distance(player.Position) <= player.CurrentActionPoints )
                 {
                     if(_astar.CalculateBestPath(player.Position, _grid[i][j]).Count <= player.CurrentActionPoints)
                     {
