@@ -6,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class PlayBoard  {
 
+    public bool _colorAccessible=false;
+
     public bool _reset=false;
 	/// <summary>
 	/// The hexagonal grid.

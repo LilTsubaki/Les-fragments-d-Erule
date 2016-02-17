@@ -61,7 +61,13 @@ public class ServerListener
                             TurnManager.GetInstance().EndTurn();
                             ServerManager.GetInstance()._server.EndTurn();
                         }
-                        
+                        break;
+
+                    case 13:
+                        if (TurnManager.GetInstance().isMyTurn(_ch))
+                        {
+                            TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+                        }
                         break;
 
                     default:
@@ -109,7 +115,11 @@ public class ServerListener
 
     void ReadMakeSpell()
     {
+        
+            
         Logger.Trace("ReadMakeSpell");
+
+        
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
@@ -122,6 +132,7 @@ public class ServerListener
         SelfSpell spell = SpellManager.getInstance().ElementNode.GetSelfSpell(que);
         if(spell != null)
         {
+            TurnManager.GetInstance()._State = TurnManager.State.SpellMod;
             SpellManager.getInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
         }
         NetworkUtils.WriteBool(spell != null, _client.GetStream());

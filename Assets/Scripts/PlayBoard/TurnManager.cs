@@ -10,6 +10,10 @@ public class TurnManager
     private int _turnNumber;
     private bool _secondPlayerStarted;
 
+    public enum State { MoveMod, SpellMod};
+
+    private State _state;
+
     public int TurnNumber
     {
         get
@@ -20,6 +24,29 @@ public class TurnManager
         set
         {
             _turnNumber = value;
+        }
+    }
+
+    public State _State
+    {
+        get
+        {
+            return _state;
+        }
+
+        set
+        {
+            _state = value;
+            switch (_state)
+            {
+                case State.MoveMod:
+                    PlayBoardManager.GetInstance().Board._colorAccessible = true;
+                    break;
+
+                case State.SpellMod:
+
+                    break;
+            }
         }
     }
 
@@ -75,9 +102,11 @@ public class TurnManager
         currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
 
         _turnNumber++;
-        //PlayBoardManager.GetInstance().Board.ResetBoard();
         PlayBoardManager.GetInstance().Board._reset = true;
+        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
         BeginTurn();
+
+
         //penser à appliquer les effets des buffs/debuffs sur les joeuurs
         //+ reset ce qu'il y a à reset
     }

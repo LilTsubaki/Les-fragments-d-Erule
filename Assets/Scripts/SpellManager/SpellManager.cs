@@ -311,6 +311,7 @@ public class SpellManager
     {
         if(_spellToInit != null)
         {
+            PlayBoardManager.GetInstance().Board.ResetBoard();
             InitSpell(_spellToInit);
             _spellToInit = null;
         }
