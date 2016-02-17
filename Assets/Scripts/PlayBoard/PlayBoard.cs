@@ -6,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class PlayBoard  {
 
+    public bool _colorAccessible=false;
+
     public bool _reset=false;
 	/// <summary>
 	/// The hexagonal grid.
@@ -261,6 +263,27 @@ public class PlayBoard  {
             }
         }
     }
+
+    public void ColorAccessibleHexagons(Character player)
+    {
+        ResetBoard();
+
+        for(int i = 0; i < _width; i++)
+        {
+            for(int j = 0; j < _height; j++)
+            {
+                if(_grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
+                {
+                    if(_astar.CalculateBestPath(player.Position, _grid[i][j]).Count <= player.CurrentActionPoints)
+                    {
+                        _grid[i][j].PreviousColor = _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color;
+                        _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                    }
+                }
+            }
+        }
+    }
+
 
     public bool fieldOfView(Hexagon source, Hexagon destination)
     {

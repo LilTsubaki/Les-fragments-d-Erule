@@ -110,6 +110,14 @@ public class Client : MonoBehaviour{
         }
     }
 
+    void OnDestroy()
+    {
+        _isRunning = false;
+        _searchingHosts = false;
+        _udpClient.Close();
+        Disconnect();
+    }
+
     public void Connect(string host, int port)
     {
         Logger.Trace("Try Connect to " + host + ":" + port);
