@@ -46,7 +46,7 @@ public class ServerBehaviour : MonoBehaviour {
 
         PlayBoardManager.GetInstance().Board.ColorAccessibleHexagons(PlayBoardManager.GetInstance().GetCurrentPlayer());
         tryingToDoSpell();
-        resetBoard();
+        //resetBoard();
     }
 
 	public void EndOfTurn()

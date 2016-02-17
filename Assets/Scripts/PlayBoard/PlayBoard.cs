@@ -249,6 +249,7 @@ public class PlayBoard  {
 
     public void ResetBoard()
     {
+        Logger.Warning("RESET");
         for(int i = 0; i < _width; i++)
         {
             for(int j = 0; j < _height; j++)
@@ -268,6 +269,7 @@ public class PlayBoard  {
     {
         if (_colorAccessible)
         {
+            Logger.Debug("ColorAccessibleHexagons: "+player.CurrentActionPoints);
             _colorAccessible = false;
             ResetBoard();
 
@@ -277,6 +279,7 @@ public class PlayBoard  {
                 {
                     if (_grid[i][j] != player.Position && _grid[i][j].Distance(player.Position) <= player.CurrentActionPoints)
                     {
+                        _astar.reset();
                         List<Hexagon> path = _astar.CalculateBestPath(player.Position, _grid[i][j]);
                         if (path!=null && path.Count <= player.CurrentActionPoints)
                         {
