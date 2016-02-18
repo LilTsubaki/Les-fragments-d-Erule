@@ -8,7 +8,7 @@ using UnityEngine;
 public class Hexagon : IAStar<Hexagon>
 {
     public enum Boost { Nothing, Air, Earth, Fire, Metal, Water, Wood }
-    public enum State { Default }
+    public enum State { Default, Targetable, OverEnnemiTargetable, OverSelfTargetable, Accessible }
 
 	public readonly int _posX;
 	public readonly int _posY;
@@ -20,7 +20,6 @@ public class Hexagon : IAStar<Hexagon>
     public Dictionary<int, GroundOnTimeAppliedEffect> _onTimeEffects;
     public List<int> _onTimeEffectsToRemove;
 
-    private bool _targetable;
     private Color _previousColor;
 
     private bool _isSpawn;
@@ -57,19 +56,6 @@ public class Hexagon : IAStar<Hexagon>
 			_underground = value;
 		}
 	}
-
-    public bool Targetable
-    {
-        get
-        {
-            return _targetable;
-        }
-
-        set
-        {
-            _targetable = value;
-        }
-    }
 
     public Color PreviousColor
     {
@@ -157,7 +143,6 @@ public class Hexagon : IAStar<Hexagon>
 
 	public Hexagon (int x, int y, PlayBoard board)
 	{
-        Targetable = false;
         _posX = x;
 		_posY = y;
 		_board = board;

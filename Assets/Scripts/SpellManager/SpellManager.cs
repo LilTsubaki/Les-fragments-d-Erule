@@ -290,17 +290,13 @@ public class SpellManager
             {
                 if(_CurrentRange.Piercing && ranges[i].isVisible())
                 {
-                    ranges[i].Targetable = true;
-                    ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
-                    ranges[i].PreviousColor = Color.blue;
+                    ranges[i].CurrentState = Hexagon.State.Targetable;
                 }
                 else
                 {
                     if(PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]) && ranges[i].isVisible())
                     {
-                        ranges[i].Targetable = true;
-                        ranges[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.blue;
-                        ranges[i].PreviousColor = Color.blue;
+                        ranges[i].CurrentState = Hexagon.State.Targetable;
                     }
                 }
             }

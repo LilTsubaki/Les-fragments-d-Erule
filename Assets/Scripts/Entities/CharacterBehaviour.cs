@@ -102,7 +102,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (_character.Position.Targetable)
+        if (_character.Position.CurrentState == Hexagon.State.Targetable)
         {
             if (_character.Position == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
             {
@@ -112,7 +112,8 @@ public class CharacterBehaviour : MonoBehaviour
                 for (int i = 0; i < finalArea.Count; i++)
                 {
                     //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
-                    finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                    //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                    finalArea[i].CurrentState = Hexagon.State.OverSelfTargetable;
                 }
             }
             else
@@ -123,7 +124,8 @@ public class CharacterBehaviour : MonoBehaviour
                 for (int i = 0; i < finalArea.Count; i++)
                 {
                     //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
-                    finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+                    //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+                    finalArea[i].CurrentState = Hexagon.State.OverEnnemiTargetable;
                 }
                 //_character.Position.GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
             }
@@ -132,11 +134,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (_character.Position.Targetable)
+        if (_character.Position.CurrentState == Hexagon.State.Targetable)
         {
             for (int i = 0; i < finalArea.Count; i++)
             {
-                finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = finalArea[i].PreviousColor;
+                //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = finalArea[i].PreviousColor;
+                finalArea[i].CurrentState = finalArea[i].PreviousState;
             }
         }
     }

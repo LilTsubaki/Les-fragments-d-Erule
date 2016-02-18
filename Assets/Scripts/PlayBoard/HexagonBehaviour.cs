@@ -24,11 +24,23 @@ public class HexagonBehaviour : MonoBehaviour
                 case Hexagon.State.Default :
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
                     break;
+                case Hexagon.State.Targetable:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._targetable;
+                    break;
+                case Hexagon.State.OverEnnemiTargetable:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overEnnemiTargetable;
+                    break;
+                case Hexagon.State.OverSelfTargetable:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overSelfTargetable;
+                    break;
+                case Hexagon.State.Accessible:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._accessible;
+                    break;
             }
             _hexagon.StateChanged = false;
         }
 
-        if (_hexagon.Targetable)
+        if (_hexagon.CurrentState == Hexagon.State.Targetable)
         {
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
             {
@@ -59,7 +71,7 @@ public class HexagonBehaviour : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (_hexagon.Targetable)
+        if (_hexagon.CurrentState == Hexagon.State.Targetable)
         {
             MakeFinalArea();
         }
@@ -74,7 +86,8 @@ public class HexagonBehaviour : MonoBehaviour
             for (int i = 0; i < finalArea.Count; i++)
             {
                 //finalArea[i].PreviousColor = _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color;
-                finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                finalArea[i].CurrentState = Hexagon.State.OverSelfTargetable;
             }
         }
         else
@@ -85,7 +98,8 @@ public class HexagonBehaviour : MonoBehaviour
             for (int i = 0; i < finalArea.Count; i++)
             {
                 //finalArea[i].PreviousColor = _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color;
-                finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+                //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+                finalArea[i].CurrentState = Hexagon.State.OverEnnemiTargetable;
             }
             //_hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
         }
@@ -93,11 +107,11 @@ public class HexagonBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (_hexagon.Targetable && finalArea != null)
+        if (_hexagon.CurrentState == Hexagon.State.Targetable && finalArea != null)
         {
             for (int i = 0; i < finalArea.Count; i++)
             {
-                finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = finalArea[i].PreviousColor;
+                finalArea[i].CurrentState = finalArea[i].PreviousState;
             }
         }
     }

@@ -258,7 +258,6 @@ public class PlayBoard  {
                 if (hexa._posX !=-1)
                 {
                     hexa.CurrentState = Hexagon.State.Default;
-                    hexa.Targetable = false;
                 }        
             }
         }
@@ -282,8 +281,7 @@ public class PlayBoard  {
                         List<Hexagon> path = _astar.CalculateBestPath(player.Position, _grid[i][j]);
                         if (path!=null && path.Count <= player.CurrentActionPoints)
                         {
-                            _grid[i][j].PreviousColor = _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color;
-                            _grid[i][j].GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                            _grid[i][j].CurrentState = Hexagon.State.Accessible;
                         }
                     }
                 }
