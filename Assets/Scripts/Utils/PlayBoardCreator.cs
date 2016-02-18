@@ -53,7 +53,7 @@ public class PlayBoardCreator : MonoBehaviour {
             go.transform.parent = board.transform;
             go.name = hexagon.name;
             go.layer = LayerMask.NameToLayer("Spawn");
-            go.GetComponentInChildren<Renderer>().material.color = Color.green;
+            go.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
             hex.GameObject = go;
         }
     }

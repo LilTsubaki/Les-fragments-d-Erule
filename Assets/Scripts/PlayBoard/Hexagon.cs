@@ -8,7 +8,7 @@ using UnityEngine;
 public class Hexagon : IAStar<Hexagon>
 {
     public enum Boost { Nothing, Air, Earth, Fire, Metal, Water, Wood }
-    public enum State { Default, Targetable, OverEnnemiTargetable, OverSelfTargetable, Accessible, OverAccessible }
+    public enum State { Default, Targetable, OverEnnemiTargetable, OverSelfTargetable, Accessible, OverAccessible, Spawnable }
 
 	public readonly int _posX;
 	public readonly int _posY;

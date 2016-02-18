@@ -14,6 +14,8 @@ using UnityEngine;
     public static readonly Color _accessible = new Color(0.6f, 0.8f, 0.6f);
     public static readonly Color _overAccessible = new Color(0.7f, 1.0f, 0.7f);
 
+    public static readonly Color _spawn = Color.green;
+
     public static readonly Color _air = new Color(0.7f, 0.7f, 1.0f);
     public static readonly Color _earth = new Color(47.0f / 255.0f, 105.0f / 255.0f, 27.0f / 255.0f);
     public static readonly Color _fire = new Color(0.5f, 0, 0);

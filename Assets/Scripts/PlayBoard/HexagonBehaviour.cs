@@ -40,6 +40,9 @@ public class HexagonBehaviour : MonoBehaviour
                 case Hexagon.State.OverAccessible:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overAccessible;
                     break;
+                case Hexagon.State.Spawnable:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
+                    break;
             }
             _hexagon.StateChanged = false;
         }

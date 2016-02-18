@@ -1206,7 +1206,7 @@ public class JSONObject {
             
             if (hexa.GetField("isSpawn") != null)
             {
-                hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+                hexagon.CurrentState = Hexagon.State.Spawnable;
                 hexagon.GameObject.layer = LayerMask.NameToLayer("Spawn");
                 playBoard.Spawns.Add(hexagon);
                 hexagon.IsSpawn = true;
