@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class ServerBehaviour : MonoBehaviour {
-
-
+    
 	public string _boardName;
 	public GameObject _player1GameObject;
 	public GameObject _player2GameObject;

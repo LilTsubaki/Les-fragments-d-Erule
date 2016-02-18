@@ -200,6 +200,42 @@ public class Character : Entity
         Protections = new Dictionary<Element, int>();
         ProtectionsNegative = new Dictionary<Element, int>();
     }
+
+    public Character(int lifeMax, GameObject go)
+    {
+        _gameObject = GameObject.Instantiate(go);
+        _gameObject.GetComponent<CharacterBehaviour>()._character = this;
+        _gameObject.SetActive(false);
+
+        Protections = new Dictionary<Element, int>();
+        ProtectionsNegative = new Dictionary<Element, int>();
+
+        GlobalProtection = 0;
+        GlobalNegativeProtection = 0;
+
+        SommeProtection = 0;
+        SommeNegativeProtection = 0;
+
+        _lifeMax = lifeMax;
+        _lifeCurrent = lifeMax;
+
+        _rangeModifier = 0;
+
+        _maxActionPoints = 4;
+        _currentActionPoints = 1;
+        _turnNumber = 1;
+
+        foreach (var e in Element.GetElements())
+        {
+            Protections[e] = 0;
+            ProtectionsNegative[e] = 0;
+        }
+
+        _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
+        _onTimeEffectsToRemove = new List<int>();
+        _state = State.Waiting;
+    }
+
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
         _gameObject = GameObject.Instantiate(go);

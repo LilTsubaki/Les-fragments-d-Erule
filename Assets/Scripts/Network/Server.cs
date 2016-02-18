@@ -8,6 +8,8 @@ using System.Threading;
 
 public class Server : MonoBehaviour{
 
+    public enum State { firstPlayerPicking, secondPlayerPicking, playing }
+
     float timeout=300;
     public float currrentTimeout;
 
@@ -25,6 +27,21 @@ public class Server : MonoBehaviour{
     bool _isRunning = false;
 
     bool _searchingClient = false;
+
+    private State _currentState;
+
+    public State CurrentState
+    {
+        get
+        {
+            return _currentState;
+        }
+
+        set
+        {
+            _currentState = value;
+        }
+    }
 
     public void Awake()
     {
@@ -62,11 +79,18 @@ public class Server : MonoBehaviour{
 
     void FixedUpdate()
 	{
-        currrentTimeout -= Time.fixedDeltaTime;
-        if (currrentTimeout <= 0)
+        switch(_currentState)
         {
-            PlayBoardManager.GetInstance().EndTurn();
-            ServerManager.GetInstance()._server.EndTurn();
+            case State.playing:
+                currrentTimeout -= Time.fixedDeltaTime;
+                if (currrentTimeout <= 0)
+                {
+                    PlayBoardManager.GetInstance().EndTurn();
+                    ServerManager.GetInstance()._server.EndTurn();
+                }
+                break;
+            default:
+                break;
         }
 	}
 

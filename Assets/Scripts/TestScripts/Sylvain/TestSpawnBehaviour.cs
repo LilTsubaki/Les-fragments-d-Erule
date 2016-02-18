@@ -21,7 +21,6 @@ public class TestSpawnBehaviour : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
     }
 
@@ -45,7 +44,7 @@ public class TestSpawnBehaviour : MonoBehaviour {
         }
     }
 
-    void UpdatePositionCharacter(ref Character character)
+    void UpdateSpawnPositionCharacter(ref Character character)
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -76,10 +75,10 @@ public class TestSpawnBehaviour : MonoBehaviour {
         switch (_state)
         {
             case State.player1Picking:
-                UpdatePositionCharacter(ref _player1);
+                UpdateSpawnPositionCharacter(ref _player1);
                 break;
             case State.player2Picking:
-                UpdatePositionCharacter(ref _player2);
+                UpdateSpawnPositionCharacter(ref _player2);
                 break;
             case State.spawnDone:
                 PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);

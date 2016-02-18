@@ -8,10 +8,20 @@ public class Entity {
     public Hexagon Position
     {
         get { return _position; }
-        set {
-            _position._entity = null;
+        set
+        {
+            if (_position != null)
+            {
+                _position._entity = null;
+            }
+
             _position = value;
-            _position._entity= this; }
+
+            if (_position != null)
+            {
+                _position._entity= this;
+            }
+        }
     }
 
     public Entity()
@@ -21,11 +31,12 @@ public class Entity {
 
     public Entity(Hexagon position)
     {
+        if (position == null)
+            return;
 
         if (!Hexagon.isHexagonSet(position) || position._entity != null)
             throw new Exception("Invalid Position");
             _position = position;
         position._entity = this;
-        
     }
 }
