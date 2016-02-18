@@ -59,10 +59,10 @@ public class TestSpawnNetwork : MonoBehaviour {
         {
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Spawn")))
+            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Hexagon")))
             {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
-                if (spawn.isReachable())
+                if (spawn.IsSpawn && spawn.isReachable())
                 {
                     if (!character._gameObject.activeSelf)
                     {
@@ -76,20 +76,12 @@ public class TestSpawnNetwork : MonoBehaviour {
         }
     }
 
-    void resetSpawnsHexagonColor ()
-    {
-        foreach (Hexagon spawn in _playBoard.Spawns)
-        {
-            spawn.CurrentState = Hexagon.State.Default;
-        }
-    }
-	
     void UpdatePlaying()
     {
         if (!_gameStarted)
         {
             _button.SetActive(false);
-            resetSpawnsHexagonColor();
+            _playBoard.ResetBoard();
             PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
             _gameStarted = true;
         }

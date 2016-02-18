@@ -23,27 +23,12 @@ public class PlayBoard  {
 	/// The height of board.
 	/// </summary>
 	public readonly int _height;
-
-    private List<Hexagon> _spawns;
-    
+        
     AStar<Hexagon> _astar;
     
     Vector3 centreTemp = new Vector3();
     float rayonTemp = 0;
     float percent = 0.6f;
-
-    public List<Hexagon> Spawns
-    {
-        get
-        {
-            return _spawns;
-        }
-
-        set
-        {
-            _spawns = value;
-        }
-    }
 
 
     /// <summary>
@@ -66,7 +51,6 @@ public class PlayBoard  {
 		}
 
         _astar = new AStar<Hexagon>();
-        _spawns = new List<Hexagon>();
 	}
 
 	/// <summary>

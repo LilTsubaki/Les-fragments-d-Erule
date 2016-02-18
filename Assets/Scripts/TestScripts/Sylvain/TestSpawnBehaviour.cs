@@ -50,10 +50,10 @@ public class TestSpawnBehaviour : MonoBehaviour {
         {
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Spawn")))
+            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Hexagon")))
             {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
-                if (spawn.isReachable())
+                if (spawn.IsSpawn && spawn.isReachable())
                 {
                     if (character == null)
                     {
@@ -82,10 +82,6 @@ public class TestSpawnBehaviour : MonoBehaviour {
                 break;
             case State.spawnDone:
                 PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
-                foreach (Hexagon spawn in _playBoard.Spawns)
-                {
-                    spawn.CurrentState = Hexagon.State.Default;
-                }
                 break;
             default:
                 break;
