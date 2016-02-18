@@ -20,7 +20,6 @@ public class Hexagon : IAStar<Hexagon>
     public Dictionary<int, GroundOnTimeAppliedEffect> _onTimeEffects;
     public List<int> _onTimeEffectsToRemove;
 
-    private Color _previousColor;
 
     private bool _isSpawn;
 
@@ -56,19 +55,6 @@ public class Hexagon : IAStar<Hexagon>
 			_underground = value;
 		}
 	}
-
-    public Color PreviousColor
-    {
-        get
-        {
-            return _previousColor;
-        }
-
-        set
-        {
-            _previousColor = value;
-        }
-    }
 
     public bool IsSpawn
     {

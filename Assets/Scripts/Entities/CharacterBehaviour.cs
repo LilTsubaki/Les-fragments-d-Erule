@@ -134,12 +134,13 @@ public class CharacterBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (_character.Position.CurrentState == Hexagon.State.Targetable)
+        if ((_character.Position.CurrentState == Hexagon.State.OverSelfTargetable || _character.Position.CurrentState == Hexagon.State.OverEnnemiTargetable ||
+             _character.Position.CurrentState == Hexagon.State.Targetable) && finalArea != null)
         {
             for (int i = 0; i < finalArea.Count; i++)
             {
-                //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = finalArea[i].PreviousColor;
-                finalArea[i].CurrentState = finalArea[i].PreviousState;
+                if (finalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || finalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                    finalArea[i].CurrentState = finalArea[i].PreviousState;
             }
         }
     }

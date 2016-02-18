@@ -107,11 +107,13 @@ public class HexagonBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (_hexagon.CurrentState == Hexagon.State.Targetable && finalArea != null)
+        if ((_hexagon.CurrentState == Hexagon.State.OverSelfTargetable || _hexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
+             _hexagon.CurrentState == Hexagon.State.Targetable) && finalArea != null)
         {
             for (int i = 0; i < finalArea.Count; i++)
             {
-                finalArea[i].CurrentState = finalArea[i].PreviousState;
+                if(finalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || finalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                    finalArea[i].CurrentState = finalArea[i].PreviousState;
             }
         }
     }
