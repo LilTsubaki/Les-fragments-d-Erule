@@ -141,7 +141,7 @@ public class Client : MonoBehaviour{
         connectButton.SetActive(true);
         Button button = connectButton.GetComponent<Button>();
         connectButton.transform.SetParent(_scrollPanel.transform);
-        connectButton.transform.localPosition = new Vector3(_scrollPanel.transform.childCount*80, -20);
+        connectButton.transform.localPosition = new Vector3(80, _scrollPanel.transform.childCount * -30);
         button.GetComponentInChildren<Text>().text = host + ":" + port;
         button.onClick.AddListener(delegate { Connect(host, port); RequestCharacter(); });
     }
@@ -160,6 +160,7 @@ public class Client : MonoBehaviour{
         _tcpClient.Connect(host, port);
         Thread newThread = new Thread(WaitingMessage);
         newThread.Start();
+        _searchingHosts = false;
     }
 
     public void WaitingMessage()
@@ -259,7 +260,6 @@ public class Client : MonoBehaviour{
                         Logger.Warning("Connect to " + ip.Address.ToString());
                         //Connect(ip.Address.ToString(), playPort);
                         addHostToList(ip.Address.ToString(), playPort);
-                        _searchingHosts = false;
                         break;
                     default:
                         Logger.Error("Nope.");
