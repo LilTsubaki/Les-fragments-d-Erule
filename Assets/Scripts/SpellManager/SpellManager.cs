@@ -100,7 +100,7 @@ public class SpellManager
 
     private void LoadRange()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/range.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/range.json");
         JSONObject array = js.list[0];
         foreach (JSONObject range in array.list)
         {
@@ -112,7 +112,7 @@ public class SpellManager
 
     private void LoadArea()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/area.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/area.json");
         JSONObject array = js.list[0];
         foreach (JSONObject area in array.list)
         {
@@ -124,7 +124,7 @@ public class SpellManager
 
     private void LoadSpell()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/spell.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/spell.json");
         JSONObject array = js.list[0];
         foreach (JSONObject spell in array.list)
         {
@@ -153,7 +153,7 @@ public class SpellManager
 
     public void LoadDirectEffect()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/directEffect.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/directEffect.json");
         JSONObject array = js.list[0];
         foreach (JSONObject directEffect in array.list)
         {
@@ -183,7 +183,7 @@ public class SpellManager
 
     public void LoadOnTimeEffect()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/onTimeEffect.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/onTimeEffect.json");
         JSONObject array = js.list[0];
         foreach (JSONObject onTimeEffect in array.list)
         {
@@ -211,7 +211,7 @@ public class SpellManager
 
     public void LoadFailDamage()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/failDamage.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/failDamage.json");
         JSONObject array = js.list[0];
         _failDamage = new Dictionary<int, Dictionary<Element, int>>();
         foreach (JSONObject failDamage in array.list)
