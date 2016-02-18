@@ -56,17 +56,17 @@ public class ServerListener
                         break;
 
                     case 12:
-                        if (TurnManager.GetInstance().isMyTurn(_ch))
+                        if (PlayBoardManager.GetInstance().isMyTurn(_ch))
                         {
-                            TurnManager.GetInstance().EndTurn();
+                            PlayBoardManager.GetInstance().EndTurn();
                             ServerManager.GetInstance()._server.EndTurn();
                         }
                         break;
 
                     case 13:
-                        if (TurnManager.GetInstance().isMyTurn(_ch))
+                        if (PlayBoardManager.GetInstance().isMyTurn(_ch))
                         {
-                            TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+                            PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
                         }
                         break;
 
@@ -132,7 +132,7 @@ public class ServerListener
         SelfSpell spell = SpellManager.getInstance().ElementNode.GetSelfSpell(que);
         if(spell != null)
         {
-            TurnManager.GetInstance()._State = TurnManager.State.SpellMod;
+            PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.SpellMode;
             SpellManager.getInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
         }
         NetworkUtils.WriteBool(spell != null, _client.GetStream());
@@ -147,7 +147,7 @@ public class ServerListener
         Logger.Trace("SendCharacter");
         NetworkUtils.WriteInt(6, _client.GetStream());
         NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-        NetworkUtils.WriteBool(TurnManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+        NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
         _client.GetStream().Flush();
     }
@@ -175,7 +175,7 @@ public class ServerListener
 
         NetworkUtils.WriteInt(9, _client.GetStream());
         NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-        NetworkUtils.WriteBool(TurnManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+        NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
         _client.GetStream().Flush();
     }

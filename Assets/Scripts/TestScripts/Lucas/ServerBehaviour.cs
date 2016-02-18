@@ -36,7 +36,7 @@ public class ServerBehaviour : MonoBehaviour {
 		RunicBoardManager.GetInstance ().RegisterBoard (new RunicBoard ());
 
 
-        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+        PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
 
 
     }
@@ -51,7 +51,7 @@ public class ServerBehaviour : MonoBehaviour {
 
 	public void EndOfTurn()
 	{
-		TurnManager.GetInstance().EndTurn();
+		PlayBoardManager.GetInstance().EndTurn();
         ServerManager.GetInstance()._server.EndTurn();
 	}
 

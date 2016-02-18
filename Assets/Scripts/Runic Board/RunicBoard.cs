@@ -155,7 +155,7 @@ public class RunicBoard {
                 // If no runes are on the board, places the rune in the center
                 if (_runesOnBoard.Count == 0)
                 {
-                    rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
+                    rune.TurnUsed = PlayBoardManager.GetInstance().TurnNumber;
                     _runesOnBoard.Add(12, rune);
                     rune.PositionOnBoard = 12;
                     _runesInHand.Remove(index);
@@ -175,7 +175,7 @@ public class RunicBoard {
                 {
                     if (_runesOnBoard.ContainsKey(neighbours[i]))
                     {
-                        rune.TurnUsed = TurnManager.GetInstance().TurnNumber;
+                        rune.TurnUsed = PlayBoardManager.GetInstance().TurnNumber;
                         _runesOnBoard.Add(position, rune);
                         rune.PositionOnBoard = position;
                         _runesInHand.Remove(index);
@@ -211,7 +211,7 @@ public class RunicBoard {
         bool runeFound = _runesOnBoard.TryGetValue(position, out rune);
         if (runeFound)
         {
-            if (rune.TurnUsed == TurnManager.GetInstance().TurnNumber)
+            if (rune.TurnUsed == PlayBoardManager.GetInstance().TurnNumber)
             {
                 Dictionary<int, Rune> tempRunesOnBoard = new Dictionary<int, Rune>(_runesOnBoard);
                 tempRunesOnBoard.Remove(position);
@@ -313,7 +313,7 @@ public class RunicBoard {
         List<int> markedToDelete = new List<int>();
         foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
-            if (kvp.Value.TurnUsed == TurnManager.GetInstance().TurnNumber)
+            if (kvp.Value.TurnUsed == PlayBoardManager.GetInstance().TurnNumber)
                 markedToDelete.Add(kvp.Key);
         }
 
