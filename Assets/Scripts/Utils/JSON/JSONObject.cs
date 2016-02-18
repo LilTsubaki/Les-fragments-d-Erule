@@ -1202,11 +1202,8 @@ public class JSONObject {
 
 			hexagon.GameObject.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
 
-
-            hexagon.DefaultColor = Color.gray;
-			hexagon.PreviousColor = Color.gray;
-			hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.gray;
-
+            hexagon.CurrentState = Hexagon.State.Default;
+            
             if (hexa.GetField("isSpawn") != null)
             {
                 hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = Color.green;

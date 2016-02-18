@@ -257,8 +257,7 @@ public class PlayBoard  {
                 Hexagon hexa = _grid[i][j];
                 if (hexa._posX !=-1)
                 {
-                    hexa.GameObject.GetComponentInChildren<Renderer>().material.color = hexa.DefaultColor;
-                    hexa.PreviousColor = hexa.DefaultColor;
+                    hexa.CurrentState = Hexagon.State.Default;
                     hexa.Targetable = false;
                 }        
             }

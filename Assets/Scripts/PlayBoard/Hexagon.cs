@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Hexagon : IAStar<Hexagon>
 {
-    public enum Boost:int { Nothing, Air, Earth, Fire, Metal, Water, Wood }
+    public enum Boost { Nothing, Air, Earth, Fire, Metal, Water, Wood }
+    public enum State { Default }
 
 	public readonly int _posX;
 	public readonly int _posY;
@@ -20,12 +21,15 @@ public class Hexagon : IAStar<Hexagon>
     public List<int> _onTimeEffectsToRemove;
 
     private bool _targetable;
-    private Color _defaultColor;
     private Color _previousColor;
 
     private bool _isSpawn;
 
     private Boost _boostElement;
+
+    private State _currentState;
+    private State _previousState;
+    private bool _stateChanged;
 
     private GameObject _gameObject;
 
@@ -80,19 +84,6 @@ public class Hexagon : IAStar<Hexagon>
         }
     }
 
-    public Color DefaultColor
-    {
-        get
-        {
-            return _defaultColor;
-        }
-
-        set
-        {
-            _defaultColor = value;
-        }
-    }
-
     public bool IsSpawn
     {
         get
@@ -119,6 +110,47 @@ public class Hexagon : IAStar<Hexagon>
         }
     }
 
+    public State CurrentState
+    {
+        get
+        {
+            return _currentState;
+        }
+
+        set
+        {
+            _previousState = _currentState;
+            _currentState = value;
+            _stateChanged = true;            
+        }
+    }
+
+    public State PreviousState
+    {
+        get
+        {
+            return _previousState;
+        }
+
+        set
+        {
+            _previousState = value;
+        }
+    }
+
+    public bool StateChanged
+    {
+        get
+        {
+            return _stateChanged;
+        }
+
+        set
+        {
+            _stateChanged = value;
+        }
+    }
+
     public static bool isHexagonSet(Hexagon hex){
 		return hex != null && hex._posX >= 0 && hex._posY >= 0;
 	}
@@ -132,6 +164,9 @@ public class Hexagon : IAStar<Hexagon>
         _onTimeEffects = new Dictionary<int, GroundOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
         _boostElement = Boost.Nothing;
+        _currentState = State.Default;
+        _previousState = State.Default;
+        _stateChanged = false;
     }
 
     public bool hasValidPosition()

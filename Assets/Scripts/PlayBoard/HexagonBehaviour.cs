@@ -17,6 +17,17 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_hexagon.StateChanged)
+        {
+            switch(_hexagon.CurrentState)
+            {
+                case Hexagon.State.Default :
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+                    break;
+            }
+            _hexagon.StateChanged = false;
+        }
+
         if (_hexagon.Targetable)
         {
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
