@@ -119,6 +119,7 @@ public class ServerListener
 
         _client.GetStream().Flush();
 
+        PlayBoardManager.GetInstance().Board._colorAccessible = true;
     }
 
     void ReadMakeSpell()

@@ -145,16 +145,17 @@ public class PlayBoard  {
     /// <returns>If a path exists</returns>
     public bool FindPathForCharacter(Character character, Hexagon hexagon)
     {
-        _astar.reset();
-        List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
-        int lengthOfPath = hexagons.Count;
-        Logger.Debug(lengthOfPath);
-        if (hexagons != null && PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints >= lengthOfPath)
-        {
-            character.PathToFollow = hexagons;
-            PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints -= lengthOfPath;
-            ServerManager.GetInstance()._server.UpdateCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
-            return true;
+        if (hexagon.CurrentState == Hexagon.State.Accessible || hexagon.CurrentState == Hexagon.State.OverAccessible) {
+            _astar.reset();
+            List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
+
+            if (hexagons != null && PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints >= hexagons.Count)
+            {
+                character.PathToFollow = hexagons;
+                PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints -= hexagons.Count;
+                ServerManager.GetInstance()._server.UpdateCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
+                return true;
+            }
         }
         return false;
     }
