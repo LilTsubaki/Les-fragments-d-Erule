@@ -26,54 +26,62 @@ public class ServerListener
     {
         while (_isRunning)
         {
-            NetworkStream stream = _client.GetStream();
-            if (stream.DataAvailable)
-            {
-
-                int id = NetworkUtils.ReadInt(stream);
-                Logger.Warning("id: " + id);
-
-                switch (id)
+            try {
+                NetworkStream stream = _client.GetStream();
+                if (stream.DataAvailable)
                 {
-                    case 0:
-                        NetworkUtils.WriteInt(1, stream);
-                        stream.Flush();
-                        break;
 
-                    case 2:
-                        ReadRunicBoard();
-                        break;
+                    int id = NetworkUtils.ReadInt(stream);
+                    Logger.Warning("id: " + id);
 
-                    case 4:
-                        ReadMakeSpell();
-                        break;
+                    switch (id)
+                    {
+                        case 0:
+                            NetworkUtils.WriteInt(1, stream);
+                            stream.Flush();
+                            break;
 
-                    case 7:
-                        if (_server.Register(this))
-                            SendCharacter();
-                        else
-                            RefuseCharacter();
-                        break;
+                        case 2:
+                            ReadRunicBoard();
+                            break;
 
-                    case 12:
-                        if (PlayBoardManager.GetInstance().isMyTurn(_ch))
-                        {
-                            PlayBoardManager.GetInstance().EndTurn();
-                            ServerManager.GetInstance()._server.EndTurn();
-                        }
-                        break;
+                        case 4:
+                            ReadMakeSpell();
+                            break;
 
-                    case 13:
-                        if (PlayBoardManager.GetInstance().isMyTurn(_ch))
-                        {
-                            PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
-                        }
-                        break;
+                        case 7:
+                            if (_server.Register(this))
+                                SendCharacter();
+                            else
+                                RefuseCharacter();
+                            break;
 
-                    default:
-                        Logger.Warning("Default id");
-                        break;
+                        case 12:
+                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            {
+                                PlayBoardManager.GetInstance().EndTurn();
+                                ServerManager.GetInstance()._server.EndTurn();
+                            }
+                            break;
+
+                        case 13:
+                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            {
+                                PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
+                            }
+                            break;
+
+                        default:
+                            Logger.Warning("Default id");
+                            break;
+                    }
                 }
+            }
+            catch (SocketException e)
+            {
+                Logger.Error("Client Disconnect");
+                _isRunning = false;
+                break;
             }
         }
         _client.Close();
@@ -144,51 +152,89 @@ public class ServerListener
 
     void SendCharacter()
     {
-        Logger.Trace("SendCharacter");
-        NetworkUtils.WriteInt(6, _client.GetStream());
-        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-        NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+        try { 
+            Logger.Trace("SendCharacter");
+            NetworkUtils.WriteInt(6, _client.GetStream());
+            NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
-        _client.GetStream().Flush();
+            _client.GetStream().Flush();
+        }
+        catch (SocketException e)
+        {
+            Logger.Error("Client Disconnect");
+            _isRunning = false;
+        }
     }
 
     public void UpdateCharacter()
     {
+        try { 
         Logger.Trace("UpdateCharacter");
         NetworkUtils.WriteInt(10, _client.GetStream());
         NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+        
 
         _client.GetStream().Flush();
+        }
+        catch(SocketException e)
+        {
+            Logger.Error("Client Disconnect");
+            _isRunning = false;
+        }
     }
 
     void RefuseCharacter()
     {
-        Logger.Trace("RefuseCharacter");
-        NetworkUtils.WriteInt(8, _client.GetStream());
+        try
+        {
+            Logger.Trace("RefuseCharacter");
+            NetworkUtils.WriteInt(8, _client.GetStream());
 
-        _client.GetStream().Flush();
+            _client.GetStream().Flush();
+
+        }
+        catch(SocketException e)
+        {
+            Logger.Error("Client Disconnect");
+            _isRunning = false;
+        }
     }
 
     public void EndTurn()
     {
-        Logger.Trace("EndTurn");
+        try { 
+            Logger.Trace("EndTurn");
 
-        NetworkUtils.WriteInt(9, _client.GetStream());
-        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-        NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteInt(9, _client.GetStream());
+            NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
 
-        _client.GetStream().Flush();
+            _client.GetStream().Flush();
+        }
+        catch (SocketException e)
+        {
+            Logger.Error("Client Disconnect");
+            _isRunning = false;
+        }
     }
 
     public void ResetBoard(bool fail, bool crit, int runes)
     {
-        Logger.Trace("ResetBoard");
+        try { 
+            Logger.Trace("ResetBoard");
 
-        NetworkUtils.WriteInt(11, _client.GetStream());
-        NetworkUtils.WriteBool(fail, _client.GetStream());
-        NetworkUtils.WriteBool(crit, _client.GetStream());
-        NetworkUtils.WriteInt(runes, _client.GetStream());
+            NetworkUtils.WriteInt(11, _client.GetStream());
+            NetworkUtils.WriteBool(fail, _client.GetStream());
+            NetworkUtils.WriteBool(crit, _client.GetStream());
+            NetworkUtils.WriteInt(runes, _client.GetStream());
 
-        _client.GetStream().Flush();
+            _client.GetStream().Flush();
+        }
+        catch (SocketException e)
+        {
+            Logger.Error("Client Disconnect");
+            _isRunning = false;
+        }
     }
 }
