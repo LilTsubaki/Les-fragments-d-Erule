@@ -55,7 +55,7 @@ public class CharacterUI : MonoBehaviour {
 
     //Resistances
 
-    public RectTransform _resMask;
+    /*public RectTransform _resMask;
 
     public RectTransform _resPosFire;
     public RectTransform _resPosWater;
@@ -69,9 +69,16 @@ public class CharacterUI : MonoBehaviour {
     public RectTransform _resNegEarth;
     public RectTransform _resNegAir;
     public RectTransform _resNegWood;
-    public RectTransform _resNegMetal;
+    public RectTransform _resNegMetal;*/
 
-   
+    public Text _resFireText;
+    public Text _resWaterText;
+    public Text _resAirText;
+    public Text _resEarthText;
+    public Text _resWoodText;
+    public Text _resMetalText;
+
+
 
     // Use this for initialization
     void Start () {
@@ -95,9 +102,9 @@ public class CharacterUI : MonoBehaviour {
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if(_isOnLeft)
-                pos.x = 10 + i * (20 + 5);
+                pos.x = 10 + i * 30;
             else
-                pos.x = -10 - i * (20 + 5);
+                pos.x = -10 - i * 30;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
             
             _listActionPoints.Add(n);
@@ -168,7 +175,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateResistances()
     {
-        float midSize = _resMask.sizeDelta.x / 2 / Character.MaxProtection;
+        //float midSize = _resMask.sizeDelta.x / 2 / Character.MaxProtection;
 
         // Order : Fire Water Air Earth Wood Metal
         /*int posFire = _resFire > 0 ? _resFire : 0;
@@ -178,7 +185,7 @@ public class CharacterUI : MonoBehaviour {
         int posWood = _resWood > 0 ? _resWood : 0;
         int posMetal = _resMetal > 0 ? _resMetal : 0;*/
 
-        Character chara = _character;
+        /*Character chara = _character;
 
         int posFire = chara.GetElementResistance(Element.GetElement(0));
         int posWater = chara.GetElementResistance(Element.GetElement(1));
@@ -206,7 +213,21 @@ public class CharacterUI : MonoBehaviour {
         _resNegAir.sizeDelta = new Vector2(negAir * midSize, _resNegAir.sizeDelta.y);
         _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
         _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
-        _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);
+        _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);*/
+
+        int resFire = _character.GetElementResistance(Element.GetElement(0)) - _character.GetElementWeakness(Element.GetElement(0));
+        int resWater = _character.GetElementResistance(Element.GetElement(1)) - _character.GetElementWeakness(Element.GetElement(1));
+        int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
+        int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
+        int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
+        int resMetal = _character.GetElementResistance(Element.GetElement(5)) - _character.GetElementWeakness(Element.GetElement(5));
+
+        _resFireText.text = resFire.ToString();
+        _resWaterText.text = resWater.ToString();
+        _resAirText.text = resAir.ToString();
+        _resEarthText.text = resEarth.ToString();
+        _resWoodText.text = resWood.ToString();
+        _resMetalText.text = resMetal.ToString();
     }
 
     void UpdateTurn()
