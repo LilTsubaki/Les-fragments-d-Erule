@@ -36,6 +36,9 @@ public class HexagonBehaviour : MonoBehaviour
                 case Hexagon.State.Accessible:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._accessible;
                     break;
+                case Hexagon.State.OverAccessible:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overAccessible;
+                    break;
             }
             _hexagon.StateChanged = false;
         }
@@ -76,6 +79,8 @@ public class HexagonBehaviour : MonoBehaviour
         {
             MakeFinalArea();
         }
+        if (_hexagon.CurrentState == Hexagon.State.Accessible)
+            _hexagon.CurrentState = Hexagon.State.OverAccessible;
     }
 
     public void MakeFinalArea()
@@ -108,6 +113,9 @@ public class HexagonBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (_hexagon.CurrentState == Hexagon.State.OverAccessible)
+            _hexagon.CurrentState = _hexagon.PreviousState;
+
         if ((_hexagon.CurrentState == Hexagon.State.OverSelfTargetable || _hexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
              _hexagon.CurrentState == Hexagon.State.Targetable) && finalArea != null)
         {
