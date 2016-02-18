@@ -141,7 +141,7 @@ public class Client : MonoBehaviour{
         connectButton.SetActive(true);
         Button button = connectButton.GetComponent<Button>();
         connectButton.transform.SetParent(_scrollPanel.transform);
-        connectButton.transform.localPosition = new Vector3(80, _scrollPanel.transform.childCount * -30);
+        connectButton.transform.localPosition = new Vector3(80, (_scrollPanel.transform.childCount -1) * -30);
         button.GetComponentInChildren<Text>().text = host + ":" + port;
         button.onClick.AddListener(delegate { Connect(host, port); RequestCharacter(); });
     }
