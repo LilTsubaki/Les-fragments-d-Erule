@@ -22,7 +22,8 @@ public class HexagonBehaviour : MonoBehaviour
             switch(_hexagon.CurrentState)
             {
                 case Hexagon.State.Default :
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+                    if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
+                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
                     break;
                 case Hexagon.State.Targetable:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._targetable;

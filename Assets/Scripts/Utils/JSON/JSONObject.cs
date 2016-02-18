@@ -1219,26 +1219,28 @@ public class JSONObject {
             if (hexa.GetField("boost") != null)
             {
                 hexagon.BoostElement = (Hexagon.Boost)((int)(hexa.GetField("boost").f));
+                Logger.Debug(hexagon.BoostElement);
 
                 switch (hexagon.BoostElement)
                 {
                     case Hexagon.Boost.Air:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.7f, 0.7f, 1.0f);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._air;
+                        Logger.Debug("aaaair");
                         break;
                     case Hexagon.Boost.Earth:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(47.0f / 255.0f, 105.0f / 255.0f, 27.0f / 255.0f);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._earth;
                         break;
                     case Hexagon.Boost.Fire:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.5f, 0, 0);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._fire;
                         break;
                     case Hexagon.Boost.Metal:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._metal;
                         break;
                     case Hexagon.Boost.Water:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(0, 0, 0.5f);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._water;
                         break;
                     case Hexagon.Boost.Wood:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = new Color(212.0f / 255.0f, 161.0f / 255.0f, 144.0f / 255.0f);
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._wood;
                         break;
                     case Hexagon.Boost.Nothing:
                         break;
