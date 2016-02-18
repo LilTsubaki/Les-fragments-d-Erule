@@ -40,7 +40,8 @@ public class HexagonBehaviour : MonoBehaviour
             _hexagon.StateChanged = false;
         }
 
-        if (_hexagon.CurrentState == Hexagon.State.Targetable)
+        if (_hexagon.CurrentState == Hexagon.State.OverEnnemiTargetable || _hexagon.CurrentState == Hexagon.State.OverSelfTargetable
+            || _hexagon.CurrentState == Hexagon.State.Targetable)
         {
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
             {
