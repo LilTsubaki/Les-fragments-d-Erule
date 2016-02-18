@@ -8,7 +8,7 @@ using System.Threading;
 
 public class Server : MonoBehaviour{
 
-    float timeout=30;
+    float timeout=300;
     public float currrentTimeout;
 
     public int broadcastPort;

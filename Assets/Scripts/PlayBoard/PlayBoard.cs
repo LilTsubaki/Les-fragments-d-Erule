@@ -257,7 +257,10 @@ public class PlayBoard  {
                 Hexagon hexa = _grid[i][j];
                 if (hexa._posX !=-1)
                 {
-                    hexa.CurrentState = Hexagon.State.Default;
+                    hexa.Reset();
+                    /*hexa.CurrentState = Hexagon.State.Default;
+                    hexa.PreviousState = Hexagon.State.Default;
+                    hexa.StateChanged = true;*/
                 }        
             }
         }

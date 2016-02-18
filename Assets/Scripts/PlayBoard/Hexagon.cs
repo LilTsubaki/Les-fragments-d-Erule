@@ -140,6 +140,13 @@ public class Hexagon : IAStar<Hexagon>
         _stateChanged = false;
     }
 
+    public void Reset()
+    {
+        _currentState = State.Default;
+        _previousState = State.Default;
+        _stateChanged = true;
+    }
+
     public bool hasValidPosition()
     {
         if (_posX < 0 || _posY < 0)
