@@ -65,7 +65,7 @@ public class Server : MonoBehaviour{
         currrentTimeout -= Time.fixedDeltaTime;
         if (currrentTimeout <= 0)
         {
-            TurnManager.GetInstance().EndTurn();
+            PlayBoardManager.GetInstance().EndTurn();
             ServerManager.GetInstance()._server.EndTurn();
         }
 	}

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +10,9 @@ public class TurnManager
     private int _turnNumber;
     private bool _secondPlayerStarted;
 
-    public enum State { MoveMod, SpellMod};
+    public enum State { MoveMode, SpellMode};
 
-    private State _state;
+    private State _currentState;
 
     public int TurnNumber
     {
@@ -27,23 +27,23 @@ public class TurnManager
         }
     }
 
-    public State _State
+    public State CurrentState
     {
         get
         {
-            return _state;
+            return _currentState;
         }
 
         set
         {
-            _state = value;
-            switch (_state)
+            _currentState = value;
+            switch (_currentState)
             {
-                case State.MoveMod:
+                case State.MoveMode:
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     break;
 
-                case State.SpellMod:
+                case State.SpellMode:
 
                     break;
             }
@@ -76,9 +76,6 @@ public class TurnManager
 
     public void BeginTurn()
     {
-
-        
-
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
@@ -93,7 +90,7 @@ public class TurnManager
             }
         }
 
-        TurnManager.GetInstance()._State = TurnManager.State.MoveMod;
+        TurnManager.GetInstance().CurrentState = TurnManager.State.MoveMode;
     }
 
     public void EndTurn()
@@ -115,3 +112,4 @@ public class TurnManager
         //+ reset ce qu'il y a à reset
     }
 }
+*/

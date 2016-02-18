@@ -26,7 +26,7 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
     {
 
-        if (Input.GetMouseButtonDown(1) && TurnManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
+        if (Input.GetMouseButtonDown(1) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Debug.DrawLine(ray.origin, ray.direction * 20);
