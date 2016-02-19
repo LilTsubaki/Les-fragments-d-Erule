@@ -50,10 +50,7 @@ public class HexagonBehaviour : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
             {
-                if(finalArea == null)
-                {
-                    MakeFinalArea();
-                }                
+                             
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Debug.DrawLine(ray.origin, ray.direction * 20);
                 RaycastHit rch;
@@ -66,6 +63,10 @@ public class HexagonBehaviour : MonoBehaviour
                     if (hexa != null && hexa.Equals(_hexagon) && (_hexagon.CurrentState == Hexagon.State.OverEnnemiTargetable || _hexagon.CurrentState == Hexagon.State.OverSelfTargetable
                         || _hexagon.CurrentState == Hexagon.State.Targetable))
                     {
+                        if (finalArea == null)
+                        {
+                            MakeFinalArea();
+                        }
                         SpellManager.getInstance().ApplyEffects(finalArea, hexa);
                         PlayBoardManager.GetInstance().Board.ResetBoard();
                         //SpellManager.getInstance().InitRange();
