@@ -18,7 +18,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     private bool _gameStarted;
 
-    void Awake()
+    void Start()
     {
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
         _player1 = new Character(4000, _player1GameObject);

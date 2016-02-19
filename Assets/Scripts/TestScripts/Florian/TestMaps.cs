@@ -9,8 +9,12 @@ public class TestMaps : MonoBehaviour {
     public GameObject _buttonToCopy;
     public GameObject _content;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject _player1GameObject;
+    public GameObject _player2GameObject;
+    public GameObject _buttonValidation;
+
+    // Use this for initialization
+    void Start () {
         GetFiles();
 	}
 	
@@ -32,13 +36,21 @@ public class TestMaps : MonoBehaviour {
             obj.transform.SetParent(_content.transform);
             obj.transform.localPosition = new Vector3(offsetX + (160 + offsetX*2) * (i%3), (i/3 + 1) * -250);
             Button button = obj.GetComponent<Button>();
-            button.onClick.AddListener(delegate { DisplayName(path); });
+            button.onClick.AddListener(delegate { LoadMap(path); });
             button.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(path);
         }
     }
 
-    void DisplayName(string path)
+    void LoadMap(string path)
     {
-        Logger.Debug(Path.GetFileNameWithoutExtension(path));
+        GameObject o = new GameObject();
+        string name = Path.GetFileNameWithoutExtension(path);
+        TestSpawnNetwork tsn = o.AddComponent<TestSpawnNetwork>();
+        tsn._button = _buttonValidation;
+        tsn._player1GameObject = _player1GameObject;
+        tsn._player2GameObject = _player2GameObject;
+        tsn._boardName = name;
+        UIManager.GetInstance().HideAll();
+        UIManager.GetInstance().ShowPanel("PanelPosition");
     }
 }
