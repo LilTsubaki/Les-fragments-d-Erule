@@ -85,8 +85,9 @@ public class ServerListener
                     }
                 }
             }
-            catch (SocketException e)
+            catch
             {
+
                 Logger.Error("Client Disconnect");
                 _isRunning = false;
                 break;
@@ -170,7 +171,7 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -187,7 +188,7 @@ public class ServerListener
 
         _client.GetStream().Flush();
         }
-        catch(SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -204,7 +205,7 @@ public class ServerListener
             _client.GetStream().Flush();
 
         }
-        catch(SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -223,7 +224,7 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -242,7 +243,7 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;

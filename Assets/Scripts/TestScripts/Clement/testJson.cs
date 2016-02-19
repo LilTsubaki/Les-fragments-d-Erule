@@ -8,7 +8,7 @@ public class testJson : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        Logger.logLvl = Logger.Type.TRACE;
+        /*Logger.logLvl = Logger.Type.TRACE;
 
         SpellManager.getInstance();
         Logger.Trace("spellManager initialized");
@@ -25,7 +25,7 @@ public class testJson : MonoBehaviour
         {
             Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
             
-        }
+        }*/
 
 
     }

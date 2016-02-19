@@ -161,7 +161,7 @@ public class PlayBoardManager
     public void EndTurn()
     {
         Character currentPlayer = GetCurrentPlayer();
-        Character otherPlayer = GetOtherPlayer();
+        //Character otherPlayer = GetOtherPlayer();
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
