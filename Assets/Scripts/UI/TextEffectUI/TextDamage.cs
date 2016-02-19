@@ -5,9 +5,15 @@ using System;
 class TextDamage : TextEffect
 {
     private int _value;
-    private Element element;
+    private Element _element;
 
-    public override void DisplayText(GameObject go)
+    public TextDamage(int value, Element element)
+    {
+        _value = value;
+        _element = element;
+    }
+
+    public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
         throw new NotImplementedException();
     }

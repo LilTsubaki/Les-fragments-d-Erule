@@ -6,7 +6,12 @@ class TextHeal : TextEffect
 {
     private int _value;
 
-    public override void DisplayText(GameObject go)
+    public TextHeal(int value)
+    {
+        _value = value;
+    }
+
+    public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
         throw new NotImplementedException();
     }

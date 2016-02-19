@@ -294,6 +294,8 @@ public class Character : Entity
             _lifeCurrent = _lifeMax;
         else
             _lifeCurrent += value;
+
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
     }
 
     public void ReceiveDamage(int value, Element element)
@@ -309,6 +311,7 @@ public class Character : Entity
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
 
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
 
         if (_lifeCurrent - value < 0)
             _lifeCurrent = 0;
