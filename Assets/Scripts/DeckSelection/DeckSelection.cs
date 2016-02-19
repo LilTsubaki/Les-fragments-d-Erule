@@ -21,15 +21,14 @@ public class DeckSelection {
     
     public bool PlaceRuneInHand(Rune rune, int position)
     {
-        if (!_runesInHand.ContainsKey(position))
-        {
-            rune.PositionInHand = position;
-            _runesInHand.Add(position, rune);
-            Logger.Debug("Rune placed at " + position);
-            return true;
-        }
-        Logger.Debug("Could not place rune at " + position);
-        return false;
+        Rune runeToDelete;
+        if (_runesInHand.TryGetValue(position, out runeToDelete))
+            _runesInHand.Remove(position);
+        
+        rune.PositionInHand = position;
+        _runesInHand.Add(position, rune);
+        Logger.Debug("Rune placed at " + position);
+        return true;
     }
 
     public bool RemoveRuneFromHand(int position)

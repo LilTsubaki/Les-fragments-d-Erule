@@ -314,7 +314,6 @@ public class Client : MonoBehaviour{
         NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
-
         int id;
         do
         {

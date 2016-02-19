@@ -91,6 +91,10 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                     {
                         if(DeckSelection.PlaceRuneInHand(rune, runeSlotBehaviour._position))
                         {
+                            if(runeSlotBehaviour._runeGO != null)
+                            {
+                                Destroy(runeSlotBehaviour._runeGO);
+                            }
                             runeSlotBehaviour._runeGO = _heldRune;
                             _heldRune.transform.SetParent(hitInfo.collider.transform);
                         }
