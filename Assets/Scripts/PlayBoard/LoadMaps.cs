@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class TestMaps : MonoBehaviour {
+public class LoadMaps : MonoBehaviour {
 
     public GameObject _buttonToCopy;
     public GameObject _content;
@@ -27,7 +27,7 @@ public class TestMaps : MonoBehaviour {
 
     void GetFiles()
     {
-       /* List<string> files = new List<string>();
+        List<string> files = new List<string>();
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/JsonFiles/Maps", "*.json");
 
         float offsetX = ((680/3.0f)-160)/2;
@@ -41,7 +41,7 @@ public class TestMaps : MonoBehaviour {
             Button button = obj.GetComponent<Button>();
             button.onClick.AddListener(delegate { LoadMap(path); });
             button.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(path);
-        }*/
+        }
     }
 
     void LoadMap(string path)
