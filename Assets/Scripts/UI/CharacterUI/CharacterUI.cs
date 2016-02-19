@@ -220,14 +220,14 @@ public class CharacterUI : MonoBehaviour {
         int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
         int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
         int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
-        int resMetal = _character.GetElementResistance(Element.GetElement(5)) - _character.GetElementWeakness(Element.GetElement(5));
+        int resGlobal = _character.GetGlobalResistance() - _character.GetGlobalWeakness();
 
         _resFireText.text = resFire.ToString();
         _resWaterText.text = resWater.ToString();
         _resAirText.text = resAir.ToString();
         _resEarthText.text = resEarth.ToString();
         _resWoodText.text = resWood.ToString();
-        _resMetalText.text = resMetal.ToString();
+        _resMetalText.text = resGlobal.ToString();
     }
 
     void UpdateTurn()
