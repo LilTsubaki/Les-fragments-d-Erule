@@ -153,45 +153,8 @@ public class CharacterHostUI : MonoBehaviour
 
     void UpdateResistances()
     {
-        //float midSize = _resMask.sizeDelta.x / 2 / Character.MaxProtection;
 
         // Order : Fire Water Air Earth Wood Metal
-        /*int posFire = _resFire > 0 ? _resFire : 0;
-        int posWater = _resWater > 0 ? _resWater : 0;
-        int posEarth = _resEarth > 0 ? _resEarth : 0;
-        int posAir = _resAir > 0 ? _resAir : 0;
-        int posWood = _resWood > 0 ? _resWood : 0;
-        int posMetal = _resMetal > 0 ? _resMetal : 0;*/
-
-        /*Character chara = _character;
-
-        int posFire = chara.GetElementResistance(Element.GetElement(0));
-        int posWater = chara.GetElementResistance(Element.GetElement(1));
-        int posAir = chara.GetElementResistance(Element.GetElement(2));
-        int posEarth = chara.GetElementResistance(Element.GetElement(3));
-        int posWood = chara.GetElementResistance(Element.GetElement(4));
-        int posMetal = chara.GetGlobalResistance();
-
-        _resPosFire.sizeDelta = new Vector2(posFire * midSize, _resPosFire.sizeDelta.y);
-        _resPosWater.sizeDelta = new Vector2(posWater * midSize, _resPosWater.sizeDelta.y);
-        _resPosAir.sizeDelta = new Vector2(posAir * midSize, _resPosAir.sizeDelta.y);
-        _resPosEarth.sizeDelta = new Vector2(posEarth * midSize, _resPosEarth.sizeDelta.y);
-        _resPosWood.sizeDelta = new Vector2(posWood * midSize, _resPosWood.sizeDelta.y);
-        _resPosMetal.sizeDelta = new Vector2(posMetal * midSize, _resPosMetal.sizeDelta.y);
-
-        int negFire = chara.GetElementWeakness(Element.GetElement(0));
-        int negWater = chara.GetElementWeakness(Element.GetElement(1));
-        int negAir = chara.GetElementWeakness(Element.GetElement(2));
-        int negEarth = chara.GetElementWeakness(Element.GetElement(3));
-        int negWood = chara.GetElementWeakness(Element.GetElement(4));
-        int negMetal = chara.GetGlobalWeakness();
-
-        _resNegFire.sizeDelta = new Vector2(negFire * midSize, _resNegFire.sizeDelta.y);
-        _resNegWater.sizeDelta = new Vector2(negWater * midSize, _resNegWater.sizeDelta.y);
-        _resNegAir.sizeDelta = new Vector2(negAir * midSize, _resNegAir.sizeDelta.y);
-        _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
-        _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
-        _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);*/
 
         int resFire = Character.GetElementResistance(Element.GetElement(0)) - Character.GetElementWeakness(Element.GetElement(0));
         int resWater = Character.GetElementResistance(Element.GetElement(1)) - Character.GetElementWeakness(Element.GetElement(1));

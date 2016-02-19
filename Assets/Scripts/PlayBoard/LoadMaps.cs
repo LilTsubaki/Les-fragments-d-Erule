@@ -7,6 +7,7 @@ using System.IO;
 public class LoadMaps : MonoBehaviour {
 
     public GameObject _buttonToCopy;
+    public GameObject _imageToCopy;
     public GameObject _content;
 
     public GameObject _player1GameObject;
@@ -27,21 +28,38 @@ public class LoadMaps : MonoBehaviour {
 
     void GetFiles()
     {
+        int nbButtonsPerLine = 1;
+        float buttonSizeX = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.x;
+        float buttonSizeY = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.y;
+
         List<string> files = new List<string>();
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/JsonFiles/Maps", "*.json");
+        _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f*((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
 
-        float offsetX = ((680/3.0f)-160)/2;
+        float offsetX = ((680/(float)nbButtonsPerLine) - buttonSizeX) /2;
         for(int i = 0; i < fileEntries.Length; ++i)
         {
             string path = fileEntries[i];
             GameObject obj = Instantiate(_buttonToCopy);
             obj.SetActive(true);
             obj.transform.SetParent(_content.transform);
-            obj.transform.localPosition = new Vector3(offsetX + (160 + offsetX*2) * (i%3), (i/3 + 1) * -250);
+            obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX*2) * (i% nbButtonsPerLine), (i/ nbButtonsPerLine + 1) * -buttonSizeY);
+            
             Button button = obj.GetComponent<Button>();
             button.onClick.AddListener(delegate { LoadMap(path); });
-            button.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(path);
+            string mapName = Path.GetFileNameWithoutExtension(path);
+            button.GetComponentInChildren<Text>().text = mapName;
+            Sprite image = Resources.Load("miniatures/" + mapName, typeof(Sprite)) as Sprite;
+            if (image == null)
+            {
+                Logger.Error("Not found " + mapName);
+            }
+            else
+            {
+                obj.GetComponent<Image>().sprite = image;
+            }
         }
+
     }
 
     void LoadMap(string path)
