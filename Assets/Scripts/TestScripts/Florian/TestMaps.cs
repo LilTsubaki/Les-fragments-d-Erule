@@ -13,6 +13,9 @@ public class TestMaps : MonoBehaviour {
     public GameObject _player2GameObject;
     public GameObject _buttonValidation;
 
+    public CharacterHostUI _uiPlayer1;
+    public CharacterHostUI _uiPlayer2;
+
     // Use this for initialization
     void Start () {
         GetFiles();
@@ -50,6 +53,8 @@ public class TestMaps : MonoBehaviour {
         tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;
         tsn._player2GameObject = _player2GameObject;
+        tsn._uiPlayer1 = _uiPlayer1;
+        tsn._uiPlayer2 = _uiPlayer2;
         tsn._boardName = name;
         UIManager.GetInstance().HideAll();
         UIManager.GetInstance().ShowPanel("PanelPosition");

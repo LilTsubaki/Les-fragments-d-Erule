@@ -2,18 +2,10 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class CharacterUI : MonoBehaviour {
+public class CharacterHostUI : MonoBehaviour
+{
 
-    public Character _character
-    {
-        get
-        {
-            if(ClientManager.GetInstance()._client != null)
-                return ClientManager.GetInstance()._client.CurrentCharacter;
-
-            return null;
-        }
-    }
+    private Character character;
 
     public Text _name;
     public Image _characterImage;
@@ -22,14 +14,11 @@ public class CharacterUI : MonoBehaviour {
     public GameObject _actionPoints;
     public Image _point;
 
-    [Range(1,2)]
-    public int _player;
-
 
     /******************************************************************
     Testing parameters
     ******************************************************************/
-    [Range(0,4)]
+    [Range(0, 4)]
     public int _nbPoints;
 
     [Range(-50, 50)]
@@ -55,22 +44,6 @@ public class CharacterUI : MonoBehaviour {
 
     //Resistances
 
-    /*public RectTransform _resMask;
-
-    public RectTransform _resPosFire;
-    public RectTransform _resPosWater;
-    public RectTransform _resPosEarth;
-    public RectTransform _resPosAir;
-    public RectTransform _resPosWood;
-    public RectTransform _resPosMetal;
-
-    public RectTransform _resNegFire;
-    public RectTransform _resNegWater;
-    public RectTransform _resNegEarth;
-    public RectTransform _resNegAir;
-    public RectTransform _resNegWood;
-    public RectTransform _resNegMetal;*/
-
     public Text _resFireText;
     public Text _resWaterText;
     public Text _resAirText;
@@ -78,20 +51,24 @@ public class CharacterUI : MonoBehaviour {
     public Text _resWoodText;
     public Text _resMetalText;
 
+    public Character Character
+    {
+        get
+        {
+            return character;
+        }
+
+        set
+        {
+            character = value;
+        }
+    }
+
 
 
     // Use this for initialization
-    void Start () {
-
-        if(_player == 1)
-        {
-            UIManager.GetInstance().RegisterUiCharacter1(this);
-        }
-        else
-        {
-            UIManager.GetInstance().RegisterUiCharacter2(this);
-        }
-
+    void Start()
+    {
         _listActionPoints = new List<Image>();
 
         for (int i = 0; i < Character._maxActionPoints; ++i)
@@ -101,34 +78,35 @@ public class CharacterUI : MonoBehaviour {
             n.enabled = true;
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
-            if(_isOnLeft)
+            if (_isOnLeft)
                 pos.x = 10 + i * 30;
             else
                 pos.x = -10 - i * 30;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
-            
+
             _listActionPoints.Add(n);
         }
     }
 
     // Update is called once per frame
-    void Update () {
-        if (_character != null)
+    void Update()
+    {
+        if (Character != null)
         {
             UpdateLife();
             UpdateActionPoints();
             UpdateResistances();
             UpdateTurn();
         }
-	}
+    }
 
     void UpdateLife()
     {
-        if (_character != null)
+        if (Character != null)
         {
-            _life.value = _character._lifeCurrent;
-            _life.maxValue = _character._lifeMax;
-            _lifePointsText.text = _character._lifeCurrent.ToString();
+            _life.value = Character._lifeCurrent;
+            _life.maxValue = Character._lifeMax;
+            _lifePointsText.text = Character._lifeCurrent.ToString();
         }
     }
 
@@ -137,9 +115,9 @@ public class CharacterUI : MonoBehaviour {
         Color colorActive = new Color(0, 0.2f, 1, 1);
         Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
-        if (_character != null)
+        if (Character != null)
         {
-            int nbPoints = _character.CurrentActionPoints;
+            int nbPoints = Character.CurrentActionPoints;
             for (int i = 0; i < _listActionPoints.Count; ++i)
             {
                 Color c;
@@ -215,12 +193,12 @@ public class CharacterUI : MonoBehaviour {
         _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
         _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);*/
 
-        int resFire = _character.GetElementResistance(Element.GetElement(0)) - _character.GetElementWeakness(Element.GetElement(0));
-        int resWater = _character.GetElementResistance(Element.GetElement(1)) - _character.GetElementWeakness(Element.GetElement(1));
-        int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
-        int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
-        int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
-        int resGlobal = _character.GetGlobalResistance() - _character.GetGlobalWeakness();
+        int resFire = Character.GetElementResistance(Element.GetElement(0)) - Character.GetElementWeakness(Element.GetElement(0));
+        int resWater = Character.GetElementResistance(Element.GetElement(1)) - Character.GetElementWeakness(Element.GetElement(1));
+        int resAir = Character.GetElementResistance(Element.GetElement(2)) - Character.GetElementWeakness(Element.GetElement(2));
+        int resEarth = Character.GetElementResistance(Element.GetElement(3)) - Character.GetElementWeakness(Element.GetElement(3));
+        int resWood = Character.GetElementResistance(Element.GetElement(4)) - Character.GetElementWeakness(Element.GetElement(4));
+        int resGlobal = Character.GetGlobalResistance() - Character.GetGlobalWeakness();
 
         _resFireText.text = resFire.ToString();
         _resWaterText.text = resWater.ToString();
@@ -232,8 +210,8 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateTurn()
     {
-        _name.text = _character.Name;
-        if (ClientManager.GetInstance()._client.IsMyTurn)
+        _name.text = Character.Name;
+        if (PlayBoardManager.GetInstance().isMyTurn(Character))
         {
             _characterImage.color = Color.green;
         }
