@@ -47,6 +47,7 @@ public class TestMaps : MonoBehaviour {
         string name = Path.GetFileNameWithoutExtension(path);
         TestSpawnNetwork tsn = o.AddComponent<TestSpawnNetwork>();
         tsn._button = _buttonValidation;
+        tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;
         tsn._player2GameObject = _player2GameObject;
         tsn._boardName = name;
