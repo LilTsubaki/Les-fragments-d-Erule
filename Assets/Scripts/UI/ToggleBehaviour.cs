@@ -19,7 +19,6 @@ public class ToggleBehaviour : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        Logger.Debug("Locked : " + ClientManager.GetInstance()._client.LockedMode);
         if (!ClientManager.GetInstance()._client.LockedMode)
         {
             gameObject.GetComponentInChildren<Text>().text = "Lock Spell";

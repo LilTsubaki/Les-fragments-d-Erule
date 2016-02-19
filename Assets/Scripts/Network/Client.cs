@@ -11,6 +11,7 @@ public class Client : MonoBehaviour{
 
     public int broadcastPort;
     public int playPort;
+    public int _turnNumber = 0;
     TcpClient _tcpClient;
     UdpClient _udpClient;
     bool _isRunning;
@@ -186,6 +187,7 @@ public class Client : MonoBehaviour{
             case 9:
                 CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
                 Logger.Debug("nb action points : " + CurrentCharacter1.CurrentActionPoints);
                 _lockedMode = false;
                 return true;
@@ -359,6 +361,7 @@ public class Client : MonoBehaviour{
             Logger.Debug("read character");
             CurrentCharacter1 =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
             _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
+            _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
         }
 
         else
@@ -389,6 +392,20 @@ public class Client : MonoBehaviour{
 
             _isMainThreadReading = true;
             NetworkUtils.WriteInt(13, _tcpClient.GetStream());
+            _tcpClient.GetStream().Flush();
+            _isMainThreadReading = false;
+        }
+
+    }
+
+    public void SendRemoveRune()
+    {
+        if (_isMyTurn)
+        {
+            while (_isListeningThreadReading) ;
+
+            _isMainThreadReading = true;
+            NetworkUtils.WriteInt(14, _tcpClient.GetStream());
             _tcpClient.GetStream().Flush();
             _isMainThreadReading = false;
         }

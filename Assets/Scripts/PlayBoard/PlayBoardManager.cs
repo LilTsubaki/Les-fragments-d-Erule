@@ -171,9 +171,6 @@ public class PlayBoardManager
         _turnNumber++;
         Board._reset = true;
         BeginTurn();
-
-        //penser à appliquer les effets des buffs/debuffs sur les joeuurs
-        //+ reset ce qu'il y a à reset
     }
 }
 

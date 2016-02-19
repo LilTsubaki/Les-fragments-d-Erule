@@ -71,6 +71,14 @@ public class ServerListener
                             }
                             break;
 
+                        case 14:
+                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            {
+                                _ch.CurrentActionPoints++;
+                                PlayBoardManager.GetInstance().Board._colorAccessible = true;
+                            }
+                            break;
+
                         default:
                             Logger.Warning("Default id");
                             break;
@@ -158,6 +166,7 @@ public class ServerListener
             NetworkUtils.WriteInt(6, _client.GetStream());
             NetworkUtils.WriteCharacter(_ch, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();
         }
@@ -210,6 +219,7 @@ public class ServerListener
             NetworkUtils.WriteInt(9, _client.GetStream());
             NetworkUtils.WriteCharacter(_ch, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();
         }

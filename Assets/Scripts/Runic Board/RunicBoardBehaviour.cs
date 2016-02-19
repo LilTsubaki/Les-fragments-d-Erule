@@ -248,9 +248,5 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         InputUpdate();
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            ResetRunes();
-        }
 	}
 }
