@@ -16,6 +16,7 @@ public class EffectUIBehaviour : MonoBehaviour {
 
         manager.AddTextEffect(test, new TextDamage(200, Element.GetElement(0)));
         manager.AddTextEffect(test, new TextDamage(100, Element.GetElement(1)));
+        manager.AddTextEffect(test, new TextHeal(100));
 
     }
 	

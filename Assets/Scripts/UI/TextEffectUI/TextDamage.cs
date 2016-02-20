@@ -22,6 +22,8 @@ class TextDamage : TextEffect
         text.text = _value.ToString();
         text.color = Color.red;
 
+        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = true;
+
         switch (_element._name)
         {
             case "Fire":

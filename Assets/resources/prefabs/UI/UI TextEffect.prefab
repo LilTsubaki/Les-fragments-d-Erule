@@ -45,13 +45,14 @@ GameObject:
   - 223: {fileID: 22309272}
   - 114: {fileID: 11447706}
   - 114: {fileID: 11477982}
+  - 114: {fileID: 11430870}
   m_Layer: 5
   m_Name: UI TextEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &11428234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,18 +74,31 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 250
+--- !u!114 &11430870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b977d1ad20bc3524d8d15624b8fa1707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 0.8
+  _fadeOutStart: 0.6
 --- !u!114 &11447706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,8 +207,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: -0.0000011921}
-  m_SizeDelta: {x: 36, y: 30}
+  m_AnchoredPosition: {x: 12.4, y: -0.0000011921}
+  m_SizeDelta: {x: 35.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22465004
 RectTransform:

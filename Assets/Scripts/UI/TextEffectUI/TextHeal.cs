@@ -21,5 +21,6 @@ class TextHeal : TextEffect
         text.color = Color.green;
 
         image.color = new Color(0, 0, 0, 0);
+        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;
     }
 }
