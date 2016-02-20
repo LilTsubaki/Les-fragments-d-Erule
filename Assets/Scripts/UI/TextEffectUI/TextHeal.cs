@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -13,6 +14,12 @@ class TextHeal : TextEffect
 
     public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
-        throw new NotImplementedException();
+        Image image = textEffect.GameObject.GetComponentInChildren<Image>();
+        Text text = textEffect.GameObject.GetComponentInChildren<Text>();
+
+        text.text = _value.ToString();
+        text.color = Color.green;
+
+        image.color = new Color(0, 0, 0, 0);
     }
 }

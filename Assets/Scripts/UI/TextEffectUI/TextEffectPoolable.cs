@@ -13,14 +13,29 @@ public class TextEffectPoolable : Poolable<TextEffectPoolable>
 
     public TextEffectPoolable(GameObject go, GameObject parent)
     {
-        _go = UnityEngine.Object.Instantiate(go);
-        _go.transform.parent = parent.transform;
+        _go = GameObject.Instantiate(go);
+        _go.transform.SetParent(parent.transform, false);
+        _go.SetActive(false);
+    }
+
+    public GameObject GameObject
+    {
+        get
+        {
+            return _go;
+        }
+
+        set
+        {
+            _go = value;
+        }
     }
 
     public void Copy(TextEffectPoolable t)
     {
         _go = GameObject.Instantiate(t._go);
-        _go.transform.parent = t._go.transform;
+        _go.transform.SetParent(t._go.transform.parent, false);
+        _go.SetActive(false);
     }
 
     public bool IsReady()

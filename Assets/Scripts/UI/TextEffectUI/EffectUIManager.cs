@@ -56,7 +56,7 @@ public class EffectUIManager {
 
         foreach(var buffer in _buffers)
         {
-            TextEffect tEffect =buffer.Value.DequeueTextEffect();
+            TextEffect tEffect = buffer.Value.DequeueTextEffect();
             if(tEffect != null)
             {
                 tEffect.DisplayText(_pool.GetPoolable(), buffer.Key);

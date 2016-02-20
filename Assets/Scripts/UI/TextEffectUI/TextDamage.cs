@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -15,6 +16,34 @@ class TextDamage : TextEffect
 
     public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
-        throw new NotImplementedException();
+        Image image = textEffect.GameObject.GetComponentInChildren<Image>();
+        Text text = textEffect.GameObject.GetComponentInChildren<Text>();
+
+        text.text = _value.ToString();
+        text.color = Color.red;
+
+        switch (_element._name)
+        {
+            case "Fire":
+                image.sprite = Resources.Load<Sprite>("Sprites/Feu");
+                break;
+            case "Water":
+                image.sprite = Resources.Load<Sprite>("Sprites/Eau");
+                break;
+            case "Air":
+                image.sprite = Resources.Load<Sprite>("Sprites/Air");
+                break;
+            case "Earth":
+                image.sprite = Resources.Load<Sprite>("Sprites/Terre");
+                break;
+            case "Wood":
+                image.sprite = Resources.Load<Sprite>("Sprites/Bois");
+                break;
+            case "Metal":
+                image.sprite = Resources.Load<Sprite>("Sprites/Metal");
+                break;
+            default:
+                break;
+        }
     }
 }
