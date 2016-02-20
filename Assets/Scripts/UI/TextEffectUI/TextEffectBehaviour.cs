@@ -26,7 +26,7 @@ public class TextEffectBehaviour : MonoBehaviour {
         if (_currentTime < _duration)
         {
             float step = Time.deltaTime * 2;
-            transform.position = Vector3.MoveTowards(transform.position, _initialPosition + new Vector3(0, 1, 0), step);
+            transform.position = Vector3.Slerp(transform.position, _initialPosition + new Vector3(0, 1, 0), step);
             if (_currentTime > _fadeOutStart)
             {
                 float newAlpha = 1 - (_currentTime - _fadeOutStart) / (_duration - _fadeOutStart);
