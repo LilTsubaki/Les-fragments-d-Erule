@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayBoardBehaviour : MonoBehaviour
 {
     private Hexagon _previousHexagon;
+    private HexagonBehaviour _previousHexagonBehaviour;
 
 	// Use this for initialization
 	void Start () {
@@ -24,24 +25,25 @@ public class PlayBoardBehaviour : MonoBehaviour
             Hexagon hexa = hexagonBehaviour._hexagon;
             if (hexa != null && _previousHexagon != hexa)
             {
-                if (_previousHexagon != null)
+                if (_previousHexagon != null && _previousHexagonBehaviour != null)
                 {
                     if (_previousHexagon.CurrentState == Hexagon.State.OverAccessible)
                         _previousHexagon.CurrentState = _previousHexagon.PreviousState;
 
                     if ((_previousHexagon.CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
-                         _previousHexagon.CurrentState == Hexagon.State.Targetable) && hexagonBehaviour.FinalArea != null)
+                         _previousHexagon.CurrentState == Hexagon.State.Targetable) && _previousHexagonBehaviour.FinalArea != null)
                     {
-                        for (int i = 0; i < hexagonBehaviour.FinalArea.Count; i++)
+                        for (int i = 0; i < _previousHexagonBehaviour.FinalArea.Count; i++)
                         {
-                            if (hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
-                                hexagonBehaviour.FinalArea[i].CurrentState = hexagonBehaviour.FinalArea[i].PreviousState;
+                            //if (hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                            _previousHexagonBehaviour.FinalArea[i].CurrentState = _previousHexagonBehaviour.FinalArea[i].PreviousState;
                         }
                     }
                 }
 
 
                 _previousHexagon = hexa;
+                _previousHexagonBehaviour = hexagonBehaviour;
 
                 //on mouse enter new hexa
                 if (hexa.CurrentState == Hexagon.State.Targetable)
