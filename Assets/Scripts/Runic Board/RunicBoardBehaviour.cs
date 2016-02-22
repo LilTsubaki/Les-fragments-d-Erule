@@ -19,6 +19,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     private List<GameObject> _runesGO;
 
+
     public RunicBoard Board
     {
         get
@@ -246,7 +247,12 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         InputUpdate();
-	}
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            ResetRunes();
+        }
+    }
 }

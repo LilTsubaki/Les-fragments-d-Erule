@@ -24,6 +24,7 @@ public class TestSpawnNetwork : MonoBehaviour {
     void Start()
     {
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
+        _board.AddComponent<PlayBoardBehaviour>();
         _player1 = new Character(4000, _player1GameObject);
         _player2 = new Character(4000, _player2GameObject);
         _player1.Name = "Player 1";
