@@ -35,7 +35,7 @@ public class PlayBoardBehaviour : MonoBehaviour
                     {
                         for (int i = 0; i < _previousHexagonBehaviour.FinalArea.Count; i++)
                         {
-                            //if (hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || hexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                            if (_previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
                             _previousHexagonBehaviour.FinalArea[i].CurrentState = _previousHexagonBehaviour.FinalArea[i].PreviousState;
                         }
                     }
