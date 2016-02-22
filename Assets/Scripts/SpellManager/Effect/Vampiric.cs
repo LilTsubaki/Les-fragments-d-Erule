@@ -27,8 +27,8 @@ public class Vampiric : EffectMinMax
         foreach (Character c in chars)
         {
             int damage = (int)new Random().Next((int)_min, (int)_max + 1);
+            damage = c.ReceiveDamage(damage, _element);
             int heal = _vampiricPercentage * damage / 100;
-            c.ReceiveDamage(damage, _element);
             caster.ReceiveHeal(heal);
         }
     }
