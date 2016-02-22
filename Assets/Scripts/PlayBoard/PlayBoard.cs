@@ -26,8 +26,8 @@ public class PlayBoard  {
         
     AStar<Hexagon> _astar;
     
-    Vector3 centreTemp = new Vector3();
-    float rayonTemp = 0;
+    //Vector3 centreTemp = new Vector3();
+    //float rayonTemp = 0;
     float percent = 0.6f;
 
 
@@ -284,8 +284,8 @@ public class PlayBoard  {
         Vector3 coll2 = new Vector3(destination.GameObject.transform.position.x, destination.GameObject.transform.position.y + 0.5f, destination.GameObject.transform.position.z);
         float rayonHexaCarre = (destination.GameObject.transform.localScale.x / 2.0f) * (destination.GameObject.transform.localScale.x / 2.0f) - (destination.GameObject.transform.localScale.x / 4.0f) * (destination.GameObject.transform.localScale.x / 4.0f);
 
-        centreTemp = coll2;
-        rayonTemp = Mathf.Sqrt(rayonHexaCarre);
+        //centreTemp = coll2;
+        //rayonTemp = Mathf.Sqrt(rayonHexaCarre);
 
         //centre de nouveau cercle
         Vector3 o1 = coll1 + (coll2 - coll1) * 0.5f;

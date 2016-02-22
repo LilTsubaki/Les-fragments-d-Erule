@@ -71,14 +71,23 @@ public class ServerListener
                             }
                             break;
 
+                        case 14:
+                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            {
+                                _ch.CurrentActionPoints++;
+                                PlayBoardManager.GetInstance().Board._colorAccessible = true;
+                            }
+                            break;
+
                         default:
                             Logger.Warning("Default id");
                             break;
                     }
                 }
             }
-            catch (SocketException e)
+            catch
             {
+
                 Logger.Error("Client Disconnect");
                 _isRunning = false;
                 break;
@@ -158,10 +167,11 @@ public class ServerListener
             NetworkUtils.WriteInt(6, _client.GetStream());
             NetworkUtils.WriteCharacter(_ch, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -178,7 +188,7 @@ public class ServerListener
 
         _client.GetStream().Flush();
         }
-        catch(SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -195,7 +205,7 @@ public class ServerListener
             _client.GetStream().Flush();
 
         }
-        catch(SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -210,10 +220,11 @@ public class ServerListener
             NetworkUtils.WriteInt(9, _client.GetStream());
             NetworkUtils.WriteCharacter(_ch, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;
@@ -232,7 +243,7 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch (SocketException e)
+        catch
         {
             Logger.Error("Client Disconnect");
             _isRunning = false;

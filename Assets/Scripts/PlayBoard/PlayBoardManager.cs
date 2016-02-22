@@ -161,7 +161,7 @@ public class PlayBoardManager
     public void EndTurn()
     {
         Character currentPlayer = GetCurrentPlayer();
-        Character otherPlayer = GetOtherPlayer();
+        //Character otherPlayer = GetOtherPlayer();
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
@@ -171,9 +171,6 @@ public class PlayBoardManager
         _turnNumber++;
         Board._reset = true;
         BeginTurn();
-
-        //penser à appliquer les effets des buffs/debuffs sur les joeuurs
-        //+ reset ce qu'il y a à reset
     }
 }
 

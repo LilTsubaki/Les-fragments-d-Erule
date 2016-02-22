@@ -232,6 +232,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateTurn()
     {
+        _name.text = _character.Name;
         if (ClientManager.GetInstance()._client.IsMyTurn)
         {
             _characterImage.color = Color.green;

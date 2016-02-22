@@ -9,6 +9,9 @@ public class TestSpawnNetwork : MonoBehaviour {
     public GameObject _player2GameObject;
     private GameObject _board;
 
+    public CharacterHostUI _uiPlayer1;
+    public CharacterHostUI _uiPlayer2;
+
     public GameObject _button;
 
     PlayBoard _playBoard;
@@ -25,6 +28,8 @@ public class TestSpawnNetwork : MonoBehaviour {
         _player2 = new Character(4000, _player2GameObject);
         _player1.Name = "Player 1";
         _player2.Name = "Player 2";
+        _uiPlayer1.Character = _player1;
+        _uiPlayer2.Character = _player2;
 
         _gameStarted = false;
 
@@ -46,7 +51,11 @@ public class TestSpawnNetwork : MonoBehaviour {
                 break;
             case Server.State.secondPlayerPicking:
                 if (PlayBoardManager.GetInstance().GetOtherPlayer().Position != null)
+                {
                     ServerManager.GetInstance()._server.CurrentState = Server.State.playing;
+                    UIManager.GetInstance().HideAll();
+                    UIManager.GetInstance().ShowPanel("PanelPlayerBars");
+                }
                 else
                     Logger.Debug(PlayBoardManager.GetInstance().GetOtherPlayer().Name + " didn't choose a position");
                 break;
