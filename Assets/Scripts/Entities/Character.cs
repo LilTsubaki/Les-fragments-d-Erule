@@ -298,7 +298,7 @@ public class Character : Entity
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
     }
 
-    public void ReceiveDamage(int value, Element element)
+    public int ReceiveDamage(int value, Element element)
     {
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
         int positiveElementResistance;
@@ -317,7 +317,8 @@ public class Character : Entity
             _lifeCurrent = 0;
         else
             _lifeCurrent -= value;
-        
+
+        return value;
     }
 
 	public void ReceiveGlobalProtection(int protection){
