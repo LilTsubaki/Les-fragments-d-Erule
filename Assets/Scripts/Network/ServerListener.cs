@@ -122,13 +122,14 @@ public class ServerListener
         if(spell != null)
         {
             _ch.CurrentActionPoints--;
+            PlayBoardManager.GetInstance().Board._colorAccessible = true;
         }
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 
         _client.GetStream().Flush();
 
-        PlayBoardManager.GetInstance().Board._colorAccessible = true;
+        
     }
 
     void ReadMakeSpell()

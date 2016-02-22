@@ -128,8 +128,8 @@ public class Direction
 
     public static EnumDirection GetDirection(Hexagon source, Hexagon destination)
     {
-        Logger.Debug("source : " + source._posX + " | " + source._posY);
-        Logger.Debug("destination : " + destination._posX + " | " + destination._posY);
+        //Logger.Debug("source : " + source._posX + " | " + source._posY);
+        //Logger.Debug("destination : " + destination._posX + " | " + destination._posY);
         //TOFINISH
         if (source._posY == destination._posY)
         {

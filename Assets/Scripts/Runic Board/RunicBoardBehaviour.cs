@@ -216,7 +216,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                              }
                              else
                              {
-                                 Board.RemoveRuneFromBoard(slotPosition);
+                                 Board.RemoveRuneFromBoard(slotPosition, false);
                              }
                         }
                     }

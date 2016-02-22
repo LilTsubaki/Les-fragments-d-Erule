@@ -205,7 +205,7 @@ public class RunicBoard {
     /// </summary>
     /// <param name="position">The position where the rune is expected to be</param>
     /// <returns>If the rune was succesfully removed</returns>
-    public bool RemoveRuneFromBoard(int position)
+    public bool RemoveRuneFromBoard(int position, bool sendRemove = true)
     {
         if (!ClientManager.GetInstance()._client.IsMyTurn)
             return false;
@@ -225,7 +225,8 @@ public class RunicBoard {
                     _runesInHand.Add(rune.PositionInHand, rune);
                     rune.PositionOnBoard = -1;
                     ClientManager.GetInstance()._client.CurrentCharacter.CurrentActionPoints++;
-                    ClientManager.GetInstance()._client.SendRemoveRune();
+                    if(sendRemove)
+                        ClientManager.GetInstance()._client.SendRemoveRune();
                     return true;
                 }
                 else
