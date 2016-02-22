@@ -35,6 +35,7 @@ public class LoadMaps : MonoBehaviour {
         List<string> files = new List<string>();
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/JsonFiles/Maps", "*.json");
         _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f*((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
+        _content.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
 
         float offsetX = ((680/(float)nbButtonsPerLine) - buttonSizeX) /2;
         for(int i = 0; i < fileEntries.Length; ++i)
