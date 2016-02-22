@@ -92,6 +92,8 @@ public class PlayBoardManager
         _board = new PlayBoard(width, height);
         _character1 = character1;
         _character2 = character2;
+        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character1, 1.0f);
+        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character2, 1.0f);
     }
         
 
@@ -100,6 +102,8 @@ public class PlayBoardManager
         _board = pb;
         _character1 = character1;
         _character2 = character2;
+        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character1, 1.0f);
+        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character2, 1.0f);
     }
 
 	public List<Character> GetCharacterInArea(List<Hexagon> hexagons){

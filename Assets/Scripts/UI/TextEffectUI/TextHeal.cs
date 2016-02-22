@@ -14,13 +14,16 @@ class TextHeal : TextEffect
 
     public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
+        //textEffect.GameObject.transform.position = character._gameObject.transform.position + new Vector3(0, 1, 0);
+
         Image image = textEffect.GameObject.GetComponentInChildren<Image>();
         Text text = textEffect.GameObject.GetComponentInChildren<Text>();
 
         text.text = _value.ToString();
         text.color = Color.green;
 
-        image.color = new Color(0, 0, 0, 0);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
         textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;
+        
     }
 }
