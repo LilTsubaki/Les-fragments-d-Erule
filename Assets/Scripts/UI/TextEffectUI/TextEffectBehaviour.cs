@@ -12,9 +12,22 @@ public class TextEffectBehaviour : MonoBehaviour {
 
     private Vector3 _initialPosition;
 
+    public Vector3 InitialPosition
+    {
+        get
+        {
+            return _initialPosition;
+        }
+
+        set
+        {
+            _initialPosition = value;
+        }
+    }
+
     void Start()
     {
-        _initialPosition = transform.position;
+        InitialPosition = transform.position;
     }
     
 	
@@ -26,7 +39,7 @@ public class TextEffectBehaviour : MonoBehaviour {
         if (_currentTime < _duration)
         {
             float step = Time.deltaTime * 2;
-            transform.position = Vector3.MoveTowards(transform.position, _initialPosition + new Vector3(0, 1, 0), step);
+            transform.position = Vector3.Slerp(transform.position, InitialPosition + Camera.main.transform.up*2, step);
             if (_currentTime > _fadeOutStart)
             {
                 float newAlpha = 1 - (_currentTime - _fadeOutStart) / (_duration - _fadeOutStart);
@@ -38,7 +51,7 @@ public class TextEffectBehaviour : MonoBehaviour {
         else
         {
             _currentTime = 0;
-            gameObject.transform.position = _initialPosition;
+            gameObject.transform.position = InitialPosition;
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
             gameObject.SetActive(false);
         }
