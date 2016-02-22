@@ -166,7 +166,6 @@ public class PlayBoardManager
     {
         Character currentPlayer = GetCurrentPlayer();
         //Character otherPlayer = GetOtherPlayer();
-        currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
         currentPlayer.TurnNumber++;
