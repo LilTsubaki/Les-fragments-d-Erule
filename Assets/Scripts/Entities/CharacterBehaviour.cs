@@ -100,7 +100,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    void OnMouseEnter()
+    /*void OnMouseEnter()
     {
         if (_character.Position.CurrentState == Hexagon.State.Targetable)
         {
@@ -143,5 +143,5 @@ public class CharacterBehaviour : MonoBehaviour
                     finalArea[i].CurrentState = finalArea[i].PreviousState;
             }
         }
-    }
+    }*/
 }
