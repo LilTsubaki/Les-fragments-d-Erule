@@ -154,6 +154,9 @@ public class PlayBoardManager
         {
             foreach (Hexagon hex in hexagons[i])
             {
+                //comment to remove ground area display
+                if (hex._onTimeEffects.Count > 0)
+                    hex.CurrentState = Hexagon.State.GroundEffect;
                 hex.ApplyOnTimeEffects();
                 hex.RemoveMarkedOnTimeEffects();
             }

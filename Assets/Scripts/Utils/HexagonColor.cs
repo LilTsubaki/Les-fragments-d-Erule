@@ -13,6 +13,7 @@ using UnityEngine;
     public static readonly Color _overSelfTargetable = new Color(0.8f, 0.8f, 0.6f);
     public static readonly Color _accessible = new Color(0.6f, 0.8f, 0.6f);
     public static readonly Color _overAccessible = new Color(0.7f, 1.0f, 0.7f);
+    public static readonly Color _groundEffectColor = new Color(0.8f, 0.53f, 1);
 
     public static readonly Color _spawn = Color.green;
 
