@@ -388,11 +388,14 @@ public class Hexagon : IAStar<Hexagon>
     /// </summary>
     public void ApplyOnTimeEffects()
     {
-        List<Hexagon> list = new List<Hexagon>();
-        list.Add(this);
-        foreach (GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
+        if (PlayBoardManager.GetInstance().GetCurrentPlayer() == _entity)
         {
-            effect.ApplyEffect(list, this, effect.GetCaster());
+            List<Hexagon> list = new List<Hexagon>();
+            list.Add(this);
+            foreach (GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
+            {
+                effect.ApplyEffect(list, this, effect.GetCaster());
+            }
         }
     }
 
@@ -404,7 +407,7 @@ public class Hexagon : IAStar<Hexagon>
     {
         foreach(GroundOnTimeAppliedEffect effect in _onTimeEffects.Values)
         {
-            if(effect.GetCaster() == c)
+            if (effect.GetCaster() == c)
             {
                 effect.ReduceNbTurn(this);
             }
