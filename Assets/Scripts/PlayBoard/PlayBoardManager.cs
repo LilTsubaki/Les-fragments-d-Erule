@@ -157,9 +157,6 @@ public class PlayBoardManager
             {    
                 hex.ApplyOnTimeEffects();
                 hex.RemoveMarkedOnTimeEffects();
-                //comment to remove ground area display
-                if (hex._onTimeEffects.Count > 0)
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
             }
         }
 
