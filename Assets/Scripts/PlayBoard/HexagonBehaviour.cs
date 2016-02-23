@@ -37,6 +37,9 @@ public class HexagonBehaviour : MonoBehaviour
                 case Hexagon.State.Default :
                     if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
                         _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+
+                    if (_hexagon._onTimeEffects.Count > 0)
+                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
                     break;
                 case Hexagon.State.Targetable:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._targetable;
@@ -57,8 +60,6 @@ public class HexagonBehaviour : MonoBehaviour
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
                     break;
             }
-            if (_hexagon._onTimeEffects.Count > 0)
-                _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
             
             _hexagon.StateChanged = false;
         }
