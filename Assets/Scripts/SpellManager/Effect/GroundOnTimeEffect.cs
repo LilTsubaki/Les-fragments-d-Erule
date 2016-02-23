@@ -31,8 +31,6 @@ public class GroundOnTimeEffect : EffectOnTime
         foreach(Hexagon hexa in hexagons)
         {
             GroundOnTimeAppliedEffect effect = new GroundOnTimeAppliedEffect(_id, _effectDirect, _nbTurn, caster);
-            //comment to remove ground area display
-            //hexa.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
             hexa.AddOnTimeEffect(effect);
         }
     }
