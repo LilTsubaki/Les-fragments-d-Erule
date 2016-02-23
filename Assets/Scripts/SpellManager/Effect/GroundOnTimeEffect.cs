@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 using System.Text;
 
@@ -30,6 +31,8 @@ public class GroundOnTimeEffect : EffectOnTime
         foreach(Hexagon hexa in hexagons)
         {
             GroundOnTimeAppliedEffect effect = new GroundOnTimeAppliedEffect(_id, _effectDirect, _nbTurn, caster);
+            //comment to remove ground area display
+            hexa.CurrentState = Hexagon.State.GroundEffect;
             hexa.AddOnTimeEffect(effect);
         }
     }

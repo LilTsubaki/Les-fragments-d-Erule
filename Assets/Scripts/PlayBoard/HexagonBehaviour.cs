@@ -56,6 +56,10 @@ public class HexagonBehaviour : MonoBehaviour
                 case Hexagon.State.Spawnable:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
                     break;
+                //comment to remove ground area display
+                case Hexagon.State.GroundEffect:
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
+                    break;
             }
             _hexagon.StateChanged = false;
         }

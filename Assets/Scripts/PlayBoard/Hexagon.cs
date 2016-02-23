@@ -8,7 +8,7 @@ using UnityEngine;
 public class Hexagon : IAStar<Hexagon>
 {
     public enum Boost { Nothing, Air, Earth, Fire, Metal, Water, Wood }
-    public enum State { Default, Targetable, OverEnnemiTargetable, OverSelfTargetable, Accessible, OverAccessible, Spawnable }
+    public enum State { Default, Targetable, OverEnnemiTargetable, OverSelfTargetable, Accessible, OverAccessible, Spawnable, GroundEffect }
 
 	public readonly int _posX;
 	public readonly int _posY;
@@ -142,9 +142,19 @@ public class Hexagon : IAStar<Hexagon>
 
     public void Reset()
     {
-        _currentState = State.Default;
-        _previousState = State.Default;
-        _stateChanged = true;
+        if(CurrentState == State.GroundEffect)
+        {
+            _currentState = State.GroundEffect;
+            _previousState = State.GroundEffect;
+            _stateChanged = true;
+        }
+        else
+        {
+            _currentState = State.Default;
+            _previousState = State.Default;
+            _stateChanged = true;
+        }
+            
     }
 
     public bool hasValidPosition()
