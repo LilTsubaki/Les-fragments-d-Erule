@@ -291,6 +291,7 @@ public class Character : Entity
     {
         _lifeCurrent = c._lifeCurrent;
         CurrentActionPoints = c.CurrentActionPoints;
+        CurrentMovementPoints = c.CurrentMovementPoints;
         Name = c.Name;
         TurnNumber = c.TurnNumber;
 

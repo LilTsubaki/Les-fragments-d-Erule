@@ -38,8 +38,6 @@ public class GroundOnTimeAppliedEffect : EffectOnTime {
         _nbTurn--;
         if(_nbTurn < 1)
         {
-            //comment to remove ground area display
-            hexagon.CurrentState = Hexagon.State.Default;
             hexagon.RemoveOnTimeEffect(this);
         }
     }

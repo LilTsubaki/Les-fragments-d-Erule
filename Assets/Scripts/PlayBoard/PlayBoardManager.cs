@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayBoardManager
 {
@@ -82,7 +83,7 @@ public class PlayBoardManager
 
     private PlayBoardManager ()
 	{
-        _secondPlayerStarted = new Random().Next(100) % 2 == 0;
+        _secondPlayerStarted = new System.Random().Next(100) % 2 == 0;
         _turnNumber = 0;
     }
 
@@ -153,12 +154,12 @@ public class PlayBoardManager
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
-            {
-                //comment to remove ground area display
-                if (hex._onTimeEffects.Count > 0)
-                    hex.CurrentState = Hexagon.State.GroundEffect;
+            {    
                 hex.ApplyOnTimeEffects();
                 hex.RemoveMarkedOnTimeEffects();
+                //comment to remove ground area display
+                if (hex._onTimeEffects.Count > 0)
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
             }
         }
 
