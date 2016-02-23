@@ -42,6 +42,8 @@ public class CharacterUI : MonoBehaviour {
     void Start () {
 
         _listActionPoints = new List<Image>();
+        _listMovementPoints = new List<Image>();
+
 
         for (int i = 0; i < Character._maxActionPoints; ++i)
         {
