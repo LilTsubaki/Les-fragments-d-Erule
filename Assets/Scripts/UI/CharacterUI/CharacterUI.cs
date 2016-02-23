@@ -20,56 +20,14 @@ public class CharacterUI : MonoBehaviour {
     public Slider _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
+    public GameObject _movementPoints;
     public Image _point;
-
-    [Range(1,2)]
-    public int _player;
-
-
-    /******************************************************************
-    Testing parameters
-    ******************************************************************/
-    [Range(0,4)]
-    public int _nbPoints;
-
-    [Range(-50, 50)]
-    public int _resFire;
-    [Range(-50, 50)]
-    public int _resWater;
-    [Range(-50, 50)]
-    public int _resEarth;
-    [Range(-50, 50)]
-    public int _resAir;
-    [Range(-50, 50)]
-    public int _resWood;
-    [Range(-50, 50)]
-    public int _resMetal;
-
-
-    /*******************************************************************
-    End testing parameters
-    *******************************************************************/
 
     public bool _isOnLeft;
     private List<Image> _listActionPoints;
+    private List<Image> _listMovementPoints;
 
     //Resistances
-
-    /*public RectTransform _resMask;
-
-    public RectTransform _resPosFire;
-    public RectTransform _resPosWater;
-    public RectTransform _resPosEarth;
-    public RectTransform _resPosAir;
-    public RectTransform _resPosWood;
-    public RectTransform _resPosMetal;
-
-    public RectTransform _resNegFire;
-    public RectTransform _resNegWater;
-    public RectTransform _resNegEarth;
-    public RectTransform _resNegAir;
-    public RectTransform _resNegWood;
-    public RectTransform _resNegMetal;*/
 
     public Text _resFireText;
     public Text _resWaterText;
@@ -82,15 +40,6 @@ public class CharacterUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        if(_player == 1)
-        {
-            UIManager.GetInstance().RegisterUiCharacter1(this);
-        }
-        else
-        {
-            UIManager.GetInstance().RegisterUiCharacter2(this);
-        }
 
         _listActionPoints = new List<Image>();
 
@@ -109,6 +58,22 @@ public class CharacterUI : MonoBehaviour {
             
             _listActionPoints.Add(n);
         }
+
+        for (int i = 0; i < Character._maxMovementPoints; ++i)
+        {
+            Image n = Instantiate(_point);
+            n.transform.SetParent(_movementPoints.transform);
+            n.enabled = true;
+            n.gameObject.SetActive(true);
+            Vector3 pos = n.gameObject.transform.position;
+            if (_isOnLeft)
+                pos.x = 10 + i * 30;
+            else
+                pos.x = -10 - i * 30;
+            n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+
+            _listMovementPoints.Add(n);
+        }
     }
 
     // Update is called once per frame
@@ -117,6 +82,7 @@ public class CharacterUI : MonoBehaviour {
         {
             UpdateLife();
             UpdateActionPoints();
+            UpdateMovementPoints();
             UpdateResistances();
             UpdateTurn();
         }
@@ -154,12 +120,19 @@ public class CharacterUI : MonoBehaviour {
                 _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
             }
         }
-        else
+    }
+
+    void UpdateMovementPoints()
+    {
+        Color colorActive = new Color(0, 1,0.2f, 1);
+        Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+
+        if (_character != null)
         {
-            int nbPoints = _nbPoints;
-            for (int i = 0; i < _listActionPoints.Count; ++i)
+            int nbPoints = _character.CurrentMovementPoints;
+            for (int i = 0; i < _listMovementPoints.Count; ++i)
             {
-                Color c = _listActionPoints[i].gameObject.GetComponent<Image>().color;
+                Color c;
                 if (i < nbPoints)
                 {
                     c = colorActive;
@@ -168,66 +141,30 @@ public class CharacterUI : MonoBehaviour {
                 {
                     c = colorEmpty;
                 }
-                _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
+                _listMovementPoints[i].gameObject.GetComponent<Image>().color = c;
             }
         }
+
     }
 
     void UpdateResistances()
     {
-        //float midSize = _resMask.sizeDelta.x / 2 / Character.MaxProtection;
+        if (_character != null)
+        {
+            int resFire = _character.GetElementResistance(Element.GetElement(0)) - _character.GetElementWeakness(Element.GetElement(0));
+            int resWater = _character.GetElementResistance(Element.GetElement(1)) - _character.GetElementWeakness(Element.GetElement(1));
+            int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
+            int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
+            int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
+            int resGlobal = _character.GetGlobalResistance() - _character.GetGlobalWeakness();
 
-        // Order : Fire Water Air Earth Wood Metal
-        /*int posFire = _resFire > 0 ? _resFire : 0;
-        int posWater = _resWater > 0 ? _resWater : 0;
-        int posEarth = _resEarth > 0 ? _resEarth : 0;
-        int posAir = _resAir > 0 ? _resAir : 0;
-        int posWood = _resWood > 0 ? _resWood : 0;
-        int posMetal = _resMetal > 0 ? _resMetal : 0;*/
-
-        /*Character chara = _character;
-
-        int posFire = chara.GetElementResistance(Element.GetElement(0));
-        int posWater = chara.GetElementResistance(Element.GetElement(1));
-        int posAir = chara.GetElementResistance(Element.GetElement(2));
-        int posEarth = chara.GetElementResistance(Element.GetElement(3));
-        int posWood = chara.GetElementResistance(Element.GetElement(4));
-        int posMetal = chara.GetGlobalResistance();
-
-        _resPosFire.sizeDelta = new Vector2(posFire * midSize, _resPosFire.sizeDelta.y);
-        _resPosWater.sizeDelta = new Vector2(posWater * midSize, _resPosWater.sizeDelta.y);
-        _resPosAir.sizeDelta = new Vector2(posAir * midSize, _resPosAir.sizeDelta.y);
-        _resPosEarth.sizeDelta = new Vector2(posEarth * midSize, _resPosEarth.sizeDelta.y);
-        _resPosWood.sizeDelta = new Vector2(posWood * midSize, _resPosWood.sizeDelta.y);
-        _resPosMetal.sizeDelta = new Vector2(posMetal * midSize, _resPosMetal.sizeDelta.y);
-
-        int negFire = chara.GetElementWeakness(Element.GetElement(0));
-        int negWater = chara.GetElementWeakness(Element.GetElement(1));
-        int negAir = chara.GetElementWeakness(Element.GetElement(2));
-        int negEarth = chara.GetElementWeakness(Element.GetElement(3));
-        int negWood = chara.GetElementWeakness(Element.GetElement(4));
-        int negMetal = chara.GetGlobalWeakness();
-
-        _resNegFire.sizeDelta = new Vector2(negFire * midSize, _resNegFire.sizeDelta.y);
-        _resNegWater.sizeDelta = new Vector2(negWater * midSize, _resNegWater.sizeDelta.y);
-        _resNegAir.sizeDelta = new Vector2(negAir * midSize, _resNegAir.sizeDelta.y);
-        _resNegEarth.sizeDelta = new Vector2(negEarth * midSize, _resNegEarth.sizeDelta.y);
-        _resNegWood.sizeDelta = new Vector2(negWood * midSize, _resNegWood.sizeDelta.y);
-        _resNegMetal.sizeDelta = new Vector2(negMetal * midSize, _resNegMetal.sizeDelta.y);*/
-
-        int resFire = _character.GetElementResistance(Element.GetElement(0)) - _character.GetElementWeakness(Element.GetElement(0));
-        int resWater = _character.GetElementResistance(Element.GetElement(1)) - _character.GetElementWeakness(Element.GetElement(1));
-        int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
-        int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
-        int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
-        int resGlobal = _character.GetGlobalResistance() - _character.GetGlobalWeakness();
-
-        _resFireText.text = resFire.ToString();
-        _resWaterText.text = resWater.ToString();
-        _resAirText.text = resAir.ToString();
-        _resEarthText.text = resEarth.ToString();
-        _resWoodText.text = resWood.ToString();
-        _resMetalText.text = resGlobal.ToString();
+            _resFireText.text = resFire.ToString();
+            _resWaterText.text = resWater.ToString();
+            _resAirText.text = resAir.ToString();
+            _resEarthText.text = resEarth.ToString();
+            _resWoodText.text = resWood.ToString();
+            _resMetalText.text = resGlobal.ToString();
+        }
     }
 
     void UpdateTurn()

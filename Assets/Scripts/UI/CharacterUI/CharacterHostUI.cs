@@ -12,35 +12,12 @@ public class CharacterHostUI : MonoBehaviour
     public Slider _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
+    public GameObject _movementPoints;
     public Image _point;
-
-
-    /******************************************************************
-    Testing parameters
-    ******************************************************************/
-    [Range(0, 4)]
-    public int _nbPoints;
-
-    [Range(-50, 50)]
-    public int _resFire;
-    [Range(-50, 50)]
-    public int _resWater;
-    [Range(-50, 50)]
-    public int _resEarth;
-    [Range(-50, 50)]
-    public int _resAir;
-    [Range(-50, 50)]
-    public int _resWood;
-    [Range(-50, 50)]
-    public int _resMetal;
-
-
-    /*******************************************************************
-    End testing parameters
-    *******************************************************************/
-
+    
     public bool _isOnLeft;
     private List<Image> _listActionPoints;
+    private List<Image> _listMovementPoints;
 
     //Resistances
 
@@ -70,6 +47,7 @@ public class CharacterHostUI : MonoBehaviour
     void Start()
     {
         _listActionPoints = new List<Image>();
+        _listMovementPoints = new List<Image>();
 
         for (int i = 0; i < Character._maxActionPoints; ++i)
         {
@@ -86,6 +64,22 @@ public class CharacterHostUI : MonoBehaviour
 
             _listActionPoints.Add(n);
         }
+
+        for (int i = 0; i < Character._maxMovementPoints; ++i)
+        {
+            Image n = Instantiate(_point);
+            n.transform.SetParent(_movementPoints.transform);
+            n.enabled = true;
+            n.gameObject.SetActive(true);
+            Vector3 pos = n.gameObject.transform.position;
+            if (_isOnLeft)
+                pos.x = 10 + i * 30;
+            else
+                pos.x = -10 - i * 30;
+            n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+
+            _listMovementPoints.Add(n);
+        }
     }
 
     // Update is called once per frame
@@ -95,6 +89,7 @@ public class CharacterHostUI : MonoBehaviour
         {
             UpdateLife();
             UpdateActionPoints();
+            UpdateMovementPoints();
             UpdateResistances();
             UpdateTurn();
         }
@@ -132,12 +127,19 @@ public class CharacterHostUI : MonoBehaviour
                 _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
             }
         }
-        else
+    }
+
+    void UpdateMovementPoints()
+    {
+        Color colorActive = new Color(0, 1, 0.2f, 1);
+        Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+
+        if (Character != null)
         {
-            int nbPoints = _nbPoints;
-            for (int i = 0; i < _listActionPoints.Count; ++i)
+            int nbPoints = Character.CurrentMovementPoints;
+            for (int i = 0; i < _listMovementPoints.Count; ++i)
             {
-                Color c = _listActionPoints[i].gameObject.GetComponent<Image>().color;
+                Color c;
                 if (i < nbPoints)
                 {
                     c = colorActive;
@@ -146,7 +148,7 @@ public class CharacterHostUI : MonoBehaviour
                 {
                     c = colorEmpty;
                 }
-                _listActionPoints[i].gameObject.GetComponent<Image>().color = c;
+                _listMovementPoints[i].gameObject.GetComponent<Image>().color = c;
             }
         }
     }
@@ -154,21 +156,24 @@ public class CharacterHostUI : MonoBehaviour
     void UpdateResistances()
     {
 
-        // Order : Fire Water Air Earth Wood Metal
+        if (Character != null)
+        {
+            // Order : Fire Water Air Earth Wood Metal
 
-        int resFire = Character.GetElementResistance(Element.GetElement(0)) - Character.GetElementWeakness(Element.GetElement(0));
-        int resWater = Character.GetElementResistance(Element.GetElement(1)) - Character.GetElementWeakness(Element.GetElement(1));
-        int resAir = Character.GetElementResistance(Element.GetElement(2)) - Character.GetElementWeakness(Element.GetElement(2));
-        int resEarth = Character.GetElementResistance(Element.GetElement(3)) - Character.GetElementWeakness(Element.GetElement(3));
-        int resWood = Character.GetElementResistance(Element.GetElement(4)) - Character.GetElementWeakness(Element.GetElement(4));
-        int resGlobal = Character.GetGlobalResistance() - Character.GetGlobalWeakness();
+            int resFire = Character.GetElementResistance(Element.GetElement(0)) - Character.GetElementWeakness(Element.GetElement(0));
+            int resWater = Character.GetElementResistance(Element.GetElement(1)) - Character.GetElementWeakness(Element.GetElement(1));
+            int resAir = Character.GetElementResistance(Element.GetElement(2)) - Character.GetElementWeakness(Element.GetElement(2));
+            int resEarth = Character.GetElementResistance(Element.GetElement(3)) - Character.GetElementWeakness(Element.GetElement(3));
+            int resWood = Character.GetElementResistance(Element.GetElement(4)) - Character.GetElementWeakness(Element.GetElement(4));
+            int resGlobal = Character.GetGlobalResistance() - Character.GetGlobalWeakness();
 
-        _resFireText.text = resFire.ToString();
-        _resWaterText.text = resWater.ToString();
-        _resAirText.text = resAir.ToString();
-        _resEarthText.text = resEarth.ToString();
-        _resWoodText.text = resWood.ToString();
-        _resMetalText.text = resGlobal.ToString();
+            _resFireText.text = resFire.ToString();
+            _resWaterText.text = resWater.ToString();
+            _resAirText.text = resAir.ToString();
+            _resEarthText.text = resEarth.ToString();
+            _resWoodText.text = resWood.ToString();
+            _resMetalText.text = resGlobal.ToString();
+        }
     }
 
     void UpdateTurn()
