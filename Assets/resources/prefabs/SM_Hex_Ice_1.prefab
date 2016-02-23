@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 403872}
   - 33: {fileID: 3389492}
   - 23: {fileID: 2361954}
-  m_Layer: 0
+  - 64: {fileID: 6473146}
+  m_Layer: 8
   m_Name: SM_Hex_Ice_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,13 +63,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155364}
   m_Mesh: {fileID: 4300000, guid: 6953795b3a6399e4486c01f8a64847ce, type: 3}
+--- !u!64 &6473146
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 6953795b3a6399e4486c01f8a64847ce, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155364}

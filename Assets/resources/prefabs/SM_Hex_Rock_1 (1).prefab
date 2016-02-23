@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 421952}
   - 33: {fileID: 3315980}
   - 23: {fileID: 2345556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Hex_Rock_1_SM_Hex_Underhex_Rock_1:Group62941
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416954}
-  m_Layer: 0
+  - 64: {fileID: 6418030}
+  m_Layer: 8
   m_Name: SM_Hex_Rock_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,13 +91,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187846}
   m_Mesh: {fileID: 4300000, guid: da0339aafb3de044d894c6281c052761, type: 3}
+--- !u!64 &6418030
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: da0339aafb3de044d894c6281c052761, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: da0339aafb3de044d894c6281c052761, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: SM_Hex_Rock_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191128}
