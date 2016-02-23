@@ -57,6 +57,9 @@ public class HexagonBehaviour : MonoBehaviour
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
                     break;
             }
+            if (_hexagon._onTimeEffects.Count > 0)
+                _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
+            
             _hexagon.StateChanged = false;
         }
 

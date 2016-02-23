@@ -145,10 +145,7 @@ public class Hexagon : IAStar<Hexagon>
             _currentState = State.Default;
             _previousState = State.Default;
             _stateChanged = true;
-        if (_onTimeEffects.Count > 0)
-        {
-            GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
-        }
+        
     }
 
     public bool hasValidPosition()
