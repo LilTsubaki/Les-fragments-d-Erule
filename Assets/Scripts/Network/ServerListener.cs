@@ -108,7 +108,7 @@ public class ServerListener
 
     void ReadRunicBoard()
     {
-        Logger.Trace("ReadRunicBoard");
+        Logger.Error("ReadRunicBoard");
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
@@ -124,6 +124,9 @@ public class ServerListener
             _ch.CurrentActionPoints--;
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
         }
+        Logger.Error("spell != null" + (spell != null));
+        Logger.Error("WTF");
+        Logger.Error("Is terminal : " + SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 
