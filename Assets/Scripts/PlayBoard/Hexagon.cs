@@ -146,13 +146,10 @@ public class Hexagon : IAStar<Hexagon>
         {
             GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
         }
-        else
-        {
+        
             _currentState = State.Default;
             _previousState = State.Default;
-            _stateChanged = true;
-        }
-            
+            _stateChanged = true;            
     }
 
     public bool hasValidPosition()

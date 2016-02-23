@@ -267,7 +267,7 @@ public class PlayBoard  {
                     {
                         _astar.reset();
                         List<Hexagon> path = _astar.CalculateBestPath(player.Position, _grid[i][j]);
-                        if (path!=null && path.Count <= player.CurrentMovementPoints)
+                        if (path!=null && path.Count <= player.CurrentMovementPoints && path.Count > 0)
                         {
                             _grid[i][j].CurrentState = Hexagon.State.Accessible;
                         }
