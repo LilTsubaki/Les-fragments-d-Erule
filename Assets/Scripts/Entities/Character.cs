@@ -12,8 +12,10 @@ public class Character : Entity
 	public readonly int _lifeMax;
 	public int _lifeCurrent;
 
-    public static int _maxActionPoints = 4;
+    public static int _maxActionPoints = 3;
+    public static int _maxMovementPoints = 3;
     private int _currentActionPoints;
+    private int _currentMovementPoints;
 
     private string _name;
 
@@ -178,6 +180,19 @@ public class Character : Entity
         }
     }
 
+    public int CurrentMovementPoints
+    {
+        get
+        {
+            return _currentMovementPoints;
+        }
+
+        set
+        {
+            _currentMovementPoints = value;
+        }
+    }
+
     public State _state;
 
 	private Dictionary<Element, int> _protections;
@@ -223,6 +238,7 @@ public class Character : Entity
 
         _maxActionPoints = 4;
         _currentActionPoints = 1;
+        _currentMovementPoints = 1;
         _turnNumber = 1;
 
         foreach (var e in Element.GetElements())
@@ -258,6 +274,7 @@ public class Character : Entity
 
         _maxActionPoints = 4;
         _currentActionPoints = 1;
+        _currentMovementPoints = 1;
         _turnNumber = 1;
 
 		foreach (var e in Element.GetElements()) {

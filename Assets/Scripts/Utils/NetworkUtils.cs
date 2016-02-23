@@ -132,6 +132,7 @@ public class NetworkUtils {
         WriteInt(ch._lifeMax, stream);
         WriteInt(ch._lifeCurrent, stream);
         WriteInt(ch.CurrentActionPoints, stream);
+        WriteInt(ch.CurrentMovementPoints, stream);
         WriteString(ch.Name, stream);
         WriteInt(ch.TurnNumber, stream);
 
@@ -161,6 +162,7 @@ public class NetworkUtils {
         Character ch = new Character(ReadInt(stream));
         ch._lifeCurrent = ReadInt(stream);
         ch.CurrentActionPoints = ReadInt( stream);
+        ch.CurrentMovementPoints = ReadInt( stream);
         ch.Name = ReadString(stream);
         ch.TurnNumber = ReadInt(stream);
 

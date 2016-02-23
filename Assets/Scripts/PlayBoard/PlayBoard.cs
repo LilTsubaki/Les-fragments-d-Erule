@@ -149,10 +149,10 @@ public class PlayBoard  {
             _astar.reset();
             List<Hexagon> hexagons = _astar.CalculateBestPath(character.Position, hexagon);
 
-            if (hexagons != null && PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints >= hexagons.Count)
+            if (hexagons != null && PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentMovementPoints >= hexagons.Count)
             {
                 character.PathToFollow = hexagons;
-                PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentActionPoints -= hexagons.Count;
+                PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentMovementPoints -= hexagons.Count;
                 ServerManager.GetInstance()._server.UpdateCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
                 return true;
             }
