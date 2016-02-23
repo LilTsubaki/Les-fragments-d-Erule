@@ -6,13 +6,12 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_FX_HitEffect_Blood_1
-  m_Shader: {fileID: 205, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON
+  m_Name: MAT_Tree_BirchFoliage_2
+  m_Shader: {fileID: 4800000, guid: 92e9ddbba65f6d843ab2bb6a71266e7a, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -20,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 851f06d09fde76043bdb7d12305d9ab0, type: 3}
+          m_Texture: {fileID: 2800000, guid: 0cc4be364c952844a810cf51d89b1417, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -79,37 +78,19 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _SrcBlend
-        second: 5
+        second: 1
       data:
         first:
           name: _DstBlend
-        second: 10
+        second: 0
       data:
         first:
           name: _Cutoff
-        second: 0.445
-      data:
-        first:
-          name: PixelSnap
-        second: 0
+        second: 0.224
       data:
         first:
           name: _Parallax
@@ -117,11 +98,11 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 0
+        second: 1
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -141,23 +122,27 @@ Material:
       data:
         first:
           name: _Mode
-        second: 2
+        second: 0
       data:
         first:
           name: _Metallic
         second: 0
       data:
         first:
-          name: _InvFade
-        second: 1
+          name: _ShakeDisplacement
+        second: 0.728
       data:
         first:
-          name: _MaskTexMoveSpeedU
-        second: 0.5
+          name: _ShakeTime
+        second: 0.279
       data:
         first:
-          name: _MaskTexMoveSpeedV
-        second: 0.5
+          name: _ShakeWindspeed
+        second: 0.135
+      data:
+        first:
+          name: _ShakeBending
+        second: 0.091
     m_Colors:
       data:
         first:
@@ -167,15 +152,3 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 0.5}
-      data:
-        first:
-          name: _EmisColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
