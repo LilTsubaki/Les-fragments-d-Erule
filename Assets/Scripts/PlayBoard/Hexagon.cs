@@ -142,14 +142,13 @@ public class Hexagon : IAStar<Hexagon>
 
     public void Reset()
     {
-        if(_onTimeEffects.Count > 0)
+            _currentState = State.Default;
+            _previousState = State.Default;
+            _stateChanged = true;
+        if (_onTimeEffects.Count > 0)
         {
             GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
         }
-        
-            _currentState = State.Default;
-            _previousState = State.Default;
-            _stateChanged = true;            
     }
 
     public bool hasValidPosition()
