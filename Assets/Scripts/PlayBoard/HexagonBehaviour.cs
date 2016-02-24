@@ -36,28 +36,28 @@ public class HexagonBehaviour : MonoBehaviour
             {
                 case Hexagon.State.Default :
                     if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
-                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._default;
 
                     if (_hexagon._onTimeEffects.Count > 0)
-                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._groundEffectColor;
+                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
                     break;
                 case Hexagon.State.Targetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._targetable;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._targetable;
                     break;
                 case Hexagon.State.OverEnnemiTargetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overEnnemiTargetable;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overEnnemiTargetable;
                     break;
                 case Hexagon.State.OverSelfTargetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overSelfTargetable;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overSelfTargetable;
                     break;
                 case Hexagon.State.Accessible:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._accessible;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._accessible;
                     break;
                 case Hexagon.State.OverAccessible:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._overAccessible;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overAccessible;
                     break;
                 case Hexagon.State.Spawnable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
+                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._spawn;
                     break;
             }
             

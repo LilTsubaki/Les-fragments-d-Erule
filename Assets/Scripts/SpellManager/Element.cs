@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 public class Element : IComparable{
@@ -34,6 +35,29 @@ public class Element : IComparable{
 		Elements.Add(new Element ("Wood"));
 		Elements.Add(new Element ("Metal"));
     }
+
+    public Sprite getSprite()
+    {
+        switch (_id)
+        {
+            case 0:
+                return Resources.Load<Sprite>("Sprites/Feu");
+            case 1:
+                return Resources.Load<Sprite>("Sprites/Eau");
+            case 2:
+                return Resources.Load<Sprite>("Sprites/Air");
+            case 3:
+                return Resources.Load<Sprite>("Sprites/Terre");
+            case 4:
+                return Resources.Load<Sprite>("Sprites/Bois");
+            case 5:
+                return Resources.Load<Sprite>("Sprites/Metal");
+            default:
+                break;
+        }
+        return null;
+    }
+
     public int CompareTo(object obj)
     {
         if (obj == null)

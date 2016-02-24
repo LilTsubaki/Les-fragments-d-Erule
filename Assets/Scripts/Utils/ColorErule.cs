@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 
- public class HexagonColor
+ public class ColorErule
 {
     public static readonly Color _default = Color.grey;
     public static readonly Color _targetable = new Color(0.6f,0.6f,0.8f);
@@ -23,5 +23,12 @@ using UnityEngine;
     public static readonly Color _metal = new Color(0.2f, 0.2f, 0.2f);
     public static readonly Color _water = new Color(0, 0, 0.5f);
     public static readonly Color _wood = new Color(212.0f / 255.0f, 161.0f / 255.0f, 144.0f / 255.0f);
+
+    // Text Effects
+    public static readonly Color _damage = Color.red;
+    public static readonly Color _heal = Color.green;
+    public static readonly Color _gain = new Color(0.7f, 0.7f, 1.0f);
+    public static readonly Color _loss = new Color(1.0f, 0.55f, 0.0f);
+
 }
 

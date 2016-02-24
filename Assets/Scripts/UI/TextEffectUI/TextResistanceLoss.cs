@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System;
 
-class TextDamage : TextEffect
+public class TextResistanceLoss : TextEffect
 {
     private int _value;
     private Element _element;
 
-    public TextDamage(int value, Element element)
+    public TextResistanceLoss(int value, Element element)
     {
         _value = value;
         _element = element;
@@ -22,12 +21,12 @@ class TextDamage : TextEffect
         Image image = textEffect.GameObject.GetComponentInChildren<Image>();
         Text text = textEffect.GameObject.GetComponentInChildren<Text>();
 
-        text.text = _value.ToString();
-        text.color = ColorErule._damage;
+        text.text = "- " + _value.ToString() + "% RÉSISTANCE";
 
-        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = true;
+        text.color = ColorErule._loss;
 
         image.sprite = _element.getSprite();
 
+        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = true;
     }
 }
