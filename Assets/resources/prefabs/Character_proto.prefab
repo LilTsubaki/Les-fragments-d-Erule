@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 426740}
   - 136: {fileID: 13656056}
+  - 114: {fileID: 11434140}
   m_Layer: 0
   m_Name: Character_proto
   m_TagString: Untagged
@@ -91,6 +92,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180312}
   m_Mesh: {fileID: 4300000, guid: eb2e6621c269b114ea7f1a1d4ad1b199, type: 3}
+--- !u!114 &11434140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9e82c4542b8b842960e74fdad7aca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 0
+  _translateSpeed: 0
 --- !u!136 &13656056
 CapsuleCollider:
   m_ObjectHideFlags: 1
