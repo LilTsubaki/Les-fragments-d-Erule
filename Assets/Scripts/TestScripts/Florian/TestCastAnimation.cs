@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TestCastAnimation : MonoBehaviour {
 
-
-    public AirAnimation anim;
+    public GameObject _cube1;
+    public GameObject _cube2;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +16,7 @@ public class TestCastAnimation : MonoBehaviour {
         // UNDERWHELMING
         if (Input.GetKeyDown(KeyCode.A))
         {
-            anim.Reset();
-            anim.Play();
+            SpellAnimationManager.GetInstance().Play("air", _cube1, _cube2);
         }
     }
 }

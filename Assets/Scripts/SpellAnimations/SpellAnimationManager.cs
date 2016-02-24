@@ -29,4 +29,16 @@ public class SpellAnimationManager {
         _animations.Add(id, anim);
         return true;
     }
+
+    public bool Play(string id, GameObject from, GameObject to)
+    {
+        SpellAnimation anim;
+        if(_animations.TryGetValue(id, out anim))
+        {
+            anim.Reset(from, to);
+            anim.Play();
+            return true;
+        }
+        return false;
+    }
 }
