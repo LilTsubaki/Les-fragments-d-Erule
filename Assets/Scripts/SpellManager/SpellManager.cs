@@ -332,6 +332,7 @@ public class SpellManager
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
 
 
+
         float perfection, sublimation, stability;
         RunicBoardManager.GetInstance().GetPolesInfluence(out perfection, out sublimation, out stability);
 
@@ -340,6 +341,7 @@ public class SpellManager
         int runes = ProcessPerfection(perfection);
 
         List<int> effectIds;
+        
 
         if (target == currentPlayer.Position )
         {
@@ -394,6 +396,17 @@ public class SpellManager
         }
         else
         {
+            /*********************
+            À modifier dès qu'on a différents effets visuels
+            **********************/
+
+            SpellAnimationManager.GetInstance().Play("air", currentPlayer._gameObject, target.GameObject);
+
+            /*********************
+
+            *********************/
+
+
             Logger.Trace("apply targetEffects");
             effectIds = CurrentTargetSpell.EffectsArea.GetIds();
             if (effectIds.Count != 0)
