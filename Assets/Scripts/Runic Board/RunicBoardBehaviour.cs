@@ -151,9 +151,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
             RuneBehaviour runeBehaviour = _heldRune.GetComponent<RuneBehaviour>();
             
-            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes Slot")))
+            if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Runes Slot")) && !ClientManager.GetInstance()._client.LockedMode)
             {
-                RuneSlotBehaviour runeSlotBehaviour = hitInfo.collider.gameObject.GetComponent<RuneSlotBehaviour>();
+                    RuneSlotBehaviour runeSlotBehaviour = hitInfo.collider.gameObject.GetComponent<RuneSlotBehaviour>();
                 if (runeSlotBehaviour != null)
                 {
                     Rune rune = _heldRune.GetComponent<RuneBehaviour>()._rune;
@@ -173,6 +173,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         // Rune is released in hand
                         else
                         {
+                            
                             Logger.Debug("HAND");
                             if (_board.RemoveRuneFromBoard(rune.PositionOnBoard))
                             {
