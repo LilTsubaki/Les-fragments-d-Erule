@@ -53,7 +53,7 @@ public class PlayBoardCreator : MonoBehaviour {
             go.transform.parent = board.transform;
             go.name = hexagon.name;
             go.layer = LayerMask.NameToLayer("Spawn");
-            go.GetComponentInChildren<Renderer>().material.color = HexagonColor._spawn;
+            go.GetComponentInChildren<Renderer>().material.color = ColorErule._spawn;
             hex.GameObject = go;
         }
     }
@@ -68,22 +68,22 @@ public class PlayBoardCreator : MonoBehaviour {
             switch (boost)
             {
                 case Hexagon.Boost.Air:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._air;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._air;
                     break;
                 case Hexagon.Boost.Earth:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._earth;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._earth;
                     break;
                 case Hexagon.Boost.Fire:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._fire;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._fire;
                     break;
                 case Hexagon.Boost.Metal:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._metal;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._metal;
                     break;
                 case Hexagon.Boost.Water:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._water;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._water;
                     break;
                 case Hexagon.Boost.Wood:
-                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._wood;
+                    hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._wood;
                     break;
                 case Hexagon.Boost.Nothing:
                     break;
@@ -99,7 +99,7 @@ public class PlayBoardCreator : MonoBehaviour {
         if (hex != null && !(hex._posX < 0))
         {
             hex.BoostElement = Hexagon.Boost.Nothing;
-            hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+            hex.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._default;
             Logger.Debug("allo");
         }
     }

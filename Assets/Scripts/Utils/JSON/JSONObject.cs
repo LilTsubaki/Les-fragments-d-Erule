@@ -1222,23 +1222,23 @@ public class JSONObject {
                 switch (hexagon.BoostElement)
                 {
                     case Hexagon.Boost.Air:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._air;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._air;
                         Logger.Debug("aaaair");
                         break;
                     case Hexagon.Boost.Earth:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._earth;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._earth;
                         break;
                     case Hexagon.Boost.Fire:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._fire;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._fire;
                         break;
                     case Hexagon.Boost.Metal:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._metal;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._metal;
                         break;
                     case Hexagon.Boost.Water:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._water;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._water;
                         break;
                     case Hexagon.Boost.Wood:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._wood;
+                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._wood;
                         break;
                     case Hexagon.Boost.Nothing:
                         break;

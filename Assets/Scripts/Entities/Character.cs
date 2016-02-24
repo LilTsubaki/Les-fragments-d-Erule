@@ -305,6 +305,20 @@ public class Character : Entity
         SommeNegativeProtection = c.SommeNegativeProtection;
     }
 
+    public void ReceiveRangeUp(int value)
+    {
+        Logger.Debug("Receive range up : " + value);
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextRangeGain(value));
+        RangeModifier += value;
+    }
+
+    public void ReceiveRangeDown(int value)
+    {
+        Logger.Debug("Receive range down : " + value);
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextRangeLoss(value));
+        RangeModifier -= value;
+    }
+
     public void ReceiveHeal(int value)
     {
         Logger.Debug("Receive heal value : " + value);
@@ -341,6 +355,8 @@ public class Character : Entity
 
 	public void ReceiveGlobalProtection(int protection){
 
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceGain(protection, Element.GetElement(5)));
+
         Logger.Debug("Receive global protection : " + protection);
 
         int val = Math.Min (protection, GlobalNegativeProtection);
@@ -357,6 +373,8 @@ public class Character : Entity
 	}
 
 	public void ReceiveGlobalNegativeProtection(int protection){
+
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceLoss(protection, Element.GetElement(5)));
 
         Logger.Debug("Receive global negative protection : " + protection);
 
@@ -375,6 +393,8 @@ public class Character : Entity
 
 	public void ReceiveElementProtection(int protection, Element element){
 
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceGain(protection, element));
+
         Logger.Debug("Receive element protection : " + protection + " for element : " + element._name);
 
         int val = Math.Min (protection, ProtectionsNegative[element]);
@@ -392,6 +412,8 @@ public class Character : Entity
 	}
 
 	public void ReceiveElementNegativeProtection(int protection, Element element){
+
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceLoss(protection, element));
 
         Logger.Debug("Receive element negative protection : " + protection + " for element : " + element._name);
 
@@ -453,9 +475,10 @@ public class Character : Entity
 
     public void ReceiveRangeModifier(int value)
     {
-        Logger.Debug("Receive range modifier : " + value);
-
-        RangeModifier += value;
+        if (value > 0)
+            ReceiveRangeUp(value);
+        else
+            ReceiveRangeDown(-value);
     }
 
     public int GetElementResistance(Element elem)

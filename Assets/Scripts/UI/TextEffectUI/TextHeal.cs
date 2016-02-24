@@ -21,7 +21,7 @@ class TextHeal : TextEffect
         Text text = textEffect.GameObject.GetComponentInChildren<Text>();
 
         text.text = _value.ToString();
-        text.color = Color.green;
+        text.color = ColorErule._heal;
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
         textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;

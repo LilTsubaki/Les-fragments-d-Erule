@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System;
 
-class TextDamage : TextEffect
-{
+public class TextRangeGain : TextEffect {
+
     private int _value;
-    private Element _element;
 
-    public TextDamage(int value, Element element)
+    public TextRangeGain(int value)
     {
         _value = value;
-        _element = element;
     }
 
     public override void DisplayText(TextEffectPoolable textEffect, Character character)
@@ -22,12 +19,10 @@ class TextDamage : TextEffect
         Image image = textEffect.GameObject.GetComponentInChildren<Image>();
         Text text = textEffect.GameObject.GetComponentInChildren<Text>();
 
-        text.text = _value.ToString();
-        text.color = ColorErule._damage;
+        text.text = "+ "+_value.ToString()+" PORTÉE";
+        text.color = ColorErule._gain;
 
-        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = true;
-
-        image.sprite = _element.getSprite();
-
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;
     }
 }
