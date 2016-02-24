@@ -64,7 +64,7 @@ public class EditorPlayBoardCreator : Editor {
 
         if(GUILayout.Button("Remove boost"))
         {
-            creator.ApplyBoost(Hexagon.Boost.Nothing);
+            creator.RemoveBoost();
         }
 
         if (GUILayout.Button ("Create Underground")) {

@@ -100,6 +100,7 @@ public class PlayBoardCreator : MonoBehaviour {
         {
             hex.BoostElement = Hexagon.Boost.Nothing;
             hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+            Logger.Debug("allo");
         }
     }
 
