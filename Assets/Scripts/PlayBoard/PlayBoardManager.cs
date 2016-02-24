@@ -156,9 +156,11 @@ public class PlayBoardManager
             foreach (Hexagon hex in hexagons[i])
             {    
                 hex.ApplyOnTimeEffects();
+                hex.ReduceOnTimeEffectsCastedBy(currentPlayer);
                 hex.RemoveMarkedOnTimeEffects();
             }
         }
+
 
         CurrentState = State.MoveMode;
     }

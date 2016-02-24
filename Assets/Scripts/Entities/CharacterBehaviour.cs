@@ -64,7 +64,7 @@ public class CharacterBehaviour : MonoBehaviour
     bool goTo(Hexagon hexa, float speed)
     {
         float step = speed * Time.deltaTime;
-        Vector3 temp = new Vector3(0.0f, 0.5f, 0.0f);
+        Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
         transform.position = Vector3.MoveTowards(transform.position, hexa.GameObject.transform.position + temp, step);
         return Mathf.Approximately(Vector3.SqrMagnitude(hexa.GameObject.transform.position + temp - transform.position), 0);
     }

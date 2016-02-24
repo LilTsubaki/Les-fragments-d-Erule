@@ -1257,7 +1257,7 @@ public class JSONObject {
 					underground.transform.parent = hexagon.GameObject.transform;
 
 					underground.name = undergroundName;
-					underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+					underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n-0.2f, 0.75f * hexagon._posY);
 
 					/*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 						underground.transform.localScale = new Vector3 (underground.transform.localScale.x, underground.transform.localScale.y, -1*underground.transform.localScale.z);
@@ -1282,7 +1282,7 @@ public class JSONObject {
                     obs._gameobject= GameObject.Instantiate(prefabObstacle);
                     obs._gameobject.transform.parent = hexagon.GameObject.transform;
                     obs._gameobject.name = obstacleName;
-                    obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.5f, 0.75f * hexagon._posY);
+                    obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
                     obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
 
 					/*if (UnityEngine.Random.Range (0f, 1f) > 0.5)

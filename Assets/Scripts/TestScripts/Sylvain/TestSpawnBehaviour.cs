@@ -63,7 +63,7 @@ public class TestSpawnBehaviour : MonoBehaviour {
                     {
                         character.Position = spawn;
                         spawn._entity = character;
-                        character._gameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.5f, 0);
+                        character._gameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0, 0);
                     }
                 }
             }

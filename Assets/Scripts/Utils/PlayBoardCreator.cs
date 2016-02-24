@@ -122,7 +122,7 @@ public class PlayBoardCreator : MonoBehaviour {
 		if (hex != null && !(hex._posX<0)) {
 			if (hex.GameObject != null && hex._entity==null) {
 				GameObject go = Instantiate<GameObject> (obstacle);
-				go.transform.position=new Vector3(0.866f*x-0.433f*y,z+0.5f,0.75f*y);
+				go.transform.position=new Vector3(0.866f*x-0.433f*y,z,0.75f*y);
 				go.transform.parent = hex.GameObject.transform;
 				go.name = obstacle.name;
                 go.layer = LayerMask.NameToLayer("Obstacle");
@@ -153,7 +153,7 @@ public class PlayBoardCreator : MonoBehaviour {
 		if (hex != null && !(hex._posX<0)) {
 			if (hex.GameObject != null && hex.Underground==null) {
 				GameObject go = Instantiate<GameObject> (underground);
-				go.transform.position=new Vector3(0.866f*x-0.433f*y,z,0.75f*y);
+				go.transform.position=new Vector3(0.866f*x-0.433f*y,z-0.2f,0.75f*y);
 				go.transform.parent = hex.GameObject.transform;
 				go.name = underground.name;
 				hex.Underground = go;
