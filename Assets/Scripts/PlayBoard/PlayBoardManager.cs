@@ -147,6 +147,7 @@ public class PlayBoardManager
     public void BeginTurn()
     {
         Character currentPlayer = GetCurrentPlayer();
+        currentPlayer.RangeModifier = 0;
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
