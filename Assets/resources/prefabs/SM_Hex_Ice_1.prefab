@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 416586}
   - 33: {fileID: 3343454}
   - 23: {fileID: 2357412}
-  - 95: {fileID: 9508908}
+  - 64: {fileID: 6476882}
   m_Layer: 0
   m_Name: SM_Hex_Ice_1 (7)
   m_TagString: Untagged
@@ -63,23 +63,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170156}
   m_Mesh: {fileID: 4300000, guid: 090d29421eec842448317330d8ff25be, type: 3}
---- !u!95 &9508908
-Animator:
-  serializedVersion: 3
+--- !u!64 &6476882
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 090d29421eec842448317330d8ff25be, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 090d29421eec842448317330d8ff25be, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
