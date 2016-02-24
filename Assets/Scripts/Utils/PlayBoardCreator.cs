@@ -93,7 +93,17 @@ public class PlayBoardCreator : MonoBehaviour {
         }
     }
 
-	public void RemoveHexagon()
+    public void RemoveBoost()
+    {
+        Hexagon hex = PlayBoardManager.GetInstance().Board.GetHexagone(x, y);
+        if (hex != null && !(hex._posX < 0))
+        {
+            hex.BoostElement = Hexagon.Boost.Nothing;
+            hex.GameObject.GetComponentInChildren<Renderer>().material.color = HexagonColor._default;
+        }
+    }
+
+    public void RemoveHexagon()
 	{
 		RemoveObstacle ();
 		RemoveUnderground ();
