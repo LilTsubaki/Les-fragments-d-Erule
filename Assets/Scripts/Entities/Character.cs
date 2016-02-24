@@ -255,7 +255,7 @@ public class Character : Entity
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
         _gameObject = GameObject.Instantiate(go);
-        _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.5f, 0);
+        _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0, 0);
         _gameObject.GetComponent<CharacterBehaviour>()._character = this;
 
 		Protections = new Dictionary<Element, int> ();
