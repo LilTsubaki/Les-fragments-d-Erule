@@ -9,7 +9,7 @@ public class ServerListener
 {
     public Server _server;
     public TcpClient _client;
-    public Character _ch;
+    public Character _character;
     public bool _isRunning;
 
     public ServerListener(Server server, TcpClient client)
@@ -50,14 +50,19 @@ public class ServerListener
                             break;
 
                         case 7:
+                            String name = NetworkUtils.ReadString(stream);
                             if (_server.Register(this))
+                            {
+                                _character.Name = name;
                                 SendCharacter();
+                            }
+                                
                             else
                                 RefuseCharacter();
                             break;
 
                         case 12:
-                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            if (PlayBoardManager.GetInstance().isMyTurn(_character))
                             {
                                 PlayBoardManager.GetInstance().EndTurn();
                                 ServerManager.GetInstance()._server.EndTurn();
@@ -65,16 +70,16 @@ public class ServerListener
                             break;
 
                         case 13:
-                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            if (PlayBoardManager.GetInstance().isMyTurn(_character))
                             {
                                 PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.MoveMode;
                             }
                             break;
 
                         case 14:
-                            if (PlayBoardManager.GetInstance().isMyTurn(_ch))
+                            if (PlayBoardManager.GetInstance().isMyTurn(_character))
                             {
-                                _ch.CurrentActionPoints++;
+                                _character.CurrentActionPoints++;
                                 PlayBoardManager.GetInstance().Board._colorAccessible = true;
                             }
                             break;
@@ -121,7 +126,7 @@ public class ServerListener
         SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
         if(spell != null)
         {
-            _ch.CurrentActionPoints--;
+            _character.CurrentActionPoints--;
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
         }
         Logger.Error("spell != null" + (spell != null));
@@ -169,8 +174,8 @@ public class ServerListener
         try { 
             Logger.Trace("SendCharacter");
             NetworkUtils.WriteInt(6, _client.GetStream());
-            NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteCharacter(_character, _client.GetStream());
+            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_character), _client.GetStream());
             NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();
@@ -187,7 +192,7 @@ public class ServerListener
         try { 
         Logger.Trace("UpdateCharacter");
         NetworkUtils.WriteInt(10, _client.GetStream());
-        NetworkUtils.WriteCharacter(_ch, _client.GetStream());
+        NetworkUtils.WriteCharacter(_character, _client.GetStream());
         
 
         _client.GetStream().Flush();
@@ -222,8 +227,8 @@ public class ServerListener
             Logger.Trace("EndTurn");
 
             NetworkUtils.WriteInt(9, _client.GetStream());
-            NetworkUtils.WriteCharacter(_ch, _client.GetStream());
-            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_ch), _client.GetStream());
+            NetworkUtils.WriteCharacter(_character, _client.GetStream());
+            NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_character), _client.GetStream());
             NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
 
             _client.GetStream().Flush();

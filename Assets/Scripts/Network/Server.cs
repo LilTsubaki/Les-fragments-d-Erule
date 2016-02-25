@@ -43,6 +43,32 @@ public class Server : MonoBehaviour{
         }
     }
 
+    public ServerListener Client1
+    {
+        get
+        {
+            return _client1;
+        }
+
+        set
+        {
+            _client1 = value;
+        }
+    }
+
+    public ServerListener Client2
+    {
+        get
+        {
+            return _client2;
+        }
+
+        set
+        {
+            _client2 = value;
+        }
+    }
+
     public void Awake()
     {
         currrentTimeout = timeout;
@@ -129,14 +155,14 @@ public class Server : MonoBehaviour{
         if (_client1 == null)
         {
             _client1 = serverListener;
-            _client1._ch = PlayBoardManager.GetInstance().Character1;
+            _client1._character = PlayBoardManager.GetInstance().Character1;
             return true;
         }
 
         if (_client2 == null)
         {
             _client2 = serverListener;
-            _client2._ch = PlayBoardManager.GetInstance().Character2;
+            _client2._character = PlayBoardManager.GetInstance().Character2;
             _searchingClient = false;
             CleanClient();
             return true;
@@ -231,13 +257,13 @@ public class Server : MonoBehaviour{
 
     public void UpdateCharacter(Character character)
     {
-        if(_client1 != null && _client1._ch == character)
+        if(_client1 != null && _client1._character == character)
         {
             _client1.UpdateCharacter();
             return;
         }
 
-        if (_client2 !=null && _client2._ch == character )
+        if (_client2 !=null && _client2._character == character )
         {
             _client2.UpdateCharacter();
             return;
@@ -251,7 +277,7 @@ public class Server : MonoBehaviour{
         if (_client1 != null)
         {
             _client1.UpdateCharacter();
-            if (_client1._ch == character)
+            if (_client1._character == character)
             {
                 _client1.ResetBoard(fail, crit, runes);
             }
@@ -260,7 +286,7 @@ public class Server : MonoBehaviour{
         if (_client2 != null)
         {
             _client2.UpdateCharacter();
-            if (_client2._ch == character)
+            if (_client2._character == character)
             {
                 _client2.ResetBoard(fail, crit, runes);
             }

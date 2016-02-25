@@ -348,6 +348,7 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         Logger.Debug("send request character");
         NetworkUtils.WriteInt(7, _tcpClient.GetStream());
+        NetworkUtils.WriteString("Mon nom", _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
         int id;
