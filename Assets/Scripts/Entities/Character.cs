@@ -38,6 +38,9 @@ public class Character : Entity
     private List<int> _onTimeEffectsToRemove;
 
     private int _rangeModifier;
+    private int _damageModifier;
+    private int _healModifier;
+    private int _globalProtectionModifier;
 
     public Character(int lifeMax)
     {
@@ -65,6 +68,9 @@ public class Character : Entity
         _lifeCurrent = lifeMax;
 
         _rangeModifier = 0;
+        DamageModifier = 0;
+        HealModifier = 0;
+        GlobalProtectionModifier = 0;
 
         _maxActionPoints = 4;
         _currentActionPoints = 1;
@@ -101,6 +107,9 @@ public class Character : Entity
 		_lifeCurrent = lifeMax;
 
         _rangeModifier = 0;
+        DamageModifier = 0;
+        HealModifier = 0;
+        GlobalProtectionModifier = 0;
 
         _maxActionPoints = 4;
         _currentActionPoints = 1;
@@ -151,28 +160,29 @@ public class Character : Entity
 
     public void ReceiveHeal(int value)
     {
-        Logger.Debug("Receive heal value : " + value);
+        value += HealModifier;
+        
         if (_lifeCurrent + value > _lifeMax)
             _lifeCurrent = _lifeMax;
         else
             _lifeCurrent += value;
 
+        Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
     }
 
     public int ReceiveDamage(int value, Element element)
     {
-        Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
+        
         int positiveElementResistance;
         int negativeElementResistance;
 
         Protections.TryGetValue(element, out positiveElementResistance);
         ProtectionsNegative.TryGetValue(element, out negativeElementResistance);
 
-        int finalValue = (positiveElementResistance - negativeElementResistance) + (GlobalProtection - GlobalNegativeProtection);
+        int finalValue = (positiveElementResistance - negativeElementResistance) + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
-
         EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
 
         if (_lifeCurrent - value < 0)
@@ -180,6 +190,7 @@ public class Character : Entity
         else
             _lifeCurrent -= value;
 
+        Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
         return value;
     }
 
@@ -301,6 +312,33 @@ public class Character : Entity
         {
             _onTimeEffects.Remove(id);
         }
+    }
+
+    public void ReceiveDamageUp(int value)
+    {
+        DamageModifier += value;
+    }
+
+    public void ReceiveDamageDown(int value)
+    {
+        DamageModifier -= value;
+    }
+    public void ReceiveHealUp(int value)
+    {
+        HealModifier += value;
+    }
+    public void ReceiveHealDown(int value)
+    {
+        HealModifier -= value;
+    }
+
+    public void ReceiveProtectionGlobalUp(int value)
+    {
+        GlobalProtectionModifier += value;
+    }
+    public void ReceiveProtectionGlobalDown(int value)
+    {
+        GlobalProtectionModifier -= value;
     }
 
     public void ReceiveRangeModifier(int value)
@@ -543,6 +581,45 @@ public class Character : Entity
         set
         {
             _currentMovementPoints = value;
+        }
+    }
+
+    public int DamageModifier
+    {
+        get
+        {
+            return _damageModifier;
+        }
+
+        set
+        {
+            _damageModifier = value;
+        }
+    }
+
+    public int HealModifier
+    {
+        get
+        {
+            return _healModifier;
+        }
+
+        set
+        {
+            _healModifier = value;
+        }
+    }
+
+    public int GlobalProtectionModifier
+    {
+        get
+        {
+            return _globalProtectionModifier;
+        }
+
+        set
+        {
+            _globalProtectionModifier = value;
         }
     }
 }

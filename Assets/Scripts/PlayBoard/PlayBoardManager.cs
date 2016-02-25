@@ -150,6 +150,9 @@ public class PlayBoardManager
     {
         Character currentPlayer = GetCurrentPlayer();
         currentPlayer.RangeModifier = 0;
+        currentPlayer.HealModifier = 0;
+        currentPlayer.DamageModifier = 0;
+        currentPlayer.GlobalProtectionModifier = 0;
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
