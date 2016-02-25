@@ -13,6 +13,9 @@ Properties {
 SubShader {
     Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
     LOD 200
+	Cull Off // Backsided activation
+		
+
    
 CGPROGRAM
 #pragma target 3.0
