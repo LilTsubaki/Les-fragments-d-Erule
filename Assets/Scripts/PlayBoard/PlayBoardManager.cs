@@ -6,6 +6,7 @@ public class PlayBoardManager
 {
 	private static PlayBoardManager _instance;
 	private PlayBoard _board;
+    private List<PowerShard> _powerShards;
 
 	public PlayBoard Board{
 		get { return _board; }
@@ -81,10 +82,24 @@ public class PlayBoardManager
         }
     }
 
+    public List<PowerShard> PowerShards
+    {
+        get
+        {
+            return _powerShards;
+        }
+
+        set
+        {
+            _powerShards = value;
+        }
+    }
+
     private PlayBoardManager ()
 	{
         _secondPlayerStarted = new System.Random().Next(100) % 2 == 0;
         _turnNumber = 0;
+        _powerShards = new List<PowerShard>();
     }
 
     public void Init(int width, int height, Character character1, Character character2)
@@ -107,7 +122,28 @@ public class PlayBoardManager
         EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character2, 1.0f);
     }
 
-	public List<Character> GetCharacterInArea(List<Hexagon> hexagons){
+    public void AddPowerShard(PowerShard shard)
+    {
+        PowerShards.Add(shard);
+    }
+
+    public void UpdatePowerShards()
+    {
+        foreach(var shard in PowerShards)
+        {
+            shard.UpdateCooldown();
+        }
+    }
+
+    public void ApplyPowerShards()
+    {
+        foreach (var shard in PowerShards)
+        {
+            shard.ApplyEffect();
+        }
+    }
+
+    public List<Character> GetCharacterInArea(List<Hexagon> hexagons){
 		List<Character> chars = new List<Character> ();
 
 		foreach (var hex in hexagons) {
@@ -151,6 +187,8 @@ public class PlayBoardManager
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
+        ApplyPowerShards();
+
         List<List<Hexagon>> hexagons = Board.GetGrid();
         for (int i = 0; i < hexagons.Count; ++i)
         {
@@ -178,6 +216,7 @@ public class PlayBoardManager
 
         _turnNumber++;
         Board._reset = true;
+        UpdatePowerShards();
         BeginTurn();
     }
 }
