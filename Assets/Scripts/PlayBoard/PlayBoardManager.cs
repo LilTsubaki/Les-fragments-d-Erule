@@ -148,7 +148,6 @@ public class PlayBoardManager
     {
         Character currentPlayer = GetCurrentPlayer();
         currentPlayer.RangeModifier = 0;
-        currentPlayer.MovementModifier = 0;
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();
 
