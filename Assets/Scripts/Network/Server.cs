@@ -155,21 +155,36 @@ public class Server : MonoBehaviour{
         if (_client1 == null)
         {
             _client1 = serverListener;
-            _client1._character = PlayBoardManager.GetInstance().Character1;
             return true;
         }
 
         if (_client2 == null)
         {
             _client2 = serverListener;
-            _client2._character = PlayBoardManager.GetInstance().Character2;
             _searchingClient = false;
             CleanClient();
             return true;
         }
 
         return false;
+    }
 
+
+    public bool SetCharacters(ServerListener serverListener)
+    {
+        if (_client1 == serverListener)
+        {
+            _client1._character = PlayBoardManager.GetInstance().Character1;
+            return true;
+        }
+
+        if (_client2 == serverListener)
+        {
+            _client2._character = PlayBoardManager.GetInstance().Character2;
+            return true;
+        }
+
+        return false;
     }
 
     public void CleanClient()

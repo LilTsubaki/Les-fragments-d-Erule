@@ -12,6 +12,8 @@ public class ServerListener
     public Character _character;
     public bool _isRunning;
 
+    public string _name;
+
     public ServerListener(Server server, TcpClient client)
     {
         _server = server;
@@ -50,10 +52,8 @@ public class ServerListener
                             break;
 
                         case 7:
-                            String name = NetworkUtils.ReadString(stream);
-                            if (_server.Register(this))
+                            if (_server.SetCharacters(this))
                             {
-                                _character.Name = name;
                                 SendCharacter();
                             }
                                 
@@ -82,6 +82,20 @@ public class ServerListener
                                 _character.CurrentActionPoints++;
                                 PlayBoardManager.GetInstance().Board._colorAccessible = true;
                             }
+                            break;
+
+                        case 15:
+                            NetworkUtils.WriteInt(16, _client.GetStream());
+                            if (_server.Register(this))
+                            {
+                                _name = NetworkUtils.ReadString(_client.GetStream());
+                                NetworkUtils.WriteBool(true, _client.GetStream());
+                            }
+                            else
+                            {
+                                NetworkUtils.WriteBool(false, _client.GetStream());
+                            }
+                            _client.GetStream().Flush();
                             break;
 
                         default:

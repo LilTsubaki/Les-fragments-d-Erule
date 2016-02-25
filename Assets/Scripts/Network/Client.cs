@@ -144,7 +144,7 @@ public class Client : MonoBehaviour{
         connectButton.transform.SetParent(_scrollPanel.transform);
         connectButton.transform.localPosition = new Vector3(80, (_scrollPanel.transform.childCount) * -30);
         button.GetComponentInChildren<Text>().text = host + ":" + port;
-        button.onClick.AddListener(delegate { Connect(host, port); RequestCharacter(); });
+        button.onClick.AddListener(delegate { Connect(host, port); JoinBobby("lolol"); });
     }
 
     private void addHostToList(string host, int port)
@@ -341,6 +341,36 @@ public class Client : MonoBehaviour{
         
     }
 
+    public bool JoinBobby(String name)
+    {
+        while (_isListeningThreadReading) ;
+
+        bool lobbyJoined = false;
+
+        _isMainThreadReading = true;
+        Logger.Debug("Join Lobby");
+        NetworkUtils.WriteInt(15, _tcpClient.GetStream());
+        NetworkUtils.WriteString(name, _tcpClient.GetStream());
+        _tcpClient.GetStream().Flush();
+
+        int id;
+        do
+        {
+            id = NetworkUtils.ReadInt(_tcpClient.GetStream());
+        }
+        while (ReadMessage(id));
+
+
+        if (id == 16)
+        {
+            Logger.Debug("Read Join Lobby Reponse");
+            lobbyJoined = NetworkUtils.ReadBool(_tcpClient.GetStream());
+        }
+        _isMainThreadReading = false;
+
+        return lobbyJoined;
+    }
+
     public void RequestCharacter()
     {
         while (_isListeningThreadReading);
@@ -348,7 +378,6 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         Logger.Debug("send request character");
         NetworkUtils.WriteInt(7, _tcpClient.GetStream());
-        NetworkUtils.WriteString("Mon nom", _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
         int id;

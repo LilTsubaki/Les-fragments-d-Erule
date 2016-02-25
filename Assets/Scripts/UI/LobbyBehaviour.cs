@@ -17,12 +17,12 @@ public class LobbyBehaviour : MonoBehaviour {
         
         if(ServerManager.GetInstance()._server.Client1 != null)
         {
-            _textPlayer1.text = "- " + ServerManager.GetInstance()._server.Client1._character.Name + " connecté !";
+            _textPlayer1.text = "- " + ServerManager.GetInstance()._server.Client1._name + " connecté !";
         }
 
         if(ServerManager.GetInstance()._server.Client2 != null)
         {
-            _textPlayer1.text = "- " + ServerManager.GetInstance()._server.Client2._character.Name + " connecté !";
+            _textPlayer1.text = "- " + ServerManager.GetInstance()._server.Client2._name + " connecté !";
         }
     }
 }
