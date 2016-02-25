@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PlayBoardCreator : MonoBehaviour {
 
@@ -8,9 +8,12 @@ public class PlayBoardCreator : MonoBehaviour {
 	public GameObject obstacle;
 	public GameObject underground;
 	public GameObject cursor;
+    public GameObject shard;
     public string boardName;
 	public int width;
 	public int height;
+    public List<int> shardsEffects;
+    public int coolDownShard;
 	[Range(0,50)]
 	public int x;
 	[Range(0,50)]
@@ -117,7 +120,46 @@ public class PlayBoardCreator : MonoBehaviour {
 		}
 	}
 
-	public void BuildObstacle()
+    public void BuildShard()
+    {
+        Hexagon hex = PlayBoardManager.GetInstance().Board.GetHexagone(x, y);
+        if (hex != null && !(hex._posX < 0))
+        {
+            if (hex.GameObject != null && hex._entity == null)
+            {
+                GameObject go = Instantiate<GameObject>(shard);
+                go.transform.position = new Vector3(0.866f * x - 0.433f * y, z, 0.75f * y);
+                go.transform.parent = hex.GameObject.transform;
+                go.name = shard.name;
+                go.layer = LayerMask.NameToLayer("Obstacle");
+                PowerShard powerShard = new PowerShard(hex, coolDownShard, shardsEffects);
+                powerShard._gameobject = go;
+                hex._entity = powerShard;
+                PlayBoardManager.GetInstance().Board.AddPowerShard(powerShard);
+            }
+        }
+       
+    }
+    public void RemoveShard()
+    {
+        Hexagon hex = PlayBoardManager.GetInstance().Board.GetHexagone(x, y);
+        if (hex != null && !(hex._posX < 0))
+        {
+            if (hex.GameObject != null && hex._entity != null)
+            {
+                if (hex._entity is PowerShard)
+                {
+                    PowerShard powerShard = (PowerShard)hex._entity;
+                    Destroy(powerShard._gameobject);
+                    hex._entity = null;
+                    PlayBoardManager.GetInstance().Board.RemovePowerShard(powerShard);
+                }
+            }
+        }
+    }
+
+
+    public void BuildObstacle()
 	{
 		Hexagon hex = PlayBoardManager.GetInstance ().Board.GetHexagone(x, y);
 		if (hex != null && !(hex._posX<0)) {

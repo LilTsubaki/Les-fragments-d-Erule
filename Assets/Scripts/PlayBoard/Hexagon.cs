@@ -439,6 +439,11 @@ public class Hexagon : IAStar<Hexagon>
             hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
         }
 
+        if (_entity != null && _entity is PowerShard)
+        {
+            hexa.AddField("powerShard", ((PowerShard)_entity).PowerShardToJSON());
+        }
+
         if (IsSpawn)
         {
             hexa.AddField("isSpawn", _isSpawn);

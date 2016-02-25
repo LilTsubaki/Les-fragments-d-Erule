@@ -75,6 +75,16 @@ public class EditorPlayBoardCreator : Editor {
 			creator.RemoveUnderground ();
 		}
 
+        if (GUILayout.Button("Create Shard"))
+        {
+            creator.BuildShard();
+        }
+
+        if (GUILayout.Button("Remove Shard"))
+        {
+            creator.RemoveShard();
+        }
+
         if (GUILayout.Button("Save Board"))
         {
             creator.SaveBoard();
@@ -82,8 +92,7 @@ public class EditorPlayBoardCreator : Editor {
 
         if (GUILayout.Button("Load Board"))
         {
-            creator.LoadBoard();
-         
+            creator.LoadBoard();         
         }
     }
 

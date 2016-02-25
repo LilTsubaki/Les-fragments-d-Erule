@@ -1294,6 +1294,17 @@ public class JSONObject {
 					obs._gameobject.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
                 }
             }
+
+            if(hexa.GetField("powerShard") != null)
+            {
+                PowerShard ps = PowerShard.JSONToPowerShard(hexa.GetField("powerShard"), hexagon);
+
+                ps._gameobject.transform.parent = hexagon.GameObject.transform;
+                ps._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+                ps._gameobject.layer = LayerMask.NameToLayer("Obstacle");
+
+                playBoard.AddPowerShard(ps);
+            }
         }
 
         return playBoard;
