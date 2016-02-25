@@ -37,6 +37,14 @@ public class TestSpawnNetwork : MonoBehaviour {
         SpellManager.getInstance();
         RunicBoardManager.GetInstance().RegisterBoard(new RunicBoard());
         PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
+
+        Invoke("EndLoading", 1);
+    }
+
+    private void EndLoading()
+    {
+        UIManager.GetInstance().ShowPanel("PanelPosition");
+        UIManager.GetInstance().FadeOutPanelNoStack("Loading");
     }
 
     public void changeState()

@@ -17,6 +17,8 @@ public class LoadMaps : MonoBehaviour {
     public CharacterHostUI _uiPlayer1;
     public CharacterHostUI _uiPlayer2;
 
+    private string _chosenMap;
+
     // Use this for initialization
     void Start () {
         GetFiles();
@@ -47,7 +49,7 @@ public class LoadMaps : MonoBehaviour {
             obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX*2) * (i% nbButtonsPerLine), (i/ nbButtonsPerLine + 1) * -buttonSizeY);
             
             Button button = obj.GetComponent<Button>();
-            button.onClick.AddListener(delegate { LoadMap(path); });
+            button.onClick.AddListener(delegate { LoadingScreen(path); });
             string mapName = Path.GetFileNameWithoutExtension(path);
             button.GetComponentInChildren<Text>().text = mapName;
             Sprite image = Resources.Load("miniatures/" + mapName, typeof(Sprite)) as Sprite;
@@ -63,8 +65,17 @@ public class LoadMaps : MonoBehaviour {
 
     }
 
-    void LoadMap(string path)
+    void LoadingScreen(string path)
     {
+        UIManager.GetInstance().HideAll();
+        UIManager.GetInstance().FadeInPanelNoStack("Loading");
+        _chosenMap = path;
+        Invoke("LoadMap", 1);
+    }
+
+    void LoadMap()
+    {
+        string path = _chosenMap;
         GameObject o = new GameObject();
         string name = Path.GetFileNameWithoutExtension(path);
         TestSpawnNetwork tsn = o.AddComponent<TestSpawnNetwork>();
@@ -75,7 +86,5 @@ public class LoadMaps : MonoBehaviour {
         tsn._uiPlayer1 = _uiPlayer1;
         tsn._uiPlayer2 = _uiPlayer2;
         tsn._boardName = name;
-        UIManager.GetInstance().HideAll();
-        UIManager.GetInstance().ShowPanel("PanelPosition");
     }
 }

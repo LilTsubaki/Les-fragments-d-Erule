@@ -11,7 +11,7 @@ public class TestPanelsUi : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             UIManager.GetInstance().FadeInPanel("Red");
         }
@@ -30,6 +30,15 @@ public class TestPanelsUi : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             UIManager.GetInstance().HideAll();
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            UIManager.GetInstance().FadeInPanel("test");
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            UIManager.GetInstance().FadeOutPanel("test");
         }
     }
 }
