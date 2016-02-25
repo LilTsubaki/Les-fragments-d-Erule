@@ -16,46 +16,13 @@ public class UIManager
     /// <summary>
     /// The stack of panels opened.
     /// </summary>
-    private Stack<GameObject> _open;
-
+    private Stack<GameObject> _openStack;
     /// <summary>
-    /// The UI used to show player 1 information.
+    /// The list of panels opened with keeping tracks of the order of opening.
     /// </summary>
-    private CharacterUI _uiPlayer1;
-
-    /// <summary>
-    /// The UI used to show player 2 information.
-    /// </summary>
-    private CharacterUI _uiPlayer2;
+    private List<GameObject> _openNoStack;
 
     private Button _toggleButton;
-
-
-    public CharacterUI UiPlayer1
-    {
-        get
-        {
-            return _uiPlayer1;
-        }
-
-        set
-        {
-            _uiPlayer1 = value;
-        }
-    }
-
-    public CharacterUI UiPlayer2
-    {
-        get
-        {
-            return _uiPlayer2;
-        }
-
-        set
-        {
-            _uiPlayer2 = value;
-        }
-    }
 
     public Button ToggleButton
     {
@@ -77,7 +44,8 @@ public class UIManager
     private UIManager()
     {
         _panels = new Dictionary<string, GameObject>();
-        _open = new Stack<GameObject>();
+        _openStack = new Stack<GameObject>();
+        _openNoStack = new List<GameObject>();
     }
 
     /// <summary>
@@ -109,16 +77,6 @@ public class UIManager
         return false;
     }
 
-    public void RegisterUiCharacter1(CharacterUI charaUi)
-    {
-        UiPlayer1 = charaUi;
-    }
-
-    public void RegisterUiCharacter2(CharacterUI charaUi)
-    {
-        UiPlayer2 = charaUi;
-    }
-
     /// <summary>
     /// Shows a panel and puts it in the higher level.
     /// </summary>
@@ -129,7 +87,7 @@ public class UIManager
         if (_panels.ContainsKey(name))
         {
             GameObject panel = _panels[name];
-            if (_open.Contains(panel))
+            if (_openStack.Contains(panel) || _openNoStack.Contains(panel))
             {
                 return false;
             }
@@ -137,7 +95,32 @@ public class UIManager
             if (panel != null)
             {
                 panel.SetActive(true);
-                _open.Push(panel);
+                _openStack.Push(panel);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Shows a panel and registers it as non-stacked panel.
+    /// </summary>
+    /// <param name="name">The name of the registered panel to show.</param>
+    /// <returns>True if the name exists as registered panel that wasn't already open. False if the name doesn't exist of the panel is already shown.</returns>
+    public bool ShowPanelNoStack(string name)
+    {
+        if (_panels.ContainsKey(name))
+        {
+            GameObject panel = _panels[name];
+            if (_openStack.Contains(panel) || _openNoStack.Contains(panel))
+            {
+                return false;
+            }
+            panel.transform.SetAsLastSibling();
+            if (panel != null)
+            {
+                panel.SetActive(true);
+                _openNoStack.Add(panel);
             }
             return true;
         }
@@ -160,9 +143,24 @@ public class UIManager
     }
 
     /// <summary>
+    /// Fades a panel in.
+    /// </summary>
+    /// <param name="name">The name of the registered panel to fade in.</param>
+    /// <returns>True if the name exists as a registered panel that wasn't already open. False if the name doesn't exist or the panel is already shown.</returns>
+    public bool FadeInPanelNoStack(string name)
+    {
+        if (ShowPanelNoStack(name))
+        {
+            _panels[name].GetComponent<UIPanel>().FadeIn();
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Hides a panel and puts it at the lowest level.
     /// </summary>
-    /// <param name="name">the name of the panel to hide.</param>
+    /// <param name="name">The name of the panel to hide.</param>
     /// <returns>True is the name exists as a registered panel that was the last open. False if the name doesn't exist or the panel isn't the last.</returns>
     public bool HidePanel(string name)
     {
@@ -172,17 +170,40 @@ public class UIManager
             panel.transform.SetAsFirstSibling();
             if (panel != null)
             {
-                if (_open.Peek() == panel)
+                if (_openStack.Count > 0)
                 {
-                    panel.SetActive(false);
-                    _open.Pop();
-                }
-                else
-                {
-                    return false;
+                    if (_openStack.Peek() == panel)
+                    {
+                        panel.SetActive(false);
+                        _openStack.Pop();
+                        return true;
+                    }
                 }
             }
-            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Hides a panel and puts it at the lowest level.
+    /// </summary>
+    /// <param name="name">The name of the panel to hide.</param>
+    /// <returns>True if the name exists as a registered panel that was open. False if the name doesn't exist or the panel isn't open.</returns>
+    public bool HidePanelNoStack(string name)
+    {
+        if (_panels.ContainsKey(name))
+        {
+            GameObject panel = _panels[name];
+            panel.transform.SetAsFirstSibling();
+            if(panel != null)
+            {
+                if (_openNoStack.Contains(panel))
+                {
+                    panel.SetActive(false);
+                    _openNoStack.Remove(panel);
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -194,10 +215,46 @@ public class UIManager
     /// <returns>True is the name exists as a registered panel that was the last open. False if the name doesn't exist or the panel isn't the last.</returns>
     public bool FadeOutPanel(string name)
     {
-        if (ShowPanel(name))
+        if (_panels.ContainsKey(name))
         {
-            _panels[name].GetComponent<UIPanel>().FadeOut();
-            return true;
+            GameObject panel = _panels[name];
+            if (panel != null)
+            {
+                panel.transform.SetAsLastSibling();
+                if (_openStack.Count > 0)
+                {
+                    if (_openStack.Peek() == panel)
+                    {
+                        panel.GetComponent<UIPanel>().FadeOut();
+                        _openStack.Pop();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Fades a panel out if not stacked.
+    /// </summary>
+    /// <param name="name">The name of the panel to fade out.</param>
+    /// <returns>Tue if the name exists as a registered panel. False if the name doesn't exist of the panel isn't open.</returns>
+    public bool FadeOutPanelNoStack(string name)
+    {
+        if (_panels.ContainsKey(name))
+        {
+            GameObject panel = _panels[name];
+            if(panel != null)
+            {
+                panel.transform.SetAsLastSibling();
+                if (_openNoStack.Contains(panel))
+                {
+                    panel.GetComponent<UIPanel>().FadeOut();
+                    _openNoStack.Remove(panel);
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -211,7 +268,8 @@ public class UIManager
         {
             go.SetActive(false);
         }
-        _open.Clear();
+        _openStack.Clear();
+        _openNoStack.Clear();
     }
 
     /// <summary>
@@ -220,9 +278,9 @@ public class UIManager
     /// <returns></returns>
     public bool HideLastOpen()
     {
-        if (_open.Count > 0)
+        if (_openStack.Count > 0)
         {
-            GameObject last = _open.Pop();
+            GameObject last = _openStack.Pop();
             last.SetActive(false);
             return true;
         }

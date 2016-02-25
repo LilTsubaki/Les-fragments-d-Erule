@@ -25,14 +25,14 @@ public class UIPanel : MonoBehaviour
     {
         Image im = gameObject.GetComponent<Image>();
         im.canvasRenderer.SetAlpha(0);
-        im.CrossFadeAlpha(1, fadeSpeed, true);
+        im.CrossFadeAlpha(1, fadeSpeed , true);
     }
 
     public void FadeOut()
     {
         Image im = gameObject.GetComponent<Image>();
-        im.canvasRenderer.SetAlpha(1);
-        im.CrossFadeAlpha(0, fadeSpeed, true);
+        float alpha = im.canvasRenderer.GetAlpha();
+        im.CrossFadeAlpha(0, fadeSpeed * alpha, true);
     }
 
     void Awake()
