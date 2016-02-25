@@ -62,7 +62,7 @@ public class LoadMaps : MonoBehaviour {
                 obj.GetComponent<Image>().sprite = image;
             }
         }
-
+        Logger.Debug("Boop");
     }
 
     void LoadingScreen(string path)
