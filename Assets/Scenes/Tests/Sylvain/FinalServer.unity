@@ -85,6 +85,12 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &149872031 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11475012, guid: de1714f06e93108438f492468a532651,
+    type: 2}
+  m_PrefabInternal: {fileID: 726779063}
+  m_Script: {fileID: 11500000, guid: 8d975d4fbf7df9943a1a8e4cf4db90af, type: 3}
 --- !u!1 &227590501
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,15 +292,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.9090909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22405238, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22405238, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22405238, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
@@ -588,6 +606,7 @@ GameObject:
   - 92: {fileID: 602468960}
   - 124: {fileID: 602468959}
   - 81: {fileID: 602468958}
+  - 114: {fileID: 602468963}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -662,6 +681,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &602468963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 602468957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3461dabafff3943aee42ea99872744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currrentTimeout: 0
+  broadcastPort: 4000
+  playPort: 14298
 --- !u!1 &603247574
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +706,7 @@ GameObject:
   - 222: {fileID: 603247578}
   - 114: {fileID: 603247577}
   - 114: {fileID: 603247576}
+  - 114: {fileID: 603247579}
   m_Layer: 5
   m_Name: PanelChoiceMap
   m_TagString: Untagged
@@ -745,6 +779,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 603247574}
+--- !u!114 &603247579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603247574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151633c88408e9b43a52a01814806e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonToCopy: {fileID: 227590501}
+  _imageToCopy: {fileID: 1262933743}
+  _content: {fileID: 354390539}
+  _player1GameObject: {fileID: 157438, guid: dbd45c123eced5f4f9d11ba06d06eddb, type: 2}
+  _player2GameObject: {fileID: 175274, guid: e99163dc470293a4194bc2c4b6fc3160, type: 2}
+  _buttonValidation: {fileID: 678038137}
+  _uiPlayer1: {fileID: 149872031}
+  _uiPlayer2: {fileID: 1177350346}
 --- !u!1 &624734572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,11 +1175,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22482590, guid: de1714f06e93108438f492468a532651, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.09090909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22482590, guid: de1714f06e93108438f492468a532651, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410532, guid: de1714f06e93108438f492468a532651, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410532, guid: de1714f06e93108438f492468a532651, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410532, guid: de1714f06e93108438f492468a532651, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de1714f06e93108438f492468a532651, type: 2}
@@ -1216,8 +1281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bd5b49483643a4c9697d8942f8a993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPlayer1: {fileID: 1311167396}
-  _textPlayer2: {fileID: 835910928}
+  _textPlayer1: {fileID: 1311167398}
+  _textPlayer2: {fileID: 835910930}
 --- !u!114 &816773856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,6 +1514,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1173430854}
+--- !u!114 &1177350346 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11466866, guid: ce4c8850274bdcd49afb395db4e0a72f,
+    type: 2}
+  m_PrefabInternal: {fileID: 287309697}
+  m_Script: {fileID: 11500000, guid: 8d975d4fbf7df9943a1a8e4cf4db90af, type: 3}
 --- !u!1 &1233445377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,7 +1802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1886433384}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8387534
+  m_Size: 0.7913279
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

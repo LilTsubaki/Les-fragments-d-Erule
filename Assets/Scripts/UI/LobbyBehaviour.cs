@@ -23,6 +23,9 @@ public class LobbyBehaviour : MonoBehaviour {
         if(ServerManager.GetInstance()._server.Client2 != null)
         {
             _textPlayer1.text = "- " + ServerManager.GetInstance()._server.Client2._name + " connecté !";
+
+            UIManager.GetInstance().HidePanelNoStack("PanelLobby");
+            UIManager.GetInstance().ShowPanelNoStack("PanelChoiceMap");
         }
     }
 }

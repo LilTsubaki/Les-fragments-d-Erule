@@ -183,6 +183,10 @@ public class Client : MonoBehaviour{
     {
         switch (id)
         {
+            // Send Character and start game
+            case 6:
+                return true;
+                // TO DO
             //end of turn
             case 9:
                 CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
@@ -371,7 +375,7 @@ public class Client : MonoBehaviour{
         return lobbyJoined;
     }
 
-    public void RequestCharacter()
+    /*public void RequestCharacter()
     {
         while (_isListeningThreadReading);
 
@@ -404,7 +408,7 @@ public class Client : MonoBehaviour{
             }
         }
         _isMainThreadReading = false;
-    }
+    }*/
 
     public void SendEndTurn()
     {

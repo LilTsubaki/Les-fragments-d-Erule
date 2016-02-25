@@ -169,6 +169,11 @@ public class Server : MonoBehaviour{
         return false;
     }
 
+    public void SendCharacter()
+    {
+        _client1.SendCharacter();
+        _client2.SendCharacter();
+    }
 
     public bool SetCharacters(ServerListener serverListener)
     {
@@ -287,8 +292,6 @@ public class Server : MonoBehaviour{
 
     public void ApplyEffects(Character character, bool fail, bool crit, int runes)
     {
-
-
         if (_client1 != null)
         {
             _client1.UpdateCharacter();

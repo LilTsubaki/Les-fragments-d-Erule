@@ -62,6 +62,7 @@ public class TestSpawnNetwork : MonoBehaviour {
                 if (PlayBoardManager.GetInstance().GetOtherPlayer().Position != null)
                 {
                     ServerManager.GetInstance()._server.CurrentState = Server.State.playing;
+                    ServerManager.GetInstance()._server.SendCharacter();
                     UIManager.GetInstance().HideAll();
                     UIManager.GetInstance().ShowPanel("PanelPlayerBars");
                 }

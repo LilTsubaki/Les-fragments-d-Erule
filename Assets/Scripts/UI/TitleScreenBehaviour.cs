@@ -7,8 +7,8 @@ public class TitleScreenBehaviour : MonoBehaviour {
 	void Update () {
 	    if (Input.GetMouseButtonDown(0))
         {
-            UIManager.GetInstance().HidePanel("PanelTitleScreen");
-            UIManager.GetInstance().ShowPanel("PanelLobby");
+            UIManager.GetInstance().HidePanelNoStack("PanelTitleScreen");
+            UIManager.GetInstance().ShowPanelNoStack("PanelLobby");
         }
 	}
 }

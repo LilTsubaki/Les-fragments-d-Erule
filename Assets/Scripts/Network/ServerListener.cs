@@ -50,17 +50,7 @@ public class ServerListener
                         case 4:
                             ReadMakeSpell();
                             break;
-
-                        case 7:
-                            if (_server.SetCharacters(this))
-                            {
-                                SendCharacter();
-                            }
-                                
-                            else
-                                RefuseCharacter();
-                            break;
-
+                            
                         case 12:
                             if (PlayBoardManager.GetInstance().isMyTurn(_character))
                             {
@@ -85,10 +75,14 @@ public class ServerListener
                             break;
 
                         case 15:
+
+                            String name = NetworkUtils.ReadString(_client.GetStream());
+                            Logger.Debug("sa maman" + name);
                             NetworkUtils.WriteInt(16, _client.GetStream());
                             if (_server.Register(this))
                             {
-                                _name = NetworkUtils.ReadString(_client.GetStream());
+                                Logger.Debug("registered");
+                                _name = name;
                                 NetworkUtils.WriteBool(true, _client.GetStream());
                             }
                             else
@@ -183,7 +177,7 @@ public class ServerListener
 
     }
 
-    void SendCharacter()
+    public void SendCharacter()
     {
         try { 
             Logger.Trace("SendCharacter");
