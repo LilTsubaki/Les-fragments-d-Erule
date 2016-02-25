@@ -38,8 +38,9 @@ public class HexagonBehaviour : MonoBehaviour
                     if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
                         _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._default;
 
-                    if (_hexagon._onTimeEffects.Count > 0)
+                    if (_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround())
                         _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
+
                     break;
                 case Hexagon.State.Targetable:
                     _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._targetable;

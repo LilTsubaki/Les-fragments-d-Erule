@@ -456,4 +456,18 @@ public class Hexagon : IAStar<Hexagon>
 
         return hexa;
     }
+
+    public bool IsActiveShardAround()
+    {
+        foreach(Hexagon hexa in GetNeighbours())
+        {
+            if(hexa._entity != null && hexa._entity is PowerShard)
+            {
+                PowerShard ps = (PowerShard)hexa._entity;
+                if (ps.isReady())
+                    return true;    
+            }                
+        }
+        return false;
+    }
 }
