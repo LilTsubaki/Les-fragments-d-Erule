@@ -314,14 +314,14 @@ public class Character : Entity
     public void ReceiveMovementUp(int value)
     {
         Logger.Debug("Receive movement up : " + value);
-
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextMovementGain(value));
         CurrentMovementPoints += value;
     }
 
     public void ReceiveMovementDown(int value)
     {
         Logger.Debug("Receive movement down : " + value);
-
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextMovementLoss(value));
         CurrentMovementPoints += value;
     }
 
