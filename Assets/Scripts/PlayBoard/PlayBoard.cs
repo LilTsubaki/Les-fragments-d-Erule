@@ -375,6 +375,11 @@ public class PlayBoard  {
         PowerShards.Add(shard);
     }
 
+    public void RemovePowerShard(PowerShard shard)
+    {
+        PowerShards.Remove(shard);
+    }
+
     public void UpdatePowerShards()
     {
         foreach (var shard in PowerShards)
