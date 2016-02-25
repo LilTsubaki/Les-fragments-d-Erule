@@ -350,6 +350,32 @@ public class Hexagon : IAStar<Hexagon>
         return neighbours;
     }
 
+    public List<Hexagon> GetAllNeighbours()
+    {
+        List<Hexagon> neighbours = new List<Hexagon>();
+
+        Hexagon E = GetEast();
+        Hexagon NE = GetNorthEast();
+        Hexagon SE = GetSouthEast();
+        Hexagon W = GetWest();
+        Hexagon NW = GetNorthWest();
+        Hexagon SW = GetSouthWest();
+        
+            neighbours.Add(E);
+        
+            neighbours.Add(NE);
+        
+            neighbours.Add(SE);
+        
+            neighbours.Add(W);
+        
+            neighbours.Add(NW);
+        
+            neighbours.Add(SW);
+
+        return neighbours;
+    }
+
     public int Distance(Hexagon t)
     {
         int diffX = t._posX - _posX;
@@ -434,15 +460,20 @@ public class Hexagon : IAStar<Hexagon>
 		if(_underground!=null)
 			hexa.AddField("underground", _underground.name);
 
-        if(_entity!=null && _entity is Obstacle)
+        if(_entity != null)
         {
-            hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
+            if (_entity is PowerShard)
+            {
+                hexa.AddField("powerShard", ((PowerShard)_entity).PowerShardToJSON());
+            }
+            else if (_entity is Obstacle)
+            {
+                hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
+            }
         }
+        
 
-        if (_entity != null && _entity is PowerShard)
-        {
-            hexa.AddField("powerShard", ((PowerShard)_entity).PowerShardToJSON());
-        }
+        
 
         if (IsSpawn)
         {
@@ -459,13 +490,18 @@ public class Hexagon : IAStar<Hexagon>
 
     public bool IsActiveShardAround()
     {
-        foreach(Hexagon hexa in GetNeighbours())
+        List<Hexagon> list = GetAllNeighbours();
+        foreach (Hexagon hexa in list)
         {
-            if(hexa._entity != null && hexa._entity is PowerShard)
+            if (hexa._entity != null && hexa._entity is PowerShard)
             {
+                Logger.Error("ya un powershard a coté sisisisiisis");
                 PowerShard ps = (PowerShard)hexa._entity;
                 if (ps.isReady())
-                    return true;    
+                {
+                    Logger.Error("je suis true");
+                    return true;
+                }                  
             }                
         }
         return false;
