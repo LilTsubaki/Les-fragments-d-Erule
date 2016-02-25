@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &129814
+--- !u!1 &166728
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 487492}
-  - 33: {fileID: 3389872}
-  - 23: {fileID: 2360346}
+  - 4: {fileID: 474794}
+  - 33: {fileID: 3369302}
+  - 23: {fileID: 2399244}
   m_Layer: 0
   m_Name: SM_Tree_Fir_1 1
   m_TagString: Untagged
@@ -17,53 +17,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &163636
+--- !u!1 &190202
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 417604}
-  - 136: {fileID: 13601276}
+  - 4: {fileID: 443626}
+  - 136: {fileID: 13642040}
   m_Layer: 0
-  m_Name: 'SM_Tree_Fir_1 '
+  m_Name: SM_Tree_Fir_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &417604
+--- !u!4 &443626
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163636}
+  m_GameObject: {fileID: 190202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 487492}
+  - {fileID: 474794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &487492
+--- !u!4 &474794
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129814}
+  m_GameObject: {fileID: 166728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 417604}
+  m_Father: {fileID: 443626}
   m_RootOrder: 0
---- !u!23 &2360346
+--- !u!23 &2399244
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129814}
+  m_GameObject: {fileID: 166728}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,19 +84,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3389872
+--- !u!33 &3369302
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129814}
-  m_Mesh: {fileID: 4300000, guid: c10b197dc1b8f93428714685123f3d5d, type: 3}
---- !u!136 &13601276
+  m_GameObject: {fileID: 166728}
+  m_Mesh: {fileID: 4300000, guid: 95a5323111ec338409862f43b342c0c2, type: 3}
+--- !u!136 &13642040
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163636}
+  m_GameObject: {fileID: 190202}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -113,5 +113,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 163636}
+  m_RootGameObject: {fileID: 190202}
   m_IsPrefabParent: 1
