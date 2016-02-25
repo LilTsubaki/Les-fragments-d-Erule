@@ -8,7 +8,7 @@ public class PowerShard : Obstacle
     private int _cooldown;
     private int _currentCooldown;
     private List<int> _effectIds;
-    public PowerShard(Hexagon position, GameObject gameObject, int cooldown, List<int> effectIds) : base(position)
+    public PowerShard(Hexagon position, int cooldown, List<int> effectIds) : base(position)
     {
         _cooldown = cooldown;
         _currentCooldown = 0;
