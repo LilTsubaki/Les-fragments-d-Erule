@@ -21,6 +21,8 @@ public class DamageElement : EffectMinMax
         foreach (Character c in chars)
         {
             int damage = (int)new Random().Next((int)_min, (int)_max + 1);
+
+            damage += caster.DamageModifier;
             c.ReceiveDamage(damage, _element);
         }
     }
