@@ -23,176 +23,6 @@ public class Character : Entity
 
     private List<Hexagon> _pathToFollow;
 
-    public List<Hexagon> PathToFollow
-    {
-        get
-        {
-            return _pathToFollow;
-        }
-
-        set
-        {
-            _pathToFollow = value;
-        }
-    }
-
-    private int _currentStep;
-    public int CurrentStep
-    {
-        get
-        {
-            return _currentStep;
-        }
-
-        set
-        {
-            _currentStep = value;
-        }
-    }
-
-    public string Name
-    {
-        get
-        {
-            return _name;
-        }
-
-        set
-        {
-            _name = value;
-        }
-    }
-
-    public int RangeModifier
-    {
-        get
-        {
-            return _rangeModifier;
-        }
-
-        set
-        {
-            _rangeModifier = value;
-        }
-    }
-
-    public int TurnNumber
-    {
-        get
-        {
-            return _turnNumber;
-        }
-
-        set
-        {
-            _turnNumber = value;
-        }
-    }
-
-    public int CurrentActionPoints
-    {
-        get
-        {
-            return _currentActionPoints;
-        }
-
-        set
-        {
-            _currentActionPoints = value;
-        }
-    }
-
-    public Dictionary<Element, int> Protections
-    {
-        get
-        {
-            return _protections;
-        }
-
-        set
-        {
-            _protections = value;
-        }
-    }
-
-    public Dictionary<Element, int> ProtectionsNegative
-    {
-        get
-        {
-            return _protectionsNegative;
-        }
-
-        set
-        {
-            _protectionsNegative = value;
-        }
-    }
-
-    public int GlobalProtection
-    {
-        get
-        {
-            return _globalProtection;
-        }
-
-        set
-        {
-            _globalProtection = value;
-        }
-    }
-
-    public int GlobalNegativeProtection
-    {
-        get
-        {
-            return _globalNegativeProtection;
-        }
-
-        set
-        {
-            _globalNegativeProtection = value;
-        }
-    }
-
-    public int SommeProtection
-    {
-        get
-        {
-            return _sommeProtection;
-        }
-
-        set
-        {
-            _sommeProtection = value;
-        }
-    }
-
-    public int SommeNegativeProtection
-    {
-        get
-        {
-            return _sommeNegativeProtection;
-        }
-
-        set
-        {
-            _sommeNegativeProtection = value;
-        }
-    }
-
-    public int CurrentMovementPoints
-    {
-        get
-        {
-            return _currentMovementPoints;
-        }
-
-        set
-        {
-            _currentMovementPoints = value;
-        }
-    }
-
     public State _state;
 
 	private Dictionary<Element, int> _protections;
@@ -481,6 +311,20 @@ public class Character : Entity
             ReceiveRangeDown(-value);
     }
 
+    public void ReceiveMovementUp(int value)
+    {
+        Logger.Debug("Receive movement up : " + value);
+
+        CurrentMovementPoints += value;
+    }
+
+    public void ReceiveMovementDown(int value)
+    {
+        Logger.Debug("Receive movement down : " + value);
+
+        CurrentMovementPoints += value;
+    }
+
     public int GetElementResistance(Element elem)
     {
         int res = 0;
@@ -528,6 +372,177 @@ public class Character : Entity
             _position = target;
 
             return TranslateCharacter(direction, count - 1);
+        }
+    }
+
+
+    public List<Hexagon> PathToFollow
+    {
+        get
+        {
+            return _pathToFollow;
+        }
+
+        set
+        {
+            _pathToFollow = value;
+        }
+    }
+
+    private int _currentStep;
+    public int CurrentStep
+    {
+        get
+        {
+            return _currentStep;
+        }
+
+        set
+        {
+            _currentStep = value;
+        }
+    }
+
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+
+        set
+        {
+            _name = value;
+        }
+    }
+
+    public int RangeModifier
+    {
+        get
+        {
+            return _rangeModifier;
+        }
+
+        set
+        {
+            _rangeModifier = value;
+        }
+    }
+
+    public int TurnNumber
+    {
+        get
+        {
+            return _turnNumber;
+        }
+
+        set
+        {
+            _turnNumber = value;
+        }
+    }
+
+    public int CurrentActionPoints
+    {
+        get
+        {
+            return _currentActionPoints;
+        }
+
+        set
+        {
+            _currentActionPoints = value;
+        }
+    }
+
+    public Dictionary<Element, int> Protections
+    {
+        get
+        {
+            return _protections;
+        }
+
+        set
+        {
+            _protections = value;
+        }
+    }
+
+    public Dictionary<Element, int> ProtectionsNegative
+    {
+        get
+        {
+            return _protectionsNegative;
+        }
+
+        set
+        {
+            _protectionsNegative = value;
+        }
+    }
+
+    public int GlobalProtection
+    {
+        get
+        {
+            return _globalProtection;
+        }
+
+        set
+        {
+            _globalProtection = value;
+        }
+    }
+
+    public int GlobalNegativeProtection
+    {
+        get
+        {
+            return _globalNegativeProtection;
+        }
+
+        set
+        {
+            _globalNegativeProtection = value;
+        }
+    }
+
+    public int SommeProtection
+    {
+        get
+        {
+            return _sommeProtection;
+        }
+
+        set
+        {
+            _sommeProtection = value;
+        }
+    }
+
+    public int SommeNegativeProtection
+    {
+        get
+        {
+            return _sommeNegativeProtection;
+        }
+
+        set
+        {
+            _sommeNegativeProtection = value;
+        }
+    }
+
+    public int CurrentMovementPoints
+    {
+        get
+        {
+            return _currentMovementPoints;
+        }
+
+        set
+        {
+            _currentMovementPoints = value;
         }
     }
 }
