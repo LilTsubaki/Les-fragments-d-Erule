@@ -14,9 +14,9 @@ public class UIPanel : MonoBehaviour
     void Start()
     {
         UIManager.GetInstance().RegisterPanel(gameObject, panelID);
+        UIManager.GetInstance().ShowPanel(panelID);
         if (hideOnLoad)
         {
-            UIManager.GetInstance().ShowPanel(panelID);
             UIManager.GetInstance().HidePanel(panelID);
         }
     }
