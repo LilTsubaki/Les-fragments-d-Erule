@@ -31,13 +31,17 @@ public class PlayBoard  {
     float percent = 0.6f;
 
 
+    private List<PowerShard> _powerShards;
+
+
     /// <summary>
     /// Initializes a new instance of the <see cref="PlayBoard"/> class.
     /// </summary>
     /// <param name="width">Width of board</param>
     /// <param name="height">Height of board</param>
     public PlayBoard(int width, int height){
-		_width = width;
+        _powerShards = new List<PowerShard>();
+        _width = width;
 		_height = height;
 		_grid = new List<List<Hexagon>>();
 		_grid.Capacity = (int)width;
@@ -363,5 +367,40 @@ public class PlayBoard  {
 
         //Debug.Log(cptHit);
         return ((float)cptHit) / nbRayon > percent;
+    }
+
+
+    public void AddPowerShard(PowerShard shard)
+    {
+        PowerShards.Add(shard);
+    }
+
+    public void UpdatePowerShards()
+    {
+        foreach (var shard in PowerShards)
+        {
+            shard.UpdateCooldown();
+        }
+    }
+
+    public void ApplyPowerShards()
+    {
+        foreach (var shard in PowerShards)
+        {
+            shard.ApplyEffect();
+        }
+    }
+
+    public List<PowerShard> PowerShards
+    {
+        get
+        {
+            return _powerShards;
+        }
+
+        set
+        {
+            _powerShards = value;
+        }
     }
 }
