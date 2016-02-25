@@ -12,16 +12,17 @@ public class AirAnimation : SpellAnimation {
 	void Update () {
         if (_play)
         {
-            Vector3 next = Vector3.MoveTowards(transform.position, _to.transform.position, Time.deltaTime * _speed);
-            transform.position = next;
-            float distFromToNext = Vector3.Distance(_from.transform.position, next);
+            float distFromToNext = Vector3.Distance(_from.transform.position, gameObject.transform.position);
             float distFromToTo = Vector3.Distance(_from.transform.position, _to.transform.position);
             float percentage = distFromToNext / distFromToTo;
-            float scale = _initialScale + (_finalScale - _initialScale) * percentage;
+            float scale = _initialScale * (1-percentage) + _finalScale * percentage;
             gameObject.transform.localScale = new Vector3(scale, scale, scale);
+            Vector3 next = Vector3.MoveTowards(transform.position, _to.transform.position, Time.deltaTime * _speed);
+            transform.position = next;
             if(next == _to.transform.position)
             {
                 _play = false;
+                transform.localScale = new Vector3(_initialScale, _initialScale, _initialScale);
                 gameObject.SetActive(false);
             }
         }
