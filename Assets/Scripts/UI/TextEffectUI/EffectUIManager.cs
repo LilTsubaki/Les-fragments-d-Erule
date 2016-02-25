@@ -28,6 +28,7 @@ public class EffectUIManager {
 
     public void RegisterCharacter(Character character, float step)
     {
+        if(character != null)
         _buffers.Add(character, new EffectBuffer(step));
     }
 

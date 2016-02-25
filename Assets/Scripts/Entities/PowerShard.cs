@@ -17,7 +17,7 @@ public class PowerShard : Obstacle
 
     public bool isReady()
     {
-        return _currentCooldown >= 0;
+        return _currentCooldown <= 0;
     }
 
     public bool UpdateCooldown()
@@ -30,7 +30,7 @@ public class PowerShard : Obstacle
     {
         if (isReady())
         {
-            List<Hexagon> hexas = Position.GetNeighbours();
+            List<Hexagon> hexas = Position.GetAllNeighbours();
             bool apply = false;
             Effect effect = SpellManager.getInstance().GetDirectEffectById(GetRandomEffect());
             foreach (var hexa in hexas)
