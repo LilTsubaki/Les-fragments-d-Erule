@@ -1,22 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class UIDeck : MonoBehaviour {
 
-    public DeckSelectionBehaviour deck;
+    public DeckSelectionBehaviour _deck;
+    public InputField _inputField;
 
 	public void SaveHandAndPlay()
     {
-        if(deck.DeckSelection.RunesInHand.Count == 7)
+        if(_deck.DeckSelection.RunesInHand.Count == 7)
         {
-            DeckSelection ds = deck.DeckSelection;
+            DeckSelection ds = _deck.DeckSelection;
             RunicBoardManager.GetInstance().TempHand = ds.RunesInHand;
-            SceneManager.LoadScene(1);
+            if (_inputField.text.Length == 0)
+            {
+                _inputField.text = "No Name";
+            }
+            ClientManager.GetInstance()._client.Name = _inputField.text;
+
+            UIManager.GetInstance().HidePanelNoStack("PanelRunicBoard");
+            UIManager.GetInstance().ShowPanelNoStack("PanelServers");
+            _deck.gameObject.SetActive(false);
         }
         else
         {
-            Logger.Debug(deck.DeckSelection.RunesInHand.Count);
+            Logger.Debug("Not enough runes : " + _deck.DeckSelection.RunesInHand.Count);
         }
     }
 }

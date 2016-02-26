@@ -31,18 +31,20 @@ public class Client : MonoBehaviour{
     Dictionary<string, int> _hostsReceived;
     bool _newHost;
 
+    String _name;
+
     Character _currentCharacter;
 
     public Character CurrentCharacter
     {
         get
         {
-            return CurrentCharacter1;
+            return _currentCharacter;
         }
 
         set
         {
-            CurrentCharacter1 = value;
+            _currentCharacter = value;
         }
     }
 
@@ -72,16 +74,16 @@ public class Client : MonoBehaviour{
         }
     }
 
-    public Character CurrentCharacter1
+    public string Name
     {
         get
         {
-            return _currentCharacter;
+            return _name;
         }
 
         set
         {
-            _currentCharacter = value;
+            _name = value;
         }
     }
 
@@ -144,7 +146,7 @@ public class Client : MonoBehaviour{
         connectButton.transform.SetParent(_scrollPanel.transform);
         connectButton.transform.localPosition = new Vector3(80, (_scrollPanel.transform.childCount) * -30);
         button.GetComponentInChildren<Text>().text = host + ":" + port;
-        button.onClick.AddListener(delegate { Connect(host, port); JoinBobby("lolol"); });
+        button.onClick.AddListener(delegate { Connect(host, port); JoinBobby(); });
     }
 
     private void addHostToList(string host, int port)
@@ -185,21 +187,23 @@ public class Client : MonoBehaviour{
         {
             // Send Character and start game
             case 6:
-                return true;
-                // TO DO
-            //end of turn
-            case 9:
-                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
-                Logger.Debug("nb action points : " + CurrentCharacter1.CurrentActionPoints);
+                return true;
+            //end of turn
+            case 9:
+                CurrentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                Logger.Debug("nb action points : " + CurrentCharacter.CurrentActionPoints);
                 _lockedMode = false;
                 return true;
 
             //updating char infos
             case 10:
-                CurrentCharacter1 = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-                Logger.Debug("current action points : " + CurrentCharacter1.CurrentActionPoints);
+                CurrentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Logger.Debug("current action points : " + CurrentCharacter.CurrentActionPoints);
                 return true;
 
             case 11:
@@ -345,7 +349,7 @@ public class Client : MonoBehaviour{
         
     }
 
-    public bool JoinBobby(String name)
+    public bool JoinBobby()
     {
         while (_isListeningThreadReading) ;
 
@@ -354,7 +358,7 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         Logger.Debug("Join Lobby");
         NetworkUtils.WriteInt(15, _tcpClient.GetStream());
-        NetworkUtils.WriteString(name, _tcpClient.GetStream());
+        NetworkUtils.WriteString(_name, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
         int id;
