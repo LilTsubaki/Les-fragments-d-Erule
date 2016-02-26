@@ -31,7 +31,23 @@ public class Hexagon : IAStar<Hexagon>
 
     private GameObject _gameObject;
 
-	public GameObject GameObject
+    private Color _defaultColor;
+
+    public Color DefaultColor
+    {
+        get
+        {
+            return _defaultColor;
+        }
+
+        set
+        {
+            _defaultColor = value;
+        }
+    }
+
+
+    public GameObject GameObject
     {
         get { return _gameObject; }
         set {

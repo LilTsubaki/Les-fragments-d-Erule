@@ -1189,6 +1189,7 @@ public class JSONObject {
         {
             Hexagon hexagon = playBoard.CreateHexagone((int)hexa.GetField("posX").n, (int)hexa.GetField("posY").n);
             GameObject prefab = (GameObject)Resources.Load("Prefabs/" + hexa.GetField("gameObject").str, typeof(GameObject));
+            hexagon.DefaultColor = prefab.GetComponent<Renderer>().sharedMaterial.color;
             hexagon.GameObject = GameObject.Instantiate(prefab);
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;

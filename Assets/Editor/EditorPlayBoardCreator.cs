@@ -32,7 +32,7 @@ public class EditorPlayBoardCreator : Editor {
 		}
 
         // Boosts
-        if (GUILayout.Button("Apply boost Air"))
+        /*if (GUILayout.Button("Apply boost Air"))
         {
             creator.ApplyBoost(Hexagon.Boost.Air);
         }
@@ -60,7 +60,7 @@ public class EditorPlayBoardCreator : Editor {
         if (GUILayout.Button("Apply boost Wood"))
         {
             creator.ApplyBoost(Hexagon.Boost.Wood);
-        }
+        }*/
 
         if(GUILayout.Button("Remove boost"))
         {

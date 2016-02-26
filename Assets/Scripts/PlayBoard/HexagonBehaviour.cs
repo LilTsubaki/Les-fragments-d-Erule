@@ -8,6 +8,8 @@ public class HexagonBehaviour : MonoBehaviour
 
     private List<Hexagon> _finalArea;
 
+    
+
     public List<Hexagon> FinalArea
     {
         get
@@ -20,6 +22,7 @@ public class HexagonBehaviour : MonoBehaviour
             _finalArea = value;
         }
     }
+
 
     // Use this for initialization
     void Start()
@@ -36,7 +39,7 @@ public class HexagonBehaviour : MonoBehaviour
             {
                 case Hexagon.State.Default :
                     if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
-                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._default;
+                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = _hexagon.DefaultColor;
 
                     if (_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround())
                         _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
