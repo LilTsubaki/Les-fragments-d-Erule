@@ -171,7 +171,11 @@ public class Server : MonoBehaviour{
 
     public void SendCharacter()
     {
+        _client1._character = PlayBoardManager.GetInstance().Character1;
+        _client1._character.Name = _client1._name;
         _client1.SendCharacter();
+        _client2._character = PlayBoardManager.GetInstance().Character2;
+        _client2._character.Name = _client2._name;
         _client2.SendCharacter();
     }
 

@@ -70,7 +70,6 @@ public class TestSpawnNetwork : MonoBehaviour {
                     Logger.Debug(PlayBoardManager.GetInstance().GetOtherPlayer().Name + " didn't choose a position");
                 break;
             default:
-                ServerManager.GetInstance()._server.SendCharacter();
                 break;
         }
     }
