@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleScreenBehaviour : MonoBehaviour {
+public class TitleScreenServerBehaviour : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {

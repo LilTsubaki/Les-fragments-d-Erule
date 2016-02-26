@@ -10,7 +10,10 @@ public class UITurn : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Character c = PlayBoardManager.GetInstance().GetCurrentPlayer();
-        _turnText.text = c.TurnNumber.ToString();
-        _playerName.text = c.Name;
+        if (c != null)
+        {
+            _turnText.text = c.TurnNumber.ToString();
+            _playerName.text = c.Name;
+        }
 	}
 }
