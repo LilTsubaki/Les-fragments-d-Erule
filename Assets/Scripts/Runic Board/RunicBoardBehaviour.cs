@@ -104,10 +104,12 @@ public class RunicBoardBehaviour : MonoBehaviour {
                 ResetRunes();
                 break;
             case 1:
-                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
+                //RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(true);
+                ResetRunesExceptHistory(true);// 
                 break;
             case 2:
-                RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
+                //RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(false);
+                ResetRunesExceptHistory(false); //
                 break;
         }
     }
