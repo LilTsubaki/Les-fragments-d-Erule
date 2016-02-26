@@ -310,14 +310,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11401180, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: _deckSelectionGo
-      value: 
-      objectReference: {fileID: 817091066}
     - target: {fileID: 11469948, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
       propertyPath: _deck
       value: 
       objectReference: {fileID: 1863735048}
+    - target: {fileID: 11457856, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: _runicBoard
+      value: 
+      objectReference: {fileID: 1652721115}
+    - target: {fileID: 11406138, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: _deckSelectionGo
+      value: 
+      objectReference: {fileID: 817091066}
     - target: {fileID: 22453616, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
       propertyPath: m_AnchorMin.x
       value: 0
@@ -346,52 +350,7 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 22489472, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11457856, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: _runicBoard
-      value: 
-      objectReference: {fileID: 1652721115}
-    - target: {fileID: 22471734, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22471734, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22471734, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22471734, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22457838, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22457838, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22400070, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22400070, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406138, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: _deckSelectionGo
-      value: 
-      objectReference: {fileID: 817091066}
-    m_RemovedComponents:
-    - {fileID: 11401180, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1652721115 stripped

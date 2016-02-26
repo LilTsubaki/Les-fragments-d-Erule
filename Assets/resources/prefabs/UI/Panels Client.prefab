@@ -922,7 +922,6 @@ GameObject:
   - 222: {fileID: 22230342}
   - 114: {fileID: 11405324}
   - 114: {fileID: 11449360}
-  - 114: {fileID: 11401180}
   - 114: {fileID: 11457856}
   m_Layer: 5
   m_Name: PanelWaitingMap
@@ -1155,18 +1154,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 435208}
   m_RootOrder: 0
---- !u!114 &11401180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a99f17d1b0884e646bf2448b776c59b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deckSelectionGo: {fileID: 0}
 --- !u!114 &11401414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1464,7 +1451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11455342}
         m_MethodName: SendEndTurn
         m_Mode: 1
         m_Arguments:
@@ -1701,7 +1688,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Swtich mode
+  m_Text: 'Switch mode
 
 '
 --- !u!114 &11419298
@@ -2651,9 +2638,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'EndTurn
-
-'
+  m_Text: Fin du tour
 --- !u!114 &11469504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4641,7 +4626,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 276}
   m_SizeDelta: {x: 0, y: 276}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22489766
