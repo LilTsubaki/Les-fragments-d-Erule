@@ -121,6 +121,20 @@ public class PlayBoardManager
 		return chars;
 	}
 
+    public List<Killable> GetKillableInArea(List<Hexagon> hexagons)
+    {
+        List<Killable> killables = new List<Killable>();
+
+        foreach (var hex in hexagons)
+        {
+            if(hex._entity!=null && hex._entity is Killable)
+            {
+                killables.Add((Killable)hex._entity);
+            }
+        }
+        return killables;
+    }
+
     public bool isMyTurn(Character charac)
     {
         if ((_turnNumber % 2 == 0 ^ _secondPlayerStarted) && Character1 == charac)
