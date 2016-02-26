@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class LoadMaps : MonoBehaviour {
+public class LoadMaps : MonoBehaviour
+{
 
     public GameObject _buttonToCopy;
-    public GameObject _imageToCopy;
     public GameObject _content;
 
     public GameObject _player1GameObject;
@@ -20,13 +20,15 @@ public class LoadMaps : MonoBehaviour {
     private string _chosenMap;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         GetFiles();
-	}
-	
-	void Update () {
-	
-	}
+    }
+
+    void Update()
+    {
+
+    }
 
     void GetFiles()
     {
@@ -34,20 +36,19 @@ public class LoadMaps : MonoBehaviour {
         float buttonSizeX = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.x;
         float buttonSizeY = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.y;
 
-        List<string> files = new List<string>();
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/JsonFiles/Maps", "*.json");
-        _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f*((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
+        _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f * ((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
         _content.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
 
-        float offsetX = ((680/(float)nbButtonsPerLine) - buttonSizeX) /2;
-        for(int i = 0; i < fileEntries.Length; ++i)
+        float offsetX = ((680 / (float)nbButtonsPerLine) - buttonSizeX) / 2;
+        for (int i = 0; i < fileEntries.Length; ++i)
         {
             string path = fileEntries[i];
             GameObject obj = Instantiate(_buttonToCopy);
             obj.SetActive(true);
             obj.transform.SetParent(_content.transform);
-            obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX*2) * (i% nbButtonsPerLine), (i/ nbButtonsPerLine + 1) * -buttonSizeY);
-            
+            obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX * 2) * (i % nbButtonsPerLine), (i / nbButtonsPerLine + 1) * -buttonSizeY);
+
             Button button = obj.GetComponent<Button>();
             button.onClick.AddListener(delegate { LoadingScreen(path); });
             string mapName = Path.GetFileNameWithoutExtension(path);
@@ -62,7 +63,6 @@ public class LoadMaps : MonoBehaviour {
                 obj.GetComponent<Image>().sprite = image;
             }
         }
-        Logger.Debug("Boop");
     }
 
     void LoadingScreen(string path)

@@ -450,7 +450,7 @@ public class SpellManager
         float keepCentral = UnityEngine.Random.value;
         float keepSecond = 0;
 
-        if(false/*keepCentral < perfection*/)
+        if(true/*keepCentral < perfection*/)
         {
             if(true/*perfection >= 0.2f*/)
             {
