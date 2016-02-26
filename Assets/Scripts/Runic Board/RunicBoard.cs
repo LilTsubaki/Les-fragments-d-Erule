@@ -339,7 +339,7 @@ public class RunicBoard {
         foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
             Rune rune = kvp.Value;
-            if (rune.PositionOnBoard != 10 && (rune.PositionOnBoard != SecondPlaced || ignoreSecond))
+            if (rune.PositionOnBoard != 12 && (rune.PositionOnBoard != SecondPlaced || ignoreSecond))
             {
                 ids.Add(rune.PositionOnBoard);
                 rune.PositionOnBoard = -1;
