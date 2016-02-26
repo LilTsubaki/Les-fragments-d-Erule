@@ -214,6 +214,7 @@ public class Client : MonoBehaviour{
                 bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 Logger.Debug("Crit: " + crit);
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                Logger.Debug("Kept : " + _runeKept);
                 _resetBoard = true;
                 return true;
 
