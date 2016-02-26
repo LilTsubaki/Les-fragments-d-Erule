@@ -67,7 +67,7 @@ public class LoadMaps : MonoBehaviour
 
     void LoadingScreen(string path)
     {
-        UIManager.GetInstance().HideAll();
+        UIManager.GetInstance().FadeOutPanelNoStack("PanelChoiceMap");
         UIManager.GetInstance().FadeInPanelNoStack("Loading");
         _chosenMap = path;
         Invoke("LoadMap", 1);
