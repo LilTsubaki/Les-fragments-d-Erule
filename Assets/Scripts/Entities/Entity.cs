@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Entity {
+public abstract class Entity {
     protected Hexagon _position;
 
     public Hexagon Position
