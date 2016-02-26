@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : Entity
+public class Character : Entity, Killable
 {
     public GameObject _gameObject;
     
@@ -413,6 +413,10 @@ public class Character : Entity
         }
     }
 
+    public bool isDead()
+    {
+        return _lifeCurrent <= 0;
+    }
 
     public List<Hexagon> PathToFollow
     {

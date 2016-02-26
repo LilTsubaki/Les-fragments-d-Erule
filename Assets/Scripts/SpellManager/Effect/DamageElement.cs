@@ -17,13 +17,13 @@ public class DamageElement : EffectMinMax
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
-        foreach (Character c in chars)
+        List<Killable> killables = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
+        foreach (var k in killables)
         {
             int damage = (int)new Random().Next((int)_min, (int)_max + 1);
 
             damage += caster.DamageModifier;
-            c.ReceiveDamage(damage, _element);
+            k.ReceiveDamage(damage, _element);
         }
     }
 }
