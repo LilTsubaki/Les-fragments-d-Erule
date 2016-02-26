@@ -158,7 +158,7 @@ public class Client : MonoBehaviour{
     public void Connect(string host, int port)
     {
         UIManager.GetInstance().HideAll();
-        UIManager.GetInstance().ShowPanel("PanelGame");
+        UIManager.GetInstance().ShowPanelNoStack("PanelWaitingMap");
         Logger.Trace("Try Connect to " + host + ":" + port);
         _tcpClient.Connect(host, port);
         Thread newThread = new Thread(WaitingMessage);
