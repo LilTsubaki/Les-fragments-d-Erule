@@ -450,16 +450,15 @@ public class SpellManager
         float keepCentral = UnityEngine.Random.value;
         float keepSecond = 0;
 
-        if(true/*keepCentral < perfection*/)
+        if(keepCentral < perfection)
         {
-            if(true/*perfection >= 0.2f*/)
+            if(perfection >= 0.2f)
             {
                 keepSecond = UnityEngine.Random.value;
-                if(true/*keepSecond < perfection*/)
+                if(keepSecond < perfection)
                 {
                     ignoreSecond = false;
                 }
-                //RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunesExceptHistory(ignoreSecond);
                 if(ignoreSecond)
                 {
                     return 1;
@@ -467,10 +466,6 @@ public class SpellManager
                 return 2;
             }
         }
-        /*else
-        {
-            RunicBoardManager.GetInstance().GetBoardPlayer1().RemoveAllRunes();
-        }*/
         return 0;
     }
 
