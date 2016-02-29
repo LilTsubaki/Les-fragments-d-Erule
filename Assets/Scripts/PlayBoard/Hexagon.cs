@@ -331,7 +331,7 @@ public class Hexagon : IAStar<Hexagon>
 
     public bool isReachable()
     {
-        return _entity == null && hasValidPosition();
+        return ( _entity == null || _entity is Portal) && hasValidPosition();
     }
 
     public List<Hexagon> GetNeighbours()

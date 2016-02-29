@@ -422,6 +422,33 @@ public class Character : Entity, Killable
         }
     }
 
+    /// <summary>
+    /// Verify if the current chracter is on an hexagon that contains a portal. If so, it teleports the current character to the other portal (if it exists).
+    /// </summary>
+    public void Teleport()
+    {
+        List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
+        if (portals.Count == 2 && Position._entity is Portal)
+        {
+            int indexBegin = portals.IndexOf((Portal)Position._entity);
+            int indexEnd = -1;
+            switch (indexBegin)
+            {
+                case 0:
+                    indexEnd = 1;
+                    break;
+                case 1:
+                    indexEnd = 0;
+                    break;
+                default:
+                    break;
+            }
+
+            Position = portals[indexEnd].Position;
+            portals.RemoveAt(indexEnd);
+        }
+    }
+
     public bool isDead()
     {
         return _lifeCurrent <= 0;

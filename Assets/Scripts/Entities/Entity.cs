@@ -36,7 +36,7 @@ public abstract class Entity {
 
         if (!Hexagon.isHexagonSet(position) || position._entity != null)
             throw new Exception("Invalid Position");
-            _position = position;
+        _position = position;
         position._entity = this;
     }
 }

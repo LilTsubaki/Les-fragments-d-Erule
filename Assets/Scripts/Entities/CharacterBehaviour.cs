@@ -87,14 +87,17 @@ public class CharacterBehaviour : MonoBehaviour
             }
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
-                //_character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep].onPlayerEnter(this);
                 _character.CurrentStep++;
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
-                    //fieldOfView();
                     _character.Position = _character.PathToFollow[0];
                     _character._state = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
+                    // Teleport player if the last hexagon has a portal
+                    if (_character.Position._entity is Portal){
+                        _character.Teleport();
+                        transform.position = _character.Position.GameObject.transform.position;
+                    }
                 }
             }
         }

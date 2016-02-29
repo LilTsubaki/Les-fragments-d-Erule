@@ -33,6 +33,7 @@ public class PlayBoard  {
 
     private List<PowerShard> _powerShards;
 
+    private List<Portal> _portals;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PlayBoard"/> class.
@@ -406,6 +407,19 @@ public class PlayBoard  {
         set
         {
             _powerShards = value;
+        }
+    }
+
+    public List<Portal> Portals
+    {
+        get
+        {
+            return _portals;
+        }
+
+        set
+        {
+            _portals = value;
         }
     }
 }
