@@ -85,6 +85,11 @@ public class EditorPlayBoardCreator : Editor {
             creator.RemoveShard();
         }
 
+        if(GUILayout.Button("Set Center"))
+        {
+            creator.SetCenter();
+        }
+
         if (GUILayout.Button("Save Board"))
         {
             creator.SaveBoard();

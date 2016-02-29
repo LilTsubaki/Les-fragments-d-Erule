@@ -215,6 +215,11 @@ public class PlayBoardCreator : MonoBehaviour {
 		}
 	}
 
+    public void SetCenter()
+    {
+        PlayBoardManager.GetInstance().Board._center = new Vector3(0.866f * x - 0.433f * y, z, 0.75f * y);
+    }
+
     public void SaveBoard()
     {
         JSONObject.BoardToJSON(boardName);

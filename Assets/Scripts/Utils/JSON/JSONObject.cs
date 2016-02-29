@@ -1167,6 +1167,12 @@ public class JSONObject {
             }
         }
 
+        JSONObject center = new JSONObject(JSONObject.Type.OBJECT);
+        obj.AddField("Center", center);
+        center.AddField("x", board._center.x);
+        center.AddField("y", board._center.y);
+        center.AddField("z", board._center.z);
+
         string json = obj.Print();
         Logger.Debug(json);
         File.WriteAllText(Application.dataPath + "/JsonFiles/Maps/"+ fileName + ".json", json);
@@ -1307,6 +1313,11 @@ public class JSONObject {
                 playBoard.AddPowerShard(ps);
             }
         }
+
+        JSONObject centerJs = js.GetField("Center");
+        Vector3 center = new Vector3(centerJs.GetField("x").n, centerJs.GetField("y").n, centerJs.GetField("z").n);
+        playBoard._center = center;
+        Logger.Debug(center);
 
         return playBoard;
     }

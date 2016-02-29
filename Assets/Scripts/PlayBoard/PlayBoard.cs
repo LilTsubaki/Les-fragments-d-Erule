@@ -33,6 +33,9 @@ public class PlayBoard  {
 
     private List<PowerShard> _powerShards;
 
+    // The point in the center of the board.
+    public Vector3 _center;
+
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PlayBoard"/> class.
