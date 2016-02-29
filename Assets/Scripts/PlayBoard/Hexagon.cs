@@ -315,7 +315,7 @@ public class Hexagon : IAStar<Hexagon>
     {
         if(_entity != null)
         {
-            if ((PlayBoardManager.GetInstance().Character1.Position == this || PlayBoardManager.GetInstance().Character2.Position == this) && hasValidPosition())
+            if (_entity is Killable && hasValidPosition())//(PlayBoardManager.GetInstance().Character1.Position == this || PlayBoardManager.GetInstance().Character2.Position == this) && hasValidPosition())
                 return true;
             else
                 return false;
@@ -511,11 +511,9 @@ public class Hexagon : IAStar<Hexagon>
         {
             if (hexa._entity != null && hexa._entity is PowerShard)
             {
-                Logger.Error("ya un powershard a coté sisisisiisis");
                 PowerShard ps = (PowerShard)hexa._entity;
                 if (ps.isReady())
                 {
-                    Logger.Error("je suis true");
                     return true;
                 }                  
             }                
