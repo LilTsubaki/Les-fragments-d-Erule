@@ -1150,9 +1150,18 @@ public class JSONObject {
         PlayBoard  board= PlayBoardManager.GetInstance().Board;
         JSONObject obj = new JSONObject(JSONObject.Type.OBJECT);
         JSONObject arr = new JSONObject(JSONObject.Type.ARRAY);
-       
+        JSONObject center = new JSONObject(JSONObject.Type.OBJECT);
+        
+        
+
         obj.AddField("Width", board._width);
         obj.AddField("Height", board._height);
+        obj.AddField("Center", center);
+
+        center.AddField("x", board._center.x);
+        center.AddField("y", board._center.y);
+        center.AddField("z", board._center.z);
+
         obj.AddField("Hexagons", arr);
 
         for (int i = 0; i < board._width; i++)
@@ -1167,11 +1176,7 @@ public class JSONObject {
             }
         }
 
-        JSONObject center = new JSONObject(JSONObject.Type.OBJECT);
-        obj.AddField("Center", center);
-        center.AddField("x", board._center.x);
-        center.AddField("y", board._center.y);
-        center.AddField("z", board._center.z);
+        
 
         string json = obj.Print();
         Logger.Debug(json);
@@ -1182,15 +1187,15 @@ public class JSONObject {
     {
         board = new GameObject("Board");
 
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Maps/" + fileName +".json");
-        
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Maps/" + fileName + ".json");
+
         int width = (int)js.GetField("Width").n;
         int height = (int)js.GetField("Height").n;
 
         PlayBoard playBoard = new PlayBoard(width, height);
 
         JSONObject array = js.GetField("Hexagons");
-        
+
         foreach (JSONObject hexa in array.list)
         {
             Hexagon hexagon = playBoard.CreateHexagone((int)hexa.GetField("posX").n, (int)hexa.GetField("posY").n);
@@ -1201,16 +1206,16 @@ public class JSONObject {
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
 
-			/*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
+            /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 				hexagon.GameObject.transform.localScale= new Vector3 (hexagon.GameObject.transform.localScale.x, hexagon.GameObject.transform.localScale.y, -1*hexagon.GameObject.transform.localScale.z);
 
 			if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 				hexagon.GameObject.transform.localScale= new Vector3 (-1*hexagon.GameObject.transform.localScale.x, hexagon.GameObject.transform.localScale.y, hexagon.GameObject.transform.localScale.z);*/
 
-			hexagon.GameObject.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
+            hexagon.GameObject.transform.Rotate(0f, UnityEngine.Random.Range(0, 5) * 60f, 0f);
 
             hexagon.CurrentState = Hexagon.State.Default;
-            
+
             if (hexa.GetField("isSpawn") != null)
             {
                 hexagon.CurrentState = Hexagon.State.Spawnable;
@@ -1254,55 +1259,55 @@ public class JSONObject {
                 }
             }
 
-            if (hexa.GetField("underground") != null) { 
-				string undergroundName = hexa.GetField("underground").str;
-				if (undergroundName != null)
-				{
-					GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + undergroundName, typeof(GameObject));
-					GameObject underground= GameObject.Instantiate(prefabObstacle);
+            if (hexa.GetField("underground") != null) {
+                string undergroundName = hexa.GetField("underground").str;
+                if (undergroundName != null)
+                {
+                    GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + undergroundName, typeof(GameObject));
+                    GameObject underground = GameObject.Instantiate(prefabObstacle);
 
-					underground.transform.parent = hexagon.GameObject.transform;
+                    underground.transform.parent = hexagon.GameObject.transform;
 
-					underground.name = undergroundName;
-					underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n-0.2f, 0.75f * hexagon._posY);
+                    underground.name = undergroundName;
+                    underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n - 0.2f, 0.75f * hexagon._posY);
 
-					/*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
+                    /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 						underground.transform.localScale = new Vector3 (underground.transform.localScale.x, underground.transform.localScale.y, -1*underground.transform.localScale.z);
 
 					if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 						underground.transform.localScale = new Vector3 (-1*underground.transform.localScale.x, underground.transform.localScale.y, underground.transform.localScale.z);*/
 
-					underground.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
-					
-					hexagon.Underground = underground;
+                    underground.transform.Rotate(0f, UnityEngine.Random.Range(0, 5) * 60f, 0f);
 
-				}
-			}
+                    hexagon.Underground = underground;
+
+                }
+            }
 
 
-            if (hexa.GetField("obstacle") != null) { 
+            if (hexa.GetField("obstacle") != null) {
                 string obstacleName = hexa.GetField("obstacle").str;
                 if (obstacleName != null)
                 {
                     GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + obstacleName, typeof(GameObject));
                     Obstacle obs = new Obstacle(hexagon);
-                    obs._gameobject= GameObject.Instantiate(prefabObstacle);
+                    obs._gameobject = GameObject.Instantiate(prefabObstacle);
                     obs._gameobject.transform.parent = hexagon.GameObject.transform;
                     obs._gameobject.name = obstacleName;
                     obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
                     obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
 
-					/*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
+                    /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 						obs._gameobject.transform.localScale = new Vector3 (obs._gameobject.transform.localScale.x, obs._gameobject.transform.localScale.y, -1*obs._gameobject.transform.localScale.z);
 
 					if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 						obs._gameobject.transform.localScale = new Vector3 (-1*obs._gameobject.transform.localScale.x, obs._gameobject.transform.localScale.y, obs._gameobject.transform.localScale.z);*/
 
-					obs._gameobject.transform.Rotate(0f,UnityEngine.Random.Range(0,5)*60f,0f);
+                    obs._gameobject.transform.Rotate(0f, UnityEngine.Random.Range(0, 5) * 60f, 0f);
                 }
             }
 
-            if(hexa.GetField("powerShard") != null)
+            if (hexa.GetField("powerShard") != null)
             {
                 PowerShard ps = PowerShard.JSONToPowerShard(hexa.GetField("powerShard"), hexagon);
 
@@ -1315,9 +1320,11 @@ public class JSONObject {
         }
 
         JSONObject centerJs = js.GetField("Center");
-        Vector3 center = new Vector3(centerJs.GetField("x").n, centerJs.GetField("y").n, centerJs.GetField("z").n);
-        playBoard._center = center;
-        Logger.Debug(center);
+        if (centerJs != null) { 
+            Vector3 center = new Vector3(centerJs.GetField("x").n, centerJs.GetField("y").n, centerJs.GetField("z").n);
+            playBoard._center = center;
+            Logger.Debug(center);
+        }
 
         return playBoard;
     }
