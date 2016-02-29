@@ -32,11 +32,12 @@ public class PowerShard : Obstacle
         {
             List<Hexagon> hexas = Position.GetAllNeighbours();
             bool apply = false;
-            Effect effect = SpellManager.getInstance().GetDirectEffectById(GetRandomEffect());
+           
             foreach (var hexa in hexas)
             {
                 if (hexa._entity != null && hexa._entity is Character)
                 {
+                    Effect effect = SpellManager.getInstance().GetDirectEffectById(GetRandomEffect());
                     effect.ApplyEffect(hexas, hexa, null);
                     apply = true;
                     break;
@@ -52,7 +53,7 @@ public class PowerShard : Obstacle
 
     private int GetRandomEffect()
     {
-        return _effectIds[Random.Range(0, _effectIds.Count - 1)];
+        return _effectIds[(new System.Random()).Next(0, _effectIds.Count - 1)];
     }
 
     public JSONObject PowerShardToJSON()
