@@ -241,7 +241,7 @@ public class PlayBoard  {
 
     public void ResetBoard()
     {
-        Logger.Warning("RESET");
+        //Logger.Warning("RESET");
         for(int i = 0; i < _width; i++)
         {
             for(int j = 0; j < _height; j++)
