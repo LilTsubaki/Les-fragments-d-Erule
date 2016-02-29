@@ -168,10 +168,12 @@ public class PlayBoardManager
         currentPlayer.DamageModifier = 0;
         currentPlayer.IsStabilized = false;
         currentPlayer.GlobalProtectionModifier = 0;
-        currentPlayer.ApplyOnTimeEffects();
-        currentPlayer.RemoveMarkedOnTimeEffects();
+        
 
         _board.ApplyPowerShards();
+
+        currentPlayer.ApplyOnTimeEffects();
+        currentPlayer.RemoveMarkedOnTimeEffects();
 
         List<List<Hexagon>> hexagons = Board.GetGrid();
         for (int i = 0; i < hexagons.Count; ++i)
