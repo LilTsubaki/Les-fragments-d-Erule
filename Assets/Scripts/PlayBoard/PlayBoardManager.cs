@@ -166,6 +166,7 @@ public class PlayBoardManager
         currentPlayer.RangeModifier = 0;
         currentPlayer.HealModifier = 0;
         currentPlayer.DamageModifier = 0;
+        currentPlayer.IsStabilized = false;
         currentPlayer.GlobalProtectionModifier = 0;
         currentPlayer.ApplyOnTimeEffects();
         currentPlayer.RemoveMarkedOnTimeEffects();

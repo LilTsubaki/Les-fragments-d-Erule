@@ -42,6 +42,8 @@ public class Character : Entity, Killable
     private int _healModifier;
     private int _globalProtectionModifier;
 
+    private bool _isStabilized;
+
     public Character(int lifeMax)
     {
         _lifeMax = lifeMax;
@@ -76,6 +78,7 @@ public class Character : Entity, Killable
         _currentActionPoints = 1;
         _currentMovementPoints = 1;
         _turnNumber = 1;
+        IsStabilized = false;
 
         foreach (var e in Element.GetElements())
         {
@@ -115,8 +118,9 @@ public class Character : Entity, Killable
         _currentActionPoints = 1;
         _currentMovementPoints = 1;
         _turnNumber = 1;
+        IsStabilized = false;
 
-		foreach (var e in Element.GetElements()) {
+        foreach (var e in Element.GetElements()) {
 			Protections [e] = 0;
 			ProtectionsNegative [e] = 0;
 		}
@@ -347,6 +351,11 @@ public class Character : Entity, Killable
             ReceiveRangeUp(value);
         else
             ReceiveRangeDown(-value);
+    }
+
+    public void ReceiveStabilization()
+    {
+        IsStabilized = true;
     }
 
     public void ReceiveMovementUp(int value)
@@ -624,6 +633,19 @@ public class Character : Entity, Killable
         set
         {
             _globalProtectionModifier = value;
+        }
+    }
+
+    public bool IsStabilized
+    {
+        get
+        {
+            return _isStabilized;
+        }
+
+        set
+        {
+            _isStabilized = value;
         }
     }
 }
