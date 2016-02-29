@@ -13,6 +13,7 @@ public class Range
     private int _minRange;
     private int _maxRange;
     private bool _piercing;
+    private bool _ennemyTargetable;
     private Orientation.EnumOrientation _orientation;
 
     public Orientation.EnumOrientation Orientation
@@ -67,6 +68,19 @@ public class Range
         }
     }
 
+    public bool EnnemyTargetable
+    {
+        get
+        {
+            return _ennemyTargetable;
+        }
+
+        set
+        {
+            _ennemyTargetable = value;
+        }
+    }
+
     /// <summary>
     /// Default constructor
     /// </summary>
@@ -105,6 +119,14 @@ public class Range
         MaxRange = (int)js.GetField(js.keys[2]).n;
         Piercing = js.GetField(js.keys[3]).b;
         Orientation = global::Orientation.stringToOrientation(js.GetField(js.keys[4]).str);
+        if(js.GetField("ennemyTargetable") != null)
+        {
+            EnnemyTargetable = js.GetField("ennemyTargetable").b;
+        }
+        else
+        {
+            EnnemyTargetable = true;
+        }
     }
 
     

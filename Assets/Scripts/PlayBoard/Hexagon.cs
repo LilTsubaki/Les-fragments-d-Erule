@@ -315,7 +315,7 @@ public class Hexagon : IAStar<Hexagon>
     {
         if(_entity != null)
         {
-            if ((PlayBoardManager.GetInstance().Character1.Position == this || PlayBoardManager.GetInstance().Character2.Position == this) && hasValidPosition())
+            if (_entity is Killable && hasValidPosition())//(PlayBoardManager.GetInstance().Character1.Position == this || PlayBoardManager.GetInstance().Character2.Position == this) && hasValidPosition())
                 return true;
             else
                 return false;

@@ -290,13 +290,15 @@ public class SpellManager
             {
                 if(_CurrentRange.Piercing && ranges[i].isVisible())
                 {
+                    if(_CurrentRange.EnnemyTargetable || ranges[i]._entity==null || ranges[i]._entity== PlayBoardManager.GetInstance().GetCurrentPlayer() || !(ranges[i]._entity is Killable))
                     ranges[i].CurrentState = Hexagon.State.Targetable;
                 }
                 else
                 {
                     if(PlayBoardManager.GetInstance().Board.fieldOfView(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, ranges[i]) && ranges[i].isVisible())
                     {
-                        ranges[i].CurrentState = Hexagon.State.Targetable;
+                        if (_CurrentRange.EnnemyTargetable || ranges[i]._entity == null || ranges[i]._entity == PlayBoardManager.GetInstance().GetCurrentPlayer() || !(ranges[i]._entity is Killable))
+                            ranges[i].CurrentState = Hexagon.State.Targetable;
                     }
                 }
             }
