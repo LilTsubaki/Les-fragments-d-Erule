@@ -27,10 +27,10 @@ public class UIPoles : MonoBehaviour {
 
         float totalStability = (baseChance - (malus / coef)) * 0.01f + stab;
 
-        _valueSublimation.text = Mathf.Ceil(subli*100f).ToString();
-        _valuePerfection.text = Mathf.Ceil(perf*100f).ToString();
-        _valueStabilite.text = Mathf.Ceil(stab*100f).ToString();
-        _valueReussite.text = Mathf.Clamp(Mathf.Ceil(totalStability * 100), 0, 100).ToString();
+        _valueSublimation.text = Mathf.Ceil(subli*100f).ToString() + "%";
+        _valuePerfection.text = Mathf.Ceil(perf*100f).ToString() + "%";
+        _valueStabilite.text = Mathf.Ceil(stab*100f).ToString() + "%";
+        _valueReussite.text = Mathf.Clamp(Mathf.Ceil(totalStability * 100), 0, 100).ToString() + "%";
 
 	}
 }
