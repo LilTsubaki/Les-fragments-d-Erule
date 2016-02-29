@@ -511,11 +511,9 @@ public class Hexagon : IAStar<Hexagon>
         {
             if (hexa._entity != null && hexa._entity is PowerShard)
             {
-                Logger.Error("ya un powershard a coté sisisisiisis");
                 PowerShard ps = (PowerShard)hexa._entity;
                 if (ps.isReady())
                 {
-                    Logger.Error("je suis true");
                     return true;
                 }                  
             }                
