@@ -35,7 +35,7 @@ public class PowerShard : Obstacle
            
             foreach (var hexa in hexas)
             {
-                if (hexa._entity != null && hexa._entity is Character)
+                if (hexa._entity != null && hexa._entity is Character && PlayBoardManager.GetInstance().isMyTurn((Character)hexa._entity))
                 {
                     Effect effect = SpellManager.getInstance().GetDirectEffectById(GetRandomEffect());
                     effect.ApplyEffect(hexas, hexa, null);

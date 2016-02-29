@@ -137,9 +137,9 @@ public class ServerListener
             _character.CurrentActionPoints--;
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
         }
-        Logger.Error("spell != null" + (spell != null));
-        Logger.Error("WTF");
-        Logger.Error("Is terminal : " + SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
+        //Logger.Error("spell != null" + (spell != null));
+        //Logger.Error("WTF");
+        Logger.Debug("Is terminal : " + SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 

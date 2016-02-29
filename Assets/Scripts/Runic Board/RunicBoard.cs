@@ -78,10 +78,10 @@ public class RunicBoard {
     /// </summary>
     public void LogRunesOnBoard()
     {
-        Logger.Error("*** RUNES ON BOARD ***");
+        Logger.Debug("*** RUNES ON BOARD ***");
         foreach (KeyValuePair<int, Rune> kvp in _runesOnBoard)
         {
-            Logger.Error("Element " + kvp.Value.Element._name + ", Position " + kvp.Key);
+            Logger.Debug("Element " + kvp.Value.Element._name + ", Position " + kvp.Key);
         }
     }
 
