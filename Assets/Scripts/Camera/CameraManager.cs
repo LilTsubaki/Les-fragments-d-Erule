@@ -307,9 +307,16 @@ public class CameraManager
             if (_cameras.ContainsKey(cameraName))
             {
                 _isStable = false;
-                _fadescreen.Reverse(transitionTime);
                 _nextCamera = cameraName;
-                _fadescreen.FadeTime(transitionTime*0.5f);
+                if (_fadescreen != null)
+                {
+                    _fadescreen.Reverse(transitionTime);
+                    _fadescreen.FadeTime(transitionTime * 0.5f);
+                }
+                else
+                {
+                    ActivateMain();
+                }
             }
             else
                 Logger.Error("Does not exist : " + cameraName);

@@ -15,7 +15,8 @@ public class GroundOnTimeEffect : EffectOnTime
         }
         catch
         {
-            Logger.Error("this is not a ontimeeffect");
+            Logger.Error("this is not a ontimeeffect (" + _id + ")");
+            Logger.Error("Direct id : " + (int)js.GetField(js.keys[1]).n);
         }
         _nbTurn = (int)js.GetField(js.keys[2]).n;
     }

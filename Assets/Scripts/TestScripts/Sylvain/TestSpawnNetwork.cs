@@ -23,6 +23,8 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     void Start()
     {
+        CameraManager.GetInstance().FadeTo("cameraAroundMap", 1);
+
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
         _board.AddComponent<PlayBoardBehaviour>();
         _player1 = new Character(4000, _player1GameObject);
@@ -43,7 +45,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     private void EndLoading()
     {
-        UIManager.GetInstance().ShowPanel("PanelPosition");
+        UIManager.GetInstance().ShowPanel("PanelAroundMap");
         UIManager.GetInstance().FadeOutPanelNoStack("Loading");
     }
 
