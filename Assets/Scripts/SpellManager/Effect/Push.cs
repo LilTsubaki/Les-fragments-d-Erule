@@ -21,11 +21,14 @@ public class Push : EffectDeplacement
             if (hexagons[i]._entity != null && hexagons[i]._entity is Character)
             {
                 Character character = (Character)hexagons[i]._entity;
-                Hexagon source = caster.Position;
-                Direction.EnumDirection direction = Direction.GetDirection(source, target);
-                character.TranslateCharacter(direction, _nbDeplacement);
-                character._state = Character.State.Translating;
-                Logger.Trace("Hexagon " + i + " has a character");
+                if(!character.IsStabilized)
+                {
+                    Hexagon source = caster.Position;
+                    Direction.EnumDirection direction = Direction.GetDirection(source, target);
+                    character.TranslateCharacter(direction, _nbDeplacement);
+                    character._state = Character.State.Translating;
+                    Logger.Trace("Hexagon " + i + " has a character");
+                }
             }
             else
             {
