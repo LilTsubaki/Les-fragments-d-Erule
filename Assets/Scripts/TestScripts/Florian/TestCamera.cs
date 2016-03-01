@@ -21,6 +21,14 @@ public class TestCamera : MonoBehaviour {
         {
             started = false;
         }
+        if(Input.GetMouseButtonDown(0))
+        {
+            CameraManager.GetInstance().FadeTo("First", 0.1f);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            CameraManager.GetInstance().FadeTo("Second", 0.1f);
+        }
     }
 
 }
