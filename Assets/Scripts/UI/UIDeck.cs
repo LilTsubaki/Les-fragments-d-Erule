@@ -22,6 +22,7 @@ public class UIDeck : MonoBehaviour {
 
             UIManager.GetInstance().HidePanelNoStack("PanelRunicBoard");
             UIManager.GetInstance().ShowPanelNoStack("PanelServers");
+            ClientManager.GetInstance()._client.SearchHost();
             _deck.gameObject.SetActive(false);
         }
         else
