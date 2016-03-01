@@ -20,7 +20,7 @@ public class PortalEffect : EffectDirect
         if (target._entity == null)
         {
             List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
-            if (portals.Count > 2)
+            if (portals.Count >= 2)
             {
                 portals[0].Destroy();
                 portals.RemoveAt(0);
@@ -30,6 +30,7 @@ public class PortalEffect : EffectDirect
             instance.transform.position = target.GameObject.transform.position;
             Portal portal = new Portal(target, instance);
             portals.Add(portal);
+            Logger.Debug("Nombre portails : portals.Count");
         }
         else
         {

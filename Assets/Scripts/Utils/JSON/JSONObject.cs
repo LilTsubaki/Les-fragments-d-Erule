@@ -1235,7 +1235,7 @@ public class JSONObject {
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
             hexagon.Glyph = GameObject.Instantiate(glyph);
             hexagon.Glyph.transform.parent = hexagon.GameObject.transform;
-            hexagon.Glyph.transform.localPosition = new Vector3(0, 0.3f, 0);
+            hexagon.Glyph.transform.localPosition = new Vector3(0, 0.05f, 0);
             hexagon.Glyph.SetActive(false);
 
             /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)

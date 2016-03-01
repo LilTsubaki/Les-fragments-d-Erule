@@ -58,6 +58,7 @@ public class PlayBoard  {
 		}
 
         _astar = new AStar<Hexagon>();
+        _portals = new List<Portal>();
 	}
 
 	/// <summary>

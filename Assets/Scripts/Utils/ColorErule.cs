@@ -8,11 +8,11 @@ using UnityEngine;
  public class ColorErule
 {
     public static readonly Color _default = Color.grey;
-    public static readonly Color _targetable = new Color(0.6f,0.6f,0.8f);
-    public static readonly Color _overEnnemiTargetable = new Color(0.8f, 0.6f, 0.6f);
-    public static readonly Color _overSelfTargetable = new Color(0.8f, 0.8f, 0.6f);
-    public static readonly Color _accessible = new Color(0.6f, 0.8f, 0.6f);
-    public static readonly Color _overAccessible = new Color(0.7f, 1.0f, 0.7f);
+    public static readonly Color _targetable = new Color(0f,0f,1f);
+    public static readonly Color _overEnnemiTargetable = new Color(1f, 0f, 0f);
+    public static readonly Color _overSelfTargetable = new Color(1f, 1f, 0f);
+    public static readonly Color _accessible = new Color(0f, 1.0f, 0f);
+    public static readonly Color _overAccessible = new Color(0.4f, 1.0f, 0.4f);
     public static readonly Color _groundEffectColor = new Color(0.8f, 0.53f, 1);
 
     public static readonly Color _spawn = Color.green;

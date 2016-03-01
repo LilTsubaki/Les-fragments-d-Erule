@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Portal : Entity {
+public class Portal {
 
     private GameObject _gameObject;
+    private Hexagon _position;
 
     public Portal()
     {
 
     }
 
-    public Portal(Hexagon position, GameObject gameObject) : base(position)
+    public Portal(Hexagon position, GameObject gameObject)
     {
+        position.Portal = this;
         _gameObject = gameObject;
+        _position = position;
     }
 
     public GameObject GameObject
@@ -28,8 +31,22 @@ public class Portal : Entity {
         }
     }
 
+    public Hexagon Position
+    {
+        get
+        {
+            return _position;
+        }
+
+        set
+        {
+            _position = value;
+        }
+    }
+
     public void Destroy()
     {
+        _position.Portal = null;
         GameObject.Destroy(_gameObject);
     }
 }

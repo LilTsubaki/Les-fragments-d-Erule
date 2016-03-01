@@ -17,6 +17,8 @@ public class Hexagon : IAStar<Hexagon>
 
     public Entity _entity;
 
+    private Portal _portal;
+
     public Dictionary<int, GroundOnTimeAppliedEffect> _onTimeEffects;
     public List<int> _onTimeEffectsToRemove;
 
@@ -151,6 +153,19 @@ public class Hexagon : IAStar<Hexagon>
         set
         {
             _glyph = value;
+        }
+    }
+
+    public Portal Portal
+    {
+        get
+        {
+            return _portal;
+        }
+
+        set
+        {
+            _portal = value;
         }
     }
 

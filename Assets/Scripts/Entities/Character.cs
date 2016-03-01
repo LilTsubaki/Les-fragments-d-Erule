@@ -428,9 +428,9 @@ public class Character : Entity, Killable
     public void Teleport()
     {
         List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
-        if (portals.Count == 2 && Position._entity is Portal)
+        if (portals.Count == 2 && Position.Portal != null)
         {
-            int indexBegin = portals.IndexOf((Portal)Position._entity);
+            int indexBegin = portals.IndexOf(Position.Portal);
             int indexEnd = -1;
             switch (indexBegin)
             {
@@ -444,7 +444,9 @@ public class Character : Entity, Killable
                     break;
             }
 
+            Logger.Debug("Maaaagie TP");
             Position = portals[indexEnd].Position;
+            portals[indexEnd].Destroy();
             portals.RemoveAt(indexEnd);
         }
     }

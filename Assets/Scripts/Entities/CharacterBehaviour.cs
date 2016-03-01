@@ -29,16 +29,20 @@ public class CharacterBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawLine(ray.origin, ray.direction * 20);
+            //Debug.DrawLine(ray.origin, ray.direction * 20);
             RaycastHit rch;
             //int layermask = (1 << LayerMask.NameToLayer("Default"));
             int layermask = LayerMask.GetMask("Hexagon");
            
             if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
             {
-                Hexagon hexa = rch.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
+                HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
+                MakeSpell(hexagonBehaviour);
+                Hexagon hexa = hexagonBehaviour._hexagon;
                 if (hexa != null)
                 {
+
+
                     bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
                     _character.CurrentStep = 0;
 
@@ -58,6 +62,21 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void MakeSpell(HexagonBehaviour hexagonBehaviour)
+    {
+        Hexagon hexa = hexagonBehaviour._hexagon;
+        if (hexa != null&& (hexa.CurrentState == Hexagon.State.OverEnnemiTargetable || hexa.CurrentState == Hexagon.State.OverSelfTargetable
+            || hexa.CurrentState == Hexagon.State.Targetable))
+        {
+            if (hexagonBehaviour.FinalArea == null)
+            {
+                hexagonBehaviour.Make_finalArea();
+            }
+            SpellManager.getInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
+            PlayBoardManager.GetInstance().Board.ResetBoard();
         }
     }
 
@@ -94,7 +113,8 @@ public class CharacterBehaviour : MonoBehaviour
                     _character._state = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
-                    if (_character.Position._entity is Portal){
+                    if (_character.Position.Portal != null){
+                        Logger.Debug("Sur un portal !");
                         _character.Teleport();
                         transform.position = _character.Position.GameObject.transform.position;
                     }
