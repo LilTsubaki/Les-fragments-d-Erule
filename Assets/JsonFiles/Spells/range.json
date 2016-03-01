@@ -176,12 +176,20 @@
 			"piercing" : false,
 			"orientation" : "diagonal"
 		},
-		{
-			"id" : 25,
-			"minRange" : 2,
-			"maxRange" : 6,
+    {
+      "id": 25,
+      "minRange": 2,
+      "maxRange": 6,
+      "piercing": false,
+      "orientation": "diagonal"
+    },
+    {
+			"id" : 26,
+			"minRange" : 1,
+			"maxRange" : 2,
 			"piercing" : false,
-			"orientation" : "diagonal"
+      "orientation": "any",
+      "enemyTargetable":  false
 		}
 	]
 }
