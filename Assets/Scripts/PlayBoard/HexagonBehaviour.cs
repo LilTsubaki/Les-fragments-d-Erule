@@ -8,7 +8,8 @@ public class HexagonBehaviour : MonoBehaviour
 
     private List<Hexagon> _finalArea;
 
-    
+    Material _mat;
+
 
     public List<Hexagon> FinalArea
     {
@@ -27,7 +28,7 @@ public class HexagonBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        _mat = Instantiate(_hexagon.GameObject.GetComponentInChildren<Renderer>().material);
     }
 
     // Update is called once per frame
@@ -35,33 +36,50 @@ public class HexagonBehaviour : MonoBehaviour
     {
         if(_hexagon.StateChanged)
         {
-            switch(_hexagon.CurrentState)
+            switch (_hexagon.CurrentState)
             {
                 case Hexagon.State.Default :
                     if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
-                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = _hexagon.DefaultColor;
+                    {
+                        _hexagon.Glyph.SetActive(false);
+                    }
 
                     if (_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround())
-                        _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
+                    {
+                        _hexagon.Glyph.SetActive(true);
+                        _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
+                    }
 
                     break;
                 case Hexagon.State.Targetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._targetable;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._targetable;
+
                     break;
                 case Hexagon.State.OverEnnemiTargetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overEnnemiTargetable;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._overEnnemiTargetable;
+
                     break;
                 case Hexagon.State.OverSelfTargetable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overSelfTargetable;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._overSelfTargetable;
+
                     break;
                 case Hexagon.State.Accessible:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._accessible;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._accessible;
+
                     break;
                 case Hexagon.State.OverAccessible:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._overAccessible;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._overAccessible;
+
                     break;
                 case Hexagon.State.Spawnable:
-                    _hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._spawn;
+                    _hexagon.Glyph.SetActive(true);
+                    _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._spawn;
+
                     break;
             }
             

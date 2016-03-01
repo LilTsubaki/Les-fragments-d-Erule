@@ -33,6 +33,8 @@ public class Hexagon : IAStar<Hexagon>
 
     private Color _defaultColor;
 
+    private GameObject _glyph;
+
     public Color DefaultColor
     {
         get
@@ -136,6 +138,19 @@ public class Hexagon : IAStar<Hexagon>
         set
         {
             _stateChanged = value;
+        }
+    }
+
+    public GameObject Glyph
+    {
+        get
+        {
+            return _glyph;
+        }
+
+        set
+        {
+            _glyph = value;
         }
     }
 

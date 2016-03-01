@@ -1196,6 +1196,8 @@ public class JSONObject {
 
         JSONObject array = js.GetField("Hexagons");
 
+        GameObject glyph = Resources.Load<GameObject>("prefabs/glyph");
+
         foreach (JSONObject hexa in array.list)
         {
             Hexagon hexagon = playBoard.CreateHexagone((int)hexa.GetField("posX").n, (int)hexa.GetField("posY").n);
@@ -1205,6 +1207,10 @@ public class JSONObject {
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+            hexagon.Glyph = GameObject.Instantiate(glyph);
+            hexagon.Glyph.transform.parent = hexagon.GameObject.transform;
+            hexagon.Glyph.transform.localPosition = new Vector3(0, 0.3f, 0);
+            hexagon.Glyph.SetActive(false);
 
             /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
 				hexagon.GameObject.transform.localScale= new Vector3 (hexagon.GameObject.transform.localScale.x, hexagon.GameObject.transform.localScale.y, -1*hexagon.GameObject.transform.localScale.z);
