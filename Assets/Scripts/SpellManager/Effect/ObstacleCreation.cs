@@ -23,10 +23,13 @@ public class ObstacleCreation : EffectDirect
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        foreach(Hexagon hexa in hexagons)
+        Logger.Debug("obstacle creation");
+        Logger.Debug(hexagons.Count);
+        foreach (Hexagon hexa in hexagons)
         {
             if(hexa._entity != null)
             {
+                
                 KillableObstacle obs = new KillableObstacle(hexa, _life);
                 obs._gameobject = GameObject.Instantiate(_prefab);
                 KillableObstacleBehaviour kob = obs._gameobject.AddComponent<KillableObstacleBehaviour>();
