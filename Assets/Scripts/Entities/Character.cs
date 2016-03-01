@@ -74,7 +74,6 @@ public class Character : Entity, Killable
         HealModifier = 0;
         GlobalProtectionModifier = 0;
 
-        _maxActionPoints = 4;
         _currentActionPoints = 1;
         _currentMovementPoints = 1;
         _turnNumber = 1;
@@ -114,7 +113,6 @@ public class Character : Entity, Killable
         HealModifier = 0;
         GlobalProtectionModifier = 0;
 
-        _maxActionPoints = 4;
         _currentActionPoints = 1;
         _currentMovementPoints = 1;
         _turnNumber = 1;
