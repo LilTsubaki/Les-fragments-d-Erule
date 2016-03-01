@@ -22,7 +22,7 @@ public class Heal : EffectMinMax
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            int heal = (int)new Random().Next((int)_min, (int)_max + 1);
+            int heal = GetRandom();
             Logger.Trace("Apply heal effect : " + heal);
             c.ReceiveHeal(heal);
         }

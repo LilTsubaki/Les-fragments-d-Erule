@@ -283,7 +283,7 @@ public class AudioManager
                     auSo.maxDistance = distMax;
                     if (randPitch)
                     {
-                        auSo.pitch = (float)(ad.pitchMin+((new System.Random()).NextDouble())*(ad.pitchMax-ad.pitchMin));
+                        auSo.pitch = EruleRandom.RangeValue(ad.pitchMin, ad.pitchMax);
                     }
                     else
                     {

@@ -16,7 +16,7 @@ public abstract class EffectMinMax : EffectDirect
 	}
 
 	public int GetRandom(){
-		return (int) (new Random ().Next ((int)_min, (int)_max));
+        return EruleRandom.RangeValue(_min, _max);
 	}
 }
 

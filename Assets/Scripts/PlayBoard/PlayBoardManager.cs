@@ -85,7 +85,7 @@ public class PlayBoardManager
 
     private PlayBoardManager ()
 	{
-        _secondPlayerStarted = new System.Random().Next(100) % 2 == 0;
+        _secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
         _turnNumber = 0;
     }
 

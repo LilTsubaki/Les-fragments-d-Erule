@@ -53,7 +53,7 @@ public class PowerShard : Obstacle
 
     private int GetRandomEffect()
     {
-        return _effectIds[(new System.Random()).Next(0, _effectIds.Count - 1)];
+        return _effectIds[EruleRandom.RangeValue(0, _effectIds.Count - 1)];
     }
 
     public JSONObject PowerShardToJSON()

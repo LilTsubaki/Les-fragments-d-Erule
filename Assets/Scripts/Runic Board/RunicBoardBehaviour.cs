@@ -236,6 +236,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
         _runesGO = new List<GameObject>();
         Dictionary<int, Rune> hand = RunicBoardManager.GetInstance().TempHand;
 
+        Logger.Debug("Awake Runic Board Behaviour");
 
         Board = new RunicBoard(hand);
         RunicBoardManager.GetInstance().RegisterBoard(Board);

@@ -59,7 +59,7 @@ public class AudioData : MonoBehaviour
         AudioClip clip;
         if (random)
         {
-            int id = (new System.Random()).Next(0, clips.Count - 1);
+            int id = EruleRandom.RangeValue(0, clips.Count - 1);
             clip = clips[id];
         }
         else

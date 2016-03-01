@@ -20,7 +20,7 @@ public class DamageElement : EffectMinMax
         List<Killable> killables = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
         foreach (var k in killables)
         {
-            int damage = (int)new Random().Next((int)_min, (int)_max + 1);
+            int damage = EruleRandom.RangeValue((int)_min, (int)_max + 1);
 
             damage += caster.DamageModifier;
             k.ReceiveDamage(damage, _element);
