@@ -94,7 +94,8 @@ public class CharacterBehaviour : MonoBehaviour
                     _character._state = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
-                    if (_character.Position._entity is Portal){
+                    if (_character.Position.Portal != null){
+                        Logger.Debug("Sur un portal !");
                         _character.Teleport();
                         transform.position = _character.Position.GameObject.transform.position;
                     }
