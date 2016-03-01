@@ -15,7 +15,7 @@ public class PlayBoardBehaviour : MonoBehaviour
 	void Update ()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawLine(ray.origin, ray.direction * 20);
+        //Debug.DrawLine(ray.origin, ray.direction * 20);
         RaycastHit rch;
         //int layermask = (1 << LayerMask.NameToLayer("Default"));
         int layermask = LayerMask.GetMask("Hexagon");
