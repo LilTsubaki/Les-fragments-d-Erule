@@ -1147,16 +1147,26 @@ public class JSONObject {
 
     public static void BoardToJSON(string fileName)
     {
-        PlayBoard  board= PlayBoardManager.GetInstance().Board;
+        PlayBoard  board = PlayBoardManager.GetInstance().Board;
         JSONObject obj = new JSONObject(JSONObject.Type.OBJECT);
         JSONObject arr = new JSONObject(JSONObject.Type.ARRAY);
         JSONObject center = new JSONObject(JSONObject.Type.OBJECT);
-        
-        
+
+        JSONObject camera = new JSONObject(JSONObject.Type.OBJECT);
+
+        camera.AddField("x", Camera.main.transform.position.x);
+        camera.AddField("y", Camera.main.transform.position.y);
+        camera.AddField("z", Camera.main.transform.position.z);
+
+        camera.AddField("rotX", Camera.main.transform.rotation.x);
+        camera.AddField("rotY", Camera.main.transform.rotation.y);
+        camera.AddField("rotZ", Camera.main.transform.rotation.z);
+        camera.AddField("rotW", Camera.main.transform.rotation.w);
 
         obj.AddField("Width", board._width);
         obj.AddField("Height", board._height);
         obj.AddField("Center", center);
+        obj.AddField("Camera", camera);
 
         center.AddField("x", board._center.x);
         center.AddField("y", board._center.y);
@@ -1196,7 +1206,23 @@ public class JSONObject {
 
         JSONObject array = js.GetField("Hexagons");
 
-        GameObject glyph = Resources.Load<GameObject>("prefabs/glyph");
+        GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
+
+        JSONObject camera = js.GetField("Camera");
+        if (camera != null)
+        {
+            float xCam = camera.GetField("x").f;
+            float yCam = camera.GetField("y").f;
+            float zCam = camera.GetField("z").f;
+
+            float rotXCam = camera.GetField("rotX").f;
+            float rotYCam = camera.GetField("rotY").f;
+            float rotZCam = camera.GetField("rotZ").f;
+            float rotWCam = camera.GetField("rotW").f;
+
+            Camera.main.transform.position = new Vector3(xCam, yCam, zCam);
+            Camera.main.transform.rotation = new Quaternion(rotXCam, rotYCam, rotZCam, rotWCam);
+        }
 
         foreach (JSONObject hexa in array.list)
         {
