@@ -36,6 +36,14 @@ public class CameraManager
     /// </summary>
     bool _isStable = true;
 
+    public Camera Active
+    {
+        get
+        {
+            return _active;
+        }
+    }
+
     /// <summary>
     /// Constructor of CameraManager. Must be used in GetInstance only.
     /// </summary>

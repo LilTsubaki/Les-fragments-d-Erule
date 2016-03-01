@@ -80,7 +80,7 @@ public class TestSpawnNetwork : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray camRay = CameraManager.GetInstance().Active.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
             if (Physics.Raycast(camRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Hexagon")))
             {

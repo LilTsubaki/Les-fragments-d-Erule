@@ -14,7 +14,8 @@ public class PlayBoardBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        Ray ray = CameraManager.GetInstance().Active.ScreenPointToRay(Input.mousePosition);
         //Debug.DrawLine(ray.origin, ray.direction * 20);
         RaycastHit rch;
         //int layermask = (1 << LayerMask.NameToLayer("Default"));

@@ -37,6 +37,10 @@ public class ObstacleCreation : EffectDirect
                 obs._gameobject.name = Name;
                 obs._gameobject.transform.position = new Vector3(0.866f * hexa._posX - 0.433f * hexa._posY, hexa.GameObject.transform.position.y, 0.75f * hexa._posY);
                 obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
+                GameObject lifeCanvas = GameObject.Instantiate(Resources.Load("Prefabs/UI/CanvasObstacle") as GameObject);
+                lifeCanvas.transform.SetParent(obs._gameobject.transform);
+                lifeCanvas.transform.localPosition = new Vector3(0, .6f, 0);
+                lifeCanvas.GetComponent<UIKillableObstacle>().Obstacle = obs;
             }
         }
     }
