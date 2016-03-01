@@ -85,33 +85,6 @@ public class HexagonBehaviour : MonoBehaviour
             
             _hexagon.StateChanged = false;
         }
-
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
-        {
-                             
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //Debug.DrawLine(ray.origin, ray.direction * 20);
-            RaycastHit rch;
-            //int layermask = (1 << LayerMask.NameToLayer("Default"));
-            int layermask = LayerMask.GetMask("Hexagon");
-
-            if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
-            {
-                Hexagon hexa = rch.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
-                if (hexa != null && hexa.Equals(_hexagon) && (_hexagon.CurrentState == Hexagon.State.OverEnnemiTargetable || _hexagon.CurrentState == Hexagon.State.OverSelfTargetable
-                    || _hexagon.CurrentState == Hexagon.State.Targetable))
-                {
-                    if (FinalArea == null)
-                    {
-                        Make_finalArea();
-                    }
-                    SpellManager.getInstance().ApplyEffects(FinalArea, hexa);
-                    PlayBoardManager.GetInstance().Board.ResetBoard();
-                    //SpellManager.getInstance().InitRange();
-                }
-            }
-            
-        }
     }
 
 

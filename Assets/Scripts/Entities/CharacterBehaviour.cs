@@ -36,9 +36,13 @@ public class CharacterBehaviour : MonoBehaviour
            
             if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
             {
-                Hexagon hexa = rch.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
+                HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
+                MakeSpell(hexagonBehaviour);
+                Hexagon hexa = hexagonBehaviour._hexagon;
                 if (hexa != null)
                 {
+
+
                     bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
                     _character.CurrentStep = 0;
 
@@ -58,6 +62,21 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void MakeSpell(HexagonBehaviour hexagonBehaviour)
+    {
+        Hexagon hexa = hexagonBehaviour._hexagon;
+        if (hexa != null&& (hexa.CurrentState == Hexagon.State.OverEnnemiTargetable || hexa.CurrentState == Hexagon.State.OverSelfTargetable
+            || hexa.CurrentState == Hexagon.State.Targetable))
+        {
+            if (hexagonBehaviour.FinalArea == null)
+            {
+                hexagonBehaviour.Make_finalArea();
+            }
+            SpellManager.getInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
+            PlayBoardManager.GetInstance().Board.ResetBoard();
         }
     }
 
