@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Foliage_Grass_1
-  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: MAT_Folaige
+  m_Shader: {fileID: 4800000, guid: 3fb29646b7f2bf7438e90ee81a8d63bc, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   m_SavedProperties:
@@ -86,13 +86,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -105,11 +98,11 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.695
+        second: 0.143
       data:
         first:
           name: _Parallax
-        second: 0.005
+        second: 0.02
       data:
         first:
           name: _ZWrite
@@ -117,7 +110,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.041
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -142,14 +135,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _MaskTexMoveSpeedU
-        second: 0
-      data:
-        first:
-          name: _MaskTexMoveSpeedV
-        second: 0.5
     m_Colors:
       data:
         first:
@@ -162,4 +147,4 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
