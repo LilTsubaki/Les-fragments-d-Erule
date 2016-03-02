@@ -53,9 +53,9 @@ public class CharacterUI : MonoBehaviour {
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if(_isOnLeft)
-                pos.x = 10 + i * 30;
+                pos.x = 10 + i * 60;
             else
-                pos.x = -10 - i * 30;
+                pos.x = -10 - i * 60;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
             
             _listActionPoints.Add(n);
@@ -69,9 +69,9 @@ public class CharacterUI : MonoBehaviour {
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if (_isOnLeft)
-                pos.x = 10 + i * 30;
+                pos.x = 10 + i * 60;
             else
-                pos.x = -10 - i * 30;
+                pos.x = -10 - i * 60;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
 
             _listMovementPoints.Add(n);
