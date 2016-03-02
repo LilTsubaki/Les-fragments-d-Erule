@@ -550,4 +550,21 @@ public class Hexagon : IAStar<Hexagon>
         }
         return false;
     }
+
+    public bool ContainsGrowableEffect()
+    {
+        foreach(GroundOnTimeAppliedEffectGrowable effect in _onTimeEffects.Values)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void GrowUp()
+    {
+        foreach (GroundOnTimeAppliedEffectGrowable effect in _onTimeEffects.Values)
+        {
+            effect.GrowUp(this);
+        }
+    }
 }

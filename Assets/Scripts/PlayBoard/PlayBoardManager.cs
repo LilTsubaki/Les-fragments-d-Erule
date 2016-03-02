@@ -176,6 +176,22 @@ public class PlayBoardManager
         currentPlayer.RemoveMarkedOnTimeEffects();
 
         List<List<Hexagon>> hexagons = Board.GetGrid();
+        List<Hexagon> growableHexagons = new List<Hexagon>();
+
+        for (int i = 0; i < hexagons.Count; ++i)
+        {
+            foreach (Hexagon hex in hexagons[i])
+            {
+                if (hex.ContainsGrowableEffect())
+                    growableHexagons.Add(hex);
+            }
+        }
+
+        foreach(Hexagon hex in growableHexagons)
+        {
+            hex.GrowUp();
+        }
+
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
