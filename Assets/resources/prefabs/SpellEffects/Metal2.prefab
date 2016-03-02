@@ -1,14 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &133434
+--- !u!1 &123368
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 450426}
+  - 33: {fileID: 3381718}
+  - 23: {fileID: 2393458}
+  - 114: {fileID: 11455828}
+  m_Layer: 0
+  m_Name: DM_Metal_Axe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &142128
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 482126}
-  - 95: {fileID: 9537104}
+  - 4: {fileID: 414070}
+  - 114: {fileID: 11458898}
+  m_Layer: 0
+  m_Name: Metal2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &176882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 434474}
+  - 95: {fileID: 9502444}
   m_Layer: 0
   m_Name: FX_Metal_02
   m_TagString: Untagged
@@ -16,54 +50,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &190016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 483094}
-  - 33: {fileID: 3306090}
-  - 23: {fileID: 2354700}
-  m_Layer: 0
-  m_Name: DM_Metal_Axe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &482126
+--- !u!4 &414070
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133434}
+  m_GameObject: {fileID: 142128}
+  m_LocalRotation: {x: 0, y: -0.67422795, z: -0, w: 0.7385233}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 434474}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &434474
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.35, y: 0.24, z: -8.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 483094}
-  m_Father: {fileID: 0}
+  - {fileID: 450426}
+  m_Father: {fileID: 414070}
   m_RootOrder: 0
---- !u!4 &483094
+--- !u!4 &450426
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 123368}
+  m_LocalRotation: {x: -0.45577142, y: -0.43603778, z: -0.29838672, w: -0.71631616}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 482126}
+  m_Father: {fileID: 434474}
   m_RootOrder: 0
---- !u!23 &2354700
+--- !u!23 &2393458
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190016}
+  m_GameObject: {fileID: 123368}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,20 +114,20 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3306090
+--- !u!33 &3381718
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190016}
+  m_GameObject: {fileID: 123368}
   m_Mesh: {fileID: 4300000, guid: 853d313862fdaf648b66a62ed33f32e3, type: 3}
---- !u!95 &9537104
+--- !u!95 &9502444
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133434}
+  m_GameObject: {fileID: 176882}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 853d313862fdaf648b66a62ed33f32e3, type: 3}
   m_Controller: {fileID: 9100000, guid: 6d0b63ae110a4fb47a9068d6e3e0daab, type: 2}
@@ -108,18 +138,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11455828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c6bcc6f2765a441a0814ac0489aa6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotX: 20
+--- !u!114 &11458898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27d02d6e9401a94a9f4bc089d20a07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _from: {fileID: 0}
+  _to: {fileID: 0}
+  _registerName: metal2
+  _anim: {fileID: 9502444}
+  _axe: {fileID: 11455828}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6d0b63ae110a4fb47a9068d6e3e0daab, type: 2}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 133434}
+  m_RootGameObject: {fileID: 142128}
   m_IsPrefabParent: 1

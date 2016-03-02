@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 106962}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 853d313862fdaf648b66a62ed33f32e3, type: 3}
-  m_Controller: {fileID: 9100000, guid: 619fd532d16023d48bf5a9ef818cc845, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0de205ad96c359a4bba44a0ed18a70e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,6 +119,10 @@ Prefab:
       propertyPath: m_Name
       value: FX_Metal_01
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0de205ad96c359a4bba44a0ed18a70e0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106962}

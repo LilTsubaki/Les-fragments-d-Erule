@@ -18,5 +18,17 @@ public class TestCastAnimation : MonoBehaviour {
         {
             SpellAnimationManager.GetInstance().Play("air", _cube1, _cube2);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SpellAnimationManager.GetInstance().Play("metal1", _cube1, _cube2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SpellAnimationManager.GetInstance().Play("metal2", _cube1, _cube2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SpellAnimationManager.GetInstance().Play("metal3", _cube1, _cube2);
+        }
     }
 }
