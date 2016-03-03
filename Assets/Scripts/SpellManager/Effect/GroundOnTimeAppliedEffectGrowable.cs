@@ -13,7 +13,7 @@ public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
     {
         if (_nbTurn > 0)
         {
-            _effectDirect.ApplyEffect(hexagons, target, _caster);
+            EffectDirect.ApplyEffect(hexagons, target, _caster);
         }
         else
         {
@@ -26,7 +26,7 @@ public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
         if (PlayBoardManager.GetInstance().isMyTurn(_caster)) { 
             foreach (Hexagon hex in hexagon.GetAllNeighbours())
             {
-                hex.AddOnTimeEffect(new GroundOnTimeAppliedEffectGrowable(_id, _effectDirect, _nbTurn, _caster));
+                hex.AddOnTimeEffect(new GroundOnTimeAppliedEffectGrowable(_id, EffectDirect, _nbTurn, _caster));
             }
         }
     }

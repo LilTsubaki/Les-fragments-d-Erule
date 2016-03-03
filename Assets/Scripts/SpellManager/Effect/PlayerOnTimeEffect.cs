@@ -12,7 +12,7 @@ public class PlayerOnTimeEffect : EffectOnTime
 
         try
         {
-            _effectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
+            EffectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {
@@ -33,7 +33,7 @@ public class PlayerOnTimeEffect : EffectOnTime
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach(Character c in chars)
         {
-            PlayerOnTimeAppliedEffect effect = new PlayerOnTimeAppliedEffect(_id, _effectDirect, _nbTurn, caster);
+            PlayerOnTimeAppliedEffect effect = new PlayerOnTimeAppliedEffect(_id, EffectDirect, _nbTurn, caster);
             c.ReceiveOnTimeEffect(effect);
         }
     }

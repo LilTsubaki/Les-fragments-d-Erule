@@ -29,7 +29,7 @@ public class ObstacleCreation : EffectDirect
         {
             if(hexa._entity == null)
             {
-                KillableObstacle obs = new KillableObstacle(hexa, _life);
+                KillableObstacle obs = new KillableObstacle(hexa, _life, caster);
                 obs._gameobject = GameObject.Instantiate(_prefab);
                 KillableObstacleBehaviour kob = obs._gameobject.AddComponent<KillableObstacleBehaviour>();
                 kob.KillableObstacle = obs;

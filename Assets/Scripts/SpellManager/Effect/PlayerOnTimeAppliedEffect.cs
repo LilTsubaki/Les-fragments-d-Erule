@@ -7,7 +7,7 @@ public class PlayerOnTimeAppliedEffect : EffectOnTime {
 	public PlayerOnTimeAppliedEffect(int id, EffectDirect effectDirect, int nbTurn, Character caster)
     {
         _id = id;
-        _effectDirect = effectDirect;
+        EffectDirect = effectDirect;
         _nbTurn = nbTurn;
         _caster = caster;
     }
@@ -16,7 +16,7 @@ public class PlayerOnTimeAppliedEffect : EffectOnTime {
     {
         if (_nbTurn-- > 0)
         {
-            _effectDirect.ApplyEffect(hexagons, target, _caster);
+            EffectDirect.ApplyEffect(hexagons, target, _caster);
         }
         else
         {
