@@ -178,13 +178,23 @@ public class PlayBoardManager
         List<List<Hexagon>> hexagons = Board.GetGrid();
         List<Hexagon> growableHexagons = new List<Hexagon>();
 
+        List<KillableObstacle> obstacles = new List<KillableObstacle>();
+
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
             {
                 if (hex.ContainsGrowableEffect())
                     growableHexagons.Add(hex);
+                if (hex._entity is KillableObstacle)
+                    obstacles.Add((KillableObstacle) hex._entity);
             }
+        }
+
+        foreach(KillableObstacle obstacle in obstacles)
+        {
+            obstacle.ApplyOnTimeEffects();
+            obstacle.RemoveMarkedOnTimeEffects();
         }
 
         foreach(Hexagon hex in growableHexagons)
