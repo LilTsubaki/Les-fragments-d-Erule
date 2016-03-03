@@ -258,8 +258,11 @@ public class JSONObject {
         string str="";
         try
         {
+            TextAsset text = Resources.Load<TextAsset>(path);
+            
             string line;
-            StreamReader theReader = new StreamReader(path, Encoding.Default);
+            StringReader theReader = new StringReader(text.text);
+            //StreamReader theReader = new StreamReader(path, Encoding.Default);
             using (theReader)
             {
                
@@ -1197,7 +1200,7 @@ public class JSONObject {
     {
         board = new GameObject("Board");
 
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/Resources/JsonFiles/Maps/" + fileName + ".json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile("JsonFiles/Maps/" + fileName);
 
         int width = (int)js.GetField("Width").n;
         int height = (int)js.GetField("Height").n;
