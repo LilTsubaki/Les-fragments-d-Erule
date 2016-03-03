@@ -62,7 +62,7 @@ public class RunicBoardManager{
 
     private void Init()
     {
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/compatibilityMalus.json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/Resources/JsonFiles/Spells/compatibilityMalus.json");
         JSONObject array = js.list[0];
         foreach(JSONObject malus in array.list)
         {
@@ -70,7 +70,7 @@ public class RunicBoardManager{
             _compatibilityMaluses.Add(m.Id, m);
         }
 
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/compatibility.json");
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/Resources/JsonFiles/Spells/compatibility.json");
         array = js.list[0];
         foreach(JSONObject comp in array.list)
         {
@@ -86,7 +86,7 @@ public class RunicBoardManager{
             _compatibilities.Add(id, compa);
         }
 
-        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Spells/runeNumberInfluence.json");
+        js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/Resources/JsonFiles/Spells/runeNumberInfluence.json");
         array = js.list[0];
         foreach(JSONObject influ in array.list)
         {

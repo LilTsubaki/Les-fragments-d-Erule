@@ -1190,14 +1190,14 @@ public class JSONObject {
 
         string json = obj.Print();
         Logger.Debug(json);
-        File.WriteAllText(Application.dataPath + "/JsonFiles/Maps/"+ fileName + ".json", json);
+        File.WriteAllText(Application.dataPath + "/Resources/JsonFiles/Maps/"+ fileName + ".json", json);
     }
 
     public static PlayBoard JSONToBoard(ref GameObject board, String fileName)
     {
         board = new GameObject("Board");
 
-        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/JsonFiles/Maps/" + fileName + ".json");
+        JSONObject js = JSONObject.GetJsonObjectFromFile(Application.dataPath + "/Resources/JsonFiles/Maps/" + fileName + ".json");
 
         int width = (int)js.GetField("Width").n;
         int height = (int)js.GetField("Height").n;
