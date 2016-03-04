@@ -68,8 +68,11 @@ public class PlayBoardBehaviour : MonoBehaviour
                         MakeSpell(hexagonBehaviour);
                     }
                 }
-            }
-            else
+            }            
+        }
+        else
+        {
+            if (_previousHexagon != null)
                 _previousHexagon.CurrentState = _previousHexagon.PreviousState;
         }
     }
