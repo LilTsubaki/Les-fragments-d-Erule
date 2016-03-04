@@ -23,13 +23,15 @@ public class Vampiric : EffectMinMax
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
-        foreach (Character c in chars)
+        int damage = GetRandom();
+        List<Killable> killables = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
+
+        foreach (var k in killables)
         {
-            int damage = (int)new Random().Next((int)_min, (int)_max + 1);
-            damage = c.ReceiveDamage(damage, _element);
+            damage = k.ReceiveDamage(damage, _element);
             int heal = _vampiricPercentage * damage / 100;
-            caster.ReceiveHeal(heal);
+            if (k is Character)
+                caster.ReceiveHeal(heal);
         }
     }
 }
