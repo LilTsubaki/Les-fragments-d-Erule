@@ -77,8 +77,21 @@ public class PlayBoardBehaviour : MonoBehaviour
         {
             if (_previousHexagon != null)
             {
-                _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+                //_previousHexagon.CurrentState = _previousHexagon.PreviousState;
+                if (_previousHexagon.CurrentState == Hexagon.State.OverAccessible)
+                    _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+
+                if ((_previousHexagon.CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
+                     _previousHexagon.CurrentState == Hexagon.State.Targetable) && _previousHexagonBehaviour.FinalArea != null)
+                {
+                    for (int i = 0; i < _previousHexagonBehaviour.FinalArea.Count; i++)
+                    {
+                        if (_previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                            _previousHexagonBehaviour.FinalArea[i].CurrentState = _previousHexagonBehaviour.FinalArea[i].PreviousState;
+                    }
+                }
                 _previousHexagon = null;
+                _previousHexagonBehaviour = null;
             }
                 
         }
