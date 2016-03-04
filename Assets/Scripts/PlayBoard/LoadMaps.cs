@@ -36,14 +36,16 @@ public class LoadMaps : MonoBehaviour
         float buttonSizeX = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.x;
         float buttonSizeY = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.y;
 
-        JSONObject o;
+        JSONObject maps = JSONObject.GetJsonObjectFromFile("JsonFiles/Maps/MapList");
+        List<JSONObject> maplist = maps.GetField("maps").list;
         
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/Resources/JsonFiles/Maps", "*.json");
-        _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f * ((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
+        _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f * ((maplist.Count) / nbButtonsPerLine) * buttonSizeY);
         _content.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
 
         float offsetX = ((680 / (float)nbButtonsPerLine) - buttonSizeX) / 2;
-        for (int i = 0; i < fileEntries.Length; ++i)
+
+        /*for (int i = 0; i < fileEntries.Length; ++i)
         {
             string path = fileEntries[i];
             GameObject obj = Instantiate(_buttonToCopy);
@@ -56,6 +58,32 @@ public class LoadMaps : MonoBehaviour
             string mapName = Path.GetFileNameWithoutExtension(path);
             button.GetComponentInChildren<Text>().text = mapName;
             Sprite image = Resources.Load("miniatures/" + mapName, typeof(Sprite)) as Sprite;
+            if (image == null)
+            {
+                Logger.Error("Not found " + mapName);
+            }
+            else
+            {
+                obj.GetComponent<Image>().sprite = image;
+            }
+        }//*/
+
+        for (int i = 0; i < maplist.Count; ++i)
+        {
+            string path = maplist[i].GetField("path").str;
+            string mapName = maplist[i].GetField("name").str;
+            string mapImage = maplist[i].GetField("miniature").str;
+
+
+            GameObject obj = Instantiate(_buttonToCopy);
+            obj.SetActive(true);
+            obj.transform.SetParent(_content.transform);
+            obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX * 2) * (i % nbButtonsPerLine), (i / nbButtonsPerLine + 1) * -buttonSizeY);
+
+            Button button = obj.GetComponent<Button>();
+            button.onClick.AddListener(delegate { LoadingScreen(path); });
+            button.GetComponentInChildren<Text>().text = mapName;
+            Sprite image = Resources.Load("miniatures/" + mapImage, typeof(Sprite)) as Sprite;
             if (image == null)
             {
                 Logger.Error("Not found " + mapName);
