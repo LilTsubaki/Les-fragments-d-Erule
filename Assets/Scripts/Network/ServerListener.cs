@@ -185,6 +185,7 @@ public class ServerListener
             NetworkUtils.WriteCharacter(_character, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_character), _client.GetStream());
             NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
+            NetworkUtils.WriteFloat(ServerManager.GetInstance()._server.currrentTimeout, _client.GetStream());
 
             _client.GetStream().Flush();
         }
@@ -238,6 +239,7 @@ public class ServerListener
             NetworkUtils.WriteCharacter(_character, _client.GetStream());
             NetworkUtils.WriteBool(PlayBoardManager.GetInstance().isMyTurn(_character), _client.GetStream());
             NetworkUtils.WriteInt(PlayBoardManager.GetInstance().TurnNumber, _client.GetStream());
+            NetworkUtils.WriteFloat(ServerManager.GetInstance()._server.currrentTimeout, _client.GetStream());
 
             _client.GetStream().Flush();
         }

@@ -12,6 +12,7 @@ public class Client : MonoBehaviour{
     public int broadcastPort;
     public int playPort;
     public int _turnNumber = 0;
+    public float _currentTimeout=0;
     TcpClient _tcpClient;
     UdpClient _udpClient;
     bool _isRunning;
@@ -28,6 +29,7 @@ public class Client : MonoBehaviour{
 
     public GameObject _buttonHost;
     public GameObject _scrollPanel;
+    public Text timerText;
     Dictionary<string, int> _hostsReceived;
     bool _newHost;
 
@@ -109,6 +111,10 @@ public class Client : MonoBehaviour{
 
     void Update()
     {
+        _currentTimeout -= Time.deltaTime;
+
+        timerText.text = "" + _currentTimeout;
+
         if (_resetBoard)
         {
             RunicBoardManager.GetInstance()._runicBoardBehaviour.ResetRunes(_runeKept);
@@ -190,12 +196,14 @@ public class Client : MonoBehaviour{
                 _currentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                _currentTimeout = NetworkUtils.ReadFloat(_tcpClient.GetStream());
                 return true;
             //end of turn
             case 9:
                 CurrentCharacter = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
+                _currentTimeout = NetworkUtils.ReadFloat(_tcpClient.GetStream());
                 Logger.Debug("nb action points : " + CurrentCharacter.CurrentActionPoints);
                 _lockedMode = false;
                 return true;
@@ -379,41 +387,6 @@ public class Client : MonoBehaviour{
 
         return lobbyJoined;
     }
-
-    /*public void RequestCharacter()
-    {
-        while (_isListeningThreadReading);
-
-        _isMainThreadReading = true;
-        Logger.Debug("send request character");
-        NetworkUtils.WriteInt(7, _tcpClient.GetStream());
-        _tcpClient.GetStream().Flush();
-
-        int id;
-        do
-        {
-            id = NetworkUtils.ReadInt(_tcpClient.GetStream());
-        }
-        while (ReadMessage(id));
-
-
-        if (id == 6)
-        {
-            Logger.Debug("read character");
-            CurrentCharacter1 =  NetworkUtils.ReadCharacter(_tcpClient.GetStream());
-            _isMyTurn = NetworkUtils.ReadBool(_tcpClient.GetStream());
-            _turnNumber = NetworkUtils.ReadInt(_tcpClient.GetStream());
-        }
-
-        else
-        {
-            if(id == 8)
-            {
-                Logger.Error("Connection refused");
-            }
-        }
-        _isMainThreadReading = false;
-    }*/
 
     public void SendEndTurn()
     {

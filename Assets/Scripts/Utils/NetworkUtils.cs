@@ -31,7 +31,30 @@ public class NetworkUtils {
         return BitConverter.ToInt32(data, 0);
     }
 
-	public static void WriteBool(bool b, NetworkStream stream)
+    public static void WriteFloat(float i, NetworkStream stream)
+    {
+        byte[] data;
+        data = BitConverter.GetBytes(i);
+        if (BitConverter.IsLittleEndian)
+            Array.Reverse(data);
+
+        stream.Write(data, 0, sizeof(int));
+    }
+
+    public static float ReadFloat(NetworkStream stream)
+    {
+        byte[] data = new byte[sizeof(float)];
+
+
+        stream.Read(data, 0, sizeof(float));
+
+        if (BitConverter.IsLittleEndian)
+            Array.Reverse(data);
+
+        return BitConverter.ToSingle(data, 0);
+    }
+
+    public static void WriteBool(bool b, NetworkStream stream)
 	{
 		byte[] data;
 		data = BitConverter.GetBytes(b);
