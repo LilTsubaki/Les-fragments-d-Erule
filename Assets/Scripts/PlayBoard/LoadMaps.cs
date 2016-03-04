@@ -36,6 +36,8 @@ public class LoadMaps : MonoBehaviour
         float buttonSizeX = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.x;
         float buttonSizeY = _buttonToCopy.GetComponent<RectTransform>().sizeDelta.y;
 
+        JSONObject o;
+        
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/Resources/JsonFiles/Maps", "*.json");
         _content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 1.0f * ((fileEntries.Length) / nbButtonsPerLine) * buttonSizeY);
         _content.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
