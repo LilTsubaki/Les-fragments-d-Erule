@@ -62,11 +62,14 @@ public class PlayBoardBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    _currentTime += Time.fixedDeltaTime;
-                    if(_currentTime > _timedOut)
+                    if(PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
                     {
-                        MakeSpell(hexagonBehaviour);
-                    }
+                        _currentTime += Time.fixedDeltaTime;
+                        if (_currentTime > _timedOut)
+                        {
+                            MakeSpell(hexagonBehaviour);
+                        }
+                    }                    
                 }
             }            
         }
