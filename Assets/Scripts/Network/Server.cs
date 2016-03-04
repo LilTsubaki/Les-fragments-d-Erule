@@ -271,13 +271,12 @@ public class Server : MonoBehaviour{
 
     public void EndTurn()
     {
-        if(_client1!=null)
+        currrentTimeout = timeout;
+
+        if (_client1!=null)
             _client1.EndTurn();
         if (_client2 != null)
             _client2.EndTurn();
-
-        
-        currrentTimeout = timeout;
     }
 
     public void UpdateCharacter(Character character)
