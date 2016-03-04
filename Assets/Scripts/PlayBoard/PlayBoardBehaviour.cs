@@ -76,7 +76,11 @@ public class PlayBoardBehaviour : MonoBehaviour
         else
         {
             if (_previousHexagon != null)
+            {
                 _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+                _previousHexagon = null;
+            }
+                
         }
     }
 
