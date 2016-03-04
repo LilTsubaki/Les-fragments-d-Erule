@@ -39,6 +39,11 @@ public class HexagonBehaviour : MonoBehaviour
             switch (_hexagon.CurrentState)
             {
                 case Hexagon.State.Default :
+                    if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
+                    {
+                        _hexagon.Glyph.SetActive(false);
+                    }
+
                     if (_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround())
                     {
                         _hexagon.Glyph.SetActive(true);
