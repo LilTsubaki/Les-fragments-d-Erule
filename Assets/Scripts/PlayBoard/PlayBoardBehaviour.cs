@@ -5,6 +5,8 @@ public class PlayBoardBehaviour : MonoBehaviour
 {
     private Hexagon _previousHexagon;
     private HexagonBehaviour _previousHexagonBehaviour;
+    private double _timedOut = 3;
+    private double _currentTime = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -24,36 +26,67 @@ public class PlayBoardBehaviour : MonoBehaviour
         {
             HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
             Hexagon hexa = hexagonBehaviour._hexagon;
-            if (hexa != null && _previousHexagon != hexa)
+            if (hexa != null)
             {
-                if (_previousHexagon != null && _previousHexagonBehaviour != null)
+                if(_previousHexagon != hexa)
                 {
-                    if (_previousHexagon.CurrentState == Hexagon.State.OverAccessible)
-                        _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+                    _currentTime = 0;
 
-                    if ((_previousHexagon.CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
-                         _previousHexagon.CurrentState == Hexagon.State.Targetable) && _previousHexagonBehaviour.FinalArea != null)
+                    if (_previousHexagon != null && _previousHexagonBehaviour != null)
                     {
-                        for (int i = 0; i < _previousHexagonBehaviour.FinalArea.Count; i++)
+                        if (_previousHexagon.CurrentState == Hexagon.State.OverAccessible)
+                            _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+
+                        if ((_previousHexagon.CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
+                             _previousHexagon.CurrentState == Hexagon.State.Targetable) && _previousHexagonBehaviour.FinalArea != null)
                         {
-                            if (_previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
-                            _previousHexagonBehaviour.FinalArea[i].CurrentState = _previousHexagonBehaviour.FinalArea[i].PreviousState;
+                            for (int i = 0; i < _previousHexagonBehaviour.FinalArea.Count; i++)
+                            {
+                                if (_previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagonBehaviour.FinalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
+                                    _previousHexagonBehaviour.FinalArea[i].CurrentState = _previousHexagonBehaviour.FinalArea[i].PreviousState;
+                            }
                         }
                     }
+
+
+                    _previousHexagon = hexa;
+                    _previousHexagonBehaviour = hexagonBehaviour;
+
+                    //on mouse enter new hexa
+                    if (hexa.CurrentState == Hexagon.State.Targetable)
+                    {
+                        hexagonBehaviour.MakeFinalArea();
+                    }
+                    if (hexa.CurrentState == Hexagon.State.Accessible)
+                        hexa.CurrentState = Hexagon.State.OverAccessible;
                 }
-
-
-                _previousHexagon = hexa;
-                _previousHexagonBehaviour = hexagonBehaviour;
-
-                //on mouse enter new hexa
-                if (hexa.CurrentState == Hexagon.State.Targetable)
+                else
                 {
-                    hexagonBehaviour.Make_finalArea();
+                    _currentTime += Time.fixedDeltaTime;
+                    if(_currentTime > _timedOut)
+                    {
+                        MakeSpell(hexagonBehaviour);
+                    }
                 }
-                if (hexa.CurrentState == Hexagon.State.Accessible)
-                    hexa.CurrentState = Hexagon.State.OverAccessible;
             }
+            else
+                _previousHexagon.CurrentState = _previousHexagon.PreviousState;
+        }
+    }
+
+
+    public void MakeSpell(HexagonBehaviour hexagonBehaviour)
+    {
+        Hexagon hexa = hexagonBehaviour._hexagon;
+        if (hexa != null && (hexa.CurrentState == Hexagon.State.OverEnnemiTargetable || hexa.CurrentState == Hexagon.State.OverSelfTargetable
+            || hexa.CurrentState == Hexagon.State.Targetable))
+        {
+            if (hexagonBehaviour.FinalArea == null)
+            {
+                hexagonBehaviour.MakeFinalArea();
+            }
+            SpellManager.getInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
+            PlayBoardManager.GetInstance().Board.ResetBoard();
         }
     }
 }

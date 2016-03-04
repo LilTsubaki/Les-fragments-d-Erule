@@ -98,7 +98,7 @@ public class HexagonBehaviour : MonoBehaviour
             _hexagon.CurrentState = Hexagon.State.OverAccessible;
     }*/
 
-    public void Make_finalArea()
+    public void MakeFinalArea()
     {
         if (_hexagon == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
         {

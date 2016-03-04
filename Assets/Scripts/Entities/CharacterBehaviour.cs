@@ -37,12 +37,10 @@ public class CharacterBehaviour : MonoBehaviour
             if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
             {
                 HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
-                MakeSpell(hexagonBehaviour);
+                //MakeSpell(hexagonBehaviour);
                 Hexagon hexa = hexagonBehaviour._hexagon;
                 if (hexa != null)
                 {
-
-
                     bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
                     _character.CurrentStep = 0;
 
@@ -65,20 +63,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    public void MakeSpell(HexagonBehaviour hexagonBehaviour)
-    {
-        Hexagon hexa = hexagonBehaviour._hexagon;
-        if (hexa != null&& (hexa.CurrentState == Hexagon.State.OverEnnemiTargetable || hexa.CurrentState == Hexagon.State.OverSelfTargetable
-            || hexa.CurrentState == Hexagon.State.Targetable))
-        {
-            if (hexagonBehaviour.FinalArea == null)
-            {
-                hexagonBehaviour.Make_finalArea();
-            }
-            SpellManager.getInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
-            PlayBoardManager.GetInstance().Board.ResetBoard();
-        }
-    }
+    
 
     bool goTo(Hexagon hexa, float speed)
     {
@@ -122,49 +107,4 @@ public class CharacterBehaviour : MonoBehaviour
             }
         }
     }
-
-    /*void OnMouseEnter()
-    {
-        if (_character.Position.CurrentState == Hexagon.State.Targetable)
-        {
-            if (_character.Position == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
-            {
-
-                finalArea = SpellManager.getInstance().CurrentSelfArea.AreaToHexa(Direction.EnumDirection.East, _character.Position);
-                //Logger.Error("nb hexa final area : " + finalArea.Count);
-                for (int i = 0; i < finalArea.Count; i++)
-                {
-                    //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
-                    //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
-                    finalArea[i].CurrentState = Hexagon.State.OverSelfTargetable;
-                }
-            }
-            else
-            {
-                Direction.EnumDirection newDirection = Direction.GetDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _character.Position);
-                finalArea = SpellManager.getInstance().CurrentTargetArea.AreaToHexa(newDirection, _character.Position);
-                //Logger.Error("nb hexa final area : " + finalArea.Count);
-                for (int i = 0; i < finalArea.Count; i++)
-                {
-                    //finalArea[i].PreviousColor = _character.Position.GameObject.GetComponentInChildren<Renderer>().material.color;
-                    //finalArea[i].GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
-                    finalArea[i].CurrentState = Hexagon.State.OverEnnemiTargetable;
-                }
-                //_character.Position.GameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
-            }
-        }
-    }
-
-    void OnMouseExit()
-    {
-        if ((_character.Position.CurrentState == Hexagon.State.OverSelfTargetable || _character.Position.CurrentState == Hexagon.State.OverEnnemiTargetable ||
-             _character.Position.CurrentState == Hexagon.State.Targetable) && finalArea != null)
-        {
-            for (int i = 0; i < finalArea.Count; i++)
-            {
-                if (finalArea[i].CurrentState == Hexagon.State.OverSelfTargetable || finalArea[i].CurrentState == Hexagon.State.OverEnnemiTargetable)
-                    finalArea[i].CurrentState = finalArea[i].PreviousState;
-            }
-        }
-    }*/
 }
