@@ -1236,18 +1236,15 @@ public class JSONObject {
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+            hexagon.GameObject.transform.Rotate(EruleRandom.RangeValue(0, 7)*180f, EruleRandom.RangeValue(0, 11) * 60f , 0f); 
+
+
             hexagon.Glyph = GameObject.Instantiate(glyph);
             hexagon.Glyph.transform.parent = hexagon.GameObject.transform;
-            hexagon.Glyph.transform.localPosition = new Vector3(0, 0.2f, 0);
+            hexagon.Glyph.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n+0.2f, 0.75f * hexagon._posY);
             hexagon.Glyph.SetActive(false);
 
-            /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-				hexagon.GameObject.transform.localScale= new Vector3 (hexagon.GameObject.transform.localScale.x, hexagon.GameObject.transform.localScale.y, -1*hexagon.GameObject.transform.localScale.z);
-
-			if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-				hexagon.GameObject.transform.localScale= new Vector3 (-1*hexagon.GameObject.transform.localScale.x, hexagon.GameObject.transform.localScale.y, hexagon.GameObject.transform.localScale.z);*/
-
-            hexagon.GameObject.transform.Rotate(0f, (new System.Random()).Next(0,5) * 60f, 0f);
+           
 
             hexagon.CurrentState = Hexagon.State.Default;
 
@@ -1259,39 +1256,6 @@ public class JSONObject {
             else
             {
                 hexagon.IsSpawn = false;
-            }
-
-            if (hexa.GetField("boost") != null)
-            {
-                hexagon.BoostElement = (Hexagon.Boost)((int)(hexa.GetField("boost").f));
-                Logger.Debug(hexagon.BoostElement);
-
-                switch (hexagon.BoostElement)
-                {
-                    case Hexagon.Boost.Air:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._air;
-                        Logger.Debug("aaaair");
-                        break;
-                    case Hexagon.Boost.Earth:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._earth;
-                        break;
-                    case Hexagon.Boost.Fire:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._fire;
-                        break;
-                    case Hexagon.Boost.Metal:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._metal;
-                        break;
-                    case Hexagon.Boost.Water:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._water;
-                        break;
-                    case Hexagon.Boost.Wood:
-                        hexagon.GameObject.GetComponentInChildren<Renderer>().material.color = ColorErule._wood;
-                        break;
-                    case Hexagon.Boost.Nothing:
-                        break;
-                    default:
-                        break;
-                }
             }
 
             if (hexa.GetField("underground") != null) {
@@ -1306,13 +1270,7 @@ public class JSONObject {
                     underground.name = undergroundName;
                     underground.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n - 0.2f, 0.75f * hexagon._posY);
 
-                    /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-						underground.transform.localScale = new Vector3 (underground.transform.localScale.x, underground.transform.localScale.y, -1*underground.transform.localScale.z);
-
-					if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-						underground.transform.localScale = new Vector3 (-1*underground.transform.localScale.x, underground.transform.localScale.y, underground.transform.localScale.z);*/
-
-                    underground.transform.Rotate(0f, (new System.Random()).Next(0, 5) * 60f, 0f);
+                    underground.transform.Rotate(0f, EruleRandom.RangeValue(0, 5) * 60f, 0f);
 
                     hexagon.Underground = underground;
 
@@ -1331,14 +1289,7 @@ public class JSONObject {
                     obs._gameobject.name = obstacleName;
                     obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
                     obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
-
-                    /*if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-						obs._gameobject.transform.localScale = new Vector3 (obs._gameobject.transform.localScale.x, obs._gameobject.transform.localScale.y, -1*obs._gameobject.transform.localScale.z);
-
-					if (UnityEngine.Random.Range (0f, 1f) > 0.5)
-						obs._gameobject.transform.localScale = new Vector3 (-1*obs._gameobject.transform.localScale.x, obs._gameobject.transform.localScale.y, obs._gameobject.transform.localScale.z);*/
-
-                    obs._gameobject.transform.Rotate(0f, (new System.Random()).Next(0, 5) * 60f, 0f);
+                    obs._gameobject.transform.Rotate(0f, EruleRandom.RangeValue(0, 5) * 60f, 0f);
                 }
             }
 
