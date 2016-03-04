@@ -30,8 +30,8 @@ public class PlayerOnTimeEffect : EffectOnTime
     /// <param name="caster">The caster of the effect.</param>
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
-        foreach(Character c in chars)
+        List<Killable> killable = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
+        foreach(Killable c in killable)
         {
             PlayerOnTimeAppliedEffect effect = new PlayerOnTimeAppliedEffect(_id, EffectDirect, _nbTurn, caster);
             c.ReceiveOnTimeEffect(effect);

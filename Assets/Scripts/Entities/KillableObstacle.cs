@@ -57,7 +57,7 @@ public class KillableObstacle : Obstacle, Killable
         hexagons.Add(_position);
         foreach (PlayerOnTimeAppliedEffect effect in _onTimeEffects.Values)
         {
-            Logger.Trace("Applying OnTimeEffect " + effect.GetId());
+            Logger.Trace("Applying OnTimeEffect Obstacle" + effect.GetId());
             effect.ApplyEffect(hexagons, _position, Caster);            
         }
     }

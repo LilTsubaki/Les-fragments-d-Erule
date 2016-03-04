@@ -461,9 +461,9 @@ public class Hexagon : IAStar<Hexagon>
     public void ApplyOnTimeEffects()
     {
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
-
+        
         //apply effects on killable obstacle
-        if(_entity is KillableObstacle)
+        if(_entity!=null && _entity is KillableObstacle)
         {
             KillableObstacle obstacle = (KillableObstacle)_entity;
             if(obstacle.Caster == currentPlayer)
@@ -476,7 +476,6 @@ public class Hexagon : IAStar<Hexagon>
                 }
             }
         }
-
         //apply effects on players
         if (currentPlayer == _entity)
         {
@@ -571,18 +570,20 @@ public class Hexagon : IAStar<Hexagon>
 
     public bool ContainsGrowableEffect()
     {
-        foreach(GroundOnTimeAppliedEffectGrowable effect in _onTimeEffects.Values)
+        foreach(var effect in _onTimeEffects.Values)
         {
-            return true;
+            if(effect is GroundOnTimeAppliedEffectGrowable)
+                return true;
         }
         return false;
     }
 
     public void GrowUp()
     {
-        foreach (GroundOnTimeAppliedEffectGrowable effect in _onTimeEffects.Values)
+        foreach (var effect in _onTimeEffects.Values)
         {
-            effect.GrowUp(this);
+            if (effect is GroundOnTimeAppliedEffectGrowable)
+               ((GroundOnTimeAppliedEffectGrowable) effect).GrowUp(this);
         }
     }
 }

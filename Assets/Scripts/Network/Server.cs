@@ -71,6 +71,7 @@ public class Server : MonoBehaviour{
 
     public void Awake()
     {
+        Logger.logLvl = Logger.Type.TRACE;
         currrentTimeout = timeout;
         ServerManager.GetInstance().Init(this);
         _clients = new List<ServerListener>();

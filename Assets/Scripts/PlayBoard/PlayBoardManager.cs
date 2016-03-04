@@ -201,11 +201,11 @@ public class PlayBoardManager
         {
             hex.GrowUp();
         }
-
+        
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
-            {    
+            {
                 hex.ApplyOnTimeEffects();
                 hex.ReduceOnTimeEffectsCastedBy(currentPlayer);
                 hex.RemoveMarkedOnTimeEffects();
