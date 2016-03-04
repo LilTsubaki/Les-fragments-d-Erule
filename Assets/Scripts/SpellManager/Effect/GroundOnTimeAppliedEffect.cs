@@ -4,10 +4,10 @@ public class GroundOnTimeAppliedEffect : EffectOnTime {
 
     protected Character _caster;
 
-    public GroundOnTimeAppliedEffect(int id, EffectDirect effectDirect, int nbTurn, Character caster)
+    public GroundOnTimeAppliedEffect(int id, Effect effect, int nbTurn, Character caster)
     {
         _id = id;
-        EffectDirect = effectDirect;
+        _effect = effect;
         _nbTurn = nbTurn;
         _caster = caster;
     }
@@ -16,7 +16,7 @@ public class GroundOnTimeAppliedEffect : EffectOnTime {
     {
         if (_nbTurn > 0)
         {
-            EffectDirect.ApplyEffect(hexagons, target, _caster);
+            _effect.ApplyEffect(hexagons, target, _caster);
         }
         else
         {

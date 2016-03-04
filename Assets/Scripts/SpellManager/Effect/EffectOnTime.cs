@@ -2,27 +2,14 @@
 
 public abstract class EffectOnTime : Effect
 {
-    private EffectDirect effectDirect;
+    public Effect _effect;
     protected int _nbTurn;
-
-    public EffectDirect EffectDirect
-    {
-        get
-        {
-            return effectDirect;
-        }
-
-        set
-        {
-            effectDirect = value;
-        }
-    }
 
     public EffectOnTime() : base() { }
 
-	public EffectOnTime (int id, EffectDirect effectDirect, int nbTurn): base(id)
+	public EffectOnTime (int id, Effect effectDirect, int nbTurn): base(id)
 	{
-		EffectDirect = effectDirect;
+        _effect = effectDirect;
 		_nbTurn = nbTurn;
 	}
 }

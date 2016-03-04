@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
 {
-    public GroundOnTimeAppliedEffectGrowable(int id, EffectDirect effectDirect, int nbTurn, Character caster) : base(id, effectDirect, nbTurn, caster)
+    public GroundOnTimeAppliedEffectGrowable(int id, Effect effect, int nbTurn, Character caster) : base(id, effect, nbTurn, caster)
     {
 
     }
@@ -13,7 +13,7 @@ public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
     {
         if (_nbTurn > 0)
         {
-            EffectDirect.ApplyEffect(hexagons, target, _caster);
+            _effect.ApplyEffect(hexagons, target, _caster);
         }
         else
         {
@@ -26,7 +26,7 @@ public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
         if (PlayBoardManager.GetInstance().isMyTurn(_caster)) { 
             foreach (Hexagon hex in hexagon.GetAllNeighbours())
             {
-                hex.AddOnTimeEffect(new GroundOnTimeAppliedEffectGrowable(_id, EffectDirect, _nbTurn, _caster));
+                hex.AddOnTimeEffect(new GroundOnTimeAppliedEffectGrowable(_id, _effect, _nbTurn, _caster));
             }
         }
     }

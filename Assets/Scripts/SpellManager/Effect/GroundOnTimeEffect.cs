@@ -11,7 +11,7 @@ public class GroundOnTimeEffect : EffectOnTime
         _id = (int)js.GetField(js.keys[0]).n;
         try
         {
-            EffectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
+            _effect = SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {
@@ -31,7 +31,7 @@ public class GroundOnTimeEffect : EffectOnTime
     {
         foreach(Hexagon hexa in hexagons)
         {
-            GroundOnTimeAppliedEffect effect = new GroundOnTimeAppliedEffect(_id, EffectDirect, _nbTurn, caster);
+            GroundOnTimeAppliedEffect effect = new GroundOnTimeAppliedEffect(_id, _effect, _nbTurn, caster);
             hexa.AddOnTimeEffect(effect);
         }
     }

@@ -12,7 +12,7 @@ public class PlayerOnTimeEffect : EffectOnTime
 
         try
         {
-            EffectDirect = (EffectDirect)SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
+            _effect = SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {
@@ -33,7 +33,7 @@ public class PlayerOnTimeEffect : EffectOnTime
         List<Killable> killable = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
         foreach(Killable c in killable)
         {
-            PlayerOnTimeAppliedEffect effect = new PlayerOnTimeAppliedEffect(_id, EffectDirect, _nbTurn, caster);
+            PlayerOnTimeAppliedEffect effect = new PlayerOnTimeAppliedEffect(_id, _effect, _nbTurn, caster);
             c.ReceiveOnTimeEffect(effect);
         }
     }

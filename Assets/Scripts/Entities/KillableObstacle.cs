@@ -35,7 +35,7 @@ public class KillableObstacle : Obstacle, Killable
 
     public void ReceiveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
     {
-        if (effect.EffectDirect is DamageElement)
+        if (effect._effect is DamageElement)
         {
             _onTimeEffects[effect.GetId()] = effect;
         }            

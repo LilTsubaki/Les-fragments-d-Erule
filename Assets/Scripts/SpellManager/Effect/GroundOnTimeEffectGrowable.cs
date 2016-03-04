@@ -18,7 +18,7 @@ public class GroundOnTimeEffectGrowable : GroundOnTimeEffect
     {
         foreach (Hexagon hexa in hexagons)
         {
-            GroundOnTimeAppliedEffectGrowable effect = new GroundOnTimeAppliedEffectGrowable(_id, EffectDirect, _nbTurn, caster);
+            GroundOnTimeAppliedEffectGrowable effect = new GroundOnTimeAppliedEffectGrowable(_id, _effect, _nbTurn, caster);
             hexa.AddOnTimeEffect(effect);
         }
     }
