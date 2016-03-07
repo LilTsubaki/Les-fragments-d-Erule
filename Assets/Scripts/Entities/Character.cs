@@ -44,6 +44,8 @@ public class Character : Entity, Killable
 
     private bool _isStabilized;
 
+    private Vector3 _positionOffset = new Vector3(0.0f, 0.13f, 0.0f);
+
     public Character(int lifeMax)
     {
         _lifeMax = lifeMax;
@@ -405,11 +407,15 @@ public class Character : Entity, Killable
         Logger.Debug("Count : " + count + ", Hexagon : " + _position._posX + ", " + _position._posY);
 
         if (count == 0)
+        {
             return _position;
+        }
 
         Hexagon target = _position.GetHexa(direction);
         if (!target.isReachable())
+        {
             return _position;
+        }
         else
         {
             _position._entity = null;
@@ -442,10 +448,13 @@ public class Character : Entity, Killable
                     break;
             }
 
-            Logger.Debug("Maaaagie TP");
-            Position = portals[indexEnd].Position;
-            portals[indexEnd].Destroy();
-            portals.RemoveAt(indexEnd);
+            Portal endPortal = portals[indexEnd];
+            if (endPortal.Position._entity != null)
+            {
+                Position = endPortal.Position;
+                endPortal.Destroy();
+                portals.RemoveAt(indexEnd);
+            }
         }
     }
 
@@ -673,6 +682,19 @@ public class Character : Entity, Killable
         set
         {
             _isStabilized = value;
+        }
+    }
+
+    public Vector3 PositionOffset
+    {
+        get
+        {
+            return _positionOffset;
+        }
+
+        set
+        {
+            _positionOffset = value;
         }
     }
 }

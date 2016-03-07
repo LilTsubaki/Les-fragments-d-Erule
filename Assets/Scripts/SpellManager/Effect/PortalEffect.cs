@@ -30,11 +30,17 @@ public class PortalEffect : EffectDirect
             instance.transform.position = target.GameObject.transform.position;
             Portal portal = new Portal(target, instance);
             portals.Add(portal);
-            Logger.Debug("Nombre portails : portals.Count");
+
+            // Automatically teleport the caster if is on a Portal.
+            if (caster.Position.Portal != null)
+            {
+                caster.Teleport();
+                caster._gameObject.transform.position = caster.Position.GameObject.transform.position + caster.PositionOffset;
+            }
         }
         else
         {
-            Logger.Debug("Targeted hexagon has an entity");
+            Logger.Debug("PortalEffect : Targeted hexagon has an entity");
         }
     }
 }

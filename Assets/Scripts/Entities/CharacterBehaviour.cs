@@ -68,7 +68,7 @@ public class CharacterBehaviour : MonoBehaviour
     bool goTo(Hexagon hexa, float speed)
     {
         float step = speed * Time.deltaTime;
-        Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 temp = _character.PositionOffset;
         transform.position = Vector3.MoveTowards(transform.position, hexa.GameObject.transform.position + temp, step);
         return Mathf.Approximately(Vector3.SqrMagnitude(hexa.GameObject.transform.position + temp - transform.position), 0);
     }
@@ -78,6 +78,12 @@ public class CharacterBehaviour : MonoBehaviour
         if(goTo(_character.Position, _translateSpeed))
         {
             _character._state = Character.State.Waiting;
+            // Teleport player if the last hexagon has a portal
+            if (_character.Position.Portal != null)
+            {
+                _character.Teleport();
+                transform.position = _character.Position.GameObject.transform.position + _character.PositionOffset;
+            }
         }
     }
 
@@ -98,10 +104,10 @@ public class CharacterBehaviour : MonoBehaviour
                     _character._state = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
-                    if (_character.Position.Portal != null){
-                        Logger.Debug("Sur un portal !");
+                    if (_character.Position.Portal != null)
+                    {
                         _character.Teleport();
-                        transform.position = _character.Position.GameObject.transform.position;
+                        transform.position = _character.Position.GameObject.transform.position + _character.PositionOffset;
                     }
                 }
             }
