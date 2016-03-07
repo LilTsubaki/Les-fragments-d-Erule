@@ -278,8 +278,11 @@ public class JSONObject {
                 
                 while (line != null);
                 theReader.Close();
+                Resources.UnloadAsset(text);
                 return new JSONObject(str);
             }
+            
+
         }
 
         catch (Exception e)
@@ -287,6 +290,8 @@ public class JSONObject {
             Console.WriteLine("{0}\n", e.Message);
             return null;
         }
+
+       
     }
 
 
