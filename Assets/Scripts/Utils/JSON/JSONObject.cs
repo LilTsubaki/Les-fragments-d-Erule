@@ -1199,7 +1199,8 @@ public class JSONObject {
     public static PlayBoard JSONToBoard(ref GameObject board, String fileName)
     {
         board = new GameObject("Board");
-
+        GameObject assets = new GameObject("Assets");
+        assets.transform.parent = board.transform;
         JSONObject js = JSONObject.GetJsonObjectFromFile("JsonFiles/Maps/" + fileName);
 
         int width = (int)js.GetField("Width").n;
@@ -1258,7 +1259,7 @@ public class JSONObject {
                 hexagon.IsSpawn = false;
             }
 
-            if (hexa.GetField("underground") != null) {
+            /*if (hexa.GetField("underground") != null) {
                 string undergroundName = hexa.GetField("underground").str;
                 if (undergroundName != null)
                 {
@@ -1275,7 +1276,7 @@ public class JSONObject {
                     hexagon.Underground = underground;
 
                 }
-            }
+            }*/
 
 
             if (hexa.GetField("obstacle") != null) {
@@ -1283,11 +1284,18 @@ public class JSONObject {
                 if (obstacleName != null)
                 {
                     GameObject prefabObstacle = (GameObject)Resources.Load("Prefabs/" + obstacleName, typeof(GameObject));
+                    GameObject asset = GameObject.Instantiate(prefabObstacle);
+                    asset.transform.parent = assets.transform;
+                    asset.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+
+
                     Obstacle obs = new Obstacle(hexagon);
-                    obs._gameobject = GameObject.Instantiate(prefabObstacle);
+                    obs._gameobject = new GameObject(prefabObstacle.name);
                     obs._gameobject.transform.parent = hexagon.GameObject.transform;
-                    obs._gameobject.name = obstacleName;
                     obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+                    CapsuleCollider collider = obs._gameobject.AddComponent<CapsuleCollider>();
+                    collider.height = 5;
+                    collider.radius = 0.5f;
                     obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
                     obs._gameobject.transform.Rotate(0f, EruleRandom.RangeValue(0, 5) * 60f, 0f);
                 }
@@ -1296,6 +1304,11 @@ public class JSONObject {
             if (hexa.GetField("powerShard") != null)
             {
                 PowerShard ps = PowerShard.JSONToPowerShard(hexa.GetField("powerShard"), hexagon);
+
+                GameObject prefabShard = (GameObject)Resources.Load("Prefabs/" + hexa.GetField("powerShard").GetField("gameObject").str, typeof(GameObject));
+                GameObject asset = GameObject.Instantiate(prefabShard);
+                asset.transform.parent = assets.transform;
+                asset.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
 
                 ps._gameobject.transform.parent = hexagon.GameObject.transform;
                 ps._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);

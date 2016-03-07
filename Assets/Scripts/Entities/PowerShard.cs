@@ -75,7 +75,6 @@ public class PowerShard : Obstacle
     public static PowerShard JSONToPowerShard(JSONObject powerShard, Hexagon position)
     {
         int coolDown=(int)powerShard.GetField("coolDown").n;
-        GameObject prefab = (GameObject)Resources.Load("Prefabs/" + powerShard.GetField("gameObject").str, typeof(GameObject));
         List<JSONObject> ids = powerShard.GetField("effectIds").list;
         List<int> effectIds = new List<int>();
 
@@ -84,7 +83,10 @@ public class PowerShard : Obstacle
             effectIds.Add((int)jo.n);
         }
         PowerShard ps = new PowerShard(position, coolDown, effectIds);
-        ps._gameobject = GameObject.Instantiate(prefab);
+        ps._gameobject = new GameObject();
+        CapsuleCollider collider = ps._gameobject.AddComponent<CapsuleCollider>();
+        collider.height = 5;
+        collider.radius = 0.5f;
         ps._gameobject.name = powerShard.GetField("gameObject").str;
         return ps;
     }
