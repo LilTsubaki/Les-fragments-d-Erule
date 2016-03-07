@@ -75,7 +75,7 @@ public class PlayBoardBehaviour : MonoBehaviour
         }
         else
         {
-            if (_previousHexagon != null && _previousHexagon.CurrentState != Hexagon.State.sp)
+            if (_previousHexagon != null && _previousHexagon.CurrentState != Hexagon.State.Spawnable)
             {
                 if ((_previousHexagon.CurrentState == Hexagon.State.OverSelfTargetable || _previousHexagon.CurrentState == Hexagon.State.OverEnnemiTargetable ||
                              _previousHexagon.CurrentState == Hexagon.State.Targetable) && _previousHexagonBehaviour.FinalArea != null)
