@@ -111,6 +111,13 @@ public class Hexagon : IAStar<Hexagon>
 
         set
         {
+            if (value == State.Default)
+            {
+                _previousState = State.Default;
+                _currentState = State.Default;
+                _stateChanged = true;
+            }
+
             if (value == _currentState)
                 return;
             _previousState = _currentState;
