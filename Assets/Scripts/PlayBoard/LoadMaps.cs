@@ -19,6 +19,8 @@ public class LoadMaps : MonoBehaviour
 
     private string _chosenMap;
 
+    public AroundMapScreen _around;
+
     // Use this for initialization
     void Start()
     {
@@ -116,5 +118,6 @@ public class LoadMaps : MonoBehaviour
         tsn._uiPlayer1 = _uiPlayer1;
         tsn._uiPlayer2 = _uiPlayer2;
         tsn._boardName = name;
+        _around.map = tsn;
     }
 }

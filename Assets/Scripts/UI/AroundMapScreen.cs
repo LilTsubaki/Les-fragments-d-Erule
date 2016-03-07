@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AroundMapScreen : MonoBehaviour {
 
+    public TestSpawnNetwork map;
 	
 	// Update is called once per frame
 	void Update () {
@@ -16,6 +17,7 @@ public class AroundMapScreen : MonoBehaviour {
             UIManager.GetInstance().HideAll();
             UIManager.GetInstance().ShowPanelNoStack("PanelPosition");
             CameraManager.GetInstance().FadeTo("cameraBoard", 1);
+            map.changeState();
         }
 	}
 }

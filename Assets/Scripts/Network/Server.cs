@@ -8,7 +8,7 @@ using System.Threading;
 
 public class Server : MonoBehaviour{
 
-    public enum State { firstPlayerPicking, secondPlayerPicking, playing }
+    public enum State {turningAroundMap, firstPlayerPicking, secondPlayerPicking, playing }
 
     float timeout=300;
     public float currrentTimeout;

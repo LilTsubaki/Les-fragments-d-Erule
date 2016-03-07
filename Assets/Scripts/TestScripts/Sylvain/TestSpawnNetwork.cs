@@ -54,6 +54,9 @@ public class TestSpawnNetwork : MonoBehaviour {
         Server.State state = ServerManager.GetInstance()._server.CurrentState;
         switch (state)
         {
+            case Server.State.turningAroundMap:
+                ServerManager.GetInstance()._server.CurrentState = Server.State.firstPlayerPicking;
+                break;
             case Server.State.firstPlayerPicking:
                 if (PlayBoardManager.GetInstance().GetCurrentPlayer().Position != null)
                     ServerManager.GetInstance()._server.CurrentState = Server.State.secondPlayerPicking;
