@@ -526,6 +526,16 @@ public class Hexagon : IAStar<Hexagon>
         hexa.AddField("posX", _posX);
         hexa.AddField("posY", _posY);
         hexa.AddField("posZ", _gameObject.transform.localPosition.y);
+
+       
+        JSONObject quaternion= new JSONObject(JSONObject.Type.OBJECT);
+        quaternion.AddField("x", _gameObject.transform.rotation.x);
+        quaternion.AddField("y", _gameObject.transform.rotation.y);
+        quaternion.AddField("z", _gameObject.transform.rotation.z);
+        quaternion.AddField("w", _gameObject.transform.rotation.w);
+
+        hexa.AddField("rotation", quaternion);
+
         hexa.AddField("gameObject", _gameObject.name);
 
 

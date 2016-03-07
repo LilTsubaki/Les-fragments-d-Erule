@@ -1237,7 +1237,17 @@ public class JSONObject {
             hexagon.GameObject.name = hexa.GetField("gameObject").str;
             hexagon.GameObject.transform.parent = board.transform;
             hexagon.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
-            hexagon.GameObject.transform.Rotate(EruleRandom.RangeValue(0, 7)*180f, EruleRandom.RangeValue(0, 11) * 60f , 0f); 
+
+            JSONObject quaternion = hexa.GetField("rotation");
+            if (quaternion == null)
+            {
+                hexagon.GameObject.transform.Rotate(EruleRandom.RangeValue(0, 7) * 180f, EruleRandom.RangeValue(0, 11) * 60f, 0f);
+            }
+            else
+            {
+                hexagon.GameObject.transform.rotation = new Quaternion(quaternion.GetField("x").f, quaternion.GetField("y").f, quaternion.GetField("z").f, quaternion.GetField("w").f);
+            }
+            
 
 
             hexagon.Glyph = GameObject.Instantiate(glyph);
