@@ -271,7 +271,7 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 159670, guid: 209dd7c4a41b45e46be4e2593d8906aa, type: 2}
   m_PrefabInternal: {fileID: 739750620}
---- !u!1001 &1632306332
+--- !u!1001 &931977776
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -310,27 +310,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11406138, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: _deckSelectionGo
-      value: 
-      objectReference: {fileID: 817091066}
-    - target: {fileID: 11457856, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: _runicBoard
-      value: 
-      objectReference: {fileID: 1652721115}
     - target: {fileID: 11469948, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
       propertyPath: _deck
       value: 
       objectReference: {fileID: 1863735048}
-    - target: {fileID: 22453616, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
+    - target: {fileID: 11457856, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: _runicBoard
+      value: 
+      objectReference: {fileID: 1652721115}
+    - target: {fileID: 11406138, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: _deckSelectionGo
+      value: 
+      objectReference: {fileID: 817091066}
+    - target: {fileID: 22453956, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 22453616, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+    - target: {fileID: 22453956, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22447842, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22447842, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499132, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22453616, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
+    - target: {fileID: 22499132, guid: 5ff5fac732372b04f8e7ae5b45b47988, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -407,7 +419,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.0000005
+  orthographic size: 2.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
