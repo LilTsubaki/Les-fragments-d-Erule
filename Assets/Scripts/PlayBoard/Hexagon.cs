@@ -111,6 +111,8 @@ public class Hexagon : IAStar<Hexagon>
 
         set
         {
+            if (value == _currentState)
+                return;
             _previousState = _currentState;
             _currentState = value;
             _stateChanged = true;            
