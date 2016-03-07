@@ -5,7 +5,7 @@ using System.Collections;
 public class UIKillableObstacle : MonoBehaviour {
 
     KillableObstacle _obstacle;
-    public Slider _life;
+    public ProgressionBar _life;
 
     public KillableObstacle Obstacle
     {
@@ -23,11 +23,11 @@ public class UIKillableObstacle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(Obstacle != null)
-            _life.value = Obstacle.CurrentLife;
+            _life._value = Obstacle.CurrentLife;
 	}
 
     public void SetSliderValues()
     {
-        _life.maxValue = Obstacle.MaxLife;
+        _life._maxValue = Obstacle.MaxLife;
     }
 }
