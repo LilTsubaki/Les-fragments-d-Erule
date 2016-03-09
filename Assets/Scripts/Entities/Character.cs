@@ -41,6 +41,7 @@ public class Character : Entity, Killable
     private int _damageModifier;
     private int _healModifier;
     private int _globalProtectionModifier;
+    private Queue<KeyValuePair<int,int>> _shields;
 
     private bool _isStabilized;
 
@@ -89,6 +90,7 @@ public class Character : Entity, Killable
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
+        _shields =  new Queue<KeyValuePair<int,int>>();
         _state = State.Waiting;
     }
 
@@ -127,6 +129,7 @@ public class Character : Entity, Killable
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
+        _shields = new Queue<KeyValuePair<int, int>>();
         _state = State.Waiting;
 	}
 
@@ -147,6 +150,24 @@ public class Character : Entity, Killable
         SommeProtection = c.SommeProtection;
         SommeNegativeProtection = c.SommeNegativeProtection;
     }
+
+    public void ReceiveShield(Shield shield)
+    {
+        KeyValuePair<int, int> pairToModify = new KeyValuePair<int, int>();
+        foreach (var pair in _shields)
+        {
+            if (pair.Key == shield.GetId())
+                pairToModify = pair;                
+        }
+        if (pairToModify.Value >= 0)
+            pairToModify = new KeyValuePair<int, int>(pairToModify.Key, shield.ShieldValue);
+        else
+            _shields.Enqueue(new KeyValuePair<int, int>(shield.GetId(), shield.ShieldValue));
+
+        //TODO maj de l'ui ?????? 
+    }
+
+
 
     public void ReceiveRangeUp(int value)
     {
@@ -183,6 +204,8 @@ public class Character : Entity, Killable
 
         Protections.TryGetValue(element, out positiveElementResistance);
         ProtectionsNegative.TryGetValue(element, out negativeElementResistance);
+
+        //remove shield before apply element damages
 
         int finalValue = (positiveElementResistance - negativeElementResistance) + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
