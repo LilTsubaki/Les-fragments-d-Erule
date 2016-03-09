@@ -20,6 +20,7 @@ public class SpellManager
     private Area _CurrentSelfArea;
 
     private Queue<Element> _spellToInit;
+    private HashSet<Element> _spellAnims;
 
     private Dictionary<int, Dictionary<Element, int>> _failDamage;
 
@@ -318,6 +319,7 @@ public class SpellManager
     public void InitSpell(Queue<Element> elements)
     {
         Queue<Element> tempElements = new Queue<Element>(elements);
+        _spellAnims = new HashSet<Element>(tempElements.ToArray());
 
         CurrentTargetSpell = ElementNode.GetTargetSpell(elements);
         CurrentTargetArea = GetAreaById(CurrentTargetSpell.AreaId);
@@ -332,8 +334,6 @@ public class SpellManager
     public void ApplyEffects(List<Hexagon> finalArea, Hexagon target)
     {
         Character currentPlayer = PlayBoardManager.GetInstance().GetCurrentPlayer();
-
-
 
         float perfection, sublimation, stability;
         RunicBoardManager.GetInstance().GetPolesInfluence(out perfection, out sublimation, out stability);
@@ -402,7 +402,9 @@ public class SpellManager
             À modifier dès qu'on a différents effets visuels
             **********************/
 
-            SpellAnimationManager.GetInstance().Play("air", currentPlayer._gameObject, target.GameObject);
+            SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer._gameObject, target.GameObject);
+            /*SpellAnimationManager.GetInstance().Play("air", currentPlayer._gameObject, target.GameObject);
+            SpellAnimationManager.GetInstance().Play("metal1", currentPlayer._gameObject, target.GameObject);*/
 
             /*********************
 

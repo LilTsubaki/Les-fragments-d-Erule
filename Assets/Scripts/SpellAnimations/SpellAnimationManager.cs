@@ -41,4 +41,43 @@ public class SpellAnimationManager {
         }
         return false;
     }
+
+    public bool PlayList(HashSet<Element> elemIds, GameObject from, GameObject to)
+    {
+        foreach(Element elem in elemIds)
+        {
+            switch (elem._id)
+            {
+                case 0: // Fire
+                    break;
+                case 1: // Water
+                    break;
+                case 2: // Air
+                    Play("air", from, to);
+                    break;
+                case 3: // Earth
+                    break;
+                case 4: // Wood
+                    break;
+                case 5: // Metal
+                    int randNbMetal = EruleRandom.RangeValue(1, 3);
+                    List<int> metals = new List<int>();
+                    for(int i = 0; i < randNbMetal; ++i)
+                    {
+                        int randAnimMetal = EruleRandom.RangeValue(1, 3);
+                        while (metals.Contains(randAnimMetal))
+                        {
+                            randAnimMetal = EruleRandom.RangeValue(1, 3);
+                        }
+                        metals.Add(randAnimMetal);
+                        Play("metal" + randAnimMetal, from, to);
+                    }
+                    break;
+                default:
+                    Logger.Warning("[Animation] Element does not exist : " + elem._id);
+                    return false;
+            }
+        }
+        return true;
+    }
 }
