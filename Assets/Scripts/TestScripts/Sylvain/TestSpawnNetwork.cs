@@ -13,6 +13,7 @@ public class TestSpawnNetwork : MonoBehaviour {
     public CharacterHostUI _uiPlayer2;
 
     public GameObject _button;
+    public Text _textPlayerToPlace;
 
     PlayBoard _playBoard;
 
@@ -29,8 +30,8 @@ public class TestSpawnNetwork : MonoBehaviour {
         _board.AddComponent<PlayBoardBehaviour>();
         _player1 = new Character(3000, _player1GameObject);
 		_player2 = new Character(3000, _player2GameObject);
-        _player1.Name = "Player 1";
-        _player2.Name = "Player 2";
+        _player1.Name = ServerManager.GetInstance()._server.Client1._name;
+        _player2.Name = ServerManager.GetInstance()._server.Client2._name;
         _uiPlayer1.Character = _player1;
         _uiPlayer2.Character = _player2;
 
@@ -147,10 +148,12 @@ public class TestSpawnNetwork : MonoBehaviour {
             case Server.State.firstPlayerPicking:
                 UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
                 _button.GetComponentInChildren<Text>().text = "Valider";
+                _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetCurrentPlayer().Name + "\n de se placer.\n";
                 break;
             case Server.State.secondPlayerPicking:
                 UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetOtherPlayer());
                 _button.GetComponentInChildren<Text>().text = "Valider et commencer";
+                _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetOtherPlayer().Name + "\n de se placer.\n";
                 break;
             case Server.State.playing:
                 UpdatePlaying();
