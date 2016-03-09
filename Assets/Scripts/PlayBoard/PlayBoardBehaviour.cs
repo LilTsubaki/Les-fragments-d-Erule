@@ -5,33 +5,68 @@ public class PlayBoardBehaviour : MonoBehaviour
 {
     private Hexagon _previousHexagon;
     private HexagonBehaviour _previousHexagonBehaviour;
-    private double _timedOut = 3;
-    private double _currentTime = 0;
+    private float _timerClic = 0.5f;
+    private float _currentTime = 0;
+    private bool _isInDoubleClicWindow = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
+
+    void UpdateDoubleClic()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            _isInDoubleClicWindow = true;
+        }
+
+        if (_isInDoubleClicWindow)
+        {
+            _currentTime += Time.deltaTime;
+            if (_currentTime > _timerClic)
+            {
+                _isInDoubleClicWindow = false;
+                _currentTime = 0;
+            }
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+        HighLight();
+        if (Input.GetMouseButtonDown(0)){
+            if (PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
+            {
+                if (_isInDoubleClicWindow)
+                {
+                    MakeSpell();
+                }
+                else
+                {
+                   // HighLight();
+                }
+            }
+            
+        }
+        UpdateDoubleClic();
+    }
+
+    public void HighLight()
+    {
         Ray ray = CameraManager.GetInstance().Active.ScreenPointToRay(Input.mousePosition);
-        //Debug.DrawLine(ray.origin, ray.direction * 20);
         RaycastHit rch;
-        //int layermask = (1 << LayerMask.NameToLayer("Default"));
         int layermask = LayerMask.GetMask("Hexagon");
         if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
         {
             HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
-            Hexagon hexa = hexagonBehaviour._hexagon;
-            if (hexa != null)
+            if (hexagonBehaviour != null)
             {
-                if(_previousHexagon != hexa)
+                Hexagon hexa = hexagonBehaviour._hexagon;
+                if(hexa != null)
                 {
-                    _currentTime = 0;
-
                     if (_previousHexagon != null && _previousHexagonBehaviour != null)
                     {
                         if (_previousHexagon.CurrentState == Hexagon.State.OverAccessible)
@@ -48,7 +83,6 @@ public class PlayBoardBehaviour : MonoBehaviour
                         }
                     }
 
-
                     _previousHexagon = hexa;
                     _previousHexagonBehaviour = hexagonBehaviour;
 
@@ -60,18 +94,7 @@ public class PlayBoardBehaviour : MonoBehaviour
                     if (hexa.CurrentState == Hexagon.State.Accessible)
                         hexa.CurrentState = Hexagon.State.OverAccessible;
                 }
-                else
-                {
-                    if(PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
-                    {
-                        _currentTime += Time.fixedDeltaTime;
-                        if (_currentTime > _timedOut)
-                        {
-                            MakeSpell(hexagonBehaviour);
-                        }
-                    }                    
-                }
-            }            
+            }
         }
         else
         {
@@ -91,10 +114,23 @@ public class PlayBoardBehaviour : MonoBehaviour
 
                 _previousHexagon = null;
             }
-                
         }
     }
 
+    public void MakeSpell()
+    {
+        Ray ray = CameraManager.GetInstance().Active.ScreenPointToRay(Input.mousePosition);
+        //Debug.DrawLine(ray.origin, ray.direction * 20);
+        RaycastHit rch;
+        //int layermask = (1 << LayerMask.NameToLayer("Default"));
+        int layermask = LayerMask.GetMask("Hexagon");
+        if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+        {
+            HexagonBehaviour hb = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
+            if (hb != null)
+                MakeSpell(hb);
+        }
+    }
 
     public void MakeSpell(HexagonBehaviour hexagonBehaviour)
     {
