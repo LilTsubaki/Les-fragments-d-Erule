@@ -82,7 +82,6 @@ public class CharacterBehaviour : MonoBehaviour
             if (_character.Position.Portal != null)
             {
                 _character.Teleport();
-                transform.position = _character.Position.GameObject.transform.position + _character.PositionOffset;
             }
         }
     }
@@ -107,7 +106,6 @@ public class CharacterBehaviour : MonoBehaviour
                     if (_character.Position.Portal != null)
                     {
                         _character.Teleport();
-                        transform.position = _character.Position.GameObject.transform.position + _character.PositionOffset;
                     }
                 }
             }

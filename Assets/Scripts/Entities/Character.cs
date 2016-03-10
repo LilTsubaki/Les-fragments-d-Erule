@@ -449,11 +449,13 @@ public class Character : Entity, Killable
             }
 
             Portal endPortal = portals[indexEnd];
-            if (endPortal.Position._entity != null)
+            if (endPortal.Position._entity == null)
             {
                 Position = endPortal.Position;
                 endPortal.Destroy();
                 portals.RemoveAt(indexEnd);
+
+                _gameObject.transform.position = Position.GameObject.transform.position + PositionOffset;
             }
         }
     }

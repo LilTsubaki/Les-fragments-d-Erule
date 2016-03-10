@@ -35,7 +35,6 @@ public class PortalEffect : EffectDirect
             if (caster.Position.Portal != null)
             {
                 caster.Teleport();
-                caster._gameObject.transform.position = caster.Position.GameObject.transform.position + caster.PositionOffset;
             }
         }
         else
