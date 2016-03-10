@@ -3,7 +3,7 @@
 public abstract class EffectOnTime : Effect
 {
     public Effect _effect;
-    protected int _nbTurn;
+    public int _nbTurn;
 
     public EffectOnTime() : base() { }
 

@@ -13,8 +13,8 @@ public class Shield : EffectDirect
 
     public Shield(JSONObject js) 
     {
-        _id = (int)js.GetField(js.keys[0]).n;
-        ShieldValue = (int)js.GetField(js.keys[1]).n;
+        _id = (int)js.GetField("id").n;
+        ShieldValue = (int)js.GetField("value").n;
     }
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)

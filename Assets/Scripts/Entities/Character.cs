@@ -90,7 +90,6 @@ public class Character : Entity, Killable
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
-        _shields =  new Queue<KeyValuePair<int,int>>();
         _state = State.Waiting;
     }
 
@@ -179,18 +178,7 @@ public class Character : Entity, Killable
 
     public void ReceiveShield(Shield shield)
     {
-        KeyValuePair<int, int> pairToModify = new KeyValuePair<int, int>();
-        foreach (var pair in _shields)
-        {
-            if (pair.Key == shield.GetId())
-                pairToModify = pair;                
-        }
-        if (pairToModify.Value >= 0)
-            pairToModify = new KeyValuePair<int, int>(pairToModify.Key, shield.ShieldValue);
-        else
-            _shields.Enqueue(new KeyValuePair<int, int>(shield.GetId(), shield.ShieldValue));
-
-        //TODO maj de l'ui ?????? 
+       //TODO
     }
 
 
