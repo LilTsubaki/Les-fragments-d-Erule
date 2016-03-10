@@ -8,7 +8,7 @@ public class Character : Entity, Killable
     
     public enum State { Moving, CastingSpell, Waiting, Translating }
 
-	public static int MaxProtection = 50;
+	/*public static int MaxProtection = 50;*/
 	public readonly int _lifeMax;
 	public int _lifeCurrent;
 
@@ -28,8 +28,8 @@ public class Character : Entity, Killable
 	private Dictionary<Element, int> _protections;
 	private Dictionary<Element, int> _protectionsNegative;
 
-	private int _globalProtection;
-	private int _globalNegativeProtection;
+	/*private int _globalProtection;
+	private int _globalNegativeProtection;*/
 
 	private int _sumProtection;
 	private int _sumNegativeProtection;
@@ -63,8 +63,8 @@ public class Character : Entity, Killable
         Protections = new Dictionary<Element, int>();
         ProtectionsNegative = new Dictionary<Element, int>();
 
-        GlobalProtection = 0;
-        GlobalNegativeProtection = 0;
+        /*GlobalProtection = 0;
+        GlobalNegativeProtection = 0;*/
 
         SommeProtection = 0;
         SommeNegativeProtection = 0;
@@ -102,8 +102,8 @@ public class Character : Entity, Killable
 		Protections = new Dictionary<Element, int> ();
 		ProtectionsNegative = new Dictionary<Element, int> ();
 
-		GlobalProtection = 0;
-		GlobalNegativeProtection = 0;
+		/*GlobalProtection = 0;
+		GlobalNegativeProtection = 0;*/
 
 		SommeProtection = 0;
 		SommeNegativeProtection = 0;
@@ -143,8 +143,8 @@ public class Character : Entity, Killable
         Protections = c.Protections;
         ProtectionsNegative = c.ProtectionsNegative;
 
-        GlobalProtection = c.GlobalProtection;
-        GlobalNegativeProtection = c.GlobalNegativeProtection;
+        /*GlobalProtection = c.GlobalProtection;
+        GlobalNegativeProtection = c.GlobalNegativeProtection;*/
 
         SommeProtection = c.SommeProtection;
         SommeNegativeProtection = c.SommeNegativeProtection;
@@ -221,7 +221,7 @@ public class Character : Entity, Killable
 
         //remove shield before apply element damages
 
-        int finalValue = (positiveElementResistance - negativeElementResistance) + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
+        int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
@@ -235,7 +235,7 @@ public class Character : Entity, Killable
         return value;
     }
 
-	public void ReceiveGlobalProtection(int protection){
+	/*public void ReceiveGlobalProtection(int protection){
 
         EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceGain(protection, Element.GetElement(5)));
 
@@ -252,9 +252,9 @@ public class Character : Entity, Killable
 
 		GlobalProtection += Math.Min (max, protection);
 		SommeProtection += Math.Min (max, protection);
-	}
+	}*/
 
-	public void ReceiveGlobalNegativeProtection(int protection){
+	/*public void ReceiveGlobalNegativeProtection(int protection){
 
         EffectUIManager.GetInstance().AddTextEffect(this, new TextResistanceLoss(protection, Element.GetElement(5)));
 
@@ -271,7 +271,7 @@ public class Character : Entity, Killable
 
 		GlobalNegativeProtection += Math.Min (max, protection);
 		SommeNegativeProtection += Math.Min (max, protection);
-	}
+	}*/
 
 	public void ReceiveElementProtection(int protection, Element element){
 
@@ -279,7 +279,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive element protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, ProtectionsNegative[element]);
+        /*int val = Math.Min (protection, ProtectionsNegative[element]);
 
 		ProtectionsNegative[element] -= val;
 		SommeNegativeProtection -= val;
@@ -290,7 +290,10 @@ public class Character : Entity, Killable
 
 		Protections[element] += Math.Min (max, protection);
 		SommeProtection += Math.Min (max, protection);
-        Logger.Trace("nouvelle valeur : " + SommeProtection);
+        Logger.Trace("nouvelle valeur : " + SommeProtection);*/
+
+        Protections[element] = Mathf.Min(Protections[element] + protection, 100);
+        Logger.Trace("Protection " + element.ToString() + " new value : " + Protections[element]);
 	}
 
 	public void ReceiveElementNegativeProtection(int protection, Element element){
@@ -299,7 +302,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive element negative protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, Protections[element]);
+        /*int val = Math.Min (protection, Protections[element]);
 
 		Protections[element] -= val;
 		SommeProtection -= val;
@@ -309,8 +312,11 @@ public class Character : Entity, Killable
 		int max = MaxProtection - SommeNegativeProtection;
 
 		ProtectionsNegative[element] += Math.Min (max, protection);
-		SommeNegativeProtection += Math.Min (max, protection);
-	}
+		SommeNegativeProtection += Math.Min (max, protection);*/
+
+        ProtectionsNegative[element] = Mathf.Min(ProtectionsNegative[element] + protection, 100);
+        Logger.Trace("Protection " + element.ToString() + " new value : " + Protections[element]);
+    }
 
     /// <summary>
     /// Adds a PlayerOnTimeAppliedEffect to the Character.
@@ -423,7 +429,7 @@ public class Character : Entity, Killable
         return res;
     }
 
-    public int GetGlobalResistance()
+    /*public int GetGlobalResistance()
     {
         return GlobalProtection;
     }
@@ -431,7 +437,7 @@ public class Character : Entity, Killable
     public int GetGlobalWeakness()
     {
         return GlobalNegativeProtection;
-    }
+    }*/
 
     /// <summary>
     /// Translate the character given a direction, it stops if the hexagon in the direction is not reachable
@@ -607,7 +613,7 @@ public class Character : Entity, Killable
         }
     }
 
-    public int GlobalProtection
+    /*public int GlobalProtection
     {
         get
         {
@@ -631,7 +637,7 @@ public class Character : Entity, Killable
         {
             _globalNegativeProtection = value;
         }
-    }
+    }*/
 
     public int SommeProtection
     {

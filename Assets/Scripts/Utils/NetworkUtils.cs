@@ -173,8 +173,8 @@ public class NetworkUtils {
             WriteInt(pro.Value, stream);
         }
 
-        WriteInt(ch.GlobalProtection, stream);
-        WriteInt(ch.GlobalNegativeProtection, stream);
+        /*WriteInt(ch.GlobalProtection, stream);
+        WriteInt(ch.GlobalNegativeProtection, stream);*/
 
         WriteInt(ch.SommeProtection, stream);
         WriteInt(ch.SommeNegativeProtection, stream);
@@ -201,8 +201,8 @@ public class NetworkUtils {
             ch.ProtectionsNegative.Add(ReadElement(stream), ReadInt(stream));
         }
 
-        ch.GlobalProtection = ReadInt(stream);
-        ch.GlobalNegativeProtection = ReadInt(stream);
+        /*ch.GlobalProtection = ReadInt(stream);
+        ch.GlobalNegativeProtection = ReadInt(stream);*/
 
         ch.SommeProtection = ReadInt(stream);
         ch.SommeNegativeProtection = ReadInt(stream);

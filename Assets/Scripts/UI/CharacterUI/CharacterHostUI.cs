@@ -165,7 +165,7 @@ public class CharacterHostUI : MonoBehaviour
             int resAir = Character.GetElementResistance(Element.GetElement(2)) - Character.GetElementWeakness(Element.GetElement(2));
             int resEarth = Character.GetElementResistance(Element.GetElement(3)) - Character.GetElementWeakness(Element.GetElement(3));
             int resWood = Character.GetElementResistance(Element.GetElement(4)) - Character.GetElementWeakness(Element.GetElement(4));
-            int resGlobal = Character.GetGlobalResistance() - Character.GetGlobalWeakness();
+            int resGlobal = 0;//Character.GetGlobalResistance() - Character.GetGlobalWeakness();
 
             _resFireText.text = resFire.ToString();
             _resWaterText.text = resWater.ToString();

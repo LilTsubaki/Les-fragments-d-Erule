@@ -20,13 +20,15 @@ public class ProtectionNegativeGlobal : EffectDirect
 
 	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        Logger.Trace("Apply negative protection element effect : " + _protection);
+        /*Logger.Trace("Apply negative protection element effect : " + _protection);
         List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
 			ch.ReceiveGlobalNegativeProtection (_protection);
-		}
-	}
+		}*/
+
+        Logger.Error("You would have applied a negative global protection. But it doesn't exist, y'know ? Stop running after unreachable dreams.");
+    }
 }
 
 

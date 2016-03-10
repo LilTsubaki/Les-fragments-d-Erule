@@ -19,12 +19,14 @@ public class ProtectionGlobal : EffectDirect
 
 	public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        Logger.Trace("Apply protection effect : " + _protection);
+        /*Logger.Trace("Apply protection effect : " + _protection);
         List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
 		foreach(var ch in characters){
 			ch.ReceiveGlobalProtection (_protection);
-		}
+		}*/
+
+        Logger.Error("You would have applied a global protection. But it doesn't exist, y'know ? Stop running after unreachable dreams.");
 	}
 }
 
