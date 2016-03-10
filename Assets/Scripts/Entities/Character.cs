@@ -167,13 +167,10 @@ public class Character : Entity, Killable
             Protections[element] = 0;
         }
 
-        GlobalProtection = 0;
-        GlobalNegativeProtection = 0;
         _sumNegativeProtection = 0;
         _sumProtection = 0;
 
-        ApplyOnTimeEffects();
-        RemoveMarkedOnTimeEffects();
+        
     }
 
     public void ReceiveShield(Shield shield)

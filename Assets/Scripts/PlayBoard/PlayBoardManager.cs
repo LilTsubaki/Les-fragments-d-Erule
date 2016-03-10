@@ -166,7 +166,10 @@ public class PlayBoardManager
         currentPlayer.BeginTurn();       
 
         _board.ApplyPowerShards();
-        
+
+        currentPlayer.ApplyOnTimeEffects();
+        currentPlayer.RemoveMarkedOnTimeEffects();
+
         List<List<Hexagon>> hexagons = Board.GetGrid();
         List<Hexagon> growableHexagons = new List<Hexagon>();
 
