@@ -8,7 +8,7 @@ public class Character : Entity, Killable
     
     public enum State { Moving, CastingSpell, Waiting, Translating }
 
-	public static int MaxProtection = 50;
+	/*public static int MaxProtection = 50;*/
 	public readonly int _lifeMax;
 	public int _lifeCurrent;
 
@@ -265,7 +265,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive element protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, ProtectionsNegative[element]);
+        /*int val = Math.Min (protection, ProtectionsNegative[element]);
 
 		ProtectionsNegative[element] -= val;
 		SommeNegativeProtection -= val;
@@ -276,7 +276,10 @@ public class Character : Entity, Killable
 
 		Protections[element] += Math.Min (max, protection);
 		SommeProtection += Math.Min (max, protection);
-        Logger.Trace("nouvelle valeur : " + SommeProtection);
+        Logger.Trace("nouvelle valeur : " + SommeProtection);*/
+
+        Protections[element] = Mathf.Min(Protections[element] + protection, 100);
+        Logger.Trace("Protection " + element.ToString() + " new value : " + Protections[element]);
 	}
 
 	public void ReceiveElementNegativeProtection(int protection, Element element){
@@ -285,7 +288,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive element negative protection : " + protection + " for element : " + element._name);
 
-        int val = Math.Min (protection, Protections[element]);
+        /*int val = Math.Min (protection, Protections[element]);
 
 		Protections[element] -= val;
 		SommeProtection -= val;
@@ -295,8 +298,11 @@ public class Character : Entity, Killable
 		int max = MaxProtection - SommeNegativeProtection;
 
 		ProtectionsNegative[element] += Math.Min (max, protection);
-		SommeNegativeProtection += Math.Min (max, protection);
-	}
+		SommeNegativeProtection += Math.Min (max, protection);*/
+
+        ProtectionsNegative[element] = Mathf.Min(ProtectionsNegative[element] + protection, 100);
+        Logger.Trace("Protection " + element.ToString() + " new value : " + Protections[element]);
+    }
 
     /// <summary>
     /// Adds a PlayerOnTimeAppliedEffect to the Character.
