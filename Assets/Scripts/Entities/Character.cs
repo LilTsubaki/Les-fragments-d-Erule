@@ -31,8 +31,8 @@ public class Character : Entity, Killable
 	private int _globalProtection;
 	private int _globalNegativeProtection;
 
-	private int _sommeProtection;
-	private int _sommeNegativeProtection;
+	private int _sumProtection;
+	private int _sumNegativeProtection;
 
     private Dictionary<int, PlayerOnTimeAppliedEffect> _onTimeEffects;
     private List<int> _onTimeEffectsToRemove;
@@ -149,6 +149,32 @@ public class Character : Entity, Killable
 
         SommeProtection = c.SommeProtection;
         SommeNegativeProtection = c.SommeNegativeProtection;
+    }
+
+    /// <summary>
+    /// Function that has to be called at the begining of the character's turn, reset some values and apply effects.
+    /// </summary>
+    public void BeginTurn()
+    {
+        RangeModifier = 0;
+        HealModifier = 0;
+        DamageModifier = 0;
+        IsStabilized = false;
+        GlobalProtectionModifier = 0;
+
+        foreach (var element in Element.GetElements())
+        {
+            ProtectionsNegative[element] = 0;
+            Protections[element] = 0;
+        }
+
+        GlobalProtection = 0;
+        GlobalNegativeProtection = 0;
+        _sumNegativeProtection = 0;
+        _sumProtection = 0;
+
+        ApplyOnTimeEffects();
+        RemoveMarkedOnTimeEffects();
     }
 
     public void ReceiveShield(Shield shield)
@@ -623,12 +649,12 @@ public class Character : Entity, Killable
     {
         get
         {
-            return _sommeProtection;
+            return _sumProtection;
         }
 
         set
         {
-            _sommeProtection = value;
+            _sumProtection = value;
         }
     }
 
@@ -636,12 +662,12 @@ public class Character : Entity, Killable
     {
         get
         {
-            return _sommeNegativeProtection;
+            return _sumNegativeProtection;
         }
 
         set
         {
-            _sommeNegativeProtection = value;
+            _sumNegativeProtection = value;
         }
     }
 

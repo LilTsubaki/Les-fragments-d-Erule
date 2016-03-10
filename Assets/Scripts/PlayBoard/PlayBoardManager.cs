@@ -163,18 +163,10 @@ public class PlayBoardManager
     public void BeginTurn()
     {
         Character currentPlayer = GetCurrentPlayer();
-        currentPlayer.RangeModifier = 0;
-        currentPlayer.HealModifier = 0;
-        currentPlayer.DamageModifier = 0;
-        currentPlayer.IsStabilized = false;
-        currentPlayer.GlobalProtectionModifier = 0;
-        
+        currentPlayer.BeginTurn();       
 
         _board.ApplyPowerShards();
-
-        currentPlayer.ApplyOnTimeEffects();
-        currentPlayer.RemoveMarkedOnTimeEffects();
-
+        
         List<List<Hexagon>> hexagons = Board.GetGrid();
         List<Hexagon> growableHexagons = new List<Hexagon>();
 
@@ -211,7 +203,6 @@ public class PlayBoardManager
                 hex.RemoveMarkedOnTimeEffects();
             }
         }
-
 
         CurrentState = State.MoveMode;
     }
