@@ -80,16 +80,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _NormalTexture
+          name: _ReflectionTex
         second:
-          m_Texture: {fileID: 2800000, guid: 1b785ba7e757439478e6db434e0d3dd2, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ReflectionTex
+          name: _NormalTexture
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 1b785ba7e757439478e6db434e0d3dd2, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -118,12 +118,16 @@ Material:
         second: 0.02
       data:
         first:
-          name: _ZWrite
-        second: 1
-      data:
-        first:
           name: _Glossiness
         second: 0.5
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -146,8 +150,12 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
+          name: _WaveSpeed
+        second: -40
+      data:
+        first:
+          name: _WaveSpeed
+        second: -40
       data:
         first:
           name: _NormalTiling
@@ -200,10 +208,6 @@ Material:
         first:
           name: _Refraction
         second: 0.478
-      data:
-        first:
-          name: _WaveSpeed
-        second: -40
       data:
         first:
           name: _FoamTiling
