@@ -203,7 +203,7 @@ public class Character : Entity, Killable
             node = node.Next;
         }
         _shields.AddLast(new Shield(shield));
-        _globalShieldValue += node.Value.ShieldValue;
+        _globalShieldValue += shield.ShieldValue;
     }
 
 
