@@ -186,23 +186,11 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         }
                     }
                     // Rune is currently in hand
-                    else
+                    else if (runeSlotBehaviour.isBoard)
                     {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                            /*Transform parent;
-                            if (newPositionOnBoard == 12)
-                            {
-                                parent = _boardGO.transform.GetChild(9).transform;
-                            }
-                            else
-                            {
-                                parent = hitInfo.collider.transform;
-                            }
-
-                            _heldRune.transform.SetParent(parent);*/
-
                              SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
                              if(response._exist)
                              {
