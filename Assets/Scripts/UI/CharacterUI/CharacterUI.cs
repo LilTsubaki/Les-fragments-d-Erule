@@ -34,8 +34,6 @@ public class CharacterUI : MonoBehaviour {
     public Text _resAirText;
     public Text _resEarthText;
     public Text _resWoodText;
-    public Text _resMetalText;
-
 
 
     // Use this for initialization
@@ -96,7 +94,10 @@ public class CharacterUI : MonoBehaviour {
         {
             _life.value = _character._lifeCurrent;
             _life.maxValue = _character._lifeMax;
-            _lifePointsText.text = _character._lifeCurrent.ToString();
+            string lifeText = _character._lifeCurrent.ToString();
+            if (_character.GlobalShieldValue > 0)
+                 lifeText += " ( + " + _character.GlobalShieldValue + ")";
+            _lifePointsText.text = lifeText;
         }
     }
 
@@ -158,14 +159,13 @@ public class CharacterUI : MonoBehaviour {
             int resAir = _character.GetElementResistance(Element.GetElement(2)) - _character.GetElementWeakness(Element.GetElement(2));
             int resEarth = _character.GetElementResistance(Element.GetElement(3)) - _character.GetElementWeakness(Element.GetElement(3));
             int resWood = _character.GetElementResistance(Element.GetElement(4)) - _character.GetElementWeakness(Element.GetElement(4));
-            int resGlobal = 0;// _character.GetGlobalResistance() - _character.GetGlobalWeakness();
-
+            int resGlobal = _character.GlobalShieldValue;// _character.GetGlobalResistance() - _character.GetGlobalWeakness();
+            
             _resFireText.text = resFire.ToString();
             _resWaterText.text = resWater.ToString();
             _resAirText.text = resAir.ToString();
             _resEarthText.text = resEarth.ToString();
             _resWoodText.text = resWood.ToString();
-            _resMetalText.text = resGlobal.ToString();
         }
     }
 

@@ -783,4 +783,17 @@ public class Character : Entity, Killable
             _positionOffset = value;
         }
     }
+
+    public int GlobalShieldValue
+    {
+        get
+        {
+            return _globalShieldValue;
+        }
+
+        set
+        {
+            _globalShieldValue = value;
+        }
+    }
 }
