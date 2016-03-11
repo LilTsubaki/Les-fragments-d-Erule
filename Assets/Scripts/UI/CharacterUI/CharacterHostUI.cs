@@ -26,7 +26,6 @@ public class CharacterHostUI : MonoBehaviour
     public Text _resAirText;
     public Text _resEarthText;
     public Text _resWoodText;
-    public Text _resMetalText;
 
     public Character Character
     {
@@ -101,7 +100,10 @@ public class CharacterHostUI : MonoBehaviour
         {
             _life.value = Character._lifeCurrent;
             _life.maxValue = Character._lifeMax;
-            _lifePointsText.text = Character._lifeCurrent.ToString();
+            string lifeText = Character._lifeCurrent.ToString();
+            if (Character.GlobalShieldValue > 0)
+                lifeText += " ( + " + Character.GlobalShieldValue + ")";
+            _lifePointsText.text = lifeText;
         }
     }
 
@@ -165,14 +167,12 @@ public class CharacterHostUI : MonoBehaviour
             int resAir = Character.GetElementResistance(Element.GetElement(2)) - Character.GetElementWeakness(Element.GetElement(2));
             int resEarth = Character.GetElementResistance(Element.GetElement(3)) - Character.GetElementWeakness(Element.GetElement(3));
             int resWood = Character.GetElementResistance(Element.GetElement(4)) - Character.GetElementWeakness(Element.GetElement(4));
-            int resGlobal = 0;//Character.GetGlobalResistance() - Character.GetGlobalWeakness();
 
             _resFireText.text = resFire.ToString();
             _resWaterText.text = resWater.ToString();
             _resAirText.text = resAir.ToString();
             _resEarthText.text = resEarth.ToString();
             _resWoodText.text = resWood.ToString();
-            _resMetalText.text = resGlobal.ToString();
         }
     }
 
