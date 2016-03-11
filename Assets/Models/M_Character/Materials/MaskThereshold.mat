@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Character_Body_2
+  m_Name: MaskThereshold
   m_Shader: {fileID: 4800000, guid: 9c77b1c8dcd04164da4c8ac0364b8915, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 5
@@ -41,6 +41,20 @@ Material:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Masks
+        second:
+          m_Texture: {fileID: 2800000, guid: 42c4f9c53f903b840ada2ed227b2f864, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normal
+        second:
+          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -85,20 +99,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Masks
-        second:
-          m_Texture: {fileID: 2800000, guid: 42c4f9c53f903b840ada2ed227b2f864, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -118,12 +118,16 @@ Material:
         second: 0.02
       data:
         first:
-          name: _ZWrite
-        second: 1
-      data:
-        first:
           name: _Glossiness
         second: 0.053
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -143,10 +147,6 @@ Material:
       data:
         first:
           name: _Mode
-        second: 0
-      data:
-        first:
-          name: _Metallic
         second: 0
     m_Colors:
       data:
