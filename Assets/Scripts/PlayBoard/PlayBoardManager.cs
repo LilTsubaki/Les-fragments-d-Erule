@@ -160,6 +160,7 @@ public class PlayBoardManager
             return Character1;
     }
 
+
     public void BeginTurn()
     {
         Character currentPlayer = GetCurrentPlayer();

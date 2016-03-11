@@ -41,11 +41,11 @@ public class Character : Entity, Killable
     private int _damageModifier;
     private int _healModifier;
     private int _globalProtectionModifier;
-    private Queue<KeyValuePair<int,int>> _shields;
-
     private bool _isStabilized;
 
     private Vector3 _positionOffset = new Vector3(0.0f, 0.13f, 0.0f);
+    private LinkedList<Shield> _shields;
+    private int _globalShieldValue;
 
     public Character(int lifeMax)
     {
@@ -75,6 +75,7 @@ public class Character : Entity, Killable
         _rangeModifier = 0;
         DamageModifier = 0;
         HealModifier = 0;
+        _globalShieldValue = 0;
         GlobalProtectionModifier = 0;
 
         _currentActionPoints = 1;
@@ -91,6 +92,7 @@ public class Character : Entity, Killable
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
         _state = State.Waiting;
+        _shields = new LinkedList<Shield>();
     }
 
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
@@ -107,8 +109,9 @@ public class Character : Entity, Killable
 
 		SommeProtection = 0;
 		SommeNegativeProtection = 0;
+        _globalShieldValue = 0;
 
-		_lifeMax = lifeMax;
+        _lifeMax = lifeMax;
 		_lifeCurrent = lifeMax;
 
         _rangeModifier = 0;
@@ -128,7 +131,7 @@ public class Character : Entity, Killable
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _onTimeEffectsToRemove = new List<int>();
-        _shields = new Queue<KeyValuePair<int, int>>();
+        _shields = new LinkedList<Shield>();
         _state = State.Waiting;
 	}
 
@@ -170,12 +173,37 @@ public class Character : Entity, Killable
         _sumNegativeProtection = 0;
         _sumProtection = 0;
 
-        
+        updateShields();
+    }
+
+    public void updateShields()
+    {
+        LinkedListNode<Shield> node = _shields.First;
+        while (node != null)
+        {
+            if(node.Value.NumberTurn-- == 0)
+            {
+                _shields.Remove(node);
+                _globalShieldValue -= node.Value.ShieldValue;
+            }
+        }
     }
 
     public void ReceiveShield(Shield shield)
     {
-       //TODO
+        LinkedListNode<Shield> node = _shields.First;
+        while(node != null)
+        {
+            if (node.Value.GetId() == shield.GetId())
+            {
+                _shields.Remove(node);
+                _globalShieldValue -= node.Value.ShieldValue;
+                break;
+            }
+            node = node.Next;
+        }
+        _shields.AddLast(new Shield(shield));
+        _globalShieldValue += node.Value.ShieldValue;
     }
 
 
@@ -207,6 +235,20 @@ public class Character : Entity, Killable
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
     }
 
+    public int ShieldReceiveDamage(int value)
+    {
+        while(value != 0 && _shields.Count > 0)
+        {
+            int max = Math.Max(value, _shields.Last.Value.ShieldValue);
+            _shields.Last.Value.ShieldValue -= max;
+            _globalShieldValue -= max;
+            value -= max;
+            if (_shields.Last.Value.ShieldValue == 0)
+                _shields.RemoveLast();
+        }
+        return value;
+    }
+
     public int ReceiveDamage(int value, Element element)
     {
         
@@ -217,6 +259,8 @@ public class Character : Entity, Killable
         ProtectionsNegative.TryGetValue(element, out negativeElementResistance);
 
         //remove shield before apply element damages
+
+        value = ShieldReceiveDamage(value);
 
         int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
