@@ -77,7 +77,6 @@ public class ServerListener
                         case 15:
 
                             String name = NetworkUtils.ReadString(_client.GetStream());
-                            Logger.Debug("sa maman" + name);
                             NetworkUtils.WriteInt(16, _client.GetStream());
                             if (_server.Register(this))
                             {
