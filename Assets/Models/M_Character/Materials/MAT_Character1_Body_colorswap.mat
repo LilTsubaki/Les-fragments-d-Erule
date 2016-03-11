@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Character_Body_colorswap
+  m_Name: MAT_Character1_Body_colorswap
   m_Shader: {fileID: 4800000, guid: 9c77b1c8dcd04164da4c8ac0364b8915, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 5
@@ -114,10 +114,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Parallax
-        second: 0.02
-      data:
-        first:
           name: _ZWrite
         second: 1
       data:
@@ -128,6 +124,10 @@ Material:
         first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
       data:
         first:
           name: _OcclusionStrength
