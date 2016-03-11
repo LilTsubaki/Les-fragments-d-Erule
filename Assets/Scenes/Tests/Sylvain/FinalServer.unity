@@ -427,9 +427,29 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 738
       objectReference: {fileID: 0}
+    - target: {fileID: 11499222, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: _uiPlayer1
+      value: 
+      objectReference: {fileID: 1547505424}
+    - target: {fileID: 11499222, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: _uiPlayer2
+      value: 
+      objectReference: {fileID: 1547505423}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1547505423 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11427524, guid: 4c1ee919a5bde4f48993b691aa31be7c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1547505422}
+  m_Script: {fileID: 11500000, guid: 8d975d4fbf7df9943a1a8e4cf4db90af, type: 3}
+--- !u!114 &1547505424 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11460006, guid: 4c1ee919a5bde4f48993b691aa31be7c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1547505422}
+  m_Script: {fileID: 11500000, guid: 8d975d4fbf7df9943a1a8e4cf4db90af, type: 3}
 --- !u!1 &1614026125
 GameObject:
   m_ObjectHideFlags: 0
