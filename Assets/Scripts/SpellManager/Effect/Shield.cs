@@ -22,7 +22,7 @@ public class Shield : EffectDirect
     {
         _id = (int)js.GetField("id").n;
         ShieldValue = (int)js.GetField("value").n;
-        NumberTurn = (int)js.GetField("value").n;
+        NumberTurn = (int)js.GetField("nbTurn").n;
     }
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
