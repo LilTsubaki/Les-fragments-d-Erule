@@ -174,9 +174,9 @@ public class SpellManager
                 Effect ef = (Effect)ctor.Invoke(argValues);
                 _directEffects.Add(ef.GetId(), (EffectDirect)ef);
             }
-            catch
+            catch (Exception e)
             {
-                throw new Exception("contructor not found.");
+                throw e;// new Exception("contructor not found.");
             }
         }
         Logger.Debug("directEffect.json read");
@@ -202,9 +202,9 @@ public class SpellManager
                 Effect ef = (Effect)ctor.Invoke(argValues);
                 _directEffects.Add(ef.GetId(), (EffectOnTime)ef);
             }
-            catch
+            catch(Exception e)
             {
-                throw new Exception("contructor not found.");
+                throw e;// new Exception(onTimeEffect.GetField(onTimeEffect.keys[0]).str+" contructor not found.");
             }
         }
         Logger.Debug("onTimeEffect.json read");
