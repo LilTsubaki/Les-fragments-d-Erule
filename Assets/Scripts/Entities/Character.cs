@@ -158,6 +158,7 @@ public class Character : Entity, Killable
     /// </summary>
     public void BeginTurn()
     {
+        Logger.Debug("begin turn character");
         RangeModifier = 0;
         HealModifier = 0;
         DamageModifier = 0;
@@ -173,7 +174,9 @@ public class Character : Entity, Killable
         _sumNegativeProtection = 0;
         _sumProtection = 0;
 
+        Logger.Debug("begin update shield character");
         updateShields();
+        Logger.Debug("end begin turn character");
     }
 
     public void updateShields()

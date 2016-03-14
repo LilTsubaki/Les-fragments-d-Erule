@@ -163,12 +163,17 @@ public class PlayBoardManager
 
     public void BeginTurn()
     {
+        Logger.Debug("begin turn playboardmanager");
         Character currentPlayer = GetCurrentPlayer();
-        currentPlayer.BeginTurn();       
+        currentPlayer.BeginTurn();
 
+        Logger.Debug("apply powerShards begin turn playboardmanager");
         _board.ApplyPowerShards();
 
+        Logger.Debug("apply ontimeEffects on current player begin turn playboardmanager");
         currentPlayer.ApplyOnTimeEffects();
+
+        Logger.Debug("remove markedontimeEffects begin turn playboardmanager");
         currentPlayer.RemoveMarkedOnTimeEffects();
 
         List<List<Hexagon>> hexagons = Board.GetGrid();
@@ -176,6 +181,7 @@ public class PlayBoardManager
 
         List<KillableObstacle> obstacles = new List<KillableObstacle>();
 
+        Logger.Debug("add obstacle/growable begin turn playboardmanager");
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
@@ -187,17 +193,20 @@ public class PlayBoardManager
             }
         }
 
-        foreach(KillableObstacle obstacle in obstacles)
+        Logger.Debug("apply on time on obstacle begin turn playboardmanager");
+        foreach (KillableObstacle obstacle in obstacles)
         {
             obstacle.ApplyOnTimeEffects();
             obstacle.RemoveMarkedOnTimeEffects();
         }
 
-        foreach(Hexagon hex in growableHexagons)
+        Logger.Debug("grow area begin turn playboardmanager");
+        foreach (Hexagon hex in growableHexagons)
         {
             hex.GrowUp();
         }
-        
+
+        Logger.Debug("apply on time area turn playboardmanager");
         for (int i = 0; i < hexagons.Count; ++i)
         {
             foreach (Hexagon hex in hexagons[i])
@@ -209,6 +218,7 @@ public class PlayBoardManager
         }
 
         CurrentState = State.MoveMode;
+        Logger.Debug("end begin turn playboardmanager");
     }
 
     public void EndTurn()
