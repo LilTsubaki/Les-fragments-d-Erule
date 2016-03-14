@@ -181,11 +181,13 @@ public class Character : Entity, Killable
         LinkedListNode<Shield> node = _shields.First;
         while (node != null)
         {
-            if(node.Value.NumberTurn-- == 0)
+            LinkedListNode<Shield> nextNode = node.Next;
+            if (--(node.Value.NumberTurn) == 0)
             {
                 _shields.Remove(node);
                 _globalShieldValue -= node.Value.ShieldValue;
             }
+            node = nextNode;
         }
     }
 
