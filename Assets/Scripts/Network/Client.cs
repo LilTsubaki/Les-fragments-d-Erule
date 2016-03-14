@@ -217,8 +217,8 @@ public class Client : MonoBehaviour{
             case 11:
                 //TODO
                 Logger.Debug("receive reset board request");
-                bool fail = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                Logger.Debug("Fail: " + fail);
+                bool success = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                Logger.Debug("Success: " + success);
                 bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 Logger.Debug("Crit: " + crit);
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());

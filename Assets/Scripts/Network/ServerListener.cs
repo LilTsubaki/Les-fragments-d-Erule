@@ -249,13 +249,13 @@ public class ServerListener
         }
     }
 
-    public void ResetBoard(bool fail, bool crit, int runes)
+    public void ResetBoard(bool success, bool crit, int runes)
     {
         try { 
             Logger.Trace("ResetBoard");
 
             NetworkUtils.WriteInt(11, _client.GetStream());
-            NetworkUtils.WriteBool(fail, _client.GetStream());
+            NetworkUtils.WriteBool(success, _client.GetStream());
             NetworkUtils.WriteBool(crit, _client.GetStream());
             NetworkUtils.WriteInt(runes, _client.GetStream());
 

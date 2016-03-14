@@ -339,7 +339,7 @@ public class SpellManager
         float perfection, sublimation, stability;
         RunicBoardManager.GetInstance().GetPolesInfluence(out perfection, out sublimation, out stability);
 
-        bool fail = ProcessStability(stability);
+        bool success = ProcessStability(stability);
         bool crit = ProcessSublimation(sublimation);
         int runes = ProcessPerfection(perfection);
 
@@ -440,7 +440,7 @@ public class SpellManager
         }
 
 
-        ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, fail, crit, runes);
+        ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);
 
     }
 
