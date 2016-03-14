@@ -244,10 +244,10 @@ public class Character : Entity, Killable
     {
         while(value != 0 && _shields.Count > 0)
         {
-            int max = Math.Max(value, _shields.Last.Value.ShieldValue);
-            _shields.Last.Value.ShieldValue -= max;
-            _globalShieldValue -= max;
-            value -= max;
+            int min = Math.Min(value, _shields.Last.Value.ShieldValue);
+            _shields.Last.Value.ShieldValue -= min;
+            _globalShieldValue -= min;
+            value -= min;
             if (_shields.Last.Value.ShieldValue == 0)
                 _shields.RemoveLast();
         }
