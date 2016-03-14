@@ -608,7 +608,7 @@ public class Hexagon : IAStar<Hexagon>
             {    
                 Logger.Debug("dans if avant casting");
                 ((GroundOnTimeAppliedEffectGrowable)effect).GrowUp(this);
-                Logger.Debug("dans if après if");
+                Logger.Debug("dans if après casting");
 
             }
         }
