@@ -346,16 +346,17 @@ public class Client : MonoBehaviour{
         if (id == 3)
         {
             SendBoardResponse sbr;
-            if (NetworkUtils.ReadBool(_tcpClient.GetStream()))
+            bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
+            if (ifExist)
             {
-                sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()), 
                                                                 NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
                                                                NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
                                                                NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
             }
             else
             {
-                sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()));
             }
                 
             
