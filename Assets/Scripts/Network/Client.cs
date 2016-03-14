@@ -217,8 +217,8 @@ public class Client : MonoBehaviour{
             case 11:
                 //TODO
                 Logger.Debug("receive reset board request");
-                bool fail = NetworkUtils.ReadBool(_tcpClient.GetStream());
-                Logger.Debug("Fail: " + fail);
+                bool success = NetworkUtils.ReadBool(_tcpClient.GetStream());
+                Logger.Debug("Success: " + success);
                 bool crit = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 Logger.Debug("Crit: " + crit);
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
@@ -345,7 +345,21 @@ public class Client : MonoBehaviour{
 
         if (id == 3)
         {
-            SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            SendBoardResponse sbr;
+            bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
+            if (ifExist)
+            {
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                                                                NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
+                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+            }
+            else
+            {
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            }
+                
+            
             _isMainThreadReading = false;
             return sbr;
         }

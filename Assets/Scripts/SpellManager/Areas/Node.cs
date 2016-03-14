@@ -87,12 +87,16 @@ public class Node
             //Logger.Error("size ---------------->" + hexas.Count);
         }
 
-        for(int i = 0; i < _nodes.Count; i++)
+        if ((currentHexa._posX == -1 && currentHexa._posY == -1) || currentHexa.isVisible()) 
         {
-            dirs.Add(_nodes[i]._direction);
-            _nodes[i].NodeToHexagon(dirs, ref hexas, root);
-            dirs.RemoveAt(dirs.Count - 1);
+            for (int i = 0; i < _nodes.Count; i++)
+            {
+                dirs.Add(_nodes[i]._direction);
+                _nodes[i].NodeToHexagon(dirs, ref hexas, root);
+                dirs.RemoveAt(dirs.Count - 1);
+            }
         }
+        
     }
 
 

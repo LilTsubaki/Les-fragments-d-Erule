@@ -102,6 +102,17 @@ public class Range
         Piercing = piercing;
         Orientation = orientation;
     }
+
+    public Range(int minRange, int maxRange, bool piercing, bool enemyTargetable, Orientation.EnumOrientation orientation)
+    {
+        MinRange = minRange;
+        MaxRange = maxRange;
+        Piercing = piercing;
+        EnemyTargetable = enemyTargetable;
+        Orientation = orientation;
+    }
+
+
     /// <summary>
     /// Constructor from jsonobject
     /// </summary>

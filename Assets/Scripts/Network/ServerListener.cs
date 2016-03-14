@@ -130,17 +130,33 @@ public class ServerListener
 
         NetworkUtils.WriteInt(3, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
-        SelfSpell spell =SpellManager.getInstance ().ElementNode.GetSelfSpell (que);
-        if(spell != null)
-        {
-            _character.CurrentActionPoints--;
-            PlayBoardManager.GetInstance().Board._colorAccessible = true;
-        }
+        TargetSpell spell =SpellManager.getInstance ().ElementNode.GetTargetSpell( que);
+
         //Logger.Error("spell != null" + (spell != null));
         //Logger.Error("WTF");
         Logger.Debug("Is terminal : " + SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
         NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
+
+        /* private Orientation.EnumOrientation _orientation;*/
+        if(spell != null)
+        {
+            _character.CurrentActionPoints--;
+            PlayBoardManager.GetInstance().Board._colorAccessible = true;
+
+            Range range = SpellManager.getInstance().GetRangeById(spell._rangeId);
+            //write min range and max range
+            NetworkUtils.WriteInt(range.MinRange, _client.GetStream());
+            NetworkUtils.WriteInt(range.MaxRange, _client.GetStream());
+
+            //write isPiercing and isEnemyTargetable
+            NetworkUtils.WriteBool(range.Piercing, _client.GetStream());
+            NetworkUtils.WriteBool(range.EnemyTargetable, _client.GetStream());
+
+            //write orientation
+            NetworkUtils.WriteOrientation(range.Orientation, _client.GetStream());
+        }
+        
 
         _client.GetStream().Flush();
 
@@ -249,13 +265,13 @@ public class ServerListener
         }
     }
 
-    public void ResetBoard(bool fail, bool crit, int runes)
+    public void ResetBoard(bool success, bool crit, int runes)
     {
         try { 
             Logger.Trace("ResetBoard");
 
             NetworkUtils.WriteInt(11, _client.GetStream());
-            NetworkUtils.WriteBool(fail, _client.GetStream());
+            NetworkUtils.WriteBool(success, _client.GetStream());
             NetworkUtils.WriteBool(crit, _client.GetStream());
             NetworkUtils.WriteInt(runes, _client.GetStream());
 
