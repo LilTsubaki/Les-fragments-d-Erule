@@ -87,7 +87,7 @@ public class Node
             //Logger.Error("size ---------------->" + hexas.Count);
         }
 
-        if(currentHexa.isVisible())
+        if (currentHexa == null || currentHexa.isVisible()) 
         {
             for (int i = 0; i < _nodes.Count; i++)
             {
