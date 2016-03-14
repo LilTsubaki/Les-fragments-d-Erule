@@ -603,8 +603,14 @@ public class Hexagon : IAStar<Hexagon>
         Logger.Debug("grow up hexagon begin");
         foreach (var effect in _onTimeEffects.Values)
         {
+            Logger.Debug("avant if");
             if (effect is GroundOnTimeAppliedEffectGrowable)
-               ((GroundOnTimeAppliedEffectGrowable) effect).GrowUp(this);
+            {    
+                Logger.Debug("dans if avant casting");
+                ((GroundOnTimeAppliedEffectGrowable)effect).GrowUp(this);
+                Logger.Debug("dans if après if");
+
+            }
         }
         Logger.Debug("grow up hexagon end");
     }

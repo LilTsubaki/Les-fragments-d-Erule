@@ -29,7 +29,7 @@ public class GroundOnTimeAppliedEffectGrowable : GroundOnTimeAppliedEffect
             {
                 Logger.Debug("add on time effect on hexa begin");
                 hex.AddOnTimeEffect(new GroundOnTimeAppliedEffectGrowable(_id, _effect, _nbTurn, _caster));
-                Logger.Debug("add on time effect on hexa end");
+                Logger.Debug("add on time effect on hexa begin");
             }
         }
         Logger.Debug("grow up GroundOnTimeAppliedEffect end");
