@@ -214,4 +214,14 @@ public class NetworkUtils {
         return ch;
     }
 
+    public static void WriteOrientation(Orientation.EnumOrientation orientation, NetworkStream stream)
+    {
+        WriteInt((int)orientation, stream);
+    }
+
+    public static Orientation.EnumOrientation ReadOrientation(NetworkStream stream)
+    {
+        return (Orientation.EnumOrientation)ReadInt(stream);
+    }
+
 }

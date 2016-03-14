@@ -345,7 +345,20 @@ public class Client : MonoBehaviour{
 
         if (id == 3)
         {
-            SendBoardResponse sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            SendBoardResponse sbr;
+            if (NetworkUtils.ReadBool(_tcpClient.GetStream()))
+            {
+                sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                                                                NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
+                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+            }
+            else
+            {
+                sbr = new SendBoardResponse(NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()));
+            }
+                
+            
             _isMainThreadReading = false;
             return sbr;
         }
