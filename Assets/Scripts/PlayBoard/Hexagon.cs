@@ -452,6 +452,7 @@ public class Hexagon : IAStar<Hexagon>
     /// <param name="effect">The effect to add to the Hexagon.</param>
     public void AddOnTimeEffect(GroundOnTimeAppliedEffect effect)
     {
+        Logger.Debug("add on time effect id : " + effect.GetId());
         _onTimeEffects[effect.GetId()] = effect;
     }
 
@@ -599,10 +600,12 @@ public class Hexagon : IAStar<Hexagon>
 
     public void GrowUp()
     {
+        Logger.Debug("grow up hexagon begin");
         foreach (var effect in _onTimeEffects.Values)
         {
             if (effect is GroundOnTimeAppliedEffectGrowable)
                ((GroundOnTimeAppliedEffectGrowable) effect).GrowUp(this);
         }
+        Logger.Debug("grow up hexagon end");
     }
 }
