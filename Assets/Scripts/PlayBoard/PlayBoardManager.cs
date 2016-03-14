@@ -200,12 +200,6 @@ public class PlayBoardManager
             obstacle.RemoveMarkedOnTimeEffects();
         }
 
-        Logger.Debug("grow area begin turn playboardmanager");
-        foreach (Hexagon hex in growableHexagons)
-        {
-            hex.GrowUp();
-        }
-
         Logger.Debug("apply on time area turn playboardmanager");
         for (int i = 0; i < hexagons.Count; ++i)
         {
@@ -215,6 +209,12 @@ public class PlayBoardManager
                 hex.ReduceOnTimeEffectsCastedBy(currentPlayer);
                 hex.RemoveMarkedOnTimeEffects();
             }
+        }
+
+        Logger.Debug("grow area begin turn playboardmanager");
+        foreach (Hexagon hex in growableHexagons)
+        {
+            hex.GrowUp();
         }
 
         CurrentState = State.MoveMode;
