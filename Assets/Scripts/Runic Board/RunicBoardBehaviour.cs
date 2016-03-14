@@ -19,6 +19,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
 
     private List<GameObject> _runesGO;
 
+    private SendBoardResponse _latestSendBoardResponse;
 
     public RunicBoard Board
     {
@@ -30,6 +31,19 @@ public class RunicBoardBehaviour : MonoBehaviour {
         set
         {
             _board = value;
+        }
+    }
+
+    public SendBoardResponse LatestSendBoardResponse
+    {
+        get
+        {
+            return _latestSendBoardResponse;
+        }
+
+        set
+        {
+            _latestSendBoardResponse = value;
         }
     }
 
@@ -174,14 +188,14 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         }
                         // Rune is released in hand
                         else
-                        {
-                            
+                        {                            
                             Logger.Debug("HAND");
                             if (_board.RemoveRuneFromBoard(rune.PositionOnBoard))
                             {
                                 Transform hand = hitInfo.collider.transform.parent;
                                 Transform slot = hand.GetChild(rune.PositionInHand);
                                 _heldRune.transform.SetParent(slot);
+                                LatestSendBoardResponse = ClientManager.GetInstance()._client.SendBoard();
                             }
                         }
                     }
@@ -191,8 +205,8 @@ public class RunicBoardBehaviour : MonoBehaviour {
                         int newPositionOnBoard = Board.PlaceRuneOnBoard(rune.PositionInHand, slotPosition);
                         if (newPositionOnBoard >= 0)
                         {
-                             SendBoardResponse response =  ClientManager.GetInstance()._client.SendBoard();
-                             if(response._exist)
+                             LatestSendBoardResponse =  ClientManager.GetInstance()._client.SendBoard();
+                             if(LatestSendBoardResponse._exist)
                              {
                                  Transform parent;
                                  if (newPositionOnBoard == 12)

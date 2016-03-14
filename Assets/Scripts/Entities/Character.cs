@@ -158,6 +158,7 @@ public class Character : Entity, Killable
     /// </summary>
     public void BeginTurn()
     {
+        Logger.Debug("begin turn character");
         RangeModifier = 0;
         HealModifier = 0;
         DamageModifier = 0;
@@ -173,7 +174,9 @@ public class Character : Entity, Killable
         _sumNegativeProtection = 0;
         _sumProtection = 0;
 
+        Logger.Debug("begin update shield character");
         updateShields();
+        Logger.Debug("end begin turn character");
     }
 
     public void updateShields()
@@ -181,11 +184,13 @@ public class Character : Entity, Killable
         LinkedListNode<Shield> node = _shields.First;
         while (node != null)
         {
-            if(node.Value.NumberTurn-- == 0)
+            LinkedListNode<Shield> nextNode = node.Next;
+            if (--(node.Value.NumberTurn) == 0)
             {
                 _shields.Remove(node);
                 _globalShieldValue -= node.Value.ShieldValue;
             }
+            node = nextNode;
         }
     }
 
@@ -239,10 +244,10 @@ public class Character : Entity, Killable
     {
         while(value != 0 && _shields.Count > 0)
         {
-            int max = Math.Max(value, _shields.Last.Value.ShieldValue);
-            _shields.Last.Value.ShieldValue -= max;
-            _globalShieldValue -= max;
-            value -= max;
+            int min = Math.Min(value, _shields.Last.Value.ShieldValue);
+            _shields.Last.Value.ShieldValue -= min;
+            _globalShieldValue -= min;
+            value -= min;
             if (_shields.Last.Value.ShieldValue == 0)
                 _shields.RemoveLast();
         }

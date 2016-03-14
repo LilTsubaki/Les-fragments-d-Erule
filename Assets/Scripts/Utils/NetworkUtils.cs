@@ -178,6 +178,8 @@ public class NetworkUtils {
 
         WriteInt(ch.SommeProtection, stream);
         WriteInt(ch.SommeNegativeProtection, stream);
+
+        WriteInt(ch.GlobalShieldValue, stream);
     }
 
     public static Character ReadCharacter(NetworkStream stream)
@@ -207,7 +209,19 @@ public class NetworkUtils {
         ch.SommeProtection = ReadInt(stream);
         ch.SommeNegativeProtection = ReadInt(stream);
 
+        ch.GlobalShieldValue = ReadInt(stream);
+
         return ch;
+    }
+
+    public static void WriteOrientation(Orientation.EnumOrientation orientation, NetworkStream stream)
+    {
+        WriteInt((int)orientation, stream);
+    }
+
+    public static Orientation.EnumOrientation ReadOrientation(NetworkStream stream)
+    {
+        return (Orientation.EnumOrientation)ReadInt(stream);
     }
 
 }
