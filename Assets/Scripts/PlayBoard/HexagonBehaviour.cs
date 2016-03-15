@@ -8,7 +8,6 @@ public class HexagonBehaviour : MonoBehaviour
 
     private List<Hexagon> _finalArea;
 
-    Material _mat;
 
 
     public List<Hexagon> FinalArea
@@ -28,7 +27,6 @@ public class HexagonBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _mat = Instantiate(_hexagon.GameObject.GetComponentInChildren<Renderer>().material);
     }
 
     // Update is called once per frame
