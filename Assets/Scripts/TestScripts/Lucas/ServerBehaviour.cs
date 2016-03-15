@@ -29,7 +29,7 @@ public class ServerBehaviour : MonoBehaviour {
 		player2 = new Character(4000, hexaStart2, _player2GameObject);
 		PlayBoardManager.GetInstance().Init(playBoard, player1, player2);
 
-		Logger.logLvl = Logger.Type.TRACE;
+		//Logger.logLvl = Logger.Type.TRACE;
 
 		SpellManager.getInstance();
 		RunicBoardManager.GetInstance ().RegisterBoard (new RunicBoard ());

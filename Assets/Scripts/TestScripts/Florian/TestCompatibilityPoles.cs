@@ -39,7 +39,7 @@ public class TestCompatibilityPoles : MonoBehaviour
         rangeTest = new List<Hexagon>();
         rangeTest.Add(hexaStart1);
 
-        Logger.logLvl = Logger.Type.TRACE;
+        //Logger.logLvl = Logger.Type.TRACE;
 
         SpellManager.getInstance();
         Logger.Trace("spellManager initialized");

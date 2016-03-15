@@ -5,6 +5,8 @@ using System.Collections;
 public class TestSpawnNetwork : MonoBehaviour {
     
     public string _boardName;
+    public string _prefabEnvironmentName;
+
     public GameObject _player1GameObject;
     public GameObject _player2GameObject;
     private GameObject _board;
@@ -22,11 +24,22 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     private bool _gameStarted;
 
+    private GameObject _envrionment;
+
     void Start()
     {
         CameraManager.GetInstance().FadeTo("cameraAroundMap", 1);
+        
+        
 
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
+        if (_prefabEnvironmentName != "")
+        {
+            GameObject prefab = Resources.Load<GameObject>("prefabs/maps/" + _prefabEnvironmentName);
+            _envrionment = Instantiate(prefab);
+            _board.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         _board.AddComponent<PlayBoardBehaviour>();
         _player1 = new Character(3000, _player1GameObject);
 		_player2 = new Character(3000, _player2GameObject);

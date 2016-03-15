@@ -6,7 +6,7 @@ public class LoggerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		Logger.logLvl = Logger.Type.DEBUG;
+		//Logger.logLvl = Logger.Type.DEBUG;
 		Logger.Warning ("coucou");
 		Logger.Error ("coucou");
 		Logger.Debug ("coucou");

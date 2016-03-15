@@ -18,6 +18,7 @@ public class LoadMaps : MonoBehaviour
     public CharacterHostUI _uiPlayer2;
 
     private string _chosenMap;
+    private string _chosenEnvironment;
 
     public AroundMapScreen _around;
     public Text _textPlayerToPlace;
@@ -53,6 +54,7 @@ public class LoadMaps : MonoBehaviour
             string path = maplist[i].GetField("path").str;
             string mapName = maplist[i].GetField("name").str;
             string mapImage = maplist[i].GetField("miniature").str;
+            string environment = maplist[i].GetField("environment").str;
 
 
             GameObject obj = Instantiate(_buttonToCopy);
@@ -61,7 +63,7 @@ public class LoadMaps : MonoBehaviour
             obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX * 2) * (i % nbButtonsPerLine), (i / nbButtonsPerLine + 1) * -buttonSizeY);
 
             Button button = obj.GetComponent<Button>();
-            button.onClick.AddListener(delegate { LoadingScreen(path); });
+            button.onClick.AddListener(delegate { LoadingScreen(path, environment); });
             button.GetComponentInChildren<Text>().text = mapName;
             Sprite image = Resources.Load("miniatures/" + mapImage, typeof(Sprite)) as Sprite;
             if (image == null)
@@ -75,11 +77,12 @@ public class LoadMaps : MonoBehaviour
         }
     }
 
-    void LoadingScreen(string path)
+    void LoadingScreen(string path, string environment)
     {
         UIManager.GetInstance().FadeOutPanelNoStack("PanelChoiceMap");
         UIManager.GetInstance().FadeInPanelNoStack("Loading");
         _chosenMap = path;
+        _chosenEnvironment = environment;
         Invoke("LoadMap", 1);
     }
 
@@ -96,6 +99,7 @@ public class LoadMaps : MonoBehaviour
         tsn._uiPlayer1 = _uiPlayer1;
         tsn._uiPlayer2 = _uiPlayer2;
         tsn._boardName = name;
+        tsn._prefabEnvironmentName = _chosenEnvironment;
         _around.map = tsn;
         tsn._textPlayerToPlace = _textPlayerToPlace;
     }

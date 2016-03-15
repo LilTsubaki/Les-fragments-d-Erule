@@ -1339,7 +1339,7 @@ public class JSONObject {
             playBoard._center = center;
             Logger.Debug(center);
         }
-
+        
         return playBoard;
     }
 }
