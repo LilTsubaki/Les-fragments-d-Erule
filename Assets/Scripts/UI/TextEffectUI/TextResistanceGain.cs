@@ -15,6 +15,6 @@ public class TextResistanceGain : TextEffect
 
     public override void DisplayText(TextEffectPoolable textEffect, Character character)
     {
-        SetupTextEffect(textEffect, character, "+ " + _value.ToString() + "% RÉSISTANCE", ColorErule._gain);
+        SetupTextEffect(textEffect, character, "+ " + _value.ToString() + "% RÉSISTANCE", ColorErule._gain, _element.getSprite());
     }
 }
