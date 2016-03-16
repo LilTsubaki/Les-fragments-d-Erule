@@ -144,6 +144,7 @@ public class Character : Entity, Killable
         foreach(var effect in EffectsTerminable)
         {
             effect.Value.NbTurn--;
+            Logger.Debug(effect.Value.NbTurn);
             if (effect.Value.NbTurn < 1)
             {
                 List<Hexagon> list = new List<Hexagon>();

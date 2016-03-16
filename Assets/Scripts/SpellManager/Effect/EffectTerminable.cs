@@ -17,7 +17,8 @@ public abstract class EffectTerminable: EffectDirect
     }
     public EffectTerminable(int id, int nbTurn, bool applyReverseEffect = true) : base(id)
     {
-
+        _nbTurn = nbTurn;
+        _applyReverseEffect = applyReverseEffect;
     }
     
     public int NbTurn
