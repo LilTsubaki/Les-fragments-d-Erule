@@ -20,6 +20,8 @@ public class Client : MonoBehaviour{
     bool _isMyTurn;
     bool _isListening;
 
+    bool _isConnected;
+
     bool _isListeningThreadReading;
     bool _isMainThreadReading;
 
@@ -96,6 +98,7 @@ public class Client : MonoBehaviour{
         _tcpClient.NoDelay = true;
         _tcpClient.Client.NoDelay = true;
         IsMyTurn = false;
+        _isConnected = false;
         _isListening = true;
         _isListeningThreadReading = false;
         _isMainThreadReading = false;
@@ -170,10 +173,12 @@ public class Client : MonoBehaviour{
         Thread newThread = new Thread(WaitingMessage);
         newThread.Start();
         _searchingHosts = false;
+        //Thread.Sleep(200);
     }
 
     public void WaitingMessage()
     {
+        _isConnected = true;
         while (_isListening)
         {
             NetworkStream stream = _tcpClient.GetStream();
@@ -374,7 +379,10 @@ public class Client : MonoBehaviour{
 
     public bool JoinBobby()
     {
-        while (_isListeningThreadReading) ;
+        while (_isListeningThreadReading || !_isConnected)
+        {
+            Thread.Sleep(1);
+        }
 
         bool lobbyJoined = false;
 

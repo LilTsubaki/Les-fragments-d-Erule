@@ -10,7 +10,7 @@ public class Logger
 	{
 	}
 
-	public static Type logLvl = Type.ERROR;
+	public static Type logLvl = Type.NONE;
 	public static String logFile="";
 
 	private static void Log(object message,Type lvl){
