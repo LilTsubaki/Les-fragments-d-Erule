@@ -9,7 +9,7 @@ public class Logger
 	private Logger ()
 	{
 	}
-
+    
 	public static Type logLvl = Type.NONE;
 	public static String logFile="";
 
