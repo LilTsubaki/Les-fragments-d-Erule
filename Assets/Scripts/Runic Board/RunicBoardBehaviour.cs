@@ -256,9 +256,5 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	void Update ()
     {
         InputUpdate();
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            ResetRunes();
-        }
     }
 }

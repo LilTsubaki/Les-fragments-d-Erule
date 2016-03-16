@@ -308,7 +308,7 @@ public class Client : MonoBehaviour{
 
         _isMainThreadReading = true;
         NetworkUtils.WriteInt(4, _tcpClient.GetStream());
-        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
 
@@ -328,7 +328,7 @@ public class Client : MonoBehaviour{
     }
 
 
-    public SendBoardResponse SendBoard()
+    public SendBoardResponse SendBoard(bool removeActionPoint = true)
     {
 
         while (_isListeningThreadReading) ;
@@ -336,8 +336,8 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         Logger.Debug("send board");
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
-        
-        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer(), _tcpClient.GetStream());
+        NetworkUtils.WriteBool(removeActionPoint, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
         int id;
