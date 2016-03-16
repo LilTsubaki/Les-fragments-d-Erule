@@ -60,14 +60,15 @@ public class SpellAnimationManager {
                 case 4: // Wood
                     break;
                 case 5: // Metal
-                    int randNbMetal = EruleRandom.RangeValue(1, 3);
+                    int randNbMetal = EruleRandom.RangeValue(1, 4);
+                    Logger.Debug("rand nb " + randNbMetal);
                     List<int> metals = new List<int>();
                     for(int i = 0; i < randNbMetal; ++i)
                     {
-                        int randAnimMetal = EruleRandom.RangeValue(1, 3);
+                        int randAnimMetal = EruleRandom.RangeValue(1, 4);
                         while (metals.Contains(randAnimMetal))
                         {
-                            randAnimMetal = EruleRandom.RangeValue(1, 3);
+                            randAnimMetal = EruleRandom.RangeValue(1, 4);
                         }
                         metals.Add(randAnimMetal);
                         Play("metal" + randAnimMetal, from, to);
