@@ -379,6 +379,7 @@ public class Client : MonoBehaviour{
         bool lobbyJoined = false;
 
         _isMainThreadReading = true;
+		Thread.Sleep (100);
         Logger.Debug("Join Lobby");
         NetworkUtils.WriteInt(15, _tcpClient.GetStream());
         NetworkUtils.WriteString(_name, _tcpClient.GetStream());
