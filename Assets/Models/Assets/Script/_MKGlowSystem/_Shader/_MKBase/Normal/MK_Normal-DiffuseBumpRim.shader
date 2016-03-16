@@ -18,7 +18,7 @@
 	}
 	SubShader 
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="MKGlow" }
 		
 		CGPROGRAM
 		#pragma surface surf Lambert
