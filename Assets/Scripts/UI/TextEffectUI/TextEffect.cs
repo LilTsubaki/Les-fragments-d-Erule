@@ -12,15 +12,16 @@ public abstract class TextEffect {
         Text textComponent = textEffect.GameObject.GetComponentInChildren<Text>();
         textComponent.text = text;
         textComponent.color = color;
+        Image image = textEffect.GameObject.GetComponentInChildren<Image>();
 
         if (sprite != null)
         {
-            Image image = textEffect.GameObject.GetComponentInChildren<Image>();
-            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
             textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = true;
+            image.sprite = sprite;
         }
         else
         {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
             textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;
         }
 

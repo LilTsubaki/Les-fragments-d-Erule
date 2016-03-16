@@ -38,8 +38,8 @@ public class TextEffectBehaviour : MonoBehaviour {
         Image image = gameObject.GetComponentInChildren<Image>();
         if (_currentTime < _duration)
         {
-            float step = Time.deltaTime * 2;
-            transform.position = Vector3.Slerp(transform.position, InitialPosition + Camera.main.transform.up*2, step);
+            float step = Time.deltaTime;
+            transform.position = Vector3.Slerp(transform.position, InitialPosition + Camera.main.transform.up, step);
             if (_currentTime > _fadeOutStart)
             {
                 float newAlpha = 1 - (_currentTime - _fadeOutStart) / (_duration - _fadeOutStart);

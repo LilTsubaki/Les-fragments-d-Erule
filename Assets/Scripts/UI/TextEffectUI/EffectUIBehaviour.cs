@@ -12,7 +12,7 @@ public class EffectUIBehaviour : MonoBehaviour {
         manager.Init(_textEffectUI, _textEffectParent);
         
         /*Character test = new Character(4000);
-        manager.RegisterCharacter(test, 1.0f);
+        manager.RegisterCharacter(test, 1.4f);
 
         manager.AddTextEffect(test, new TextRangeGain(1));
         manager.AddTextEffect(test, new TextRangeLoss(2));
@@ -26,8 +26,8 @@ public class EffectUIBehaviour : MonoBehaviour {
         manager.AddTextEffect(test, new TextDamage(100, Element.GetElement(4)));
         manager.AddTextEffect(test, new TextHeal(100));
         manager.AddTextEffect(test, new TextDamage(100, Element.GetElement(5)));
-        manager.AddTextEffect(test, new TextDamage(100, Element.GetElement(1)));
-        */
+        manager.AddTextEffect(test, new TextDamage(100, Element.GetElement(1)));*/
+        
     }
 	
 	// Update is called once per frame
