@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class ProtectionNegativeElement : ProtectionNegativeGlobal
 {
 	Element _element;
-	public ProtectionNegativeElement (int id, int protection, Element element):base(id, protection)
-	{
+	public ProtectionNegativeElement (int id, int protection, Element element, int nbTurn, bool applyReverseEffect = true) : base(id, protection, nbTurn, applyReverseEffect)
+    {
 		_element = element;
 	}
 
@@ -15,6 +15,8 @@ public class ProtectionNegativeElement : ProtectionNegativeGlobal
         _id = (int)js.GetField(js.keys[0]).n;
         _protection = (int)js.GetField(js.keys[1]).n;
         _element = Element.GetElement((int)js.GetField(js.keys[2]).n);
+        NbTurn = (int)js.GetField("nbTurn").n;
+        ApplyReverseEffect = true;
     }
 
 
@@ -23,9 +25,17 @@ public class ProtectionNegativeElement : ProtectionNegativeGlobal
         Logger.Trace("Apply negative protection element effect : " + _protection + " element : " + _element);
         List<Character> characters = PlayBoardManager.GetInstance ().GetCharacterInArea (hexagons);
 
-		foreach(var ch in characters){
-			ch.ReceiveElementNegativeProtection (_protection, _element);
-		}
+		foreach(var ch in characters)
+        {
+            if (!ch.EffectsTerminable.ContainsKey(_id) || !ApplyReverseEffect)
+            {
+                ch.ReceiveElementNegativeProtection(_protection, _element);
+            }
+            if (ApplyReverseEffect)
+            {
+                ch.EffectsTerminable[_id] = new ProtectionElement(_id, _protection, _element, NbTurn, false);
+            }
+        }
 	}
 }
 

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ProtectionNegativeGlobal : EffectDirect
+public class ProtectionNegativeGlobal : EffectTerminable
 {
 	protected int _protection;
 
     public ProtectionNegativeGlobal() : base() { }
 
-	public ProtectionNegativeGlobal (int id, int protection): base(id)
-	{
+	public ProtectionNegativeGlobal (int id, int protection, int nbTurn, bool applyReverseEffect = true) : base(id, nbTurn, applyReverseEffect)
+    {
 		_protection = protection;
 	}
 
