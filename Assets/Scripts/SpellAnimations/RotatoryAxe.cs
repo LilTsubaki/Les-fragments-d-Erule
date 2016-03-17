@@ -4,15 +4,19 @@ using System.Collections;
 public class RotatoryAxe : MonoBehaviour {
 
     public float _rotX;
+    public GameObject _trail;
 	
 	// Update is called once per frame
 	void Update () {
-        gameObject.transform.Rotate(_rotX, 0, 0);
+        if(gameObject.activeInHierarchy)
+            gameObject.transform.Rotate(_rotX, 0, 0);
 	}
 
     public void RandomInclination()
     {
-        gameObject.transform.Rotate(0, 0, EruleRandom.RangeValue(-30, 30));
+        int rotation = EruleRandom.RangeValue(-30, 30);
+        gameObject.transform.Rotate(0, 0, rotation);
+        _trail.transform.Rotate(0, 0, rotation);
     }
 
 }
