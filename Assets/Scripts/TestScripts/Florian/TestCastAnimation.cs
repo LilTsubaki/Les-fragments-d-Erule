@@ -14,6 +14,10 @@ public class TestCastAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // UNDERWHELMING
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SpellAnimationManager.GetInstance().Play("fire", _cube1, _cube2);
+        }
         if (Input.GetKeyDown(KeyCode.A))
         {
             SpellAnimationManager.GetInstance().Play("air", _cube1, _cube2);
@@ -32,7 +36,9 @@ public class TestCastAnimation : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            HashSet<Element> elements = new HashSet<Element>();
+            List<Element> elements = new List<Element>();
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
             elements.Add(Element.GetElement(5));
             SpellAnimationManager.GetInstance().PlayList(elements, _cube1, _cube2);
         }
