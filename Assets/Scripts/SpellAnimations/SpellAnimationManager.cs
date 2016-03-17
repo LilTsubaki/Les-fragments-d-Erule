@@ -52,6 +52,7 @@ public class SpellAnimationManager {
             switch (elem._id)
             {
                 case 0: // Fire
+                    Play("fire", from, to);
                     break;
                 case 1: // Water
                     break;
@@ -63,8 +64,6 @@ public class SpellAnimationManager {
                 case 4: // Wood
                     break;
                 case 5: // Metal
-                    
-                    Logger.Debug("rand nb " + nbMetal);
                     List<int> metals = new List<int>();
                     for(int i = 0; i < Mathf.Min(nbMetal, 3); ++i)
                     {
