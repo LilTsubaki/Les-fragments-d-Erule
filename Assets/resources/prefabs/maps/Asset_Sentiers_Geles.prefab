@@ -1935,7 +1935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &146338
 GameObject:
   m_ObjectHideFlags: 1
@@ -4161,6 +4161,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &189384
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 460386}
+  - 15: {fileID: 1549226}
+  - 12: {fileID: 1243888}
+  - 26: {fileID: 2641848}
+  m_Layer: 0
+  m_Name: FX_Waterfall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &189494
 GameObject:
   m_ObjectHideFlags: 1
@@ -4842,7 +4860,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146012}
   m_LocalRotation: {x: 0.762763, y: 0.017232055, z: -0.17793137, w: 0.62147903}
-  m_LocalPosition: {x: -2.58, y: 7.09, z: 2.63}
+  m_LocalPosition: {x: -3.05, y: 4.89, z: 2.59}
   m_LocalScale: {x: 1.1666489, y: 1, z: 1.3155792}
   m_Children:
   - {fileID: 423820}
@@ -6753,8 +6771,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7620444, y: 13.66, z: -3.2304664}
+  m_LocalRotation: {x: -0.74881154, y: -0.06311021, z: -0.2301891, w: 0.6183134}
+  m_LocalPosition: {x: -1.6399999, y: 21.57, z: -22.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464014}
@@ -6878,6 +6896,18 @@ Transform:
   - {fileID: 434326}
   m_Father: {fileID: 472288}
   m_RootOrder: 2
+--- !u!4 &460386
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189384}
+  m_LocalRotation: {x: -0.5580218, y: -0.32698125, z: -0.3081467, w: 0.697668}
+  m_LocalPosition: {x: 0.3744774, y: 2.1229925, z: -5.806435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 464014}
+  m_RootOrder: 2
 --- !u!4 &460402
 Transform:
   m_ObjectHideFlags: 1
@@ -6974,6 +7004,7 @@ Transform:
   m_Children:
   - {fileID: 457716}
   - {fileID: 404378}
+  - {fileID: 460386}
   m_Father: {fileID: 435480}
   m_RootOrder: 13
 --- !u!4 &464212
@@ -8135,6 +8166,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 403574}
   m_RootOrder: 45
+--- !u!12 &1243888
+ParticleAnimator:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189384}
+  Does Animate Color?: 1
+  colorAnimation[0]:
+    serializedVersion: 2
+    rgba: 184549375
+  colorAnimation[1]:
+    serializedVersion: 2
+    rgba: 4294967295
+  colorAnimation[2]:
+    serializedVersion: 2
+    rgba: 4294967295
+  colorAnimation[3]:
+    serializedVersion: 2
+    rgba: 3570576000
+  colorAnimation[4]:
+    serializedVersion: 2
+    rgba: 4294967295
+  worldRotationAxis: {x: 0, y: 0, z: 0}
+  localRotationAxis: {x: 0, y: 0, z: 0}
+  sizeGrow: 0.2
+  rndForce: {x: 0, y: -1, z: 0}
+  force: {x: 0, y: -3, z: 0}
+  damping: 0.5
+  stopSimulation: 0
+  autodestruct: 1
 --- !u!12 &1271062
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -8252,6 +8313,33 @@ EllipsoidParticleEmitter:
   m_OneShot: 0
   m_Ellipsoid: {x: 0.7, y: 1, z: 1}
   m_MinEmitterRange: 0
+--- !u!15 &1549226
+EllipsoidParticleEmitter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189384}
+  serializedVersion: 2
+  m_Enabled: 1
+  m_Emit: 1
+  minSize: 0.42758927
+  maxSize: 0.15
+  minEnergy: 0.25
+  maxEnergy: 2
+  minEmission: 30
+  maxEmission: 70
+  worldVelocity: {x: 0, y: 0, z: 0}
+  localVelocity: {x: 0, y: 0, z: -0.5}
+  rndVelocity: {x: 0, y: 0, z: -1}
+  emitterVelocityScale: -0.26
+  tangentVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: 0
+  rndAngularVelocity: 0
+  rndRotation: 0
+  Simulate in Worldspace?: 1
+  m_OneShot: 0
+  m_Ellipsoid: {x: 0.1, y: 0, z: 0}
+  m_MinEmitterRange: 0
 --- !u!15 &1551070
 EllipsoidParticleEmitter:
   m_ObjectHideFlags: 1
@@ -8263,19 +8351,19 @@ EllipsoidParticleEmitter:
   m_Emit: 1
   minSize: 0.04
   maxSize: 0.05
-  minEnergy: 8
-  maxEnergy: 8
+  minEnergy: 60
+  maxEnergy: 80
   minEmission: 50
-  maxEmission: 250
-  worldVelocity: {x: 0.53, y: -1, z: 0}
-  localVelocity: {x: 0, y: 0, z: 0}
+  maxEmission: 100
+  worldVelocity: {x: 0.6, y: -1, z: 0}
+  localVelocity: {x: 0, y: -1, z: 0}
   rndVelocity: {x: 0.5, y: 0.5, z: 0.1}
   emitterVelocityScale: 0.05
   tangentVelocity: {x: 0, y: 0, z: 0}
   angularVelocity: 0
-  rndAngularVelocity: 0
-  rndRotation: 0
-  Simulate in Worldspace?: 1
+  rndAngularVelocity: 10
+  rndRotation: 1
+  Simulate in Worldspace?: 0
   m_OneShot: 0
   m_Ellipsoid: {x: 10, y: 0.1, z: 10}
   m_MinEmitterRange: 0
@@ -14072,6 +14160,42 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!26 &2641848
+ParticleRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189384}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2c7fec2238bada74ab4f7efa3deca06f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_CameraVelocityScale: 0
+  m_StretchParticles: 3
+  m_LengthScale: 0.2
+  m_VelocityScale: 0.34242648
+  m_MaxParticleSize: 0.15757358
+  UV Animation:
+    x Tile: 1
+    y Tile: 1
+    cycles: 1
 --- !u!26 &2698154
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -15940,8 +16064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Object: {fileID: 189366}
   rotSpeed: 0
-  tiltSpeed: 0.25
-  liftSpeed: 0.002
+  tiltSpeed: 0.45
+  liftSpeed: 0.045
   revolve: 0
 --- !u!114 &11492252
 MonoBehaviour:
