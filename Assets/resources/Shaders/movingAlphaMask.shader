@@ -1,11 +1,10 @@
 ﻿Shader "Custom/Transparent Diffuse (Mask cutoff)" {
 	Properties{
-		_Color("Main Color", Color) = (1,1,1,1)
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
 		_Cutoff("Mask cutoff", Range(0,1)) = 0
-		_MaskTex("Mask (RGB=unused, A=mask)", 2D) = "white" {}
-		_MaskTexMoveSpeedU("U Move Speed", Range(0,100)) = 0.5
-		_MaskTexMoveSpeedV("V Move Speed", Range(0,100)) = 0.5
+		_MaskTex("Mask", 2D) = "white" {}
+		_MainTexMoveSpeedU("U Move Speed", Range(0,100)) = 0.5
+		_MainTexMoveSpeedV("V Move Speed", Range(0,100)) = 0.5
 	}
 
 	SubShader{
@@ -17,10 +16,9 @@
 
 		sampler2D _MainTex;
 		sampler2D _MaskTex;
-		fixed4 _Color;
 		fixed _Cutoff;
-		fixed _MaskTexMoveSpeedU;
-		fixed _MaskTexMoveSpeedV;
+		fixed _MainTexMoveSpeedU;
+		fixed _MainTexMoveSpeedV;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -31,21 +29,21 @@
 
 			// Moving
 
-			fixed2 MaskTexMoveScrolledUV = IN.uv_MaskTex;
+			fixed2 MainTexMoveScrolledUV = IN.uv_MainTex;
 
-			fixed MaskTexMoveU = _MaskTexMoveSpeedU * _Time;
-			fixed MaskTexMoveV = _MaskTexMoveSpeedV * _Time;
+			fixed MainTexMoveU = _MainTexMoveSpeedU * _Time;
+			fixed MainTexMoveV = _MainTexMoveSpeedV * _Time;
 
-			MaskTexMoveScrolledUV += fixed2(MaskTexMoveU, MaskTexMoveV);
+			MainTexMoveScrolledUV += fixed2(MainTexMoveU, MainTexMoveV);
 
 			// Alpha cutoff
 
-			fixed4 mask = tex2D(_MaskTex, MaskTexMoveScrolledUV);
+			fixed mask = tex2D(_MaskTex, IN.uv_MaskTex);
 			//clip(mask.a - _Cutoff*1.004); // 1.004 = 1+(1/255) to make sure also white is clipped
 
-			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+			fixed4 c = tex2D(_MainTex, MainTexMoveScrolledUV);
 			o.Albedo = c.rgb;
-			o.Alpha = mask.a;
+			o.Alpha = mask.r * 2;
 		}
 
 		ENDCG

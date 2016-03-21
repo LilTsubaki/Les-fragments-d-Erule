@@ -3,12 +3,12 @@
 	Properties
 	{
 		_VFX_Particles("Texture", 2D) = "white" {}
-		_Cutoff("Alpha cutoff", Range(0,1)) = 0.5
+		/*_Cutoff("Alpha cutoff", Range(0,1)) = 0.5*/
 	}
 	SubShader
 	{
-		Tags{ "Queue" = "AlphaTest" "RenderType" = "TransparentCutout" "IgnoreProjector" = "True" }
-		ZWrite Off
+		Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" "IgnoreProjector" = "True" }
+		//ZWrite Off
 
 		Pass
 		{
@@ -32,7 +32,7 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			float _Cutoff;
+			/*float _Cutoff;*/
 			
 			v2f vert (appdata v)
 			{
@@ -45,7 +45,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 c = tex2D(_MainTex, i.uv);
-				clip(c.a - _Cutoff);
+				/*clip(c.a - _Cutoff);*/
 				return c;
 			}
 			ENDCG
