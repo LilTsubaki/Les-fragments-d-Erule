@@ -551,7 +551,7 @@ public class Hexagon : IAStar<Hexagon>
             }
             else if (_entity is Obstacle)
             {
-                hexa.AddField("obstacle", ((Obstacle)_entity)._gameobject.name);
+                hexa.AddField("obstacle", ((Obstacle)_entity).GameObject.name);
             }
         }
         

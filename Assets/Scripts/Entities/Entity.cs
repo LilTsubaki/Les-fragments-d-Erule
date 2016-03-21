@@ -4,6 +4,7 @@ using System;
 
 public abstract class Entity {
     protected Hexagon _position;
+    protected GameObject _gameObject;
 
     public Hexagon Position
     {
@@ -21,6 +22,19 @@ public abstract class Entity {
             {
                 _position._entity= this;
             }
+        }
+    }
+
+    public GameObject GameObject
+    {
+        get
+        {
+            return _gameObject;
+        }
+
+        set
+        {
+            _gameObject = value;
         }
     }
 

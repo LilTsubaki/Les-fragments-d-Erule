@@ -12,9 +12,9 @@ public class TextShieldLoss : TextEffect
         _value = value;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        SetupTextEffect(textEffect, character, "- " + _value.ToString() + " BOUCLIER", ColorErule._loss);
+        SetupTextEffect(textEffect, entity, "- " + _value.ToString() + " BOUCLIER", ColorErule._loss);
     }
 }
 

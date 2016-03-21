@@ -133,7 +133,7 @@ public class PlayBoardCreator : MonoBehaviour {
                 go.name = shard.name;
                 go.layer = LayerMask.NameToLayer("Obstacle");
                 PowerShard powerShard = new PowerShard(hex, coolDownShard, shardsEffects);
-                powerShard._gameobject = go;
+                powerShard.GameObject = go;
                 hex._entity = powerShard;
                 PlayBoardManager.GetInstance().Board.AddPowerShard(powerShard);
             }
@@ -150,7 +150,7 @@ public class PlayBoardCreator : MonoBehaviour {
                 if (hex._entity is PowerShard)
                 {
                     PowerShard powerShard = (PowerShard)hex._entity;
-                    Destroy(powerShard._gameobject);
+                    Destroy(powerShard.GameObject);
                     hex._entity = null;
                     PlayBoardManager.GetInstance().Board.RemovePowerShard(powerShard);
                 }
@@ -170,7 +170,7 @@ public class PlayBoardCreator : MonoBehaviour {
 				go.name = obstacle.name;
                 go.layer = LayerMask.NameToLayer("Obstacle");
 				Obstacle o =new Obstacle (hex);
-				o._gameobject = go;
+				o.GameObject = go;
 				hex._entity = o;
 			}
 		}
@@ -183,7 +183,7 @@ public class PlayBoardCreator : MonoBehaviour {
 			if (hex.GameObject != null && hex._entity!=null) {
 				if (hex._entity is Obstacle) {
 					Obstacle o = (Obstacle)hex._entity;
-					Destroy (o._gameobject);
+					Destroy (o.GameObject);
 					hex._entity = null;
 				}
 			}

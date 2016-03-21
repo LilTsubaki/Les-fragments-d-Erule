@@ -18,6 +18,7 @@ public class KillableObstacleBehaviour : MonoBehaviour
 	    if(_killableObstacle.isDead())
         {
             _killableObstacle.Position._entity = null;
+            EffectUIManager.GetInstance().DeleteEntity(_killableObstacle);
             Destroy(gameObject);
         }
 	}

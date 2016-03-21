@@ -1305,14 +1305,14 @@ public class JSONObject {
 
 
                     Obstacle obs = new Obstacle(hexagon);
-                    obs._gameobject = new GameObject(prefabObstacle.name);
-                    obs._gameobject.transform.parent = hexagon.GameObject.transform;
-                    obs._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
-                    CapsuleCollider collider = obs._gameobject.AddComponent<CapsuleCollider>();
+                    obs.GameObject = new GameObject(prefabObstacle.name);
+                    obs.GameObject.transform.parent = hexagon.GameObject.transform;
+                    obs.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+                    CapsuleCollider collider = obs.GameObject.AddComponent<CapsuleCollider>();
                     collider.height = 5;
                     collider.radius = 0.5f;
-                    obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
-                    obs._gameobject.transform.Rotate(0f, EruleRandom.RangeValue(0, 5) * 60f, 0f);
+                    obs.GameObject.layer = LayerMask.NameToLayer("Obstacle");
+                    obs.GameObject.transform.Rotate(0f, EruleRandom.RangeValue(0, 5) * 60f, 0f);
                 }
             }
 
@@ -1325,9 +1325,9 @@ public class JSONObject {
                 asset.transform.parent = assets.transform;
                 asset.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
 
-                ps._gameobject.transform.parent = hexagon.GameObject.transform;
-                ps._gameobject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
-                ps._gameobject.layer = LayerMask.NameToLayer("Obstacle");
+                ps.GameObject.transform.parent = hexagon.GameObject.transform;
+                ps.GameObject.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n, 0.75f * hexagon._posY);
+                ps.GameObject.layer = LayerMask.NameToLayer("Obstacle");
 
                 playBoard.AddPowerShard(ps);
             }

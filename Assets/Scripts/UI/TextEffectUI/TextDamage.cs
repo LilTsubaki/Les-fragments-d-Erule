@@ -14,8 +14,8 @@ class TextDamage : TextEffect
         _element = element;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        SetupTextEffect(textEffect, character, _value.ToString(), ColorErule._damage, _element.getSprite());
+        SetupTextEffect(textEffect, entity, _value.ToString(), ColorErule._damage, _element.getSprite());
     }
 }

@@ -24,7 +24,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     private bool _gameStarted;
 
-    private GameObject _envrionment;
+    private GameObject _environment;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class TestSpawnNetwork : MonoBehaviour {
         if (_prefabEnvironmentName != "")
         {
             GameObject prefab = Resources.Load<GameObject>("prefabs/maps/" + _prefabEnvironmentName);
-            _envrionment = Instantiate(prefab);
+            _environment = Instantiate(prefab);
             _board.transform.GetChild(0).gameObject.SetActive(false);
         }
 
@@ -104,13 +104,13 @@ public class TestSpawnNetwork : MonoBehaviour {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
-                    if (!character._gameObject.activeSelf)
+                    if (!character.GameObject.activeSelf)
                     {
-                        character._gameObject.SetActive(true);
+                        character.GameObject.SetActive(true);
                     }
                     character.Position = spawn;
                     spawn._entity = character;
-                    character._gameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+                    character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
                 }
             }
         }
