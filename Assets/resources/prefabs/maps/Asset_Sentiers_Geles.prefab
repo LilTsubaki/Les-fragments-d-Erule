@@ -625,7 +625,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416398}
-  - 114: {fileID: 11411246}
+  - 114: {fileID: 11420074}
   m_Layer: 0
   m_Name: Ice_Shards_2
   m_TagString: Untagged
@@ -1294,7 +1294,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 472288}
-  - 114: {fileID: 11457468}
+  - 114: {fileID: 11463572}
   m_Layer: 0
   m_Name: Ice_Shards_1
   m_TagString: Untagged
@@ -3335,7 +3335,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 459690}
-  - 114: {fileID: 11492252}
+  - 114: {fileID: 11402252}
   m_Layer: 0
   m_Name: Ile_flottante_terre_1
   m_TagString: Untagged
@@ -4153,7 +4153,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 420324}
-  - 114: {fileID: 11482848}
+  - 114: {fileID: 11433074}
   m_Layer: 0
   m_Name: Ile_flottante_ice_2
   m_TagString: Untagged
@@ -7171,7 +7171,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145008}
-  m_LocalRotation: {x: -0.53744817, y: -0.050352197, z: -0.8416587, w: -0.01499675}
+  m_LocalRotation: {x: -0.5374481, y: -0.05035219, z: -0.8416586, w: -0.014996748}
   m_LocalPosition: {x: -7.9778976, y: 0.6721188, z: 5.3308563}
   m_LocalScale: {x: 1.0135903, y: 1.7073642, z: 2.8698215}
   m_Children: []
@@ -8326,7 +8326,7 @@ EllipsoidParticleEmitter:
   maxSize: 0.15
   minEnergy: 0.25
   maxEnergy: 2
-  minEmission: 30
+  minEmission: 15
   maxEmission: 70
   worldVelocity: {x: 0, y: 0, z: 0}
   localVelocity: {x: 0, y: 0, z: -0.5}
@@ -15989,7 +15989,23 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11411246
+--- !u!114 &11402252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f02f63c6bce4b24fab9acc4cc5c17b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Object: {fileID: 175756}
+  rotSpeed: 0
+  tiltSpeed: 0.9
+  liftSpeed: 0.001
+  revolve: 0
+--- !u!114 &11420074
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -15997,13 +16013,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 118384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317199cb2fee3ce4795524c0a1cfa917, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f02f63c6bce4b24fab9acc4cc5c17b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object: {fileID: 118384}
   rotSpeed: 0
-  tiltSpeed: 0.2
-  liftSpeed: 0.0035
+  tiltSpeed: 0.9
+  liftSpeed: 0.001
+  revolve: 0
+--- !u!114 &11433074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f02f63c6bce4b24fab9acc4cc5c17b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Object: {fileID: 189366}
+  rotSpeed: 0
+  tiltSpeed: 0.9
+  liftSpeed: 0.001
   revolve: 0
 --- !u!114 &11439152
 MonoBehaviour:
@@ -16035,7 +16067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skydome: {fileID: 190840}
   rotSpeed: 0.003
---- !u!114 &11457468
+--- !u!114 &11463572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -16043,45 +16075,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 131354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317199cb2fee3ce4795524c0a1cfa917, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f02f63c6bce4b24fab9acc4cc5c17b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object: {fileID: 131354}
   rotSpeed: 0
-  tiltSpeed: 0.3
-  liftSpeed: 0.0045
-  revolve: 0
---- !u!114 &11482848
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317199cb2fee3ce4795524c0a1cfa917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Object: {fileID: 189366}
-  rotSpeed: 0
-  tiltSpeed: 0.45
-  liftSpeed: 0.045
-  revolve: 0
---- !u!114 &11492252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317199cb2fee3ce4795524c0a1cfa917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Object: {fileID: 175756}
-  rotSpeed: 0
-  tiltSpeed: 0.2
-  liftSpeed: 0.002
+  tiltSpeed: 0.9
+  liftSpeed: 0.001
   revolve: 0
 --- !u!136 &13684004
 CapsuleCollider:
