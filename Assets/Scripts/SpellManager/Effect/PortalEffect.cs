@@ -31,10 +31,11 @@ public class PortalEffect : EffectDirect
             Portal portal = new Portal(target, instance);
             portals.Add(portal);
 
-            // Automatically teleport the caster if is on a Portal.
-            if (caster.Position.Portal != null)
+            // Automatically teleport a character if he already stands on a Portal
+            if (target._entity is Character)
             {
-                caster.Teleport();
+                Character character = (Character)target._entity;
+                character.Teleport();
             }
         }
         else
