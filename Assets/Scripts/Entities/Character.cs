@@ -246,6 +246,7 @@ public class Character : Entity, Killable
     public int ShieldReceiveDamage(int value)
     {
         int firstValue = value;
+        int nbShields = _shields.Count;
         while(value != 0 && _shields.Count > 0)
         {
             int min = Math.Min(value, _shields.Last.Value.ShieldValue);
@@ -255,7 +256,8 @@ public class Character : Entity, Killable
             if (_shields.Last.Value.ShieldValue == 0)
                 _shields.RemoveLast();
         }
-        EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(firstValue - value));
+        if(nbShields > 0)
+            EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(firstValue - value));
         return value;
     }
 
