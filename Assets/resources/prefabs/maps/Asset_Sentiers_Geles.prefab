@@ -1754,7 +1754,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 403574}
-  - 114: {fileID: 11439614}
   m_Layer: 0
   m_Name: Foliage
   m_TagString: Untagged
@@ -3864,7 +3863,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 450832}
-  - 114: {fileID: 11485250}
   m_Layer: 0
   m_Name: Trees
   m_TagString: Untagged
@@ -7046,7 +7044,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145008}
-  m_LocalRotation: {x: -0.5374481, y: -0.05035219, z: -0.8416586, w: -0.014996748}
+  m_LocalRotation: {x: -0.53744817, y: -0.050352197, z: -0.8416587, w: -0.01499675}
   m_LocalPosition: {x: -7.9778976, y: 0.6721188, z: 5.3308563}
   m_LocalScale: {x: 1.0135903, y: 1.7073642, z: 2.8698215}
   m_Children: []
@@ -15916,24 +15914,6 @@ MonoBehaviour:
   m_ReflectLayers:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11439614
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983843d9627af415cbaa7207d168be56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VertexLitTranslucencyColor: {r: 0.73, g: 0.85, b: 0.4, a: 1}
-  ShadowStrength: 0.8
-  Wind: {x: 0.5, y: 0.075, z: 0.2, w: 0.1}
-  WindFrequency: 0.5
-  GrassWindFrequency: 0.5
-  TreeDistance: 500
-  MediumDetailsDistance: 5
 --- !u!114 &11463572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15963,24 +15943,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skydome: {fileID: 148006}
   rotSpeed: 0.003
---- !u!114 &11485250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983843d9627af415cbaa7207d168be56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VertexLitTranslucencyColor: {r: 0.73, g: 0.85, b: 0.4, a: 1}
-  ShadowStrength: 0.8
-  Wind: {x: 0, y: 0, z: 0, w: 0}
-  WindFrequency: 0
-  GrassWindFrequency: 0
-  TreeDistance: 0
-  MediumDetailsDistance: 0
 --- !u!136 &13684004
 CapsuleCollider:
   m_ObjectHideFlags: 1
