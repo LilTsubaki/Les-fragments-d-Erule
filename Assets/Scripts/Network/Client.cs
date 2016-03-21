@@ -353,10 +353,14 @@ public class Client : MonoBehaviour{
             SendBoardResponse sbr;
             bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
             if (ifExist)
-            {
-                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+            { 
+
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()),
+                                                                //min range max range 
                                                                 NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
-                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+                                                               // isPiercing and isEnemyTargetable
+                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
+                                                               //orientation 
                                                                NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
             }
             else

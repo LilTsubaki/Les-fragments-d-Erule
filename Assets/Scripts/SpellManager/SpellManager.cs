@@ -20,6 +20,7 @@ public class SpellManager
     private Area _CurrentSelfArea;
 
     private Queue<Element> _spellToInit;
+    private Queue<Element> _spellInit;
     private HashSet<Element> _spellAnims;
 
     private Dictionary<int, Dictionary<Element, int>> _failDamage;
@@ -313,6 +314,7 @@ public class SpellManager
         {
             PlayBoardManager.GetInstance().Board.ResetBoard();
             InitSpell(_spellToInit);
+            _spellInit = _spellToInit;
             _spellToInit = null;
         }
     }
@@ -396,6 +398,14 @@ public class SpellManager
                     }
                 }
             }
+
+            if(!success)
+            {
+                foreach(var elem in _spellInit)
+                {
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
+                }
+            }
         }
         else
         {
@@ -435,6 +445,13 @@ public class SpellManager
                         if (effectTest != null)
                             effectTest.ApplyEffect(finalArea, target, currentPlayer);
                     }
+                }
+            }
+            if (!success)
+            {
+                foreach (var elem in _spellInit)
+                {
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
                 }
             }
         }
