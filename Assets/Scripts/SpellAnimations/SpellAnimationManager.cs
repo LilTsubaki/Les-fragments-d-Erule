@@ -45,9 +45,8 @@ public class SpellAnimationManager {
     public bool PlayList(List<Element> elemIds, GameObject from, GameObject to)
     {
         HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
-        List<Element> metalsFromSpell = elemIds.FindAll(delegate(Element e) { return e._id == 5; });
-        int nbMetal = metalsFromSpell.Count;//EruleRandom.RangeValue(1, 4);
-        foreach (Element elem in elemIds)
+        int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);
+        foreach (Element elem in setElems)
         {
             switch (elem._id)
             {

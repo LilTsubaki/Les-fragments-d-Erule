@@ -24,7 +24,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     private bool _gameStarted;
 
-    private GameObject _envrionment;
+    private GameObject _environment;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class TestSpawnNetwork : MonoBehaviour {
         if (_prefabEnvironmentName != "")
         {
             GameObject prefab = Resources.Load<GameObject>("prefabs/maps/" + _prefabEnvironmentName);
-            _envrionment = Instantiate(prefab);
+            _environment = Instantiate(prefab);
             _board.transform.GetChild(0).gameObject.SetActive(false);
         }
 
