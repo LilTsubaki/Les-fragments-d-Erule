@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DeckSelectionBehaviour : MonoBehaviour {
@@ -14,6 +15,8 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     public GameObject _metalRuneAsset;
     public GameObject _waterRuneAsset;
     public GameObject _woodRuneAsset;
+
+    public Text _runeTooltip;
 
     private GameObject _heldRune;
 
