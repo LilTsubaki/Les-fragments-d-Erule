@@ -80,17 +80,17 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
+          m_Scale: {x: 0.25, y: 0.5}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _Mask
         second:
           m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
-          m_Scale: {x: 0.5, y: 0.5}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
@@ -143,20 +143,20 @@ Material:
         second: 0
       data:
         first:
+          name: _MaskTexMoveSpeedU
+        second: 2.7
+      data:
+        first:
+          name: _MaskTexMoveSpeedV
+        second: 0
+      data:
+        first:
           name: _MainTexMoveSpeedU
         second: 0.5
       data:
         first:
           name: _MainTexMoveSpeedV
         second: 0.5
-      data:
-        first:
-          name: _MaskTexMoveSpeedU
-        second: 7.1
-      data:
-        first:
-          name: _MaskTexMoveSpeedV
-        second: 0
       data:
         first:
           name: _MaskMoveSpeedU

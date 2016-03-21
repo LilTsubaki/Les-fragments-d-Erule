@@ -20,8 +20,10 @@ public class SpellManager
     private Area _CurrentSelfArea;
 
     private Queue<Element> _spellToInit;
+
     private Queue<Element> _spellInit;
-    private HashSet<Element> _spellAnims;
+    private List<Element> _spellAnims;
+    
 
     private Dictionary<int, Dictionary<Element, int>> _failDamage;
 
@@ -322,7 +324,7 @@ public class SpellManager
     public void InitSpell(Queue<Element> elements)
     {
         Queue<Element> tempElements = new Queue<Element>(elements);
-        _spellAnims = new HashSet<Element>(tempElements.ToArray());
+        _spellAnims = new List<Element>(tempElements.ToArray());
 
         CurrentTargetSpell = ElementNode.GetTargetSpell(elements);
         CurrentTargetArea = GetAreaById(CurrentTargetSpell.AreaId);

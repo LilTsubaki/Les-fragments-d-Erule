@@ -27,8 +27,8 @@ public class FloatingObjects : MonoBehaviour {
 			//if (enabled)
 			//{
 				rot += rotSpeed * revolve;
-				tilt = Mathf.Sin (Time.time) * tiltSpeed;
-				lift = Mathf.Sin (Time.time) * liftSpeed;
+				tilt = Mathf.Sin (Time.deltaTime) * tiltSpeed;
+				lift = Mathf.Sin (Time.deltaTime) * liftSpeed;
 				
 				Object.transform.eulerAngles = new Vector3 (0.0f,rot,tilt);	// replace the Y coordinates by rot
 				Object.transform.Translate(0.0f,lift,0.0f, Space.World);
