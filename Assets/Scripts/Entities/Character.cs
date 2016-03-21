@@ -189,6 +189,7 @@ public class Character : Entity, Killable
             {
                 _shields.Remove(node);
                 _globalShieldValue -= node.Value.ShieldValue;
+                EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(node.Value.ShieldValue));
             }
             node = nextNode;
         }
@@ -203,12 +204,14 @@ public class Character : Entity, Killable
             {
                 _shields.Remove(node);
                 _globalShieldValue -= node.Value.ShieldValue;
+                EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(node.Value.ShieldValue));
                 break;
             }
             node = node.Next;
         }
         _shields.AddLast(new Shield(shield));
         _globalShieldValue += shield.ShieldValue;
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldGain(shield.ShieldValue));
     }
 
 
@@ -242,6 +245,7 @@ public class Character : Entity, Killable
 
     public int ShieldReceiveDamage(int value)
     {
+        int firstValue = value;
         while(value != 0 && _shields.Count > 0)
         {
             int min = Math.Min(value, _shields.Last.Value.ShieldValue);
@@ -251,6 +255,7 @@ public class Character : Entity, Killable
             if (_shields.Last.Value.ShieldValue == 0)
                 _shields.RemoveLast();
         }
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(firstValue - value));
         return value;
     }
 
@@ -409,19 +414,23 @@ public class Character : Entity, Killable
 
     public void ReceiveDamageUp(int value)
     {
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextDamageGain(value));
         DamageModifier += value;
     }
 
     public void ReceiveDamageDown(int value)
     {
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextDamageLoss(value));
         DamageModifier -= value;
     }
     public void ReceiveHealUp(int value)
     {
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextHealGain(value));
         HealModifier += value;
     }
     public void ReceiveHealDown(int value)
     {
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextHealLoss(value));
         HealModifier -= value;
     }
 
