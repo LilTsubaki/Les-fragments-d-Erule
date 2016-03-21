@@ -12,8 +12,8 @@ public class TextRangeLoss : TextEffect
         _value = value;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        SetupTextEffect(textEffect, character, "- " + _value.ToString() + " PORTÉE", ColorErule._loss);
+        SetupTextEffect(textEffect, entity, "- " + _value.ToString() + " PORTÉE", ColorErule._loss);
     }
 }

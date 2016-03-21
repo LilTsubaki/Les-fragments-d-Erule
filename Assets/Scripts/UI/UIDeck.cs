@@ -8,6 +8,14 @@ public class UIDeck : MonoBehaviour {
     public DeckSelectionBehaviour _deck;
     public InputField _inputField;
 
+    void OnGUI()
+    {
+        if(_inputField.isFocused && Input.GetKeyDown(KeyCode.Return))
+        {
+            SaveHandAndPlay();
+        }
+    }
+
 	public void SaveHandAndPlay()
     {
         if(_deck.DeckSelection.RunesInHand.Count == 7)
@@ -16,13 +24,14 @@ public class UIDeck : MonoBehaviour {
             RunicBoardManager.GetInstance().TempHand = ds.RunesInHand;
             if (_inputField.text.Length == 0)
             {
-                _inputField.text = "No Name";
+                _inputField.text = "Anonyme";
             }
             ClientManager.GetInstance()._client.Name = _inputField.text;
 
             UIManager.GetInstance().HidePanelNoStack("PanelRunicBoard");
             UIManager.GetInstance().ShowPanelNoStack("PanelServers");
             ClientManager.GetInstance()._client.SearchHost();
+            Debug.LogError("Deactivating deck");
             _deck.gameObject.SetActive(false);
         }
         else

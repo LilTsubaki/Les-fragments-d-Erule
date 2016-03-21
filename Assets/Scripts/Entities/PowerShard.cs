@@ -62,7 +62,7 @@ public class PowerShard : Obstacle
         JSONObject arr = new JSONObject(JSONObject.Type.ARRAY);
         powerShard.AddField("coolDown", _cooldown);
         powerShard.AddField("effectIds", arr);
-        powerShard.AddField("gameObject", _gameobject.name);
+        powerShard.AddField("gameObject", GameObject.name);
 
         for (int i = 0; i < _effectIds.Count; i++)
         {
@@ -83,11 +83,11 @@ public class PowerShard : Obstacle
             effectIds.Add((int)jo.n);
         }
         PowerShard ps = new PowerShard(position, coolDown, effectIds);
-        ps._gameobject = new GameObject();
-        CapsuleCollider collider = ps._gameobject.AddComponent<CapsuleCollider>();
+        ps.GameObject = new GameObject();
+        CapsuleCollider collider = ps.GameObject.AddComponent<CapsuleCollider>();
         collider.height = 5;
         collider.radius = 0.5f;
-        ps._gameobject.name = powerShard.GetField("gameObject").str;
+        ps.GameObject.name = powerShard.GetField("gameObject").str;
         return ps;
     }
 }

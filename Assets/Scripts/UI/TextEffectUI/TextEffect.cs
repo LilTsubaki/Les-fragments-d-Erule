@@ -4,9 +4,9 @@ using System.Collections;
 
 public abstract class TextEffect {
 
-    protected void SetupTextEffect(TextEffectPoolable textEffect, Character character, string text, Color color, Sprite sprite = null)
+    protected void SetupTextEffect(TextEffectPoolable textEffect, Entity entity, string text, Color color, Sprite sprite = null)
     {
-        textEffect.GameObject.transform.position = character._gameObject.transform.position + new Vector3(0, 1, 0);
+        textEffect.GameObject.transform.position = entity.GameObject.transform.position + new Vector3(0, 1, 0);
         textEffect.GameObject.GetComponent<TextEffectBehaviour>().InitialPosition = textEffect.GameObject.transform.position;
 
         Text textComponent = textEffect.GameObject.GetComponentInChildren<Text>();
@@ -27,5 +27,5 @@ public abstract class TextEffect {
 
     }
 
-    public abstract void DisplayText(TextEffectPoolable textEffect, Character character);
+    public abstract void DisplayText(TextEffectPoolable textEffect, Entity entity);
 }

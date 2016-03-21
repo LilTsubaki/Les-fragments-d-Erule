@@ -24,18 +24,18 @@ AnimationClip:
         tangentMode: 0
       - time: 0.25
         value: {x: 4.1425, y: 1.6, z: 0.03}
-        inSlope: {x: -12.950001, y: -7.746, z: 0}
-        outSlope: {x: -12.950001, y: -7.746, z: 0}
+        inSlope: {x: -12.950001, y: -8.98, z: 0}
+        outSlope: {x: -12.950001, y: -8.98, z: 0}
         tangentMode: 0
       - time: 0.5
-        value: {x: 0.90499973, y: 0.617, z: 0.03}
-        inSlope: {x: -12.950001, y: -0.01999998, z: 0}
-        outSlope: {x: -12.950001, y: -0.01999998, z: 0}
+        value: {x: 0.90499973, y: 0, z: 0.03}
+        inSlope: {x: -12.950001, y: 1.1380506, z: 0}
+        outSlope: {x: -12.950001, y: -0.86779433, z: 0}
         tangentMode: 0
       - time: 0.75
         value: {x: -2.3325002, y: 1.59, z: 0.03}
-        inSlope: {x: -12.95, y: 7.7459993, z: 0}
-        outSlope: {x: -12.95, y: 7.7459993, z: 0}
+        inSlope: {x: -12.95, y: 8.98, z: 0}
+        outSlope: {x: -12.95, y: 8.98, z: 0}
         tangentMode: 0
       - time: 1
         value: {x: -5.57, y: 4.49, z: 0.03}
@@ -68,6 +68,41 @@ AnimationClip:
     path: DM_Metal_Axe
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0.59999996
+        tangentMode: 5
+      - time: 0.6
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.9166667
+        value: 1
+        inSlope: 0
+        outSlope: -20.00002
+        tangentMode: 21
+      - time: 0.96666664
+        value: 0
+        inSlope: -20.00002
+        outSlope: -20.00002
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: MyColor.a
+    path: DM_Metal_Axe/X-WeaponTrail
+    classID: 114
+    script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -86,6 +121,12 @@ AnimationClip:
       attribute: 2086281974
       script: {fileID: 0}
       classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 236221495
+      attribute: 2949263851
+      script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
+      classID: 114
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -155,18 +196,18 @@ AnimationClip:
         tangentMode: 10
       - time: 0.25
         value: 1.6
-        inSlope: -7.746
-        outSlope: -7.746
+        inSlope: -8.98
+        outSlope: -8.98
         tangentMode: 10
       - time: 0.5
-        value: 0.617
-        inSlope: -0.01999998
-        outSlope: -0.01999998
-        tangentMode: 10
+        value: 0
+        inSlope: 1.1380506
+        outSlope: -0.86779433
+        tangentMode: 1
       - time: 0.75
         value: 1.59
-        inSlope: 7.7459993
-        outSlope: 7.7459993
+        inSlope: 8.98
+        outSlope: 8.98
         tangentMode: 10
       - time: 1
         value: 4.49
@@ -235,6 +276,41 @@ AnimationClip:
     path: DM_Metal_Axe
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0.59999996
+        tangentMode: 5
+      - time: 0.6
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.9166667
+        value: 1
+        inSlope: 0
+        outSlope: -20.00002
+        tangentMode: 21
+      - time: 0.96666664
+        value: 0
+        inSlope: -20.00002
+        outSlope: -20.00002
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: MyColor.a
+    path: DM_Metal_Axe/X-WeaponTrail
+    classID: 114
+    script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0

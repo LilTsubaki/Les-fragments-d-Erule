@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class EffectUIManager {
 
     private static EffectUIManager manager;
-    private Dictionary<Character, EffectBuffer> _buffers;
+    private Dictionary<Entity, EffectBuffer> _buffers;
     private Pool<TextEffectPoolable> _pool;
+
+    private float _step;
 
     private EffectUIManager()
     {
-        _buffers = new Dictionary<Character, EffectBuffer>();
+        _buffers = new Dictionary<Entity, EffectBuffer>();
     }
 
     public static EffectUIManager GetInstance()
@@ -24,23 +26,24 @@ public class EffectUIManager {
     public void Init(GameObject go, GameObject parent)
     {
         _pool = new Pool<TextEffectPoolable>(new TextEffectPoolable(go, parent),50,5);
+        _step = 1.4298f;
     }
 
-    public void RegisterCharacter(Character character, float step)
+    public void RegisterEntity(Entity Entity)
     {
-        if(character != null)
-        _buffers.Add(character, new EffectBuffer(step));
+        if(Entity != null)
+        _buffers.Add(Entity, new EffectBuffer(_step));
     }
 
-    public void DeleteCharacter(Character character)
+    public void DeleteEntity(Entity Entity)
     {
-        _buffers.Remove(character);
+        _buffers.Remove(Entity);
     }
 
-    public void AddTextEffect(Character character, TextEffect textEffect)
+    public void AddTextEffect(Entity Entity, TextEffect textEffect)
     {
-        if(_buffers.ContainsKey(character))
-            _buffers[character].AddTextEffect(textEffect);
+        if(_buffers.ContainsKey(Entity))
+            _buffers[Entity].AddTextEffect(textEffect);
     }
 
     public void UpdateTimer()

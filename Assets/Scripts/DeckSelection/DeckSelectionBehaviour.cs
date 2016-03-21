@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DeckSelectionBehaviour : MonoBehaviour {
@@ -14,6 +15,8 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     public GameObject _metalRuneAsset;
     public GameObject _waterRuneAsset;
     public GameObject _woodRuneAsset;
+
+    public Text _runeTooltip;
 
     private GameObject _heldRune;
 
@@ -49,6 +52,32 @@ public class DeckSelectionBehaviour : MonoBehaviour {
         InstantiateRune(_woodRuneAsset, Element.GetElement(4), _listGO.transform.GetChild(5));
     }
 
+    private void UpdateRuneToolTip(RuneBehaviour rb)
+    {
+        Element elem = rb._rune.Element;
+        switch(elem._name)
+        {
+            case "Fire":
+                _runeTooltip.text = "Attaquez avec le feu et admirez sur plusieurs tours la lente agonie de votre adversaire. De même, utilisez le pour le soin et profitez d’un petit regain d’énergie à chaque tour.";
+                break;
+            case "Water":
+                _runeTooltip.text = "En cas de coup dur, l’eau sera votre meilleure alliée pour vous régénérer. N’oubliez pas pour autant d’attaquer. Et voler quelques points de vie à votre adversaire par la même occasion…";
+                break;
+            case "Air":
+                _runeTooltip.text = "L’air est parfait pour lancer des sorts sans se soucier des obstacles sur la route ou augmenter votre portée afin d’atteindre vos adversaires d’encore plus loin.";
+                break;
+            case "Earth":
+                _runeTooltip.text = "La terre compense sa faible portée par son immense puissance. Vous pourrez même frapper encore plus fort si vous l’utilisez pour vous booster. Si votre ennemi prend ses distances, vous pourrez réduire sa portée pour l’inciter à revenir au corps à corps.";
+                break;
+            case "Wood":
+                _runeTooltip.text = "Le bois vous permettra d’attirer ou repousser votre adversaire pour retourner la situation à votre avantage. À l’inverse, n’hésitez pas à vous enraciner afin de garder votre position.";
+                break;
+            case "Metal":
+                _runeTooltip.text = "Le métal permet de créer un bouclier absorbant les dégâts. Couplé aux autres éléments, il permet d’augmenter ou de baisser vos résistances et celles de vos adversaires. Il n’existe cependant aucune résistance au métal. Rien ne pourra protéger l’ennemi de vos attaques.";
+                break;
+        }
+    }
+
     void InputUpdate()
     {
         // If mouse is pressed, check if a rune is underneath. If a rune is found, put his gameObject in _heldRune.
@@ -69,6 +98,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                 {
                     runeBehaviour._state = RuneBehaviour.State.BeingTaken;
                 }
+                UpdateRuneToolTip(behaviourHeldRune);
             }
         }
 
