@@ -83,11 +83,18 @@ Material:
           name: _MaskTex
         second:
           m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
-          m_Scale: {x: 0.25, y: 0.5}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Alpha
         second:
           m_Texture: {fileID: 2800000, guid: 46bde7cea851e2c4ab4c9690231e2d65, type: 3}
           m_Scale: {x: 1, y: 1}
@@ -104,7 +111,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.99
+        second: 0.618
       data:
         first:
           name: _Parallax
@@ -144,7 +151,7 @@ Material:
       data:
         first:
           name: _MaskTexMoveSpeedU
-        second: 2.7
+        second: 3.1
       data:
         first:
           name: _MaskTexMoveSpeedV

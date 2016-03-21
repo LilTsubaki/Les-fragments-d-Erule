@@ -41,11 +41,11 @@
 			// Alpha cutoff
 
 			fixed4 mask = tex2D(_MaskTex, MaskTexMoveScrolledUV);
-			clip(mask.a - _Cutoff*1.004); // 1.004 = 1+(1/255) to make sure also white is clipped
+			//clip(mask.a - _Cutoff*1.004); // 1.004 = 1+(1/255) to make sure also white is clipped
 
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
-			o.Alpha = c.a;
+			o.Alpha = mask.a;
 		}
 
 		ENDCG
