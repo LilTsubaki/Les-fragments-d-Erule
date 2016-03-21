@@ -13,9 +13,9 @@ public class TextDamageGain : TextEffect
         _value = value;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        SetupTextEffect(textEffect, character, "+ " + _value.ToString() + " DEGATS FIXES", ColorErule._gain);
+        SetupTextEffect(textEffect, entity, "+ " + _value.ToString() + " DEGATS FIXES", ColorErule._gain);
     }
 }
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Character : Entity, Killable
 {
-    public GameObject _gameObject;
-    
     public enum State { Moving, CastingSpell, Waiting, Translating }
 
 	/*public static int MaxProtection = 50;*/

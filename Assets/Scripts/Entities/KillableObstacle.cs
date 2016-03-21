@@ -30,6 +30,7 @@ public class KillableObstacle : Obstacle, Killable
             _currentLife -= value;
 
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
+        EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value,element));
         return value;
     }
 
