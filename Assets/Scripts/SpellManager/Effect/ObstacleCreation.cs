@@ -33,6 +33,8 @@ public class ObstacleCreation : EffectDirect
                 obs._gameobject = GameObject.Instantiate(_prefab);
                 KillableObstacleBehaviour kob = obs._gameobject.AddComponent<KillableObstacleBehaviour>();
                 kob.KillableObstacle = obs;
+                CapsuleCollider caps = obs._gameobject.AddComponent<CapsuleCollider>();
+                caps.height = 5;
                 obs._gameobject.transform.parent = hexa.GameObject.transform;
                 obs._gameobject.name = Name;
                 obs._gameobject.transform.position = new Vector3(0.866f * hexa._posX - 0.433f * hexa._posY, hexa.GameObject.transform.position.y, 0.75f * hexa._posY);
