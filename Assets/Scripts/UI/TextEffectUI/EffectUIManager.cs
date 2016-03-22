@@ -29,21 +29,32 @@ public class EffectUIManager {
         _step = 1.4298f;
     }
 
-    public void RegisterEntity(Entity Entity)
+    public void RegisterEntity(Entity entity)
     {
-        if(Entity != null)
-        _buffers.Add(Entity, new EffectBuffer(_step));
+        if (entity != null)
+            _buffers.Add(entity, new EffectBuffer(entity, _step));
     }
 
-    public void DeleteEntity(Entity Entity)
+    public void DeleteEntity(Entity entity)
     {
-        _buffers.Remove(Entity);
+        if (_buffers.ContainsKey(entity))
+        {
+            if (_buffers[entity].TextEffects.Count == 0)
+            {
+                _buffers.Remove(entity);
+            }
+            else
+            {
+                _buffers[entity].Delete = true;
+            }
+        }
+       
     }
 
-    public void AddTextEffect(Entity Entity, TextEffect textEffect)
+    public void AddTextEffect(Entity entity, TextEffect textEffect)
     {
-        if(_buffers.ContainsKey(Entity))
-            _buffers[Entity].AddTextEffect(textEffect);
+        if(_buffers.ContainsKey(entity))
+            _buffers[entity].AddTextEffect(textEffect);
     }
 
     public void UpdateTimer()
