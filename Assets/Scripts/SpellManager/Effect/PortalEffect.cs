@@ -17,9 +17,9 @@ public class PortalEffect : EffectDirect
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
+        List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
         if (target._entity == null)
         {
-            List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
             if (portals.Count >= 2)
             {
                 portals[0].Destroy();
@@ -31,16 +31,31 @@ public class PortalEffect : EffectDirect
             Portal portal = new Portal(target, instance);
             portals.Add(portal);
 
-            // Automatically teleport a character if he already stands on a Portal
-            if (target._entity is Character)
-            {
-                Character character = (Character)target._entity;
-                character.Teleport();
-            }
+
         }
         else
         {
             Logger.Debug("PortalEffect : Targeted hexagon has an entity");
+        }
+
+        // Automatically teleport players that stand on portals
+        if (portals.Count >= 2)
+        {
+            Character character = new Character(0);
+            bool canTeleport = false;
+            for (int i = 0; i < portals.Count; i++)
+            {
+                if (portals[i].Position._entity is Character)
+                {
+                    character = (Character)portals[i].Position._entity;
+                    canTeleport = true;
+                    break;
+                }
+            }
+            if (canTeleport)
+            {
+                character.Teleport();
+            }
         }
     }
 }
