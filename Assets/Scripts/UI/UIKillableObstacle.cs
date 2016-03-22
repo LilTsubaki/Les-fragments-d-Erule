@@ -17,6 +17,7 @@ public class UIKillableObstacle : MonoBehaviour {
         set
         {
             _obstacle = value;
+            SetSliderValues();
         }
     }
 
