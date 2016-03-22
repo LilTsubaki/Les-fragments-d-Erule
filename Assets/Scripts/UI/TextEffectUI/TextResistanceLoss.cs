@@ -13,8 +13,8 @@ public class TextResistanceLoss : TextEffect
         _element = element;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        SetupTextEffect(textEffect, character, "- " + _value.ToString() + "% RÉSISTANCE", ColorErule._loss, _element.getSprite());
+        SetupTextEffect(textEffect, entity, "- " + _value.ToString() + "% RÉSISTANCE", ColorErule._loss, _element.getSprite());
     }
 }
