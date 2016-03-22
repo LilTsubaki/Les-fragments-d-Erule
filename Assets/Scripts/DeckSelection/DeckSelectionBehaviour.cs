@@ -58,22 +58,22 @@ public class DeckSelectionBehaviour : MonoBehaviour {
         switch(elem._name)
         {
             case "Fire":
-                _runeTooltip.text = "Attaquez avec le feu et admirez sur plusieurs tours la lente agonie de votre adversaire. De même, utilisez le pour le soin et profitez d’un petit regain d’énergie à chaque tour.";
+                _runeTooltip.text = "Dégâts et soins sur plusieurs tours.";
                 break;
             case "Water":
-                _runeTooltip.text = "En cas de coup dur, l’eau sera votre meilleure alliée pour vous régénérer. N’oubliez pas pour autant d’attaquer. Et voler quelques points de vie à votre adversaire par la même occasion…";
+                _runeTooltip.text = "Soigne beaucoup.";
                 break;
             case "Air":
-                _runeTooltip.text = "L’air est parfait pour lancer des sorts sans se soucier des obstacles sur la route ou augmenter votre portée afin d’atteindre vos adversaires d’encore plus loin.";
+                _runeTooltip.text = "Grande portée mais faibles dégâts.";
                 break;
             case "Earth":
-                _runeTooltip.text = "La terre compense sa faible portée par son immense puissance. Vous pourrez même frapper encore plus fort si vous l’utilisez pour vous booster. Si votre ennemi prend ses distances, vous pourrez réduire sa portée pour l’inciter à revenir au corps à corps.";
+                _runeTooltip.text = "Gros dommage mais faible portée.";
                 break;
             case "Wood":
-                _runeTooltip.text = "Le bois vous permettra d’attirer ou repousser votre adversaire pour retourner la situation à votre avantage. À l’inverse, n’hésitez pas à vous enraciner afin de garder votre position.";
+                _runeTooltip.text = "Stabilise le lanceur.";
                 break;
             case "Metal":
-                _runeTooltip.text = "Le métal permet de créer un bouclier absorbant les dégâts. Couplé aux autres éléments, il permet d’augmenter ou de baisser vos résistances et celles de vos adversaires. Il n’existe cependant aucune résistance au métal. Rien ne pourra protéger l’ennemi de vos attaques.";
+                _runeTooltip.text = "Influe sur la protection.";
                 break;
         }
     }
