@@ -42,8 +42,8 @@
 			//clip(mask.a - _Cutoff*1.004); // 1.004 = 1+(1/255) to make sure also white is clipped
 
 			fixed4 c = tex2D(_MainTex, MainTexMoveScrolledUV);
-			o.Albedo = c.rgb * 2;
-			o.Alpha = mask.r * (1 - (c.a*1));
+			o.Albedo = c.rgb*2 ;
+			o.Alpha = mask.r * (1 - c.a) ;
 		}
 
 		ENDCG
