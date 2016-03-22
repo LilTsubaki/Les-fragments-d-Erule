@@ -29,6 +29,10 @@ public class EffectUIManager {
         _step = 1.4298f;
     }
 
+    public bool Contains(Entity entity)
+    {
+        return _buffers.ContainsKey(entity);
+    }
     public void RegisterEntity(Entity entity)
     {
         if (entity != null)
