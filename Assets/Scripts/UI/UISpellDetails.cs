@@ -44,7 +44,7 @@ public class UISpellDetails : MonoBehaviour
                     _textOrientation.text = "Ce sort ne peut être lancé qu'en diagonale";
                     break;
                 case Orientation.EnumOrientation.Line:
-                    _textOrientation.text = "ce sort ne peut être lancé qu'en ligne";
+                    _textOrientation.text = "Ce sort ne peut être lancé qu'en ligne";
                     break;
             }
            
