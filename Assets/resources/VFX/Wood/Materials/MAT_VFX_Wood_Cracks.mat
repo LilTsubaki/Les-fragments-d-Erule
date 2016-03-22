@@ -80,6 +80,20 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 8877f066f9c843543853e3d7a570cc91, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ReflectionTex
         second:
           m_Texture: {fileID: 0}
@@ -97,20 +111,6 @@ Material:
           name: _FoamTexture
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 8877f066f9c843543853e3d7a570cc91, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -169,6 +169,14 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _MaskTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MaskTexMoveSpeedV
+        second: -20
       data:
         first:
           name: _WaveSpeed
@@ -251,20 +259,12 @@ Material:
         second: 120
       data:
         first:
-          name: _MaskTexMoveSpeedU
-        second: 0
-      data:
-        first:
-          name: _MaskTexMoveSpeedV
-        second: -20
-      data:
-        first:
           name: _MainTexMoveSpeedU
         second: 0
       data:
         first:
           name: _MainTexMoveSpeedV
-        second: 29.9
+        second: 48
     m_Colors:
       data:
         first:

@@ -1,7 +1,7 @@
 ﻿Shader "Custom/Transparent Diffuse (Mask cutoff)" {
 	Properties{
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
-		_Cutoff("Mask cutoff", Range(0,1)) = 0
+		/*_Cutoff("Mask cutoff", Range(0,1)) = 0*/
 		_MaskTex("Mask", 2D) = "white" {}
 		_MainTexMoveSpeedU("U Move Speed", Range(0,100)) = 0.5
 		_MainTexMoveSpeedV("V Move Speed", Range(0,100)) = 0.5
@@ -16,7 +16,7 @@
 
 		sampler2D _MainTex;
 		sampler2D _MaskTex;
-		fixed _Cutoff;
+		/*fixed _Cutoff;*/
 		fixed _MainTexMoveSpeedU;
 		fixed _MainTexMoveSpeedV;
 
@@ -42,8 +42,8 @@
 			//clip(mask.a - _Cutoff*1.004); // 1.004 = 1+(1/255) to make sure also white is clipped
 
 			fixed4 c = tex2D(_MainTex, MainTexMoveScrolledUV);
-			o.Albedo = c.rgb;
-			o.Alpha = mask.r * 2;
+			o.Albedo = c.rgb * 2;
+			o.Alpha = mask.r * (1 - (c.a*1));
 		}
 
 		ENDCG
