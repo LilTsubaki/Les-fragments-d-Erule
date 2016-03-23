@@ -14,9 +14,11 @@ public class Area
     private List<Node> _nodes;
     private bool _rootUsed;
 
+
+
     public Area()
     {
-        _nodes = new List<Node>();
+        Nodes = new List<Node>();
     }
 
     /// <summary>
@@ -28,8 +30,16 @@ public class Area
     public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes)
     {
         _id = id;
-        _orientation = orientation;
-        _nodes = nodes;
+        Orientation = orientation;
+        Nodes = nodes;
+    }
+
+    public Area(Orientation.EnumOrientation orientation, bool rootUsed, List<Node> nodes)
+    {
+        _id = 0;
+        RootUsed = rootUsed;
+        Orientation = orientation;
+        Nodes = nodes;
     }
 
     /// <summary>
@@ -38,10 +48,10 @@ public class Area
     /// <param name="js"></param>
     public Area(JSONObject js)
     {
-        _nodes = new List<Node>();
+        Nodes = new List<Node>();
         _id = (int)js.GetField(js.keys[0]).n;
-        _orientation = Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
-        _rootUsed = js.GetField(js.keys[2]).b;
+        Orientation = global::Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
+        RootUsed = js.GetField(js.keys[2]).b;
         //Logger.Error("rootused ---------> : " + _rootUsed);
 
         JSONObject array = js.GetField(js.keys[3]);
@@ -49,7 +59,7 @@ public class Area
         foreach (JSONObject node in array.list)
         {
             Node n = new Node(node);
-            _nodes.Add(n);
+            Nodes.Add(n);
         }
 
     }
@@ -59,25 +69,25 @@ public class Area
         List<Node> nodes = new List<Node>();
         int rotateValue = 0;
 
-        if (_orientation == Orientation.EnumOrientation.Line)
+        if (Orientation == global::Orientation.EnumOrientation.Line)
         {
             rotateValue = Direction.GetDiff(Direction.EnumDirection.East, cible);            
         }
 
-        if (_orientation == Orientation.EnumOrientation.Diagonal)
+        if (Orientation == global::Orientation.EnumOrientation.Diagonal)
         {
             rotateValue = Direction.GetDiff(Direction.EnumDirection.DiagonalSouthEast, cible);
         }
 
         if (rotateValue % 2 == 0)
         {
-            for (int i = 0; i < _nodes.Count; i++)
+            for (int i = 0; i < Nodes.Count; i++)
             {
-                nodes.Add(_nodes[i].rotateNode(rotateValue));
+                nodes.Add(Nodes[i].rotateNode(rotateValue));
             }
         }
 
-        return new Area(_id, _orientation, nodes);
+        return new Area(_id, Orientation, nodes);
     }
 
     public int getId()
@@ -94,7 +104,7 @@ public class Area
     public List<Hexagon> AreaToHexa(Direction.EnumDirection direction, Hexagon source)
     {
         List<Hexagon> turnedArea = new List<Hexagon>();
-        if(_rootUsed)
+        if(RootUsed)
             turnedArea.Add(source);
         //rotate the area using direction as target
         Area area;
@@ -103,14 +113,14 @@ public class Area
         else
             area = this;
 
-        if (area._nodes.Count !=0)
+        if (area.Nodes.Count !=0)
         {
-            for(int i = 0; i < area._nodes.Count; i++)
+            for(int i = 0; i < area.Nodes.Count; i++)
             {
                 List<Direction.EnumDirection> dirs = new List<Direction.EnumDirection>();
-                dirs.Add(area._nodes[i].getDirection());
+                dirs.Add(area.Nodes[i].getDirection());
                 //Logger.Error("lalalalalalalal : " + area._nodes[i].NodeUsed);
-                area._nodes[i].NodeToHexagon(dirs, ref turnedArea, source);
+                area.Nodes[i].NodeToHexagon(dirs, ref turnedArea, source);
             }
         }
         //Logger.Error("turnedArea" + turnedArea.Count);
@@ -120,10 +130,49 @@ public class Area
     public void displayAreaTest()
     {
         Debug.Log("id area : " + _id);
-        Debug.Log("orientation : " + _orientation);
-        for(int i = 0; i < _nodes.Count; i++)
+        Debug.Log("orientation : " + Orientation);
+        for(int i = 0; i < Nodes.Count; i++)
         {
-            _nodes[i].displayNodeTest();
+            Nodes[i].displayNodeTest();
+        }
+    }
+
+    public Orientation.EnumOrientation Orientation
+    {
+        get
+        {
+            return _orientation;
+        }
+
+        set
+        {
+            _orientation = value;
+        }
+    }
+
+    public bool RootUsed
+    {
+        get
+        {
+            return _rootUsed;
+        }
+
+        set
+        {
+            _rootUsed = value;
+        }
+    }
+
+    public List<Node> Nodes
+    {
+        get
+        {
+            return _nodes;
+        }
+
+        set
+        {
+            _nodes = value;
         }
     }
 }

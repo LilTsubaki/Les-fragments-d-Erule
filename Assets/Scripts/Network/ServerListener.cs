@@ -149,6 +149,7 @@ public class ServerListener
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
 
             Range range = SpellManager.getInstance().GetRangeById(spell._rangeId);
+            Area area = SpellManager.getInstance().GetAreaById(spell.AreaId);
             //write min range and max range
             NetworkUtils.WriteInt(range.MinRange, _client.GetStream());
             NetworkUtils.WriteInt(range.MaxRange, _client.GetStream());
@@ -159,6 +160,9 @@ public class ServerListener
 
             //write orientation
             NetworkUtils.WriteOrientation(range.Orientation, _client.GetStream());
+
+            //write area
+            NetworkUtils.WriteArea(area, _client.GetStream());
         }
         
 

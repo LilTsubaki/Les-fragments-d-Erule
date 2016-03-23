@@ -353,7 +353,7 @@ public class Client : MonoBehaviour{
             SendBoardResponse sbr;
             bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
             if (ifExist)
-            { 
+            {
 
                 sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                 //min range max range 
@@ -361,11 +361,17 @@ public class Client : MonoBehaviour{
                                                                // isPiercing and isEnemyTargetable
                                                                NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                //orientation 
-                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()),
+                                                               //area
+                                                               NetworkUtils.ReadArea(_tcpClient.GetStream()));
+                UIManager.GetInstance().ShowPanelNoStack("panelSpellDetails");
+
             }
             else
             {
                 sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()));
+                UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
             }
                 
             
