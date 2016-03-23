@@ -378,6 +378,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer));
                 effectIds = CurrentSelfSpell.EffectsAreaCrit.GetIds();
                 if (effectIds.Count != 0)
                 {
@@ -403,7 +404,9 @@ public class SpellManager
 
             if(!success)
             {
-                foreach(var elem in _spellInit)
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer));
+
+                foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
                 }
@@ -438,6 +441,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer));
                 effectIds = CurrentTargetSpell.EffectsAreaCrit.GetIds();
                 if(effectIds.Count != 0)
                 {
@@ -451,6 +455,8 @@ public class SpellManager
             }
             if (!success)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer));
+
                 foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
@@ -458,6 +464,10 @@ public class SpellManager
             }
         }
 
+        if (runes > 0)
+        {
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.perfect, currentPlayer));
+        }
 
         ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);
 

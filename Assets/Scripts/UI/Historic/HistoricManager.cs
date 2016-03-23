@@ -11,6 +11,7 @@ public class HistoricManager {
     private int _maxText;
     private Queue<GameObject> _texts;
     private int _lastYPosition = 0;
+    private bool _isInit = false;
 
     HistoricManager()
     {
@@ -31,33 +32,36 @@ public class HistoricManager {
         _content = content;
         _textGO = textGO;
         _maxText = maxText;
+        _isInit = true;
     }
 
     public void AddText(string text)
     {
-        GameObject go;
-        if (_texts.Count < _maxText)
+        if (_isInit)
         {
-            go = GameObject.Instantiate<GameObject>(_textGO.transform.GetChild(0).gameObject);
-            go.SetActive(true);
+            GameObject go;
+            if (_texts.Count < _maxText)
+            {
+                go = GameObject.Instantiate<GameObject>(_textGO.transform.GetChild(0).gameObject);
+                go.SetActive(true);
             
-            go.AddComponent<Text>();
-            _content.GetComponent<RectTransform>().sizeDelta += new Vector2(0,20);
+                go.AddComponent<Text>();
+                _content.GetComponent<RectTransform>().sizeDelta += new Vector2(0,20);
 
-            go.transform.SetParent(_textGO.transform);
+                go.transform.SetParent(_textGO.transform);
+            }
+            else
+            {
+                go = _texts.Dequeue();
+            }
+
+            Text textComponent = go.GetComponent<Text>();
+            textComponent.text = text;
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, _lastYPosition, 0);
+            _texts.Enqueue(go);
+            _textGO.transform.position -= new Vector3(0, 20, 0);
+            _lastYPosition += 20;
+            _content.GetComponent<RectTransform>().localPosition = Vector3.zero;
         }
-        else
-        {
-            go = _texts.Dequeue();
-        }
-
-        Text textComponent = go.GetComponent<Text>();
-        textComponent.text = text;
-        go.GetComponent<RectTransform>().localPosition = new Vector3(0, _lastYPosition, 0);
-        _texts.Enqueue(go);
-        _textGO.transform.position -= new Vector3(0, 20, 0);
-        _lastYPosition += 20;
-        _content.GetComponent<RectTransform>().localPosition = Vector3.zero;
-
     }
 }
