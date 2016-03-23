@@ -8,7 +8,6 @@
 	SubShader
 	{
 		Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" "IgnoreProjector" = "True" }
-		Blend O
 		//ZWrite Off
 
 		Pass
