@@ -123,7 +123,8 @@ public class ServerListener
         Logger.Error("ReadRunicBoard");
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
-        RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
+        bool removeActionPoint = NetworkUtils.ReadBool(_client.GetStream());
+        RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer();
         rBoard.RunesOnBoard = map;
         rBoard.LogRunesOnBoard();
 
@@ -141,10 +142,14 @@ public class ServerListener
         /* private Orientation.EnumOrientation _orientation;*/
         if(spell != null)
         {
-            _character.CurrentActionPoints--;
+            if (removeActionPoint)
+            {
+                _character.CurrentActionPoints--;
+            }
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
 
             Range range = SpellManager.getInstance().GetRangeById(spell._rangeId);
+            Area area = SpellManager.getInstance().GetAreaById(spell.AreaId);
             //write min range and max range
             NetworkUtils.WriteInt(range.MinRange, _client.GetStream());
             NetworkUtils.WriteInt(range.MaxRange, _client.GetStream());
@@ -155,6 +160,9 @@ public class ServerListener
 
             //write orientation
             NetworkUtils.WriteOrientation(range.Orientation, _client.GetStream());
+
+            //write area
+            NetworkUtils.WriteArea(area, _client.GetStream());
         }
         
 
@@ -172,7 +180,7 @@ public class ServerListener
         
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
-        RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer1();
+        RunicBoard rBoard = RunicBoardManager.GetInstance().GetBoardPlayer();
         rBoard.RunesOnBoard = map;
         rBoard.LogRunesOnBoard();
 

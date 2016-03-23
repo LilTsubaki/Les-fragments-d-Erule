@@ -30,17 +30,21 @@ public class ObstacleCreation : EffectDirect
             if(hexa._entity == null)
             {
                 KillableObstacle obs = new KillableObstacle(hexa, _life, caster);
-                obs._gameobject = GameObject.Instantiate(_prefab);
-                KillableObstacleBehaviour kob = obs._gameobject.AddComponent<KillableObstacleBehaviour>();
+                obs.GameObject = GameObject.Instantiate(_prefab);
+                KillableObstacleBehaviour kob = obs.GameObject.AddComponent<KillableObstacleBehaviour>();
                 kob.KillableObstacle = obs;
-                obs._gameobject.transform.parent = hexa.GameObject.transform;
-                obs._gameobject.name = Name;
-                obs._gameobject.transform.position = new Vector3(0.866f * hexa._posX - 0.433f * hexa._posY, hexa.GameObject.transform.position.y, 0.75f * hexa._posY);
-                obs._gameobject.layer = LayerMask.NameToLayer("Obstacle");
+                CapsuleCollider caps = obs.GameObject.AddComponent<CapsuleCollider>();
+                caps.height = 5;
+                obs.GameObject.transform.parent = hexa.GameObject.transform;
+                obs.GameObject.name = Name;
+                obs.GameObject.transform.position = new Vector3(0.866f * hexa._posX - 0.433f * hexa._posY, hexa.GameObject.transform.position.y, 0.75f * hexa._posY);
+                obs.GameObject.layer = LayerMask.NameToLayer("Obstacle");
                 GameObject lifeCanvas = GameObject.Instantiate(Resources.Load("Prefabs/UI/CanvasObstacle") as GameObject);
-                lifeCanvas.transform.SetParent(obs._gameobject.transform);
-                lifeCanvas.transform.localPosition = new Vector3(0, .6f, 0);
+                lifeCanvas.layer = LayerMask.NameToLayer("UI");
+                lifeCanvas.transform.SetParent(obs.GameObject.transform);
+                lifeCanvas.transform.localPosition = new Vector3(0, 1.3f, 0);
                 lifeCanvas.GetComponent<UIKillableObstacle>().Obstacle = obs;
+                EffectUIManager.GetInstance().RegisterEntity(obs);
             }
         }
     }

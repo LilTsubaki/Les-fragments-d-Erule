@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DeckSelectionBehaviour : MonoBehaviour {
@@ -14,6 +15,8 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     public GameObject _metalRuneAsset;
     public GameObject _waterRuneAsset;
     public GameObject _woodRuneAsset;
+
+    public Text _runeTooltip;
 
     private GameObject _heldRune;
 
@@ -49,6 +52,32 @@ public class DeckSelectionBehaviour : MonoBehaviour {
         InstantiateRune(_woodRuneAsset, Element.GetElement(4), _listGO.transform.GetChild(5));
     }
 
+    private void UpdateRuneToolTip(RuneBehaviour rb)
+    {
+        Element elem = rb._rune.Element;
+        switch(elem._name)
+        {
+            case "Fire":
+                _runeTooltip.text = "Dégâts et soins sur plusieurs tours.";
+                break;
+            case "Water":
+                _runeTooltip.text = "Draine la vie et soigne beaucoup.";
+                break;
+            case "Air":
+                _runeTooltip.text = "Grande portée mais faibles dégâts.";
+                break;
+            case "Earth":
+                _runeTooltip.text = "Gros dégâts mais faible portée.";
+                break;
+            case "Wood":
+                _runeTooltip.text = "Pousse ou attire l'adversaire.";
+                break;
+            case "Metal":
+                _runeTooltip.text = "Influe sur la protection.";
+                break;
+        }
+    }
+
     void InputUpdate()
     {
         // If mouse is pressed, check if a rune is underneath. If a rune is found, put his gameObject in _heldRune.
@@ -69,6 +98,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                 {
                     runeBehaviour._state = RuneBehaviour.State.BeingTaken;
                 }
+                UpdateRuneToolTip(behaviourHeldRune);
             }
         }
 

@@ -20,8 +20,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 17885caccf5e64f44926bd976150e025, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 00b6e5e89c8d5ca44b0330152fce29a9, type: 3}
+          m_Scale: {x: 1, y: 1.05}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -121,6 +121,10 @@ Material:
         second: 1
       data:
         first:
+          name: _InvFade
+        second: 0.02
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
@@ -179,10 +183,6 @@ Material:
         first:
           name: _MaskTexMoveSpeedV
         second: 0.5
-      data:
-        first:
-          name: _InvFade
-        second: 0.02
     m_Colors:
       data:
         first:

@@ -55,7 +55,7 @@ public class RunicBoardManager{
         _runicBoardBehaviour = runicBoardBehaviour;
     }
 
-    public RunicBoard GetBoardPlayer1()
+    public RunicBoard GetBoardPlayer()
     {
         return _boardPlayer;
     }

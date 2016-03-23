@@ -195,7 +195,7 @@ public class RunicBoardBehaviour : MonoBehaviour {
                                 Transform hand = hitInfo.collider.transform.parent;
                                 Transform slot = hand.GetChild(rune.PositionInHand);
                                 _heldRune.transform.SetParent(slot);
-                                LatestSendBoardResponse = ClientManager.GetInstance()._client.SendBoard();
+                                LatestSendBoardResponse = ClientManager.GetInstance()._client.SendBoard(false);
                             }
                         }
                     }
@@ -256,9 +256,5 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	void Update ()
     {
         InputUpdate();
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            ResetRunes();
-        }
     }
 }

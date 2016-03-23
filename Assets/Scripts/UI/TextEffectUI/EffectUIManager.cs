@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class EffectUIManager {
 
     private static EffectUIManager manager;
-    private Dictionary<Character, EffectBuffer> _buffers;
+    private Dictionary<Entity, EffectBuffer> _buffers;
     private Pool<TextEffectPoolable> _pool;
+
+    private float _step;
 
     private EffectUIManager()
     {
-        _buffers = new Dictionary<Character, EffectBuffer>();
+        _buffers = new Dictionary<Entity, EffectBuffer>();
     }
 
     public static EffectUIManager GetInstance()
@@ -24,23 +26,39 @@ public class EffectUIManager {
     public void Init(GameObject go, GameObject parent)
     {
         _pool = new Pool<TextEffectPoolable>(new TextEffectPoolable(go, parent),50,5);
+        _step = 1.4298f;
     }
 
-    public void RegisterCharacter(Character character, float step)
+    public bool Contains(Entity entity)
     {
-        if(character != null)
-        _buffers.Add(character, new EffectBuffer(step));
+        return _buffers.ContainsKey(entity);
+    }
+    public void RegisterEntity(Entity entity)
+    {
+        if (entity != null)
+            _buffers.Add(entity, new EffectBuffer(entity, _step));
     }
 
-    public void DeleteCharacter(Character character)
+    public void DeleteEntity(Entity entity)
     {
-        _buffers.Remove(character);
+        if (_buffers.ContainsKey(entity))
+        {
+            if (_buffers[entity].TextEffects.Count == 0)
+            {
+                _buffers.Remove(entity);
+            }
+            else
+            {
+                _buffers[entity].Delete = true;
+            }
+        }
+       
     }
 
-    public void AddTextEffect(Character character, TextEffect textEffect)
+    public void AddTextEffect(Entity entity, TextEffect textEffect)
     {
-        if(_buffers.ContainsKey(character))
-            _buffers[character].AddTextEffect(textEffect);
+        if(_buffers.ContainsKey(entity))
+            _buffers[entity].AddTextEffect(textEffect);
     }
 
     public void UpdateTimer()

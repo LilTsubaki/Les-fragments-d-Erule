@@ -95,8 +95,8 @@ public class PlayBoardManager
         _board = new PlayBoard(width, height);
         _character1 = character1;
         _character2 = character2;
-        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character1, 1.0f);
-        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character2, 1.0f);
+        EffectUIManager.GetInstance().RegisterEntity(PlayBoardManager.GetInstance().Character1);
+        EffectUIManager.GetInstance().RegisterEntity(PlayBoardManager.GetInstance().Character2);
     }
         
 
@@ -105,8 +105,8 @@ public class PlayBoardManager
         _board = pb;
         _character1 = character1;
         _character2 = character2;
-        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character1, 1.0f);
-        EffectUIManager.GetInstance().RegisterCharacter(PlayBoardManager.GetInstance().Character2, 1.0f);
+        EffectUIManager.GetInstance().RegisterEntity(PlayBoardManager.GetInstance().Character1);
+        EffectUIManager.GetInstance().RegisterEntity(PlayBoardManager.GetInstance().Character2);
     }
 
     public List<Character> GetCharacterInArea(List<Hexagon> hexagons){
@@ -228,8 +228,8 @@ public class PlayBoardManager
         currentPlayer.RemoveMarkedOnTimeEffects();
 
         currentPlayer.TurnNumber++;
-        currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 8);
-        currentPlayer.CurrentMovementPoints = Math.Min(Character._maxMovementPoints, 1 + currentPlayer.TurnNumber / 8);
+        currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
+        currentPlayer.CurrentMovementPoints = Math.Min(Character._maxMovementPoints, 1 + currentPlayer.TurnNumber / 5);
 
         _turnNumber++;
         Board._reset = true;

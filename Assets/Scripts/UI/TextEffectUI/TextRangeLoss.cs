@@ -12,18 +12,8 @@ public class TextRangeLoss : TextEffect
         _value = value;
     }
 
-    public override void DisplayText(TextEffectPoolable textEffect, Character character)
+    public override void DisplayText(TextEffectPoolable textEffect, Entity entity)
     {
-        textEffect.GameObject.transform.position = character._gameObject.transform.position + new Vector3(0, 1, 0);
-        textEffect.GameObject.GetComponent<TextEffectBehaviour>().InitialPosition = textEffect.GameObject.transform.position;
-
-        Image image = textEffect.GameObject.GetComponentInChildren<Image>();
-        Text text = textEffect.GameObject.GetComponentInChildren<Text>();
-
-        text.text = "- " + _value.ToString() + " PORTÉE";
-        text.color = ColorErule._loss;
-
-        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
-        textEffect.GameObject.GetComponent<TextEffectBehaviour>()._hasAnImage = false;
+        SetupTextEffect(textEffect, entity, "- " + _value.ToString() + " PORTÉE", ColorErule._loss);
     }
 }

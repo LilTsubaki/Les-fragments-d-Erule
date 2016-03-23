@@ -42,13 +42,16 @@ public class SpellAnimationManager {
         return false;
     }
 
-    public bool PlayList(HashSet<Element> elemIds, GameObject from, GameObject to)
+    public bool PlayList(List<Element> elemIds, GameObject from, GameObject to)
     {
-        foreach(Element elem in elemIds)
+        HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
+        int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);
+        foreach (Element elem in setElems)
         {
             switch (elem._id)
             {
                 case 0: // Fire
+                    Play("fire", from, to);
                     break;
                 case 1: // Water
                     break;
@@ -60,14 +63,13 @@ public class SpellAnimationManager {
                 case 4: // Wood
                     break;
                 case 5: // Metal
-                    int randNbMetal = EruleRandom.RangeValue(1, 3);
                     List<int> metals = new List<int>();
-                    for(int i = 0; i < randNbMetal; ++i)
+                    for(int i = 0; i < Mathf.Min(nbMetal, 3); ++i)
                     {
-                        int randAnimMetal = EruleRandom.RangeValue(1, 3);
+                        int randAnimMetal = EruleRandom.RangeValue(1, 4);
                         while (metals.Contains(randAnimMetal))
                         {
-                            randAnimMetal = EruleRandom.RangeValue(1, 3);
+                            randAnimMetal = EruleRandom.RangeValue(1, 4);
                         }
                         metals.Add(randAnimMetal);
                         Play("metal" + randAnimMetal, from, to);

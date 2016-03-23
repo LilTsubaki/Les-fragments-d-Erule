@@ -20,6 +20,8 @@ public class Client : MonoBehaviour{
     bool _isMyTurn;
     bool _isListening;
 
+    bool _isConnected;
+
     bool _isListeningThreadReading;
     bool _isMainThreadReading;
 
@@ -96,6 +98,7 @@ public class Client : MonoBehaviour{
         _tcpClient.NoDelay = true;
         _tcpClient.Client.NoDelay = true;
         IsMyTurn = false;
+        _isConnected = false;
         _isListening = true;
         _isListeningThreadReading = false;
         _isMainThreadReading = false;
@@ -170,10 +173,12 @@ public class Client : MonoBehaviour{
         Thread newThread = new Thread(WaitingMessage);
         newThread.Start();
         _searchingHosts = false;
+        //Thread.Sleep(200);
     }
 
     public void WaitingMessage()
     {
+        _isConnected = true;
         while (_isListening)
         {
             NetworkStream stream = _tcpClient.GetStream();
@@ -303,7 +308,7 @@ public class Client : MonoBehaviour{
 
         _isMainThreadReading = true;
         NetworkUtils.WriteInt(4, _tcpClient.GetStream());
-        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer(), _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
 
@@ -323,7 +328,7 @@ public class Client : MonoBehaviour{
     }
 
 
-    public SendBoardResponse SendBoard()
+    public SendBoardResponse SendBoard(bool removeActionPoint = true)
     {
 
         while (_isListeningThreadReading) ;
@@ -331,8 +336,8 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         Logger.Debug("send board");
         NetworkUtils.WriteInt(2, _tcpClient.GetStream());
-        
-        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer1(), _tcpClient.GetStream());
+        NetworkUtils.WriteRunicBoard(RunicBoardManager.GetInstance().GetBoardPlayer(), _tcpClient.GetStream());
+        NetworkUtils.WriteBool(removeActionPoint, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
 
         int id;
@@ -349,14 +354,24 @@ public class Client : MonoBehaviour{
             bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
             if (ifExist)
             {
-                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()), 
+
+                sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()),
+                                                                //min range max range 
                                                                 NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
-                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()), 
-                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+                                                               // isPiercing and isEnemyTargetable
+                                                               NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
+                                                               //orientation 
+
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()),
+                                                               //area
+                                                               NetworkUtils.ReadArea(_tcpClient.GetStream()));
+                UIManager.GetInstance().ShowPanelNoStack("panelSpellDetails");
+
             }
             else
             {
                 sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()));
+                UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
             }
                 
             
@@ -374,7 +389,10 @@ public class Client : MonoBehaviour{
 
     public bool JoinBobby()
     {
-        while (_isListeningThreadReading) ;
+        while (_isListeningThreadReading || !_isConnected)
+        {
+            Thread.Sleep(1);
+        }
 
         bool lobbyJoined = false;
 

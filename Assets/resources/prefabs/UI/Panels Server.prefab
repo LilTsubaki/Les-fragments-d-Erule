@@ -1233,6 +1233,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &184642
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22405584}
+  - 222: {fileID: 22263382}
+  - 114: {fileID: 11481662}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &185374
 GameObject:
   m_ObjectHideFlags: 1
@@ -3621,7 +3638,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22497894}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.8143631
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3767,6 +3784,33 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '- En attente de connexion...'
+--- !u!114 &11481662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11482564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4247,11 +4291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonToCopy: {fileID: 153746}
   _content: {fileID: 162730}
-  _player1GameObject: {fileID: 195316, guid: 446e7805a0b362247aa32d6060b5741f, type: 2}
-  _player2GameObject: {fileID: 195316, guid: b24ab4760dae2674a92410c1517f85a1, type: 2}
+  _player1GameObject: {fileID: 192890, guid: b731f3f1e15ae3c4f8553bef495b371d, type: 2}
+  _player2GameObject: {fileID: 142984, guid: f31887106a73f9a49ac8c3b86017ca3a, type: 2}
   _buttonValidation: {fileID: 132734}
-  _uiPlayer1: {fileID: 0}
-  _uiPlayer2: {fileID: 0}
+  _uiPlayer1: {fileID: 11460006}
+  _uiPlayer2: {fileID: 11427524}
   _around: {fileID: 11417184}
   _textPlayerToPlace: {fileID: 11460366}
 --- !u!222 &22201096
@@ -4548,6 +4592,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198228}
+--- !u!222 &22263382
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184642}
 --- !u!222 &22268046
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -4771,6 +4821,23 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22405584
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22453530}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22406370
 RectTransform:
@@ -5167,7 +5234,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 28}
+  m_AnchoredPosition: {x: -663, y: 738}
   m_SizeDelta: {x: 663, y: 738}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22433856
@@ -5408,7 +5475,7 @@ RectTransform:
   - {fileID: 22479094}
   - {fileID: 22459986}
   m_Father: {fileID: 22453530}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5479,6 +5546,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 22405584}
   - {fileID: 22444320}
   m_Father: {fileID: 22433856}
   m_RootOrder: 0
