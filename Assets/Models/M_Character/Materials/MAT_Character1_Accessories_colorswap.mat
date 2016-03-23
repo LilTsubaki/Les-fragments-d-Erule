@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: faba89bc7f378ce478d7d20993d42430, type: 3}
+          m_Texture: {fileID: 2800000, guid: 248724efbda88574e947af371348157c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -87,16 +87,20 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Normal
+          name: _Masks
         second:
-          m_Texture: {fileID: 2800000, guid: b7de22f3f460b8b4ebc4c3d20eea9d55, type: 3}
+          m_Texture: {fileID: 2800000, guid: 9d9dcb17d6a0cf84f80d91eaefea7df6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
+<<<<<<< HEAD
           name: _SpecGlossMap
+=======
+          name: _Normal
+>>>>>>> 106eff9106c3d91a25b4b2a8d3c48607d80d2009
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b7de22f3f460b8b4ebc4c3d20eea9d55, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -164,11 +168,11 @@ Material:
       data:
         first:
           name: _M1Tint
-        second: {r: 0, g: 1, b: 0.4620688, a: 0}
+        second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
           name: _M2Tint
-        second: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 0}
+        second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
           name: _M3Tint

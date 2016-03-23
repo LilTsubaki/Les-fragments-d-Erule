@@ -1,7 +1,7 @@
 ﻿Shader "Custom/LightPBR_ColorSwap" {
 	Properties {
 		_MainTex ("Albedo (RGB, Mask1)", 2D) = "white" {}
-		_Masks("BodyMasks (R = Mask1, G = Mask2, B = Mask3, A = [BODY ONLY] Mask4)", 2D) = "masks" {}
+		_Masks("Masks (R = Mask1, G = Mask2, B = Mask3, A = [BODY ONLY] Mask4)", 2D) = "masks" {}
 
 		_M1Tint ("Skin/ShoulderPad (Mask1)", color) = (1,1,1,0)
 		_M2Tint("Hair/Runes tint (Mask2)", color) = (1,1,1,0)
@@ -36,10 +36,10 @@
 
 		half _Glossiness;
 		half _Metallic;
-		fixed4 _M1Tint;
-		fixed4 _M2Tint;
-		fixed4 _M3Tint;
-		fixed4 _M4Tint;
+		half4 _M1Tint;
+		half4 _M2Tint;
+		half4 _M3Tint;
+		half4 _M4Tint;
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			
