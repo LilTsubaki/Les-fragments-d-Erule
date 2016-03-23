@@ -362,9 +362,9 @@ public class Client : MonoBehaviour{
                                                                NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                //orientation 
 
-                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()),
                                                                //area
-                                                               //NetworkUtils.ReadArea(_tcpClient.GetStream()));
+                                                               NetworkUtils.ReadArea(_tcpClient.GetStream()));
                 UIManager.GetInstance().ShowPanelNoStack("panelSpellDetails");
 
             }
