@@ -35,28 +35,29 @@ public class HistoricManager {
 
     public void AddText(string text)
     {
+        GameObject go;
         if (_texts.Count < _maxText)
         {
-            GameObject go = new GameObject();
-            go.transform.SetParent(_textGO.transform);
-            go.transform.position = new Vector3(0, _lastYPosition, 0);
-            Text textComponent = go.AddComponent<Text>();
-            textComponent.text = text;
-            _texts.Enqueue(go);
+            go = GameObject.Instantiate<GameObject>(_textGO.transform.GetChild(0).gameObject);
+            go.SetActive(true);
+            
+            go.AddComponent<Text>();
             _content.GetComponent<RectTransform>().sizeDelta += new Vector2(0,20);
+
+            go.transform.SetParent(_textGO.transform);
         }
         else
         {
-            GameObject go = _texts.Dequeue();
-            go.transform.SetParent(_textGO.transform);
-            go.transform.position = new Vector3(0, _lastYPosition, 0);
-            _textGO.transform.position -= new Vector3(0, 20, 0);
-            Text textComponent = go.GetComponent<Text>();
-            textComponent.text = text;
-            _texts.Enqueue(go);
+            go = _texts.Dequeue();
         }
 
+        Text textComponent = go.GetComponent<Text>();
+        textComponent.text = text;
+        go.GetComponent<RectTransform>().localPosition = new Vector3(0, _lastYPosition, 0);
+        _texts.Enqueue(go);
+        _textGO.transform.position -= new Vector3(0, 20, 0);
         _lastYPosition += 20;
+        _content.GetComponent<RectTransform>().localPosition = Vector3.zero;
 
     }
 }
