@@ -19,4 +19,11 @@ public class SendBoardResponse
         _range = new Range(minRange, maxRange, isPiercing, enemyTargetable, orientation);
         _area = area;
     }
+
+    public SendBoardResponse(bool exist, bool final, int minRange, int maxRange, bool isPiercing, bool enemyTargetable, Orientation.EnumOrientation orientation)
+    {
+        _exist = exist;
+        _final = final;
+        _range = new Range(minRange, maxRange, isPiercing, enemyTargetable, orientation);
+    }
 }

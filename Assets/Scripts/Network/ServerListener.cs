@@ -162,7 +162,7 @@ public class ServerListener
             NetworkUtils.WriteOrientation(range.Orientation, _client.GetStream());
 
             //write area
-            NetworkUtils.WriteArea(area, _client.GetStream());
+            //NetworkUtils.WriteArea(area, _client.GetStream());
         }
         
 
