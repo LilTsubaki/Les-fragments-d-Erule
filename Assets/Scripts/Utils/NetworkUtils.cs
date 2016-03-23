@@ -224,4 +224,69 @@ public class NetworkUtils {
         return (Orientation.EnumOrientation)ReadInt(stream);
     }
 
+    public static void WriteDirection(Direction.EnumDirection direction, NetworkStream stream)
+    {
+        WriteInt((int)direction, stream);
+    }
+
+    public static Direction.EnumDirection readDirection(NetworkStream stream)
+    {
+        return (Direction.EnumDirection)ReadInt(stream);
+    }
+
+    public static void WriteNode(Node node, NetworkStream stream)
+    {
+        WriteDirection(node.getDirection(), stream);
+        WriteBool(node.NodeUsed, stream);
+        WriteInt(node.Nodes.Count, stream);
+        foreach(Node n in node.Nodes)
+        {
+            WriteNode(n, stream);
+        }
+    }
+
+    public static Node ReadNode(NetworkStream stream)
+    {
+        Direction.EnumDirection direction = readDirection(stream);
+        bool nodeUsed = ReadBool(stream);
+        List<Node> nodes = new List<Node>();
+        int count = ReadInt(stream);
+
+        for(int i = 0; i < count; i++)
+        {
+            nodes.Add(ReadNode(stream));
+        }
+
+        return new Node(direction, nodeUsed, nodes);
+    }
+
+    public static void WriteArea(Area area, NetworkStream stream)
+    {
+        WriteOrientation(area.Orientation, stream);
+        WriteBool(area.RootUsed, stream);
+        WriteInt(area.Nodes.Count, stream);
+
+        foreach(Node node in area.Nodes)
+        {
+            WriteNode(node, stream);
+        }
+    }
+
+    public static Area ReadArea(NetworkStream stream)
+    {
+        Orientation.EnumOrientation orientation = ReadOrientation(stream);
+        bool rootUsed = ReadBool(stream);
+        int count = ReadInt(stream);
+
+        List<Node> nodes = new List<Node>();
+
+        for (int i = 0; i < count; i++)
+        {
+            nodes.Add(ReadNode(stream));
+        }
+
+        return new Area(orientation, rootUsed, nodes);
+
+    }
+
 }

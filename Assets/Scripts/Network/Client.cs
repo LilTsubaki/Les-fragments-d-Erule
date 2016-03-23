@@ -361,7 +361,9 @@ public class Client : MonoBehaviour{
                                                                // isPiercing and isEnemyTargetable
                                                                NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                //orientation 
-                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()));
+                                                               NetworkUtils.ReadOrientation(_tcpClient.GetStream()),
+                                                               //area
+                                                               NetworkUtils.ReadArea(_tcpClient.GetStream()));
             }
             else
             {
