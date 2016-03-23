@@ -47,6 +47,7 @@ public class ObstacleCreation : EffectDirect
                 EffectUIManager.GetInstance().RegisterEntity(obs);
             }
         }
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.obstacle, caster.Name));
     }
 
     public int Life

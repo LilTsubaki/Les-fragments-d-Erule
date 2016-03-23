@@ -34,6 +34,7 @@ public class GroundOnTimeEffect : EffectOnTime
             GroundOnTimeAppliedEffect effect = new GroundOnTimeAppliedEffect(_id, _effect, _nbTurn, caster);
             hexa.AddOnTimeEffect(effect);
         }
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.area, caster.Name));
     }
 }
 
