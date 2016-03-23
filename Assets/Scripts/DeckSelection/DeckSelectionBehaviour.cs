@@ -61,16 +61,16 @@ public class DeckSelectionBehaviour : MonoBehaviour {
                 _runeTooltip.text = "Dégâts et soins sur plusieurs tours.";
                 break;
             case "Water":
-                _runeTooltip.text = "Soigne beaucoup.";
+                _runeTooltip.text = "Draine la vie et soigne beaucoup.";
                 break;
             case "Air":
                 _runeTooltip.text = "Grande portée mais faibles dégâts.";
                 break;
             case "Earth":
-                _runeTooltip.text = "Gros dommage mais faible portée.";
+                _runeTooltip.text = "Gros dégâts mais faible portée.";
                 break;
             case "Wood":
-                _runeTooltip.text = "Stabilise le lanceur.";
+                _runeTooltip.text = "Pousse ou attire l'adversaire.";
                 break;
             case "Metal":
                 _runeTooltip.text = "Influe sur la protection.";
