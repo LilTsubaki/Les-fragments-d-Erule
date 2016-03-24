@@ -27,7 +27,7 @@ public class ObstacleCreation : EffectDirect
         Logger.Debug(hexagons.Count);
         foreach (Hexagon hexa in hexagons)
         {
-            if(hexa._entity == null)
+            if(hexa._entity == null && hexa.Portal == null)
             {
                 KillableObstacle obs = new KillableObstacle(hexa, _life, caster);
                 obs.GameObject = GameObject.Instantiate(_prefab);
