@@ -203,7 +203,6 @@ public class SpellManager
                 object[] argValues = new object[] { onTimeEffect.GetField(onTimeEffect.keys[1]) };
                 ConstructorInfo ctor = t.GetConstructor(argTypes);
                 Effect ef = (Effect)ctor.Invoke(argValues);
-                Logger.Warning(ef.GetId());
                 _directEffects.Add(ef.GetId(), (EffectOnTime)ef);
             }
             catch(Exception e)
