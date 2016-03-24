@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class HealUp : HealModification
 {
-    public HealUp(int id, int heal) : base(id, heal)
+    public HealUp(int id, int heal, int nbTurn, bool applyReverseEffect = true) : base(id, heal, nbTurn, applyReverseEffect)
     {
     }
 
@@ -11,6 +11,8 @@ public class HealUp : HealModification
     {
         _id = (int)js.GetField(js.keys[0]).n;
         _heal = (int)js.GetField(js.keys[1]).n;
+        NbTurn = (int)js.GetField("nbTurn").n;
+        ApplyReverseEffect = true;
     }
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
@@ -19,7 +21,14 @@ public class HealUp : HealModification
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            c.ReceiveHealUp(_heal);
+            if (!c.EffectsTerminable.ContainsKey(_id) || !ApplyReverseEffect)
+            {
+                c.ReceiveHealUp(_heal);
+            }
+            if (ApplyReverseEffect)
+            {
+                c.EffectsTerminable[_id] = new HealDown(_id, _heal, NbTurn, false);
+            }
         }
     }
 

@@ -12,24 +12,11 @@ public class Node
 {
     private List<Node> _nodes;
     private Direction.EnumDirection _direction;
-    private bool _nodeUsed;
-
-    public bool NodeUsed
-    {
-        get
-        {
-            return _nodeUsed;
-        }
-
-        set
-        {
-            _nodeUsed = value;
-        }
-    }
+    private bool _nodeUsed;  
 
     public Node()
     {
-        _nodes = new List<Node>();
+        Nodes = new List<Node>();
     }
 
     /// <summary>
@@ -37,10 +24,11 @@ public class Node
     /// </summary>
     /// <param name="nodes"></param>
     /// <param name="direction"></param>
-    public Node(List<Node> nodes, Direction.EnumDirection direction)
+    public Node(Direction.EnumDirection direction, bool nodeUsed,List<Node> nodes)
     {
-        _nodes = nodes;
+        Nodes = nodes;
         _direction = direction;
+        _nodeUsed = nodeUsed;
     }
 
     /// <summary>
@@ -49,7 +37,7 @@ public class Node
     /// <param name="js"></param>
     public Node(JSONObject js)
     {
-        _nodes = new List<Node>();
+        Nodes = new List<Node>();
 
         //Debug.Log(Direction.stringToDirection(js.GetField(js.keys[0]).str));
         _direction = Direction.stringToDirection(js.GetField(js.keys[0]).str);
@@ -59,7 +47,7 @@ public class Node
         foreach (JSONObject node in array.list)
         {
             Node n = new Node(node);
-            _nodes.Add(n);
+            Nodes.Add(n);
         }
     }
 
@@ -68,9 +56,9 @@ public class Node
         Node n = new Node();
         n._nodeUsed = _nodeUsed;
         n._direction = Direction.Rotate(_direction, rotateValue);
-        for(int i = 0; i < _nodes.Count; i++)
+        for(int i = 0; i < Nodes.Count; i++)
         {
-            n._nodes.Add(_nodes[i].rotateNode(rotateValue));
+            n.Nodes.Add(Nodes[i].rotateNode(rotateValue));
         }
         return n;
     }
@@ -89,10 +77,10 @@ public class Node
 
         if ((currentHexa._posX == -1 && currentHexa._posY == -1) || currentHexa.isVisible()) 
         {
-            for (int i = 0; i < _nodes.Count; i++)
+            for (int i = 0; i < Nodes.Count; i++)
             {
-                dirs.Add(_nodes[i]._direction);
-                _nodes[i].NodeToHexagon(dirs, ref hexas, root);
+                dirs.Add(Nodes[i]._direction);
+                Nodes[i].NodeToHexagon(dirs, ref hexas, root);
                 dirs.RemoveAt(dirs.Count - 1);
             }
         }
@@ -103,15 +91,41 @@ public class Node
     public void displayNodeTest()
     {
         //Debug.Log("direction : " + _direction);
-        for(int i = 0; i < _nodes.Count; i++)
+        for(int i = 0; i < Nodes.Count; i++)
         {
-            _nodes[i].displayNodeTest();
+            Nodes[i].displayNodeTest();
         }
     }
 
     public Direction.EnumDirection getDirection()
     {
         return _direction;
+    }
+
+    public bool NodeUsed
+    {
+        get
+        {
+            return _nodeUsed;
+        }
+
+        set
+        {
+            _nodeUsed = value;
+        }
+    }
+
+    public List<Node> Nodes
+    {
+        get
+        {
+            return _nodes;
+        }
+
+        set
+        {
+            _nodes = value;
+        }
     }
 }
 

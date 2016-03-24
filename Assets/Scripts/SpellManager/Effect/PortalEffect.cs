@@ -57,5 +57,6 @@ public class PortalEffect : EffectDirect
                 character.Teleport();
             }
         }
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.portal, caster.Name));
     }
 }

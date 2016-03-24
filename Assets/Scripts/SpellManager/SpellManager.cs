@@ -203,7 +203,6 @@ public class SpellManager
                 object[] argValues = new object[] { onTimeEffect.GetField(onTimeEffect.keys[1]) };
                 ConstructorInfo ctor = t.GetConstructor(argTypes);
                 Effect ef = (Effect)ctor.Invoke(argValues);
-                Logger.Warning(ef.GetId());
                 _directEffects.Add(ef.GetId(), (EffectOnTime)ef);
             }
             catch(Exception e)
@@ -378,6 +377,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer.Name));
                 effectIds = CurrentSelfSpell.EffectsAreaCrit.GetIds();
                 if (effectIds.Count != 0)
                 {
@@ -403,7 +403,9 @@ public class SpellManager
 
             if(!success)
             {
-                foreach(var elem in _spellInit)
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer.Name));
+
+                foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
                 }
@@ -438,6 +440,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer.Name));
                 effectIds = CurrentTargetSpell.EffectsAreaCrit.GetIds();
                 if(effectIds.Count != 0)
                 {
@@ -451,6 +454,8 @@ public class SpellManager
             }
             if (!success)
             {
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer.Name));
+
                 foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
@@ -458,6 +463,10 @@ public class SpellManager
             }
         }
 
+        if (runes > 0)
+        {
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.perfect, currentPlayer.Name));
+        }
 
         ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);
 

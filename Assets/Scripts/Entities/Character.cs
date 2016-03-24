@@ -33,6 +33,7 @@ public class Character : Entity, Killable
 	private int _sumNegativeProtection;
 
     private Dictionary<int, PlayerOnTimeAppliedEffect> _onTimeEffects;
+    private Dictionary<int, EffectTerminable> _effectsTerminable;
     private List<int> _onTimeEffectsToRemove;
 
     private int _rangeModifier;
@@ -88,6 +89,7 @@ public class Character : Entity, Killable
         }
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
+        _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
         _state = State.Waiting;
         _shields = new LinkedList<Shield>();
@@ -128,10 +130,33 @@ public class Character : Entity, Killable
 		}
 
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
+        _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
         _shields = new LinkedList<Shield>();
         _state = State.Waiting;
 	}
+
+    public void UpdateEffectTerminable()
+    {
+        List<int> toRemove = new List<int>();
+        foreach(var effect in EffectsTerminable)
+        {
+            effect.Value.NbTurn--;
+            Logger.Debug(effect.Value.NbTurn);
+            if (effect.Value.NbTurn < 1)
+            {
+                List<Hexagon> list = new List<Hexagon>();
+                list.Add(Position);
+                effect.Value.ApplyEffect(list, Position, this);
+                toRemove.Add(effect.Key);
+            }
+        }
+        foreach (var id in toRemove)
+        {
+            EffectsTerminable.Remove(id);
+        }
+        
+    }
 
     public void Copy(Character c)
     {
@@ -157,24 +182,22 @@ public class Character : Entity, Killable
     public void BeginTurn()
     {
         Logger.Debug("begin turn character");
-        RangeModifier = 0;
-        HealModifier = 0;
-        DamageModifier = 0;
+        //RangeModifier = 0; DONE
+        //HealModifier = 0; DONE
+       // DamageModifier = 0; DONE
         IsStabilized = false;
-        GlobalProtectionModifier = 0;
 
-        foreach (var element in Element.GetElements())
+        /*foreach (var element in Element.GetElements())
         {
             ProtectionsNegative[element] = 0;
             Protections[element] = 0;
-        }
-
-        _sumNegativeProtection = 0;
-        _sumProtection = 0;
+        }*/ //DONE
 
         Logger.Debug("begin update shield character");
         updateShields();
         Logger.Debug("end begin turn character");
+
+        UpdateEffectTerminable();
     }
 
     public void updateShields()
@@ -239,6 +262,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value));
     }
 
     public int ShieldReceiveDamage(int value)
@@ -276,6 +300,7 @@ public class Character : Entity, Killable
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value, element._name));
 
         if (_lifeCurrent - value < 0)
             _lifeCurrent = 0;
@@ -808,6 +833,19 @@ public class Character : Entity, Killable
         set
         {
             _globalShieldValue = value;
+        }
+    }
+
+    public Dictionary<int, EffectTerminable> EffectsTerminable
+    {
+        get
+        {
+            return _effectsTerminable;
+        }
+
+        set
+        {
+            _effectsTerminable = value;
         }
     }
 }
