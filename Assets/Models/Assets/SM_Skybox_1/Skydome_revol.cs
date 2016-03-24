@@ -8,7 +8,7 @@ public class Skydome_revol : MonoBehaviour {
 	private float Yrot = 0.0f;
 
 
-	void Update () {
+	void FixedUpdate () {
 
 		Yrot += rotSpeed;
 		Skydome.transform.eulerAngles = new Vector3 (0.0f, Yrot, 0.0f);
