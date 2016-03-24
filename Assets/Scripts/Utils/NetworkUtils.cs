@@ -180,6 +180,13 @@ public class NetworkUtils {
         WriteInt(ch.SommeNegativeProtection, stream);
 
         WriteInt(ch.GlobalShieldValue, stream);
+
+        WriteInt(ch.DamageModifier, stream);
+        WriteInt(ch.HealModifier, stream);
+        WriteInt(ch.RangeModifier, stream);
+        WriteBool(ch.IsCharacterGetDot(), stream);
+        WriteBool(ch.IsCharacterGetHot(), stream);
+
     }
 
     public static Character ReadCharacter(NetworkStream stream)
@@ -210,6 +217,12 @@ public class NetworkUtils {
         ch.SommeNegativeProtection = ReadInt(stream);
 
         ch.GlobalShieldValue = ReadInt(stream);
+
+        ch.DamageModifier = ReadInt(stream);
+        ch.HealModifier = ReadInt(stream);
+        ch.RangeModifier = ReadInt(stream);
+        ch.GetDot = ReadBool(stream);
+        ch.GetHot = ReadBool(stream);
 
         return ch;
     }

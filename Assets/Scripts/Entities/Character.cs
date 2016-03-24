@@ -46,6 +46,9 @@ public class Character : Entity, Killable
     private LinkedList<Shield> _shields;
     private int _globalShieldValue;
 
+    private bool _getDot = false;
+    private bool _getHot = false;
+
     public Character(int lifeMax)
     {
         _lifeMax = lifeMax;
@@ -262,7 +265,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
-        HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value));
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
     }
 
     public int ShieldReceiveDamage(int value)
@@ -583,6 +586,30 @@ public class Character : Entity, Killable
         }
     }*/
 
+    public bool IsCharacterGetDot()
+    {
+        foreach(PlayerOnTimeAppliedEffect onTime in _onTimeEffects.Values)
+        {
+            if(onTime._effect is DamageElement)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool IsCharacterGetHot()
+    {
+        foreach (PlayerOnTimeAppliedEffect onTime in _onTimeEffects.Values)
+        {
+            if (onTime._effect is Heal)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool isDead()
     {
         return _lifeCurrent <= 0;
@@ -846,6 +873,32 @@ public class Character : Entity, Killable
         set
         {
             _effectsTerminable = value;
+        }
+    }
+
+    public bool GetDot
+    {
+        get
+        {
+            return _getDot;
+        }
+
+        set
+        {
+            _getDot = value;
+        }
+    }
+
+    public bool GetHot
+    {
+        get
+        {
+            return _getHot;
+        }
+
+        set
+        {
+            _getHot = value;
         }
     }
 }
