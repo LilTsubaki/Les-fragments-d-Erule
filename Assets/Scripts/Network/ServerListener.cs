@@ -57,7 +57,7 @@ public class ServerListener
                                 PlayBoardManager.GetInstance().CanEndTurn = true;
                                 //PlayBoardManager.GetInstance().EndTurn();
 
-                                ServerManager.GetInstance()._server.EndTurn();
+                                
                             }
                             break;
 
