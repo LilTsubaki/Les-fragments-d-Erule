@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ProtectionGlobal : EffectDirect
+public class ProtectionGlobal : EffectTerminable
 {
 	protected int _protection;
 
     public ProtectionGlobal():base() {}
-	public ProtectionGlobal (int id, int protection): base(id)
-	{
+	public ProtectionGlobal (int id, int protection, int nbTurn, bool applyReverseEffect = true) : base(id, nbTurn, applyReverseEffect)
+    {
 		_protection = protection;
 	}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class DamageUp : DamageModification
 {
-    public DamageUp(int id, int damage) : base(id, damage)
+    public DamageUp(int id, int damage, int nbTurn, bool applyReverseEffect = true) : base(id, damage, nbTurn, applyReverseEffect)
     {
     }
 
@@ -11,6 +11,8 @@ public class DamageUp : DamageModification
     {
         _id = (int)js.GetField(js.keys[0]).n;
         _damage = (int)js.GetField(js.keys[1]).n;
+        NbTurn = (int)js.GetField("nbTurn").n;
+        ApplyReverseEffect = true;
     }
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
@@ -19,7 +21,14 @@ public class DamageUp : DamageModification
         List<Character> chars = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
         foreach (Character c in chars)
         {
-            c.ReceiveDamageUp(_damage);
+            if (!c.EffectsTerminable.ContainsKey(_id) || !ApplyReverseEffect)
+            {
+                c.ReceiveDamageUp(_damage);
+            }
+            if (ApplyReverseEffect)
+            {
+                c.EffectsTerminable[_id] = new DamageDown(_id, _damage, NbTurn, false);
+            }
         }
     }
 
