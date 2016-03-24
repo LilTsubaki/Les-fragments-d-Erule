@@ -378,7 +378,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
-                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer));
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer.Name));
                 effectIds = CurrentSelfSpell.EffectsAreaCrit.GetIds();
                 if (effectIds.Count != 0)
                 {
@@ -404,7 +404,7 @@ public class SpellManager
 
             if(!success)
             {
-                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer));
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer.Name));
 
                 foreach (var elem in _spellInit)
                 {
@@ -441,7 +441,7 @@ public class SpellManager
             // If the spell is critically casted, we add the critical effects
             if (crit)
             {
-                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer));
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.crit, currentPlayer.Name));
                 effectIds = CurrentTargetSpell.EffectsAreaCrit.GetIds();
                 if(effectIds.Count != 0)
                 {
@@ -455,7 +455,7 @@ public class SpellManager
             }
             if (!success)
             {
-                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer));
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.unstable, currentPlayer.Name));
 
                 foreach (var elem in _spellInit)
                 {
@@ -466,7 +466,7 @@ public class SpellManager
 
         if (runes > 0)
         {
-            HistoricManager.GetInstance().AddText(String.Format(StringsErule.perfect, currentPlayer));
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.perfect, currentPlayer.Name));
         }
 
         ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);
