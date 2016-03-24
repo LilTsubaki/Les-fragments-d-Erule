@@ -6,6 +6,7 @@ public class FireAnimation : SpellAnimation
     public Animator _fireAnimator;
 	public Animator _fireSprite;
 	public Animator _explosionAnimator;
+	public Animator _godraybisAnimator;
 	public ParticleSystem _sparks;
 	public ParticleSystem _explosion;
     public float _forward;
@@ -31,5 +32,10 @@ public class FireAnimation : SpellAnimation
 	public void PlayExplosionRay()
 	{
 		_explosionAnimator.SetTrigger ("play");
+	}
+
+	public void PlayGodRayBis()
+	{
+		_godraybisAnimator.SetTrigger ("play");
 	}
 }
