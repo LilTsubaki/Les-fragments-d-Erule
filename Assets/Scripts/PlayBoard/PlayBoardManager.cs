@@ -6,6 +6,7 @@ public class PlayBoardManager
 {
 	private static PlayBoardManager _instance;
 	private PlayBoard _board;
+    private bool _canEndTurn;
 
 	public PlayBoard Board{
 		get { return _board; }
@@ -81,12 +82,24 @@ public class PlayBoardManager
         }
     }
 
-   
+    public bool CanEndTurn
+    {
+        get
+        {
+            return _canEndTurn;
+        }
+
+        set
+        {
+            _canEndTurn = value;
+        }
+    }
 
     private PlayBoardManager ()
 	{
         _secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
         _turnNumber = 0;
+        CanEndTurn = false;
     }
 
     public void Init(int width, int height, Character character1, Character character2)

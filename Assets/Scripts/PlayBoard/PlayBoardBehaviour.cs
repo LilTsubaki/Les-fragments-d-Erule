@@ -36,6 +36,13 @@ public class PlayBoardBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(PlayBoardManager.GetInstance().CanEndTurn)
+        {
+            PlayBoardManager.GetInstance().CanEndTurn = false;
+            PlayBoardManager.GetInstance().EndTurn();
+        }
+            
+
         HighLight();
         if (Input.GetMouseButtonDown(0)){
             if (PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
