@@ -5,11 +5,12 @@ public class TexturePan : MonoBehaviour {
 
 	public float speedU = -0.5F;
 	public float speedV = -1.0F;
-	/*public float panSpeed = 3.0f;
+    public float length = 1.0F;
+    /*public float panSpeed = 3.0f;
 	
 	private bool panBoost = false; */
-	
-	void Update() 
+
+    void Update() 
 	{
 	
 		/*if (panBoost==true && (Input.GetButtonDown ("Use")))
@@ -18,7 +19,7 @@ public class TexturePan : MonoBehaviour {
 			speedV *= panSpeed;	
 		}
 		*/
-		Vector2 offset = Mathf.Repeat(Time.time,4.0f) * new Vector2(speedU, speedV);
+		Vector2 offset = /*Mathf.Repeat(Time.time, 4.0f) * */ new Vector2(speedU, speedV) * (length * Time.time);
 		GetComponent<Renderer>().material.mainTextureOffset = offset;
 		
 	}
