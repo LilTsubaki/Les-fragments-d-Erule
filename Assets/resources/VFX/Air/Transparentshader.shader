@@ -2,6 +2,8 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGBA)", 2D) = "white" {}
+		_AContrast ("Albedo Contrast", Range (-50,50)) = 0
+		_MContrast ("Mask Contrast", Range (-50,50)) = 0
 	}
 	SubShader {
 		Tags { "Queue"="Transparent+99" "IgnoreProjector"="True"  "RenderType"="Transparent" }
@@ -21,11 +23,12 @@
 		};
 
 		fixed4 _Color;
+		half _AContrast, _MContrast;
 
 		void surf (Input IN, inout SurfaceOutput o) {
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb  * _Color;
-			o.Alpha = c.a;
+			o.Albedo = c.rgb  * _Color * pow (c.rgb, _AContrast);
+			o.Alpha = c.a * pow (c.a, _MContrast);
 		}
 		ENDCG
 	}

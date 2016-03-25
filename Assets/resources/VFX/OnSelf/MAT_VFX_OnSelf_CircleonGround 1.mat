@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Character1_Accessories_colorswap
-  m_Shader: {fileID: 4800000, guid: 9c77b1c8dcd04164da4c8ac0364b8915, type: 3}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: MAT_VFX_OnSelf_CircleonGround 1
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 248724efbda88574e947af371348157c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 75fb3541f5d2aeb46816df89d8c1a3ce, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -80,16 +80,9 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Masks
+          name: _MaskTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9d9dcb17d6a0cf84f80d91eaefea7df6, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: b7de22f3f460b8b4ebc4c3d20eea9d55, type: 3}
+          m_Texture: {fileID: 2800000, guid: ccf11a488b67818459f2c381b859be93, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -116,7 +109,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.175
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -141,6 +134,18 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 2.77
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: -3.5
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: -8.3
     m_Colors:
       data:
         first:
@@ -152,21 +157,5 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
-          name: _M1Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M2Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M3Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M4Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
+          name: _TintColor
+        second: {r: 1, g: 0.6102941, b: 0.8763698, a: 0.5}
