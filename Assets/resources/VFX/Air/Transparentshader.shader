@@ -25,8 +25,6 @@
 		fixed4 _Color;
 		half _AContrast, _MContrast;
 
-		half _AContrast, _MContrast;
-
 		void surf (Input IN, inout SurfaceOutput o) {
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
 			o.Albedo = c.rgb  * _Color * pow (c.rgb, _AContrast);
