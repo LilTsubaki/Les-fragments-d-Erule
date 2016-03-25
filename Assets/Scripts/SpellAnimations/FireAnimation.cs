@@ -28,19 +28,23 @@ public class FireAnimation : SpellAnimation
             _fireAnimator.SetTrigger("play");
 			_sparks.Play ();
 
-            _explosion.enableEmission = true;
+            ParticleSystem.EmissionModule modExplosion = _explosion.emission;
+            modExplosion.enabled = true;
             _explosion.Simulate(0, false, true);
 			_explosion.Play ();
 
-            _flame.enableEmission = true;
+            ParticleSystem.EmissionModule modFlame = _flame.emission;
+            modFlame.enabled = true;
             _flame.Simulate(0, true, true);
             _flame.Play();
 
-            _miniFlame1.enableEmission = true;
+            ParticleSystem.EmissionModule modMiniFlame1 = _miniFlame1.emission;
+            modMiniFlame1.enabled = true;
             _miniFlame1.Simulate(0, true, true);
             _miniFlame1.Play();
 
-            _miniFlame2.enableEmission = true;
+            ParticleSystem.EmissionModule modMiniFlame2 = _miniFlame2.emission;
+            modMiniFlame2.enabled = true;
             _miniFlame2.Simulate(0, true, true);
             _miniFlame2.Play();
 
@@ -70,9 +74,13 @@ public class FireAnimation : SpellAnimation
 
     public void ResetBursts()
     {
-        _explosion.enableEmission = false;
-        _flame.enableEmission = false;
-        _miniFlame1.enableEmission = false;
-        _miniFlame2.enableEmission = false;
+        ParticleSystem.EmissionModule modExplo = _explosion.emission;
+        modExplo.enabled = false;
+        ParticleSystem.EmissionModule modFlame = _flame.emission;
+        modFlame.enabled = false;
+        ParticleSystem.EmissionModule modMiniFlame1 = _miniFlame1.emission;
+        modMiniFlame1.enabled = false;
+        ParticleSystem.EmissionModule modMiniFlame2 = _miniFlame2.emission;
+        modMiniFlame2.enabled = false;
     }
 }
