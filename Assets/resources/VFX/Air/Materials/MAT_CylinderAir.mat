@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_VFX_Wood_Clouds
-  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: MAT_CylinderAir
+  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: fb129b030102fbf47b3f95d79c01ff05, type: 3}
+          m_Texture: {fileID: 2800000, guid: eff025309b38b3447b74bd93c8a2658d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,13 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _VFX_Particles
-        second:
-          m_Texture: {fileID: 2800000, guid: 213a7e9878b89fb45a51e227b3251634, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -97,15 +90,11 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.02
+        second: 0.5
       data:
         first:
           name: _InvFade
-        second: 2.09
-      data:
-        first:
-          name: _Parallax
-        second: 0.02
+        second: 1
       data:
         first:
           name: _ZWrite
@@ -118,6 +107,10 @@ Material:
         first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
       data:
         first:
           name: _OcclusionStrength
@@ -138,22 +131,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _ShakeDisplacement
-        second: 1
-      data:
-        first:
-          name: _ShakeTime
-        second: 1
-      data:
-        first:
-          name: _ShakeWindspeed
-        second: 1
-      data:
-        first:
-          name: _ShakeBending
-        second: 1
     m_Colors:
       data:
         first:
@@ -163,7 +140,3 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 0.5}

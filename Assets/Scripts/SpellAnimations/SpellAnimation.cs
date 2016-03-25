@@ -5,7 +5,7 @@ public class SpellAnimation : MonoBehaviour {
 
     public GameObject _from;
     public GameObject _to;
-    protected bool _play;
+    public bool _play;
 
     public string _registerName;
 
@@ -23,7 +23,7 @@ public class SpellAnimation : MonoBehaviour {
         Reset();
     }
 
-    public void Reset() {
+    public virtual void Reset() {
         transform.position = _from.transform.position;
         Vector3 look = new Vector3(_to.transform.position.x, _from.transform.position.y, _to.transform.position.z);
         gameObject.transform.LookAt(look);

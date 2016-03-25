@@ -54,6 +54,7 @@ public class SpellAnimationManager {
                     Play("fire", from, to);
                     break;
                 case 1: // Water
+					Play("water",from,to);
                     break;
                 case 2: // Air
                     Play("air", from, to);
