@@ -22,6 +22,7 @@ public class Portal {
         _gameObject = gameObject;
         _position = position;
         _id = id;
+        _gameObject.transform.GetChild(1).transform.rotation = Camera.main.transform.rotation;
     }
 
     public bool IsActive()
@@ -39,7 +40,10 @@ public class Portal {
 
     public void Destroy()
     {
-        _position.Portal = null;
+        if (_position != null)
+        {
+            _position.Portal = null;
+        }
         _position = null;
         _gameObject.SetActive(false);
     }
@@ -66,8 +70,12 @@ public class Portal {
 
         set
         {
-            _position.Portal = null;
+            if (_position != null)
+            {
+                _position.Portal = null;
+            }
             _position = value;
+            _position.Portal = this;
         }
     }
 

@@ -36,8 +36,7 @@ public class PortalEffect : EffectDirect
                 Character character = (Character)portalManager.Portal1.Position._entity;
                 portalManager.Teleport(character);
             }
-
-            if (portalManager.Portal2.Position._entity is Character)
+            else if (portalManager.Portal2.Position._entity is Character)
             {
                 Character character = (Character)portalManager.Portal2.Position._entity;
                 portalManager.Teleport(character);

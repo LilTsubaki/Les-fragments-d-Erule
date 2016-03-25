@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 463572}
   - 33: {fileID: 3328268}
   - 23: {fileID: 2304020}
-  - 114: {fileID: 11413978}
+  - 114: {fileID: 11475874}
   m_Layer: 0
   m_Name: M_VFX_Wood_Thorncrown (1)
   m_TagString: Untagged
@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 402842}
   - 33: {fileID: 3383418}
   - 23: {fileID: 2390884}
-  - 114: {fileID: 11453340}
+  - 114: {fileID: 11489464}
   m_Layer: 0
   m_Name: M_VFX_Wood_Thorncrown
   m_TagString: Untagged
@@ -114,7 +114,7 @@ GameObject:
   - 4: {fileID: 473534}
   - 33: {fileID: 3314620}
   - 23: {fileID: 2329790}
-  - 114: {fileID: 11479066}
+  - 114: {fileID: 11417496}
   m_Layer: 0
   m_Name: M_VFX_Wood_Thorncrown (2)
   m_TagString: Untagged
@@ -225,8 +225,8 @@ MeshRenderer:
   - {fileID: 2100000, guid: 294c6ec11f5f3434f8f7fb7f2699a7b3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
@@ -251,8 +251,8 @@ MeshRenderer:
   - {fileID: 2100000, guid: 294c6ec11f5f3434f8f7fb7f2699a7b3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
@@ -303,8 +303,8 @@ MeshRenderer:
   - {fileID: 2100000, guid: 294c6ec11f5f3434f8f7fb7f2699a7b3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
@@ -361,20 +361,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11413978
+--- !u!114 &11417496
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 117272}
+  m_GameObject: {fileID: 198098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2b6326334dfdd46819b5df36ecc446, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c6af5afeb070341afdc62e098c61e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Thorncrown: {fileID: 117272}
-  rotSpeed1: 4
-  tiltSpeed1: 11
+  rotSpeed1: 2.3
+  tiltSpeed1: 5.6
 --- !u!114 &11427786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,7 +387,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedU: 0
   speedV: 1
---- !u!114 &11453340
+  length: 1
+--- !u!114 &11475874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c6af5afeb070341afdc62e098c61e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed1: 4
+  tiltSpeed1: 11
+--- !u!114 &11489464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -396,26 +409,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 138396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2b6326334dfdd46819b5df36ecc446, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c6af5afeb070341afdc62e098c61e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Thorncrown: {fileID: 138396}
   rotSpeed1: 10
   tiltSpeed1: 12.4
---- !u!114 &11479066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2b6326334dfdd46819b5df36ecc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Thorncrown: {fileID: 198098}
-  rotSpeed1: 2.3
-  tiltSpeed1: 5.6
 --- !u!198 &19829268
 ParticleSystem:
   m_ObjectHideFlags: 1

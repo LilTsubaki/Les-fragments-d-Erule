@@ -1,16 +1,17 @@
-﻿Shader "Custom/Transparent Diffuse (Mask cutoff)_main" {
+﻿Shader "Custom/Transparent Diffuse (Mask cutoff)_Additive" {
 	Properties{
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
 		/*_Cutoff("Mask cutoff", Range(0,1)) = 0
 		_Blur("Blurring alpha", Range(0,50)) = 0*/
 		_MaskTex("Mask", 2D) = "white" {}
-		_MainTexMoveSpeedU("U Move Speed", Range(0,100)) = 0.5
-		_MainTexMoveSpeedV("V Move Speed", Range(0,100)) = 0.5
+		_MainTexMoveSpeedU("U Move Speed", Range(-50,50)) = 0.5
+		_MainTexMoveSpeedV("V Move Speed", Range(-50,50)) = 0.5
 	}
 
 	SubShader{
 		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
+		/*Blend One One, SrcAlpha OneMinusSrcAlpha*/
 
 		CGPROGRAM
 		#pragma surface surf Lambert alpha
@@ -45,8 +46,8 @@
 			
 			/*clip(mask.a - _Cutoff * 1.004);*/		//*1.004); 1.004 = 1+(1/255) to make sure also white is clipped
 
-			o.Albedo = c.rgb*2 ;
-			o.Alpha = mask.r * (1 - c.a)/* * pow(mask.a, _Blur)*/;
+			o.Albedo = c.rgb;
+			o.Alpha = mask.a/* * pow(mask.a, _Blur)*/;
 		}
 
 		ENDCG
