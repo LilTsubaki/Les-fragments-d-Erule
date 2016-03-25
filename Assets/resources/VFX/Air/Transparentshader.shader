@@ -23,6 +23,7 @@
 		};
 
 		fixed4 _Color;
+		half _AContrast, _MContrast;
 
 		half _AContrast, _MContrast;
 
