@@ -54,8 +54,10 @@ public class ServerListener
                         case 12:
                             if (PlayBoardManager.GetInstance().isMyTurn(_character))
                             {
-                                PlayBoardManager.GetInstance().EndTurn();
-                                ServerManager.GetInstance()._server.EndTurn();
+                                PlayBoardManager.GetInstance().CanEndTurn = true;
+                                //PlayBoardManager.GetInstance().EndTurn();
+
+                                
                             }
                             break;
 
@@ -212,9 +214,9 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch
+        catch (Exception e)
         {
-            Logger.Error("Client Disconnect");
+            Logger.Error("send character failed : " + e.StackTrace);
             _isRunning = false;
         }
     }
@@ -229,9 +231,9 @@ public class ServerListener
 
         _client.GetStream().Flush();
         }
-        catch
+        catch (Exception e)
         {
-            Logger.Error("Client Disconnect");
+            Logger.Error("update character failed : " + e.StackTrace);
             _isRunning = false;
         }
     }
@@ -246,9 +248,9 @@ public class ServerListener
             _client.GetStream().Flush();
 
         }
-        catch
+        catch (Exception e)
         {
-            Logger.Error("Client Disconnect");
+            Logger.Error("end turn failed : " + e.StackTrace);
             _isRunning = false;
         }
     }
@@ -266,9 +268,9 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch
+        catch (Exception e)
         {
-            Logger.Error("Client Disconnect");
+            Logger.Error("end turn failed : " + e.StackTrace);
             _isRunning = false;
         }
     }
@@ -285,9 +287,9 @@ public class ServerListener
 
             _client.GetStream().Flush();
         }
-        catch
+        catch(Exception e)
         {
-            Logger.Error("Client Disconnect");
+            Logger.Error("reset board failed : " + e.StackTrace);
             _isRunning = false;
         }
     }

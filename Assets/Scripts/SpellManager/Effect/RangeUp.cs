@@ -28,6 +28,8 @@ public class RangeUp: RangeModification
             if (ApplyReverseEffect)
             {
                 c.EffectsTerminable[_id] = new RangeDown(_id, _range, NbTurn, false);
+
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.rangeBonus, c.Name, _range, NbTurn));
             }
         }
     }

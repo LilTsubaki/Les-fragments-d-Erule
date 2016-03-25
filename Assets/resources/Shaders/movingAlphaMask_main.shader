@@ -10,7 +10,6 @@
 
 	SubShader{
 		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
-		LOD 200
 		ZWrite Off
 
 		CGPROGRAM

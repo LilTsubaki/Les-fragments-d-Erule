@@ -17,7 +17,37 @@ public class PortalEffect : EffectDirect
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
+        PortalManager portalManager = PortalManager.GetInstance();
+
+        if (target._entity == null)
+        {
+            if (target.Portal != null)
+            {
+                target.Portal.Destroy();
+            }
+            portalManager.CreatePortal(target);
+        }
+        else
+        {
+            Logger.Debug("PortalEffect : Targeted hexagon has an entity");
+        }
+
+        // Automatically teleport players that stand on portals
+        if (portalManager.TwoPortalsActivated())
+        {
+            if (portalManager.Portal1.Position._entity is Character)
+            {
+                Character character = (Character)portalManager.Portal1.Position._entity;
+                portalManager.Teleport(character);
+            }
+            else if (portalManager.Portal2.Position._entity is Character)
+            {
+                Character character = (Character)portalManager.Portal2.Position._entity;
+                portalManager.Teleport(character);
+            }
+        }
+
+        /*List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
         if (target._entity == null)
         {
             if (portals.Count >= 2)
@@ -30,12 +60,6 @@ public class PortalEffect : EffectDirect
             instance.transform.position = target.GameObject.transform.position;
             Portal portal = new Portal(target, instance);
             portals.Add(portal);
-
-
-        }
-        else
-        {
-            Logger.Debug("PortalEffect : Targeted hexagon has an entity");
         }
 
         // Automatically teleport players that stand on portals
@@ -56,7 +80,7 @@ public class PortalEffect : EffectDirect
             {
                 character.Teleport();
             }
-        }
+        }*/
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.portal, caster.Name));
     }
 }

@@ -125,6 +125,14 @@ public class Client : MonoBehaviour{
                 UIManager.GetInstance().ToggleButton.GetComponent<ToggleBehaviour>().SwitchMode();
 
             _resetBoard = false;
+            if (_runeKept > 0)
+            {
+                SendBoard(false);
+            }
+            else
+            {
+                UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
+            }
         }
 
         if (_newHost)

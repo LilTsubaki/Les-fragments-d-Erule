@@ -46,6 +46,9 @@ public class Character : Entity, Killable
     private LinkedList<Shield> _shields;
     private int _globalShieldValue;
 
+    private bool _getDot = false;
+    private bool _getHot = false;
+
     public Character(int lifeMax)
     {
         _lifeMax = lifeMax;
@@ -262,7 +265,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
-        HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value));
+        HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
     }
 
     public int ShieldReceiveDamage(int value)
@@ -401,6 +404,17 @@ public class Character : Entity, Killable
     public void ReceiveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
     {
         _onTimeEffects[effect.GetId()] = effect;
+
+        if(effect._effect is DamageElement)
+        {
+            DamageElement de = (DamageElement)effect._effect;
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.dot,Name,de._element._name,effect._nbTurn));
+        }
+
+        if (effect._effect is Heal)
+        {
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.hot, Name, effect._nbTurn));
+        }
     }
 
     /// <summary>
@@ -552,7 +566,7 @@ public class Character : Entity, Killable
     /// <summary>
     /// Verify if the current chracter is on an hexagon that contains a portal. If so, it teleports the current character to the other portal (if it exists).
     /// </summary>
-    public void Teleport()
+    /*public void Teleport()
     {
         List<Portal> portals = PlayBoardManager.GetInstance().Board.Portals;
         if (portals.Count == 2 && Position.Portal != null)
@@ -581,6 +595,30 @@ public class Character : Entity, Killable
                 _gameObject.transform.position = Position.GameObject.transform.position + PositionOffset;
             }
         }
+    }*/
+
+    public bool IsCharacterGetDot()
+    {
+        foreach(PlayerOnTimeAppliedEffect onTime in _onTimeEffects.Values)
+        {
+            if(onTime._effect is DamageElement)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool IsCharacterGetHot()
+    {
+        foreach (PlayerOnTimeAppliedEffect onTime in _onTimeEffects.Values)
+        {
+            if (onTime._effect is Heal)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool isDead()
@@ -846,6 +884,32 @@ public class Character : Entity, Killable
         set
         {
             _effectsTerminable = value;
+        }
+    }
+
+    public bool GetDot
+    {
+        get
+        {
+            return _getDot;
+        }
+
+        set
+        {
+            _getDot = value;
+        }
+    }
+
+    public bool GetHot
+    {
+        get
+        {
+            return _getHot;
+        }
+
+        set
+        {
+            _getHot = value;
         }
     }
 }

@@ -81,7 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
             // Teleport player if the last hexagon has a portal
             if (_character.Position.Portal != null)
             {
-                _character.Teleport();
+                PortalManager.GetInstance().Teleport(_character);
             }
         }
     }
@@ -105,7 +105,7 @@ public class CharacterBehaviour : MonoBehaviour
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)
                     {
-                        _character.Teleport();
+                        PortalManager.GetInstance().Teleport(_character);
                     }
                 }
             }

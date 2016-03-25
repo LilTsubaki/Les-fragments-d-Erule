@@ -36,6 +36,7 @@ public class Hexagon : IAStar<Hexagon>
     private Color _defaultColor;
 
     private GameObject _glyph;
+    private Orientation.EnumOrientation _orientation;
 
     public Color DefaultColor
     {
@@ -175,6 +176,19 @@ public class Hexagon : IAStar<Hexagon>
         set
         {
             _portal = value;
+        }
+    }
+
+    public Orientation.EnumOrientation Orientation
+    {
+        get
+        {
+            return _orientation;
+        }
+
+        set
+        {
+            _orientation = value;
         }
     }
 
