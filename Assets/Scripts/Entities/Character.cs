@@ -404,6 +404,17 @@ public class Character : Entity, Killable
     public void ReceiveOnTimeEffect(PlayerOnTimeAppliedEffect effect)
     {
         _onTimeEffects[effect.GetId()] = effect;
+
+        if(effect._effect is DamageElement)
+        {
+            DamageElement de = (DamageElement)effect._effect;
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.dot,Name,de._element._name,effect._nbTurn));
+        }
+
+        if (effect._effect is Heal)
+        {
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.hot, Name, effect._nbTurn));
+        }
     }
 
     /// <summary>

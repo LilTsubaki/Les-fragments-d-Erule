@@ -241,8 +241,8 @@ public class PlayBoardManager
         currentPlayer.RemoveMarkedOnTimeEffects();
 
         currentPlayer.TurnNumber++;
-        currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 5);
-        currentPlayer.CurrentMovementPoints = Math.Min(Character._maxMovementPoints, 1 + currentPlayer.TurnNumber / 5);
+        currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 6);
+        currentPlayer.CurrentMovementPoints = Math.Min(Character._maxMovementPoints, 1 + currentPlayer.TurnNumber / 6);
 
         _turnNumber++;
         Board._reset = true;

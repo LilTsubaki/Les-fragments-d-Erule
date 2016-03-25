@@ -33,8 +33,9 @@ public class ProtectionElement : ProtectionGlobal
             if (ApplyReverseEffect)
             {
                 ch.EffectsTerminable[_id] = new ProtectionNegativeElement(_id, _protection, _element, NbTurn, false);
-            }            
-		}
+                HistoricManager.GetInstance().AddText(String.Format(StringsErule.protectionBonus, ch.Name, _protection, _element._name));
+            }
+        }
 	}
 }
 

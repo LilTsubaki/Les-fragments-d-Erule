@@ -345,6 +345,10 @@ public class RunicBoard {
                 rune.PositionOnBoard = -1;
                 _runesInHand.Add(rune.PositionInHand, rune);
             }
+            else
+            {
+                rune.TurnUsed = -1;
+            }
         }
 
         for(int i = 0; i < ids.Count; ++i)

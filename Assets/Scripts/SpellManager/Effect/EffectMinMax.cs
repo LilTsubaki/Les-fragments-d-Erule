@@ -4,7 +4,7 @@ public abstract class EffectMinMax : EffectDirect
 {
 	protected int _min;
     protected int _max;
-    protected Element _element;
+    public Element _element;
 
     public EffectMinMax() : base() { }
 
