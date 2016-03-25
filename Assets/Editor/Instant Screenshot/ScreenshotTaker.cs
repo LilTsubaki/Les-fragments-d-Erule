@@ -27,7 +27,7 @@ public class Screenshot : EditorWindow
 		EditorWindow editorWindow = EditorWindow.GetWindow(typeof(Screenshot));
 		editorWindow.autoRepaintOnSceneChange = true;
 		editorWindow.Show();
-		editorWindow.title = "Screenshot";
+		editorWindow.titleContent.text = "Screenshot";
 	}
 
 	float lastTime;

@@ -22,7 +22,7 @@ public class MetalAnimation : SpellAnimation
         }
 	}
 
-    public void Reset()
+    public override void Reset()
     {
         _trail.SetActive(false);
         transform.position = _from.transform.position;
