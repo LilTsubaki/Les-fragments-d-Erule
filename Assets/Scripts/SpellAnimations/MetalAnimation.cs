@@ -14,7 +14,7 @@ public class MetalAnimation : SpellAnimation
         {
             _axe.RandomInclination();
             Reset();
-            gameObject.transform.position = _to.transform.position + new Vector3(0,.6f,0);
+            gameObject.transform.position = _to + new Vector3(0,.6f,0);
             
             _anim.SetTrigger("play");
             _play = !_play;
@@ -25,8 +25,8 @@ public class MetalAnimation : SpellAnimation
     public override void Reset()
     {
         _trail.SetActive(false);
-        transform.position = _from.transform.position;
-        Vector3 look = new Vector3(_to.transform.position.x, _from.transform.position.y, _to.transform.position.z);
+        transform.position = _from;
+        Vector3 look = new Vector3(_to.x, _from.y, _to.z);
         gameObject.transform.LookAt(look);
         _trail.SetActive(true);
         //_trail.GetComponent<XWeaponTrailDemo>().

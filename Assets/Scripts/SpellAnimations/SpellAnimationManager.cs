@@ -30,7 +30,7 @@ public class SpellAnimationManager {
         return true;
     }
 
-    public bool Play(string id, GameObject from, GameObject to)
+    public bool Play(string id, Vector3 from, Vector3 to)
     {
         SpellAnimation anim;
         if(_animations.TryGetValue(id, out anim))
@@ -42,7 +42,7 @@ public class SpellAnimationManager {
         return false;
     }
 
-    public bool PlayList(List<Element> elemIds, GameObject from, GameObject to)
+    public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to)
     {
         HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
         int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);

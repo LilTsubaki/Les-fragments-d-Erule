@@ -12,7 +12,7 @@ public class WaterAnimation : SpellAnimation
 	// Update is called once per frame
 	void Update () {
 		if (_play) {
-			gameObject.transform.position = _to.transform.position;
+			gameObject.transform.position = _to;
 			Vector3 projCam = new Vector3 (Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
 			gameObject.transform.LookAt (projCam);
 			/*

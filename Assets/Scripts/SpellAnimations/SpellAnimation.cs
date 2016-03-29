@@ -3,8 +3,8 @@ using System.Collections;
 
 public class SpellAnimation : MonoBehaviour {
 
-    public GameObject _from;
-    public GameObject _to;
+    public Vector3 _from;
+    public Vector3 _to;
     public bool _play;
 
     public string _registerName;
@@ -15,7 +15,7 @@ public class SpellAnimation : MonoBehaviour {
         gameObject.SetActive(false);
 	}
 
-    public void Reset(GameObject from, GameObject to)
+    public void Reset(Vector3 from, Vector3 to)
     {
         _from = from;
         _to = to;
@@ -24,8 +24,8 @@ public class SpellAnimation : MonoBehaviour {
     }
 
     public virtual void Reset() {
-        transform.position = _from.transform.position;
-        Vector3 look = new Vector3(_to.transform.position.x, _from.transform.position.y, _to.transform.position.z);
+        transform.position = _from;
+        Vector3 look = new Vector3(_to.x, _from.y, _to.z);
         gameObject.transform.LookAt(look);
     }
 

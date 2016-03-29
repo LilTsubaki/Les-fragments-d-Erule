@@ -21,10 +21,10 @@ public class FireAnimation : SpellAnimation
     {
         if (_play)
         {
-            gameObject.transform.position = _to.transform.position;
+            gameObject.transform.position = _to;
             Vector3 projCam = new Vector3(Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
             gameObject.transform.LookAt(projCam);
-            gameObject.transform.position = _to.transform.position + gameObject.transform.forward * _forward;
+            gameObject.transform.position = _to + gameObject.transform.forward * _forward;
             
             _fireAnimator.SetTrigger("play");
 			_sparks.Play ();

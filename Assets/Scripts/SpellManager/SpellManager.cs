@@ -417,7 +417,7 @@ public class SpellManager
             À modifier dès qu'on a différents effets visuels
             **********************/
 
-            SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject, target.GameObject);
+            SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
             /*SpellAnimationManager.GetInstance().Play("air", currentPlayer._gameObject, target.GameObject);
             SpellAnimationManager.GetInstance().Play("metal1", currentPlayer._gameObject, target.GameObject);*/
 

@@ -20,14 +20,14 @@ public class AirAnimation : SpellAnimation {
 	void Update () {
         if (_play)
         {
-            float distFromToNext = Vector3.Distance(_from.transform.position, gameObject.transform.position);
-            float distFromToTo = Vector3.Distance(_from.transform.position, _to.transform.position);
+            float distFromToNext = Vector3.Distance(_from, gameObject.transform.position);
+            float distFromToTo = Vector3.Distance(_from, _to);
             float percentage = distFromToNext / distFromToTo;
             float scale = _initialScale * (1-percentage) + _finalScale * percentage;
             gameObject.transform.localScale = new Vector3(scale, scale, scale);
-			Vector3 next = Vector3.MoveTowards(transform.position, _to.transform.position + new Vector3(0,_height,0) + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
+			Vector3 next = Vector3.MoveTowards(transform.position, _to + new Vector3(0,_height,0) + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
             transform.position = next;
-			if(Vector3.Distance(next, _to.transform.position + gameObject.transform.forward * 0.5f) < 1.1f)
+			if(Vector3.Distance(next, _to + gameObject.transform.forward * 0.5f) < 1.1f)
             {
                 _play = false;
                 transform.localScale = new Vector3(_initialScale, _initialScale, _initialScale);
@@ -42,8 +42,8 @@ public class AirAnimation : SpellAnimation {
     public override void Reset()
     {
         transform.localScale = new Vector3(_initialScale, _initialScale, _initialScale);
-		transform.position = new Vector3 (_from.transform.position.x, _from.transform.position.y + _height, _from.transform.position.z);
-        Vector3 look = new Vector3(_to.transform.position.x, _from.transform.position.y, _to.transform.position.z);
+		transform.position = new Vector3 (_from.x, _from.y + _height, _from.z);
+        Vector3 look = new Vector3(_to.x, _from.y, _to.z);
         gameObject.transform.LookAt(look);
 		_sprite.SetActive (true);
 		_cylinder.SetActive (true);
