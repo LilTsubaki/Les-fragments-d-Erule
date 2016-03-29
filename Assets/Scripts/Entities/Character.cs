@@ -7,7 +7,7 @@ public class Character : Entity, Killable
     public enum State { Moving, CastingSpell, Waiting, Translating }
 
 	/*public static int MaxProtection = 50;*/
-	public readonly int _lifeMax;
+	public int _lifeMax;
 	public int _lifeCurrent;
 
     public static int _maxActionPoints = 3;
@@ -311,6 +311,7 @@ public class Character : Entity, Killable
             _lifeCurrent -= value;
 
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
+        _lifeMax -= (int)(0.2 * value);
         return value;
     }
 

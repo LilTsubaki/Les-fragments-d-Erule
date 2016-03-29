@@ -66,13 +66,15 @@ public class AQUAS_Reflection : MonoBehaviour
 		
 		reflectionCamera.cullingMask = ~(1<<4) & m_ReflectLayers.value; // never render water layer
 		reflectionCamera.targetTexture = m_ReflectionTexture;
-		GL.SetRevertBackfacing (true);
+        GL.invertCulling = true;
+		//GL.SetRevertBackfacing (true);
 		reflectionCamera.transform.position = newpos;
 		Vector3 euler = cam.transform.eulerAngles;
 		reflectionCamera.transform.eulerAngles = new Vector3(0, euler.y, euler.z);
 		reflectionCamera.Render();
 		reflectionCamera.transform.position = oldpos;
-		GL.SetRevertBackfacing (false);
+        GL.invertCulling = false;
+        //GL.SetRevertBackfacing (false);
 		Material[] materials = GetComponent<Renderer>().sharedMaterials;
 		foreach( Material mat in materials ) {
 			if( mat.HasProperty("_ReflectionTex") )

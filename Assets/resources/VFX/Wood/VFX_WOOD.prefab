@@ -141,8 +141,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154108}
   m_LocalRotation: {x: 0, y: -0.0060229986, z: 0, w: -0.99998194}
-  m_LocalPosition: {x: -6.3, y: 26.699999, z: -159.8}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 6.4, y: 26.699999, z: -172.9}
+  m_LocalScale: {x: 100, y: 100, z: 127.52711}
   m_Children: []
   m_Father: {fileID: 437572}
   m_RootOrder: 0
@@ -351,7 +351,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: adc42be1e0e849d46973996b79a7097a, type: 2}
   m_CullingMode: 0
@@ -993,15 +993,15 @@ ParticleSystem:
       minMaxState: 2
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4292007387
+          rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 4282541948
+          rgba: 16777215
         key2:
           serializedVersion: 2
           rgba: 4351868
@@ -2490,7 +2490,7 @@ ParticleSystem:
           rgba: 4292007387
         key1:
           serializedVersion: 2
-          rgba: 4282541948
+          rgba: 2000840572
         key2:
           serializedVersion: 2
           rgba: 4351868

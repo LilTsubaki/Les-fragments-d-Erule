@@ -214,7 +214,8 @@ namespace Xft {
         }
 
         void OnDestroy() {
-            mVertexPool.Destroy();
+            if(mVertexPool != null)
+                mVertexPool.Destroy();
         }
 
 

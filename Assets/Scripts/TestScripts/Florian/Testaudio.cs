@@ -14,7 +14,7 @@ public class Testaudio : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        /*if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             music = AudioManager.GetInstance().Play("music", true);
         }
@@ -26,7 +26,7 @@ public class Testaudio : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.O))
         {
             AudioManager.GetInstance().FadeOut(music);
-        }*/
+        }
 
 	}
 }

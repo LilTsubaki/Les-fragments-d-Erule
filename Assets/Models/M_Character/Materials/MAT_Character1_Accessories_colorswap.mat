@@ -92,6 +92,13 @@ Material:
           m_Texture: {fileID: 2800000, guid: b7de22f3f460b8b4ebc4c3d20eea9d55, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _TilingTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 390aae14b49b4804e87620d2aa8a343e, type: 3}
+          m_Scale: {x: 0.5, y: 0.5}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -141,6 +148,26 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Contrast
+        second: 1.47
+      data:
+        first:
+          name: _Opacity
+        second: 0
+      data:
+        first:
+          name: _Strength
+        second: 20
+      data:
+        first:
+          name: _TilingTexMoveSpeedV
+        second: 3.62
+      data:
+        first:
+          name: _TilingTexMoveSpeedU
+        second: 2.17
     m_Colors:
       data:
         first:
@@ -170,3 +197,7 @@ Material:
         first:
           name: _M4Tint
         second: {r: 1, g: 1, b: 1, a: 0}
+      data:
+        first:
+          name: _Tint
+        second: {r: 1, g: 0.5586207, b: 0, a: 1}
