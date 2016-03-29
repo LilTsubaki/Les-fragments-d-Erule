@@ -14,6 +14,19 @@ public class Compatibility {
         _malus = malus;
     }
 
+    public string Id
+    {
+        get
+        {
+            return _id;
+        }
+
+        set
+        {
+            _id = value;
+        }
+    }
+
     public float GetCompatibilityMalus()
     {
         return _malus.Power;

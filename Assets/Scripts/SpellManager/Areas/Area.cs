@@ -13,6 +13,7 @@ public class Area
     private Orientation.EnumOrientation _orientation;
     private List<Node> _nodes;
     private bool _rootUsed;
+    private string _imgName;
 
 
 
@@ -27,11 +28,12 @@ public class Area
     /// <param name="id"></param>
     /// <param name="orientation"></param>
     /// <param name="nodes"></param>
-    public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes)
+    public Area(int id, Orientation.EnumOrientation orientation, List<Node> nodes, string imgName = "none")
     {
         _id = id;
         Orientation = orientation;
         Nodes = nodes;
+        ImgName = imgName;
     }
 
     public Area(Orientation.EnumOrientation orientation, bool rootUsed, List<Node> nodes)
@@ -52,6 +54,7 @@ public class Area
         _id = (int)js.GetField(js.keys[0]).n;
         Orientation = global::Orientation.stringToOrientation(js.GetField(js.keys[1]).str);
         RootUsed = js.GetField(js.keys[2]).b;
+        ImgName = js.GetField("imgName").str;
         //Logger.Error("rootused ---------> : " + _rootUsed);
 
         JSONObject array = js.GetField(js.keys[3]);
@@ -173,6 +176,19 @@ public class Area
         set
         {
             _nodes = value;
+        }
+    }
+
+    public string ImgName
+    {
+        get
+        {
+            return _imgName;
+        }
+
+        set
+        {
+            _imgName = value;
         }
     }
 }

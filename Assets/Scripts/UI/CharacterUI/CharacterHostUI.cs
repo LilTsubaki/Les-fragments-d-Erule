@@ -100,7 +100,7 @@ public class CharacterHostUI : MonoBehaviour
         {
             _life.value = Character._lifeCurrent;
             _life.maxValue = Character._lifeMax;
-            string lifeText = Character._lifeCurrent.ToString();
+            string lifeText = Character._lifeCurrent.ToString()+" / "+Character._lifeMax;
             if (Character.GlobalShieldValue > 0)
                 lifeText += " ( + " + Character.GlobalShieldValue + ")";
             _lifePointsText.text = lifeText;

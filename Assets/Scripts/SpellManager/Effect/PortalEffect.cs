@@ -21,6 +21,10 @@ public class PortalEffect : EffectDirect
 
         if (target._entity == null)
         {
+            if (target.Portal != null)
+            {
+                target.Portal.Destroy();
+            }
             portalManager.CreatePortal(target);
         }
         else

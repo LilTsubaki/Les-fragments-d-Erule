@@ -14,7 +14,7 @@
 			"areaId": 0,
 			"effectsAreaIds": [159, 161],
 			"effectsAreaCritIds": [163, 165],
-			"rangeId": 1
+			"rangeId": 5
 		}
 	}, {
 		"runes": [3],
@@ -227,7 +227,7 @@
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
-			"effectsIds": [1948, 86],
+			"effectsIds": [1948, 482],
 			"effectsCritIds": [80]
 		},
 		"target": {
@@ -1279,7 +1279,7 @@
 		"target": {
 			"id": 74,
 			"areaId": 8,
-			"effectsAreaIds": [330, 956, 162],
+			"effectsAreaIds": [330, 966, 162],
 			"effectsAreaCritIds": [162],
 			"rangeId": 14
 		}
@@ -1287,7 +1287,7 @@
 		"runes": [4, 4, 4],
 		"self": {
 			"id": 75,
-			"areaId": 6,
+			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
 			"effectsIds": [736, 1438, 971],
@@ -1296,7 +1296,7 @@
 		"target": {
 			"id": 75,
 			"areaId": 8,
-			"effectsAreaIds": [348, 960],
+			"effectsAreaIds": [348, 958],
 			"effectsAreaCritIds": [322],
 			"rangeId": 13
 		}
@@ -2149,29 +2149,11 @@
 			"effectsAreaCritIds": [8, 9, 234, 80],
 			"rangeId": 14
 		}
-	}, 
-	{
-		"runes": [3,0,0,2],
-		"self": {
-			"id": 125,
-			"areaId": 0,
-			"effectsAreaIds": [],
-			"effectsAreaCritIds": [],
-			"effectsIds": [1948, 101, 884, 562],
-			"effectsCritIds": [89, 872, 1940, 554]
-		},
-		"target": {
-			"id": 125,
-			"areaId": 10,
-			"effectsAreaIds": [244, 24, 25, 164],
-			"effectsAreaCritIds": [8, 9, 234, 156],
-			"rangeId": 14
-		}
-	}, 
+	},  
 	{
 		"runes": [3,0,0,4],
 		"self": {
-			"id": 126,
+			"id": 125,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2179,7 +2161,7 @@
 			"effectsCritIds": [89, 872, 1940, 704]
 		},
 		"target": {
-			"id": 126,
+			"id": 125,
 			"areaId": 10,
 			"effectsAreaIds": [244, 22, 23, 324],
 			"effectsAreaCritIds": [10, 11, 234, 314],
@@ -2189,7 +2171,7 @@
 	{
 		"runes": [3,0,0,5],
 		"self": {
-			"id": 127,
+			"id": 126,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2197,7 +2179,7 @@
 			"effectsCritIds": [89, 872, 1944]
 		},
 		"target": {
-			"id": 127,
+			"id": 126,
 			"areaId": 10,
 			"effectsAreaIds": [242, 24, 25, 1652, 1842],
 			"effectsAreaCritIds": [10, 11, 238],
@@ -2207,7 +2189,7 @@
 	{
 		"runes": [3,1,1,2],
 		"self": {
-			"id": 128,
+			"id": 127,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2215,7 +2197,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 128,
+			"id": 127,
 			"areaId": 9,
 			"effectsAreaIds": [246, 1332, 164],
 			"effectsAreaCritIds": [1228],
@@ -2225,7 +2207,7 @@
 	{
 		"runes": [3,1,1,4],
 		"self": {
-			"id": 129,
+			"id": 128,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2233,7 +2215,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 129,
+			"id": 128,
 			"areaId": 9,
 			"effectsAreaIds": [246, 1236, 322],
 			"effectsAreaCritIds": [1228],
@@ -2243,7 +2225,7 @@
 	{
 		"runes": [3,1,1,5],
 		"self": {
-			"id": 130,
+			"id": 129,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2251,7 +2233,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 130,
+			"id": 129,
 			"areaId": 9,
 			"effectsAreaIds": [242, 1238, 1460, 1842],
 			"effectsAreaCritIds": [1228],
@@ -2261,7 +2243,7 @@
 	{
 		"runes": [3,2,2,0],
 		"self": {
-			"id": 131,
+			"id": 130,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2269,7 +2251,7 @@
 			"effectsCritIds": [570]
 		},
 		"target": {
-			"id": 131,
+			"id": 130,
 			"areaId": 10,
 			"effectsAreaIds": [246, 174, 10, 11],
 			"effectsAreaCritIds": [170],
@@ -2279,7 +2261,7 @@
 	{
 		"runes": [3,2,2,4],
 		"self": {
-			"id": 132,
+			"id": 131,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2287,7 +2269,7 @@
 			"effectsCritIds": [570]
 		},
 		"target": {
-			"id": 132,
+			"id": 131,
 			"areaId": 10,
 			"effectsAreaIds": [246, 174, 322],
 			"effectsAreaCritIds": [250],
@@ -2297,7 +2279,7 @@
 	{
 		"runes": [3,2,2,5],
 		"self": {
-			"id": 133,
+			"id": 132,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2305,35 +2287,17 @@
 			"effectsCritIds": [570]
 		},
 		"target": {
-			"id": 133,
+			"id": 132,
 			"areaId": 10,
 			"effectsAreaIds": [246, 178, 1748, 1842],
 			"effectsAreaCritIds": [170],
 			"rangeId": 21
 		}
-	}, 
-	{
-		"runes": [3,4,4,0],
-		"self": {
-			"id": 134,
-			"areaId": 0,
-			"effectsAreaIds": [],
-			"effectsAreaCritIds": [],
-			"effectsIds": [1948, 716, 89, 872, 1438, 969],
-			"effectsCritIds": [720]
-		},
-		"target": {
-			"id": 134,
-			"areaId": 8,
-			"effectsAreaIds": [246, 330, 954, 14, 15],
-			"effectsAreaCritIds": [330],
-			"rangeId": 13
-		}
-	}, 
+	},  
 	{
 		"runes": [3,4,4,1],
 		"self": {
-			"id": 135,
+			"id": 133,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2341,7 +2305,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 135,
+			"id": 133,
 			"areaId": 7,
 			"effectsAreaIds": [246, 330, 964, 86],
 			"effectsAreaCritIds": [330],
@@ -2351,7 +2315,7 @@
 	{
 		"runes": [3,4,4,2],
 		"self": {
-			"id": 136,
+			"id": 134,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2359,7 +2323,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 136,
+			"id": 134,
 			"areaId": 7,
 			"effectsAreaIds": [242, 336, 964, 162],
 			"effectsAreaCritIds": [330],
@@ -2369,7 +2333,7 @@
 	{
 		"runes": [3, 4, 4, 5],
 		"self": {
-			"id": 137,
+			"id": 135,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2377,7 +2341,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 137,
+			"id": 135,
 			"areaId": 7,
 			"effectsAreaIds": [244, 334, 964, 1556, 1842],
 			"effectsAreaCritIds": [330],
@@ -2387,7 +2351,7 @@
 	{
 		"runes": [3, 5, 5, 0],
 		"self": {
-			"id": 138,
+			"id": 136,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2395,7 +2359,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 138,
+			"id": 136,
 			"areaId": 0,
 			"effectsAreaIds": [246, 10, 11, 1846, 1654],
 			"effectsAreaCritIds": [18, 19],
@@ -2405,7 +2369,7 @@
 	{
 		"runes": [3, 5, 5, 1],
 		"self": {
-			"id": 139,
+			"id": 137,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2413,7 +2377,7 @@
 			"effectsCritIds": [409]
 		},
 		"target": {
-			"id": 139,
+			"id": 137,
 			"areaId": 1,
 			"effectsAreaIds": [246, 94, 1846, 1462],
 			"effectsAreaCritIds": [250],
@@ -2423,7 +2387,7 @@
 	{
 		"runes": [3, 5, 5, 2],
 		"self": {
-			"id": 140,
+			"id": 138,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2431,7 +2395,7 @@
 			"effectsCritIds": [570]
 		},
 		"target": {
-			"id": 140,
+			"id": 138,
 			"areaId": 1,
 			"effectsAreaIds": [246, 160, 1846, 1750],
 			"effectsAreaCritIds": [250],
@@ -2441,7 +2405,7 @@
 	{
 		"runes": [3, 5, 5, 4],
 		"self": {
-			"id": 141,
+			"id": 139,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2449,7 +2413,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 141,
+			"id": 139,
 			"areaId": 1,
 			"effectsAreaIds": [246, 326, 1846, 1558],
 			"effectsAreaCritIds": [250],
@@ -2459,7 +2423,7 @@
 	{
 		"runes": [3, 3, 0, 1],
 		"self": {
-			"id": 142,
+			"id": 140,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2467,7 +2431,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 142,
+			"id": 140,
 			"areaId": 1,
 			"effectsAreaIds": [262, 942, 10, 11, 86],
 			"effectsAreaCritIds": [250],
@@ -2477,7 +2441,7 @@
 	{
 		"runes": [3, 3, 0, 2],
 		"self": {
-			"id": 143,
+			"id": 141,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2485,7 +2449,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 143,
+			"id": 141,
 			"areaId": 1,
 			"effectsAreaIds": [258, 942, 14, 15, 158],
 			"effectsAreaCritIds": [250],
@@ -2495,7 +2459,7 @@
 	{
 		"runes": [3, 3, 0, 4],
 		"self": {
-			"id": 144,
+			"id": 142,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2503,7 +2467,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 144,
+			"id": 142,
 			"areaId": 1,
 			"effectsAreaIds": [256, 942, 10, 11, 322],
 			"effectsAreaCritIds": [250],
@@ -2511,27 +2475,9 @@
 		}
 	},
 	{
-		"runes": [3, 3, 0, 5],
-		"self": {
-			"id": 145,
-			"areaId": 0,
-			"effectsAreaIds": [],
-			"effectsAreaCritIds": [],
-			"effectsIds": [1972, 89, 872, 1770, 1478],
-			"effectsCritIds": [1970]
-		},
-		"target": {
-			"id": 145,
-			"areaId": 1,
-			"effectsAreaIds": [264, 942, 6, 7, 1844, 1650],
-			"effectsAreaCritIds": [250],
-			"rangeId": 14
-		}
-	},
-	{
 		"runes": [3, 3, 1, 2],
 		"self": {
-			"id": 146,
+			"id": 143,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2539,7 +2485,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 146,
+			"id": 143,
 			"areaId": 1,
 			"effectsAreaIds": [258, 942, 94, 158],
 			"effectsAreaCritIds": [250],
@@ -2549,7 +2495,7 @@
 	{
 		"runes": [3, 3, 1, 4],
 		"self": {
-			"id": 147,
+			"id": 144,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2557,7 +2503,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 147,
+			"id": 144,
 			"areaId": 1,
 			"effectsAreaIds": [258, 942, 1266, 322],
 			"effectsAreaCritIds": [250],
@@ -2567,7 +2513,7 @@
 	{
 		"runes": [3, 3, 1, 5],
 		"self": {
-			"id": 148,
+			"id": 145,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2575,7 +2521,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 148,
+			"id": 145,
 			"areaId": 1,
 			"effectsAreaIds": [258, 942, 86, 1844, 1458],
 			"effectsAreaCritIds": [250],
@@ -2585,7 +2531,7 @@
 	{
 		"runes": [3, 3, 2, 4],
 		"self": {
-			"id": 149,
+			"id": 146,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2593,7 +2539,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 149,
+			"id": 146,
 			"areaId": 1,
 			"effectsAreaIds": [266, 942, 158, 318],
 			"effectsAreaCritIds": [250],
@@ -2603,7 +2549,7 @@
 	{
 		"runes": [3, 3, 2, 5],
 		"self": {
-			"id": 150,
+			"id": 147,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2611,7 +2557,7 @@
 			"effectsCritIds": [1970]
 		},
 		"target": {
-			"id": 150,
+			"id": 147,
 			"areaId": 1,
 			"effectsAreaIds": [254, 942, 160, 1844, 1746],
 			"effectsAreaCritIds": [250],
@@ -2621,7 +2567,7 @@
 	{
 		"runes": [3, 3, 4, 5],
 		"self": {
-			"id": 151,
+			"id": 148,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2629,7 +2575,7 @@
 			"effectsCritIds": [1322, 1007]
 		},
 		"target": {
-			"id": 151,
+			"id": 148,
 			"areaId": 1,
 			"effectsAreaIds": [266, 942, 316, 1844, 1554],
 			"effectsAreaCritIds": [250],
@@ -2639,7 +2585,7 @@
 	{
 		"runes": [3, 0, 1, 2],
 		"self": {
-			"id": 152,
+			"id": 149,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2647,7 +2593,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 152,
+			"id": 149,
 			"areaId": 0,
 			"effectsAreaIds": [173, 175, 177, 179, 181],
 			"effectsAreaCritIds": [183],
@@ -2657,7 +2603,7 @@
 	{
 		"runes": [3, 0, 1, 4],
 		"self": {
-			"id": 153,
+			"id": 150,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2665,7 +2611,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 153,
+			"id": 150,
 			"areaId": 2,
 			"effectsAreaIds": [185, 187, 189, 191, 193],
 			"effectsAreaCritIds": [195],
@@ -2675,7 +2621,7 @@
 	{
 		"runes": [3, 0, 1, 5],
 		"self": {
-			"id": 154,
+			"id": 151,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2683,7 +2629,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 154,
+			"id": 151,
 			"areaId": 2,
 			"effectsAreaIds": [197, 199, 201, 203, 205, 207, 209],
 			"effectsAreaCritIds": [195],
@@ -2693,7 +2639,7 @@
 	{
 		"runes": [3, 0, 2, 4],
 		"self": {
-			"id": 155,
+			"id": 152,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2701,7 +2647,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 155,
+			"id": 152,
 			"areaId": 0,
 			"effectsAreaIds": [244, 12, 13, 164, 324],
 			"effectsAreaCritIds": [250],
@@ -2711,7 +2657,7 @@
 	{
 		"runes": [3, 0, 2, 5],
 		"self": {
-			"id": 156,
+			"id": 153,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2719,7 +2665,7 @@
 			"effectsCritIds": [1322, 1007]
 		},
 		"target": {
-			"id": 156,
+			"id": 153,
 			"areaId": 0,
 			"effectsAreaIds": [173,175,177,211,213,215,217],
 			"effectsAreaCritIds": [183],
@@ -2729,7 +2675,7 @@
 	{
 		"runes": [3, 0, 4, 5],
 		"self": {
-			"id": 157,
+			"id": 154,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2737,7 +2683,7 @@
 			"effectsCritIds": [720]
 		},
 		"target": {
-			"id": 157,
+			"id": 154,
 			"areaId": 0,
 			"effectsAreaIds": [248, 10, 11, 322, 1842, 1650, 1554],
 			"effectsAreaCritIds": [250],
@@ -2747,7 +2693,7 @@
 	{
 		"runes": [3, 1, 2, 4],
 		"self": {
-			"id": 158,
+			"id": 155,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2755,7 +2701,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 158,
+			"id": 155,
 			"areaId": 0,
 			"effectsAreaIds": [244, 90, 164, 324],
 			"effectsAreaCritIds": [250],
@@ -2765,7 +2711,7 @@
 	{
 		"runes": [3, 1, 4, 5],
 		"self": {
-			"id": 159,
+			"id": 156,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2773,7 +2719,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 159,
+			"id": 156,
 			"areaId": 0,
 			"effectsAreaIds": [1434],
 			"effectsAreaCritIds": [],
@@ -2783,7 +2729,7 @@
 	{
 		"runes": [3, 2, 4, 5],
 		"self": {
-			"id": 160,
+			"id": 157,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2791,7 +2737,7 @@
 			"effectsCritIds": [1322, 1007]
 		},
 		"target": {
-			"id": 160,
+			"id": 157,
 			"areaId": 0,
 			"effectsAreaIds": [246, 164, 326, 1842, 1746, 1554],
 			"effectsAreaCritIds": [250],
@@ -2801,7 +2747,7 @@
 	{
 		"runes": [3, 1, 3, 5],
 		"self": {
-			"id": 161,
+			"id": 158,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2809,7 +2755,7 @@
 			"effectsCritIds": [94]
 		},
 		"target": {
-			"id": 161,
+			"id": 158,
 			"areaId": 0,
 			"effectsAreaIds": [244, 88, 164, 1166, 639, 974, 191, 1118, 527],
 			"effectsAreaCritIds": [250],
@@ -2819,7 +2765,7 @@
 	{
 		"runes": [1, 1, 1, 0],
 		"self": {
-			"id": 162,
+			"id": 159,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2827,7 +2773,7 @@
 			"effectsCritIds": [484, 866, 83]
 		},
 		"target": {
-			"id": 162,
+			"id": 159,
 			"areaId": 9,
 			"effectsAreaIds": [1254, 16, 17],
 			"effectsAreaCritIds": [1222, 4, 5],
@@ -2837,7 +2783,7 @@
 	{
 		"runes": [1, 1, 1, 2],
 		"self": {
-			"id": 163,
+			"id": 160,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2845,7 +2791,7 @@
 			"effectsCritIds": [484, 556]
 		},
 		"target": {
-			"id": 163,
+			"id": 160,
 			"areaId": 9,
 			"effectsAreaIds": [1246, 164],
 			"effectsAreaCritIds": [1222, 156],
@@ -2855,7 +2801,7 @@
 	{
 		"runes": [1, 1, 1, 4],
 		"self": {
-			"id": 164,
+			"id": 161,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2863,7 +2809,7 @@
 			"effectsCritIds": [484, 706]
 		},
 		"target": {
-			"id": 164,
+			"id": 161,
 			"areaId": 9,
 			"effectsAreaIds": [1224, 326],
 			"effectsAreaCritIds": [1222, 316],
@@ -2873,7 +2819,7 @@
 	{
 		"runes": [1, 1, 1, 5],
 		"self": {
-			"id": 165,
+			"id": 162,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2881,7 +2827,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 165,
+			"id": 162,
 			"areaId": 9,
 			"effectsAreaIds": [1250, 1462],
 			"effectsAreaCritIds": [1228],
@@ -2891,7 +2837,7 @@
 	{
 		"runes": [0,0,0,1],
 		"self": {
-			"id": 166,
+			"id": 163,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2899,7 +2845,7 @@
 			"effectsCritIds": [874, 91, 476]
 		},
 		"target": {
-			"id": 166,
+			"id": 163,
 			"areaId": 10,
 			"effectsAreaIds": [38, 39, 92],
 			"effectsAreaCritIds": [12, 13, 80],
@@ -2909,7 +2855,7 @@
 	{
 		"runes": [2,2,2,1],
 		"self": {
-			"id": 167,
+			"id": 164,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2917,7 +2863,7 @@
 			"effectsCritIds": [564, 476]
 		},
 		"target": {
-			"id": 167,
+			"id": 164,
 			"areaId": 10,
 			"effectsAreaIds": [182, 86],
 			"effectsAreaCritIds": [164, 80],
@@ -2927,7 +2873,7 @@
 	{
 		"runes": [4,4,4,1],
 		"self": {
-			"id": 168,
+			"id": 165,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2935,7 +2881,7 @@
 			"effectsCritIds": [714, 476]
 		},
 		"target": {
-			"id": 168,
+			"id": 165,
 			"areaId": 8,
 			"effectsAreaIds": [338, 960, 90],
 			"effectsAreaCritIds": [324, 80],
@@ -2945,7 +2891,7 @@
 	{
 		"runes": [5,5,5,1],
 		"self": {
-			"id": 169,
+			"id": 166,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2953,7 +2899,7 @@
 			"effectsCritIds": [490]
 		},
 		"target": {
-			"id": 169,
+			"id": 166,
 			"areaId": 1,
 			"effectsAreaIds": [90, 1476],
 			"effectsAreaCritIds": [94],
@@ -2963,7 +2909,7 @@
 	{
 		"runes": [1, 1, 0, 2],
 		"self": {
-			"id": 170,
+			"id": 167,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2971,7 +2917,7 @@
 			"effectsCritIds": [482, 872, 89, 562]
 		},
 		"target": {
-			"id": 170,
+			"id": 167,
 			"areaId": 9,
 			"effectsAreaIds": [1234, 12, 13, 164],
 			"effectsAreaCritIds": [1218, 2, 3, 156],
@@ -2981,7 +2927,7 @@
 	{
 		"runes": [1, 1, 0, 4],
 		"self": {
-			"id": 171,
+			"id": 168,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -2989,7 +2935,7 @@
 			"effectsCritIds": [482, 864, 81, 704]
 		},
 		"target": {
-			"id": 171,
+			"id": 168,
 			"areaId": 9,
 			"effectsAreaIds": [1234, 14, 15, 326],
 			"effectsAreaCritIds": [1220, 2, 3, 314],
@@ -2999,7 +2945,7 @@
 	{
 		"runes": [1, 1, 0, 5],
 		"self": {
-			"id": 172,
+			"id": 169,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3007,7 +2953,7 @@
 			"effectsCritIds": [482, 868, 85]
 		},
 		"target": {
-			"id": 172,
+			"id": 169,
 			"areaId": 9,
 			"effectsAreaIds": [1234, 14, 15, 1460, 1650],
 			"effectsAreaCritIds": [1220, 6, 7],
@@ -3017,7 +2963,7 @@
 	{
 		"runes": [1, 1, 2, 4],
 		"self": {
-			"id": 173,
+			"id": 170,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3025,7 +2971,7 @@
 			"effectsCritIds": [482, 554, 704]
 		},
 		"target": {
-			"id": 173,
+			"id": 170,
 			"areaId": 9,
 			"effectsAreaIds": [1232, 164, 324],
 			"effectsAreaCritIds": [1218, 156, 314],
@@ -3035,7 +2981,7 @@
 	{
 		"runes": [1, 1, 2, 5],
 		"self": {
-			"id": 174,
+			"id": 171,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3043,7 +2989,7 @@
 			"effectsCritIds": [482, 712]
 		},
 		"target": {
-			"id": 174,
+			"id": 171,
 			"areaId": 9,
 			"effectsAreaIds": [1236, 324, 1460, 1554],
 			"effectsAreaCritIds": [1220, 318],
@@ -3053,7 +2999,7 @@
 	{
 		"runes": [1, 0, 0, 2],
 		"self": {
-			"id": 175,
+			"id": 172,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3061,7 +3007,7 @@
 			"effectsCritIds": [474, 872, 89, 562]
 		},
 		"target": {
-			"id": 175,
+			"id": 172,
 			"areaId": 10,
 			"effectsAreaIds": [90, 22, 23, 166],
 			"effectsAreaCritIds": [80, 6, 7, 156],
@@ -3071,7 +3017,7 @@
 	{
 		"runes": [1, 0, 0, 4],
 		"self": {
-			"id": 176,
+			"id": 173,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3079,7 +3025,7 @@
 			"effectsCritIds": [474, 872, 89, 704]
 		},
 		"target": {
-			"id": 176,
+			"id": 173,
 			"areaId": 10,
 			"effectsAreaIds": [92, 20, 21, 328],
 			"effectsAreaCritIds": [80, 8, 9, 314],
@@ -3089,7 +3035,7 @@
 	{
 		"runes": [1, 0, 0, 5],
 		"self": {
-			"id": 177,
+			"id": 174,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3097,7 +3043,7 @@
 			"effectsCritIds": [478, 872, 89]
 		},
 		"target": {
-			"id": 177,
+			"id": 174,
 			"areaId": 10,
 			"effectsAreaIds": [90, 22, 23, 1458, 1652],
 			"effectsAreaCritIds": [82, 10, 11],
@@ -3107,7 +3053,7 @@
 	{
 		"runes": [1, 2, 2, 0],
 		"self": {
-			"id": 178,
+			"id": 175,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3115,7 +3061,7 @@
 			"effectsCritIds": [474, 562, 864, 81]
 		},
 		"target": {
-			"id": 178,
+			"id": 175,
 			"areaId": 10,
 			"effectsAreaIds": [86, 172, 10, 11],
 			"effectsAreaCritIds": [80, 160, 2, 3],
@@ -3125,7 +3071,7 @@
 	{
 		"runes": [1, 2, 2, 4],
 		"self": {
-			"id": 179,
+			"id": 176,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3133,7 +3079,7 @@
 			"effectsCritIds": [474, 562, 704]
 		},
 		"target": {
-			"id": 179,
+			"id": 176,
 			"areaId": 10,
 			"effectsAreaIds": [86, 172, 322],
 			"effectsAreaCritIds": [80, 160, 314],
@@ -3143,7 +3089,7 @@
 	{
 		"runes": [1, 2, 2, 5],
 		"self": {
-			"id": 180,
+			"id": 177,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3151,7 +3097,7 @@
 			"effectsCritIds": [478, 562]
 		},
 		"target": {
-			"id": 180,
+			"id": 177,
 			"areaId": 10,
 			"effectsAreaIds": [90, 174, 1458, 1748],
 			"effectsAreaCritIds": [82, 162],
@@ -3161,7 +3107,7 @@
 	{
 		"runes": [1, 4, 4, 0],
 		"self": {
-			"id": 181,
+			"id": 178,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3169,7 +3115,7 @@
 			"effectsCritIds": [478, 712]
 		},
 		"target": {
-			"id": 181,
+			"id": 178,
 			"areaId": 8,
 			"effectsAreaIds": [86, 330, 956, 12, 13],
 			"effectsAreaCritIds": [322, 6, 7],
@@ -3179,7 +3125,7 @@
 	{
 		"runes": [1, 4, 4, 2],
 		"self": {
-			"id": 182,
+			"id": 1879,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3187,7 +3133,7 @@
 			"effectsCritIds": [478, 712]
 		},
 		"target": {
-			"id": 182,
+			"id": 179,
 			"areaId": 8,
 			"effectsAreaIds": [84, 336, 966, 162],
 			"effectsAreaCritIds": [330],
@@ -3197,7 +3143,7 @@
 	{
 		"runes": [1, 4, 4, 5],
 		"self": {
-			"id": 183,
+			"id": 180,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3205,7 +3151,7 @@
 			"effectsCritIds": [478, 712]
 		},
 		"target": {
-			"id": 183,
+			"id": 180,
 			"areaId": 8,
 			"effectsAreaIds": [88, 338, 956, 1458, 1556],
 			"effectsAreaCritIds": [330],
@@ -3215,7 +3161,7 @@
 	{
 		"runes": [1, 0, 2, 4],
 		"self": {
-			"id": 184,
+			"id": 181,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3223,7 +3169,7 @@
 			"effectsCritIds": [482, 708]
 		},
 		"target": {
-			"id": 184,
+			"id": 181,
 			"areaId": 0,
 			"effectsAreaIds": [86, 16, 17, 162, 324],
 			"effectsAreaCritIds": [10, 11, 158],
@@ -3233,7 +3179,7 @@
 	{
 		"runes": [1, 0, 2, 5],
 		"self": {
-			"id": 185,
+			"id": 182,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3241,7 +3187,7 @@
 			"effectsCritIds": [482, 868, 85]
 		},
 		"target": {
-			"id": 185,
+			"id": 182,
 			"areaId": 0,
 			"effectsAreaIds": [86, 14, 15, 162, 1458, 1650, 1746],
 			"effectsAreaCritIds": [6, 7, 162],
@@ -3251,7 +3197,7 @@
 	{
 		"runes": [1, 0, 4, 5],
 		"self": {
-			"id": 186,
+			"id": 183,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3259,7 +3205,7 @@
 			"effectsCritIds": [482, 868, 85]
 		},
 		"target": {
-			"id": 186,
+			"id": 183,
 			"areaId": 0,
 			"effectsAreaIds": [86, 14, 15, 324, 1458, 1650, 1554],
 			"effectsAreaCritIds": [6, 7, 322],
@@ -3269,7 +3215,7 @@
 	{
 		"runes": [1, 2, 4, 5],
 		"self": {
-			"id": 187,
+			"id": 184,
 			"areaId": 0,
 			"effectsAreaIds": [],
 			"effectsAreaCritIds": [],
@@ -3277,11 +3223,443 @@
 			"effectsCritIds": [478, 562]
 		},
 		"target": {
-			"id": 187,
+			"id": 184,
 			"areaId": 0,
 			"effectsAreaIds": [88, 162, 328, 1458, 1746, 1554],
 			"effectsAreaCritIds": [82, 322],
 			"rangeId": 16
+		}
+	},
+	{
+		"runes": [1, 4, 5, 5],
+		"self": {
+			"id": 185,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [482, 712, 1580, 1868],
+			"effectsCritIds": [480, 710]
+		},
+		"target": {
+			"id": 185,
+			"areaId": 0,
+			"effectsAreaIds": [88, 324, 1462, 1558],
+			"effectsAreaCritIds": [84, 320],
+			"rangeId":5
+		}
+	},
+	{
+		"runes": [0, 0, 0, 2],
+		"self": {
+			"id": 186,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [896, 113, 562],
+			"effectsCritIds": [872, 89, 558]
+		},
+		"target": {
+			"id": 186,
+			"areaId": 10,
+			"effectsAreaIds": [32, 33, 164],
+			"effectsAreaCritIds": [10, 11, 158],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [0, 0, 0, 4],
+		"self": {
+			"id": 187,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [898, 115, 714],
+			"effectsCritIds": [872, 89, 708]
+		},
+		"target": {
+			"id": 187,
+			"areaId": 10,
+			"effectsAreaIds": [34, 35, 328],
+			"effectsAreaCritIds": [10, 11, 318],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [0, 0, 0, 5],
+		"self": {
+			"id": 188,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [894, 111, 1484],
+			"effectsCritIds": [880, 97]
+		},
+		"target": {
+			"id": 188,
+			"areaId": 10,
+			"effectsAreaIds": [40, 41, 1654],
+			"effectsAreaCritIds": [18, 19],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [0, 0, 2, 4],
+		"self": {
+			"id": 189,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [884, 101, 562, 712],
+			"effectsCritIds": [880, 97]
+		},
+		"target": {
+			"id": 189,
+			"areaId": 10,
+			"effectsAreaIds": [24, 25, 166, 326],
+			"effectsAreaCritIds": [18, 19],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [0, 0, 2, 5],
+		"self": {
+			"id": 190,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [884, 101, 562, 1464, 1670],
+			"effectsCritIds": [880, 97]
+		},
+		"target": {
+			"id": 190,
+			"areaId": 10,
+			"effectsAreaIds": [24, 25, 166, 1652, 1746],
+			"effectsAreaCritIds": [18, 19],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [0, 1, 5, 5],
+		"self": {
+			"id": 191,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 482, 1484, 1580],
+			"effectsCritIds": [870, 87, 480]
+		},
+		"target": {
+			"id": 191,
+			"areaId": 1,
+			"effectsAreaIds": [16, 17, 86, 1654, 1462],
+			"effectsAreaCritIds": [8, 9, 84],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [0, 2, 2, 2],
+		"self": {
+			"id": 192,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 586, 948],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 192,
+			"areaId": 10,
+			"effectsAreaIds": [14, 15, 180],
+			"effectsAreaCritIds": [6, 7, 162],
+			"rangeId": 22
+		}
+	},
+	{
+		"runes": [0, 2, 2, 5],
+		"self": {
+			"id": 193,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 566, 948, 1478, 1674],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 193,
+			"areaId": 10,
+			"effectsAreaIds": [10, 11, 170, 1650, 1748],
+			"effectsAreaCritIds": [2, 3, 166],
+			"rangeId": 21
+		}
+	},
+	{
+		"runes": [0, 2, 4, 4],
+		"self": {
+			"id": 194,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 562, 718, 1438],
+			"effectsCritIds": [558, 712]
+		},
+		"target": {
+			"id": 194,
+			"areaId": 8,
+			"effectsAreaIds": [10, 11, 162, 330, 970],
+			"effectsAreaCritIds": [330],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [0, 2, 4, 5],
+		"self": {
+			"id": 195,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 562, 712, 1478, 1670, 1862],
+			"effectsCritIds": [562, 708]
+		},
+		"target": {
+			"id": 195,
+			"areaId": 0,
+			"effectsAreaIds": [14, 15, 162, 324, 1650, 1746, 1842],
+			"effectsAreaCritIds": [10, 11, 318],
+			"rangeId": 5
+		}
+	},
+	{
+		"runes": [0, 2, 5, 5],
+		"self": {
+			"id": 196,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 562, 1484, 1676],
+			"effectsCritIds": [868, 85, 562]
+		},
+		"target": {
+			"id": 196,
+			"areaId": 1,
+			"effectsAreaIds": [14, 15, 162, 1654, 1750],
+			"effectsAreaCritIds": [10, 11, 158],
+			"rangeId": 16
+		}
+	},
+	{
+		"runes": [0, 4, 4, 4],
+		"self": {
+			"id": 197,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 728, 1454],
+			"effectsCritIds": [720]
+		},
+		"target": {
+			"id": 197,
+			"areaId": 1,
+			"effectsAreaIds": [14, 15, 342, 960],
+			"effectsAreaCritIds": [330],
+			"rangeId": 13
+		}
+	},
+	{
+		"runes": [0, 4, 4, 5],
+		"self": {
+			"id": 198,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [874, 91, 718, 1478, 1866, 1438],
+			"effectsCritIds": [864, 81, 716]
+		},
+		"target": {
+			"id": 198,
+			"areaId": 8,
+			"effectsAreaIds": [12, 13, 334, 966, 1650, 1556],
+			"effectsAreaCritIds": [6, 7, 322],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [0, 4, 5, 5],
+		"self": {
+			"id": 199,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 712, 1484, 1868],
+			"effectsCritIds": [868, 85, 712]
+		},
+		"target": {
+			"id": 199,
+			"areaId": 1,
+			"effectsAreaIds": [14, 15, 324, 1654, 1558],
+			"effectsAreaCritIds": [10, 11, 318],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [0, 5, 5, 5],
+		"self": {
+			"id": 200,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [872, 89, 1504],
+			"effectsCritIds": [880, 97]
+		},
+		"target": {
+			"id": 200,
+			"areaId": 1,
+			"effectsAreaIds": [14, 15, 1668],
+			"effectsAreaCritIds": [18, 19],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [2, 2, 2, 4],
+		"self": {
+			"id": 201,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [576, 948, 716],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 201,
+			"areaId": 10,
+			"effectsAreaIds": [182, 324],
+			"effectsAreaCritIds": [170],
+			"rangeId": 21
+		}
+	},
+	{
+		"runes": [2, 2, 2, 5],
+		"self": {
+			"id": 202,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [582, 948, 1676],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 202,
+			"areaId": 10,
+			"effectsAreaIds": [186, 1750],
+			"effectsAreaCritIds": [170],
+			"rangeId": 22
+		}
+	},
+	{
+		"runes": [2, 2, 4, 5],
+		"self": {
+			"id": 203,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [570, 948, 712, 1674, 1862],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 203,
+			"areaId": 10,
+			"effectsAreaIds": [174, 322, 1748, 1554],
+			"effectsAreaCritIds": [170],
+			"rangeId": 21
+		}
+	},
+	{
+		"runes": [2, 4, 4, 4],
+		"self": {
+			"id": 204,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [564, 724, 1454],
+			"effectsCritIds": [720]
+		},
+		"target": {
+			"id": 204,
+			"areaId": 8,
+			"effectsAreaIds": [166, 338, 970],
+			"effectsAreaCritIds": [330],
+			"rangeId": 14
+		}
+	},
+	{
+		"runes": [2, 4, 5, 5],
+		"self": {
+			"id": 205,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [564, 714, 1676, 1868],
+			"effectsCritIds": [720]
+		},
+		"target": {
+			"id": 205,
+			"areaId": 1,
+			"effectsAreaIds": [166, 326, 1750, 1558],
+			"effectsAreaCritIds": [330],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [2, 5, 5, 5],
+		"self": {
+			"id": 206,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [562, 1696],
+			"effectsCritIds": [570]
+		},
+		"target": {
+			"id": 206,
+			"areaId": 1,
+			"effectsAreaIds": [166, 1764],
+			"effectsAreaCritIds": [170],
+			"rangeId": 16
+		}
+	},
+	{
+		"runes": [4, 5, 5, 5],
+		"self": {
+			"id": 207,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [714, 1888],
+			"effectsCritIds": [720]
+		},
+		"target": {
+			"id": 207,
+			"areaId": 1,
+			"effectsAreaIds": [328, 1572],
+			"effectsAreaCritIds": [330],
+			"rangeId": 15
+		}
+	},
+	{
+		"runes": [4, 4, 4, 5],
+		"self": {
+			"id": 208,
+			"areaId": 0,
+			"effectsAreaIds": [],
+			"effectsAreaCritIds": [],
+			"effectsIds": [730, 1454, 1868],
+			"effectsCritIds": [720]
+		},
+		"target": {
+			"id": 208,
+			"areaId": 8,
+			"effectsAreaIds": [344, 960, 1558],
+			"effectsAreaCritIds": [330],
+			"rangeId": 13
 		}
 	}]
 }

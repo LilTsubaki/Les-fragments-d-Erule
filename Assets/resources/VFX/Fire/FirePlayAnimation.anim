@@ -97,15 +97,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0
-    functionName: PlayFireSprite
+  - time: 0.083333336
+    functionName: PlayExplosionRay
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: PlayExplosionRay
+  - time: 0.083333336
+    functionName: Impact
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.083333336
+    functionName: ImpactMini
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
