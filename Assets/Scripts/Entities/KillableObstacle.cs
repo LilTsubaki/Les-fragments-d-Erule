@@ -22,7 +22,7 @@ public class KillableObstacle : Obstacle, Killable
     }
 
 
-    public int ReceiveDamage(int value, Element element)
+    public int ReceiveDamage(int value, Element element, Character caster)
     {
         if (_currentLife - value < 0)
             _currentLife = 0;

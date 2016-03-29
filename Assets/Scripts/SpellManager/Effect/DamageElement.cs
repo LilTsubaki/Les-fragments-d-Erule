@@ -23,7 +23,7 @@ public class DamageElement : EffectMinMax
             int damage = EruleRandom.RangeValue((int)_min, (int)_max + 1);
 
             damage += caster.DamageModifier;
-            k.ReceiveDamage(damage, _element);
+            k.ReceiveDamage(damage, _element, caster);
         }
     }
 }

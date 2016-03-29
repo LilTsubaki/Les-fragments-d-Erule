@@ -407,7 +407,7 @@ public class SpellManager
 
                 foreach (var elem in _spellInit)
                 {
-                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem, null);
                 }
             }
         }
@@ -458,7 +458,7 @@ public class SpellManager
 
                 foreach (var elem in _spellInit)
                 {
-                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem,null);
                 }
             }
         }
