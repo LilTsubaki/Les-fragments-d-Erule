@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,18 +8,24 @@ public class testJson : MonoBehaviour
     private Dictionary<int, Area> _areas;
     private List<Hexagon> _finalArea;
 
+    public Camera cameraArea;
+    public Image image;
+    public RawImage rawImage;
+
+
     // Use this for initialization
     void Start()
     {
         _areas = new Dictionary<int, Area>();
         LoadArea();
 
-        Area area = GetAreaById(7);
+        Area area = GetAreaById(6);
         PlayBoard playBoard = new PlayBoard(5, 5);
 
         List<Hexagon> hexas = new List<Hexagon>();
         GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
         GameObject board = new GameObject("Board");
+        
 
         hexas.Add(new Hexagon(0, 2, playBoard));
         hexas.Add(new Hexagon(1, 2, playBoard));
@@ -85,12 +92,54 @@ public class testJson : MonoBehaviour
             }
         }
         hexas[1].GameObject.transform.parent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        SetLayerRecursively(board, LayerMask.NameToLayer("Area"));
+
+
+        /*RenderTexture currentRT = RenderTexture.active;
+        RenderTexture.active = cameraArea.targetTexture;
+        cameraArea.Render();
+        RenderTexture.active = currentRT;*/
+        rawImage.material.mainTexture = Resources.Load<RenderTexture>("images/TextureArea");        
     }
 
-	// Update is called once per frame
-	void Update () {
+
+        // Update is called once per frame
+        void Update () {
 	
 	}
+
+    Texture2D RTImage(Camera cam)
+    {
+        RenderTexture currentRT = RenderTexture.active;        
+        RenderTexture.active = cam.targetTexture;
+        cam.Render();
+        Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height);
+        image.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+        image.Apply();
+        RenderTexture.active = currentRT;
+        return image;
+    }
+
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+            {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
 
     private void LoadArea()
     {

@@ -5,6 +5,7 @@ public class SendBoardResponse
     public readonly bool _final;
     public readonly Range _range;
     public readonly Area _area;
+    public bool _updateArea = false;
 
     public SendBoardResponse(bool exist, bool final)
     {

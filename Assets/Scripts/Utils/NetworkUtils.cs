@@ -291,12 +291,16 @@ public class NetworkUtils {
         bool rootUsed = ReadBool(stream);
         int count = ReadInt(stream);
 
+        string imgName = ReadString(stream);
+
         List<Node> nodes = new List<Node>();
 
         for (int i = 0; i < count; i++)
         {
             nodes.Add(ReadNode(stream));
         }
+
+        
 
         return new Area(orientation, rootUsed, nodes);
 
