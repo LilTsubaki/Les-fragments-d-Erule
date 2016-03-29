@@ -11,7 +11,7 @@
 	SubShader{
 		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
-		/*Blend One One, SrcAlpha OneMinusSrcAlpha*/
+		Blend One One
 
 		CGPROGRAM
 		#pragma surface surf Lambert alpha
