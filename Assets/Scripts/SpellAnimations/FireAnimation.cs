@@ -14,6 +14,7 @@ public class FireAnimation : SpellAnimation
     public ParticleSystem _flame;
     public ParticleSystem _miniFlame1;
     public ParticleSystem _miniFlame2;
+	public ParticleSystem _rocks;
     public float _forward;
 
     void Update()
@@ -47,6 +48,11 @@ public class FireAnimation : SpellAnimation
             modMiniFlame2.enabled = true;
             _miniFlame2.Simulate(0, true, true);
             _miniFlame2.Play();
+
+			ParticleSystem.EmissionModule modRocks = _rocks.emission;
+			modRocks.enabled = true;
+			_rocks.Simulate (0, true, true);
+			_rocks.Play ();
 
             _play = !_play;
         }
@@ -82,5 +88,7 @@ public class FireAnimation : SpellAnimation
         modMiniFlame1.enabled = false;
         ParticleSystem.EmissionModule modMiniFlame2 = _miniFlame2.emission;
         modMiniFlame2.enabled = false;
+		ParticleSystem.EmissionModule modRocks = _rocks.emission;
+		modRocks.enabled = false;
     }
 }
