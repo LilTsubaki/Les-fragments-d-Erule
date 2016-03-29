@@ -278,6 +278,7 @@ public class NetworkUtils {
         WriteOrientation(area.Orientation, stream);
         WriteBool(area.RootUsed, stream);
         WriteInt(area.Nodes.Count, stream);
+        WriteString(area.ImgName, stream);
 
         foreach(Node node in area.Nodes)
         {
@@ -290,7 +291,7 @@ public class NetworkUtils {
         Orientation.EnumOrientation orientation = ReadOrientation(stream);
         bool rootUsed = ReadBool(stream);
         int count = ReadInt(stream);
-
+        string imgName = ReadString(stream);
         List<Node> nodes = new List<Node>();
 
         for (int i = 0; i < count; i++)
