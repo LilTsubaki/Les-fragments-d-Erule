@@ -311,7 +311,7 @@ public class Character : Entity, Killable
             _lifeCurrent -= value;
 
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
-        _lifeMax -= (int)(0.1 * value);
+        _lifeMax -= (int)(0.2 * value);
         return value;
     }
 
