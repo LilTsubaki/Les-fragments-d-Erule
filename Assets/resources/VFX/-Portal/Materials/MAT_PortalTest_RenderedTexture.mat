@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Clouds
-  m_Shader: {fileID: 4800000, guid: abbcd62118b4d3443a659002f1ade838, type: 3}
+  m_Name: MAT_PortalTest_RenderedTexture
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3099
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 491c167a76580004fad3d8d9064b044d, type: 3}
+          m_Texture: {fileID: 8400000, guid: c6c65a41b974db742a099bb2aec5ec2d, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,6 +93,10 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Parallax
+        second: 0.02
+      data:
+        first:
           name: _ZWrite
         second: 1
       data:
@@ -125,12 +129,8 @@ Material:
         second: 0
       data:
         first:
-          name: _AContrast
-        second: -28.9
-      data:
-        first:
-          name: _MContrast
-        second: 1.1
+          name: _InvFade
+        second: 1.12
     m_Colors:
       data:
         first:
@@ -139,4 +139,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0, g: 0.14766726, b: 0.2352941, a: 0.5}

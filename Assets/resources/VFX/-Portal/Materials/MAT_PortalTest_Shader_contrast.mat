@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: unnamed
-  m_Shader: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: MAT_PortalTest_Shader_contrast
+  m_Shader: {fileID: 4800000, guid: 6f87867fc7b3c1e43958bc72ca4b37f4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 51004feef4b88a447866c0bea4fe7366, type: 3}
+          m_Texture: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,6 +78,20 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 463f3e17448c6f147a7b7811acdfb56f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 2800000, guid: eff025309b38b3447b74bd93c8a2658d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -91,6 +105,10 @@ Material:
         first:
           name: _Cutoff
         second: 0.5
+      data:
+        first:
+          name: _Contrast
+        second: 0.23
       data:
         first:
           name: _Parallax
@@ -127,6 +145,38 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _AContrast
+        second: 3.1
+      data:
+        first:
+          name: _MContrast
+        second: 50
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0.24
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: 0.07
+      data:
+        first:
+          name: _StrengthX
+        second: 0.03
+      data:
+        first:
+          name: _StrengthY
+        second: -0.11
+      data:
+        first:
+          name: _Strength
+        second: 0.118
+      data:
+        first:
+          name: _Offset
+        second: 0.43
     m_Colors:
       data:
         first:
@@ -135,4 +185,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+        second: {r: 1, g: 0, b: 0, a: 1}

@@ -6,6 +6,7 @@ Properties {
 	_DispScrollSpeedY  ("Map Scroll Speed Y", Float) = 0
 	_StrengthX  ("Displacement Strength X", Float) = 1
 	_StrengthY  ("Displacement Strength Y", Float) = -1
+	_Contrast  ("Mask contrast", Range(0,5)) = 1
 }
 
 Category {
@@ -59,6 +60,7 @@ uniform sampler2D _DispMap;
 uniform sampler2D _MaskTex;
 uniform half _DispScrollSpeedY;
 uniform half _DispScrollSpeedX;
+uniform half _Contrast;
 
 v2f vert (appdata_t v)
 {
@@ -102,7 +104,9 @@ half4 frag( v2f i ) : COLOR
 	//use mask's red channel to determine visibility.
 	fixed4 tint = tex2D( _MaskTex, i.uvmain );
 
-	col.a *= tint.r;
+	/*col.a *= tint.r;*/
+	col.a *= pow(tint.r, _Contrast);
+	col.a *= pow(col.a, _Contrast);
 
 	return col;
 }
