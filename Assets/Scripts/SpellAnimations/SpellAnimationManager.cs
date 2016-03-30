@@ -62,6 +62,7 @@ public class SpellAnimationManager {
                 case 3: // Earth
                     break;
                 case 4: // Wood
+                    Play("wood", from, to);
                     break;
                 case 5: // Metal
                     List<int> metals = new List<int>();
