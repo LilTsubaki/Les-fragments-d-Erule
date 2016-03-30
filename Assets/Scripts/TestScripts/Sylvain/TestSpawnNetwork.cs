@@ -105,17 +105,24 @@ public class TestSpawnNetwork : MonoBehaviour {
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
                     
+                    for(int i = 0; i < 2; ++i)
+                    {
+                        character.GameObject.transform.GetChild(i).gameObject.SetActive(false);
+                    }
                     if (!character.GameObject.activeSelf)
                     {
                         character.GameObject.SetActive(true);
                     }
                     Animator anim = character.GameObject.GetComponent<Animator>();
                     anim.SetTrigger("EnterFight");
-                    character.GameObject.SetActive(false);
                     character.Position = spawn;
                     spawn._entity = character;
                     character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
-                    character.GameObject.SetActive(true);
+
+                    /*for (int i = 0; i < 2; ++i)
+                    {
+                        character.GameObject.transform.GetChild(i).gameObject.SetActive(true);
+                    }*/
                     /*if (!anim.GetBool("BeginFight")) {
                         anim.SetBool("BeginFight", true);
                     }*/

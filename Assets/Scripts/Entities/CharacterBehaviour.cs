@@ -112,8 +112,10 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    public void Activate()
+    public void ActivateMesh(int boolean)
     {
-        gameObject.SetActive(true);
+        bool active = boolean == 0 ? false : true;
+        gameObject.transform.GetChild(0).gameObject.SetActive(active);
+        gameObject.transform.GetChild(1).gameObject.SetActive(active);
     }
 }
