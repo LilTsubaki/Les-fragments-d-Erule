@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Character1_Accessories_colorswap
-  m_Shader: {fileID: 4800000, guid: 9c77b1c8dcd04164da4c8ac0364b8915, type: 3}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: MAT_VFX_Water_Splash
+  m_Shader: {fileID: 4800000, guid: 8b5444b512a1b514089c029383489746, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 248724efbda88574e947af371348157c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 4fe9ed6104b2677489cf8cc08395362c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -80,24 +80,10 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Masks
+          name: _MaskTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9d9dcb17d6a0cf84f80d91eaefea7df6, type: 3}
+          m_Texture: {fileID: 2800000, guid: 7c7b09a500410c045a2ddb57423fc030, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: b7de22f3f460b8b4ebc4c3d20eea9d55, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _TilingTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 390aae14b49b4804e87620d2aa8a343e, type: 3}
-          m_Scale: {x: 0.5, y: 0.5}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
@@ -114,12 +100,28 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Strength
-        second: 20
+          name: _Amount
+        second: 1
+      data:
+        first:
+          name: _Hue
+        second: 0
+      data:
+        first:
+          name: _Saturation
+        second: 1
+      data:
+        first:
+          name: _Brightness
+        second: 1
       data:
         first:
           name: _Contrast
-        second: 1.47
+        second: 1
+      data:
+        first:
+          name: _Sharpness
+        second: 0
       data:
         first:
           name: _Parallax
@@ -131,7 +133,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.2
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -158,16 +160,28 @@ Material:
         second: 0
       data:
         first:
-          name: _Opacity
-        second: 0
+          name: _ShakeDisplacement
+        second: 1
       data:
         first:
-          name: _TilingTexMoveSpeedV
-        second: 3.62
+          name: _ShakeTime
+        second: 1
       data:
         first:
-          name: _TilingTexMoveSpeedU
-        second: 2.17
+          name: _ShakeWindspeed
+        second: 1
+      data:
+        first:
+          name: _ShakeBending
+        second: 1
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 1.1
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 1.1
     m_Colors:
       data:
         first:
@@ -177,27 +191,3 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
-          name: _Tint
-        second: {r: 1, g: 0.5586207, b: 0, a: 1}
-      data:
-        first:
-          name: _M1Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M2Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M3Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M4Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
