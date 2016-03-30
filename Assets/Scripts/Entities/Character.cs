@@ -305,8 +305,11 @@ public class Character : Entity, Killable
         int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
-        EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
-        HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value, element._name));
+        if (value > 0)
+        {
+            EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
+            HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value, element._name));
+        }
 
         if (_lifeCurrent - value < 0)
             _lifeCurrent = 0;

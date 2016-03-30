@@ -127,7 +127,7 @@ public class Client : MonoBehaviour{
             _resetBoard = false;
             if (_runeKept > 0)
             {
-                SendBoard(false);
+                RunicBoardManager.GetInstance()._runicBoardBehaviour.LatestSendBoardResponse = SendBoard(false);
             }
             else
             {
@@ -228,7 +228,6 @@ public class Client : MonoBehaviour{
                 return true;
 
             case 11:
-                //TODO
                 Logger.Debug("receive reset board request");
                 bool success = NetworkUtils.ReadBool(_tcpClient.GetStream());
                 Logger.Debug("Success: " + success);
@@ -362,7 +361,7 @@ public class Client : MonoBehaviour{
             bool ifExist = NetworkUtils.ReadBool(_tcpClient.GetStream());
             if (ifExist)
             {
-
+                Logger.Debug("spell exist");
                 sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                 //min range max range 
                                                                 NetworkUtils.ReadInt(_tcpClient.GetStream()), NetworkUtils.ReadInt(_tcpClient.GetStream()),
@@ -374,6 +373,7 @@ public class Client : MonoBehaviour{
                                                                //area
                                                                NetworkUtils.ReadArea(_tcpClient.GetStream()));
                 sbr._updateArea = true;
+                Logger.Debug("update panel spell details");
                 UIManager.GetInstance().ShowPanelNoStack("panelSpellDetails");
 
             }

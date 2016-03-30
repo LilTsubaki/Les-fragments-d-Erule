@@ -314,8 +314,8 @@ public class SpellManager
         if(_spellToInit != null)
         {
             PlayBoardManager.GetInstance().Board.ResetBoard();
+            _spellInit = new Queue<Element>(_spellToInit);
             InitSpell(_spellToInit);
-            _spellInit = _spellToInit;
             _spellToInit = null;
         }
     }
