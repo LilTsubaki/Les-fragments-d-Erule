@@ -18,7 +18,7 @@ public class Push : EffectDeplacement
     {
         List<Character> characters = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
 
-        for (int i = 0; i < hexagons.Count; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
             if (!characters[i].IsStabilized)
             {
