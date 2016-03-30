@@ -111,4 +111,14 @@ public class CharacterBehaviour : MonoBehaviour
             }
         }
     }
+
+    public void ResetEnterFight()
+    {
+        gameObject.GetComponent<Animator>().SetBool("EnterFightReset", true);
+    }
+
+    public void PreventResetEnterFight()
+    {
+        gameObject.GetComponent<Animator>().SetBool("EnterFightReset", false);
+    }
 }

@@ -104,13 +104,23 @@ public class TestSpawnNetwork : MonoBehaviour {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
+                    Animator anim = character.GameObject.GetComponent<Animator>();
                     if (!character.GameObject.activeSelf)
                     {
                         character.GameObject.SetActive(true);
                     }
+                    else
+                    {
+                        if(!anim.GetBool("EnterFightReset"))
+                            anim.SetTrigger("ResetFightEnter");
+                    }
+                    character.GameObject.GetComponent<Animator>().SetTrigger("EnterFight");
                     character.Position = spawn;
                     spawn._entity = character;
                     character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+                    /*if (!anim.GetBool("BeginFight")) {
+                        anim.SetBool("BeginFight", true);
+                    }*/
                 }
             }
         }
