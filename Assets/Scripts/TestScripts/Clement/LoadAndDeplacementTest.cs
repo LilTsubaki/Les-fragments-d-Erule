@@ -89,7 +89,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
     public void tryingToDoSpell()
     {
-        if(PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
+        if(PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState != Character.State.Moving)
         {
             List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementList();
             Queue<Element> elements = new Queue<Element>(elementsList);
