@@ -104,13 +104,28 @@ public class TestSpawnNetwork : MonoBehaviour {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
+                    
+                    for(int i = 0; i < 2; ++i)
+                    {
+                        character.GameObject.transform.GetChild(i).gameObject.SetActive(false);
+                    }
                     if (!character.GameObject.activeSelf)
                     {
                         character.GameObject.SetActive(true);
                     }
+                    Animator anim = character.GameObject.GetComponent<Animator>();
+                    anim.SetTrigger("EnterFight");
                     character.Position = spawn;
                     spawn._entity = character;
                     character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+
+                    /*for (int i = 0; i < 2; ++i)
+                    {
+                        character.GameObject.transform.GetChild(i).gameObject.SetActive(true);
+                    }*/
+                    /*if (!anim.GetBool("BeginFight")) {
+                        anim.SetBool("BeginFight", true);
+                    }*/
                 }
             }
         }
@@ -147,7 +162,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     public void tryingToDoSpell()
     {
-        if (PlayBoardManager.GetInstance().GetCurrentPlayer()._state != Character.State.Moving)
+        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState != Character.State.Moving)
         {
             SpellManager.getInstance().InitSpell();
         }

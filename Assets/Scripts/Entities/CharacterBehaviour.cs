@@ -26,7 +26,7 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character._state != Character.State.Moving)
+        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CharacterState != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -45,12 +45,12 @@ public class CharacterBehaviour : MonoBehaviour
                     _character.CurrentStep = 0;
 
                     if (pathFound && _character.PathToFollow.Count > 0)
-                        _character._state = Character.State.Moving;
+                        _character.CharacterState = Character.State.Moving;
                 }
             }
         }
 
-        switch (_character._state)
+        switch (_character.CharacterState)
         {
             case Character.State.Moving:
                 Move();
@@ -77,7 +77,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(goTo(_character.Position, _translateSpeed))
         {
-            _character._state = Character.State.Waiting;
+            _character.CharacterState = Character.State.Waiting;
             // Teleport player if the last hexagon has a portal
             if (_character.Position.Portal != null)
             {
@@ -100,7 +100,7 @@ public class CharacterBehaviour : MonoBehaviour
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
-                    _character._state = Character.State.Waiting;
+                    _character.CharacterState = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)
@@ -110,5 +110,12 @@ public class CharacterBehaviour : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ActivateMesh(int boolean)
+    {
+        bool active = boolean == 0 ? false : true;
+        gameObject.transform.GetChild(0).gameObject.SetActive(active);
+        gameObject.transform.GetChild(1).gameObject.SetActive(active);
     }
 }

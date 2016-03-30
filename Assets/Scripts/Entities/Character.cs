@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : Entity, Killable
 {
-    public enum State { Moving, CastingSpell, Waiting, Translating }
+    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious }
 
 	/*public static int MaxProtection = 50;*/
 	public int _lifeMax;
@@ -21,9 +21,9 @@ public class Character : Entity, Killable
 
     private List<Hexagon> _pathToFollow;
 
-    public State _state;
+    private State _state;
 
-	private Dictionary<Element, int> _protections;
+    private Dictionary<Element, int> _protections;
 	private Dictionary<Element, int> _protectionsNegative;
 
 	/*private int _globalProtection;
@@ -94,7 +94,7 @@ public class Character : Entity, Killable
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
-        _state = State.Waiting;
+        CharacterState = State.Waiting;
         _shields = new LinkedList<Shield>();
     }
 
@@ -136,7 +136,7 @@ public class Character : Entity, Killable
         _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
         _shields = new LinkedList<Shield>();
-        _state = State.Waiting;
+        CharacterState = State.Waiting;
 	}
 
     public void UpdateEffectTerminable()
@@ -318,6 +318,15 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
         _lifeMax -= (int)(0.25 * value);
+
+        GameObject.GetComponent<Animator>().SetTrigger("Hit");
+
+        if(_lifeCurrent == 0)
+        {
+            PlayDead();
+        }
+
+
         return value;
     }
 
@@ -568,6 +577,15 @@ public class Character : Entity, Killable
 
             return TranslateCharacter(direction, count - 1);
         }
+    }
+
+    public void PlayDead()
+    {
+        CharacterState = State.Dead;
+        /*Character chara = PlayBoardManager.GetInstance().GetCurrentPlayer();
+        if (chara == this)
+            chara = PlayBoardManager.GetInstance().GetOtherPlayer();
+        chara.CharacterState = State.Victorious;*/
     }
 
     /// <summary>
@@ -917,6 +935,47 @@ public class Character : Entity, Killable
         set
         {
             _getHot = value;
+        }
+    }
+
+    public State CharacterState
+    {
+        get
+        {
+            return _state;
+        }
+
+        set
+        {
+            _state = value;
+            Animator anim = GameObject.GetComponent<Animator>();
+            switch (_state)
+            {
+                case State.Waiting:
+                    anim.SetBool("Idling", true);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", false);
+                    break;
+                case State.CastingSpell:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", true);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", false);
+                    break;
+                case State.Victorious:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", true);
+                    anim.SetBool("Defeated", false); 
+                    break;
+                case State.Dead:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", true);
+                    break;
+            }
         }
     }
 }
