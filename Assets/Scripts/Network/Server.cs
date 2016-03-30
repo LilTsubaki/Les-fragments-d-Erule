@@ -10,7 +10,7 @@ public class Server : MonoBehaviour{
 
     public enum State {turningAroundMap, firstPlayerPicking, secondPlayerPicking, playing }
 
-    float timeout=300;
+    public float timeout=300;
     public float currrentTimeout;
 
     public int broadcastPort;
