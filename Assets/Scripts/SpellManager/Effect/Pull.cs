@@ -16,10 +16,20 @@ public class Pull : EffectDeplacement
 
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
-        /*PlayBoardManager pm = PlayBoardManager.GetInstance();
-        Logger.Trace("Joueur 1 : " + pm.Character1.Position._posX + ", " + pm.Character1.Position._posY);*/
+        List<Character> characters = PlayBoardManager.GetInstance().GetCharacterInArea(hexagons);
 
         for (int i = 0; i < hexagons.Count; i++)
+        {
+            if (!characters[i].IsStabilized)
+            {
+                Hexagon source = caster.Position;
+                Direction.EnumDirection direction = Direction.GetDirection(target, source);
+                characters[i].TranslateCharacter(direction, _nbDeplacement);
+                characters[i]._state = Character.State.Translating;
+            }
+        }
+
+        /*for (int i = 0; i < hexagons.Count; i++)
         {
             if (hexagons[i]._entity != null && hexagons[i]._entity is Character)
             {
@@ -37,7 +47,7 @@ public class Pull : EffectDeplacement
             {
                 Logger.Trace("Hexagon " + i + " doesn't have a character");
             }
-        }
+        }*/
     }
 }
 
