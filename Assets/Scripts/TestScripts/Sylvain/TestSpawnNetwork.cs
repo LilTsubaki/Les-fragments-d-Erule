@@ -43,8 +43,8 @@ public class TestSpawnNetwork : MonoBehaviour {
         _board.AddComponent<PlayBoardBehaviour>();
         _player1 = new Character(3000, _player1GameObject);
 		_player2 = new Character(3000, _player2GameObject);
-        /*_player1.Name = ServerManager.GetInstance()._server.Client1._name;
-        _player2.Name = ServerManager.GetInstance()._server.Client2._name;*/
+        _player1.Name = ServerManager.GetInstance()._server.Client1._name;
+        _player2.Name = ServerManager.GetInstance()._server.Client2._name;
         _uiPlayer1.Character = _player1;
         _uiPlayer2.Character = _player2;
 
@@ -104,16 +104,18 @@ public class TestSpawnNetwork : MonoBehaviour {
                 Hexagon spawn = hitInfo.collider.gameObject.GetComponent<HexagonBehaviour>()._hexagon;
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
-                    Animator anim = character.GameObject.GetComponent<Animator>();
-                    character.GameObject.SetActive(false);
-                    character.Position = spawn;
-                    spawn._entity = character;
-                    character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+                    
                     if (!character.GameObject.activeSelf)
                     {
                         character.GameObject.SetActive(true);
                     }
+                    Animator anim = character.GameObject.GetComponent<Animator>();
                     anim.SetTrigger("EnterFight");
+                    character.GameObject.SetActive(false);
+                    character.Position = spawn;
+                    spawn._entity = character;
+                    character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+                    character.GameObject.SetActive(true);
                     /*if (!anim.GetBool("BeginFight")) {
                         anim.SetBool("BeginFight", true);
                     }*/
