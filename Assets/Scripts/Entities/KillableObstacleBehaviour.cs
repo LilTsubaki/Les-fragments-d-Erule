@@ -21,6 +21,7 @@ public class KillableObstacleBehaviour : MonoBehaviour
             if (!EffectUIManager.GetInstance().Contains(_killableObstacle)) {
                 _killableObstacle.Position._entity = null;
                 Destroy(gameObject);
+                PlayBoardManager.GetInstance().Board._colorAccessible = true;
             }
         }
 	}
