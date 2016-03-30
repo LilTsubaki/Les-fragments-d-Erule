@@ -952,25 +952,25 @@ public class Character : Entity, Killable
             switch (_state)
             {
                 case State.Waiting:
-                    anim.SetBool("Idle", true);
+                    anim.SetBool("Idling", true);
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", false);
                     break;
                 case State.CastingSpell:
-                    anim.SetBool("Idle", false);
+                    anim.SetBool("Idling", false);
                     anim.SetBool("Casting", true);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", false);
                     break;
                 case State.Victorious:
-                    anim.SetBool("Idle", false);
+                    anim.SetBool("Idling", false);
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", true);
                     anim.SetBool("Defeated", false); 
                     break;
                 case State.Dead:
-                    anim.SetBool("Idle", false);
+                    anim.SetBool("Idling", false);
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", true);
