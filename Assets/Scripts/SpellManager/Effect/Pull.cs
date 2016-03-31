@@ -25,7 +25,7 @@ public class Pull : EffectDeplacement
                 Hexagon source = caster.Position;
                 Direction.EnumDirection direction = Direction.GetDirection(target, source);
                 characters[i].TranslateCharacter(direction, _nbDeplacement);
-                characters[i].CharacterState = Character.State.Translating;
+                characters[i].NextState = Character.State.Translating;
             }
         }
     }

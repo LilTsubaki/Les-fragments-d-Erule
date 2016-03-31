@@ -26,7 +26,7 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CharacterState != Character.State.Moving)
+        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -45,12 +45,17 @@ public class CharacterBehaviour : MonoBehaviour
                     _character.CurrentStep = 0;
 
                     if (pathFound && _character.PathToFollow.Count > 0)
-                        _character.CharacterState = Character.State.Moving;
+                        _character.NextState = Character.State.Moving;
                 }
             }
         }
 
-        switch (_character.CharacterState)
+        if(_character.NextState != _character.CurrentState)
+        {
+            _character.CurrentState = _character.NextState;
+        }
+
+        switch (_character.CurrentState)
         {
             case Character.State.Moving:
                 Move();
@@ -77,7 +82,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(goTo(_character.Position, _translateSpeed))
         {
-            _character.CharacterState = Character.State.Waiting;
+            _character.NextState = Character.State.Waiting;
             // Teleport player if the last hexagon has a portal
             if (_character.Position.Portal != null)
             {
@@ -100,7 +105,7 @@ public class CharacterBehaviour : MonoBehaviour
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
-                    _character.CharacterState = Character.State.Waiting;
+                    _character.NextState = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)

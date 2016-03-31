@@ -166,11 +166,11 @@ public class ServerListener
             //write area
             NetworkUtils.WriteArea(area, _client.GetStream());
 
-            //PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState = Character.State.CastingSpell;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.CastingSpell;
         }
         else
         {
-            //PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState = Character.State.Waiting;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.Waiting;
         }
         
 

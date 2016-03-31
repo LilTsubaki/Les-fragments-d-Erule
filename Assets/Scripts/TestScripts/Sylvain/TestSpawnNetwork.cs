@@ -162,7 +162,7 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     public void tryingToDoSpell()
     {
-        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState != Character.State.Moving)
+        if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentState != Character.State.Moving)
         {
             SpellManager.getInstance().InitSpell();
         }
