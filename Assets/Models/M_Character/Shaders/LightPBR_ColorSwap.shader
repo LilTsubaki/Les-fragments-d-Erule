@@ -15,7 +15,7 @@
 		_TilingTex("Detail texture", 2D) = "white" {}
 		_Tint("Emissive tint", color) = (1,1,1) // half3 color value (do not need alpha)
 		_Opacity("Detail tex. opacity", Range(0,1)) = 0 
-		_Strength("Emissive strength", Range (1,20)) = 1
+		_Strength("Emissive strength", Range (1,100)) = 1
 		_Contrast("Contrast", Range(1,3)) = 1 // the contrast is blown out below 1
 
 		_TilingTexMoveSpeedV("V Move Speed", Range(-5,5)) = 0.5
