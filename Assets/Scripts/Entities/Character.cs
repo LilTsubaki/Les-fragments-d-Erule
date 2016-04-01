@@ -50,6 +50,8 @@ public class Character : Entity, Killable
     private bool _getDot = false;
     private bool _getHot = false;
 
+    private List<int> _idAreaAppliedThisTurn;
+
     public Character(int lifeMax)
     {
         _lifeMax = lifeMax;
@@ -98,6 +100,7 @@ public class Character : Entity, Killable
         CurrentState = State.Waiting;
         NextState = State.Waiting;
         _shields = new LinkedList<Shield>();
+        IdAreaAppliedThisTurn = new List<int>();
     }
 
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
@@ -140,6 +143,7 @@ public class Character : Entity, Killable
         _shields = new LinkedList<Shield>();
         CurrentState = State.Waiting;
         NextState = State.Waiting;
+        IdAreaAppliedThisTurn = new List<int>();
     }
 
     public void UpdateEffectTerminable()
@@ -992,6 +996,19 @@ public class Character : Entity, Killable
         set
         {
             _nextState = value;
+        }
+    }
+
+    public List<int> IdAreaAppliedThisTurn
+    {
+        get
+        {
+            return _idAreaAppliedThisTurn;
+        }
+
+        set
+        {
+            _idAreaAppliedThisTurn = value;
         }
     }
 }

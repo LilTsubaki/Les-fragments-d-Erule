@@ -101,6 +101,22 @@ public class CharacterBehaviour : MonoBehaviour
             }
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
+                Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
+                //check if the player walk into an area
+                if (currentHexa._onTimeEffects.Count > 0)
+                {
+                    for(int i = 0; i < currentHexa._onTimeEffects.Count; i++)
+                    {
+                        if(!_character.IdAreaAppliedThisTurn.Contains(currentHexa._onTimeEffects[i].GetId()))
+                        {
+                            List<Hexagon> list = new List<Hexagon>();
+                            list.Add(currentHexa);
+                            _character.IdAreaAppliedThisTurn.Add(currentHexa._onTimeEffects[i].GetId());
+                            currentHexa._onTimeEffects[i].ApplyEffect(list, currentHexa, currentHexa._onTimeEffects[i].GetCaster());
+                        }
+                    }
+                }
+
                 _character.CurrentStep++;
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
@@ -112,6 +128,7 @@ public class CharacterBehaviour : MonoBehaviour
                     {
                         PortalManager.GetInstance().Teleport(_character);
                     }
+
                 }
             }
         }
