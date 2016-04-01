@@ -102,6 +102,11 @@ public class SpellAnimationManager {
     public void PlayCharacterAnimation(List<Element> elems, Character character)
     {
         Dictionary<Element, int> nbElems = new Dictionary<Element, int>();
+        for(int i = 0; i < _elementsHierarchy.Count; ++i)
+        {
+            nbElems.Add(_elementsHierarchy[i], 0);
+        }
+
         int max = 0;
         for(int i = 0; i < elems.Count; ++i)
         {
