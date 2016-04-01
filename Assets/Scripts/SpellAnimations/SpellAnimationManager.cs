@@ -110,15 +110,15 @@ public class SpellAnimationManager {
         int max = 0;
         for(int i = 0; i < elems.Count; ++i)
         {
-            max = Mathf.Max(nbElems[elems[i]]++, max);
+			max = Mathf.Max(++nbElems[elems[i]], max);
         }
 
         List<Element> chosen = new List<Element>();
 
         foreach(Element e in nbElems.Keys)
         {
-            if (nbElems[e] == max)
-                chosen.Add(e);
+			if (nbElems [e] == max)
+				chosen.Add (e);
         }
 
         string triggerName = "Cast";
