@@ -202,6 +202,7 @@ public class Character : Entity, Killable
             ProtectionsNegative[element] = 0;
             Protections[element] = 0;
         }*/ //DONE
+        IdAreaAppliedThisTurn = new List<int>(Position._onTimeEffects.Keys);
 
         Logger.Debug("begin update shield character");
         updateShields();

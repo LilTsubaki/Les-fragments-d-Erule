@@ -103,6 +103,7 @@ public class CharacterBehaviour : MonoBehaviour
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
                 Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
+                _character.Position = currentHexa;
 
                 List<int> idToKeep = new List<int>();
                 foreach(int id in _character.IdAreaAppliedThisTurn)
