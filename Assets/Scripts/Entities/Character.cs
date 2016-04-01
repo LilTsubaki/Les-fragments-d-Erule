@@ -43,7 +43,7 @@ public class Character : Entity, Killable
     private int _globalProtectionModifier;
     private bool _isStabilized;
 
-    private Vector3 _positionOffset = new Vector3(0.0f, 0.13f, 0.0f);
+    private Vector3 _positionOffset = new Vector3(0.0f, 0.0f, 0.0f);
     private LinkedList<Shield> _shields;
     private int _globalShieldValue;
 
@@ -106,7 +106,7 @@ public class Character : Entity, Killable
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
 	{
         _gameObject = GameObject.Instantiate(go);
-        _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+        _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.0f, 0);
         _gameObject.GetComponent<CharacterBehaviour>()._character = this;
 
 		Protections = new Dictionary<Element, int> ();
