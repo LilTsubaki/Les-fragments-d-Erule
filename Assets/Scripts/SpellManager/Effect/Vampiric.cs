@@ -28,7 +28,7 @@ public class Vampiric : EffectMinMax
 
         foreach (var k in killables)
         {
-            damage = k.ReceiveDamage(damage, _element, caster);
+            damage = k.ReceiveDamage(damage, _element);
             int heal = _vampiricPercentage * damage / 100;
             if (k is Character)
                 caster.ReceiveHeal(heal);

@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Cast_Orb
-  m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: MAT_VFX_Portal_Ornment
+  m_Shader: {fileID: 4800000, guid: 063e57311aa2f294a809822db97a46c6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: dcd25ea130cdfd740aed71dd0f208908, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,6 +93,18 @@ Material:
         second: 0.5
       data:
         first:
+          name: _MainTexMoveSpeedU
+        second: 10.3
+      data:
+        first:
+          name: _SecondTexMoveSpeedU
+        second: -21.8
+      data:
+        first:
+          name: _Contrast
+        second: 0.84
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
@@ -129,8 +141,12 @@ Material:
         second: 0
       data:
         first:
-          name: _InvFade
-        second: 1
+          name: _ThirdTexMoveSpeedU
+        second: 10.4
+      data:
+        first:
+          name: _ThirdTexMoveSpeedV
+        second: -3.4
     m_Colors:
       data:
         first:
@@ -139,4 +155,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        second: {r: 0.5234283, g: 0.066176474, b: 1, a: 1}

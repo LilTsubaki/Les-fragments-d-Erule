@@ -9,6 +9,7 @@ public class CharacterBehaviour : MonoBehaviour
     public float _movementSpeed;
     public float _translateSpeed;
 
+    private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
 
     void Awake()
@@ -101,6 +102,34 @@ public class CharacterBehaviour : MonoBehaviour
             }
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
+                Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
+                _character.Position = currentHexa;
+
+                List<int> idToKeep = new List<int>();
+                foreach(int id in _character.IdAreaAppliedThisTurn)
+                {
+                    if(currentHexa._onTimeEffects.ContainsKey(id))
+                    {
+                        idToKeep.Add(id);
+                    }
+                }
+                _character.IdAreaAppliedThisTurn = idToKeep;
+
+
+                List<Hexagon> list = new List<Hexagon>();
+                list.Add(currentHexa);
+                foreach (var effect in currentHexa._onTimeEffects.Values)
+                {
+                    if (!_character.IdAreaAppliedThisTurn.Contains(effect.GetId()))
+                    {
+                        _character.IdAreaAppliedThisTurn.Add(effect.GetId());                        
+                        effect.ApplyEffect(list, currentHexa, effect.GetCaster());
+                    }
+                }
+
+
+
+
                 _character.CurrentStep++;
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
@@ -112,6 +141,7 @@ public class CharacterBehaviour : MonoBehaviour
                     {
                         PortalManager.GetInstance().Teleport(_character);
                     }
+
                 }
             }
         }

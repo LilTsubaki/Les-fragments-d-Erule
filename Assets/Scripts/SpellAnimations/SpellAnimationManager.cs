@@ -77,10 +77,10 @@ public class SpellAnimationManager {
                     List<int> metals = new List<int>();
                     for(int i = 0; i < Mathf.Min(nbMetal, 3); ++i)
                     {
-                        int randAnimMetal = EruleRandom.RangeValue(1, 4);
+                        int randAnimMetal = EruleRandom.RangeValue(1, 3);
                         while (metals.Contains(randAnimMetal))
                         {
-                            randAnimMetal = EruleRandom.RangeValue(1, 4);
+                            randAnimMetal = EruleRandom.RangeValue(1, 3);
                         }
                         metals.Add(randAnimMetal);
                         Play("metal" + randAnimMetal, from, to);
@@ -111,15 +111,15 @@ public class SpellAnimationManager {
         int max = 0;
         for(int i = 0; i < elems.Count; ++i)
         {
-            max = Mathf.Max(nbElems[elems[i]]++, max);
+			max = Mathf.Max(++nbElems[elems[i]], max);
         }
 
         List<Element> chosen = new List<Element>();
 
         foreach(Element e in nbElems.Keys)
         {
-            if (nbElems[e] == max)
-                chosen.Add(e);
+			if (nbElems [e] == max)
+				chosen.Add (e);
         }
 
         string triggerName = "Cast";
@@ -166,12 +166,12 @@ public class SpellAnimationManager {
             }
         }
 
+		character.GameObject.GetComponent<Animator>().SetTrigger("Cast");
         if (isShield)
             character.GameObject.GetComponent<Animator>().SetTrigger("CastShield");
         else
             character.GameObject.GetComponent<Animator>().SetTrigger("CastSelf");
 
-        character.GameObject.GetComponent<Animator>().SetTrigger("Cast");
 
     }
 }
