@@ -305,7 +305,8 @@ public class Character : Entity, Killable
 
         //remove shield before apply element damages
 
-        value = ShieldReceiveDamage(value);
+        if(element!=Element.GetElement(5))
+            value = ShieldReceiveDamage(value);
 
         int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;

@@ -117,7 +117,7 @@ public class TestSpawnNetwork : MonoBehaviour {
                     anim.SetTrigger("EnterFight");
                     character.Position = spawn;
                     spawn._entity = character;
-                    character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.13f, 0);
+                    character.GameObject.transform.position = spawn.GameObject.transform.position + new Vector3(0, 0.0f, 0);
 
                     /*for (int i = 0; i < 2; ++i)
                     {
