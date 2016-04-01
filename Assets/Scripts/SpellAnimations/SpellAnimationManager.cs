@@ -124,7 +124,7 @@ public class SpellAnimationManager {
         string triggerName = "Cast";
         if (chosen.Count == 1)
         {
-             triggerName += chosen[0].ToString();
+             triggerName += chosen[0]._name;
         }
         else
         {
@@ -146,7 +146,7 @@ public class SpellAnimationManager {
                     }
                 }
             }
-            triggerName += chosenElement.ToString();
+            triggerName += chosenElement._name;
         }
 
         character.GameObject.GetComponent<Animator>().SetTrigger("Cast");
