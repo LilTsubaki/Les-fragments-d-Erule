@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 437572}
   - 95: {fileID: 9587740}
+  - 114: {fileID: 11405734}
   m_Layer: 0
   m_Name: VFX_WOOD
   m_TagString: Untagged
@@ -165,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.18}
   m_LocalScale: {x: 0.006526863, y: 0.006526863, z: 0.006526863}
   m_Children:
   - {fileID: 410508}
@@ -361,6 +362,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11405734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2315a7b95d681648b95577836665a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _from: {x: 0, y: 0, z: 0}
+  _to: {x: 0, y: 0, z: 0}
+  _play: 0
+  _registerName: wood
+  _thorn1: {fileID: 117272}
+  _thorn2: {fileID: 198098}
+  _thorn3: {fileID: 138396}
+  _cracks: {fileID: 154108}
+  _clouds: {fileID: 19871654}
+  _rocks: {fileID: 19829268}
+  _speed: 7
 --- !u!114 &11417496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2313,15 +2336,15 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 30
+    cnt0: 50
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 30
+    cntmax0: 50
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
-    time0: 0
+    time0: 0.5
     time1: 0
     time2: 0
     time3: 0

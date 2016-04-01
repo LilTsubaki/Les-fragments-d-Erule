@@ -419,7 +419,7 @@ public class SpellManager
 
                 foreach (var elem in _spellInit)
                 {
-                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem, null);
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
                 }
             }
         }
@@ -469,15 +469,15 @@ public class SpellManager
 
                 foreach (var elem in _spellInit)
                 {
-                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem,null);
+                    currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
                 }
             }
         }
 
-        if (runes > 0)
-        {
-            HistoricManager.GetInstance().AddText(String.Format(StringsErule.perfect, currentPlayer.Name));
-        }
+		if (runes > 0)
+		{
+			HistoricManager.GetInstance ().AddText (String.Format (StringsErule.perfect, currentPlayer.Name));
+		}
 
         ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);
 

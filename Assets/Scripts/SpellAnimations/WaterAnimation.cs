@@ -8,6 +8,10 @@ public class WaterAnimation : SpellAnimation
 	public ParticleSystem _splashesBottom;
 	public ParticleSystem _splashesTop;
 	public ParticleSystem _water;
+    public Renderer _waterMat;
+
+    [Range(0, 1)]
+    public float _cutoff;
 
 	// Update is called once per frame
 	void Update () {
@@ -15,7 +19,9 @@ public class WaterAnimation : SpellAnimation
 			gameObject.transform.position = _to;
 			Vector3 projCam = new Vector3 (Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
 			gameObject.transform.LookAt (projCam);
-			/*
+            _waterMat.material.SetFloat("_Cutoff", 1 - _cutoff);
+
+            /*
 			ParticleSystem.EmissionModule modsplashesBottom = _splashesBottom.emission;
 			modsplashesBottom.enabled = true;
 			_splashesBottom.Simulate (0, false, true);
@@ -41,7 +47,7 @@ public class WaterAnimation : SpellAnimation
 		modsplashesTop.enabled = false;
 		ParticleSystem.EmissionModule modwater = _splashesTop.emission;
 		modwater.enabled = false;*/
-		}
+        }
 	}
 }
 

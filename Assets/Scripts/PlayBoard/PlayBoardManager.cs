@@ -239,7 +239,7 @@ public class PlayBoardManager
         Character currentPlayer = GetCurrentPlayer();
         //Character otherPlayer = GetOtherPlayer();
         currentPlayer.RemoveMarkedOnTimeEffects();
-        currentPlayer.IdAreaAppliedThisTurn = new List<int>();
+        currentPlayer.IdAreaAppliedThisTurn.Clear();
         currentPlayer.TurnNumber++;
         currentPlayer.CurrentActionPoints = Math.Min(Character._maxActionPoints, 1 + currentPlayer.TurnNumber / 6);
         currentPlayer.CurrentMovementPoints = Math.Min(Character._maxMovementPoints, 1 + currentPlayer.TurnNumber / 6);
