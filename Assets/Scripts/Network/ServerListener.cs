@@ -122,7 +122,7 @@ public class ServerListener
 
     void ReadRunicBoard()
     {
-        Logger.Error("ReadRunicBoard");
+        Logger.Trace("ReadRunicBoard");
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         bool removeActionPoint = NetworkUtils.ReadBool(_client.GetStream());

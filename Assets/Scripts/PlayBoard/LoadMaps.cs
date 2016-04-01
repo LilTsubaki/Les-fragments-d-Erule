@@ -68,7 +68,7 @@ public class LoadMaps : MonoBehaviour
             Sprite image = Resources.Load("miniatures/" + mapImage, typeof(Sprite)) as Sprite;
             if (image == null)
             {
-                Logger.Error("Not found " + mapName);
+                Logger.Warning("Not found " + mapName);
             }
             else
             {
