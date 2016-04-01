@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class HexagonBehaviour : MonoBehaviour
 {
     public Hexagon _hexagon;
+    public string _hexagonType;
 
     private List<Hexagon> _finalArea;
 
@@ -32,7 +33,7 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_hexagon.StateChanged)
+       /* if(_hexagon.StateChanged)
         {
             switch (_hexagon.CurrentState)
             {
@@ -82,7 +83,7 @@ public class HexagonBehaviour : MonoBehaviour
             }
             
             _hexagon.StateChanged = false;
-        }
+        }*/
     }
 
 

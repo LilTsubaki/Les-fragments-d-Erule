@@ -68,6 +68,7 @@ public class SpellAnimationManager {
                     Play("air", from, to);
                     break;
                 case 3: // Earth
+                    Play("earth", from, to);
                     break;
                 case 4: // Wood
                     Play("wood", from, to);
