@@ -122,7 +122,7 @@ public class ServerListener
 
     void ReadRunicBoard()
     {
-        Logger.Error("ReadRunicBoard");
+        Logger.Trace("ReadRunicBoard");
 
         Dictionary<int, Rune> map = NetworkUtils.ReadRunicBoard(_client.GetStream());
         bool removeActionPoint = NetworkUtils.ReadBool(_client.GetStream());
@@ -166,11 +166,11 @@ public class ServerListener
             //write area
             NetworkUtils.WriteArea(area, _client.GetStream());
 
-            //PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState = Character.State.CastingSpell;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.CastingSpell;
         }
         else
         {
-            //PlayBoardManager.GetInstance().GetCurrentPlayer().CharacterState = Character.State.Waiting;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.Waiting;
         }
         
 

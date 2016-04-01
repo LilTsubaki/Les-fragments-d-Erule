@@ -22,6 +22,7 @@ public class Character : Entity, Killable
     private List<Hexagon> _pathToFollow;
 
     private State _state;
+    private State _nextState;
 
     private Dictionary<Element, int> _protections;
 	private Dictionary<Element, int> _protectionsNegative;
@@ -48,6 +49,8 @@ public class Character : Entity, Killable
 
     private bool _getDot = false;
     private bool _getHot = false;
+
+    private List<int> _idAreaAppliedThisTurn;
 
     public Character(int lifeMax)
     {
@@ -94,8 +97,10 @@ public class Character : Entity, Killable
         _onTimeEffects = new Dictionary<int, PlayerOnTimeAppliedEffect>();
         _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
-        CharacterState = State.Waiting;
+        CurrentState = State.Waiting;
+        NextState = State.Waiting;
         _shields = new LinkedList<Shield>();
+        IdAreaAppliedThisTurn = new List<int>();
     }
 
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
@@ -136,8 +141,10 @@ public class Character : Entity, Killable
         _effectsTerminable = new Dictionary<int, EffectTerminable>();
         _onTimeEffectsToRemove = new List<int>();
         _shields = new LinkedList<Shield>();
-        CharacterState = State.Waiting;
-	}
+        CurrentState = State.Waiting;
+        NextState = State.Waiting;
+        IdAreaAppliedThisTurn = new List<int>();
+    }
 
     public void UpdateEffectTerminable()
     {
@@ -305,10 +312,12 @@ public class Character : Entity, Killable
         int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
         value = (int)(value * percentage);
+
         if (value > 0)
         {
             EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
             HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value, element._name));
+            GameObject.GetComponent<Animator>().SetTrigger("Hit");
         }
 
         if (_lifeCurrent - value < 0)
@@ -318,9 +327,7 @@ public class Character : Entity, Killable
 
         Logger.Debug("Receive damage value : " + value + " for element : " + element._name);
         _lifeMax -= (int)(0.25 * value);
-
-        GameObject.GetComponent<Animator>().SetTrigger("Hit");
-
+        
         if(_lifeCurrent == 0)
         {
             PlayDead();
@@ -581,7 +588,7 @@ public class Character : Entity, Killable
 
     public void PlayDead()
     {
-        CharacterState = State.Dead;
+        NextState = State.Dead;
         /*Character chara = PlayBoardManager.GetInstance().GetCurrentPlayer();
         if (chara == this)
             chara = PlayBoardManager.GetInstance().GetOtherPlayer();
@@ -938,7 +945,7 @@ public class Character : Entity, Killable
         }
     }
 
-    public State CharacterState
+    public State CurrentState
     {
         get
         {
@@ -976,6 +983,32 @@ public class Character : Entity, Killable
                     anim.SetBool("Defeated", true);
                     break;
             }
+        }
+    }
+
+    public State NextState
+    {
+        get
+        {
+            return _nextState;
+        }
+
+        set
+        {
+            _nextState = value;
+        }
+    }
+
+    public List<int> IdAreaAppliedThisTurn
+    {
+        get
+        {
+            return _idAreaAppliedThisTurn;
+        }
+
+        set
+        {
+            _idAreaAppliedThisTurn = value;
         }
     }
 }

@@ -26,7 +26,7 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CharacterState != Character.State.Moving)
+        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -45,12 +45,17 @@ public class CharacterBehaviour : MonoBehaviour
                     _character.CurrentStep = 0;
 
                     if (pathFound && _character.PathToFollow.Count > 0)
-                        _character.CharacterState = Character.State.Moving;
+                        _character.NextState = Character.State.Moving;
                 }
             }
         }
 
-        switch (_character.CharacterState)
+        if(_character.NextState != _character.CurrentState)
+        {
+            _character.CurrentState = _character.NextState;
+        }
+
+        switch (_character.CurrentState)
         {
             case Character.State.Moving:
                 Move();
@@ -77,7 +82,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(goTo(_character.Position, _translateSpeed))
         {
-            _character.CharacterState = Character.State.Waiting;
+            _character.NextState = Character.State.Waiting;
             // Teleport player if the last hexagon has a portal
             if (_character.Position.Portal != null)
             {
@@ -96,17 +101,34 @@ public class CharacterBehaviour : MonoBehaviour
             }
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
+                Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
+                //check if the player walk into an area
+                if (currentHexa._onTimeEffects.Count > 0)
+                {
+                    for(int i = 0; i < currentHexa._onTimeEffects.Count; i++)
+                    {
+                        if(!_character.IdAreaAppliedThisTurn.Contains(currentHexa._onTimeEffects[i].GetId()))
+                        {
+                            List<Hexagon> list = new List<Hexagon>();
+                            list.Add(currentHexa);
+                            _character.IdAreaAppliedThisTurn.Add(currentHexa._onTimeEffects[i].GetId());
+                            currentHexa._onTimeEffects[i].ApplyEffect(list, currentHexa, currentHexa._onTimeEffects[i].GetCaster());
+                        }
+                    }
+                }
+
                 _character.CurrentStep++;
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
-                    _character.CharacterState = Character.State.Waiting;
+                    _character.NextState = Character.State.Waiting;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)
                     {
                         PortalManager.GetInstance().Teleport(_character);
                     }
+
                 }
             }
         }

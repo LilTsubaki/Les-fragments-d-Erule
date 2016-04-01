@@ -300,7 +300,7 @@ public class Client : MonoBehaviour{
                         addHostToList(ip.Address.ToString(), playPort);
                         break;
                     default:
-                        Logger.Error("Nope.");
+                        Logger.Debug("Ignore UDP Mesage");
                         break;
                 }
             }

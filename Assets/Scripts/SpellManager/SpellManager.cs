@@ -351,6 +351,18 @@ public class SpellManager
 
         if (target == currentPlayer.Position )
         {
+
+            /*********************
+            À modifier dès qu'on a différents effets visuels
+            **********************/
+
+            SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
+            SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
+
+            /*********************
+
+            *********************/
+
             Logger.Trace("apply selfEffects");
             effectIds = CurrentSelfSpell.EffectsArea.GetIds();
             if (effectIds.Count != 0)
@@ -418,8 +430,7 @@ public class SpellManager
             **********************/
 
             SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
-            /*SpellAnimationManager.GetInstance().Play("air", currentPlayer._gameObject, target.GameObject);
-            SpellAnimationManager.GetInstance().Play("metal1", currentPlayer._gameObject, target.GameObject);*/
+            SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
 
             /*********************
 
