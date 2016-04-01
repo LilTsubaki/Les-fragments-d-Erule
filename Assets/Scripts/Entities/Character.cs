@@ -202,6 +202,7 @@ public class Character : Entity, Killable
             ProtectionsNegative[element] = 0;
             Protections[element] = 0;
         }*/ //DONE
+        IdAreaAppliedThisTurn = new List<int>(Position._onTimeEffects.Keys);
 
         Logger.Debug("begin update shield character");
         updateShields();
@@ -275,7 +276,7 @@ public class Character : Entity, Killable
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
     }
 
-    public int ShieldReceiveDamage(int value, Element elem, Character caster)
+    public int ShieldReceiveDamage(int value)
     {
         int firstValue = value;
         int nbShields = _shields.Count;
@@ -290,13 +291,10 @@ public class Character : Entity, Killable
         }
         if(nbShields > 0)
             EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(firstValue - value));
-
-        if (caster != null)
-            caster.ReceiveDamage((int)(0.1 * (firstValue - value)), elem, null);
         return value;
     }
 
-    public int ReceiveDamage(int value, Element element, Character caster)
+    public int ReceiveDamage(int value, Element element)
     {
         
         int positiveElementResistance;
@@ -307,7 +305,7 @@ public class Character : Entity, Killable
 
         //remove shield before apply element damages
 
-        value = ShieldReceiveDamage(value,element,caster);
+        value = ShieldReceiveDamage(value);
 
         int finalValue = (positiveElementResistance - negativeElementResistance);// + ((GlobalProtection - GlobalNegativeProtection)+GlobalProtectionModifier);
         float percentage = (100 - finalValue) / 100.0f;
