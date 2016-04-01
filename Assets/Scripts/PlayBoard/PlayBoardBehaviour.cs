@@ -8,8 +8,6 @@ public class PlayBoardBehaviour : MonoBehaviour
     private float _timerClic = 0.5f;
     private float _currentTime = 0;
     private bool _isInDoubleClicWindow = false;
-    private bool _canHighLight = false;
-    private Vector3 _previousMousePosition;
 
     // Use this for initialization
     void Start () {
@@ -41,18 +39,12 @@ public class PlayBoardBehaviour : MonoBehaviour
         if(PlayBoardManager.GetInstance().CanEndTurn)
         {
             PlayBoardManager.GetInstance().CanEndTurn = false;
-            _previousMousePosition = Input.mousePosition;
-            _canHighLight = false;
             PlayBoardManager.GetInstance().EndTurn();
             ServerManager.GetInstance()._server.EndTurn();
         }
+            
 
-        if (!_canHighLight && _previousMousePosition != Input.mousePosition)
-            _canHighLight = true;
-
-        if(_canHighLight)
-            HighLight();
-
+        HighLight();
         if (Input.GetMouseButtonDown(0)){
             if (PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
             {

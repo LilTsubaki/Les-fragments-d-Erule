@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MaskThereshold
-  m_Shader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: T_VFX_Portal_Ornments
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: ceb1b8c3b3537f94cb15f4701dc09200, type: 3}
+          m_Texture: {fileID: 2800000, guid: b836a25eed3c8b840abdc1d1a41b1aa6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -59,7 +59,14 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MetallicGlossMap
+          name: _DetailMask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailAlbedoMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -69,20 +76,6 @@ Material:
           name: _SpecGlossMap
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Masks
-        second:
-          m_Texture: {fileID: 2800000, guid: 42c4f9c53f903b840ada2ed227b2f864, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -97,11 +90,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 1
-      data:
-        first:
-          name: PixelSnap
-        second: 0
+        second: 0.5
       data:
         first:
           name: _Parallax
@@ -113,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.053
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -134,14 +123,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 3
     m_Colors:
       data:
         first:
@@ -155,19 +136,3 @@ Material:
         first:
           name: _SpecColor
         second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-      data:
-        first:
-          name: _M1Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M2Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M3Tint
-        second: {r: 1, g: 1, b: 1, a: 0}

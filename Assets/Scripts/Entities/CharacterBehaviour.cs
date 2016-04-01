@@ -9,6 +9,7 @@ public class CharacterBehaviour : MonoBehaviour
     public float _movementSpeed;
     public float _translateSpeed;
 
+    private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
 
     void Awake()
@@ -102,20 +103,31 @@ public class CharacterBehaviour : MonoBehaviour
             if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
             {
                 Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
-                //check if the player walk into an area
-                if (currentHexa._onTimeEffects.Count > 0)
+
+                List<int> idToKeep = new List<int>();
+                foreach(int id in _character.IdAreaAppliedThisTurn)
                 {
-                    for(int i = 0; i < currentHexa._onTimeEffects.Count; i++)
+                    if(currentHexa._onTimeEffects.ContainsKey(id))
                     {
-                        if(!_character.IdAreaAppliedThisTurn.Contains(currentHexa._onTimeEffects[i].GetId()))
-                        {
-                            List<Hexagon> list = new List<Hexagon>();
-                            list.Add(currentHexa);
-                            _character.IdAreaAppliedThisTurn.Add(currentHexa._onTimeEffects[i].GetId());
-                            currentHexa._onTimeEffects[i].ApplyEffect(list, currentHexa, currentHexa._onTimeEffects[i].GetCaster());
-                        }
+                        idToKeep.Add(id);
                     }
                 }
+                _character.IdAreaAppliedThisTurn = idToKeep;
+
+
+                List<Hexagon> list = new List<Hexagon>();
+                list.Add(currentHexa);
+                foreach (var effect in currentHexa._onTimeEffects.Values)
+                {
+                    if (!_character.IdAreaAppliedThisTurn.Contains(effect.GetId()))
+                    {
+                        _character.IdAreaAppliedThisTurn.Add(effect.GetId());                        
+                        effect.ApplyEffect(list, currentHexa, effect.GetCaster());
+                    }
+                }
+
+
+
 
                 _character.CurrentStep++;
                 if(_character.CurrentStep == _character.PathToFollow.Count)
