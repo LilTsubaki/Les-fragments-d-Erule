@@ -477,11 +477,6 @@ public class SpellManager
 		if (runes > 0)
 		{
 			HistoricManager.GetInstance ().AddText (String.Format (StringsErule.perfect, currentPlayer.Name));
-			currentPlayer.NextState = Character.State.CastingSpell;
-		}
-		else
-		{
-			currentPlayer.NextState = Character.State.Waiting;
 		}
 
         ServerManager.GetInstance()._server.ApplyEffects(currentPlayer, success, crit, runes);

@@ -76,10 +76,10 @@ public class SpellAnimationManager {
                     List<int> metals = new List<int>();
                     for(int i = 0; i < Mathf.Min(nbMetal, 3); ++i)
                     {
-                        int randAnimMetal = EruleRandom.RangeValue(1, 4);
+                        int randAnimMetal = EruleRandom.RangeValue(1, 3);
                         while (metals.Contains(randAnimMetal))
                         {
-                            randAnimMetal = EruleRandom.RangeValue(1, 4);
+                            randAnimMetal = EruleRandom.RangeValue(1, 3);
                         }
                         metals.Add(randAnimMetal);
                         Play("metal" + randAnimMetal, from, to);
@@ -165,12 +165,12 @@ public class SpellAnimationManager {
             }
         }
 
+		character.GameObject.GetComponent<Animator>().SetTrigger("Cast");
         if (isShield)
             character.GameObject.GetComponent<Animator>().SetTrigger("CastShield");
         else
             character.GameObject.GetComponent<Animator>().SetTrigger("CastSelf");
 
-        character.GameObject.GetComponent<Animator>().SetTrigger("Cast");
 
     }
 }

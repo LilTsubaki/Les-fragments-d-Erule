@@ -5,7 +5,7 @@ public class HitRandom : StateMachineBehaviour {
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        animator.SetInteger("HitRandom", EruleRandom.RangeValue(0, 3));
+        animator.SetInteger("HitRandom", EruleRandom.RangeValue(0, 2));
     }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
