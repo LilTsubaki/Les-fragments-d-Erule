@@ -130,7 +130,7 @@ public class SpellAnimationManager {
         else
         {
             Element chosenElement = null;
-            int priority = -0;
+            /*int priority = -1;
             for(int i = 0; i < chosen.Count; ++i)
             {
                 if(chosenElement == null)
@@ -146,7 +146,11 @@ public class SpellAnimationManager {
                         priority = _elementsHierarchy.IndexOf(chosenElement);
                     }
                 }
-            }
+            }*/
+
+            chosenElement = chosen[EruleRandom.RangeValue(0, chosen.Count - 1)];
+
+
             triggerName += chosenElement._name;
         }
 
