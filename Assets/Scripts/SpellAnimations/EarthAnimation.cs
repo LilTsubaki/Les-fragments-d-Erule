@@ -60,6 +60,7 @@ public class EarthAnimation : SpellAnimation
                 if (prefab != null)
                 {
                     GameObject go = (GameObject)Instantiate(prefab, _hexagons[_currentIndex].transform.position, Quaternion.identity);
+                    go.transform.Rotate(new Vector3(0, 0, 180));
                 }
                 else
                 {
