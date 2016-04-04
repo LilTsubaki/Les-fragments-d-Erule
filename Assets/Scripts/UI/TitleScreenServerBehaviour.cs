@@ -9,6 +9,8 @@ public class TitleScreenServerBehaviour : MonoBehaviour {
         {
             UIManager.GetInstance().HidePanelNoStack("PanelTitleScreen");
             UIManager.GetInstance().ShowPanelNoStack("PanelLobby");
+            UIManager.GetInstance().HidePanelNoStack("menuButton");
+            UIManager.GetInstance().ShowPanelNoStack("menuButton");
         }
 	}
 }

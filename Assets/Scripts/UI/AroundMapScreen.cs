@@ -16,6 +16,7 @@ public class AroundMapScreen : MonoBehaviour {
         {
             UIManager.GetInstance().HideAll();
             UIManager.GetInstance().ShowPanelNoStack("PanelPosition");
+            UIManager.GetInstance().ShowPanelNoStack("menuButton");
             CameraManager.GetInstance().FadeTo("cameraBoard", 1);
             map.changeState();
         }
