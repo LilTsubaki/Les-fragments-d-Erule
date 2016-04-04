@@ -33,7 +33,7 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(_hexagon.StateChanged)
+        if(_hexagon.StateChanged)
         {
             switch (_hexagon.CurrentState)
             {
@@ -83,7 +83,7 @@ public class HexagonBehaviour : MonoBehaviour
             }
             
             _hexagon.StateChanged = false;
-        }*/
+        }
     }
 
 
