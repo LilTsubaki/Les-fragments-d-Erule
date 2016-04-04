@@ -11,7 +11,6 @@
 	SubShader{
 		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
-		ZTest Always
 
 		CGPROGRAM
 		#pragma surface surf Lambert alpha

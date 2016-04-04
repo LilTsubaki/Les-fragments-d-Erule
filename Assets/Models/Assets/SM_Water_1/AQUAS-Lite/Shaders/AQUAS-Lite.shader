@@ -44,8 +44,7 @@ Shader "AQUAS-Lite" {
                 "LightMode"="ForwardBase"
             }
             Blend SrcAlpha OneMinusSrcAlpha
-            ZWrite On
-            ZTest Always
+            ZWrite Off
             
             CGPROGRAM
             #pragma vertex vert

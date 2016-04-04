@@ -14,7 +14,6 @@ SubShader {
     Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
     LOD 200
 	Cull Off // Backsided activation
-	ZTest Always
 		
 
    
