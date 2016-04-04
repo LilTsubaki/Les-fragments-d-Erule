@@ -995,6 +995,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &186520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479244}
+  - 114: {fileID: 11424246}
+  m_Layer: 0
+  m_Name: Earth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &188540
 GameObject:
   m_ObjectHideFlags: 1
@@ -1898,6 +1914,18 @@ Transform:
   - {fileID: 446422}
   m_Father: {fileID: 492684}
   m_RootOrder: 1
+--- !u!4 &479244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 492684}
+  m_RootOrder: 7
 --- !u!4 &480416
 Transform:
   m_ObjectHideFlags: 1
@@ -2078,7 +2106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422242}
@@ -2088,6 +2116,7 @@ Transform:
   - {fileID: 483174}
   - {fileID: 402832}
   - {fileID: 472540}
+  - {fileID: 479244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &492746
@@ -2936,6 +2965,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotX: 4
   _trail: {fileID: 172136}
+--- !u!114 &11424246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4f478f190029b46a116a690c24b036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _from: {x: 0, y: 0, z: 0}
+  _to: {x: 0, y: 0, z: 0}
+  _play: 0
+  _registerName: earth
+  _timeBetweenSpawns: 0
+  _upwardSpeed: 0.1
+  _timeStayingUp: 0.2
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11431454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3233,6 +3296,8 @@ MonoBehaviour:
   _splashesBottom: {fileID: 19885030}
   _splashesTop: {fileID: 19863476}
   _water: {fileID: 19850758}
+  _waterMat: {fileID: 0}
+  _cutoff: 0
 --- !u!114 &11488636
 MonoBehaviour:
   m_ObjectHideFlags: 1

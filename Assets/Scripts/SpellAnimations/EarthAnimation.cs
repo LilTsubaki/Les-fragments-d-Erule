@@ -11,6 +11,11 @@ public class EarthAnimation : SpellAnimation
 
     [Range(0.0f, 1.0f)]
     public float _timeBetweenSpawns;
+    [Range(0.0f, 1.0f)]
+    public float _upwardSpeed;
+    public float _timeStayingUp;
+
+    public AnimationCurve _curve;
 
     public void Awake()
     {
@@ -44,7 +49,6 @@ public class EarthAnimation : SpellAnimation
             if (!_raycastDone)
             {
                 RaycastHit[] raycasts = Physics.RaycastAll(new Ray(_from, _to - _from), Vector3.Distance(_from, _to), LayerMask.GetMask("HexagonBigCollider"));
-                Logger.Debug(raycasts.Length);
                 for (int i = 0; i < raycasts.Length; i++)
                 {
                     _hexagons.Add(raycasts[i].transform.GetComponentInParent<HexagonBehaviour>());
@@ -55,12 +59,20 @@ public class EarthAnimation : SpellAnimation
             if (_currentIndex < _hexagons.Count && _currentTime > _timeBetweenSpawns)
             {
                 _currentTime = 0;
-                Logger.Debug(_hexagons[_currentIndex]._hexagonType);
                 GameObject prefab = GetUnderHex(_hexagons[_currentIndex]._hexagonType);
                 if (prefab != null)
                 {
-                    GameObject go = (GameObject)Instantiate(prefab, _hexagons[_currentIndex].transform.position, Quaternion.identity);
+                    Vector3 position = _hexagons[_currentIndex].transform.position - new Vector3(0, 2.4f, 0);
+                    GameObject go = (GameObject)Instantiate(prefab, position, Quaternion.identity);
+                    go.transform.localScale = new Vector3(0.7f, 1, 0.7f);
+                    go.layer = LayerMask.NameToLayer("EarthAnim");
                     go.transform.Rotate(new Vector3(0, 0, 180));
+                    EarthBehaviour earthBehaviour = go.AddComponent<EarthBehaviour>();
+                    go.AddComponent<SetRenderQueue>();
+                    earthBehaviour.InitialPosition = position;
+                    earthBehaviour.Speed = _upwardSpeed;
+                    earthBehaviour.TimeStayingUp = _timeStayingUp;
+                    earthBehaviour.MaxHeight = _curve.Evaluate((float)(_currentIndex + 1) / (float)_hexagons.Count) * 2.4f;
                 }
                 else
                 {
