@@ -8,16 +8,17 @@
 	}
 
 	SubShader{
-		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Background" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
 		Cull Off
-		Blend SrcAlpha OneMinusSrcAlpha
+		Lighting Off
+//		Blend SrcAlpha OneMinusSrcAlpha
 //		BindChannels{
 //			Bind "Color", color
 //		}
 
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf Lambert alpha
 	
 		sampler2D _Smoke;
 		half4 _Color;
@@ -41,9 +42,9 @@
 			half c = tex2D(_Smoke, SmokeMoveScrolledUV).r;
  			half d = tex2D(_Smoke, IN.uv_Smoke).a;
 
-			o.Albedo = c * _Color;
+			o.Albedo = c * 15 * _Color;
 
-			o.Alpha =  pow(d, _Contrast);
+			o.Alpha =  pow(d, _Contrast) * c * 20;
 		}
 
 		ENDCG

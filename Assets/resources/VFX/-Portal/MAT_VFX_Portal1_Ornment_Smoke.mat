@@ -38,6 +38,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Smoke
+        second:
+          m_Texture: {fileID: 2800000, guid: fde22df27987c054194cba068e4a5760, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -78,13 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Smoke
-        second:
-          m_Texture: {fileID: 2800000, guid: fde22df27987c054194cba068e4a5760, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -101,7 +101,6 @@ Material:
       data:
         first:
           name: _Contrast
-        second: 0
       data:
         first:
           name: _MainTexMoveSpeedU
@@ -132,8 +131,22 @@ Material:
         second: 27.2
       data:
         first:
-          name: _Glossiness
-        second: 0.5
+          name: _Third1TexMoveSpeedU
+        second: 13.7
+      data:
+        first:
+          name: _Third2TexMoveSpeedU
+        second: -0.8
+      data:
+        first:
+          name: _Third2TexMoveSpeedV
+        second: 6.5
+      data:
+        first:
+          name: _SmokeMoveSpeedU
+      data:
+        first:
+          name: _SmokeMoveSpeedV
       data:
         first:
           name: _Parallax
@@ -142,6 +155,10 @@ Material:
         first:
           name: _ZWrite
         second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -166,26 +183,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _Third1TexMoveSpeedU
-        second: 13.7
-      data:
-        first:
-          name: _Third2TexMoveSpeedU
-        second: -0.8
-      data:
-        first:
-          name: _Third2TexMoveSpeedV
-        second: 6.5
-      data:
-        first:
-          name: _SmokeMoveSpeedU
-        second: 18
-      data:
-        first:
-          name: _SmokeMoveSpeedV
-        second: -21
     m_Colors:
       data:
         first:
@@ -194,4 +191,3 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}

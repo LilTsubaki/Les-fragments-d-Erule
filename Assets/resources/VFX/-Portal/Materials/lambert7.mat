@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_VFX_Portal1_Gate
-  m_Shader: {fileID: 10753, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: lambert7
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 8400000, guid: c6c65a41b974db742a099bb2aec5ec2d, type: 2}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,13 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -98,54 +91,6 @@ Material:
         first:
           name: _Cutoff
         second: 0.5
-      data:
-        first:
-          name: PixelSnap
-        second: 0
-      data:
-        first:
-          name: _Contrast
-        second: 3.94
-      data:
-        first:
-          name: _MainTexMoveSpeedU
-        second: 6.3
-      data:
-        first:
-          name: _SecondTexMoveSpeedU
-        second: -4.6
-      data:
-        first:
-          name: _ThirdTexMoveSpeedU
-        second: 3.1
-      data:
-        first:
-          name: _ThirdTexMoveSpeedV
-        second: 3.9
-      data:
-        first:
-          name: _FourthTexMoveSpeedU
-        second: -25.2
-      data:
-        first:
-          name: _FourthTexMoveSpeedV
-        second: 0
-      data:
-        first:
-          name: _FifthTexMoveSpeedU
-        second: 27.2
-      data:
-        first:
-          name: _Third1TexMoveSpeedU
-        second: 13.7
-      data:
-        first:
-          name: _Third2TexMoveSpeedU
-        second: -0.8
-      data:
-        first:
-          name: _Third2TexMoveSpeedV
-        second: 6.5
       data:
         first:
           name: _Parallax
@@ -182,22 +127,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _MainTexMoveSpeedV
-        second: 0.5
-      data:
-        first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
-          name: _AContrast
-        second: 0
-      data:
-        first:
-          name: _MContrast
-        second: 0
     m_Colors:
       data:
         first:
@@ -206,8 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.375, g: 0.89655167, b: 1, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}

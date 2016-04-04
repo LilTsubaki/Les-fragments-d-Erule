@@ -1,7 +1,6 @@
 ﻿Shader "VFX/Portals_Ornment" {
 	Properties{
 		_MainTex("Base (R=Lightning1 G=Lightning2 B=Sparks A=Alpha", 2D) = "white" {}
-		_Smoke("Smoke", 2D) = "white" {}
 		_Color("Tint", color) = (1,1,1,1)
 		_Contrast("Contrast", Range(0,12)) = 0
 		_MainTexMoveSpeedU("L1 U PanSpeed", Range(-50,50)) = 0
@@ -16,14 +15,16 @@
 	SubShader{
 		Tags{ "Queue" = "Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
-			Cull Off
+		Cull Off
+		Lighting Off
 		Blend One One
+		//Blend SrcAlpha OneMinusSrcAlpha
 //		BindChannels{
 //			Bind "Color", color
 //		}
 
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf Lambert //alpha
 
 		sampler2D _MainTex;
 		sampler2D _Smoke;
@@ -70,6 +71,8 @@
  			half g = tex2D(_MainTex, IN.uv_MainTex).a; //replace IN.uv_MainTex by FourthTexMoveScrolledUV if panning desired
 
 			o.Albedo = (c * 8 + d * 8 + (f * 12) + e *10) * _Color * pow (g, _Contrast);
+
+			//o.Alpha = (c * 8 + d * 8 + (f * 12) + e * 10) * pow(g, _Contrast);
 
 			//o.Emission = o.Albedo * 15 * (_Color * half4(.9,.2,.4,1));
 		}
