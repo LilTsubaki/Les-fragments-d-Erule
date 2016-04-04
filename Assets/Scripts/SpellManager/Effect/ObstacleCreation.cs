@@ -11,6 +11,10 @@ public class ObstacleCreation : EffectDirect
     private GameObject _prefab;
     private string _name;
 
+    private Vector3 _randOrientation1 = new Vector3(11f, 5.2f, 1.8f);
+    private Vector3 _randOrientation2 = new Vector3(-7.3f, -104f, 9f);
+    private Vector3 _randOrientation3 = new Vector3(-0.6f, 90f, 11f);
+
     public ObstacleCreation(JSONObject js)
     {
         _id = (int)js.GetField("id").n;
@@ -38,6 +42,23 @@ public class ObstacleCreation : EffectDirect
                 obs.GameObject.transform.parent = hexa.GameObject.transform;
                 obs.GameObject.name = Name;
                 obs.GameObject.transform.position = new Vector3(0.866f * hexa._posX - 0.433f * hexa._posY, hexa.GameObject.transform.position.y, 0.75f * hexa._posY);
+                
+                obs.GameObject.transform.LookAt(new Vector3(Camera.main.transform.position.x, obs.GameObject.transform.position.y, Camera.main.transform.position.z));
+
+                int randOrient = EruleRandom.RangeValue(0,2);
+                switch (randOrient)
+                {
+                    case 0:
+                        obs.GameObject.transform.Rotate(_randOrientation1);
+                        break;
+                    case 1:
+                        obs.GameObject.transform.Rotate(_randOrientation2);
+                        break;
+                    case 2:
+                        obs.GameObject.transform.Rotate(_randOrientation3);
+                        break;
+                }
+
                 obs.GameObject.layer = LayerMask.NameToLayer("Obstacle");
                 GameObject lifeCanvas = GameObject.Instantiate(Resources.Load("Prefabs/UI/CanvasObstacle") as GameObject);
                 lifeCanvas.layer = LayerMask.NameToLayer("UI");
