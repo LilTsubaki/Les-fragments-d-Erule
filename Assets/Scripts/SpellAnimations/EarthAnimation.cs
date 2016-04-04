@@ -14,6 +14,7 @@ public class EarthAnimation : SpellAnimation
     [Range(0.0f, 1.0f)]
     public float _upwardSpeed;
     public float _timeStayingUp;
+    public float _rotationAngle;
 
     public AnimationCurve _curve;
 
@@ -62,14 +63,18 @@ public class EarthAnimation : SpellAnimation
                 GameObject prefab = GetUnderHex(_hexagons[_currentIndex]._hexagonType);
                 if (prefab != null)
                 {
-                    Vector3 position = _hexagons[_currentIndex].transform.position - new Vector3(0, 2.4f, 0);
+                    Vector3 hexagonPosition = _hexagons[_currentIndex].transform.position;
+                    Vector3 position = hexagonPosition - new Vector3(0, 2.4f, 0);
                     GameObject go = (GameObject)Instantiate(prefab, position, Quaternion.identity);
-                    go.transform.localScale = new Vector3(0.7f, 1, 0.7f);
+                    go.transform.localScale = new Vector3(0.7f, 1.2f, 0.7f);
                     go.layer = LayerMask.NameToLayer("EarthAnim");
                     go.transform.Rotate(new Vector3(0, 0, 180));
                     EarthBehaviour earthBehaviour = go.AddComponent<EarthBehaviour>();
                     go.AddComponent<SetRenderQueue>();
-                    earthBehaviour.InitialPosition = position;
+
+                    go.transform.RotateAround(hexagonPosition, Vector3.Cross(_to - _from, Vector3.up), EruleRandom.RangeValue(0.0f,1.0f)* _rotationAngle);
+                    earthBehaviour.InitialPosition = go.transform.position;
+                    
                     earthBehaviour.Speed = _upwardSpeed;
                     earthBehaviour.TimeStayingUp = _timeStayingUp;
                     earthBehaviour.MaxHeight = _curve.Evaluate((float)(_currentIndex + 1) / (float)_hexagons.Count) * 2.4f;
@@ -81,5 +86,13 @@ public class EarthAnimation : SpellAnimation
                 _currentIndex++;
             }
         }
+    }
+
+    public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
+    {
+        Vector3 dir = point - pivot; // get point direction relative to pivot
+        dir = Quaternion.Euler(angles) * dir; // rotate it
+        point = dir + pivot; // calculate rotated point
+        return point; // return it
     }
 }

@@ -2349,6 +2349,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _curve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 451122, guid: 1874820d18f481d4da445f00641abc29, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2380,6 +2384,34 @@ Prefab:
     - target: {fileID: 451122, guid: 1874820d18f481d4da445f00641abc29, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _registerName
+      value: earth
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _upwardSpeed
+      value: 0.086
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _timeStayingUp
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _rotation
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _curve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _timeBetweenSpawns
+      value: 0.086
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412532, guid: 1874820d18f481d4da445f00641abc29, type: 2}
+      propertyPath: _rotationAngle
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1874820d18f481d4da445f00641abc29, type: 2}

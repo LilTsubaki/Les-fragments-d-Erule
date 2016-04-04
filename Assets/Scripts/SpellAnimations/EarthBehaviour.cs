@@ -69,7 +69,7 @@ public class EarthBehaviour : MonoBehaviour {
         set
         {
             _maxHeight = value;
-            _maxPosition = _initialPosition + new Vector3(0, value, 0);
+            _maxPosition = _initialPosition - value * transform.up;//new Vector3(0, value, 0);
         }
     }
 
