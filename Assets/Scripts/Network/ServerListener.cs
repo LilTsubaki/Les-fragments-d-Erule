@@ -174,6 +174,11 @@ public class ServerListener
         {
             PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.Waiting;
         }
+
+        if(rBoard.GetSortedElementList().Count == 0)
+        {
+            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(new List<Element>());
+        }
         
 
         _client.GetStream().Flush();

@@ -24,6 +24,9 @@ public class Character : Entity, Killable
     private State _state;
     private State _nextState;
 
+    public bool _changeOrbs;
+    public List<Element> _orbs;
+
     private Dictionary<Element, int> _protections;
 	private Dictionary<Element, int> _protectionsNegative;
 
@@ -659,7 +662,8 @@ public class Character : Entity, Killable
 
     public void SetOrbs(List<Element> elems)
     {
-        GameObject.GetComponent<CharacterBehaviour>().SetNewOrbs(elems);
+        _orbs = elems;
+        _changeOrbs = true;
     }
 
     public List<Hexagon> PathToFollow

@@ -348,6 +348,10 @@ public class SpellManager
 
         List<int> effectIds;
         
+        if(runes == 0)
+        {
+            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(new List<Element>());
+        }
 
         if (target == currentPlayer.Position )
         {

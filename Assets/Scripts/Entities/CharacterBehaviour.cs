@@ -58,6 +58,12 @@ public class CharacterBehaviour : MonoBehaviour
             _character.CurrentState = _character.NextState;
         }
 
+        if (_character._changeOrbs)
+        {
+            SetNewOrbs(_character._orbs);
+            _character._changeOrbs = false;
+        }
+
         switch (_character.CurrentState)
         {
             case Character.State.Moving:
