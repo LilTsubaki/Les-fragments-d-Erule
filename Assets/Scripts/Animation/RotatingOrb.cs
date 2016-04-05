@@ -18,6 +18,7 @@ public class RotatingOrb : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         gameObject.transform.RotateAround(gameObject.transform.parent.position, gameObject.transform.right, _rotationSpeed);
-		gameObject.transform.GetChild (0).Rotate((Mathf.Sin(Time.time* Vitesse) * RandomDirection1 + (1 - Mathf.Sin(Time.time* Vitesse)) * RandomDirection2).normalized);
+        if(gameObject.transform.GetChild(0) != null)
+		    gameObject.transform.GetChild (0).Rotate((Mathf.Sin(Time.time* Vitesse) * RandomDirection1 + (1 - Mathf.Sin(Time.time* Vitesse)) * RandomDirection2).normalized);
 	}
 }
