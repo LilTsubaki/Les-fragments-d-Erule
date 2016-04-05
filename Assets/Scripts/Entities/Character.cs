@@ -657,6 +657,11 @@ public class Character : Entity, Killable
         return _lifeCurrent <= 0;
     }
 
+    public void SetOrbs(List<Element> elems)
+    {
+        GameObject.GetComponent<CharacterBehaviour>().SetNewOrbs(elems);
+    }
+
     public List<Hexagon> PathToFollow
     {
         get

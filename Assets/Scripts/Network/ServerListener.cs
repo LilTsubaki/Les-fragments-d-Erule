@@ -130,7 +130,6 @@ public class ServerListener
         rBoard.RunesOnBoard = map;
         rBoard.LogRunesOnBoard();
 
-
         NetworkUtils.WriteInt(3, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
         TargetSpell spell =SpellManager.getInstance ().ElementNode.GetTargetSpell( que);
@@ -167,6 +166,9 @@ public class ServerListener
             NetworkUtils.WriteArea(area, _client.GetStream());
 
             PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.CastingSpell;
+            HashSet<Element> elemSet = new HashSet<Element>(rBoard.GetSortedElementList());
+
+            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(elemSet.ToList());
         }
         else
         {

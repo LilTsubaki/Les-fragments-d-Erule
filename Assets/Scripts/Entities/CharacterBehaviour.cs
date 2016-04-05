@@ -12,6 +12,8 @@ public class CharacterBehaviour : MonoBehaviour
     private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
 
+    public Orbs _orbs;
+
     void Awake()
     {
         _movementSpeed = 4.0f;
@@ -152,5 +154,10 @@ public class CharacterBehaviour : MonoBehaviour
         bool active = boolean == 0 ? false : true;
         gameObject.transform.GetChild(0).gameObject.SetActive(active);
         gameObject.transform.GetChild(1).gameObject.SetActive(active);
+    }
+
+    public void SetNewOrbs(List<Element> elems)
+    {
+        _orbs.SetElements(elems);
     }
 }
