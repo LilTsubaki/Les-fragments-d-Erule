@@ -464,7 +464,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441248}
   - 95: {fileID: 9540200}
-  - 114: {fileID: 11463092}
   - 136: {fileID: 13629144}
   m_Layer: 9
   m_Name: M_Character2
@@ -1270,7 +1269,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.783, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455752}
@@ -1508,7 +1507,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142984}
-  m_LocalRotation: {x: 0, y: -0.98590106, z: 0, w: 0.1673293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2139,6 +2138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3571addf3c1ffe34392d2bfabbb1fc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _toCenter: 0
+  SlowSpeed: 15
+  GoingInSpeed: 3
+  GoingOutSpeed: 0.5
 --- !u!114 &11440812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2150,8 +2153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.7
   _rotationSpeed: 0.7
-  Vitesse: 0
+  Vitesse: 1
 --- !u!114 &11456742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2163,6 +2167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.6
   _rotationSpeed: 0.6
   Vitesse: 1
 --- !u!114 &11462538
@@ -2176,22 +2181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.6
   _rotationSpeed: 0.6
   Vitesse: 1
---- !u!114 &11463092
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 142984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9e82c4542b8b842960e74fdad7aca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementSpeed: 0
-  _translateSpeed: 0
-  _orbs: {fileID: 11424624}
 --- !u!114 &11481434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2203,6 +2195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.7
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!114 &11484530
@@ -2216,6 +2209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.7
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!114 &11497868
@@ -2229,6 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialSpeed: 0.7
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!136 &13629144

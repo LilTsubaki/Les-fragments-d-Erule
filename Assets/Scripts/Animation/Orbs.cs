@@ -5,11 +5,86 @@ using System.Linq;
 public class Orbs : MonoBehaviour {
 
     private Dictionary<int, Element> _elements;
+    public bool _toCenter;
+    private bool _slowingDown;
+    private bool _goingCenter;
+
+    public float SlowSpeed;
+    public float GoingInSpeed;
+    public float GoingOutSpeed;
 
     void Start()
     {
         _elements = new Dictionary<int, Element>();
     }
+
+    void Update()
+    {
+        if (_toCenter)
+        {
+            Invoke("PauseAndGo", .5f);
+            Invoke("RemoveAfterCast", 2);
+            _toCenter = false;
+            _slowingDown = true;
+        }
+        if (_slowingDown)
+        {
+            SlowRotationDown();
+        }
+        if(_goingCenter)
+        {
+            GoToCenter();
+        }
+        else
+        {
+            GoOut();
+        }
+    }
+
+    private void PauseAndGo()
+    {
+        _goingCenter = true;
+        _slowingDown = false;
+    }
+
+    private void RemoveAfterCast()
+    {
+        _goingCenter = false;
+    }
+
+    private void GoToCenter()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            if (transform.GetChild(i).childCount != 0)
+            {
+                transform.GetChild(i).GetChild(0).position = Vector3.MoveTowards(transform.GetChild(i).GetChild(0).position, transform.position, Time.deltaTime*GoingInSpeed);
+            }
+        }
+    }
+
+    private void SlowRotationDown()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).GetComponent<RotatingOrb>()._rotationSpeed = Mathf.Lerp(transform.GetChild(i).GetComponent<RotatingOrb>()._rotationSpeed, 0, Time.deltaTime*SlowSpeed);
+        }
+    }
+
+    private void GoOut()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            if (transform.GetChild(i).childCount != 0)
+            {
+                transform.GetChild(i).GetChild(0).position = Vector3.MoveTowards(transform.GetChild(i).GetChild(0).position, transform.GetChild(i).position, Time.deltaTime*GoingOutSpeed);
+            }
+            RotatingOrb rotate = transform.GetChild(i).GetComponent<RotatingOrb>();
+            rotate._rotationSpeed = Mathf.Lerp(rotate._rotationSpeed, rotate._initialSpeed, Time.deltaTime*3);
+        }
+    }
+
+    
 
     public void AddElement(Element elem)
     {

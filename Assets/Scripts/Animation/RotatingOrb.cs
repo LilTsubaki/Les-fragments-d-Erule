@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RotatingOrb : MonoBehaviour {
 
+
+    public float _initialSpeed;
     public float _rotationSpeed;
 	private Vector3 RandomDirection1;
 	private Vector3 RandomDirection2;
@@ -13,6 +15,7 @@ public class RotatingOrb : MonoBehaviour {
 		Vector3 Rand2 = new Vector3 (EruleRandom.RangeValue (0f, 1f), EruleRandom.RangeValue (0f, 1f), EruleRandom.RangeValue (0f, 1f));
 		RandomDirection1 = Rand1.normalized;
 		RandomDirection2 = Rand2.normalized;
+        _rotationSpeed = _initialSpeed;
 	}
 
 	// Update is called once per frame

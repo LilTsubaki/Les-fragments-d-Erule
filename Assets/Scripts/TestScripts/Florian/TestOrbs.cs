@@ -51,5 +51,9 @@ public class TestOrbs : MonoBehaviour {
 
             _orbs.SetElements(elems);
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            _orbs._toCenter = true;
+        }
     }
 }
