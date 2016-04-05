@@ -26,7 +26,7 @@ public class AudioPlayer : MonoBehaviour {
     /// </summary>
     public bool _loopClips;
     /// <summary>
-    /// The channel of AudioData to be playde looping .
+    /// The channel of AudioData to be played looping .
     /// </summary>
     public string _channelName;
     public bool _randPitch;
@@ -69,7 +69,8 @@ public class AudioPlayer : MonoBehaviour {
         {
             if (!_audio.isPlaying)
             {
-                AudioManager.GetInstance().PlayOnPlayer(_allocatedId, _channelName, _randPitch, _space, _pos, _distMin, _distMax);
+                Logger.Debug("Boop " + _allocatedId);
+                AudioManager.GetInstance().PlayOnPlayer(_allocatedId, true, _channelName, _randPitch, _space, _pos, _distMin, _distMax);
             }
         }
 
@@ -103,6 +104,7 @@ public class AudioPlayer : MonoBehaviour {
         _pos = pos;
         _distMin = distMin;
         _distMax = distMax;
+        _allocatedId = selfId;
     }
 
     public void StopLooping()

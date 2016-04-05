@@ -275,14 +275,13 @@ public class AudioManager
                 if (ap != null)
                 {
                     AudioSource auSo = ap._audio;
-                    auSo.loop = loop;
                     auSo.clip = ad.GetClip();
                     auSo.outputAudioMixerGroup = ad.group;
                     auSo.spatialBlend = (float)space;
                     auSo.gameObject.transform.position = pos;
                     auSo.minDistance = distMin;
                     auSo.maxDistance = distMax;
-                    auSo.loop = true;
+                    auSo.loop = loop;
                     ap._randPitch = randPitch;
                     ap._minPitch = ad.pitchMin;
                     ap._maxPitch = ad.pitchMax;
@@ -314,7 +313,7 @@ public class AudioManager
     /// <param name="distMax">The maximal distance the sound can be heard from (use if played in 3D).</param>
     /// <returns>The id given to the AudioPlayer that plays the sound. -1 if couldn't.</returns>
     /// <returns></returns>
-    public int PlayOnPlayer(int playerId, string soundName, bool randPitch, spatialization space, Vector3 pos, float distMin = 0, float distMax = 0)
+    public int PlayOnPlayer(int playerId, bool loopClip, string soundName, bool randPitch, spatialization space, Vector3 pos, float distMin = 0, float distMax = 0)
     {
         // If an AudioData is registered with soundName
         if (_sounds.ContainsKey(soundName))
@@ -333,10 +332,11 @@ public class AudioManager
                     auSo.gameObject.transform.position = pos;
                     auSo.minDistance = distMin;
                     auSo.maxDistance = distMax;
-                    auSo.loop = true;
+                    auSo.loop = false;
                     ap._randPitch = randPitch;
                     ap._minPitch = ad.pitchMin;
                     ap._maxPitch = ad.pitchMax;
+                    ap._loopClips = loopClip;
                     if (randPitch)
                     {
                         auSo.pitch = EruleRandom.RangeValue(ad.pitchMin, ad.pitchMax);
