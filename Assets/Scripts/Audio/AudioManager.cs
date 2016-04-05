@@ -275,6 +275,7 @@ public class AudioManager
                 if (ap != null)
                 {
                     AudioSource auSo = ap._audio;
+                    auSo.loop = loop;
                     auSo.clip = ad.GetClip();
                     auSo.outputAudioMixerGroup = ad.group;
                     auSo.spatialBlend = (float)space;
