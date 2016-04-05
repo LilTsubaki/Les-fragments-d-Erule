@@ -21,9 +21,25 @@ public class AudioPlayer : MonoBehaviour {
     /// Is the sound being played out ?
     /// </summary>
     public bool _fadeOut;
-    
-	// Use this for initialization
-	void Start () {
+    /// <summary>
+    /// Does the same clip has to be played looping ?
+    /// </summary>
+    public bool _loopClips;
+    /// <summary>
+    /// The channel of AudioData to be playde looping .
+    /// </summary>
+    public string _channelName;
+    public bool _randPitch;
+    public float _minPitch;
+    public float _maxPitch;
+    private AudioManager.spatialization _space;
+    private Vector3 _pos;
+    private float _distMin;
+    private float _distMax;
+    private int _allocatedId;
+
+    // Use this for initialization
+    void Start () {
         _power = 1;
 	}
 	
@@ -49,6 +65,14 @@ public class AudioPlayer : MonoBehaviour {
             }
         }
 
+        if (_loopClips)
+        {
+            if (!_audio.isPlaying)
+            {
+                AudioManager.GetInstance().PlayOnPlayer(_allocatedId, _channelName, _randPitch, _space, _pos, _distMin, _distMax);
+            }
+        }
+
         _audio.volume = _power;
     }
 
@@ -68,5 +92,26 @@ public class AudioPlayer : MonoBehaviour {
     {
         _fadeOut = true;
         _fadeIn = false;
+    }
+
+    public void Looping(int selfId, string channel, bool randPitch, AudioManager.spatialization space, Vector3 pos, float distMin, float distMax)
+    {
+        _loopClips = true;
+        _channelName = channel;
+        _randPitch = randPitch;
+        _space = space;
+        _pos = pos;
+        _distMin = distMin;
+        _distMax = distMax;
+    }
+
+    public void StopLooping()
+    {
+        _loopClips = false;
+        _channelName = "";
+        _randPitch = false;
+        _pos = Vector3.zero;
+        _distMin = 0;
+        _distMax = 0;
     }
 }

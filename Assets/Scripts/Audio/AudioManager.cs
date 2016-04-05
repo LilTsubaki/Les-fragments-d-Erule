@@ -281,6 +281,10 @@ public class AudioManager
                     auSo.gameObject.transform.position = pos;
                     auSo.minDistance = distMin;
                     auSo.maxDistance = distMax;
+                    auSo.loop = true;
+                    ap._randPitch = randPitch;
+                    ap._minPitch = ad.pitchMin;
+                    ap._maxPitch = ad.pitchMax;
                     if (randPitch)
                     {
                         auSo.pitch = EruleRandom.RangeValue(ad.pitchMin, ad.pitchMax);
@@ -297,6 +301,80 @@ public class AudioManager
         return -1;
     }
 
+    /// <summary>
+    /// Plays a sound on a given AudioPlayer id. Should not be used unless sure the id has an AudioPlayer associated.
+    /// </summary>
+    /// <param name="playerId">The allocated id of the AudioPlayer.</param>
+    /// <param name="soundName">The name of the AudioData to play a sound of.</param>
+    /// <param name="randPitch">Is the sound to be played at a random pitch ?</param>
+    /// <param name="space">Is the sound to be played in 2D or in 3D ?</param>
+    /// <param name="pos">The position the sound has to be played at (use if played in 3D).</param>
+    /// <param name="distMin">The minimum distance the sound can be heard from (use if played in 3D).</param>
+    /// <param name="distMax">The maximal distance the sound can be heard from (use if played in 3D).</param>
+    /// <returns>The id given to the AudioPlayer that plays the sound. -1 if couldn't.</returns>
+    /// <returns></returns>
+    public int PlayOnPlayer(int playerId, string soundName, bool randPitch, spatialization space, Vector3 pos, float distMin = 0, float distMax = 0)
+    {
+        // If an AudioData is registered with soundName
+        if (_sounds.ContainsKey(soundName))
+        {
+            AudioData ad = _sounds[soundName];
+            if (ad != null)
+            {
+                AudioPlayer ap = GetFreeAudioPlayer(playerId);
+                // If we could get a free AudioPlayer
+                if (ap != null)
+                {
+                    AudioSource auSo = ap._audio;
+                    auSo.clip = ad.GetClip();
+                    auSo.outputAudioMixerGroup = ad.group;
+                    auSo.spatialBlend = (float)space;
+                    auSo.gameObject.transform.position = pos;
+                    auSo.minDistance = distMin;
+                    auSo.maxDistance = distMax;
+                    auSo.loop = true;
+                    ap._randPitch = randPitch;
+                    ap._minPitch = ad.pitchMin;
+                    ap._maxPitch = ad.pitchMax;
+                    if (randPitch)
+                    {
+                        auSo.pitch = EruleRandom.RangeValue(ad.pitchMin, ad.pitchMax);
+                    }
+                    else
+                    {
+                        auSo.pitch = 1;
+                    }
+                    auSo.Play();
+                }
+                return playerId;
+            }
+        }
+        return -1;
+    }
+
+    /// <summary>
+    /// Fades a sound in.
+    /// </summary>
+    /// <param name="id">The id of the sound to fade in.</param>
+    /// <returns>True if the id exists, else false.</returns>
+    public bool FadeIn(int id)
+    {
+        if (_idPlayers.ContainsKey(id))
+            _idPlayers[id].FadeIn();
+        return false;
+    }
+
+    /// <summary>
+    /// Fades a sound out.
+    /// </summary>
+    /// <param name="id">The id of the sound to fade in.</param>
+    /// <returns>True if the id exists, else false.</returns>
+    public bool FadeOut(int id)
+    {
+        if (_idPlayers.ContainsKey(id))
+            _idPlayers[id].FadeOut();
+        return false;
+    }
 
     /// <summary>
     /// Plays a sound contained in the AudioData that corresponds to a name. The sound is faded in.
@@ -350,27 +428,53 @@ public class AudioManager
     }
 
     /// <summary>
-    /// Fades a sound in.
+    /// Plays a sound contained in the AudioData that corresponds to a name.
     /// </summary>
-    /// <param name="id">The id of the sound to fade in.</param>
-    /// <returns>True if the id exists, else false.</returns>
-    public bool FadeIn(int id)
+    /// <param name="soundName">The name of the AudioData to play a sound of.</param>
+    /// <returns>The id of the AudioPlayer that plays the sound.</returns>
+    public int PlayLoopingClips(string soundName)
     {
-        if (_idPlayers.ContainsKey(id))
-            _idPlayers[id].FadeIn();
-        return false;
+        return PlayLoopingClips(soundName, false, false);
     }
 
     /// <summary>
-    /// Fades a sound out.
+    /// Plays a sound contained in the AudioData that corresponds to a name, given differents parameters of playing.
     /// </summary>
-    /// <param name="id">The id of the sound to fade in.</param>
-    /// <returns>True if the id exists, else false.</returns>
-    public bool FadeOut(int id)
+    /// <param name="soundName">The name of the AudioData to play a sound of.</param>
+    /// <param name="randPitch">Is the sound to be played at a random pitch ?</param>
+    /// <param name="fadeIn">Does the sound have to be played fading in ?</param>
+    /// <returns>The id given to the AudioPlayer that plays the sound. -1 if couldn't.</returns>
+    public int PlayLoopingClips(string soundName, bool randPitch, bool fadeIn)
     {
-        if (_idPlayers.ContainsKey(id))
-            _idPlayers[id].FadeOut();
-        return false;
+        return PlayLoopingClips(soundName, randPitch, fadeIn, spatialization.AUDIO_2D, Vector3.zero, 0, 0);
     }
 
+    /// <summary>
+    /// Plays a sound contained in the AudioData that corresponds to a name, given differents parameters of playing.
+    /// </summary>
+    /// <param name="soundName">The name of the AudioData to play a sound of.</param>
+    /// <param name="randPitch">Is the sound to be played at a random pitch ?</param>
+    /// <param name="fadeIn">Does the sound have to be played fading in ?</param>
+    /// <param name="space">Is the sound to be played in 2D or in 3D ?</param>
+    /// <param name="pos">The position the sound has to be played at (use if played in 3D).</param>
+    /// <param name="distMin">The minimum distance the sound can be heard from (use if played in 3D).</param>
+    /// <param name="distMax">The maximal distance the sound can be heard from (use if played in 3D).</param>
+    /// <returns>The id given to the AudioPlayer that plays the sound. -1 if couldn't.</returns>
+    public int PlayLoopingClips(string soundName, bool randPitch, bool fadeIn, spatialization space, Vector3 pos, float distMin = 0, float distMax = 0)
+    {
+        int id = Play(soundName, randPitch, false, space, pos, distMin, distMax);
+        _idPlayers[id].Looping(id, soundName, randPitch, space, pos, distMin, distMax);
+        if (fadeIn)
+            FadeIn(id);
+        return id;
+    }
+
+    /// <summary>
+    /// Stops the loop on a player.
+    /// </summary>
+    /// <param name="playerId">The id of the player to stop the loop of.</param>
+    public void StopPlayLoopingClips(int playerId)
+    {
+        _idPlayers[playerId].StopLooping();
+    }
 }
