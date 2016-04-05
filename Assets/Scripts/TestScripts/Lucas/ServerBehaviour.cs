@@ -50,7 +50,6 @@ public class ServerBehaviour : MonoBehaviour {
 
 	public void EndOfTurn()
 	{
-		PlayBoardManager.GetInstance().EndTurn();
         ServerManager.GetInstance()._server.EndTurn();
 	}
 

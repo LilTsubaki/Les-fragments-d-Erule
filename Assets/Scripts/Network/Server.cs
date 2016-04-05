@@ -112,7 +112,6 @@ public class Server : MonoBehaviour{
                 currrentTimeout -= Time.fixedDeltaTime;
                 if (currrentTimeout <= 0)
                 {
-                    PlayBoardManager.GetInstance().EndTurn();
                     ServerManager.GetInstance()._server.EndTurn();
                 }
                 break;
@@ -271,6 +270,7 @@ public class Server : MonoBehaviour{
 
     public void EndTurn()
     {
+        PlayBoardManager.GetInstance().EndTurn();
         currrentTimeout = timeout;
 
         if (_client1!=null)
@@ -313,5 +313,10 @@ public class Server : MonoBehaviour{
                 _client2.ResetBoard(success, crit, runes);
             }
         }
+    }
+
+    public void EndTurnOnNextUpdate()
+    {
+        PlayBoardManager.GetInstance().CanEndTurn = true;
     }
 }

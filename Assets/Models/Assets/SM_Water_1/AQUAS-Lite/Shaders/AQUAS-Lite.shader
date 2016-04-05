@@ -45,6 +45,7 @@ Shader "AQUAS-Lite" {
             }
             Blend SrcAlpha OneMinusSrcAlpha
             ZWrite Off
+			ZTest Always
             
             CGPROGRAM
             #pragma vertex vert

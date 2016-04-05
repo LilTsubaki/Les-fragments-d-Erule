@@ -39,7 +39,6 @@ public class PlayBoardBehaviour : MonoBehaviour
         if(PlayBoardManager.GetInstance().CanEndTurn)
         {
             PlayBoardManager.GetInstance().CanEndTurn = false;
-            PlayBoardManager.GetInstance().EndTurn();
             ServerManager.GetInstance()._server.EndTurn();
         }
             

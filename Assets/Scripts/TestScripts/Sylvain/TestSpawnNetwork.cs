@@ -147,7 +147,6 @@ public class TestSpawnNetwork : MonoBehaviour {
 
     public void EndOfTurn()
     {
-        PlayBoardManager.GetInstance().EndTurn();
         ServerManager.GetInstance()._server.EndTurn();
     }
 
