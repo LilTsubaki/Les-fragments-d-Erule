@@ -11,8 +11,14 @@ public class ManagerManager
         if (_instance == null)
         {
             _instance = new ManagerManager();
+            _instance.Init();
         }
         return _instance;
+    }
+
+    private void Init()
+    {
+        _managers = new List<Manager>();
     }
 
     public void Register(Manager manager)
