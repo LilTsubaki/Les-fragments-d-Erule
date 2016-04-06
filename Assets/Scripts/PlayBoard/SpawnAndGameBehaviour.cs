@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TestSpawnNetwork : MonoBehaviour {
+public class SpawnAndGameBehaviour : MonoBehaviour {
     
     public string _boardName;
     public string _prefabEnvironmentName;

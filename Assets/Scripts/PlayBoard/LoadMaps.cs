@@ -91,7 +91,7 @@ public class LoadMaps : MonoBehaviour
         string path = _chosenMap;
         GameObject o = new GameObject();
         string name = Path.GetFileNameWithoutExtension(path);
-        TestSpawnNetwork tsn = o.AddComponent<TestSpawnNetwork>();
+        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();
         tsn._button = _buttonValidation;
         tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;
