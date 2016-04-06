@@ -55,6 +55,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         if(_character.NextState != _character.CurrentState)
         {
+            _character.PreviousState = _character.CurrentState;
             _character.CurrentState = _character.NextState;
         }
 
@@ -91,7 +92,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if(goTo(_character.Position, _translateSpeed))
         {
-            _character.NextState = Character.State.Waiting;
+            _character.NextState = _character.PreviousState;
             // Teleport player if the last hexagon has a portal
             if (_character.Position.Portal != null)
             {
@@ -142,7 +143,7 @@ public class CharacterBehaviour : MonoBehaviour
                 if(_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
-                    _character.NextState = Character.State.Waiting;
+                    _character.NextState = _character.PreviousState;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)

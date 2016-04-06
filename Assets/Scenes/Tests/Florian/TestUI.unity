@@ -379,11 +379,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22482590, guid: de1714f06e93108438f492468a532651, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.09090909
       objectReference: {fileID: 0}
     - target: {fileID: 22482590, guid: de1714f06e93108438f492468a532651, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de1714f06e93108438f492468a532651, type: 2}
@@ -781,15 +781,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.9090909
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22427554, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce4c8850274bdcd49afb395db4e0a72f, type: 2}
@@ -980,9 +980,46 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1066068144}
+    - target: {fileID: 11441916, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: _cutEdge
+      value: 
+      objectReference: {fileID: 642291963}
+    - target: {fileID: 11441916, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: _distort
+      value: 
+      objectReference: {fileID: 642291962}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &642291962 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11466950, guid: c7ef0be3d4590604a889e0890739444d,
+    type: 2}
+  m_PrefabInternal: {fileID: 642291961}
+  m_Script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
+--- !u!114 &642291963 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11422528, guid: c7ef0be3d4590604a889e0890739444d,
+    type: 2}
+  m_PrefabInternal: {fileID: 642291961}
+  m_Script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
+--- !u!1 &642291964 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 109576, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+  m_PrefabInternal: {fileID: 642291961}
+--- !u!114 &642291965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642291964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671de34c439e09a419a9e0bff7312eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cut: {fileID: 642291963}
+  _distort: {fileID: 0}
 --- !u!1001 &696400130
 Prefab:
   m_ObjectHideFlags: 0
@@ -1181,11 +1218,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22494220, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.09090909
       objectReference: {fileID: 0}
     - target: {fileID: 22494220, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3344f8f8a76d6a49ae83c7ad4f62609, type: 2}
@@ -2093,15 +2130,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.9090909
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410794, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72500e10552f9af4ebb747e72f57457e, type: 2}

@@ -62,6 +62,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 446422}
   - 95: {fileID: 9555836}
+  - 114: {fileID: 11424560}
   m_Layer: 0
   m_Name: FX_Metal_01
   m_TagString: Untagged
@@ -764,6 +765,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 492070}
   - 95: {fileID: 9544908}
+  - 114: {fileID: 11406686}
   m_Layer: 0
   m_Name: FX_Metal_03
   m_TagString: Untagged
@@ -1188,6 +1190,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 447592}
   - 95: {fileID: 9568000}
+  - 114: {fileID: 11436920}
   m_Layer: 0
   m_Name: FX_Metal_02
   m_TagString: Untagged
@@ -2168,7 +2171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422242}
@@ -2943,6 +2946,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11406686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671de34c439e09a419a9e0bff7312eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cut: {fileID: 11420496}
+  _distort: {fileID: 11407048}
 --- !u!114 &11407048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3096,6 +3112,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11424560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671de34c439e09a419a9e0bff7312eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cut: {fileID: 11422528}
+  _distort: {fileID: 11466950}
 --- !u!114 &11431454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3151,6 +3180,19 @@ MonoBehaviour:
   Fps: 60
   MyColor: {r: 1, g: 1, b: 1, a: 1}
   MyMaterial: {fileID: 2100000, guid: 9db63a4774ae8954ab6f503f10fb20e4, type: 2}
+--- !u!114 &11436920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671de34c439e09a419a9e0bff7312eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cut: {fileID: 11466036}
+  _distort: {fileID: 11435674}
 --- !u!114 &11438180
 MonoBehaviour:
   m_ObjectHideFlags: 1
