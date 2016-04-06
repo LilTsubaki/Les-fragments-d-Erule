@@ -66,6 +66,11 @@ public class RegisterCamera : MonoBehaviour
         CheckZoom();
     }
 
+    void OnDestroy()
+    {
+        CameraManager.GetInstance().Withdraw(_cameraName);
+    }
+
     /// <summary>
     /// Checks if the Camera has to be moved and changes its position if needed.
     /// </summary>

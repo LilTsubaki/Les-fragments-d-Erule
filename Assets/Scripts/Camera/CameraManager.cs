@@ -79,6 +79,19 @@ public class CameraManager : Manager<CameraManager>
         return false;
     }
 
+    public bool Withdraw(string name)
+    {
+        if(!_cameras.ContainsKey(name))
+        {
+            return false;
+        }
+        if (name == _activeName)
+            return false;
+
+        _cameras.Remove(name);
+        return true;
+    }
+
     /// <summary>
     /// Sets the Panel used to fade between two Cameras.
     /// </summary>

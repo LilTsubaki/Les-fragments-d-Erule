@@ -80,6 +80,11 @@ public class UIPanel : MonoBehaviour
         //DontDestroyOnLoad(transform.gameObject);
     }
 
+    void OnDestroy()
+    {
+        UIManager.GetInstance().Withdraw(panelID);
+    }
+
     void ClosePanel()
     {
         UIManager.GetInstance().HidePanel(panelID);

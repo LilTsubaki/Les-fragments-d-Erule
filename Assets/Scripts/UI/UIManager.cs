@@ -63,6 +63,16 @@ public class UIManager : Manager<UIManager>
         return false;
     }
 
+    public bool Withdraw(string name)
+    {
+        if (!_panels.ContainsKey(name))
+        {
+            return false;
+        }
+        _panels.Remove(name);
+        return true;
+    }
+
     /// <summary>
     /// Shows a panel and puts it in the higher level.
     /// </summary>
