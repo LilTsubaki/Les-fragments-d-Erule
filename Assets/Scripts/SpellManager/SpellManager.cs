@@ -87,7 +87,6 @@ public class SpellManager : Manager<SpellManager>
     public SpellManager() {
         if (_instance != null)
             throw new ManagerException();
-        _instance.init();
     }
 
     private void LoadRange()
@@ -224,7 +223,7 @@ public class SpellManager : Manager<SpellManager>
     /// <summary>
     /// Read json files to fill dictionaries
     /// </summary>
-    private void init()
+    public void Init()
     {
         _ranges = new Dictionary<int, Range>();
         _areas = new Dictionary<int, Area>();

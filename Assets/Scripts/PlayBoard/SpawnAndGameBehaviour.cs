@@ -51,6 +51,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
         _gameStarted = false;
 
         SpellManager.GetInstance();
+        SpellManager.GetInstance().Init();
         RunicBoardManager.GetInstance().RegisterBoard(new RunicBoard());
         PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
 

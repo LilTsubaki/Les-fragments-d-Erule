@@ -77,7 +77,7 @@ public class UIPanel : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        //DontDestroyOnLoad(transform.gameObject);
     }
 
     void ClosePanel()
