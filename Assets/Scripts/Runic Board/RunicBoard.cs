@@ -99,7 +99,7 @@ public class RunicBoard {
 
     public void Testing()
     {
-        Logger.logLvl = Logger.Type.TRACE;
+        //Logger.logLvl = Logger.Type.TRACE;
         //Testing !
         Rune r1 = new Rune(Element.GetElement(0), -1, 0);
         _runesInHand.Add(r1.PositionInHand, r1);
