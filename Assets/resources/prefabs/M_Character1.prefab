@@ -2140,9 +2140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toCenter: 0
-  SlowSpeed: 15
-  GoingInSpeed: 3
-  GoingOutSpeed: 0.5
+  _slowDuration: 0.5
+  _slowSpeed: 15
+  _gatheringDuration: 1.5
+  _goingInSpeed: 1
+  _goingOutSpeed: 3
 --- !u!114 &11414924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2212,7 +2214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 0
   _translateSpeed: 0
-  _orbs: {fileID: 0}
+  _orbs: {fileID: 11408590}
 --- !u!114 &11483750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2412,6 +2414,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0.783
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _orbs
+      value: 
+      objectReference: {fileID: 11408590}
+    - target: {fileID: 0}
+      propertyPath: _slowDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _gatheringDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _slowSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _goingInSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _goingOutSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

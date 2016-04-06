@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AroundMapScreen : MonoBehaviour {
 
-    public TestSpawnNetwork map;
+    public SpawnAndGameBehaviour map;
 	
 	// Update is called once per frame
 	void Update () {
