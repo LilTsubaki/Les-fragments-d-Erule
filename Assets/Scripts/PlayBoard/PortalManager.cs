@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PortalManager {
-
-    private static PortalManager _instance;
+public class PortalManager : Manager<PortalManager>{
 
     private Portal _portal1;
     private Portal _portal2;
 
-    public static PortalManager GetInstance()
+    public PortalManager()
     {
-        if (_instance == null)
-        {
-            _instance = new PortalManager();
-            _instance.Init();
-        }
+        if (_instance != null)
+            throw new ManagerException();
 
-        return _instance;
+        Init();
     }
 
     private void Init()

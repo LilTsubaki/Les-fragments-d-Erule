@@ -1,19 +1,10 @@
-﻿class ServerManager
+﻿class ServerManager : Manager<ServerManager>
 {
-    private static ServerManager manager;
-
     public Server _server;
 
-    private ServerManager()
-    {
-
-    }
-
-    public static ServerManager GetInstance()
-    {
-        if (manager == null)
-            manager = new ServerManager();
-        return manager;
+    public ServerManager() {
+        if (_instance != null)
+            throw new ManagerException();
     }
 
     public void Init(Server server)

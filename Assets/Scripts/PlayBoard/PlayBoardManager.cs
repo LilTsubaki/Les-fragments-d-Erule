@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayBoardManager
+public class PlayBoardManager : Manager<PlayBoardManager>
 {
-	private static PlayBoardManager _instance;
 	private PlayBoard _board;
     private bool _canEndTurn;
 
@@ -37,14 +36,6 @@ public class PlayBoardManager
 
     public enum State { MoveMode, SpellMode };
     private State _currentState;
-
-    public static PlayBoardManager GetInstance(){
-		if (_instance == null) {
-			_instance = new PlayBoardManager ();
-		}
-
-		return _instance;
-	}
 
     public int TurnNumber
     {
@@ -95,8 +86,11 @@ public class PlayBoardManager
         }
     }
 
-    private PlayBoardManager ()
+    public PlayBoardManager ()
 	{
+        if (_instance != null)
+            throw new ManagerException();
+
         _secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
         _turnNumber = 0;
         CanEndTurn = false;

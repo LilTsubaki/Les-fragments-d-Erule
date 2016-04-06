@@ -1,19 +1,10 @@
-﻿class ClientManager
+﻿class ClientManager : Manager<ClientManager>
 {
-    private static ClientManager manager;
-
     public Client _client;
 
-    private ClientManager()
-    {
-
-    }
-
-    public static ClientManager GetInstance()
-    {
-        if (manager == null)
-            manager = new ClientManager();
-        return manager;
+    public ClientManager() {
+        if (_instance != null)
+            throw new ManagerException();
     }
 
     public void Init(Client client)

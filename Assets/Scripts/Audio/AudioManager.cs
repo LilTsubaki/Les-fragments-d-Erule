@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// The class managing the AudioSources. It uses MaxAudioContainers different sources. The AudioClips have to be registered in AudioDatas, by group of sound.
 /// </summary>
-public class AudioManager
+public class AudioManager : Manager<AudioManager>
 {
     /// <summary>
     /// Max AudioContainer pool size.
@@ -24,10 +24,6 @@ public class AudioManager
     /// The mapping between names of sound groups and the sounds.
     /// </summary>
     private Dictionary<string, AudioData> _sounds;
-    /// <summary>
-    /// The instance of AudioManager.
-    /// </summary>
-    static private AudioManager _instance;
     /// <summary>
     /// The mapping between AudioMixerGroups and previous volumes, before being muted.
     /// </summary>
@@ -48,8 +44,11 @@ public class AudioManager
     /// <summary>
     /// Constructor of the AudioManager. Must only be called from GetInstance.
     /// </summary>
-    private AudioManager()
+    public AudioManager()
     {
+        if (_instance != null)
+            throw new ManagerException();
+
         // Creation of the root Game Object containing every audio related Game Object
         GameObject parent = new GameObject();
         parent.name = "AudioContainers";
@@ -76,19 +75,6 @@ public class AudioManager
 
         _nextIdPool = 0;
         _idPlayers = new Dictionary<int, AudioPlayer>();
-    }
-
-    /// <summary>
-    /// Gets the only instance of AudioManager (singleton).
-    /// </summary>
-    /// <returns>The only instance of AudioManager.</returns>
-    public static AudioManager GetInstance()
-    {
-        if (_instance == null)
-        {
-            _instance = new AudioManager();
-        }
-        return _instance;
     }
 
     /// <summary>
