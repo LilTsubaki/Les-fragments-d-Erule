@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -236,6 +237,11 @@ public class Client : MonoBehaviour{
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
                 Logger.Debug("Kept : " + _runeKept);
                 _resetBoard = true;
+                return true;
+
+            case 17:
+                Logger.Debug("receive Restart Game request");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 return true;
 
             default:

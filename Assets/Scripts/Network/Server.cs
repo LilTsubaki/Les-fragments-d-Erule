@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -313,6 +314,13 @@ public class Server : MonoBehaviour{
                 _client2.ResetBoard(success, crit, runes);
             }
         }
+    }
+
+    public void RestartGame()
+    {
+        _client1.RestartGame();
+        _client2.RestartGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void EndTurnOnNextUpdate()

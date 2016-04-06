@@ -288,6 +288,23 @@ public class ServerListener
         }
     }
 
+    public void RestartGame()
+    {
+        try
+        {
+            Logger.Trace("EndTurn");
+
+            NetworkUtils.WriteInt(17, _client.GetStream());
+
+            _client.GetStream().Flush();
+        }
+        catch (Exception e)
+        {
+            Logger.Error("Restart game failed : " + e.StackTrace);
+            _isRunning = false;
+        }
+    }
+
     public void ResetBoard(bool success, bool crit, int runes)
     {
         try { 
