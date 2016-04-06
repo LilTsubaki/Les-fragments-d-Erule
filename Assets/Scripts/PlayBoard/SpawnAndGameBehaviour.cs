@@ -84,8 +84,8 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                     ServerManager.GetInstance()._server.CurrentState = Server.State.playing;
                     ServerManager.GetInstance()._server.SendCharacter();
                     UIManager.GetInstance().HideAll();
-                    UIManager.GetInstance().ShowPanel("menuButton");
-                    UIManager.GetInstance().ShowPanel("PanelPlayerBars");
+                    UIManager.GetInstance().ShowPanelNoStack("PanelPlayerBars");
+                    UIManager.GetInstance().ShowPanelNoStack("menuButton");
                 }
                 else
                     Logger.Debug(PlayBoardManager.GetInstance().GetOtherPlayer().Name + " didn't choose a position");

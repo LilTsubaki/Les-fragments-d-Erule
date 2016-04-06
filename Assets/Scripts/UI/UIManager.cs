@@ -77,9 +77,9 @@ public class UIManager : Manager<UIManager>
             {
                 return false;
             }
-            panel.transform.SetAsLastSibling();
             if (panel != null)
             {
+                panel.transform.SetAsLastSibling();
                 panel.SetActive(true);
                 _openStack.Push(panel);
             }
@@ -102,9 +102,9 @@ public class UIManager : Manager<UIManager>
             {
                 return false;
             }
-            panel.transform.SetAsLastSibling();
             if (panel != null)
             {
+                panel.transform.SetAsLastSibling();
                 panel.SetActive(true);
                 _openNoStack.Add(panel);
             }
@@ -180,9 +180,9 @@ public class UIManager : Manager<UIManager>
         if (_panels.ContainsKey(name))
         {
             GameObject panel = _panels[name];
-            panel.transform.SetAsFirstSibling();
             if(panel != null)
             {
+                panel.transform.SetAsFirstSibling();
                 if (_openNoStack.Contains(panel))
                 {
                     panel.SetActive(false);
