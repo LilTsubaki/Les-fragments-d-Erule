@@ -50,7 +50,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
 
         _gameStarted = false;
 
-        SpellManager.getInstance();
+        SpellManager.GetInstance();
         RunicBoardManager.GetInstance().RegisterBoard(new RunicBoard());
         PlayBoardManager.GetInstance().Init(_playBoard, _player1, _player2);
 
@@ -164,7 +164,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
     {
         if (PlayBoardManager.GetInstance().GetCurrentPlayer().CurrentState != Character.State.Moving)
         {
-            SpellManager.getInstance().InitSpell();
+            SpellManager.GetInstance().InitSpell();
         }
     }
 

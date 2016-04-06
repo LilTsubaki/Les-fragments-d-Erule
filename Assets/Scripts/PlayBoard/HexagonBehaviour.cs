@@ -101,7 +101,7 @@ public class HexagonBehaviour : MonoBehaviour
     {
         if (_hexagon == PlayBoardManager.GetInstance().GetCurrentPlayer().Position)
         {
-            FinalArea = SpellManager.getInstance().CurrentSelfArea.AreaToHexa(Direction.EnumDirection.East, _hexagon);
+            FinalArea = SpellManager.GetInstance().CurrentSelfArea.AreaToHexa(Direction.EnumDirection.East, _hexagon);
             //Logger.Error("nb hexa final area : " + _finalArea.Count);
             for (int i = 0; i < FinalArea.Count; i++)
             {
@@ -113,7 +113,7 @@ public class HexagonBehaviour : MonoBehaviour
         else
         {
             Direction.EnumDirection newDirection = Direction.GetDirection(PlayBoardManager.GetInstance().GetCurrentPlayer().Position, _hexagon);
-            FinalArea = SpellManager.getInstance().CurrentTargetArea.AreaToHexa(newDirection, _hexagon);
+            FinalArea = SpellManager.GetInstance().CurrentTargetArea.AreaToHexa(newDirection, _hexagon);
             //Logger.Error("nb hexa final area : " + _finalArea.Count);
             for (int i = 0; i < FinalArea.Count; i++)
             {

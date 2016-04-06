@@ -12,7 +12,7 @@ public class PlayerOnTimeEffect : EffectOnTime
 
         try
         {
-            _effect = SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
+            _effect = SpellManager.GetInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {

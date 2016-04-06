@@ -149,7 +149,7 @@ public class PlayBoardBehaviour : MonoBehaviour
             {
                 hexagonBehaviour.MakeFinalArea();
             }
-            SpellManager.getInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
+            SpellManager.GetInstance().ApplyEffects(hexagonBehaviour.FinalArea, hexa);
             PlayBoardManager.GetInstance().Board.ResetBoard();
         }
     }
