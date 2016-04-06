@@ -83,6 +83,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                     ServerManager.GetInstance()._server.CurrentState = Server.State.playing;
                     ServerManager.GetInstance()._server.SendCharacter();
                     UIManager.GetInstance().HideAll();
+                    UIManager.GetInstance().ShowPanel("menuButton");
                     UIManager.GetInstance().ShowPanel("PanelPlayerBars");
                 }
                 else
