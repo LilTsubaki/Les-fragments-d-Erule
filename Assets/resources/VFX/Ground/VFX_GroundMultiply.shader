@@ -2,25 +2,25 @@
 	Properties {
 		_MainTex ("Grayscale TilingTex", 2D) = "white" {}
 		_Mask ("Grayscale Mask", 2D) = "white" {}
-		_MaskContrast("Mask contrast", Range(0.2,3)) = 1 // the contrast is blown out below 1
+		_MaskContrast("Mask contrast", Range(0.1,5)) = 1 // the contrast is blown out below 1
 		_Tint("Emissive tint", color) = (1,1,1) // half3 color value (do not need alpha)
 		_Opacity("Opacity", Range(0,1)) = 0 
 		_Strength("Emissive strength", Range (1,100)) = 1
-		_Contrast("Contrast", Range(1,3)) = 1 // the contrast is blown out below 1
+		_Contrast("Contrast", Range(0.1,3)) = 1 // the contrast is blown out below 1
 
 		_TilingTexMoveSpeedV("V Move Speed", Range(-5,5)) = 0.5
 		_TilingTexMoveSpeedU("U Move Speed", Range(-5,5)) = 0.5
 
 	}
 	SubShader {
-		Tags { "RenderType"="Transparent+99" }
+		Tags { "RenderType"="Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		Blend DstColor Zero
 		ZWrite Off
 		Lighting Off
 
 		CGPROGRAM
 
-		#pragma surface surf Lambert alpha
+		#pragma surface surf Lambert// alpha
 
 		#pragma target 3.0
 
@@ -49,15 +49,12 @@
 			float TilingTexMoveV = _TilingTexMoveSpeedV * _Time;
 			TilingTexMoveScrolledUV += float2(TilingTexMoveU, TilingTexMoveV);
 
-			half c = tex2D (_MainTex, TilingTexMoveScrolledUV); 
-			half e = tex2D (_Mask, IN.uv_Mask);
-			half d = pow(c, _Contrast);
+			half c = pow(tex2D (_MainTex, TilingTexMoveScrolledUV), _Contrast); 
+			half d = pow(tex2D (_Mask, IN.uv_Mask), _MaskContrast);
 			 
-			o.Albedo = d * _Tint * _Strength;
-			//o.Albedrro += lerp(1, d, _Opacity);
-			o.Emission = lerp (0, d, _Opacity) * _Tint * _Strength;
-
-			o.Alpha = pow(e, _MaskContrast) * _Opacity;
+			o.Albedo = c * _Tint + (1 - d);
+			o.Albedo = lerp(1, o.Albedo, _Opacity);
+			o.Emission = lerp(0, c, _Opacity) * _Tint * _Strength;
 
 		}
 		ENDCG
