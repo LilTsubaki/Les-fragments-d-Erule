@@ -318,8 +318,14 @@ public class Server : MonoBehaviour{
 
     public void RestartGame()
     {
-        _client1.RestartGame();
-        _client2.RestartGame();
+        if (_client1 != null)
+        {
+            _client1.RestartGame();
+        }
+        if (_client2 != null)
+        {
+            _client2.RestartGame();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
