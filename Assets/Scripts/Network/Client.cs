@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ public class Client : MonoBehaviour{
     public Text timerText;
     Dictionary<string, int> _hostsReceived;
     bool _newHost;
+
+    bool _restartGame;
 
     String _name;
 
@@ -110,6 +113,7 @@ public class Client : MonoBehaviour{
         _runeKept = 0;
         ClientManager.GetInstance().Init(this);
         _hostsReceived = new Dictionary<string, int>();
+        _restartGame = false;
     }
 
     void Update()
@@ -144,6 +148,11 @@ public class Client : MonoBehaviour{
 
             _hostsReceived.Clear();
             _newHost = false;
+        }
+
+        if(_restartGame)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -236,6 +245,11 @@ public class Client : MonoBehaviour{
                 _runeKept = NetworkUtils.ReadInt(_tcpClient.GetStream());
                 Logger.Debug("Kept : " + _runeKept);
                 _resetBoard = true;
+                return true;
+
+            case 17:
+                Logger.Debug("receive Restart Game request");
+                _restartGame = true;
                 return true;
 
             default:

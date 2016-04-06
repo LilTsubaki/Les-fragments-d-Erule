@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SpellAnimationManager {
-
-    static private SpellAnimationManager _instance;
+public class SpellAnimationManager : Manager<SpellAnimationManager> {
+    
     private Dictionary<string, SpellAnimation> _animations;
     private List<Element> _elementsHierarchy;
 
-    private SpellAnimationManager()
+    public SpellAnimationManager()
     {
+        if (_instance != null)
+            throw new ManagerException();
+
         _animations = new Dictionary<string, SpellAnimation>();
         _elementsHierarchy = new List<Element>();
         _elementsHierarchy.Add(Element.GetElement(1));
@@ -17,16 +19,6 @@ public class SpellAnimationManager {
         _elementsHierarchy.Add(Element.GetElement(5));
         _elementsHierarchy.Add(Element.GetElement(3));
         _elementsHierarchy.Add(Element.GetElement(0));
-    }
-
-    public static SpellAnimationManager GetInstance()
-    {
-        if(_instance == null)
-        {
-            _instance = new SpellAnimationManager();
-        }
-
-        return _instance;
     }
 
     public bool Register(string id, SpellAnimation anim)

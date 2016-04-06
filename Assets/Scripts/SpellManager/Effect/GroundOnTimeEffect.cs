@@ -11,7 +11,7 @@ public class GroundOnTimeEffect : EffectOnTime
         _id = (int)js.GetField(js.keys[0]).n;
         try
         {
-            _effect = SpellManager.getInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
+            _effect = SpellManager.GetInstance().GetDirectEffectById((int)js.GetField(js.keys[1]).n);
         }
         catch
         {

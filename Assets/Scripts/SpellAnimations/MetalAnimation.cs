@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Xft;
 
 public class MetalAnimation : SpellAnimation
 {
@@ -29,6 +30,5 @@ public class MetalAnimation : SpellAnimation
         Vector3 look = new Vector3(_to.x, _from.y, _to.z);
         gameObject.transform.LookAt(look);
         _trail.SetActive(true);
-        //_trail.GetComponent<XWeaponTrailDemo>().
     }
 }

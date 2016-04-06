@@ -3,16 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class UIManager
+public class UIManager : Manager<UIManager>
 {
     /// <summary>
     /// The mapping between a name and the GameObject of the Panel registered.
     /// </summary>
     private Dictionary<string, GameObject> _panels;
-    /// <summary>
-    /// The instance of the UIManager (singleton).
-    /// </summary>
-    static private UIManager _instance;
     /// <summary>
     /// The stack of panels opened.
     /// </summary>
@@ -41,24 +37,14 @@ public class UIManager
     /// <summary>
     /// Constructor of the UIManager. Must only be called in GetInstance.
     /// </summary>
-    private UIManager()
+    public UIManager()
     {
+        if(_instance != null)
+            throw new ManagerException();
+
         _panels = new Dictionary<string, GameObject>();
         _openStack = new Stack<GameObject>();
         _openNoStack = new List<GameObject>();
-    }
-
-    /// <summary>
-    /// Gets the only instance of UIManager. Creates it if null.
-    /// </summary>
-    /// <returns></returns>
-    public static UIManager GetInstance()
-    {
-        if (_instance == null)
-        {
-            _instance = new UIManager();
-        }
-        return _instance;
     }
 
     /// <summary>

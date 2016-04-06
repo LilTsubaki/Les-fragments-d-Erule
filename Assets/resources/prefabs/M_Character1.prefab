@@ -2140,11 +2140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toCenter: 0
-  _slowDuration: 0
-  _slowSpeed: 0
-  _gatheringDuration: 0
-  _goingInSpeed: 0
-  _goingOutSpeed: 0
+  _slowDuration: 0.5
+  _slowSpeed: 15
+  _gatheringDuration: 1.5
+  _goingInSpeed: 1
+  _goingOutSpeed: 3
 --- !u!114 &11414924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2419,6 +2419,26 @@ Prefab:
       propertyPath: _orbs
       value: 
       objectReference: {fileID: 11408590}
+    - target: {fileID: 0}
+      propertyPath: _slowDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _gatheringDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _slowSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _goingInSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _goingOutSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192890}

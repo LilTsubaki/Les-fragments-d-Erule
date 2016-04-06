@@ -41,14 +41,14 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
         //Logger.logLvl = Logger.Type.TRACE;
 
-        SpellManager.getInstance();
+        SpellManager.GetInstance();
         Logger.Trace("spellManager initialized");
 
         /*Queue<Element> elements = new Queue<Element>();
         elements.Enqueue(Element.GetElement(3));
         elements.Enqueue(Element.GetElement(3));
 
-        SelfSpell testSp = SpellManager.getInstance().ElementNode.GetSelfSpell(elements);
+        SelfSpell testSp = SpellManager.GetInstance().ElementNode.GetSelfSpell(elements);
         Logger.Trace(testSp._effects.GetIds().Count);
         List<int> effectIds = testSp._effects.GetIds();
 
@@ -64,7 +64,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
 
         /*for (int i = 0; i < effectIds.Count; i++)
         {
-            EffectDirect effectTest = SpellManager.getInstance().getDirectEffectById((int)effectIds[i]);
+            EffectDirect effectTest = SpellManager.GetInstance().getDirectEffectById((int)effectIds[i]);
             effectTest.ApplyEffect(rangeTest, hexaStart1, player1);
         }*/
     }
@@ -93,7 +93,7 @@ public class LoadAndDeplacementTest : MonoBehaviour
         {
             List<Element> elementsList = _runicBoard.GetComponent<RunicBoardBehaviour>().Board.GetSortedElementList();
             Queue<Element> elements = new Queue<Element>(elementsList);
-            SpellManager.getInstance().InitSpell(elements);
+            SpellManager.GetInstance().InitSpell(elements);
 
             
         }

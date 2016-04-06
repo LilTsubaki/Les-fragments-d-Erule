@@ -21,6 +21,7 @@ public class Character : Entity, Killable
 
     private List<Hexagon> _pathToFollow;
 
+    private State _previousState;
     private State _state;
     private State _nextState;
 
@@ -1017,6 +1018,19 @@ public class Character : Entity, Killable
         set
         {
             _idAreaAppliedThisTurn = value;
+        }
+    }
+
+    public State PreviousState
+    {
+        get
+        {
+            return _previousState;
+        }
+
+        set
+        {
+            _previousState = value;
         }
     }
 }

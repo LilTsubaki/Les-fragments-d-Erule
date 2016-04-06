@@ -16,7 +16,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     public GameObject _waterRuneAsset;
     public GameObject _woodRuneAsset;
 
-    public Text _runeTooltip;
+    public Image _runeTooltip;
 
     private GameObject _heldRune;
 
@@ -55,25 +55,26 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     private void UpdateRuneToolTip(RuneBehaviour rb)
     {
         Element elem = rb._rune.Element;
-        switch(elem._name)
+        _runeTooltip.gameObject.SetActive(true);
+        switch (elem._name)
         {
             case "Fire":
-                _runeTooltip.text = "Dégâts et soins sur plusieurs tours.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsFEU");
                 break;
             case "Water":
-                _runeTooltip.text = "Draine la vie et soigne beaucoup.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsEAU");
                 break;
             case "Air":
-                _runeTooltip.text = "Grande portée mais faibles dégâts.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsAIR");
                 break;
             case "Earth":
-                _runeTooltip.text = "Gros dégâts mais faible portée.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsTERRE");
                 break;
             case "Wood":
-                _runeTooltip.text = "Pousse ou attire l'adversaire.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsBOIS");
                 break;
             case "Metal":
-                _runeTooltip.text = "Influe sur la protection.";
+                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsMETAL");
                 break;
         }
     }
@@ -175,6 +176,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
 
     void Awake()
     {
+        _runeTooltip.gameObject.SetActive(false);
         DeckSelection = new DeckSelection();
         InstantiateRunes();
     }

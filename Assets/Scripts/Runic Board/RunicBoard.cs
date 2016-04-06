@@ -99,7 +99,7 @@ public class RunicBoard {
 
     public void Testing()
     {
-        Logger.logLvl = Logger.Type.TRACE;
+        //Logger.logLvl = Logger.Type.TRACE;
         //Testing !
         Rune r1 = new Rune(Element.GetElement(0), -1, 0);
         _runesInHand.Add(r1.PositionInHand, r1);
@@ -537,7 +537,7 @@ public class RunicBoard {
         //{
         //    Logger.Debug("E : " + e._id + ", " + e._name);
         //}
-        SpellManager sm = SpellManager.getInstance();
+        SpellManager sm = SpellManager.GetInstance();
         if (sm.ElementNode.GetSelfSpell(elements) != null)
             return true;
 

@@ -4,16 +4,12 @@ using System.Collections.Generic;
 /// <summary>
 /// The class managing the Cameras. Cameras have to be registered with the script RegisterCamera.
 /// </summary>
-public class CameraManager
+public class CameraManager : Manager<CameraManager>
 {
     /// <summary>
     /// The mapping between cameras' names and the Game Objects of the registered Cameras.
     /// </summary>
     private Dictionary<string, GameObject> _cameras;
-    /// <summary>
-    /// The only instance of CameraManager.
-    /// </summary>
-    static private CameraManager _instance;
     /// <summary>
     /// The active Camera the CameraManager acts on.
     /// </summary>
@@ -47,22 +43,11 @@ public class CameraManager
     /// <summary>
     /// Constructor of CameraManager. Must be used in GetInstance only.
     /// </summary>
-    private CameraManager()
+    public CameraManager()
     {
+        if (_instance != null)
+            throw new ManagerException();
         _cameras = new Dictionary<string, GameObject>();
-    }
-
-    /// <summary>
-    /// Gets the only instance of the CameraManager. Creates the instance if doesn't already exists.
-    /// </summary>
-    /// <returns>The only instance of hte CameraManager.</returns>
-    public static CameraManager GetInstance()
-    {
-        if (_instance == null)
-        {
-            _instance = new CameraManager();
-        }
-        return _instance;
     }
 
     /// <summary>

@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class RunicBoardManager{
-
-    static private RunicBoardManager _instance;
+public class RunicBoardManager : Manager<RunicBoardManager>{
 
     public RunicBoardBehaviour _runicBoardBehaviour;
 
@@ -28,21 +26,15 @@ public class RunicBoardManager{
         }
     }
 
-    RunicBoardManager()
+    public RunicBoardManager()
     {
+        if (_instance != null)
+            throw new ManagerException();
+
         _compatibilityMaluses = new Dictionary<int, CompatibilityMalus>();
         _compatibilities = new Dictionary<string, Compatibility>();
         _runeNumberInfluences = new Dictionary<int, RuneNumberInfluence>();
         Init();
-    }
-
-    public static RunicBoardManager GetInstance()
-    {
-        if(_instance == null)
-        {
-            _instance = new RunicBoardManager();
-        }
-        return _instance;
     }
 
     public void RegisterBoard(RunicBoard board)

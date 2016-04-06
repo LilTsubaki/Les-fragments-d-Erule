@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class SpellManager
+public class SpellManager : Manager<SpellManager>
 {
     private static SpellManager _SpellManager;
 
@@ -84,22 +84,10 @@ public class SpellManager
         }
     }
 
-    private SpellManager() { }
-
-    /// <summary>
-    /// spellManager singleton getInstance()
-    /// </summary>
-    /// <returns>unique instance of spellManager</returns>
-    public static SpellManager getInstance()
-    {
-        if (_SpellManager == null)
-        {
-            _SpellManager = new SpellManager();
-            _SpellManager.init();
-        }
-            
-
-        return _SpellManager;
+    public SpellManager() {
+        if (_instance != null)
+            throw new ManagerException();
+        _instance.init();
     }
 
     private void LoadRange()
@@ -373,7 +361,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                    Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
@@ -384,7 +372,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                    Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
@@ -399,7 +387,7 @@ public class SpellManager
                 {
                     for (int i = 0; i < effectIds.Count; i++)
                     {
-                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                         if (effectTest != null)
                             effectTest.ApplyEffect(finalArea, target, currentPlayer);
                     }
@@ -410,7 +398,7 @@ public class SpellManager
                 {
                     for (int i = 0; i < effectIds.Count; i++)
                     {
-                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                         if (effectTest != null)
                             effectTest.ApplyEffect(finalArea, target, currentPlayer);
                     }
@@ -447,7 +435,7 @@ public class SpellManager
             {
                 for (int i = 0; i < effectIds.Count; i++)
                 {
-                    Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                    Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                     if (effectTest != null)
                         effectTest.ApplyEffect(finalArea, target, currentPlayer);
                 }
@@ -461,7 +449,7 @@ public class SpellManager
                 {
                     for (int i = 0; i < effectIds.Count; i++)
                     {
-                        Effect effectTest = SpellManager.getInstance().GetDirectEffectById((int)effectIds[i]);
+                        Effect effectTest = SpellManager.GetInstance().GetDirectEffectById((int)effectIds[i]);
                         if (effectTest != null)
                             effectTest.ApplyEffect(finalArea, target, currentPlayer);
                     }

@@ -132,13 +132,13 @@ public class ServerListener
 
         NetworkUtils.WriteInt(3, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
-        TargetSpell spell =SpellManager.getInstance ().ElementNode.GetTargetSpell( que);
+        TargetSpell spell =SpellManager.GetInstance ().ElementNode.GetTargetSpell( que);
 
         //Logger.Error("spell != null" + (spell != null));
         //Logger.Error("WTF");
-        Logger.Debug("Is terminal : " + SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
+        Logger.Debug("Is terminal : " + SpellManager.GetInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()));
         NetworkUtils.WriteBool(spell!=null, _client.GetStream());
-        NetworkUtils.WriteBool( SpellManager.getInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
+        NetworkUtils.WriteBool( SpellManager.GetInstance ().ElementNode.IsTerminal(rBoard.GetSortedElementQueue ()), _client.GetStream());
 
         /* private Orientation.EnumOrientation _orientation;*/
         if(spell != null)
@@ -149,8 +149,8 @@ public class ServerListener
             }
             PlayBoardManager.GetInstance().Board._colorAccessible = true;
 
-            Range range = SpellManager.getInstance().GetRangeById(spell._rangeId);
-            Area area = SpellManager.getInstance().GetAreaById(spell.AreaId);
+            Range range = SpellManager.GetInstance().GetRangeById(spell._rangeId);
+            Area area = SpellManager.GetInstance().GetAreaById(spell.AreaId);
             //write min range and max range
             NetworkUtils.WriteInt(range.MinRange, _client.GetStream());
             NetworkUtils.WriteInt(range.MaxRange, _client.GetStream());
@@ -202,14 +202,14 @@ public class ServerListener
 
         NetworkUtils.WriteInt(5, _client.GetStream());
         Queue<Element> que = rBoard.GetSortedElementQueue();
-        SelfSpell spell = SpellManager.getInstance().ElementNode.GetSelfSpell(que);
+        SelfSpell spell = SpellManager.GetInstance().ElementNode.GetSelfSpell(que);
         if(spell != null)
         {
             PlayBoardManager.GetInstance().CurrentState = PlayBoardManager.State.SpellMode;
-            SpellManager.getInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
+            SpellManager.GetInstance().SetSpellToInit(rBoard.GetSortedElementQueue());
         }
         NetworkUtils.WriteBool(spell != null, _client.GetStream());
-        NetworkUtils.WriteBool(SpellManager.getInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()), _client.GetStream());
+        NetworkUtils.WriteBool(SpellManager.GetInstance().ElementNode.IsTerminal(rBoard.GetSortedElementQueue()), _client.GetStream());
 
         _client.GetStream().Flush();
 
@@ -284,6 +284,23 @@ public class ServerListener
         catch (Exception e)
         {
             Logger.Error("end turn failed : " + e.StackTrace);
+            _isRunning = false;
+        }
+    }
+
+    public void RestartGame()
+    {
+        try
+        {
+            Logger.Trace("EndTurn");
+
+            NetworkUtils.WriteInt(17, _client.GetStream());
+
+            _client.GetStream().Flush();
+        }
+        catch (Exception e)
+        {
+            Logger.Error("Restart game failed : " + e.StackTrace);
             _isRunning = false;
         }
     }

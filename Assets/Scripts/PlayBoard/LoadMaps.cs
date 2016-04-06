@@ -19,6 +19,7 @@ public class LoadMaps : MonoBehaviour
 
     private string _chosenMap;
     private string _chosenEnvironment;
+	private string _cameraAnimation;
 
     public AroundMapScreen _around;
     public Text _textPlayerToPlace;
@@ -55,7 +56,7 @@ public class LoadMaps : MonoBehaviour
             string mapName = maplist[i].GetField("name").str;
             string mapImage = maplist[i].GetField("miniature").str;
             string environment = maplist[i].GetField("environment").str;
-
+			string animation = maplist [i].GetField ("triggerAnim").str;
 
             GameObject obj = Instantiate(_buttonToCopy);
             obj.SetActive(true);
@@ -63,7 +64,7 @@ public class LoadMaps : MonoBehaviour
             obj.transform.localPosition = new Vector3(offsetX + (buttonSizeX + offsetX * 2) * (i % nbButtonsPerLine), (i / nbButtonsPerLine + 1) * -buttonSizeY);
 
             Button button = obj.GetComponent<Button>();
-            button.onClick.AddListener(delegate { LoadingScreen(path, environment); });
+            button.onClick.AddListener(delegate { LoadingScreen(path, environment, animation); });
             button.GetComponentInChildren<Text>().text = mapName;
             Sprite image = Resources.Load("miniatures/" + mapImage, typeof(Sprite)) as Sprite;
             if (image == null)
@@ -77,12 +78,13 @@ public class LoadMaps : MonoBehaviour
         }
     }
 
-    void LoadingScreen(string path, string environment)
+	void LoadingScreen(string path, string environment, string animation)
     {
         UIManager.GetInstance().FadeOutPanelNoStack("PanelChoiceMap");
         UIManager.GetInstance().FadeInPanelNoStack("Loading");
         _chosenMap = path;
         _chosenEnvironment = environment;
+		_cameraAnimation = animation;
         Invoke("LoadMap", 1);
     }
 
@@ -91,7 +93,7 @@ public class LoadMaps : MonoBehaviour
         string path = _chosenMap;
         GameObject o = new GameObject();
         string name = Path.GetFileNameWithoutExtension(path);
-        TestSpawnNetwork tsn = o.AddComponent<TestSpawnNetwork>();
+        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();
         tsn._button = _buttonValidation;
         tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;
@@ -102,5 +104,6 @@ public class LoadMaps : MonoBehaviour
         tsn._prefabEnvironmentName = _chosenEnvironment;
         _around.map = tsn;
         tsn._textPlayerToPlace = _textPlayerToPlace;
+		CameraManager.GetInstance ().Active.GetComponent<Animator> ().SetTrigger (_cameraAnimation);
     }
 }
