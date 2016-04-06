@@ -36,6 +36,8 @@ public class Client : MonoBehaviour{
     Dictionary<string, int> _hostsReceived;
     bool _newHost;
 
+    bool _restartGame;
+
     String _name;
 
     Character _currentCharacter;
@@ -111,6 +113,7 @@ public class Client : MonoBehaviour{
         _runeKept = 0;
         ClientManager.GetInstance().Init(this);
         _hostsReceived = new Dictionary<string, int>();
+        _restartGame = false;
     }
 
     void Update()
@@ -145,6 +148,11 @@ public class Client : MonoBehaviour{
 
             _hostsReceived.Clear();
             _newHost = false;
+        }
+
+        if(_restartGame)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -241,7 +249,7 @@ public class Client : MonoBehaviour{
 
             case 17:
                 Logger.Debug("receive Restart Game request");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                _restartGame = true;
                 return true;
 
             default:
