@@ -121,6 +121,14 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Contrast
+        second: 1.53
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
+      data:
+        first:
           name: _ZWrite
         second: 1
       data:
@@ -131,10 +139,6 @@ Material:
         first:
           name: _BumpScale
         second: 1
-      data:
-        first:
-          name: _Parallax
-        second: 0.02
       data:
         first:
           name: _OcclusionStrength
@@ -157,10 +161,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Contrast
-        second: 1.53
-      data:
-        first:
           name: _Strength
         second: 100
       data:
@@ -175,6 +175,10 @@ Material:
         first:
           name: _TilingTexMoveSpeedU
         second: 2.17
+      data:
+        first:
+          name: _Outline
+        second: 0.0033
     m_Colors:
       data:
         first:
@@ -190,10 +194,6 @@ Material:
         second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
       data:
         first:
-          name: _Tint
-        second: {r: 0.28319636, g: 0.44631457, b: 0.71323526, a: 1}
-      data:
-        first:
           name: _M1Tint
         second: {r: 1, g: 1, b: 1, a: 0}
       data:
@@ -206,5 +206,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
+          name: _Tint
+        second: {r: 0.28319636, g: 0.44631457, b: 0.71323526, a: 1}
+      data:
+        first:
           name: _M4Tint
         second: {r: 1, g: 1, b: 1, a: 0}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0.61764705, g: 0.07720588, b: 0.07720588, a: 1}

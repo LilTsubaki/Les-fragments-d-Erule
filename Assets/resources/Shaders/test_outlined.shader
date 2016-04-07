@@ -2,10 +2,11 @@
 	Properties{
 		_OutlineColor("Outline Color", Color) = (0,0,0,1)
 		_Outline("Outline width", Range(0.0, 0.03)) = .005
+//		_Offset("Inner details factor", Range(-25, 0)) = 0
 	}
 
-		CGINCLUDE
-#include "UnityCG.cginc"
+	CGINCLUDE
+	#include "UnityCG.cginc"
 
 	struct appdata {
 		float4 vertex : POSITION;
@@ -18,6 +19,7 @@
 	};
 
 	uniform float _Outline;
+//	uniform float _Offset;
 	uniform float4 _OutlineColor;
 
 	v2f vert(appdata v) {
@@ -34,48 +36,47 @@
 	}
 	ENDCG
 
-		SubShader{
+	SubShader{
 		Tags{ "Queue" = "Transparent" }
 
 		Pass{
-		Name "BASE"
-		Cull Back
-		Blend Zero One
+			Name "BASE"
+			ZWrite Off
+			Cull Back
+			Blend Zero One
 
-		// uncomment this to hide inner details:
-		//Offset -8, -8
+			// uncomment this to hide inner details:
+			Offset -2000, -2000
 
-		SetTexture[_OutlineColor]{
-		ConstantColor(0,0,0,0)
-		Combine constant
-	}
-	}
+			SetTexture[_OutlineColor]{
+			ConstantColor(0,0,0,0)
+			Combine constant
+			}
+		}
 
 		// note that a vertex shader is specified here but its using the one above
 		Pass{
-		Name "OUTLINE"
-		Tags{ "LightMode" = "Always" }
-		Cull Front
+			Name "OUTLINE"
+			Tags{ "LightMode" = "Always" }
+			ZWrite Off
+			Cull Front
 
-		// you can choose what kind of blending mode you want for the outline
-		//Blend SrcAlpha OneMinusSrcAlpha // Normal
-		//Blend One One // Additive
-		Blend One OneMinusDstColor // Soft Additive
-								   //Blend DstColor Zero // Multiplicative
-								   //Blend DstColor SrcColor // 2x Multiplicative
+			// you can choose what kind of blending mode you want for the outline
+			//Blend SrcAlpha OneMinusSrcAlpha // Normal
+			//Blend One One // Additive
+			Blend One OneMinusDstColor // Soft Additive
+									   //Blend DstColor Zero // Multiplicative
+									   //Blend DstColor SrcColor // 2x Multiplicative
 
-		CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-		half4 frag(v2f i) :COLOR{
-		return i.color;
+				half4 frag(v2f i) :COLOR{
+				return i.color;
+			}
+			ENDCG
+		}
 	}
-		ENDCG
-	}
-
-
-	}
-
 		Fallback "Diffuse"
 }
