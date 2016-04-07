@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Character1_Body_colorswap
-  m_Shader: {fileID: 4800000, guid: 9c77b1c8dcd04164da4c8ac0364b8915, type: 3}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: New Material
+  m_Shader: {fileID: 4800000, guid: d6027c54b9a147a4381de99ee3adbdec, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 867c537e3dde0254594fd730140c5644, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,34 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Masks
-        second:
-          m_Texture: {fileID: 2800000, guid: 42c4f9c53f903b840ada2ed227b2f864, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: c6747a76aa3360444a2aa59503b74912, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _TilingTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 390aae14b49b4804e87620d2aa8a343e, type: 3}
-          m_Scale: {x: 0.5, y: 0.5}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -126,7 +98,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.2
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -157,24 +129,8 @@ Material:
         second: 0
       data:
         first:
-          name: _Contrast
-        second: 1.53
-      data:
-        first:
-          name: _Strength
-        second: 100
-      data:
-        first:
-          name: _Opacity
-        second: 0
-      data:
-        first:
-          name: _TilingTexMoveSpeedV
-        second: 3.62
-      data:
-        first:
-          name: _TilingTexMoveSpeedU
-        second: 2.17
+          name: _Outline
+        second: 0.0027
     m_Colors:
       data:
         first:
@@ -186,25 +142,5 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
-          name: _Tint
-        second: {r: 0.28319636, g: 0.44631457, b: 0.71323526, a: 1}
-      data:
-        first:
-          name: _M1Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M2Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M3Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
-      data:
-        first:
-          name: _M4Tint
-        second: {r: 1, g: 1, b: 1, a: 0}
+          name: _OutlineColor
+        second: {r: 0, g: 0.71034503, b: 1, a: 1}
