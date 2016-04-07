@@ -99,10 +99,10 @@ public class Server : MonoBehaviour{
         _udpClient.Close();
 
 
-        foreach(var cli in _clients)
+        /*foreach(var cli in _clients)
         {
             cli.Stop();
-        }
+        }*/
 
         _listener.Stop();
     }
