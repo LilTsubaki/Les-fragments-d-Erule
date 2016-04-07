@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: b3f49230d23bbe54484c1abbaeaa2af3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3099
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -100,7 +100,27 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Contrast
+        second: 2.47
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: -36.3
+      data:
+        first:
           name: _SecondTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _Third1TexMoveSpeedU
+        second: 5.7
+      data:
+        first:
+          name: _Third2TexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _Third2TexMoveSpeedV
         second: 0
       data:
         first:
@@ -120,8 +140,16 @@ Material:
         second: 0.226
       data:
         first:
-          name: _Contrast
-        second: 2.47
+          name: _EmisStrength
+        second: 1.5
+      data:
+        first:
+          name: _Glossiness
+        second: 0.669
+      data:
+        first:
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _Parallax
@@ -130,10 +158,6 @@ Material:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.669
       data:
         first:
           name: _BumpScale
@@ -156,36 +180,12 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _MainTexMoveSpeedU
-        second: -36.3
-      data:
-        first:
-          name: _MainTexMoveSpeedV
-        second: 0.5
-      data:
-        first:
           name: _InvFade
         second: 1
       data:
         first:
-          name: _Third1TexMoveSpeedU
-        second: 5.7
-      data:
-        first:
-          name: _Third2TexMoveSpeedU
-        second: 0
-      data:
-        first:
-          name: _Third2TexMoveSpeedV
-        second: 0
-      data:
-        first:
-          name: _EmisStrength
-        second: 1.5
+          name: _MainTexMoveSpeedV
+        second: 0.5
     m_Colors:
       data:
         first:
