@@ -1068,7 +1068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22432760, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 149
+      value: 738
       objectReference: {fileID: 0}
     - target: {fileID: 22492848, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
       propertyPath: m_RootOrder
@@ -1146,6 +1146,26 @@ Prefab:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11486436, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 11486436, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434684, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 11434684, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426196, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c1ee919a5bde4f48993b691aa31be7c, type: 2}
   m_IsPrefabParent: 0
@@ -1192,7 +1212,6 @@ GameObject:
   - 20: {fileID: 2006144368}
   - 124: {fileID: 2006144367}
   - 92: {fileID: 2006144366}
-  - 81: {fileID: 2006144365}
   m_Layer: 0
   m_Name: Outline Camera
   m_TagString: Untagged
@@ -1212,13 +1231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 602468962}
   m_RootOrder: 1
---- !u!81 &2006144365
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2006144363}
-  m_Enabled: 1
 --- !u!92 &2006144366
 Behaviour:
   m_ObjectHideFlags: 0
