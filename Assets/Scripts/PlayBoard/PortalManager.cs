@@ -51,26 +51,30 @@ public class PortalManager : Manager<PortalManager>{
 
         if (TwoPortalsActivated())
         {
-            if (_portal1.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture == null)
+            if (_portal1.GameObject.transform.GetChild(1).gameObject.activeSelf)
             {
-                _portal1.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = Resources.Load<RenderTexture>("images/TextureFromPortal2");
+                _portal1.GameObject.transform.GetChild(1).gameObject.SetActive(false);
+                _portal1.GameObject.transform.GetChild(2).gameObject.SetActive(true);
             }
 
-            if (_portal2.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture == null)
+            if (_portal2.GameObject.transform.GetChild(1).gameObject.activeSelf)
             {
-                _portal2.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = Resources.Load<RenderTexture>("images/TextureFromPortal1");
+                _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(false);
+                _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(true);
             }
         }
         else
         {
             if(_portal1.IsActive())
             {
-                _portal1.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = null;
+                _portal1.GameObject.transform.GetChild(1).gameObject.SetActive(true);
+                _portal1.GameObject.transform.GetChild(2).gameObject.SetActive(false);
             }
 
             if (_portal2.IsActive())
             {
-                _portal2.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = null;
+                _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(true);
+                _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(false);
             }
         }
     }
