@@ -19,7 +19,7 @@ SubShader {
    
 CGPROGRAM
 #pragma target 3.0
-#pragma surface surf Lambert alphatest:_Cutoff vertex:vert addshadow
+#pragma surface surf Lambert alphatest:_Cutoff vertex:vert fullforwardshadows
  
 sampler2D _MainTex;
 fixed4 _Color;

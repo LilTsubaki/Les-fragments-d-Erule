@@ -85,8 +85,8 @@ public class CameraManager : Manager<CameraManager>
         {
             return false;
         }
-        if (name == _activeName)
-            return false;
+        /*if (name == _activeName)
+            return false;*/
 
         _cameras.Remove(name);
         return true;

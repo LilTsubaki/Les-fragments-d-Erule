@@ -99,10 +99,10 @@ public class ServerListener
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
 
-                Logger.Error("Client Disconnect");
+                Logger.Error("Client Disconnect : " + e.StackTrace);
                 _isRunning = false;
                 break;
             }
@@ -116,6 +116,7 @@ public class ServerListener
     public void Stop()
     {
         _isRunning = false;
+        _client.Close();
         
     }
 

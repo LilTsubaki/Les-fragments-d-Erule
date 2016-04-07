@@ -98,10 +98,13 @@ public class Server : MonoBehaviour{
 
         _udpClient.Close();
 
+
         foreach(var cli in _clients)
         {
             cli.Stop();
         }
+
+        _listener.Stop();
     }
 
 
@@ -163,7 +166,7 @@ public class Server : MonoBehaviour{
         {
             _client2 = serverListener;
             _searchingClient = false;
-            CleanClient();
+            CleanClients();
             return true;
         }
 
@@ -197,7 +200,7 @@ public class Server : MonoBehaviour{
         return false;
     }
 
-    public void CleanClient()
+    public void CleanClients()
     {
         foreach (var client in _clients)
         {
