@@ -53,28 +53,24 @@ public class PortalManager : Manager<PortalManager>{
         {
             if (_portal1.GameObject.transform.GetChild(1).gameObject.activeSelf)
             {
-                _portal1.GameObject.transform.GetChild(1).gameObject.SetActive(false);
-                _portal1.GameObject.transform.GetChild(2).gameObject.SetActive(true);
+                displayRenderTexture(_portal1);
             }
 
             if (_portal2.GameObject.transform.GetChild(1).gameObject.activeSelf)
             {
-                _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(false);
-                _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(true);
+                displayRenderTexture(_portal2);
             }
         }
         else
         {
             if(_portal1.IsActive())
             {
-                _portal1.GameObject.transform.GetChild(1).gameObject.SetActive(true);
-                _portal1.GameObject.transform.GetChild(2).gameObject.SetActive(false);
+                displayStaticTexture(_portal1);
             }
 
             if (_portal2.IsActive())
             {
-                _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(true);
-                _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(false);
+                displayStaticTexture(_portal2);
             }
         }
     }
@@ -96,7 +92,7 @@ public class PortalManager : Manager<PortalManager>{
                 {
                     Logger.Debug("On portal 1, portal 2 has no entity");
                     character.Position = _portal2.Position;
-                    _portal1.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = null;
+                    displayStaticTexture(_portal1);
                     _portal2.Destroy();
                 }
             }
@@ -106,12 +102,24 @@ public class PortalManager : Manager<PortalManager>{
                 {
                     Logger.Debug("On portal 2, portal 1 has no entity");
                     character.Position = _portal1.Position;
-                    _portal2.GameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = null;
+                    displayStaticTexture(_portal2);
                     _portal1.Destroy();
                 }
             }
             character.GameObject.transform.position = character.Position.GameObject.transform.position + character.PositionOffset;
         }
+    }
+
+    public void displayRenderTexture(Portal portal)
+    {
+        portal.GameObject.transform.GetChild(1).gameObject.SetActive(false);
+        portal.GameObject.transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+    public void displayStaticTexture(Portal portal)
+    {
+        _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(true);
+        _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
     
     public Portal Portal1
