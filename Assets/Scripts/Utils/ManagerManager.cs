@@ -31,11 +31,11 @@ public class ManagerManager
         _managers.Remove(manager);
     }
 
-    public void KillAll()
+    public void ResetAll()
     {
         for (int i = 0; i < _managers.Count; i++)
         {
-            _managers[i].Kill();
+            _managers[i].Reset();
         }
         _managers.Clear();
     }

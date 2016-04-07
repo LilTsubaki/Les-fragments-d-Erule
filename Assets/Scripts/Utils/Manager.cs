@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public abstract class Manager
 {
-    public abstract void Kill();
+    public abstract void Reset();
 }
 
 public class Manager<T> : Manager where T : Manager, new()
@@ -27,7 +27,7 @@ public class Manager<T> : Manager where T : Manager, new()
     /// <summary>
     /// Kill the instanciated manager.
     /// </summary>
-    public override void Kill()
+    public override void Reset()
     {
         _instance = null;
     }

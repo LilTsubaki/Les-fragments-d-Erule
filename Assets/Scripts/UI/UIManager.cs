@@ -262,6 +262,7 @@ public class UIManager : Manager<UIManager>
     {
         foreach (GameObject go in _panels.Values)
         {
+            if(go != null)
             go.SetActive(false);
         }
         _openStack.Clear();
@@ -277,7 +278,8 @@ public class UIManager : Manager<UIManager>
         if (_openStack.Count > 0)
         {
             GameObject last = _openStack.Pop();
-            last.SetActive(false);
+            if(last != null)
+                last.SetActive(false);
             return true;
         }
         return false;
