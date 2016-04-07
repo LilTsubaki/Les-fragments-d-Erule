@@ -27,7 +27,6 @@
 		#pragma surface surf Lambert //alpha
 
 		sampler2D _MainTex;
-		sampler2D _Smoke;
 		half4 _Color;
 		half _Contrast;
 		fixed _MainTexMoveSpeedU;
@@ -70,7 +69,7 @@
 			half f = tex2D(_MainTex, Third2TexMoveScrolledUV).b;
  			half g = tex2D(_MainTex, IN.uv_MainTex).a; //replace IN.uv_MainTex by FourthTexMoveScrolledUV if panning desired
 
-			o.Albedo = (c * 8 + d * 8 + (f * 12) + e *10) * _Color * pow (g, _Contrast);
+			o.Albedo = (c * 8 + d * 8 + (f * 12) + e * 10) * _Color * pow (g, _Contrast);
 
 			//o.Alpha = (c * 8 + d * 8 + (f * 12) + e * 10) * pow(g, _Contrast);
 

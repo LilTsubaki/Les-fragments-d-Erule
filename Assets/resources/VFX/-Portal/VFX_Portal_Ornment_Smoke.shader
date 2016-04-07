@@ -2,17 +2,19 @@
 	Properties{
 		_Smoke("Smoke", 2D) = "white" {}
 		_Color("Tint", color) = (1,1,1,1)
+		_Strength("Strength", Range(-50,50)) = 0
 		_Contrast("Contrast", Range(0,12)) = 0
 		_SmokeMoveSpeedU("Smoke U PanSpeed", Range(-50,50)) = 0 
 		_SmokeMoveSpeedV("Smoke V PanSpeed", Range(-50,50)) = 0
 	}
 
 	SubShader{
-		Tags{ "Queue" = "Background" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
 		Cull Off
 		Lighting Off
-//		Blend SrcAlpha OneMinusSrcAlpha
+		//Blend One One
+		//Blend SrcAlpha OneMinusSrcAlpha
 //		BindChannels{
 //			Bind "Color", color
 //		}
@@ -22,6 +24,7 @@
 	
 		sampler2D _Smoke;
 		half4 _Color;
+		half _Strength;
 		half _Contrast;
 		fixed _SmokeMoveSpeedU;
 		fixed _SmokeMoveSpeedV;
@@ -44,7 +47,7 @@
 
 			o.Albedo = c * 15 * _Color;
 
-			o.Alpha =  pow(d, _Contrast) * c * 20;
+			o.Alpha =  pow(d, _Contrast) * c * _Strength;
 		}
 
 		ENDCG
