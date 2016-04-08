@@ -39,6 +39,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
             anim.Play();
             return true;
         }
+        Debug.Log("Unknown animation " + id);
         return false;
     }
 
@@ -88,7 +89,18 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     public bool PlayListSelf(List<Element> elemIds, Vector3 from)
     {
-        Logger.Warning("Not implemented : spell effects self");
+        if(elemIds.Count >= 1)
+        {
+            Play("selfHalo", from, from);
+        }
+        if(elemIds.Count >= 2)
+        {
+            Play("selfParticles", from, from);
+        }
+        if(elemIds.Count >= 4)
+        {
+            Play("selfCircle", from, from);
+        }
         return true;
     }
 

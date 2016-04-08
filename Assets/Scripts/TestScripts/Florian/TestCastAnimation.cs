@@ -54,5 +54,17 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(5));
             SpellAnimationManager.GetInstance().PlayList(elements, _cube1.transform.position, _cube2.transform.position);
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SpellAnimationManager.GetInstance().Play("selfHalo", _cube2.transform.position, _cube2.transform.position);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SpellAnimationManager.GetInstance().Play("selfParticles", _cube2.transform.position, _cube2.transform.position);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SpellAnimationManager.GetInstance().Play("selfCircle", _cube2.transform.position, _cube2.transform.position);
+        }
     }
 }
