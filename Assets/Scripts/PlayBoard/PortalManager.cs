@@ -118,8 +118,8 @@ public class PortalManager : Manager<PortalManager>{
 
     public void displayStaticTexture(Portal portal)
     {
-        _portal2.GameObject.transform.GetChild(1).gameObject.SetActive(true);
-        _portal2.GameObject.transform.GetChild(2).gameObject.SetActive(false);
+        portal.GameObject.transform.GetChild(1).gameObject.SetActive(true);
+        portal.GameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
     
     public Portal Portal1
