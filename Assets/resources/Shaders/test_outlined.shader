@@ -41,12 +41,12 @@
 
 		Pass{
 			Name "BASE"
-			ZWrite Off
+			//ZWrite Off
 			Cull Back
 			Blend Zero One
 
 			// uncomment this to hide inner details:
-			Offset -2000, -2000
+			Offset -4000, -4000
 
 			SetTexture[_OutlineColor]{
 			ConstantColor(0,0,0,0)
@@ -58,7 +58,7 @@
 		Pass{
 			Name "OUTLINE"
 			Tags{ "LightMode" = "Always" }
-			ZWrite Off
+			//ZWrite Off
 			Cull Front
 
 			// you can choose what kind of blending mode you want for the outline
