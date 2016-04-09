@@ -66,5 +66,18 @@ public class TestCastAnimation : MonoBehaviour {
         {
             SpellAnimationManager.GetInstance().Play("selfCircle", _cube2.transform.position, _cube2.transform.position);
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            List<Element> elements = new List<Element>();
+            elements.Add(Element.GetElement(0));
+            elements.Add(Element.GetElement(1));
+            elements.Add(Element.GetElement(2));
+            elements.Add(Element.GetElement(3));
+            elements.Add(Element.GetElement(4));
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
+            SpellAnimationManager.GetInstance().PlayList(elements, _cube1.transform.position, _cube2.transform.position);
+        }
     }
 }

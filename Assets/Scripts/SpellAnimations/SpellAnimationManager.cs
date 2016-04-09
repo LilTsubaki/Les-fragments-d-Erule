@@ -19,8 +19,8 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         _elementsHierarchy.Add(Element.GetElement(4));
         _elementsHierarchy.Add(Element.GetElement(2));
         _elementsHierarchy.Add(Element.GetElement(5));
-        _elementsHierarchy.Add(Element.GetElement(3));
         _elementsHierarchy.Add(Element.GetElement(0));
+        _elementsHierarchy.Add(Element.GetElement(3));
     }
 
     public bool Register(string id, SpellAnimation anim)
@@ -52,24 +52,39 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to)
     {
-        HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
+        _tempo.SetPositions(from, to);
+
+        //HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
         int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);
         float totalTime = 0;
-        foreach (Element elem in setElems)
+
+        List<Element> order = new List<Element>();
+        for(int i = 0; i < _elementsHierarchy.Count; ++i)
+        {
+            if (elemIds.Contains(_elementsHierarchy[i]))
+            {
+                order.Add(_elementsHierarchy[i]);
+            }
+        }
+
+        foreach (Element elem in order)
         {
             switch (elem._id)
             {
                 case 0: // Fire
                     //Play("fire", from, to);
                     _tempo.PlayLater("Fire", totalTime);
+                    totalTime += 1.2f;
                     break;
                 case 1: // Water
                         //Play("water",from,to);
                     _tempo.PlayLater("Water", totalTime);
+                    totalTime += 2.5f;
                     break;
                 case 2: // Air
                     //Play("air", from, to);
                     _tempo.PlayLater("Air", totalTime);
+                    totalTime += 1f;
                     break;
                 case 3: // Earth
                     //Play("earth", from, to);
@@ -78,6 +93,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
                 case 4: // Wood
                     //Play("wood", from, to);
                     _tempo.PlayLater("Wood", totalTime);
+                    totalTime += 1f;
                     break;
                 case 5: // Metal
                     List<int> metals = new List<int>();
@@ -92,6 +108,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
                         //Play("metal" + randAnimMetal, from, to);
                         _tempo.PlayLater("Metal" + randAnimMetal, totalTime);
                     }
+                    totalTime += 2f;
                     break;
                 default:
                     Logger.Warning("[Animation] Element does not exist : " + elem._id);
