@@ -11,6 +11,8 @@ public class EarthBehaviour : MonoBehaviour {
 
     private float _currentTime;
 
+    private GameObject _particles;
+
     // Use this for initialization
     void Start () {
         _goingUp = true;
@@ -39,6 +41,7 @@ public class EarthBehaviour : MonoBehaviour {
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, _initialPosition, _speed);
                 if (Vector3.SqrMagnitude(transform.position - InitialPosition) < 0.0001)
                 {
+                    //Destroy(_particles);
                     Destroy(gameObject);
                 }
             }
@@ -96,6 +99,19 @@ public class EarthBehaviour : MonoBehaviour {
         set
         {
             _timeStayingUp = value;
+        }
+    }
+
+    public GameObject Particles
+    {
+        get
+        {
+            return _particles;
+        }
+
+        set
+        {
+            _particles = value;
         }
     }
 }

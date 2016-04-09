@@ -519,6 +519,7 @@ GameObject:
   - 4: {fileID: 446268}
   - 198: {fileID: 19818502}
   - 199: {fileID: 19994602}
+  - 114: {fileID: 11410996}
   m_Layer: 0
   m_Name: VFX_Earth_Debris
   m_TagString: Untagged
@@ -599,13 +600,14 @@ GameObject:
   - 4: {fileID: 441412}
   - 198: {fileID: 19836710}
   - 199: {fileID: 19983380}
+  - 114: {fileID: 11484534}
   m_Layer: 0
   m_Name: VFX_Earth_Debris (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &145396
 GameObject:
   m_ObjectHideFlags: 1
@@ -823,6 +825,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 492684}
+  - 114: {fileID: 11473008}
   m_Layer: 0
   m_Name: SpellEffects
   m_TagString: Untagged
@@ -3505,6 +3508,17 @@ MonoBehaviour:
   Fps: 60
   MyColor: {r: 0.78676474, g: 0.78676474, b: 0.78676474, a: 1}
   MyMaterial: {fileID: 2100000, guid: 9db63a4774ae8954ab6f503f10fb20e4, type: 2}
+--- !u!114 &11410996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b9b9478b5c4eb40a9beb44a9116600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11413184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3655,6 +3669,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  _ice: {fileID: 19836710}
+  _rock: {fileID: 19818502}
 --- !u!114 &11424560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3920,6 +3936,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed1: 10
   tiltSpeed1: 12.4
+--- !u!114 &11473008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07f5d18c6584da4eb4770a3a69a39c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11474036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4018,6 +4045,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed1: 4
   tiltSpeed1: 11
+--- !u!114 &11484534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b9b9478b5c4eb40a9beb44a9116600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11485486
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,6 +18,9 @@ public class EarthAnimation : SpellAnimation
 
     public AnimationCurve _curve;
 
+    public ParticleSystem _ice;
+    public ParticleSystem _rock;
+
     public void Awake()
     {
         _hexagons = new List<HexagonBehaviour>();
@@ -63,6 +66,7 @@ public class EarthAnimation : SpellAnimation
                 GameObject prefab = GetUnderHex(_hexagons[_currentIndex]._hexagonType);
                 if (prefab != null)
                 {
+
                     Vector3 hexagonPosition = _hexagons[_currentIndex].transform.position;
                     Vector3 position = hexagonPosition - new Vector3(0, 2.4f, 0);
                     GameObject go = (GameObject)Instantiate(prefab, position, Quaternion.identity);
@@ -78,6 +82,18 @@ public class EarthAnimation : SpellAnimation
                     earthBehaviour.Speed = _upwardSpeed;
                     earthBehaviour.TimeStayingUp = _timeStayingUp;
                     earthBehaviour.MaxHeight = _curve.Evaluate((float)(_currentIndex + 1) / (float)_hexagons.Count) * 2.4f;
+
+                    GameObject particle;
+                    if (_hexagons[_currentIndex]._hexagonType.Contains("Ice")) {
+                        particle = Instantiate(_ice.gameObject);
+                    }
+                    else
+                    {
+                        particle = Instantiate(_rock.gameObject);
+                    }
+                    particle.SetActive(true);
+                    particle.transform.position = hexagonPosition;
+                    earthBehaviour.Particles = particle;
                 }
                 else
                 {
