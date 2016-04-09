@@ -169,4 +169,14 @@ public class CharacterBehaviour : MonoBehaviour
     {
         _orbs.SetElements(elems);
     }
+
+    public void CastSpellAnimations()
+    {
+        SpellAnimationManager.GetInstance().PlaySavedCast();
+    }
+
+    public void CastSelfSpellAnimations()
+    {
+        SpellAnimationManager.GetInstance().PlaySavedSelfCast();
+    }
 }

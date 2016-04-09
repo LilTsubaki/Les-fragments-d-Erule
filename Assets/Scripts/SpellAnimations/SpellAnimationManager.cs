@@ -8,6 +8,10 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     private SpellTempo _tempo;
 
+    private List<Element> _saveElems;
+    private Vector3 _saveFrom;
+    private Vector3 _saveTo;
+
     public SpellAnimationManager()
     {
         if (_instance != null)
@@ -48,6 +52,23 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         }
         Debug.Log("Unknown animation " + id);
         return false;
+    }
+
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to)
+    {
+        _saveElems = elemIds;
+        _saveFrom = from;
+        _saveTo = to;
+    }
+
+    public void PlaySavedCast()
+    {
+        PlayList(_saveElems, _saveFrom, _saveTo);
+    }
+
+    public void PlaySavedSelfCast()
+    {
+        PlayListSelf(_saveElems, _saveFrom);
     }
 
     public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to)

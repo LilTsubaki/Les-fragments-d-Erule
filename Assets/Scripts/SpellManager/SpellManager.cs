@@ -347,7 +347,8 @@ public class SpellManager : Manager<SpellManager>
             À modifier dès qu'on a différents effets visuels
             **********************/
 
-            SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
+            //SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position);
             SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
 
             /*********************
@@ -420,7 +421,8 @@ public class SpellManager : Manager<SpellManager>
             À modifier dès qu'on a différents effets visuels
             **********************/
 
-            SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
+            //SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
 
             /*********************
