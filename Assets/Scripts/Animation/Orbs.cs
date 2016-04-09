@@ -20,7 +20,7 @@ public class Orbs : MonoBehaviour {
         _elements = new Dictionary<int, Element>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_toCenter)
         {
