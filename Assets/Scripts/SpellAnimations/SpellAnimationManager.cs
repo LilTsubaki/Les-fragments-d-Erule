@@ -6,6 +6,8 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     private Dictionary<string, SpellAnimation> _animations;
     private List<Element> _elementsHierarchy;
 
+    private SpellTempo _tempo;
+
     public SpellAnimationManager()
     {
         if (_instance != null)
@@ -30,6 +32,11 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return true;
     }
 
+    public void RegisterTempo(SpellTempo tempo)
+    {
+        _tempo = tempo;
+    }
+
     public bool Play(string id, Vector3 from, Vector3 to)
     {
         SpellAnimation anim;
@@ -47,24 +54,30 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     {
         HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
         int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);
+        float totalTime = 0;
         foreach (Element elem in setElems)
         {
             switch (elem._id)
             {
                 case 0: // Fire
-                    Play("fire", from, to);
+                    //Play("fire", from, to);
+                    _tempo.PlayLater("Fire", totalTime);
                     break;
                 case 1: // Water
-					Play("water",from,to);
+                        //Play("water",from,to);
+                    _tempo.PlayLater("Water", totalTime);
                     break;
                 case 2: // Air
-                    Play("air", from, to);
+                    //Play("air", from, to);
+                    _tempo.PlayLater("Air", totalTime);
                     break;
                 case 3: // Earth
-                    Play("earth", from, to);
+                    //Play("earth", from, to);
+                    _tempo.PlayLater("Earth", totalTime);
                     break;
                 case 4: // Wood
-                    Play("wood", from, to);
+                    //Play("wood", from, to);
+                    _tempo.PlayLater("Wood", totalTime);
                     break;
                 case 5: // Metal
                     List<int> metals = new List<int>();
@@ -76,7 +89,8 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
                             randAnimMetal = EruleRandom.RangeValue(1, 3);
                         }
                         metals.Add(randAnimMetal);
-                        Play("metal" + randAnimMetal, from, to);
+                        //Play("metal" + randAnimMetal, from, to);
+                        _tempo.PlayLater("Metal" + randAnimMetal, totalTime);
                     }
                     break;
                 default:
