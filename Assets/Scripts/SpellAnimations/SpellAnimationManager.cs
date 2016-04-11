@@ -72,7 +72,10 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     public void PlaySavedCast()
     {
-        PlayList(_saveElems, _saveFrom, _saveTo);
+        if (_saveFrom != _saveTo)
+            PlayList(_saveElems, _saveFrom, _saveTo);
+        else
+            PlayListSelf(_saveElems, _saveFrom);
     }
 
     public void PlaySavedSelfCast()
