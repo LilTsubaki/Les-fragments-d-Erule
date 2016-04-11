@@ -26,6 +26,19 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
 
     private GameObject _environment;
 
+    public GameObject Environment
+    {
+        get
+        {
+            return _environment;
+        }
+
+        set
+        {
+            _environment = value;
+        }
+    }
+
     void Start()
     {
         CameraManager.GetInstance().FadeTo("cameraBoard", 1);
@@ -36,7 +49,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
         if (_prefabEnvironmentName != "")
         {
             GameObject prefab = Resources.Load<GameObject>("prefabs/maps/" + _prefabEnvironmentName);
-            _environment = Instantiate(prefab);
+            Environment = Instantiate(prefab);
             _board.transform.GetChild(0).gameObject.SetActive(false);
         }
 
