@@ -55,6 +55,11 @@ public class FireAnimation : SpellAnimation
 			_rocks.Play ();
 
             _play = !_play;
+
+        }
+        if (_updateTimer)
+        {
+            timerUpdate();
         }
     }
 

@@ -13,6 +13,7 @@ public class GameMenu : MonoBehaviour {
 
     public void Quit()
     {
+        ManagerManager.GetInstance().ResetAll();
         Application.Quit();
     }
 

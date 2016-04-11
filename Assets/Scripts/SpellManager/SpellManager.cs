@@ -348,7 +348,7 @@ public class SpellManager : Manager<SpellManager>
             **********************/
 
             //SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
-            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position, finalArea, true);
             SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
 
             /*********************
@@ -422,7 +422,7 @@ public class SpellManager : Manager<SpellManager>
             **********************/
 
             //SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
-            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position, finalArea);
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
 
             /*********************
@@ -467,7 +467,9 @@ public class SpellManager : Manager<SpellManager>
             }
         }
 
-		if (runes > 0)
+        SpellAnimationManager.GetInstance().PlayOrbsAnimation(currentPlayer, success);
+
+        if (runes > 0)
 		{
 			HistoricManager.GetInstance ().AddText (String.Format (StringsErule.perfect, currentPlayer.Name));
 		}

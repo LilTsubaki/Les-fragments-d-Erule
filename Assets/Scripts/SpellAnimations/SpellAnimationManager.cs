@@ -11,6 +11,8 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     private List<Element> _saveElems;
     private Vector3 _saveFrom;
     private Vector3 _saveTo;
+    private List<Hexagon> _saveHexagons;
+    private bool _saveSelf;
 
     public SpellAnimationManager()
     {
@@ -50,29 +52,34 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return true;
     }
 
-    public bool Play(string id, Vector3 from, Vector3 to)
+    public bool Play(string id, Vector3 from, Vector3 to, List<Hexagon> hexagons=null)
     {
         SpellAnimation anim;
         if(_animations.TryGetValue(id, out anim))
         {
-            anim.Reset(from, to);
+            anim.Reset(from, to, hexagons);
             anim.Play();
             return true;
         }
         Debug.Log("Unknown animation " + id);
         return false;
     }
-
-    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to)
+    
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons, bool self = false)
     {
+        _saveHexagons = hexagons;
         _saveElems = elemIds;
         _saveFrom = from;
         _saveTo = to;
+        _saveSelf = self;
     }
 
     public void PlaySavedCast()
     {
-        PlayList(_saveElems, _saveFrom, _saveTo);
+        if (!_saveSelf)
+            PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
+        else
+            PlayListSelf(_saveElems, _saveFrom);
     }
 
     public void PlaySavedSelfCast()
@@ -80,9 +87,9 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         PlayListSelf(_saveElems, _saveFrom);
     }
 
-    public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to)
+    public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
     {
-        _tempo.SetPositions(from, to);
+        _tempo.Init(from, to, hexagons);
 
         //HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
         int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);
@@ -102,28 +109,24 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
             switch (elem._id)
             {
                 case 0: // Fire
-                    //Play("fire", from, to);
                     _tempo.PlayLater("Fire", totalTime);
-                    totalTime += 1.2f;
+                    totalTime += _tempo._fireTempo;
                     break;
                 case 1: // Water
-                        //Play("water",from,to);
                     _tempo.PlayLater("Water", totalTime);
-                    totalTime += 2.5f;
+                    totalTime += _tempo._waterTempo;
                     break;
                 case 2: // Air
-                    //Play("air", from, to);
                     _tempo.PlayLater("Air", totalTime);
-                    totalTime += 1f;
+                    totalTime += _tempo._airTempo;
                     break;
                 case 3: // Earth
-                    //Play("earth", from, to);
                     _tempo.PlayLater("Earth", totalTime);
+                    totalTime += _tempo._earthTempo;
                     break;
                 case 4: // Wood
-                    //Play("wood", from, to);
                     _tempo.PlayLater("Wood", totalTime);
-                    totalTime += 1f;
+                    totalTime += _tempo._woodTempo;
                     break;
                 case 5: // Metal
                     List<int> metals = new List<int>();
@@ -135,10 +138,9 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
                             randAnimMetal = EruleRandom.RangeValue(1, 3);
                         }
                         metals.Add(randAnimMetal);
-                        //Play("metal" + randAnimMetal, from, to);
                         _tempo.PlayLater("Metal" + randAnimMetal, totalTime);
                     }
-                    totalTime += 2f;
+                    totalTime += _tempo._metalTempo;
                     break;
                 default:
                     Logger.Warning("[Animation] Element does not exist : " + elem._id);
@@ -240,7 +242,12 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
             character.GameObject.GetComponent<Animator>().SetTrigger("CastShield");
         else
             character.GameObject.GetComponent<Animator>().SetTrigger("CastSelf");
+    }
 
-
+    public void PlayOrbsAnimation(Character character, bool success)
+    {
+        Orbs orbs = character.GameObject.GetComponent<CharacterBehaviour>()._orbs;
+        orbs._successCast = success;
+        orbs._failCast = !success;
     }
 }

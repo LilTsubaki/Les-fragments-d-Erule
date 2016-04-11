@@ -36,6 +36,7 @@ public class Hexagon : IAStar<Hexagon>
     private Color _defaultColor;
 
     private GameObject _glyph;
+    private GameObject _groundEffect;
     private Orientation.EnumOrientation _orientation;
 
     public Color DefaultColor
@@ -189,6 +190,19 @@ public class Hexagon : IAStar<Hexagon>
         set
         {
             _orientation = value;
+        }
+    }
+
+    public GameObject GroundEffect
+    {
+        get
+        {
+            return _groundEffect;
+        }
+
+        set
+        {
+            _groundEffect = value;
         }
     }
 

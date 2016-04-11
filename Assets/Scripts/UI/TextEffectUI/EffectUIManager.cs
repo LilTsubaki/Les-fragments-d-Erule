@@ -69,6 +69,15 @@ public class EffectUIManager {
         }
     }
 
+    public void Unpause(Entity entity)
+    {
+        EffectBuffer effectBuffer;
+        if (_buffers.TryGetValue(entity, out effectBuffer))
+        {
+            effectBuffer.Paused = false;
+        }
+    }
+
     public void Update()
     {
         UpdateTimer();

@@ -20,8 +20,13 @@ public class MetalAnimation : SpellAnimation
             _anim.SetTrigger("play");
             _play = !_play;
             
+
         }
-	}
+        if (_updateTimer)
+        {
+            timerUpdate();
+        }
+    }
 
     public override void Reset()
     {

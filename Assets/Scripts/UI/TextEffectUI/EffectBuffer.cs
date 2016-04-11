@@ -12,6 +12,8 @@ public class EffectBuffer {
 
     private Entity _entity;
 
+    private bool _paused = true;
+
     public Queue<TextEffect> TextEffects
     {
         get
@@ -38,6 +40,19 @@ public class EffectBuffer {
         }
     }
 
+    public bool Paused
+    {
+        get
+        {
+            return _paused;
+        }
+
+        set
+        {
+            _paused = value;
+        }
+    }
+
     public EffectBuffer(Entity entity, float step)
     {
         _step = step;
@@ -48,7 +63,10 @@ public class EffectBuffer {
 
     public void UpdateTimer()
     {
-        _currentTime += Time.deltaTime;
+        if (!_paused)
+        {
+            _currentTime += Time.deltaTime;
+        }
     }
     public void AddTextEffect(TextEffect textEffect)
     {
@@ -65,6 +83,8 @@ public class EffectBuffer {
             {
                 EffectUIManager.GetInstance().DeleteEntity(_entity);
             }
+            if (TextEffects.Count == 0)
+                _paused = true;
             return te;
         }
 

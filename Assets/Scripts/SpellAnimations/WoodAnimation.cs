@@ -28,6 +28,10 @@ public class WoodAnimation : SpellAnimation {
                 _rocks.Stop();
             }
         }
+        if(_updateTimer)
+        {
+            timerUpdate();
+        }
     }
 
     public override void Reset()

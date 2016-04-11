@@ -101,6 +101,10 @@ public class EarthAnimation : SpellAnimation
                 }
                 _currentIndex++;
             }
+            if (_updateTimer)
+            {
+                timerUpdate();
+            }
         }
     }
 

@@ -1215,6 +1215,7 @@ public class JSONObject {
 
         JSONObject array = js.GetField("Hexagons");
 
+        GameObject groundEffect = Resources.Load<GameObject>("VFX/Ground/Ground_Effect");
         GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
 
         JSONObject camera = js.GetField("Camera");
@@ -1260,7 +1261,13 @@ public class JSONObject {
             hexagon.Glyph.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n+0.2f, 0.75f * hexagon._posY);
             hexagon.Glyph.SetActive(false);
 
-           
+            hexagon.GroundEffect = GameObject.Instantiate(groundEffect);
+            hexagon.GroundEffect.transform.parent = hexagon.GameObject.transform;
+            hexagon.GroundEffect.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.16f, 0.75f * hexagon._posY);
+            hexagon.GroundEffect.SetActive(false);
+            hexagon.GroundEffect.transform.rotation = Quaternion.Euler(0, EruleRandom.RangeValue(0.0f,360.0f), 0);
+
+
 
             hexagon.CurrentState = Hexagon.State.Default;
 
