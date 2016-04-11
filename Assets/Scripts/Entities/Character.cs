@@ -320,7 +320,7 @@ public class Character : Entity, Killable
         {
             EffectUIManager.GetInstance().AddTextEffect(this, new TextDamage(value, element));
             HistoricManager.GetInstance().AddText(String.Format(StringsErule.damage, Name, value, element._name));
-            GameObject.GetComponent<Animator>().SetTrigger("Hit");
+            //GameObject.GetComponent<Animator>().SetTrigger("Hit");
         }
 
         if (_lifeCurrent - value < 0)

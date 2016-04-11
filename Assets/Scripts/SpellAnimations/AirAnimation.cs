@@ -37,7 +37,11 @@ public class AirAnimation : SpellAnimation {
 				Rocks.Stop();
             }
         }
-	}
+        if (_updateTimer)
+        {
+            timerUpdate();
+        }
+    }
 
     public override void Reset()
     {
