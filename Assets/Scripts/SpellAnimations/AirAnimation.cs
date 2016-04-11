@@ -17,7 +17,7 @@ public class AirAnimation : SpellAnimation {
 	public Xft.XWeaponTrail Trail2;
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (_play)
         {
             float distFromToNext = Vector3.Distance(_from, gameObject.transform.position);

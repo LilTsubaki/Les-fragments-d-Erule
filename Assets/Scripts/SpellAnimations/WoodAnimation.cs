@@ -11,7 +11,7 @@ public class WoodAnimation : SpellAnimation {
     public ParticleSystem _rocks;
     public float _speed;
 
-    void Update()
+    void FixedUpdate()
     {
         if (_play)
         {

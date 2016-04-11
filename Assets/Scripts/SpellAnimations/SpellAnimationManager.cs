@@ -41,6 +41,15 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         _tempo = tempo;
     }
 
+    public bool Remove(string id)
+    {
+        if (!_animations.ContainsKey(id))
+            return false;
+
+        _animations.Remove(id);
+        return true;
+    }
+
     public bool Play(string id, Vector3 from, Vector3 to)
     {
         SpellAnimation anim;

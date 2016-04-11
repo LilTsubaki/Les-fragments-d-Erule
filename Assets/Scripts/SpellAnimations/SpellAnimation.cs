@@ -35,4 +35,9 @@ public class SpellAnimation : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
+    void OnDestroy()
+    {
+        SpellAnimationManager.GetInstance().Remove(_registerName);
+    }
+
 }
