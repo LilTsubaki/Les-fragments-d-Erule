@@ -11,4 +11,12 @@
     {
         _server = server;
     }
+
+    public override void Reset()
+    {
+        _server.Client1.Stop();
+        _server.Client2.Stop();
+        _server.Stop();
+        base.Reset();
+    }
 }
