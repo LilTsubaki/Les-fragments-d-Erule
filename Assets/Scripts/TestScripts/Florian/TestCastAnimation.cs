@@ -29,7 +29,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
-            //SpellAnimationManager.GetInstance().Play("fire", _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -38,6 +39,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
 		if (Input.GetKeyDown(KeyCode.E))
 		{
@@ -46,6 +49,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -54,6 +59,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -62,6 +69,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -70,6 +79,8 @@ public class TestCastAnimation : MonoBehaviour {
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
             SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

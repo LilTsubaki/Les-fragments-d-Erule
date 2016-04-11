@@ -53,7 +53,7 @@ public class TestOrbs : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            _orbs._toCenter = true;
+            _orbs._successCast = true;
         }
     }
 }

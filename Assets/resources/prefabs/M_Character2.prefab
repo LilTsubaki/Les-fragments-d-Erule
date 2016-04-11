@@ -2211,12 +2211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3571addf3c1ffe34392d2bfabbb1fc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toCenter: 0
+  _successCast: 0
+  _failCast: 0
   _slowDuration: 0.5
   _slowSpeed: 15
   _gatheringDuration: 1.5
   _goingInSpeed: 3
   _goingOutSpeed: 3
+  _failAcceleration: 1
+  _failMaxSpeed: 20
+  _failDuration: 3
 --- !u!114 &11440812
 MonoBehaviour:
   m_ObjectHideFlags: 1

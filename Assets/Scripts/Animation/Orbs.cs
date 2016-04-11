@@ -5,15 +5,24 @@ using System.Linq;
 public class Orbs : MonoBehaviour {
 
     private Dictionary<int, Element> _elements;
-    public bool _toCenter;
+    public bool _successCast;
+    private bool _goingSuccess;
     private bool _slowingDown;
     private bool _goingCenter;
+
+    public bool _failCast;
+    private bool _goingFail;
+    private bool _accelerate;
 
     public float _slowDuration;
     public float _slowSpeed;
     public float _gatheringDuration;
     public float _goingInSpeed;
     public float _goingOutSpeed;
+
+    public float _failAcceleration;
+    public float _failMaxSpeed;
+    public float _failDuration;
 
     void Start()
     {
@@ -22,24 +31,49 @@ public class Orbs : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (_toCenter)
+        if (_successCast)
         {
             Invoke("PauseAndGo", _slowDuration);
             Invoke("RemoveAfterCast", _slowDuration + _gatheringDuration);
-            _toCenter = false;
+            Invoke("StopSuccess", _slowDuration + _gatheringDuration * 2);
+            _successCast = false;
             _slowingDown = true;
+            _goingSuccess = true;
         }
-        if (_slowingDown)
+        if (_goingSuccess)
         {
-            SlowRotationDown();
+            if (_slowingDown)
+            {
+                SlowRotationDown();
+            }
+            if (_goingCenter)
+            {
+                GoToCenter();
+            }
+            else
+            {
+                GoOut();
+            }
         }
-        if(_goingCenter)
+
+        if (_failCast)
         {
-            GoToCenter();
+            Invoke("SlowDownFail", _failDuration);
+            Invoke("StopFail", _failDuration * 2.1f);
+            _accelerate = true;
+            _goingFail = true;
+            _failCast = false;
         }
-        else
+        if (_goingFail)
         {
-            GoOut();
+            if (_accelerate)
+            {
+                AccelerateFail();
+            }
+            else
+            {
+                DecelerateFail();
+            }
         }
     }
 
@@ -52,6 +86,35 @@ public class Orbs : MonoBehaviour {
     private void RemoveAfterCast()
     {
         _goingCenter = false;
+        ActivateRunes(true);
+    }
+
+    private void StopSuccess()
+    {
+        _goingSuccess = false;
+    }
+
+    private void SlowDownFail()
+    {
+        _accelerate = false;
+    }
+
+    private void StopFail()
+    {
+        _goingFail = false;
+    }
+
+
+    public void ActivateRunes(bool active)
+    {
+        if(!_goingFail)
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                if (transform.GetChild(i).childCount != 0)
+                {
+                    transform.GetChild(i).GetChild(0).gameObject.SetActive(active);
+                }
+            }
     }
 
     private void GoToCenter()
@@ -87,6 +150,22 @@ public class Orbs : MonoBehaviour {
     }
 
     
+    private void AccelerateFail()
+    { 
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).GetComponent<RotatingOrb>()._rotationSpeed = Mathf.Lerp(transform.GetChild(i).GetComponent<RotatingOrb>()._rotationSpeed, _failMaxSpeed, Time.deltaTime * _failAcceleration);
+        }
+    }
+
+    private void DecelerateFail()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            RotatingOrb rotate = transform.GetChild(i).GetComponent<RotatingOrb>();
+            rotate._rotationSpeed = Mathf.Lerp(rotate._rotationSpeed, rotate._initialSpeed, Time.deltaTime * _failAcceleration);
+        }
+    }
 
     public void AddElement(Element elem)
     {

@@ -235,7 +235,12 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
             character.GameObject.GetComponent<Animator>().SetTrigger("CastShield");
         else
             character.GameObject.GetComponent<Animator>().SetTrigger("CastSelf");
+    }
 
-
+    public void PlayOrbsAnimation(Character character, bool success)
+    {
+        Orbs orbs = character.GameObject.GetComponent<CharacterBehaviour>()._orbs;
+        orbs._successCast = success;
+        orbs._failCast = !success;
     }
 }

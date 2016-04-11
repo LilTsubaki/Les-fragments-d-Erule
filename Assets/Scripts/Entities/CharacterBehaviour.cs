@@ -20,13 +20,14 @@ public class CharacterBehaviour : MonoBehaviour
         _translateSpeed = 8.0f;
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
 
         if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving)
@@ -36,7 +37,7 @@ public class CharacterBehaviour : MonoBehaviour
             RaycastHit rch;
             //int layermask = (1 << LayerMask.NameToLayer("Default"));
             int layermask = LayerMask.GetMask("Hexagon");
-           
+
             if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
             {
                 HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
@@ -53,19 +54,20 @@ public class CharacterBehaviour : MonoBehaviour
             }
         }
 
-        if(_character != null) { 
-
-        if(_character.NextState != _character.CurrentState)
+        if (_character != null)
         {
-            _character.PreviousState = _character.CurrentState;
-            _character.CurrentState = _character.NextState;
-        }
 
-        if (_character._changeOrbs)
-        {
-            SetNewOrbs(_character._orbs);
-            _character._changeOrbs = false;
-        }
+            if (_character.NextState != _character.CurrentState)
+            {
+                _character.PreviousState = _character.CurrentState;
+                _character.CurrentState = _character.NextState;
+            }
+
+            if (_character._changeOrbs)
+            {
+                SetNewOrbs(_character._orbs);
+                _character._changeOrbs = false;
+            }
         }
 
         switch (_character.CurrentState)
@@ -81,7 +83,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    
+
 
     bool goTo(Hexagon hexa, float speed)
     {
@@ -93,7 +95,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Translate()
     {
-        if(goTo(_character.Position, _translateSpeed))
+        if (goTo(_character.Position, _translateSpeed))
         {
             _character.NextState = _character.PreviousState;
             // Teleport player if the last hexagon has a portal
@@ -106,21 +108,21 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Move()
     {
-        if(_character.PathToFollow != null && _character.PathToFollow.Count > 0)
+        if (_character.PathToFollow != null && _character.PathToFollow.Count > 0)
         {
-            if(_character.CurrentStep == 0)
+            if (_character.CurrentStep == 0)
             {
                 PlayBoardManager.GetInstance().Board.ResetBoard();
             }
-            if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count -1 - _character.CurrentStep], _movementSpeed))
+            if (_character.CurrentStep <= _character.PathToFollow.Count && goTo(_character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep], _movementSpeed))
             {
                 Hexagon currentHexa = _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep];
                 _character.Position = currentHexa;
 
                 List<int> idToKeep = new List<int>();
-                foreach(int id in _character.IdAreaAppliedThisTurn)
+                foreach (int id in _character.IdAreaAppliedThisTurn)
                 {
-                    if(currentHexa._onTimeEffects.ContainsKey(id))
+                    if (currentHexa._onTimeEffects.ContainsKey(id))
                     {
                         idToKeep.Add(id);
                     }
@@ -134,7 +136,7 @@ public class CharacterBehaviour : MonoBehaviour
                 {
                     if (!_character.IdAreaAppliedThisTurn.Contains(effect.GetId()))
                     {
-                        _character.IdAreaAppliedThisTurn.Add(effect.GetId());                        
+                        _character.IdAreaAppliedThisTurn.Add(effect.GetId());
                         effect.ApplyEffect(list, currentHexa, effect.GetCaster());
                     }
                 }
@@ -143,7 +145,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 
                 _character.CurrentStep++;
-                if(_character.CurrentStep == _character.PathToFollow.Count)
+                if (_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
                     _character.NextState = _character.PreviousState;
@@ -181,5 +183,11 @@ public class CharacterBehaviour : MonoBehaviour
     public void CastSelfSpellAnimations()
     {
         SpellAnimationManager.GetInstance().PlaySavedSelfCast();
+    }
+
+    public void MakeOrbsDisappear(int appearing)
+    {
+        bool appear = appearing == 1 ? true : false;
+        _orbs.ActivateRunes(appear);
     }
 }

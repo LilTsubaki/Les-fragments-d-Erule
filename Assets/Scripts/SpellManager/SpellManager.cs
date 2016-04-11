@@ -467,7 +467,9 @@ public class SpellManager : Manager<SpellManager>
             }
         }
 
-		if (runes > 0)
+        SpellAnimationManager.GetInstance().PlayOrbsAnimation(currentPlayer, success);
+
+        if (runes > 0)
 		{
 			HistoricManager.GetInstance ().AddText (String.Format (StringsErule.perfect, currentPlayer.Name));
 		}
