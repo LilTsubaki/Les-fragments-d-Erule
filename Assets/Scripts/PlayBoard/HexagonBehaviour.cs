@@ -33,22 +33,15 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_hexagon.StateChanged)
+       
+        _hexagon.GroundEffect.SetActive(_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround());
+
+            if (_hexagon.StateChanged)
         {
             switch (_hexagon.CurrentState)
             {
                 case Hexagon.State.Default :
-                    if (_hexagon.BoostElement == Hexagon.Boost.Nothing)
-                    {
-                        _hexagon.Glyph.SetActive(false);
-                    }
-
-                    if (_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround())
-                    {
-                        _hexagon.Glyph.SetActive(true);
-                        _hexagon.Glyph.GetComponentInChildren<Renderer>().material.color = ColorErule._groundEffectColor;
-                    }
-
+                    _hexagon.Glyph.SetActive(false);
                     break;
                 case Hexagon.State.Targetable:
                     _hexagon.Glyph.SetActive(true);
