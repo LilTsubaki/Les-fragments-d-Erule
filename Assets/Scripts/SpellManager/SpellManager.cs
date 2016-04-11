@@ -348,7 +348,7 @@ public class SpellManager : Manager<SpellManager>
             **********************/
 
             //SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
-            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position, finalArea, true);
+            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position, finalArea);
             SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
 
             /*********************

@@ -65,21 +65,17 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return false;
     }
     
-    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons, bool self = false)
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
     {
         _saveHexagons = hexagons;
         _saveElems = elemIds;
         _saveFrom = from;
         _saveTo = to;
-        _saveSelf = self;
     }
 
     public void PlaySavedCast()
     {
-        if (!_saveSelf)
-            PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
-        else
-            PlayListSelf(_saveElems, _saveFrom);
+        PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
     }
 
     public void PlaySavedSelfCast()
