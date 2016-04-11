@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MAT_Ground
-  m_Shader: {fileID: 4800000, guid: 355b3d568e6f13e4b8a31735f8df5b4f, type: 3}
+  m_Name: lambert1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,8 +19,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 390aae14b49b4804e87620d2aa8a343e, type: 3}
-          m_Scale: {x: 0.15, y: 0.15}
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -78,13 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Mask
-        second:
-          m_Texture: {fileID: 2800000, guid: dfccb81249e986d4bac854b61ed71db0, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -100,28 +93,8 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Strength
-        second: 75.2
-      data:
-        first:
           name: _Glossiness
         second: 0.5
-      data:
-        first:
-          name: _Opacity
-        second: 0.831
-      data:
-        first:
-          name: _Contrast
-        second: 2.38
-      data:
-        first:
-          name: _TilingTexMoveSpeedV
-        second: 0
-      data:
-        first:
-          name: _TilingTexMoveSpeedU
-        second: 0
       data:
         first:
           name: _Metallic
@@ -154,14 +127,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
-          name: _MaskContrast
-        second: 0.97
     m_Colors:
       data:
         first:
@@ -170,12 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _Tint
-        second: {r: 1, g: 0.43448275, b: 0, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 0, b: 0, a: 0.5}
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
