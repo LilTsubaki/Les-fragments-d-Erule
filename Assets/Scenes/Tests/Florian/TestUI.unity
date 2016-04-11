@@ -2433,6 +2433,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 196530, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: m_Name
+      value: X-WeaponTrail Distort
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438180, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: _trail
+      value: 
+      objectReference: {fileID: 1368979507}
+    - target: {fileID: 176260, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: m_Name
+      value: X-WeaponTrail Distort
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474994, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+      propertyPath: _trail
+      value: 
+      objectReference: {fileID: 741076884}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
   m_IsPrefabParent: 0
@@ -2553,6 +2569,10 @@ MonoBehaviour:
   _initialSpeed: 0
   _rotationSpeed: 0.7
   Vitesse: 1
+--- !u!1 &741076884 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 115726, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+  m_PrefabInternal: {fileID: 642291961}
 --- !u!1001 &757464652
 Prefab:
   m_ObjectHideFlags: 0
@@ -3375,7 +3395,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1001 &1290015611
 Prefab:
   m_ObjectHideFlags: 0
@@ -3446,6 +3466,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70c99346c06c202419e2c12fac666c2f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1368979507 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178970, guid: c7ef0be3d4590604a889e0890739444d, type: 2}
+  m_PrefabInternal: {fileID: 642291961}
 --- !u!114 &1504123891 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11424624, guid: f31887106a73f9a49ac8c3b86017ca3a,
