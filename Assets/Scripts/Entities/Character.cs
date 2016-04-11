@@ -278,6 +278,8 @@ public class Character : Entity, Killable
         Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
+
+        GameObject.GetComponent<Animator>().SetFloat("Wound", (float)(_lifeMax - _lifeCurrent) / (float)_lifeMax);
     }
 
     public int ShieldReceiveDamage(int value)
@@ -336,6 +338,7 @@ public class Character : Entity, Killable
             PlayDead();
         }
 
+        GameObject.GetComponent<Animator>().SetFloat("Wound", (float)(_lifeMax - _lifeCurrent) / (float)_lifeMax);
 
         return value;
     }
