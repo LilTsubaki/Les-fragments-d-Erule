@@ -102,28 +102,24 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
             switch (elem._id)
             {
                 case 0: // Fire
-                    //Play("fire", from, to);
                     _tempo.PlayLater("Fire", totalTime);
-                    totalTime += 1.2f;
+                    totalTime += _tempo._fireTempo;
                     break;
                 case 1: // Water
-                        //Play("water",from,to);
                     _tempo.PlayLater("Water", totalTime);
-                    totalTime += 2.5f;
+                    totalTime += _tempo._waterTempo;
                     break;
                 case 2: // Air
-                    //Play("air", from, to);
                     _tempo.PlayLater("Air", totalTime);
-                    totalTime += 1f;
+                    totalTime += _tempo._airTempo;
                     break;
                 case 3: // Earth
-                    //Play("earth", from, to);
                     _tempo.PlayLater("Earth", totalTime);
+                    totalTime += _tempo._earthTempo;
                     break;
                 case 4: // Wood
-                    //Play("wood", from, to);
                     _tempo.PlayLater("Wood", totalTime);
-                    totalTime += 1f;
+                    totalTime += _tempo._woodTempo;
                     break;
                 case 5: // Metal
                     List<int> metals = new List<int>();
@@ -135,10 +131,9 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
                             randAnimMetal = EruleRandom.RangeValue(1, 3);
                         }
                         metals.Add(randAnimMetal);
-                        //Play("metal" + randAnimMetal, from, to);
                         _tempo.PlayLater("Metal" + randAnimMetal, totalTime);
                     }
-                    totalTime += 2f;
+                    totalTime += _tempo._metalTempo;
                     break;
                 default:
                     Logger.Warning("[Animation] Element does not exist : " + elem._id);

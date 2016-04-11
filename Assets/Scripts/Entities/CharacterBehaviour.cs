@@ -53,6 +53,8 @@ public class CharacterBehaviour : MonoBehaviour
             }
         }
 
+        if(_character != null) { 
+
         if(_character.NextState != _character.CurrentState)
         {
             _character.PreviousState = _character.CurrentState;
@@ -63,6 +65,7 @@ public class CharacterBehaviour : MonoBehaviour
         {
             SetNewOrbs(_character._orbs);
             _character._changeOrbs = false;
+        }
         }
 
         switch (_character.CurrentState)

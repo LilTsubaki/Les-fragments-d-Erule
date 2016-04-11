@@ -6,8 +6,15 @@ public class SpellTempo : MonoBehaviour {
     private Vector3 _from;
     private Vector3 _to;
 
-	// Use this for initialization
-	void Start () {
+    public float _fireTempo;
+    public float _waterTempo;
+    public float _airTempo;
+    public float _earthTempo;
+    public float _woodTempo;
+    public float _metalTempo;
+
+    // Use this for initialization
+    void Start () {
         SpellAnimationManager.GetInstance().RegisterTempo(this);
 	}
 	

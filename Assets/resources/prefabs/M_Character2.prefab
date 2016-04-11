@@ -1541,7 +1541,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 490844}
@@ -1767,7 +1767,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 441248}
@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c9e82c4542b8b842960e74fdad7aca2, type: 3}
   m_Name: 
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   _slowDuration: 0.5
   _slowSpeed: 15
   _gatheringDuration: 1.5
-  _goingInSpeed: 1
+  _goingInSpeed: 3
   _goingOutSpeed: 3
 --- !u!114 &11440812
 MonoBehaviour:
@@ -2228,7 +2228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.7
+  _initialSpeed: 1.4
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!114 &11456742
@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.6
+  _initialSpeed: 1.2
   _rotationSpeed: 0.6
   Vitesse: 1
 --- !u!114 &11462538
@@ -2256,7 +2256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.6
+  _initialSpeed: 1.2
   _rotationSpeed: 0.6
   Vitesse: 1
 --- !u!114 &11481434
@@ -2270,7 +2270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.7
+  _initialSpeed: 1.4
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!114 &11484530
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.7
+  _initialSpeed: 1.4
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!114 &11497868
@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e80f19bf1ba57428c94f347ee65dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialSpeed: 0.7
+  _initialSpeed: 1.4
   _rotationSpeed: 0.7
   Vitesse: 1
 --- !u!136 &13629144

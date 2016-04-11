@@ -24,6 +24,7 @@ public class WaterAnimation : SpellAnimation
 			gameObject.transform.position = _to;
 			Vector3 projCam = new Vector3 (Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
 			gameObject.transform.LookAt (projCam);
+            gameObject.transform.position += gameObject.transform.forward * 0.2f;
 
             _waterAnimator.SetTrigger("play");
 
