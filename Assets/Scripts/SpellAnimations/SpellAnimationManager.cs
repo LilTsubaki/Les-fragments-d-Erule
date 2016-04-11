@@ -11,6 +11,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     private List<Element> _saveElems;
     private Vector3 _saveFrom;
     private Vector3 _saveTo;
+    private bool _saveSelf;
 
     public SpellAnimationManager()
     {
@@ -63,16 +64,17 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return false;
     }
 
-    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to)
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, bool self = false)
     {
         _saveElems = elemIds;
         _saveFrom = from;
         _saveTo = to;
+        _saveSelf = self;
     }
 
     public void PlaySavedCast()
     {
-        if (_saveFrom != _saveTo)
+        if (!_saveSelf)
             PlayList(_saveElems, _saveFrom, _saveTo);
         else
             PlayListSelf(_saveElems, _saveFrom);
