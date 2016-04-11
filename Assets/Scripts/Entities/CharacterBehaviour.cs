@@ -13,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour
     private List<Hexagon> finalArea;
 
     public Orbs _orbs;
+    public GameObject _castChannel;
 
     void Awake()
     {
@@ -188,6 +189,7 @@ public class CharacterBehaviour : MonoBehaviour
     public void MakeOrbsDisappear(int appearing)
     {
         bool appear = appearing == 1 ? true : false;
+        _castChannel.SetActive(!appear);
         _orbs.ActivateRunes(appear);
     }
 }

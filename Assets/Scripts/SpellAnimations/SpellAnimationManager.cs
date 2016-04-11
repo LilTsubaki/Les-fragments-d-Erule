@@ -12,6 +12,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     private Vector3 _saveFrom;
     private Vector3 _saveTo;
     private List<Hexagon> _saveHexagons;
+    private bool _saveSelf;
 
     public SpellAnimationManager()
     {
@@ -63,18 +64,22 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         Debug.Log("Unknown animation " + id);
         return false;
     }
-
-    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
+    
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons, bool self = false)
     {
         _saveHexagons = hexagons;
         _saveElems = elemIds;
         _saveFrom = from;
         _saveTo = to;
+        _saveSelf = self;
     }
 
     public void PlaySavedCast()
     {
-        PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
+        if (!_saveSelf)
+            PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
+        else
+            PlayListSelf(_saveElems, _saveFrom);
     }
 
     public void PlaySavedSelfCast()
