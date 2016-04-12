@@ -19,9 +19,15 @@ public class TestCastAnimation : MonoBehaviour {
         _castTo.GetComponent<CharacterBehaviour>()._character = _char2;
     }
 	
+    void FixedUpdate()
+    {
+        Logger.Error(Time.deltaTime);
+    }
+
 	// Update is called once per frame
 	void Update () {
         // UNDERWHELMING
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             List<Element> elements = new List<Element>();
