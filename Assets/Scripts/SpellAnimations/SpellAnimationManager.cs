@@ -80,7 +80,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     public void PlaySavedSelfCast()
     {
-        PlayListSelf(_saveElems, _saveFrom);
+        PlayListSelf(_saveElems, _saveFrom, _saveHexagons);
     }
 
     public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
@@ -146,19 +146,19 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return true;
     }
 
-    public bool PlayListSelf(List<Element> elemIds, Vector3 from)
+    public bool PlayListSelf(List<Element> elemIds, Vector3 from, List<Hexagon> targetHexagons)
     {
         if(elemIds.Count >= 1)
         {
-            Play("selfHalo", from, from);
+            Play("selfHalo", from, from, targetHexagons);
         }
         if(elemIds.Count >= 2)
         {
-            Play("selfParticles", from, from);
+            Play("selfParticles", from, from, targetHexagons);
         }
         if(elemIds.Count >= 4)
         {
-            Play("selfCircle", from, from);
+            Play("selfCircle", from, from, targetHexagons);
         }
         return true;
     }

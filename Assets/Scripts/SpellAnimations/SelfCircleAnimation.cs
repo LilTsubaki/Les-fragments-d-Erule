@@ -17,6 +17,7 @@ public class SelfCircleAnimation : SpellAnimation {
     void Awake()
     {
         _baseColor = _haloMat.material.GetColor("_TintColor");
+
     }
 
     void Update()

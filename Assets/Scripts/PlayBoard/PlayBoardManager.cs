@@ -205,6 +205,7 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         {
             obstacle.ApplyOnTimeEffects();
             obstacle.RemoveMarkedOnTimeEffects();
+            EffectUIManager.GetInstance().Unpause(obstacle);
         }
 
         Logger.Debug("apply on time area turn playboardmanager");
@@ -223,6 +224,8 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         {
             hex.GrowUp();
         }
+
+        EffectUIManager.GetInstance().Unpause(currentPlayer);
 
         CurrentState = State.MoveMode;
         Logger.Debug("end begin turn playboardmanager");
