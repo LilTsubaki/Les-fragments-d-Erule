@@ -28,9 +28,10 @@ public class Shield : EffectDirect
     public override void ApplyEffect(List<Hexagon> hexagons, Hexagon target, Character caster)
     {
         List<Killable> killables = PlayBoardManager.GetInstance().GetKillableInArea(hexagons);
-        foreach (Character k in killables)
+        foreach (Killable k in killables)
         {
-            k.ReceiveShield(this);
+            if (k is Character)
+                (k as Character).ReceiveShield(this);
         }
     }
 
