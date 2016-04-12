@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpellTempo : MonoBehaviour {
 
     private Vector3 _from;
     private Vector3 _to;
+
+    private List<Hexagon> _hexagons;
 
     public float _fireTempo;
     public float _waterTempo;
@@ -18,10 +21,11 @@ public class SpellTempo : MonoBehaviour {
         SpellAnimationManager.GetInstance().RegisterTempo(this);
 	}
 	
-    public void SetPositions(Vector3 from, Vector3 to)
+    public void Init(Vector3 from, Vector3 to, List<Hexagon> hexagons)
     {
         _from = from;
         _to = to;
+        _hexagons = hexagons;
     }
 
     public void PlayLater(string anim, float time)
@@ -31,34 +35,34 @@ public class SpellTempo : MonoBehaviour {
 
     private void Fire()
     {
-        SpellAnimationManager.GetInstance().Play("fire", _from, _to);
+        SpellAnimationManager.GetInstance().Play("fire", _from, _to, _hexagons);
     }
     private void Air()
     {
-        SpellAnimationManager.GetInstance().Play("air", _from, _to);
+        SpellAnimationManager.GetInstance().Play("air", _from, _to, _hexagons);
     }
     private void Water()
     {
-        SpellAnimationManager.GetInstance().Play("water", _from, _to);
+        SpellAnimationManager.GetInstance().Play("water", _from, _to, _hexagons);
     }
     private void Earth()
     {
-        SpellAnimationManager.GetInstance().Play("earth", _from, _to);
+        SpellAnimationManager.GetInstance().Play("earth", _from, _to, _hexagons);
     }
     private void Wood()
     {
-        SpellAnimationManager.GetInstance().Play("wood", _from, _to);
+        SpellAnimationManager.GetInstance().Play("wood", _from, _to, _hexagons);
     }
     private void Metal1()
     {
-        SpellAnimationManager.GetInstance().Play("metal1", _from, _to);
+        SpellAnimationManager.GetInstance().Play("metal1", _from, _to, _hexagons);
     }
     private void Metal2()
     {
-        SpellAnimationManager.GetInstance().Play("metal2", _from, _to);
+        SpellAnimationManager.GetInstance().Play("metal2", _from, _to, _hexagons);
     }
     private void Metal3()
     {
-        SpellAnimationManager.GetInstance().Play("metal3", _from, _to);
+        SpellAnimationManager.GetInstance().Play("metal3", _from, _to, _hexagons);
     }
 }

@@ -19,16 +19,22 @@ public class TestCastAnimation : MonoBehaviour {
         _castTo.GetComponent<CharacterBehaviour>()._character = _char2;
     }
 	
+    void FixedUpdate()
+    {
+        Logger.Error(Time.deltaTime);
+    }
+
 	// Update is called once per frame
 	void Update () {
         // UNDERWHELMING
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             List<Element> elements = new List<Element>();
             elements.Add(Element.GetElement(0));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
@@ -38,7 +44,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(2));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
@@ -48,7 +54,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(1));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
@@ -58,7 +64,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(4));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
@@ -68,7 +74,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(3));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
@@ -78,10 +84,37 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(5));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
             _char1.SetOrbs(elements);
             _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            List<Element> elements = new List<Element>();
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
+            elements.Add(Element.GetElement(5));
+            _char1.NextState = Character.State.CastingSpell;
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castFrom.transform.position, new List<Hexagon>());
+            SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(elements, _char1);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            List<Element> elements = new List<Element>();
+            elements.Add(Element.GetElement(1));
+            elements.Add(Element.GetElement(1));
+            elements.Add(Element.GetElement(1));
+            elements.Add(Element.GetElement(1));
+            _char1.NextState = Character.State.CastingSpell;
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castFrom.transform.position, new List<Hexagon>());
+            SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(elements, _char1);
+            _char1.SetOrbs(elements);
+            _castFrom.GetComponent<CharacterBehaviour>()._orbs._successCast = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SpellAnimationManager.GetInstance().Play("metal1", _castFrom.transform.position, _castTo.transform.position);
@@ -100,7 +133,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(5));
             elements.Add(Element.GetElement(5));
             elements.Add(Element.GetElement(5));
-            SpellAnimationManager.GetInstance().PlayList(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().PlayList(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -129,7 +162,7 @@ public class TestCastAnimation : MonoBehaviour {
             elements.Add(Element.GetElement(5));
             _char1.NextState = Character.State.CastingSpell;
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(elements, _castFrom.GetComponent<CharacterBehaviour>()._character);
-            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position);
+            SpellAnimationManager.GetInstance().SaveCast(elements, _castFrom.transform.position, _castTo.transform.position, new List<Hexagon>());
         }
     }
 }

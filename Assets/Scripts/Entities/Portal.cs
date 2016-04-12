@@ -91,4 +91,17 @@ public class Portal {
             _timestamp = value;
         }
     }
+
+    public int Id
+    {
+        get
+        {
+            return _id;
+        }
+
+        set
+        {
+            _id = value;
+        }
+    }
 }

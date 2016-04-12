@@ -11,6 +11,8 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
     private List<Element> _saveElems;
     private Vector3 _saveFrom;
     private Vector3 _saveTo;
+    private List<Hexagon> _saveHexagons;
+    private bool _saveSelf;
 
     public SpellAnimationManager()
     {
@@ -50,21 +52,22 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         return true;
     }
 
-    public bool Play(string id, Vector3 from, Vector3 to)
+    public bool Play(string id, Vector3 from, Vector3 to, List<Hexagon> hexagons=null)
     {
         SpellAnimation anim;
         if(_animations.TryGetValue(id, out anim))
         {
-            anim.Reset(from, to);
+            anim.Reset(from, to, hexagons);
             anim.Play();
             return true;
         }
         Debug.Log("Unknown animation " + id);
         return false;
     }
-
-    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to)
+    
+    public void SaveCast(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
     {
+        _saveHexagons = hexagons;
         _saveElems = elemIds;
         _saveFrom = from;
         _saveTo = to;
@@ -72,10 +75,7 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
 
     public void PlaySavedCast()
     {
-        if (_saveFrom != _saveTo)
-            PlayList(_saveElems, _saveFrom, _saveTo);
-        else
-            PlayListSelf(_saveElems, _saveFrom);
+        PlayList(_saveElems, _saveFrom, _saveTo, _saveHexagons);
     }
 
     public void PlaySavedSelfCast()
@@ -83,9 +83,9 @@ public class SpellAnimationManager : Manager<SpellAnimationManager> {
         PlayListSelf(_saveElems, _saveFrom);
     }
 
-    public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to)
+    public bool PlayList(List<Element> elemIds, Vector3 from, Vector3 to, List<Hexagon> hexagons)
     {
-        _tempo.SetPositions(from, to);
+        _tempo.Init(from, to, hexagons);
 
         //HashSet<Element> setElems = new HashSet<Element>(elemIds.ToArray());
         int nbMetal = elemIds.FindAll(delegate (Element e) { return e._id == 5; }).Count;//EruleRandom.RangeValue(1, 4);

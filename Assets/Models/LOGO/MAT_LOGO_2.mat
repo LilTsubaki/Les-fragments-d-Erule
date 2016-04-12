@@ -105,12 +105,16 @@ Material:
         second: 0.02
       data:
         first:
-          name: _ZWrite
+          name: _Glossiness
+        second: 1
+      data:
+        first:
+          name: _Metallic
         second: 0
       data:
         first:
-          name: _Glossiness
-        second: 0.355
+          name: _ZWrite
+        second: 0
       data:
         first:
           name: _BumpScale
@@ -131,19 +135,15 @@ Material:
         first:
           name: _Mode
         second: 3
-      data:
-        first:
-          name: _Metallic
-        second: 0
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0.44852942, g: 0.44852942, b: 0.44852942, a: 1}
+        second: {r: 0.24264705, g: 0.23304945, b: 0.2158845, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0.5147059, g: 0.5147059, b: 0.5147059, a: 1}
+        second: {r: 0.85294116, g: 0.7964965, b: 0.7964965, a: 1}
       data:
         first:
           name: _SpecColor

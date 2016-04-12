@@ -3468,6 +3468,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: selfCircle
   _animator: {fileID: 9526038}
   _haloMat: {fileID: 2310248}
@@ -3547,6 +3550,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: selfParticles
   _animator: {fileID: 9588356}
   _haloMat: {fileID: 2308994}
@@ -3586,6 +3592,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: fire
   _fireAnimator: {fileID: 9583420}
   _fireSprite: {fileID: 9552088}
@@ -3648,6 +3657,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: earth
   _timeBetweenSpawns: 0
   _upwardSpeed: 0.1
@@ -3780,6 +3792,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 0.5
+  _timer: 0
   _registerName: metal2
   _anim: {fileID: 9568000}
   _axe: {fileID: 11423452}
@@ -3798,6 +3813,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 2
+  _timer: 0
   _registerName: metal1
   _anim: {fileID: 9555836}
   _axe: {fileID: 11477928}
@@ -3816,6 +3834,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: air
   _initialScale: 0.7
   _finalScale: 2.2
@@ -3967,6 +3988,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: selfHalo
   _animator: {fileID: 9546980}
   _haloMat: {fileID: 2307632}
@@ -3985,6 +4009,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 0.5
+  _timer: 0
   _registerName: metal3
   _anim: {fileID: 9544908}
   _axe: {fileID: 11490342}
@@ -4017,6 +4044,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: wood
   _thorn1: {fileID: 108948}
   _thorn2: {fileID: 188594}
@@ -4025,6 +4055,7 @@ MonoBehaviour:
   _clouds: {fileID: 19847742}
   _rocks: {fileID: 19833242}
   _speed: 7
+  _timeToHitTargetRegistered: 0
 --- !u!114 &11477928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4076,6 +4107,9 @@ MonoBehaviour:
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 0, y: 0, z: 0}
   _play: 0
+  _updateTimer: 0
+  _timeToHitTarget: 1
+  _timer: 0
   _registerName: water
   _waterAnimator: {fileID: 9517880}
   _splashesBottom: {fileID: 19885030}

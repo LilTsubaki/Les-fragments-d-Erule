@@ -10,6 +10,7 @@ public class WoodAnimation : SpellAnimation {
     public ParticleSystem _clouds;
     public ParticleSystem _rocks;
     public float _speed;
+    public bool _timeToHitTargetRegistered = false;
 
     void FixedUpdate()
     {
@@ -17,6 +18,12 @@ public class WoodAnimation : SpellAnimation {
         {
             Vector3 next = Vector3.MoveTowards(transform.position, _to + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
             transform.position = next;
+            if (!_timeToHitTargetRegistered)
+            {
+                float distFromToTo = Vector3.Distance(_from, _to);
+                _timeToHitTarget = distFromToTo / 35.0f;
+                _timeToHitTargetRegistered = true;
+            }
             if (Vector3.Distance(next, _to + gameObject.transform.forward * 1f) < 1.1f)
             {
                 _play = false;
@@ -27,6 +34,10 @@ public class WoodAnimation : SpellAnimation {
                 _clouds.Stop();
                 _rocks.Stop();
             }
+        }
+        if(_updateTimer)
+        {
+            timerUpdate();
         }
     }
 
@@ -41,6 +52,7 @@ public class WoodAnimation : SpellAnimation {
         _cracks.SetActive(true);
         _clouds.Play();
         _rocks.Play();
+        _timeToHitTargetRegistered = false;
     }
 
 }

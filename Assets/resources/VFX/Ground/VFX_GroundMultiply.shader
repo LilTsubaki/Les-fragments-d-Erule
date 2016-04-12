@@ -13,14 +13,17 @@
 
 	}
 	SubShader {
-		Tags { "RenderType"="Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
-		Blend DstColor Zero
+		Tags { "Queue"="Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		LOD 200
+		//Cull Off
+		Blend Zero SrcColor
 		ZWrite Off
+		//ZTest Greater
 		Lighting Off
 
 		CGPROGRAM
 
-		#pragma surface surf Lambert// alpha
+		#pragma surface surf Lambert 
 
 		#pragma target 3.0
 

@@ -20,7 +20,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 390aae14b49b4804e87620d2aa8a343e, type: 3}
-          m_Scale: {x: 0.25, y: 0.25}
+          m_Scale: {x: 0.15, y: 0.15}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -100,16 +100,32 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Strength
+        second: 75.2
+      data:
+        first:
+          name: _Glossiness
+        second: 0.5
+      data:
+        first:
+          name: _Opacity
+        second: 0.831
+      data:
+        first:
           name: _Contrast
         second: 2.38
       data:
         first:
-          name: _Strength
-        second: 67.2
+          name: _TilingTexMoveSpeedV
+        second: 0
       data:
         first:
-          name: _Opacity
-        second: 0.581
+          name: _TilingTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _Parallax
@@ -118,10 +134,6 @@ Material:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -144,24 +156,12 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _InvFade
         second: 1
       data:
         first:
-          name: _TilingTexMoveSpeedV
-        second: 0
-      data:
-        first:
-          name: _TilingTexMoveSpeedU
-        second: 0
-      data:
-        first:
           name: _MaskContrast
-        second: 1.4
+        second: 0.97
     m_Colors:
       data:
         first:
@@ -173,9 +173,9 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _TintColor
-        second: {r: 1, g: 0, b: 0, a: 0.5}
-      data:
-        first:
           name: _Tint
         second: {r: 1, g: 0.43448275, b: 0, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 0, b: 0, a: 0.5}

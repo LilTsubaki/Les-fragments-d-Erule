@@ -57,7 +57,11 @@ public class WaterAnimation : SpellAnimation
             _play = !_play;
 		}
         _waterMat.material.SetFloat("_Cutoff", 1 - _cutoff);
-	}
+        if (_updateTimer)
+        {
+            timerUpdate();
+        }
+    }
 
 	public void ResetBursts() {
 		ParticleSystem.EmissionModule modsplashesBottom = _splashesBottom.emission;
