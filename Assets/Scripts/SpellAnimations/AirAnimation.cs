@@ -15,13 +15,16 @@ public class AirAnimation : SpellAnimation {
 	public float _height;
 	public Xft.XWeaponTrail Trail1;
 	public Xft.XWeaponTrail Trail2;
-
+    
 	// Update is called once per frame
 	void FixedUpdate () {
         if (_play)
         {
             float distFromToNext = Vector3.Distance(_from, gameObject.transform.position);
             float distFromToTo = Vector3.Distance(_from, _to);
+
+            _timeToHitTarget = distFromToTo / 27.5f;
+
             float percentage = distFromToNext / distFromToTo;
             float scale = _initialScale * (1-percentage) + _finalScale * percentage;
             gameObject.transform.localScale = new Vector3(scale, scale, scale);

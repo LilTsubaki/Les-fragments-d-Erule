@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EarthAnimation : SpellAnimation
 {
-    private List<HexagonBehaviour> _hexagons;
+    private List<HexagonBehaviour> _raycastedHexagons;
     private bool _raycastDone;
     private float _currentTime;
     private int _currentIndex;
@@ -23,7 +23,7 @@ public class EarthAnimation : SpellAnimation
 
     public void Awake()
     {
-        _hexagons = new List<HexagonBehaviour>();
+        _raycastedHexagons = new List<HexagonBehaviour>();
         _raycastDone = false;
         _currentTime = 0;
         _currentIndex = 0;
@@ -32,7 +32,7 @@ public class EarthAnimation : SpellAnimation
     public override void Reset()
     {
         _raycastDone = false;
-        _hexagons.Clear();
+        _raycastedHexagons.Clear();
         _currentTime = 0;
         _currentIndex = 0;
     }
@@ -55,52 +55,57 @@ public class EarthAnimation : SpellAnimation
                 RaycastHit[] raycasts = Physics.RaycastAll(new Ray(_from, _to - _from), Vector3.Distance(_from, _to), LayerMask.GetMask("HexagonBigCollider"));
                 for (int i = 0; i < raycasts.Length; i++)
                 {
-                    _hexagons.Add(raycasts[i].transform.GetComponentInParent<HexagonBehaviour>());
+                    _raycastedHexagons.Add(raycasts[i].transform.GetComponentInParent<HexagonBehaviour>());
                 }
                 _raycastDone = true;
             }
-
-            if (_currentIndex < _hexagons.Count && _currentTime > _timeBetweenSpawns)
+            else
             {
-                _currentTime = 0;
-                GameObject prefab = GetUnderHex(_hexagons[_currentIndex]._hexagonType);
-                if (prefab != null)
+                _timeToHitTarget = _timeBetweenSpawns * _raycastedHexagons.Count;
+
+                if (_currentIndex < _raycastedHexagons.Count && _currentTime > _timeBetweenSpawns)
                 {
+                    _currentTime = 0;
+                    GameObject prefab = GetUnderHex(_raycastedHexagons[_currentIndex]._hexagonType);
+                    if (prefab != null)
+                    {
 
-                    Vector3 hexagonPosition = _hexagons[_currentIndex].transform.position;
-                    Vector3 position = hexagonPosition - new Vector3(0, 2.4f, 0);
-                    GameObject go = (GameObject)Instantiate(prefab, position, Quaternion.identity);
-                    go.transform.localScale = new Vector3(0.7f, 1.2f, 0.7f);
-                    go.layer = LayerMask.NameToLayer("EarthAnim");
-                    go.transform.Rotate(new Vector3(0, 0, 180));
-                    EarthBehaviour earthBehaviour = go.AddComponent<EarthBehaviour>();
-                    go.AddComponent<SetRenderQueue>();
+                        Vector3 hexagonPosition = _raycastedHexagons[_currentIndex].transform.position;
+                        Vector3 position = hexagonPosition - new Vector3(0, 2.4f, 0);
+                        GameObject go = (GameObject)Instantiate(prefab, position, Quaternion.identity);
+                        go.transform.localScale = new Vector3(0.7f, 1.2f, 0.7f);
+                        go.layer = LayerMask.NameToLayer("EarthAnim");
+                        go.transform.Rotate(new Vector3(0, 0, 180));
+                        EarthBehaviour earthBehaviour = go.AddComponent<EarthBehaviour>();
+                        go.AddComponent<SetRenderQueue>();
 
-                    go.transform.RotateAround(hexagonPosition, Vector3.Cross(_to - _from, Vector3.up), EruleRandom.RangeValue(0.0f,1.0f)* _rotationAngle);
-                    earthBehaviour.InitialPosition = go.transform.position;
+                        go.transform.RotateAround(hexagonPosition, Vector3.Cross(_to - _from, Vector3.up), EruleRandom.RangeValue(0.0f,1.0f)* _rotationAngle);
+                        earthBehaviour.InitialPosition = go.transform.position;
                     
-                    earthBehaviour.Speed = _upwardSpeed;
-                    earthBehaviour.TimeStayingUp = _timeStayingUp;
-                    earthBehaviour.MaxHeight = _curve.Evaluate((float)(_currentIndex + 1) / (float)_hexagons.Count) * 2.4f;
+                        earthBehaviour.Speed = _upwardSpeed;
+                        earthBehaviour.TimeStayingUp = _timeStayingUp;
+                        earthBehaviour.MaxHeight = _curve.Evaluate((float)(_currentIndex + 1) / (float)_raycastedHexagons.Count) * 2.4f;
 
-                    GameObject particle;
-                    if (_hexagons[_currentIndex]._hexagonType.Contains("Ice")) {
-                        particle = Instantiate(_ice.gameObject);
+                        GameObject particle;
+                        if (_raycastedHexagons[_currentIndex]._hexagonType.Contains("Ice")) {
+                            particle = Instantiate(_ice.gameObject);
+                        }
+                        else
+                        {
+                            particle = Instantiate(_rock.gameObject);
+                        }
+                        particle.SetActive(true);
+                        particle.transform.position = hexagonPosition;
+                        earthBehaviour.Particles = particle;
                     }
                     else
                     {
-                        particle = Instantiate(_rock.gameObject);
+                        Logger.Debug("No prefab for underhex");
                     }
-                    particle.SetActive(true);
-                    particle.transform.position = hexagonPosition;
-                    earthBehaviour.Particles = particle;
+                    _currentIndex++;
                 }
-                else
-                {
-                    Logger.Debug("No prefab for underhex");
-                }
-                _currentIndex++;
             }
+
             if (_updateTimer)
             {
                 timerUpdate();

@@ -9,14 +9,14 @@ public class SpellAnimation : MonoBehaviour {
     public bool _play;
     public bool _updateTimer;
 
-    public float _timeToHitTarget = 1.0f;
+    public float _timeToHitTarget;
     public float _timer;
     public List<Hexagon> _hexagons;
 
     public string _registerName;
 
     // Use this for initialization
-    void Start () {
+    public void Start () {
         SpellAnimationManager.GetInstance().Register(_registerName, this);
         gameObject.SetActive(false);
 	}
