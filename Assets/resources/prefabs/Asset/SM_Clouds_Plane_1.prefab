@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 406980}
   - 33: {fileID: 3308026}
   - 23: {fileID: 2383916}
+  - 114: {fileID: 11453688}
   m_Layer: 0
   m_Name: SM_Clouds_Plane_1
   m_TagString: Untagged
@@ -23,9 +24,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148586}
-  m_LocalRotation: {x: -0.07175216, y: -0.69576097, z: 0.07331452, w: 0.7109102}
-  m_LocalPosition: {x: -0.33, y: -1.78, z: 2.42}
-  m_LocalScale: {x: 0.8162367, y: 1, z: 0.8401491}
+  m_LocalRotation: {x: 0.23688146, y: 0.5020186, z: 0.6653896, w: 0.49912047}
+  m_LocalPosition: {x: 12.289986, y: -0.15, z: 6.07}
+  m_LocalScale: {x: 2.2791703, y: 2.0479364, z: -1.6732932}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,6 +63,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148586}
   m_Mesh: {fileID: 4300000, guid: b70dcbfcee2260f4080227e4e5f73979, type: 3}
+--- !u!114 &11453688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7da217c1cecb241a763f88564ac95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedU: 0
+  speedV: -0.005
+  length: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
