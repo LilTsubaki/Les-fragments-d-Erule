@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : Entity, Killable
 {
-    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious }
+    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious, Rotating}
 
 	/*public static int MaxProtection = 50;*/
 	public int _lifeMax;
@@ -27,6 +27,8 @@ public class Character : Entity, Killable
 
     public bool _changeOrbs;
     public List<Element> _orbs;
+
+    public Direction.EnumDirection _direction;
 
     private Dictionary<Element, int> _protections;
 	private Dictionary<Element, int> _protectionsNegative;
@@ -105,6 +107,8 @@ public class Character : Entity, Killable
         NextState = State.Waiting;
         _shields = new LinkedList<Shield>();
         IdAreaAppliedThisTurn = new List<int>();
+
+        _direction = Direction.EnumDirection.DiagonalSouth;
     }
 
     public Character (int lifeMax, Hexagon position, GameObject go) : base(position)
@@ -148,6 +152,8 @@ public class Character : Entity, Killable
         CurrentState = State.Waiting;
         NextState = State.Waiting;
         IdAreaAppliedThisTurn = new List<int>();
+
+        _direction = Direction.EnumDirection.DiagonalSouth;
     }
 
     public void UpdateEffectTerminable()

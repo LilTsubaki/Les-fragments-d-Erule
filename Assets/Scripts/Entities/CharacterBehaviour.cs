@@ -15,6 +15,11 @@ public class CharacterBehaviour : MonoBehaviour
     public Orbs _orbs;
     public GameObject _castChannel;
 
+    private Quaternion _nextRotation;
+
+    private Character.State _stateBeforeMove;
+    
+
     void Awake()
     {
         _movementSpeed = 4.0f;
@@ -31,7 +36,7 @@ public class CharacterBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving)
+        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.Rotating)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -50,7 +55,13 @@ public class CharacterBehaviour : MonoBehaviour
                     _character.CurrentStep = 0;
 
                     if (pathFound && _character.PathToFollow.Count > 0)
-                        _character.NextState = Character.State.Moving;
+                    {
+                        _stateBeforeMove = _character.CurrentState;
+                        _character.NextState = Character.State.Rotating;
+                        Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count-1]);
+                        float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+                        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
+                    }
                 }
             }
         }
@@ -73,6 +84,9 @@ public class CharacterBehaviour : MonoBehaviour
 
         switch (_character.CurrentState)
         {
+            case Character.State.Rotating:
+                Rotate();
+                break;
             case Character.State.Moving:
                 Move();
                 break;
@@ -85,6 +99,15 @@ public class CharacterBehaviour : MonoBehaviour
     }
 
 
+
+    void Rotate()
+    {
+        gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, 1);
+        if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
+        {
+            _character.NextState = Character.State.Moving;
+        }
+    }
 
     bool goTo(Hexagon hexa, float speed)
     {
@@ -142,14 +165,12 @@ public class CharacterBehaviour : MonoBehaviour
                     }
                 }
 
-
-
-
                 _character.CurrentStep++;
+
                 if (_character.CurrentStep == _character.PathToFollow.Count)
                 {
                     _character.Position = _character.PathToFollow[0];
-                    _character.NextState = _character.PreviousState;
+                    _character.NextState = _stateBeforeMove;
                     PlayBoardManager.GetInstance().Board._colorAccessible = true;
                     // Teleport player if the last hexagon has a portal
                     if (_character.Position.Portal != null)
@@ -157,6 +178,13 @@ public class CharacterBehaviour : MonoBehaviour
                         PortalManager.GetInstance().Teleport(_character);
                     }
 
+                }
+                else
+                {
+                    _character.NextState = Character.State.Rotating;
+                    Direction.EnumDirection nextDirection = Direction.GetDirection(currentHexa, _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep]);
+                    float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+                    _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
                 }
             }
         }

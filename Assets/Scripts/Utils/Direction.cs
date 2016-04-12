@@ -126,6 +126,11 @@ public class Direction
         return ((dest - source)+12)%12;
     }
 
+    public static int GetDiffAngle(EnumDirection source, EnumDirection dest)
+    {
+        return (GetDiff(source, dest) - 6) * 30;
+    }
+
     public static EnumDirection GetDirection(Hexagon source, Hexagon destination)
     {
         //Logger.Debug("source : " + source._posX + " | " + source._posY);
