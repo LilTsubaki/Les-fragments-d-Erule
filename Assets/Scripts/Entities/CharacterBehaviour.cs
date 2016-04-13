@@ -35,71 +35,71 @@ public class CharacterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.Rotating)
+        if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //Debug.DrawLine(ray.origin, ray.direction * 20);
-            RaycastHit rch;
-            //int layermask = (1 << LayerMask.NameToLayer("Default"));
-            int layermask = LayerMask.GetMask("Hexagon");
-
-            if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+            if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.Rotating)
             {
-                HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
-                //MakeSpell(hexagonBehaviour);
-                Hexagon hexa = hexagonBehaviour._hexagon;
-                if (hexa != null)
-                {
-                    bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
-                    _character.CurrentStep = 0;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                //Debug.DrawLine(ray.origin, ray.direction * 20);
+                RaycastHit rch;
+                //int layermask = (1 << LayerMask.NameToLayer("Default"));
+                int layermask = LayerMask.GetMask("Hexagon");
 
-                    if (pathFound && _character.PathToFollow.Count > 0)
+                if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+                {
+                    HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
+                    //MakeSpell(hexagonBehaviour);
+                    Hexagon hexa = hexagonBehaviour._hexagon;
+                    if (hexa != null)
                     {
-                        _stateBeforeMove = _character.CurrentState;
-                        _character.NextState = Character.State.Rotating;
-                        Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count-1]);
-                        float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
-                        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
+                        bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
+                        _character.CurrentStep = 0;
+
+                        if (pathFound && _character.PathToFollow.Count > 0)
+                        {
+                            _stateBeforeMove = _character.CurrentState;
+                            _character.NextState = Character.State.Rotating;
+                            Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count-1]);
+                            float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+                            _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
+                        }
                     }
                 }
             }
-        }
 
-        if (_character != null)
-        {
-
-            if (_character.NextState != _character.CurrentState)
+            if (_character != null)
             {
-                _character.PreviousState = _character.CurrentState;
-                _character.CurrentState = _character.NextState;
+
+                if (_character.NextState != _character.CurrentState)
+                {
+                    _character.PreviousState = _character.CurrentState;
+                    _character.CurrentState = _character.NextState;
+                }
+
+                if (_character._changeOrbs)
+                {
+                    SetNewOrbs(_character._orbs);
+                    _character._changeOrbs = false;
+                }
             }
 
-            if (_character._changeOrbs)
+            switch (_character.CurrentState)
             {
-                SetNewOrbs(_character._orbs);
-                _character._changeOrbs = false;
+                case Character.State.Rotating:
+                    Rotate();
+                    break;
+                case Character.State.Moving:
+                    Move();
+                    break;
+                case Character.State.Translating:
+                    Translate();
+                    break;
+                default:
+                    break;
             }
-        }
-
-        switch (_character.CurrentState)
-        {
-            case Character.State.Rotating:
-                Rotate();
-                break;
-            case Character.State.Moving:
-                Move();
-                break;
-            case Character.State.Translating:
-                Translate();
-                break;
-            default:
-                break;
         }
     }
-
-
-
+    
     void Rotate()
     {
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, 1);

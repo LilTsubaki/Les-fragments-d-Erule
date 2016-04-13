@@ -255,6 +255,9 @@ public class RunicBoardBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        InputUpdate();
+        if(!ClientManager.GetInstance()._client.GameOver)
+        {
+            InputUpdate();
+        }
     }
 }

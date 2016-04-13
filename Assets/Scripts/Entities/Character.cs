@@ -156,6 +156,11 @@ public class Character : Entity, Killable
         _direction = Direction.EnumDirection.DiagonalSouth;
     }
 
+    public bool Equals(Character character)
+    {
+        return (_lifeCurrent == character._lifeCurrent) && (_lifeMax == character._lifeMax) && (_name == character._name) && (_turnNumber == character._turnNumber);
+    }
+
     public void UpdateEffectTerminable()
     {
         List<int> toRemove = new List<int>();
