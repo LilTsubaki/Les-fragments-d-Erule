@@ -18,11 +18,6 @@ public class TestCastAnimation : MonoBehaviour {
         _char2.GameObject = _castTo;
         _castTo.GetComponent<CharacterBehaviour>()._character = _char2;
     }
-	
-    void FixedUpdate()
-    {
-        Logger.Error(Time.deltaTime);
-    }
 
 	// Update is called once per frame
 	void Update () {

@@ -8,6 +8,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public float _movementSpeed;
     public float _translateSpeed;
+    public float _rotationSpeed;
 
     private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
@@ -22,8 +23,9 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Awake()
     {
-        _movementSpeed = 4.0f;
+        _movementSpeed = 2.0f;
         _translateSpeed = 8.0f;
+        _rotationSpeed = 2f;
     }
 
     // Use this for initialization
@@ -36,7 +38,7 @@ public class CharacterBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.Rotating)
+        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingLeft)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -57,10 +59,14 @@ public class CharacterBehaviour : MonoBehaviour
                     if (pathFound && _character.PathToFollow.Count > 0)
                     {
                         _stateBeforeMove = _character.CurrentState;
-                        _character.NextState = Character.State.Rotating;
                         Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count-1]);
                         float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
-                        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
+                        //_character._direction = nextDirection;
+                        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff)%360, gameObject.transform.rotation.z);
+                        if (_nextRotation.y > gameObject.transform.rotation.y)
+                            _character.NextState = Character.State.RotatingLeft;
+                        else
+                            _character.NextState = Character.State.RotatingRight;
                     }
                 }
             }
@@ -84,7 +90,10 @@ public class CharacterBehaviour : MonoBehaviour
 
         switch (_character.CurrentState)
         {
-            case Character.State.Rotating:
+            case Character.State.RotatingLeft:
+                Rotate();
+                break;
+            case Character.State.RotatingRight:
                 Rotate();
                 break;
             case Character.State.Moving:
@@ -102,7 +111,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Rotate()
     {
-        gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, 1);
+        gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
         if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
         {
             _character.NextState = Character.State.Moving;
@@ -181,9 +190,16 @@ public class CharacterBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    _character.NextState = Character.State.Rotating;
+
+                    
                     Direction.EnumDirection nextDirection = Direction.GetDirection(currentHexa, _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep]);
+                    int dir = Direction.GetDiff(_character._direction, nextDirection) - 6;
+                    if (dir < 0)
+                        _character.NextState = Character.State.RotatingLeft;
+                    else
+                        _character.NextState = Character.State.RotatingRight;
                     float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+                    //_character._direction = nextDirection;
                     _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
                 }
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : Entity, Killable
 {
-    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious, Rotating}
+    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious, RotatingLeft, RotatingRight}
 
 	/*public static int MaxProtection = 50;*/
 	public int _lifeMax;
@@ -981,24 +981,63 @@ public class Character : Entity, Killable
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", false);
                     break;
                 case State.CastingSpell:
                     anim.SetBool("Idling", false);
                     anim.SetBool("Casting", true);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", false);
                     break;
                 case State.Victorious:
                     anim.SetBool("Idling", false);
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", true);
-                    anim.SetBool("Defeated", false); 
+                    anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", false);
                     break;
                 case State.Dead:
                     anim.SetBool("Idling", false);
                     anim.SetBool("Casting", false);
                     anim.SetBool("Victorious", false);
                     anim.SetBool("Defeated", true);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", false);
+                    break;
+                case State.RotatingLeft:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", true);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", false);
+                    break;
+                case State.RotatingRight:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", true);
+                    anim.SetBool("Moving", false);
+                    break;
+                case State.Moving:
+                    anim.SetBool("Idling", false);
+                    anim.SetBool("Casting", false);
+                    anim.SetBool("Victorious", false);
+                    anim.SetBool("Defeated", false);
+                    anim.SetBool("TurningLeft", false);
+                    anim.SetBool("TurningRight", false);
+                    anim.SetBool("Moving", true);
                     break;
             }
         }
