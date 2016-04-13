@@ -293,9 +293,27 @@ public class ServerListener
     {
         try
         {
-            Logger.Trace("EndTurn");
+            Logger.Trace("RestartGame");
 
             NetworkUtils.WriteInt(17, _client.GetStream());
+
+            _client.GetStream().Flush();
+        }
+        catch (Exception e)
+        {
+            Logger.Error("Restart game failed : " + e.StackTrace);
+            _isRunning = false;
+        }
+    }
+
+    public void EndGame(Character character)
+    {
+        try
+        {
+            Logger.Trace("EndGame");
+
+            NetworkUtils.WriteInt(18, _client.GetStream());
+            NetworkUtils.WriteCharacter(character, _client.GetStream());
 
             _client.GetStream().Flush();
         }

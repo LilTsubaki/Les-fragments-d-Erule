@@ -24,6 +24,8 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
 
     private bool _gameStarted;
 
+    public float _timerBeforeGameOver = 4.0f;
+
     private GameObject _environment;
 
     public GameObject Environment
@@ -38,7 +40,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
             _environment = value;
         }
     }
-
+    
     void Start()
     {
         CameraManager.GetInstance().FadeTo("cameraBoard", 1);
@@ -199,6 +201,14 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                 break;
             case Server.State.playing:
                 UpdatePlaying();
+                break;
+            case Server.State.gameOver:
+                _timerBeforeGameOver -= Time.deltaTime;
+                if (_timerBeforeGameOver <= 0)
+                {
+                    UIManager.GetInstance().ShowPanelNoStack("gameOver");
+                    ServerManager.GetInstance()._server.EndGame(PlayBoardManager.GetInstance().Winner);
+                }
                 break;
             default:
                 break;

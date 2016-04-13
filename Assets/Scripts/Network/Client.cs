@@ -37,6 +37,9 @@ public class Client : MonoBehaviour{
     bool _newHost;
 
     bool _restartGame;
+    bool _gameOver;
+
+    Character _winner;
 
     String _name;
 
@@ -94,6 +97,32 @@ public class Client : MonoBehaviour{
         }
     }
 
+    public bool GameOver
+    {
+        get
+        {
+            return _gameOver;
+        }
+
+        set
+        {
+            _gameOver = value;
+        }
+    }
+
+    public Character Winner
+    {
+        get
+        {
+            return _winner;
+        }
+
+        set
+        {
+            _winner = value;
+        }
+    }
+
     public void Awake()
     {
         _lockedMode = false;
@@ -114,6 +143,7 @@ public class Client : MonoBehaviour{
         ClientManager.GetInstance().Init(this);
         _hostsReceived = new Dictionary<string, int>();
         _restartGame = false;
+        _gameOver = false;
     }
 
     void Update()
@@ -250,6 +280,13 @@ public class Client : MonoBehaviour{
             case 17:
                 Logger.Debug("receive Restart Game request");
                 _restartGame = true;
+                return true;
+
+            case 18:
+                Logger.Debug("receive End Game request");
+                _winner = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                _gameOver = true;
+                UIManager.GetInstance().ShowPanelNoStack("gameOver");
                 return true;
 
             default:

@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: MAT_Hex_Underhex_Dirt_Sand
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP
+  m_ShaderKeywords: _ENABLEREFLECTIONS_ON _NORMALMAP
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -33,7 +33,7 @@ Material:
         first:
           name: _DetailNormalMap
         second:
-          m_Texture: {fileID: 2800000, guid: b2759f48918ba4a43aeb39c6ca47f048, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -80,7 +80,42 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ReflectionTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _NormalTexture
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FoamTexture
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -97,35 +132,35 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.5
+        second: 0.405
       data:
         first:
-          name: _Glossiness
-        second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
+          name: _InvFade
+        second: 1
       data:
         first:
           name: _Parallax
-        second: 0.02
+        second: 0.005
       data:
         first:
           name: _ZWrite
         second: 1
       data:
         first:
+          name: _Glossiness
+        second: 0.2
+      data:
+        first:
           name: _BumpScale
-        second: 1.2
+        second: 1
       data:
         first:
           name: _OcclusionStrength
-        second: 1
+        second: 0
       data:
         first:
           name: _DetailNormalMapScale
-        second: 1
+        second: 0
       data:
         first:
           name: _UVSec
@@ -134,6 +169,110 @@ Material:
         first:
           name: _Mode
         second: 0
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: 0
+      data:
+        first:
+          name: _StrengthX
+        second: 1
+      data:
+        first:
+          name: _StrengthY
+        second: -1
+      data:
+        first:
+          name: _WaveSpeed
+        second: 40
+      data:
+        first:
+          name: _NormalTiling
+        second: 1
+      data:
+        first:
+          name: _Fade
+        second: 1.45
+      data:
+        first:
+          name: _Density
+        second: 1.74
+      data:
+        first:
+          name: _DepthTransparency
+        second: 1.5
+      data:
+        first:
+          name: _ShoreFade
+        second: 0.3
+      data:
+        first:
+          name: _ShoreTransparency
+        second: 0.04
+      data:
+        first:
+          name: _EnableReflections
+        second: 0.6
+      data:
+        first:
+          name: _ReflectionIntensity
+        second: 0.6
+      data:
+        first:
+          name: _Distortion
+        second: 0.3
+      data:
+        first:
+          name: _Specular
+        second: 1
+      data:
+        first:
+          name: _Gloss
+        second: 0.7
+      data:
+        first:
+          name: _LightWrapping
+        second: 2
+      data:
+        first:
+          name: _Refraction
+        second: 0.67
+      data:
+        first:
+          name: _FoamTiling
+        second: 3
+      data:
+        first:
+          name: _FoamBlend
+        second: 0.15
+      data:
+        first:
+          name: _FoamVisibility
+        second: 0.3
+      data:
+        first:
+          name: _FoamIntensity
+        second: 10
+      data:
+        first:
+          name: _FoamContrast
+        second: 0.25
+      data:
+        first:
+          name: _FoamSpeed
+        second: 120
+      data:
+        first:
+          name: _Contrast
+        second: 1
     m_Colors:
       data:
         first:
@@ -142,8 +281,28 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 0.7951108, b: 0.504, a: 1}
+        second: {r: 0.931, g: 0.8100817, b: 0.575358, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      data:
+        first:
+          name: _MainColor
+        second: {r: 0, g: 0.4627451, b: 1, a: 1}
+      data:
+        first:
+          name: _DeepWaterColor
+        second: {r: 0, g: 0.3411765, b: 0.6235294, a: 1}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: 0.6985294, g: 0.7088019, b: 0.7088019, a: 1}
+      data:
+        first:
+          name: _FoamColor
+        second: {r: 0.3382353, g: 0.3456964, b: 0.3456964, a: 1}

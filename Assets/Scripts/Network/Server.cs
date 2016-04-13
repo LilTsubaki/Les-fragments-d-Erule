@@ -9,7 +9,7 @@ using System.Threading;
 
 public class Server : MonoBehaviour{
 
-    public enum State {turningAroundMap, firstPlayerPicking, secondPlayerPicking, playing }
+    public enum State {turningAroundMap, firstPlayerPicking, secondPlayerPicking, playing, gameOver }
 
     public float timeout=300;
     public float currrentTimeout;
@@ -332,6 +332,18 @@ public class Server : MonoBehaviour{
         ManagerManager.GetInstance().ResetAll();
         System.GC.Collect();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void EndGame(Character winner)
+    {
+        if (_client1 != null)
+        {
+            _client1.EndGame(winner);
+        }
+        if (_client2 != null)
+        {
+            _client2.EndGame(winner);
+        }
     }
 
     public void EndTurnOnNextUpdate()

@@ -36,29 +36,43 @@ public class PlayBoardBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(PlayBoardManager.GetInstance().CanEndTurn)
+        if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
-            PlayBoardManager.GetInstance().CanEndTurn = false;
-            ServerManager.GetInstance()._server.EndTurn();
-        }
-            
-
-        HighLight();
-        if (Input.GetMouseButtonDown(0)){
-            if (PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
+            if (PlayBoardManager.GetInstance().CanEndTurn)
             {
-                if (_isInDoubleClicWindow)
-                {
-                    MakeSpell();
-                }
-                else
-                {
-                   // HighLight();
-                }
+                PlayBoardManager.GetInstance().CanEndTurn = false;
+                ServerManager.GetInstance()._server.EndTurn();
             }
             
+            HighLight();
+            if (Input.GetMouseButtonDown(0)){
+                if (PlayBoardManager.GetInstance().CurrentState == PlayBoardManager.State.SpellMode)
+                {
+                    if (_isInDoubleClicWindow)
+                    {
+                        MakeSpell();
+                    }
+                    else
+                    {
+                       // HighLight();
+                    }
+                }      
+            }
+
+            if (PlayBoardManager.GetInstance().Character1._lifeCurrent <= 0)
+            {
+                PlayBoardManager.GetInstance().Winner = PlayBoardManager.GetInstance().Character2;
+                ServerManager.GetInstance()._server.CurrentState = Server.State.gameOver;
+            }
+
+            if (PlayBoardManager.GetInstance().Character2._lifeCurrent <= 0)
+            {
+                PlayBoardManager.GetInstance().Winner = PlayBoardManager.GetInstance().Character1;
+                ServerManager.GetInstance()._server.CurrentState = Server.State.gameOver;
+            }
+
+            UpdateDoubleClic();
         }
-        UpdateDoubleClic();
     }
 
     public void HighLight()

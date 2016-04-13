@@ -38,77 +38,79 @@ public class CharacterBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingLeft)
+        if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //Debug.DrawLine(ray.origin, ray.direction * 20);
-            RaycastHit rch;
-            //int layermask = (1 << LayerMask.NameToLayer("Default"));
-            int layermask = LayerMask.GetMask("Hexagon");
-
-            if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+            if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingRight && _character.CurrentState != Character.State.RotatingLeft)
             {
-                HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
-                //MakeSpell(hexagonBehaviour);
-                Hexagon hexa = hexagonBehaviour._hexagon;
-                if (hexa != null)
-                {
-                    bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
-                    _character.CurrentStep = 0;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                //Debug.DrawLine(ray.origin, ray.direction * 20);
+                RaycastHit rch;
+                //int layermask = (1 << LayerMask.NameToLayer("Default"));
+                int layermask = LayerMask.GetMask("Hexagon");
 
-                    if (pathFound && _character.PathToFollow.Count > 0)
+                if (Physics.Raycast(ray, out rch, Mathf.Infinity, layermask))
+                {
+                    HexagonBehaviour hexagonBehaviour = rch.collider.gameObject.GetComponent<HexagonBehaviour>();
+                    //MakeSpell(hexagonBehaviour);
+                    Hexagon hexa = hexagonBehaviour._hexagon;
+                    if (hexa != null)
                     {
-                        _stateBeforeMove = _character.CurrentState;
-                        Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count-1]);
-                        float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
-                        //_character._direction = nextDirection;
-                        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff)%360, gameObject.transform.rotation.z);
-                        if (_nextRotation.y > gameObject.transform.rotation.y)
-                            _character.NextState = Character.State.RotatingLeft;
-                        else
-                            _character.NextState = Character.State.RotatingRight;
+                        bool pathFound = PlayBoardManager.GetInstance().Board.FindPathForCharacter(_character, hexa);
+                        _character.CurrentStep = 0;
+
+                        if (pathFound && _character.PathToFollow.Count > 0)
+                        {
+                            _stateBeforeMove = _character.CurrentState;
+                            Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, _character.PathToFollow[_character.PathToFollow.Count - 1]);
+                            float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+                            //_character._direction = nextDirection;
+                            _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff) % 360, gameObject.transform.rotation.z);
+                            if (_nextRotation.y > gameObject.transform.rotation.y)
+                                _character.NextState = Character.State.RotatingLeft;
+                            else
+                                _character.NextState = Character.State.RotatingRight;
+                        }
                     }
                 }
             }
-        }
 
-        if (_character != null)
-        {
-
-            if (_character.NextState != _character.CurrentState)
+            if (_character != null)
             {
-                _character.PreviousState = _character.CurrentState;
-                _character.CurrentState = _character.NextState;
+
+                if (_character.NextState != _character.CurrentState)
+                {
+                    _character.PreviousState = _character.CurrentState;
+                    _character.CurrentState = _character.NextState;
+                }
+
+                if (_character._changeOrbs)
+                {
+                    SetNewOrbs(_character._orbs);
+                    _character._changeOrbs = false;
+                }
             }
 
-            if (_character._changeOrbs)
-            {
-                SetNewOrbs(_character._orbs);
-                _character._changeOrbs = false;
-            }
-        }
 
-        switch (_character.CurrentState)
-        {
-            case Character.State.RotatingLeft:
-                Rotate();
-                break;
-            case Character.State.RotatingRight:
-                Rotate();
-                break;
-            case Character.State.Moving:
-                Move();
-                break;
-            case Character.State.Translating:
-                Translate();
-                break;
-            default:
-                break;
+            switch (_character.CurrentState)
+            {
+                case Character.State.RotatingLeft:
+                    Rotate();
+                    break;
+                case Character.State.RotatingRight:
+                    Rotate();
+                    break;
+                case Character.State.Moving:
+                    Move();
+                    break;
+                case Character.State.Translating:
+                    Translate();
+                    break;
+                default:
+                    break;
+            }
         }
     }
-
-
-
+    
     void Rotate()
     {
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
@@ -190,8 +192,6 @@ public class CharacterBehaviour : MonoBehaviour
                 }
                 else
                 {
-
-                    
                     Direction.EnumDirection nextDirection = Direction.GetDirection(currentHexa, _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep]);
                     int dir = Direction.GetDiff(_character._direction, nextDirection) - 6;
                     if (dir < 0)

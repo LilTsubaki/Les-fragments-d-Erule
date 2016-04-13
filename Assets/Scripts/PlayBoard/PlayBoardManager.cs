@@ -31,6 +31,8 @@ public class PlayBoardManager : Manager<PlayBoardManager>
     private Character _character1;
 	private Character _character2;
 
+    private Character _winner;
+
     private int _turnNumber;
     private bool _secondPlayerStarted;
 
@@ -83,6 +85,19 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         set
         {
             _canEndTurn = value;
+        }
+    }
+
+    public Character Winner
+    {
+        get
+        {
+            return _winner;
+        }
+
+        set
+        {
+            _winner = value;
         }
     }
 
