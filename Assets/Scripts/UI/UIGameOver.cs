@@ -17,7 +17,8 @@ public class UIGameOver : MonoBehaviour {
         {
 	        if (ClientManager.GetInstance()._client.GameOver && ClientManager.GetInstance()._client.Winner != null)
             {
-                if(ClientManager.GetInstance()._client.Winner.Equals(ClientManager.GetInstance()._client.CurrentCharacter))
+                UIManager.GetInstance().ShowPanelNoStack("gameOver");
+                if (ClientManager.GetInstance()._client.Winner.Equals(ClientManager.GetInstance()._client.CurrentCharacter))
                 {
                     text.text = "Vous avez gagné ! :)";
                 }
