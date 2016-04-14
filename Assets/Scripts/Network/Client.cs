@@ -38,6 +38,7 @@ public class Client : MonoBehaviour{
 
     bool _restartGame;
     bool _gameOver;
+    bool _panelGameOverShown = false;
 
     Character _winner;
 
@@ -183,6 +184,12 @@ public class Client : MonoBehaviour{
         if(_restartGame)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (_gameOver && !_panelGameOverShown)
+        {
+            UIManager.GetInstance().ShowPanelNoStack("gameOver");
+            _panelGameOverShown = true;
         }
     }
 

@@ -15,20 +15,16 @@ public class UIGameOver : MonoBehaviour {
 	void Update () {
         if (!_textSet)
         {
-	        if (ClientManager.GetInstance()._client.GameOver && ClientManager.GetInstance()._client.Winner != null)
+            Logger.Debug("game over and winner :" + ClientManager.GetInstance()._client.Winner.Name);
+            if (ClientManager.GetInstance()._client.Winner.Equals(ClientManager.GetInstance()._client.CurrentCharacter))
             {
-                Logger.Debug("game over and winner :" + ClientManager.GetInstance()._client.Winner.Name);
-                UIManager.GetInstance().ShowPanelNoStack("gameOver");
-                if (ClientManager.GetInstance()._client.Winner.Equals(ClientManager.GetInstance()._client.CurrentCharacter))
-                {
-                    text.text = "Vous avez gagné ! :)";
-                }
-                else
-                {
-                    text.text = "Vous avez perdu ! :(";
-                }
-                _textSet = true;
+                text.text = "Vous avez gagné ! :)";
             }
+            else
+            {
+                text.text = "Vous avez perdu ! :(";
+            }
+            _textSet = true;
         }
 	}
 }
