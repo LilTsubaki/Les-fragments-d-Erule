@@ -290,7 +290,7 @@ public class Character : Entity, Killable
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
 
-        GameObject.GetComponent<Animator>().SetFloat("Wound", (float)(_lifeMax - _lifeCurrent) / (float)_lifeMax);
+        GameObject.GetComponent<Animator>().SetFloat("Wound", ((float)(_lifeMax - _lifeCurrent) / (float)_lifeMax)*0.5f);
     }
 
     public int ShieldReceiveDamage(int value)
