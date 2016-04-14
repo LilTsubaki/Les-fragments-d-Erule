@@ -286,7 +286,6 @@ public class Client : MonoBehaviour{
                 Logger.Debug("receive End Game request");
                 _winner = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
                 _gameOver = true;
-                UIManager.GetInstance().ShowPanelNoStack("gameOver");
                 return true;
 
             default:
