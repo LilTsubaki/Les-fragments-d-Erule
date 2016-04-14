@@ -464,4 +464,19 @@ public class AudioManager : Manager<AudioManager>
     {
         _idPlayers[playerId].StopLooping();
     }
+
+    public void StopPlayer(int idPlayer)
+    {
+        _idPlayers[idPlayer]._audio.Stop();
+    }
+
+    public bool IsPlayerPlaying(int idPlayer)
+    {
+        return _idPlayers[idPlayer]._audio.isPlaying;
+    }
+
+    public float GetPlayerDuration(int idPlayer)
+    {
+        return _idPlayers[idPlayer]._audio.clip.length;
+    }
 }
