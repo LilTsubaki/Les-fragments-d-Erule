@@ -61,6 +61,7 @@ public class AudioPlayer : MonoBehaviour {
             _power = Mathf.Max(0, _power - Time.deltaTime);
             if (_power == 0)
             {
+                _audio.Stop();
                 _fadeOut = false;
             }
         }
