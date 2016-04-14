@@ -285,6 +285,7 @@ public class Client : MonoBehaviour{
             case 18:
                 Logger.Debug("receive End Game request");
                 _winner = NetworkUtils.ReadCharacter(_tcpClient.GetStream());
+                Logger.Debug(_winner.Name);
                 _gameOver = true;
                 return true;
 

@@ -24,6 +24,8 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
 
     private bool _gameStarted;
 
+    private bool _gameOverSent = false;
+
     public float _timerBeforeGameOver = 4.0f;
 
     private GameObject _environment;
@@ -56,8 +58,8 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
         }
 
         _board.AddComponent<PlayBoardBehaviour>();
-        _player1 = new Character(3000, _player1GameObject);
-		_player2 = new Character(3000, _player2GameObject);
+        _player1 = new Character(50, _player1GameObject);
+		_player2 = new Character(50, _player2GameObject);
         _player1.Name = ServerManager.GetInstance()._server.Client1._name;
         _player2.Name = ServerManager.GetInstance()._server.Client2._name;
         _uiPlayer1.Character = _player1;
@@ -204,10 +206,11 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                 break;
             case Server.State.gameOver:
                 _timerBeforeGameOver -= Time.deltaTime;
-                if (_timerBeforeGameOver <= 0)
+                if (_timerBeforeGameOver <= 0 && !_gameOverSent)
                 {
                     UIManager.GetInstance().ShowPanelNoStack("gameOver");
                     ServerManager.GetInstance()._server.EndGame(PlayBoardManager.GetInstance().Winner);
+                    _gameOverSent = true;
                 }
                 break;
             default:
