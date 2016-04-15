@@ -235,6 +235,7 @@ public class Character : Entity, Killable
             if (--(node.Value.NumberTurn) == 0)
             {
                 _shields.Remove(node);
+                DisplayShield(false);
                 _globalShieldValue -= node.Value.ShieldValue;
                 EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(node.Value.ShieldValue));
             }
@@ -259,6 +260,8 @@ public class Character : Entity, Killable
         _shields.AddLast(new Shield(shield));
         _globalShieldValue += shield.ShieldValue;
         EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldGain(shield.ShieldValue));
+
+        DisplayShield(true);
     }
 
 
@@ -293,6 +296,11 @@ public class Character : Entity, Killable
         GameObject.GetComponent<Animator>().SetFloat("Wound", ((float)(_lifeMax - _lifeCurrent) / (float)_lifeMax)*0.5f);
     }
 
+    public void DisplayShield(bool displayOn)
+    {
+        _gameObject.transform.GetChild(0).gameObject.SetActive(displayOn);
+    }
+
     public int ShieldReceiveDamage(int value)
     {
         int firstValue = value;
@@ -304,7 +312,10 @@ public class Character : Entity, Killable
             _globalShieldValue -= min;
             value -= min;
             if (_shields.Last.Value.ShieldValue == 0)
+            {
                 _shields.RemoveLast();
+                DisplayShield(false);
+            }
         }
         if(nbShields > 0)
             EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldLoss(firstValue - value));

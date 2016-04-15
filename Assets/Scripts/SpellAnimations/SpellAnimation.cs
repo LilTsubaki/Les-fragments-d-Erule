@@ -39,6 +39,7 @@ public class SpellAnimation : MonoBehaviour {
     public void timerUpdate()
     {
         _timer += Time.deltaTime;
+        Logger.Debug(gameObject.name + " " + _timeToHitTarget + " " + _timer);
         if (_timer >= _timeToHitTarget && _hexagons != null)
         {
             for (int i = 0; i < _hexagons.Count; i++)

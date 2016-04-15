@@ -50,6 +50,20 @@ public class EffectBuffer {
         set
         {
             _paused = value;
+
+        }
+    }
+
+    public float CurrentTime
+    {
+        get
+        {
+            return _currentTime;
+        }
+
+        set
+        {
+            _currentTime = value;
         }
     }
 
@@ -63,10 +77,7 @@ public class EffectBuffer {
 
     public void UpdateTimer()
     {
-        if (!_paused)
-        {
-            _currentTime += Time.deltaTime;
-        }
+        _currentTime += Time.deltaTime;
     }
     public void AddTextEffect(TextEffect textEffect)
     {
@@ -75,17 +86,27 @@ public class EffectBuffer {
 
     public TextEffect DequeueTextEffect()
     {
-        if (_currentTime >= _step && TextEffects.Count >0)
+        if (TextEffects.Count == 0 )
+        {
+            Paused = true;
+            return null;
+        }
+
+        if (_currentTime >= _step)
         {
             _currentTime = 0;
-            TextEffect te = TextEffects.Dequeue();
-            if (Delete && TextEffects.Count == 0)
+
+            if (!Paused)
             {
-                EffectUIManager.GetInstance().DeleteEntity(_entity);
+                TextEffect te = TextEffects.Dequeue();
+               
+                if (Delete && TextEffects.Count == 0)
+                {
+                    EffectUIManager.GetInstance().DeleteEntity(_entity);
+                }
+                return te;
             }
-            if (TextEffects.Count == 0)
-                _paused = true;
-            return te;
+
         }
 
         return null;
