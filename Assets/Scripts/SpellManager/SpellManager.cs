@@ -426,6 +426,7 @@ public class SpellManager : Manager<SpellManager>
             //SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
             SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position, finalArea);
             SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
+            PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>().LookHexagonMakeSpell(target);
 
             /*********************
 

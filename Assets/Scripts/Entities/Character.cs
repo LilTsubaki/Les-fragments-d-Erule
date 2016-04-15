@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : Entity, Killable
 {
-    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious, RotatingLeft, RotatingRight}
+    public enum State { Moving, CastingSpell, Waiting, Translating, Dead, Victorious, RotatingLeft, RotatingRight, RotatingLeftCasting, RotatingRightCasting }
 
 	/*public static int MaxProtection = 50;*/
 	public int _lifeMax;

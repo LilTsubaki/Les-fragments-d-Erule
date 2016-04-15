@@ -99,6 +99,12 @@ public class CharacterBehaviour : MonoBehaviour
                 case Character.State.RotatingRight:
                     Rotate();
                     break;
+                case Character.State.RotatingLeftCasting:
+                    RotateCasting();
+                    break;
+                case Character.State.RotatingRightCasting:
+                    RotateCasting();
+                    break;
                 case Character.State.Moving:
                     Move();
                     break;
@@ -118,6 +124,27 @@ public class CharacterBehaviour : MonoBehaviour
         {
             _character.NextState = Character.State.Moving;
         }
+    }
+
+    void RotateCasting()
+    {
+        gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
+        if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
+        {
+            _character.NextState = Character.State.CastingSpell;
+        }
+    }
+
+    public void LookHexagonMakeSpell(Hexagon target)
+    {
+        Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, target);
+        float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
+        //_character._direction = nextDirection;
+        _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff) % 360, gameObject.transform.rotation.z);
+        if (_nextRotation.y > gameObject.transform.rotation.y)
+            _character.NextState = Character.State.RotatingLeftCasting;
+        else
+            _character.NextState = Character.State.RotatingRightCasting;
     }
 
     bool goTo(Hexagon hexa, float speed)
