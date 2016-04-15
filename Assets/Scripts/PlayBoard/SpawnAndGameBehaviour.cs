@@ -58,8 +58,8 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
         }
 
         _board.AddComponent<PlayBoardBehaviour>();
-        _player1 = new Character(3000, _player1GameObject);
-		_player2 = new Character(3000, _player2GameObject);
+        _player1 = new Character(2500, _player1GameObject);
+		_player2 = new Character(2500, _player2GameObject);
         _player1.Name = ServerManager.GetInstance()._server.Client1._name;
         _player2.Name = ServerManager.GetInstance()._server.Client2._name;
         _uiPlayer1.Character = _player1;
