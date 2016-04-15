@@ -298,7 +298,7 @@ public class Character : Entity, Killable
 
     public void DisplayShield(bool displayOn)
     {
-        _gameObject.transform.GetChild(0).gameObject.SetActive(displayOn);
+        _gameObject.transform.GetChild(4).gameObject.SetActive(displayOn);
     }
 
     public int ShieldReceiveDamage(int value)
