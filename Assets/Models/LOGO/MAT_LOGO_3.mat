@@ -105,16 +105,12 @@ Material:
         second: 0.02
       data:
         first:
-          name: _Glossiness
-        second: 0.355
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _ZWrite
         second: 0
+      data:
+        first:
+          name: _Glossiness
+        second: 0.355
       data:
         first:
           name: _BumpScale
@@ -137,8 +133,12 @@ Material:
         second: 3
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _InvFade
-        second: 0.88
+        second: 1.18
     m_Colors:
       data:
         first:

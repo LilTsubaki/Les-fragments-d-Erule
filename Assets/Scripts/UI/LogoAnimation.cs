@@ -3,6 +3,7 @@ using System.Collections;
 
 public class LogoAnimation : MonoBehaviour {
 
+	public Animator Title_Logo;
 	public Animator SM_E;
 	public Animator SM_E_pan;
 	public Animator SM_Bordure_E;
@@ -24,13 +25,14 @@ public class LogoAnimation : MonoBehaviour {
 
 
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.L)) 
 			{
+			Title_Logo.SetTrigger ("play");
 			TitleDisappear ();
 			}
 	}
@@ -41,7 +43,7 @@ public class LogoAnimation : MonoBehaviour {
 
 	private void TitleDisappear(){
 		Particle_Title.Play ();
-		Invoke ("EnergyBall", 2f);
+		Invoke ("EnergyBall", 3.5f);
 	}
 
 	private void EnergyBall(){
@@ -65,6 +67,7 @@ public class LogoAnimation : MonoBehaviour {
 		SM_Logo_Rock_9.SetTrigger ("play");
 		SM_Logo_Rock_10.SetTrigger ("play");
 		SM_Logo_Rock_11.SetTrigger ("play");
+
 
 		Invoke ("SetFloatingLogo", 3f);
 	}

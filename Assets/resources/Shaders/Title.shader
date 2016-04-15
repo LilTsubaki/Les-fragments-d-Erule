@@ -3,7 +3,7 @@
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
 		_Strength("Emissive strength", Range(0,1)) = 0
 		_MaskTex("Dissolve mask", 2D) = "white" {}
-		_Cutoff("Mask cutoff", Range(0,40)) = 0
+		_Cutoff("Mask cutoff", Range(0,150)) = 0
 	}
 
 	SubShader{
