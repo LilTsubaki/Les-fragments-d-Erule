@@ -137,7 +137,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void LookHexagonMakeSpell(Hexagon target)
     {
-        Direction.EnumDirection nextDirection = Direction.GetDirection(_character.Position, target);
+        Direction.EnumDirection nextDirection = Direction.ApproximativeDirection(_character.Position, target);
         float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
         //_character._direction = nextDirection;
         _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff) % 360, gameObject.transform.rotation.z);

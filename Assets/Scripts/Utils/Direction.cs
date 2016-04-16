@@ -190,6 +190,54 @@ public class Direction
         return EnumDirection.Default;
     }
 
+    public static EnumDirection ApproximativeDirection(Hexagon source, Hexagon destination)
+    {
+        EnumDirection dirSelf = GetDirection(source, destination);
+        if(dirSelf != EnumDirection.Default)
+        {
+            return dirSelf;
+        }
+        EnumDirection dirX;
+        EnumDirection dirY;
+        Hexagon hexaX;
+        Hexagon hexaY;
+        int suppX, suppY;
+        if(destination._posX < source._posX)
+        {
+            hexaX = new Hexagon(destination._posX + 1, destination._posY, null);
+            suppX = 1;
+        }
+        else
+        {
+            hexaX = new Hexagon(destination._posX - 1, destination._posY, null);
+            suppX = -1;
+        }
+
+        if (destination._posY < source._posY)
+        {
+            hexaY = new Hexagon(destination._posX, destination._posY +1, null);
+            suppY = 1;
+        }
+        else
+        {
+            hexaY = new Hexagon(destination._posX, destination._posY -1, null);
+            suppY = -1;
+        }
+        dirX = GetDirection(source, hexaX);
+        dirY = GetDirection(source, hexaY);
+        if(dirX != EnumDirection.Default)
+        {
+            return dirX;
+        }
+        if(dirY != EnumDirection.Default)
+        {
+            return dirY;
+        }
+
+        Hexagon hexaDiag = new Hexagon(destination._posX + suppX, destination._posY + suppY, null);
+        return GetDirection(source, hexaDiag);
+    }
+
     public static EnumDirection Rotate(EnumDirection source, int rotateValue)
     {
         //Logger.Error("source : " + source.ToString() + " Dest : " + ((EnumDirection)(((int)source + rotateValue) % 12)).ToString());
