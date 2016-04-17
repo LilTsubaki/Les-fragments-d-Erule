@@ -692,6 +692,11 @@ public class Character : Entity, Killable
         _changeOrbs = true;
     }
 
+    public void SetOrbsChangeLater(List<Element> elems)
+    {
+        _orbs = elems;
+    }
+
     public List<Hexagon> PathToFollow
     {
         get

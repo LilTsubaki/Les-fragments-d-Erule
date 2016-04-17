@@ -13,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour
     private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
 
+    public bool _waitingForNewOrbs;
     public Orbs _orbs;
     public GameObject _castChannel;
 
@@ -262,5 +263,10 @@ public class CharacterBehaviour : MonoBehaviour
         bool appear = appearing == 1 ? true : false;
         _castChannel.SetActive(!appear);
         _orbs.ActivateRunes(appear);
+    }
+
+    public void ChangeOrbs()
+    {
+        SetNewOrbs(_character._orbs);
     }
 }

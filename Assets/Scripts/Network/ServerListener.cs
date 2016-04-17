@@ -169,7 +169,14 @@ public class ServerListener
             PlayBoardManager.GetInstance().GetCurrentPlayer().NextState = Character.State.CastingSpell;
             HashSet<Element> elemSet = new HashSet<Element>(rBoard.GetSortedElementList());
 
-            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(elemSet.ToList());
+            if (PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>()._waitingForNewOrbs)
+            {
+                PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbsChangeLater(elemSet.ToList());
+                PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>()._waitingForNewOrbs = false;
+            }
+            else {
+                PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(elemSet.ToList());
+            }
         }
         else
         {

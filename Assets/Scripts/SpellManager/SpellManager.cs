@@ -337,7 +337,11 @@ public class SpellManager : Manager<SpellManager>
         
         if(runes == 0)
         {
-            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbs(new List<Element>());
+            PlayBoardManager.GetInstance().GetCurrentPlayer().SetOrbsChangeLater(new List<Element>());
+        }
+        else
+        {
+            PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>()._waitingForNewOrbs = true;
         }
 
         if (target == currentPlayer.Position )
