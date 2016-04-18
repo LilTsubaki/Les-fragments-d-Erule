@@ -421,7 +421,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1599774, y: 1.18, z: 10.986014}
+  m_LocalPosition: {x: 5.1599774, y: 1.52, z: 10.986014}
   m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_Children:
   - {fileID: 448394}
@@ -1141,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7891aba9712c743b9492ea7982f031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Title_Logo: {fileID: 0}
   SM_E: {fileID: 9503612}
   SM_E_pan: {fileID: 9546070}
   SM_Bordure_E: {fileID: 9588998}
@@ -1154,6 +1155,8 @@ MonoBehaviour:
   SM_Logo_Rock_9: {fileID: 9574238}
   SM_Logo_Rock_10: {fileID: 9553400}
   SM_Logo_Rock_11: {fileID: 9594054}
+  Particle_Energy: {fileID: 0}
+  Particle_Title: {fileID: 0}
   _logo: {fileID: 11477056}
 --- !u!114 &11445368
 MonoBehaviour:
@@ -1168,7 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedU: -0.2
   speedV: 0.5
-  length: 0.2
+  length: 0.8
 --- !u!114 &11469544
 MonoBehaviour:
   m_ObjectHideFlags: 1
