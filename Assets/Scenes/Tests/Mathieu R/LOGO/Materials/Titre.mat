@@ -45,6 +45,20 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 06c1f6193f3e5df4aa6e9e1542e7f9ca, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 1, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _OcclusionMap
         second:
           m_Texture: {fileID: 0}
@@ -71,20 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 06c1f6193f3e5df4aa6e9e1542e7f9ca, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 1, y: 0}
     m_Floats:
       data:
         first:
@@ -100,32 +100,36 @@ Material:
         second: 0
       data:
         first:
-          name: _ShakeDisplacement
-        second: 1
-      data:
-        first:
-          name: _ShakeTime
-        second: 1
-      data:
-        first:
-          name: _ShakeWindspeed
-        second: 1
-      data:
-        first:
-          name: _ShakeBending
-        second: 1
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
         first:
-          name: _ZWrite
-        second: 1
+          name: _InvFade
+        second: 3
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: -1.6
+      data:
+        first:
+          name: _SecondTexMoveSpeedU
+        second: 0.5
+      data:
+        first:
+          name: _Strength
+        second: 0.176
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 0.5
       data:
         first:
           name: _Glossiness
         second: 0.5
+      data:
+        first:
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -148,24 +152,20 @@ Material:
         second: 0
       data:
         first:
-          name: _InvFade
-        second: 3
+          name: _ShakeDisplacement
+        second: 1
       data:
         first:
-          name: _MainTexMoveSpeedU
-        second: -1.6
+          name: _ShakeTime
+        second: 1
       data:
         first:
-          name: _MainTexMoveSpeedV
-        second: 0.5
+          name: _ShakeWindspeed
+        second: 1
       data:
         first:
-          name: _SecondTexMoveSpeedU
-        second: 0.5
-      data:
-        first:
-          name: _Strength
-        second: 0.176
+          name: _ShakeBending
+        second: 1
     m_Colors:
       data:
         first:
