@@ -21,7 +21,8 @@ public class CharacterUI : MonoBehaviour {
     public Text _lifePointsText;
     public GameObject _actionPoints;
     public GameObject _movementPoints;
-    public Image _point;
+    public Image _pointAction;
+    public Image _pointMovement;
 
     public bool _isOnLeft;
     private List<Image> _listActionPoints;
@@ -45,15 +46,15 @@ public class CharacterUI : MonoBehaviour {
 
         for (int i = 0; i < Character._maxActionPoints; ++i)
         {
-            Image n = Instantiate(_point);
+            Image n = Instantiate(_pointAction);
             n.transform.SetParent(_actionPoints.transform);
             n.enabled = true;
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if(_isOnLeft)
-                pos.x = 10 + i * 60;
+                pos.x = 10 + i * 36;
             else
-                pos.x = -10 - i * 60;
+                pos.x = -10 - i * 36;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
             
             _listActionPoints.Add(n);
@@ -61,15 +62,15 @@ public class CharacterUI : MonoBehaviour {
 
         for (int i = 0; i < Character._maxMovementPoints; ++i)
         {
-            Image n = Instantiate(_point);
+            Image n = Instantiate(_pointMovement);
             n.transform.SetParent(_movementPoints.transform);
             n.enabled = true;
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if (_isOnLeft)
-                pos.x = 10 + i * 60;
+                pos.x = 10 + i * 28;
             else
-                pos.x = -10 - i * 60;
+                pos.x = -10 - i * 28;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
 
             _listMovementPoints.Add(n);

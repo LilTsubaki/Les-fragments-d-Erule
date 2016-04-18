@@ -40,7 +40,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
-            if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingRight && _character.CurrentState != Character.State.RotatingLeft)
+            if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingRight && _character.CurrentState != Character.State.RotatingLeft && _character.CurrentState != Character.State.RotatingLeftCasting && _character.CurrentState != Character.State.RotatingRightCasting)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 //Debug.DrawLine(ray.origin, ray.direction * 20);
@@ -65,10 +65,11 @@ public class CharacterBehaviour : MonoBehaviour
                             float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
                             //_character._direction = nextDirection;
                             _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff) % 360, gameObject.transform.rotation.z);
+                            Logger.Debug("LookHexaMakeSpell x : " + _nextRotation.x + ", y : " + _nextRotation.y + ", z : " + _nextRotation.z);
                             if (_nextRotation.y > gameObject.transform.rotation.y)
-                                _character.NextState = Character.State.RotatingLeft;
-                            else
                                 _character.NextState = Character.State.RotatingRight;
+                            else
+                                _character.NextState = Character.State.RotatingLeft;
                         }
                     }
                 }
@@ -141,10 +142,11 @@ public class CharacterBehaviour : MonoBehaviour
         float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
         //_character._direction = nextDirection;
         _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, (gameObject.transform.rotation.y + diff) % 360, gameObject.transform.rotation.z);
+        Logger.Debug("LookHexaMakeSpell x : " + _nextRotation.x + ", y : " + _nextRotation.y + ", z : " + _nextRotation.z);
         if (_nextRotation.y > gameObject.transform.rotation.y)
-            _character.NextState = Character.State.RotatingLeftCasting;
-        else
             _character.NextState = Character.State.RotatingRightCasting;
+        else
+            _character.NextState = Character.State.RotatingLeftCasting;
     }
 
     bool goTo(Hexagon hexa, float speed)
@@ -222,9 +224,9 @@ public class CharacterBehaviour : MonoBehaviour
                     Direction.EnumDirection nextDirection = Direction.GetDirection(currentHexa, _character.PathToFollow[_character.PathToFollow.Count - 1 - _character.CurrentStep]);
                     int dir = Direction.GetDiff(_character._direction, nextDirection) - 6;
                     if (dir < 0)
-                        _character.NextState = Character.State.RotatingLeft;
-                    else
                         _character.NextState = Character.State.RotatingRight;
+                    else
+                        _character.NextState = Character.State.RotatingLeft;
                     float diff = Direction.GetDiffAngle(_character._direction, nextDirection);
                     //_character._direction = nextDirection;
                     _nextRotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + diff, gameObject.transform.rotation.z);
