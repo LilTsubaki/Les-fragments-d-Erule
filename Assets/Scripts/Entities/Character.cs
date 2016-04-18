@@ -56,6 +56,8 @@ public class Character : Entity, Killable
     private bool _getDot = false;
     private bool _getHot = false;
 
+    private bool _waitingForNewOrbs;
+
     private List<int> _idAreaAppliedThisTurn;
 
     public Character(int lifeMax)
@@ -1100,6 +1102,19 @@ public class Character : Entity, Killable
         set
         {
             _previousState = value;
+        }
+    }
+
+    public bool WaitingForNewOrbs
+    {
+        get
+        {
+            return _waitingForNewOrbs;
+        }
+
+        set
+        {
+            _waitingForNewOrbs = value;
         }
     }
 }

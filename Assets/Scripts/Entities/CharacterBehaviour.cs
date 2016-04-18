@@ -13,7 +13,6 @@ public class CharacterBehaviour : MonoBehaviour
     private Hexagon _previousHexagon;
     private List<Hexagon> finalArea;
 
-    public bool _waitingForNewOrbs;
     public Orbs _orbs;
     public GameObject _castChannel;
 

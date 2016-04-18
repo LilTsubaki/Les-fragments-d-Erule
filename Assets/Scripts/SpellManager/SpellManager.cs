@@ -341,7 +341,7 @@ public class SpellManager : Manager<SpellManager>
         }
         else
         {
-            PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>()._waitingForNewOrbs = true;
+            PlayBoardManager.GetInstance().GetCurrentPlayer().WaitingForNewOrbs = true;
         }
 
         if (target == currentPlayer.Position )
