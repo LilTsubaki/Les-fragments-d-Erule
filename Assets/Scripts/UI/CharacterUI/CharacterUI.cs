@@ -52,11 +52,12 @@ public class CharacterUI : MonoBehaviour {
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if(_isOnLeft)
-                pos.x = 10 + i * 36;
+                pos.x = 15 + i * 300;
             else
-                pos.x = -10 - i * 36;
+                pos.x = -15 - i * 300;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
-            
+            //n.rectTransform.localScale = Vector3.one;
+
             _listActionPoints.Add(n);
         }
 
@@ -68,10 +69,11 @@ public class CharacterUI : MonoBehaviour {
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if (_isOnLeft)
-                pos.x = 10 + i * 28;
+                pos.x = 50 + i * 235;
             else
-                pos.x = -10 - i * 28;
+                pos.x = -50 - i * 235;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+            //n.rectTransform.localScale = Vector3.one;
 
             _listMovementPoints.Add(n);
         }
