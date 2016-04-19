@@ -123,6 +123,7 @@ public class CharacterBehaviour : MonoBehaviour
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
         if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
         {
+            gameObject.transform.rotation = _nextRotation;
             _character.NextState = Character.State.Moving;
         }
     }
@@ -132,6 +133,7 @@ public class CharacterBehaviour : MonoBehaviour
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
         if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
         {
+            gameObject.transform.rotation = _nextRotation;
             _character.NextState = Character.State.CastingSpell;
         }
     }
