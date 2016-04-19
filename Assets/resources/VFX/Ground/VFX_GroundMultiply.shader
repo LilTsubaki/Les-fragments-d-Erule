@@ -13,7 +13,7 @@
 
 	}
 	SubShader {
-		Tags { "QUEUE" = "Transparent" "IGNOREPROJECTOR" = "true" "RenderType" = "Transparent" }
+		Tags { "Queue" = "Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
 		Cull Off
 		Lighting On
@@ -23,10 +23,12 @@
 			Bind "Color", color
 		}
 		Blend Zero SrcColor
-
+		//Blend DstColor Zero
+		//Blend DstColor SrcColor
+		
 		CGPROGRAM
 
-		#pragma surface surf Lambert
+		#pragma surface surf Lambert full
 
 		#pragma target 3.0
 

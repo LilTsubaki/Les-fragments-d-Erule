@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 355b3d568e6f13e4b8a31735f8df5b4f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3099
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -100,20 +100,20 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Contrast
-        second: 2.38
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
         first:
-          name: _ZWrite
-        second: 1
+          name: _InvFade
+        second: 3
       data:
         first:
           name: _Glossiness
         second: 0.5
+      data:
+        first:
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -140,12 +140,12 @@ Material:
         second: 0
       data:
         first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
           name: _Strength
         second: 75.2
+      data:
+        first:
+          name: _Contrast
+        second: 2.38
       data:
         first:
           name: _Opacity
