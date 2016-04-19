@@ -95,7 +95,7 @@ public class CharacterUI : MonoBehaviour {
     {
         if (_character != null)
         {
-            _life.value = _character._lifeCurrent / _character._lifeMax;
+            _life.size = (float)_character._lifeCurrent / _character._lifeMax;
             //_life.maxValue = _character._lifeMax;
             string lifeText = _character._lifeCurrent.ToString() + " / " + _character._lifeMax;
             if (_character.GlobalShieldValue > 0)
