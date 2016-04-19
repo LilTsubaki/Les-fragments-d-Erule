@@ -36,7 +36,7 @@ public class PlayBoardBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
+        if (ServerManager.GetInstance()._server != null && ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
             if (PlayBoardManager.GetInstance().CanEndTurn)
             {
