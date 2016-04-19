@@ -72,6 +72,7 @@ public abstract class Entity {
     public int UnloadDamagerBuffer()
     {
         int dmg = _damageBuffer;
+        Logger.Debug("Total dmg : " +dmg);
         _damageBuffer = 0;
         return dmg;
     }
