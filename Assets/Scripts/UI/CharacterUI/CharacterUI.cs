@@ -17,7 +17,7 @@ public class CharacterUI : MonoBehaviour {
 
     public Text _name;
     public Image _characterImage;
-    public Slider _life;
+    public Scrollbar _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
     public GameObject _movementPoints;
@@ -56,7 +56,7 @@ public class CharacterUI : MonoBehaviour {
             else
                 pos.x = -15 - i * 300;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
-            //n.rectTransform.localScale = Vector3.one;
+            n.rectTransform.localScale = Vector3.one;
 
             _listActionPoints.Add(n);
         }
@@ -73,7 +73,7 @@ public class CharacterUI : MonoBehaviour {
             else
                 pos.x = -50 - i * 235;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
-            //n.rectTransform.localScale = Vector3.one;
+            n.rectTransform.localScale = Vector3.one;
 
             _listMovementPoints.Add(n);
         }
@@ -95,8 +95,8 @@ public class CharacterUI : MonoBehaviour {
     {
         if (_character != null)
         {
-            _life.value = _character._lifeCurrent;
-            _life.maxValue = _character._lifeMax;
+            _life.value = _character._lifeCurrent / _character._lifeMax;
+            //_life.maxValue = _character._lifeMax;
             string lifeText = _character._lifeCurrent.ToString() + " / " + _character._lifeMax;
             if (_character.GlobalShieldValue > 0)
                  lifeText += " ( + " + _character.GlobalShieldValue + ")";
@@ -174,13 +174,13 @@ public class CharacterUI : MonoBehaviour {
     void UpdateTurn()
     {
         _name.text = _character.Name;
-        if (ClientManager.GetInstance()._client.IsMyTurn)
+        /*if (ClientManager.GetInstance()._client.IsMyTurn)
         {
             _characterImage.color = Color.green;
         }
         else
         {
             _characterImage.color = Color.red;
-        }
+        }*/
     }
 }

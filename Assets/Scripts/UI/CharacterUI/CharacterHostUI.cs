@@ -9,12 +9,13 @@ public class CharacterHostUI : MonoBehaviour
 
     public Text _name;
     public Image _characterImage;
-    public Slider _life;
+    public Scrollbar _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
     public GameObject _movementPoints;
-    public Image _point;
-    
+    public Image _pointAction;
+    public Image _pointMovement;
+
     public bool _isOnLeft;
     private List<Image> _listActionPoints;
     private List<Image> _listMovementPoints;
@@ -50,32 +51,34 @@ public class CharacterHostUI : MonoBehaviour
 
         for (int i = 0; i < Character._maxActionPoints; ++i)
         {
-            Image n = Instantiate(_point);
+            Image n = Instantiate(_pointAction);
             n.transform.SetParent(_actionPoints.transform);
             n.enabled = true;
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if (_isOnLeft)
-                pos.x = 10 + i * 30;
+                pos.x = 15 + i * 300;
             else
                 pos.x = -10 - i * 30;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+            n.rectTransform.localScale = Vector3.one;
 
             _listActionPoints.Add(n);
         }
 
         for (int i = 0; i < Character._maxMovementPoints; ++i)
         {
-            Image n = Instantiate(_point);
+            Image n = Instantiate(_pointMovement);
             n.transform.SetParent(_movementPoints.transform);
             n.enabled = true;
             n.gameObject.SetActive(true);
             Vector3 pos = n.gameObject.transform.position;
             if (_isOnLeft)
-                pos.x = 10 + i * 30;
+                pos.x = 50 + i * 235;
             else
                 pos.x = -10 - i * 30;
             n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+            n.rectTransform.localScale = Vector3.one;
 
             _listMovementPoints.Add(n);
         }
@@ -98,8 +101,7 @@ public class CharacterHostUI : MonoBehaviour
     {
         if (Character != null)
         {
-            _life.value = Character._lifeCurrent;
-            _life.maxValue = Character._lifeMax;
+            _life.value = (float)Character._lifeCurrent/(float)Character._lifeMax;
             string lifeText = Character._lifeCurrent.ToString()+" / "+Character._lifeMax;
             if (Character.GlobalShieldValue > 0)
                 lifeText += " ( + " + Character.GlobalShieldValue + ")";
@@ -179,13 +181,13 @@ public class CharacterHostUI : MonoBehaviour
     void UpdateTurn()
     {
         _name.text = Character.Name;
-        if (PlayBoardManager.GetInstance().isMyTurn(Character))
+        /*if (PlayBoardManager.GetInstance().isMyTurn(Character))
         {
             _characterImage.color = Color.green;
         }
         else
         {
             _characterImage.color = Color.red;
-        }
+        }*/
     }
 }
