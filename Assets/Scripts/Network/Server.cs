@@ -70,6 +70,19 @@ public class Server : MonoBehaviour{
         }
     }
 
+    public bool SearchingClient
+    {
+        get
+        {
+            return _searchingClient;
+        }
+
+        set
+        {
+            _searchingClient = value;
+        }
+    }
+
     public void Awake()
     {
         //Logger.logLvl = Logger.Type.TRACE;
