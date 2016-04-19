@@ -13,7 +13,17 @@ public class GameMenu : MonoBehaviour {
 
     public void Quit()
     {
+        Server server = ServerManager.GetInstance()._server;
+        if (server.Client1 != null)
+        {
+            server.Client1.RestartGame();
+        }
+        if (server.Client2 != null)
+        {
+            server.Client2.RestartGame();
+        }
         ManagerManager.GetInstance().ResetAll();
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
