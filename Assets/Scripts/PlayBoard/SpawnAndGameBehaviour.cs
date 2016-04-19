@@ -188,33 +188,37 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Server.State state = ServerManager.GetInstance()._server.CurrentState;
-        switch (state)
+        if (ServerManager.GetInstance()._server != null)
         {
-            case Server.State.firstPlayerPicking:
-                UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
-                _button.GetComponentInChildren<Text>().text = "Valider";
-                _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetCurrentPlayer().Name + "\n de se placer.\n";
-                break;
-            case Server.State.secondPlayerPicking:
-                UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetOtherPlayer());
-                _button.GetComponentInChildren<Text>().text = "Valider et commencer";
-                _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetOtherPlayer().Name + "\n de se placer.\n";
-                break;
-            case Server.State.playing:
-                UpdatePlaying();
-                break;
-            case Server.State.gameOver:
-                _timerBeforeGameOver -= Time.deltaTime;
-                if (_timerBeforeGameOver <= 0 && !_gameOverSent)
-                {
-                    UIManager.GetInstance().ShowPanelNoStack("gameOver");
-                    ServerManager.GetInstance()._server.EndGame(PlayBoardManager.GetInstance().Winner);
-                    _gameOverSent = true;
-                }
-                break;
-            default:
-                break;
-        }
+            Server.State state = ServerManager.GetInstance()._server.CurrentState;
+
+            switch (state)
+            {
+                case Server.State.firstPlayerPicking:
+                    UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetCurrentPlayer());
+                    _button.GetComponentInChildren<Text>().text = "Valider";
+                    _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetCurrentPlayer().Name + "\n de se placer.\n";
+                    break;
+                case Server.State.secondPlayerPicking:
+                    UpdateSpawnPositionCharacter(PlayBoardManager.GetInstance().GetOtherPlayer());
+                    _button.GetComponentInChildren<Text>().text = "Valider et commencer";
+                    _textPlayerToPlace.text = "C'est au tour de\n" + PlayBoardManager.GetInstance().GetOtherPlayer().Name + "\n de se placer.\n";
+                    break;
+                case Server.State.playing:
+                    UpdatePlaying();
+                    break;
+                case Server.State.gameOver:
+                    _timerBeforeGameOver -= Time.deltaTime;
+                    if (_timerBeforeGameOver <= 0 && !_gameOverSent)
+                    {
+                        UIManager.GetInstance().ShowPanelNoStack("gameOver");
+                        ServerManager.GetInstance()._server.EndGame(PlayBoardManager.GetInstance().Winner);
+                        _gameOverSent = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }            
     }
 }
