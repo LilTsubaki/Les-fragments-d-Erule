@@ -48,6 +48,7 @@ public class SpellAnimation : MonoBehaviour {
                 if(entity != null)
                 {
                     EffectUIManager.GetInstance().Unpause(entity);
+                    CameraManager.GetInstance().ScreenShake(entity.UnloadDamagerBuffer());
                 }
 
                 if(entity is Character)
