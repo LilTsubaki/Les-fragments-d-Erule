@@ -29,13 +29,18 @@ AnimationClip:
         tangentMode: 0
       - time: 0.5
         value: {x: 0.90499973, y: 0, z: 0.03}
-        inSlope: {x: -12.950001, y: 1.1380506, z: 0}
-        outSlope: {x: -12.950001, y: -0.86779433, z: 0}
+        inSlope: {x: -10.999998, y: 1.1380506, z: -0.14999996}
+        outSlope: {x: -10.999998, y: -0.86779433, z: -0.14999996}
+        tangentMode: 0
+      - time: 0.6
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: -12.299999, y: 5.300001, z: -0.049999945}
+        outSlope: {x: -12.299999, y: 5.300001, z: -0.049999945}
         tangentMode: 0
       - time: 0.75
         value: {x: -2.3325002, y: 1.59, z: 0.03}
-        inSlope: {x: -12.95, y: 8.98, z: 0}
-        outSlope: {x: -12.95, y: 8.98, z: 0}
+        inSlope: {x: -14.250002, y: 11.1, z: 0.10000002}
+        outSlope: {x: -14.250002, y: 11.1, z: 0.10000002}
         tangentMode: 0
       - time: 1
         value: {x: -5.57, y: 4.49, z: 0.03}
@@ -81,14 +86,9 @@ AnimationClip:
         inSlope: 0
         outSlope: 0.59999996
         tangentMode: 5
-      - time: 0.6
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
       - time: 0.9166667
         value: 1
-        inSlope: 0
+        inSlope: 1.1999999
         outSlope: -20.00002
         tangentMode: 21
       - time: 0.96666664
@@ -166,13 +166,18 @@ AnimationClip:
         tangentMode: 10
       - time: 0.5
         value: 0.90499973
-        inSlope: -12.950001
-        outSlope: -12.950001
+        inSlope: -10.999998
+        outSlope: -10.999998
+        tangentMode: 10
+      - time: 0.6
+        value: 0
+        inSlope: -12.299999
+        outSlope: -12.299999
         tangentMode: 10
       - time: 0.75
         value: -2.3325002
-        inSlope: -12.95
-        outSlope: -12.95
+        inSlope: -14.250002
+        outSlope: -14.250002
         tangentMode: 10
       - time: 1
         value: -5.57
@@ -204,10 +209,15 @@ AnimationClip:
         inSlope: 1.1380506
         outSlope: -0.86779433
         tangentMode: 1
+      - time: 0.6
+        value: 0
+        inSlope: 5.300001
+        outSlope: 5.300001
+        tangentMode: 9
       - time: 0.75
         value: 1.59
-        inSlope: 8.98
-        outSlope: 8.98
+        inSlope: 11.1
+        outSlope: 11.1
         tangentMode: 10
       - time: 1
         value: 4.49
@@ -236,13 +246,18 @@ AnimationClip:
         tangentMode: 10
       - time: 0.5
         value: 0.03
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.14999996
+        outSlope: -0.14999996
+        tangentMode: 10
+      - time: 0.6
+        value: 0
+        inSlope: -0.049999945
+        outSlope: -0.049999945
         tangentMode: 10
       - time: 0.75
         value: 0.03
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.10000002
+        outSlope: 0.10000002
         tangentMode: 10
       - time: 1
         value: 0.03
@@ -289,14 +304,9 @@ AnimationClip:
         inSlope: 0
         outSlope: 0.59999996
         tangentMode: 5
-      - time: 0.6
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
       - time: 0.9166667
         value: 1
-        inSlope: 0
+        inSlope: 1.1999999
         outSlope: -20.00002
         tangentMode: 21
       - time: 0.96666664
@@ -318,6 +328,13 @@ AnimationClip:
   m_Events:
   - time: 0.033333335
     functionName: ActivateTrails
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6
+    functionName: PlaySound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

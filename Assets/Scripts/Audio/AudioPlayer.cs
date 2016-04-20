@@ -70,7 +70,6 @@ public class AudioPlayer : MonoBehaviour {
         {
             if (!_audio.isPlaying)
             {
-                Logger.Debug("Boop " + _allocatedId);
                 AudioManager.GetInstance().PlayOnPlayer(_allocatedId, true, _channelName, _randPitch, _space, _pos, _distMin, _distMax);
             }
         }

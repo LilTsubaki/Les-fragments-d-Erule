@@ -24,18 +24,18 @@ AnimationClip:
         tangentMode: 0
       - time: 0.25
         value: {x: 6.21, y: 0.24, z: 2.09}
-        inSlope: {x: -16.2, y: -0.48, z: -17.12}
-        outSlope: {x: -16.2, y: -0.48, z: -17.12}
+        inSlope: {x: -17.02, y: -0.48, z: -17.36}
+        outSlope: {x: -17.02, y: -0.48, z: -17.36}
         tangentMode: 0
       - time: 0.5
-        value: {x: 0.41, y: 0, z: 0.12}
-        inSlope: {x: -24.560001, y: 0, z: 2.3000004}
-        outSlope: {x: -24.560001, y: 0, z: 2.3000004}
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: -24.560001, y: 0, z: 2.3000002}
+        outSlope: {x: -24.560001, y: 0, z: 2.3000002}
         tangentMode: 0
       - time: 0.75
         value: {x: -6.07, y: 0.24, z: 3.24}
-        inSlope: {x: -21.279999, y: 0.48, z: 20.460001}
-        outSlope: {x: -21.279999, y: 0.48, z: 20.460001}
+        inSlope: {x: -20.46, y: 0.48, z: 20.7}
+        outSlope: {x: -20.46, y: 0.48, z: 20.7}
         tangentMode: 0
       - time: 1
         value: {x: -10.23, y: 0.24, z: 10.35}
@@ -192,18 +192,18 @@ AnimationClip:
         tangentMode: 10
       - time: 0.25
         value: 6.21
-        inSlope: -16.2
-        outSlope: -16.2
+        inSlope: -17.02
+        outSlope: -17.02
         tangentMode: 10
       - time: 0.5
-        value: 0.41
+        value: 0
         inSlope: -24.560001
         outSlope: -24.560001
         tangentMode: 10
       - time: 0.75
         value: -6.07
-        inSlope: -21.279999
-        outSlope: -21.279999
+        inSlope: -20.46
+        outSlope: -20.46
         tangentMode: 10
       - time: 1
         value: -10.23
@@ -262,18 +262,18 @@ AnimationClip:
         tangentMode: 10
       - time: 0.25
         value: 2.09
-        inSlope: -17.12
-        outSlope: -17.12
+        inSlope: -17.36
+        outSlope: -17.36
         tangentMode: 10
       - time: 0.5
-        value: 0.12
-        inSlope: 2.3000004
-        outSlope: 2.3000004
+        value: 0
+        inSlope: 2.3000002
+        outSlope: 2.3000002
         tangentMode: 10
       - time: 0.75
         value: 3.24
-        inSlope: 20.460001
-        outSlope: 20.460001
+        inSlope: 20.7
+        outSlope: 20.7
         tangentMode: 10
       - time: 1
         value: 10.35
@@ -374,6 +374,13 @@ AnimationClip:
   m_Events:
   - time: 0.05
     functionName: ActivateTrails
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
+    functionName: PlaySound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

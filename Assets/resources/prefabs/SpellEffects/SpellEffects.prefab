@@ -99,7 +99,6 @@ GameObject:
   - 4: {fileID: 446422}
   - 95: {fileID: 9555836}
   - 114: {fileID: 11424560}
-  - 114: {fileID: 11401644}
   m_Layer: 0
   m_Name: FX_Metal_01
   m_TagString: Untagged
@@ -132,6 +131,22 @@ GameObject:
   - 4: {fileID: 425930}
   m_Layer: 0
   m_Name: Orientation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &113870
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416920}
+  - 114: {fileID: 11435498}
+  m_Layer: 0
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +230,22 @@ GameObject:
   - 114: {fileID: 11454220}
   m_Layer: 0
   m_Name: M_Cracks_Sprite_vcol2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119538
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 478230}
+  - 114: {fileID: 11423006}
+  m_Layer: 0
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,6 +781,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &158000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416230}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &158606
 GameObject:
   m_ObjectHideFlags: 1
@@ -767,6 +813,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &158712
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 447464}
+  - 114: {fileID: 11463154}
+  m_Layer: 0
+  m_Name: Metal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &161010
 GameObject:
   m_ObjectHideFlags: 1
@@ -779,6 +841,22 @@ GameObject:
   - 199: {fileID: 19945148}
   m_Layer: 0
   m_Name: Foam_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &163282
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 491730}
+  - 114: {fileID: 11422728}
+  m_Layer: 0
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,6 +1022,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &174310
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456818}
+  - 114: {fileID: 11458208}
+  m_Layer: 0
+  m_Name: Air
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &174922
 GameObject:
   m_ObjectHideFlags: 1
@@ -1006,7 +1100,7 @@ GameObject:
   - 4: {fileID: 461570}
   - 114: {fileID: 11466950}
   m_Layer: 0
-  m_Name: X-WeaponTrail (1)
+  m_Name: X-WeaponTrail Distort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1479,7 @@ GameObject:
   - 4: {fileID: 492746}
   - 114: {fileID: 11435674}
   m_Layer: 0
-  m_Name: X-WeaponTrail (1)
+  m_Name: X-WeaponTrail Distort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,6 +1606,35 @@ Transform:
   - {fileID: 492070}
   m_Father: {fileID: 492684}
   m_RootOrder: 3
+--- !u!4 &416230
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 456818}
+  - {fileID: 447464}
+  - {fileID: 478230}
+  - {fileID: 491730}
+  - {fileID: 416920}
+  m_Father: {fileID: 492684}
+  m_RootOrder: 11
+--- !u!4 &416920
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416230}
+  m_RootOrder: 4
 --- !u!4 &417454
 Transform:
   m_ObjectHideFlags: 1
@@ -1870,6 +1993,18 @@ Transform:
   - {fileID: 487516}
   m_Father: {fileID: 427622}
   m_RootOrder: 3
+--- !u!4 &447464
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158712}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416230}
+  m_RootOrder: 1
 --- !u!4 &447592
 Transform:
   m_ObjectHideFlags: 1
@@ -1907,6 +2042,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481328}
+  m_RootOrder: 0
+--- !u!4 &456818
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416230}
   m_RootOrder: 0
 --- !u!4 &458622
 Transform:
@@ -2185,6 +2332,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 402832}
   m_RootOrder: 1
+--- !u!4 &478230
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416230}
+  m_RootOrder: 2
 --- !u!4 &478400
 Transform:
   m_ObjectHideFlags: 1
@@ -2398,6 +2557,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 483174}
   m_RootOrder: 0
+--- !u!4 &491730
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416230}
+  m_RootOrder: 3
 --- !u!4 &492070
 Transform:
   m_ObjectHideFlags: 1
@@ -2432,6 +2603,7 @@ Transform:
   - {fileID: 425226}
   - {fileID: 470538}
   - {fileID: 474430}
+  - {fileID: 416230}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &492746
@@ -3441,19 +3613,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11401644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 109576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671de34c439e09a419a9e0bff7312eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cut: {fileID: 11422528}
-  _distort: {fileID: 11466950}
 --- !u!114 &11401870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3609,6 +3768,7 @@ MonoBehaviour:
   _miniFlame2: {fileID: 19821882}
   _rocks: {fileID: 19805830}
   _forward: 0.06
+  _soundPlayed: 0
 --- !u!114 &11422528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3630,6 +3790,44 @@ MonoBehaviour:
   Fps: 60
   MyColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
   MyMaterial: {fileID: 2100000, guid: 75f756109f216ad409ff1a5ea7dd7b2c, type: 2}
+--- !u!114 &11422728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellWater
+  clips:
+  - {fileID: 8300000, guid: 7a4b43fe63432a7478dc9d7f5b537c59, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 0
+  pitchMax: 0
+  group: {fileID: 0}
+--- !u!114 &11423006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellFire
+  clips:
+  - {fileID: 8300000, guid: 172585a9a8b1f734babba9432d9cbd5d, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 0
+  pitchMax: 0
+  group: {fileID: 0}
 --- !u!114 &11423452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3744,6 +3942,25 @@ MonoBehaviour:
   speedU: -0.01
   speedV: 0
   length: 5
+--- !u!114 &11435498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellWood
+  clips:
+  - {fileID: 8300000, guid: c45aaa4b9e2807a4b806da66988a85c1, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 0
+  pitchMax: 0
+  group: {fileID: 0}
 --- !u!114 &11435674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3798,7 +4015,8 @@ MonoBehaviour:
   _registerName: metal2
   _anim: {fileID: 9568000}
   _axe: {fileID: 11423452}
-  _trail: {fileID: 178970}
+  _trail: {fileID: 11466036}
+  _trailDistort: {fileID: 11435674}
 --- !u!114 &11441916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3819,7 +4037,8 @@ MonoBehaviour:
   _registerName: metal1
   _anim: {fileID: 9555836}
   _axe: {fileID: 11477928}
-  _trail: {fileID: 177034}
+  _trail: {fileID: 11422528}
+  _trailDistort: {fileID: 11466950}
 --- !u!114 &11449916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3888,6 +4107,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed2: -1.2
+--- !u!114 &11458208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellAir
+  clips:
+  - {fileID: 8300000, guid: 1d03e7bb85f89bf47b0f1600ce525146, type: 3}
+  - {fileID: 8300000, guid: 3e999d0f7497c304289f7ca43c3733b7, type: 3}
+  - {fileID: 8300000, guid: f4595f51c6751e3439123fdd954ebb7f, type: 3}
+  - {fileID: 8300000, guid: a502f0b78dd7c0347bf28dff64e722b7, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 0.5
+  pitchMax: 1
+  group: {fileID: 0}
 --- !u!114 &11462088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3902,6 +4143,27 @@ MonoBehaviour:
   speedU: -0.2
   speedV: 0
   length: 1
+--- !u!114 &11463154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellMetal
+  clips:
+  - {fileID: 8300000, guid: dbc2be36c4c801843a244511f4cfce17, type: 3}
+  - {fileID: 8300000, guid: cf779907e3a00074dafef2b12dd5f935, type: 3}
+  - {fileID: 8300000, guid: 7108b916cc0e106478315ee1f07b22f8, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 0
+  pitchMax: 0
+  group: {fileID: 0}
 --- !u!114 &11466036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3969,7 +4231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireTempo: 1.2
-  _waterTempo: 2.5
+  _waterTempo: 2
   _airTempo: 1
   _earthTempo: 1
   _woodTempo: 1
@@ -4015,7 +4277,8 @@ MonoBehaviour:
   _registerName: metal3
   _anim: {fileID: 9544908}
   _axe: {fileID: 11490342}
-  _trail: {fileID: 181652}
+  _trail: {fileID: 11420496}
+  _trailDistort: {fileID: 11407048}
 --- !u!114 &11475976
 MonoBehaviour:
   m_ObjectHideFlags: 1
