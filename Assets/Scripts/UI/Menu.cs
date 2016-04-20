@@ -8,6 +8,7 @@ using System.IO;
 public class Menu : MonoBehaviour
 {
     public Animator Title_Logo;
+    public Animator Push;
     public List<Animator> animators;
     public ParticleSystem Particle_Energy;
     public ParticleSystem Particle_Title;
@@ -83,6 +84,7 @@ public class Menu : MonoBehaviour
     private void TitleDisappear()
     {
         Particle_Title.Play();
+        Push.SetTrigger("play");
         Invoke("EnergyBall", 3.5f);
     }
 
