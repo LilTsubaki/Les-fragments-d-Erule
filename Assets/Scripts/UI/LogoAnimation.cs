@@ -45,7 +45,7 @@ public class LogoAnimation : MonoBehaviour {
 	private void TitleDisappear(){
 		Particle_Title.Play ();
 		Push.SetTrigger ("play");
-		Invoke ("EnergyBall", 3.5f);
+		Invoke ("EnergyBall", 2.5f);
 	}
 
 	private void EnergyBall(){
