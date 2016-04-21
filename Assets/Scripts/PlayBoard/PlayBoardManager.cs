@@ -221,7 +221,7 @@ public class PlayBoardManager : Manager<PlayBoardManager>
             obstacle.ApplyOnTimeEffects();
             obstacle.RemoveMarkedOnTimeEffects();
             EffectUIManager.GetInstance().Unpause(obstacle);
-            if (obstacle.UnloadDamagerBuffer() > 0)
+            if (obstacle.DamageBuffer > 0)
             {
                 CameraManager.GetInstance().ScreenShake(obstacle.UnloadDamagerBuffer());
             }
@@ -245,7 +245,7 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         }
 
         EffectUIManager.GetInstance().Unpause(currentPlayer);
-        if (currentPlayer.UnloadDamagerBuffer() > 0)
+        if (currentPlayer.DamageBuffer > 0)
         {
             CameraManager.GetInstance().ScreenShake(currentPlayer.UnloadDamagerBuffer());
         }
