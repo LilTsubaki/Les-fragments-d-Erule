@@ -1,14 +1,13 @@
 ﻿Shader "Custom/ GUI_ReceiveShadows" {
 	Properties {
-		_Color ("NULL Color", color) = (1,1,1,1)
+		_MainTex ("NULL Texture", 2D) = "white" {}
 	}
-	SubShader{
+	SubShader {
 		Tags { "Queue" = "Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		ZWrite Off
-		ZTest Greater
-		Lighting On
-		//Blend SrcAlpha OneMinusSrcAlpha
-		Blend One OneMinusSrcAlpha
+		Cull Off
+		ColorMask A
+		Blend SrcAlpha OneMInusSrcAlpha
 
 		CGPROGRAM
 
@@ -16,7 +15,7 @@
 
 		#pragma target 3.0
 
-		half4 _Color;
+		sampler2D _MainTex;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -24,8 +23,8 @@
 
 		void surf (Input IN, inout SurfaceOutput o) {
 
-			o.Albedo = _Color; 
-			o.Alpha = 1;
+			half c = tex2D (_MainTex, IN.uv_MainTex); 
+			o.Alpha = 0;
 
 		}
 		ENDCG
