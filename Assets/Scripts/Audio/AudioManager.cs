@@ -462,21 +462,37 @@ public class AudioManager : Manager<AudioManager>
     /// <param name="playerId">The id of the player to stop the loop of.</param>
     public void StopPlayLoopingClips(int playerId)
     {
+        if (!_idPlayers.ContainsKey(playerId))
+        {
+            return ;
+        }
         _idPlayers[playerId].StopLooping();
     }
 
     public void StopPlayer(int idPlayer)
     {
+        if (!_idPlayers.ContainsKey(idPlayer))
+        {
+            return ;
+        }
         _idPlayers[idPlayer]._audio.Stop();
     }
 
     public bool IsPlayerPlaying(int idPlayer)
     {
+        if (!_idPlayers.ContainsKey(idPlayer))
+        {
+            return false;
+        }
         return _idPlayers[idPlayer]._audio.isPlaying;
     }
 
     public float GetPlayerDuration(int idPlayer)
     {
+        if (!_idPlayers.ContainsKey(idPlayer))
+        {
+            return -1;
+        }
         return _idPlayers[idPlayer]._audio.clip.length;
     }
 }
