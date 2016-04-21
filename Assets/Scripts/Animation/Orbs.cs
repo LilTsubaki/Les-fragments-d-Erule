@@ -127,13 +127,6 @@ public class Orbs : MonoBehaviour {
                 _runesGO[_elements[i]._id].SetActive(active);
             }
         }
-            /*for (int i = 0; i < transform.childCount; ++i)
-            {
-                if (transform.GetChild(i).childCount != 0)
-                {
-                    transform.GetChild(i).GetChild(0).gameObject.SetActive(active);
-                }
-            }*/
     }
 
     private void GoToCenter()
