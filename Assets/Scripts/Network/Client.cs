@@ -208,6 +208,8 @@ public class Client : MonoBehaviour{
         Button button = connectButton.GetComponent<Button>();
         connectButton.transform.SetParent(_scrollPanel.transform);
         connectButton.transform.localPosition = new Vector3(80, (_scrollPanel.transform.childCount) * -30);
+        connectButton.transform.localScale = Vector3.one;
+        connectButton.transform.Rotate(connectButton.transform.right, 90);
         button.GetComponentInChildren<Text>().text = host + ":" + port;
         button.onClick.AddListener(delegate { Connect(host, port); JoinBobby(); });
     }

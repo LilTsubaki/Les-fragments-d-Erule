@@ -16,6 +16,7 @@ public class WaitingMapBehaviour : MonoBehaviour {
         {
             UIManager.GetInstance().HidePanelNoStack("PanelWaitingMap");
             UIManager.GetInstance().ShowPanelNoStack("PanelGame");
+            UIManager.GetInstance().ShowPanelNoStack("menuButton");
             _runicBoard.SetActive(true);
         }
 	}
