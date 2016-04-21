@@ -18,4 +18,9 @@ public class MetalTrailsManipulation : MonoBehaviour {
         _cut.Deactivate();
         _distort.Deactivate();
     }
+
+    public void PlaySound()
+    {
+        AudioManager.GetInstance().Play("spellMetal", true, false);
+    }
 }

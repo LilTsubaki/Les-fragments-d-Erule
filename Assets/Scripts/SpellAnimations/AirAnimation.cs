@@ -15,11 +15,18 @@ public class AirAnimation : SpellAnimation {
 	public float _height;
 	public Xft.XWeaponTrail Trail1;
 	public Xft.XWeaponTrail Trail2;
+
+    private bool _soundPlayed;
     
 	// Update is called once per frame
 	void FixedUpdate () {
         if (_play)
         {
+            if (!_soundPlayed)
+            {
+                AudioManager.GetInstance().Play("spellAir", true, false);
+                _soundPlayed = true;
+            }
             float distFromToNext = Vector3.Distance(_from, gameObject.transform.position);
             float distFromToTo = Vector3.Distance(_from, _to);
 
@@ -60,6 +67,7 @@ public class AirAnimation : SpellAnimation {
 		Trail2.Deactivate ();
 		Trail1.Activate ();
 		Trail2.Activate ();
+        _soundPlayed = false;
     }
 
     

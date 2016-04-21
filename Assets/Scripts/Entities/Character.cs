@@ -326,7 +326,7 @@ public class Character : Entity, Killable
 
     public int ReceiveDamage(int value, Element element)
     {
-        
+        _damageBuffer += value;
         int positiveElementResistance;
         int negativeElementResistance;
 

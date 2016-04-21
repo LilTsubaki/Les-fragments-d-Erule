@@ -17,10 +17,17 @@ public class FireAnimation : SpellAnimation
 	public ParticleSystem _rocks;
     public float _forward;
 
+    public bool _soundPlayed;
+
     void Update()
     {
         if (_play)
         {
+            if (!_soundPlayed)
+            {
+                AudioManager.GetInstance().Play("spellFire", true, false);
+            }
+
             gameObject.transform.position = _to;
             Vector3 projCam = new Vector3(Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
             gameObject.transform.LookAt(projCam);

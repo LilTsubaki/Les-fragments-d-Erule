@@ -23,7 +23,9 @@ public class GameMenu : MonoBehaviour {
             server.Client2.RestartGame();
         }
         ManagerManager.GetInstance().ResetAll();
+        #if( UNITY_EDITOR)
         UnityEditor.EditorApplication.isPlaying = false;
+        #endif
         Application.Quit();
     }
 

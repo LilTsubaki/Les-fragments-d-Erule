@@ -8,6 +8,7 @@ using System.IO;
 public class Menu : MonoBehaviour
 {
     public Animator Title_Logo;
+    public Animator Push;
     public List<Animator> animators;
     public ParticleSystem Particle_Energy;
     public ParticleSystem Particle_Title;
@@ -44,7 +45,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         _eruleVoiceId = AudioManager.GetInstance().Play("EruleVoice");
-        buttonMap1.onClick.AddListener(delegate { LoadingScreen("iles_englouties", "Asset_Iles_englouties", "Iles"); });
+        buttonMap1.onClick.AddListener(delegate { LoadingScreen("iles_englouties_presentation", "Asset_Iles_englouties", "Iles"); });
         buttonMap2.onClick.AddListener(delegate { LoadingScreen("sentiersGeles", "Asset_Sentiers_Geles", "Sentiers"); });
 
     }
@@ -83,6 +84,7 @@ public class Menu : MonoBehaviour
     private void TitleDisappear()
     {
         Particle_Title.Play();
+        Push.SetTrigger("play");
         Invoke("EnergyBall", 3.5f);
     }
 

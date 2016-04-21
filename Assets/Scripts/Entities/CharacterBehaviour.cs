@@ -38,7 +38,7 @@ public class CharacterBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
+        if (ServerManager.GetInstance()._server != null && ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingRight && _character.CurrentState != Character.State.RotatingLeft && _character.CurrentState != Character.State.RotatingLeftCasting && _character.CurrentState != Character.State.RotatingRightCasting)
             {
@@ -123,6 +123,7 @@ public class CharacterBehaviour : MonoBehaviour
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
         if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
         {
+            gameObject.transform.rotation = _nextRotation;
             _character.NextState = Character.State.Moving;
         }
     }
@@ -132,6 +133,7 @@ public class CharacterBehaviour : MonoBehaviour
         gameObject.transform.rotation = /*_nextRotation;//*/ Quaternion.RotateTowards(gameObject.transform.rotation, _nextRotation, _rotationSpeed);
         if (Quaternion.Dot(gameObject.transform.rotation, _nextRotation) > 0.999f)
         {
+            gameObject.transform.rotation = _nextRotation;
             _character.NextState = Character.State.CastingSpell;
         }
     }

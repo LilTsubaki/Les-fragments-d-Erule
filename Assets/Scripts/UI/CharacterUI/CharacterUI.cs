@@ -95,7 +95,7 @@ public class CharacterUI : MonoBehaviour {
     {
         if (_character != null)
         {
-            _life.value = _character._lifeCurrent / _character._lifeMax;
+            _life.size = (float)_character._lifeCurrent / _character._lifeMax;
             //_life.maxValue = _character._lifeMax;
             string lifeText = _character._lifeCurrent.ToString() + " / " + _character._lifeMax;
             if (_character.GlobalShieldValue > 0)
@@ -106,7 +106,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateActionPoints()
     {
-        Color colorActive = new Color(0, 0.2f, 1, 1);
+        Color colorActive = new Color(1, 1, 1, 1);
         Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
         if (_character != null)
@@ -130,7 +130,7 @@ public class CharacterUI : MonoBehaviour {
 
     void UpdateMovementPoints()
     {
-        Color colorActive = new Color(0, 1,0.2f, 1);
+        Color colorActive = new Color(1, 1, 1, 1);
         Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
         if (_character != null)

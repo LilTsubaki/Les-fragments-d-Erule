@@ -6,6 +6,8 @@ public abstract class Entity {
     protected Hexagon _position;
     protected GameObject _gameObject;
 
+    protected int _damageBuffer;
+
     public Hexagon Position
     {
         get { return _position; }
@@ -38,6 +40,19 @@ public abstract class Entity {
         }
     }
 
+    public int DamageBuffer
+    {
+        get
+        {
+            return _damageBuffer;
+        }
+
+        set
+        {
+            _damageBuffer = value;
+        }
+    }
+
     public Entity()
     {
 
@@ -52,5 +67,13 @@ public abstract class Entity {
             throw new Exception("Invalid Position");
         _position = position;
         position._entity = this;
+    }
+
+    public int UnloadDamagerBuffer()
+    {
+        int dmg = _damageBuffer;
+        Logger.Debug("Total dmg : " +dmg);
+        _damageBuffer = 0;
+        return dmg;
     }
 }

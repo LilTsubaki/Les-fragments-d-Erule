@@ -4,6 +4,7 @@ using System.Collections;
 public class LogoAnimation : MonoBehaviour {
 
 	public Animator Title_Logo;
+	public Animator Push;
 	public Animator SM_E;
 	public Animator SM_E_pan;
 	public Animator SM_Bordure_E;
@@ -43,7 +44,8 @@ public class LogoAnimation : MonoBehaviour {
 
 	private void TitleDisappear(){
 		Particle_Title.Play ();
-		Invoke ("EnergyBall", 3.5f);
+		Push.SetTrigger ("play");
+		Invoke ("EnergyBall", 2.5f);
 	}
 
 	private void EnergyBall(){

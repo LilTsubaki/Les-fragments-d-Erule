@@ -92,6 +92,38 @@ public class CameraManager : Manager<CameraManager>
         return true;
     }
 
+    public void ScreenShake(float duration, float magnitude)
+    {
+        ScreenShake shakeScript = _active.GetComponent<ScreenShake>();
+        if (shakeScript != null)
+        {
+            shakeScript.Shake(duration, magnitude);
+        }
+    }
+
+    public void ScreenShake(int force)
+    {
+        ScreenShake shakeScript = _active.GetComponent<ScreenShake>();
+        if (shakeScript != null)
+        {
+            if (force < 200)
+            {
+                Logger.Debug("Shake 1");
+                shakeScript.Shake(0.4f, 0.02f);
+            }
+            else if (force < 800)
+            {
+                Logger.Debug("Shake 2");
+                shakeScript.Shake(0.4f, 0.1f);
+            }
+            else
+            {
+                Logger.Debug("Shake 3");
+                shakeScript.Shake(0.4f, 0.2f);
+            }
+        }
+    }
+
     /// <summary>
     /// Sets the Panel used to fade between two Cameras.
     /// </summary>

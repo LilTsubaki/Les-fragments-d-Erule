@@ -46,8 +46,8 @@ public class AudioData : MonoBehaviour
     }
 
     void OnDestroy()
-    {
-        AudioManager.GetInstance().Withdraw(channel);
+    {        
+        //AudioManager.GetInstance().Withdraw(channel);
     }
 
     /// <summary>

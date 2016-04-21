@@ -124,7 +124,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                 if (spawn.IsSpawn && spawn.isReachable())
                 {
                     
-                    for(int i = 0; i < 2; ++i)
+                    for(int i = 0; i < 4; ++i)
                     {
                         character.GameObject.transform.GetChild(i).gameObject.SetActive(false);
                     }

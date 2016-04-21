@@ -106,7 +106,8 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         if (_instance != null)
             throw new ManagerException();
 
-        _secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
+        //_secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
+        _secondPlayerStarted = false;
         _turnNumber = 0;
         CanEndTurn = false;
     }
@@ -221,6 +222,10 @@ public class PlayBoardManager : Manager<PlayBoardManager>
             obstacle.ApplyOnTimeEffects();
             obstacle.RemoveMarkedOnTimeEffects();
             EffectUIManager.GetInstance().Unpause(obstacle);
+            if (obstacle.DamageBuffer > 0)
+            {
+                CameraManager.GetInstance().ScreenShake(obstacle.UnloadDamagerBuffer());
+            }
         }
 
         Logger.Debug("apply on time area turn playboardmanager");
@@ -241,6 +246,10 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         }
 
         EffectUIManager.GetInstance().Unpause(currentPlayer);
+        if (currentPlayer.DamageBuffer > 0)
+        {
+            CameraManager.GetInstance().ScreenShake(currentPlayer.UnloadDamagerBuffer());
+        }
 
         CurrentState = State.MoveMode;
         Logger.Debug("end begin turn playboardmanager");

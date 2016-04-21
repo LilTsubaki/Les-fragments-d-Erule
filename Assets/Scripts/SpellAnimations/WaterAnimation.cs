@@ -21,6 +21,8 @@ public class WaterAnimation : SpellAnimation
 	void Update () {
 		if (_play) {
 
+            AudioManager.GetInstance().Play("spellWater", true, false);
+
 			gameObject.transform.position = _to;
 			Vector3 projCam = new Vector3 (Camera.main.transform.position.x, gameObject.transform.position.y, Camera.main.transform.position.z);
 			gameObject.transform.LookAt (projCam);

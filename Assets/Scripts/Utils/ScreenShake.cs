@@ -14,6 +14,21 @@ public class ScreenShake : MonoBehaviour {
     void Start ()
     {
 	}
+
+    public void Shake(float duration, float magnitude)
+    {
+        _duration = duration;
+        _magnitude = magnitude;
+        _shaking = true;
+    }
+
+    public void ResetCamera()
+    {
+        _elapsed = 0.0f;
+        _shaking = false;
+        _positionRegistered = false;
+        Camera.main.transform.position = originalCamPos;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -26,7 +41,7 @@ public class ScreenShake : MonoBehaviour {
                 _positionRegistered = true;
             }
             _elapsed += Time.deltaTime;
-            if (_elapsed < _duration)
+            if (_elapsed <= _duration)
             {
                 float percentComplete = _elapsed / _duration;
                 float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);
@@ -41,10 +56,7 @@ public class ScreenShake : MonoBehaviour {
             }
             else
             {
-                _elapsed = 0.0f;
-                _shaking = false;
-                _positionRegistered = false;
-                Camera.main.transform.position = originalCamPos;
+                ResetCamera();
             }
         }
     }

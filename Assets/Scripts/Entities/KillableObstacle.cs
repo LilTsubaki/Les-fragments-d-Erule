@@ -24,6 +24,8 @@ public class KillableObstacle : Obstacle, Killable
 
     public int ReceiveDamage(int value, Element element)
     {
+        _damageBuffer += value;
+
         if (_currentLife - value < 0)
             _currentLife = 0;
         else
