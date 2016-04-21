@@ -294,6 +294,7 @@ public class Character : Entity, Killable
         Logger.Debug("Receive heal value : " + value);
         EffectUIManager.GetInstance().AddTextEffect(this, new TextHeal(value));
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
+        EffectUIManager.GetInstance().Unpause(this);
 
         GameObject.GetComponent<Animator>().SetFloat("Wound", ((float)(_lifeMax - _lifeCurrent) / (float)_lifeMax)*0.5f);
     }
