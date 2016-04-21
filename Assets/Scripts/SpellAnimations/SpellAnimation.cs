@@ -59,6 +59,19 @@ public class SpellAnimation : MonoBehaviour {
                     c.GameObject.GetComponent<Animator>().SetTrigger("Hit");
                 }
             }
+
+            EffectUIManager.GetInstance().UnpauseAll();
+
+            // When a player is pushed or pulled and is not in the _hexagons list
+            if (PlayBoardManager.GetInstance().GetCurrentPlayer().DamageBuffer > 0)
+            {
+                CameraManager.GetInstance().ScreenShake(PlayBoardManager.GetInstance().GetCurrentPlayer().UnloadDamagerBuffer());
+            }
+            if (PlayBoardManager.GetInstance().GetOtherPlayer().DamageBuffer > 0)
+            {
+                CameraManager.GetInstance().ScreenShake(PlayBoardManager.GetInstance().GetOtherPlayer().UnloadDamagerBuffer());
+            }
+
             _timer = 0.0f;
             _updateTimer = false;
         }
