@@ -109,12 +109,12 @@ public class CameraManager : Manager<CameraManager>
             if (force < 200)
             {
                 Logger.Debug("Shake 1");
-                shakeScript.Shake(0.3f, 0.02f);
+                shakeScript.Shake(0.4f, 0.02f);
             }
             else if (force < 800)
             {
                 Logger.Debug("Shake 2");
-                shakeScript.Shake(0.3f, 0.1f);
+                shakeScript.Shake(0.4f, 0.1f);
             }
             else
             {

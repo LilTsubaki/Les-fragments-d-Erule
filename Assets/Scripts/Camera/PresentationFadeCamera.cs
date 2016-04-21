@@ -14,4 +14,9 @@ public class PresentationFadeCamera : MonoBehaviour {
 		CameraManager.GetInstance ().FadeTo ("cameraBoard",1.0f);
 	}
 
+    public void KillAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
+
 }

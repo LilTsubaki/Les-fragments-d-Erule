@@ -39,7 +39,6 @@ public class SpellAnimation : MonoBehaviour {
     public void timerUpdate()
     {
         _timer += Time.deltaTime;
-        Logger.Debug(gameObject.name + " " + _timeToHitTarget + " " + _timer);
         if (_timer >= _timeToHitTarget && _hexagons != null)
         {
             for (int i = 0; i < _hexagons.Count; i++)
@@ -48,7 +47,10 @@ public class SpellAnimation : MonoBehaviour {
                 if(entity != null)
                 {
                     EffectUIManager.GetInstance().Unpause(entity);
-                    CameraManager.GetInstance().ScreenShake(entity.UnloadDamagerBuffer());
+                    if (entity.UnloadDamagerBuffer() > 0)
+                    {
+                        CameraManager.GetInstance().ScreenShake(entity.UnloadDamagerBuffer());
+                    }
                 }
 
                 if(entity is Character)

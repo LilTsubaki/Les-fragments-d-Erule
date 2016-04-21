@@ -17,7 +17,6 @@ public class ScreenShake : MonoBehaviour {
 
     public void Shake(float duration, float magnitude)
     {
-        ResetCamera();
         _duration = duration;
         _magnitude = magnitude;
         _shaking = true;
