@@ -5,6 +5,7 @@ using System.Linq;
 public class Orbs : MonoBehaviour {
 
     private Dictionary<int, Element> _elements;
+    private List<GameObject> _runesGO;
     public bool _successCast;
     private bool _goingSuccess;
     private bool _slowingDown;
@@ -27,6 +28,18 @@ public class Orbs : MonoBehaviour {
     void Start()
     {
         _elements = new Dictionary<int, Element>();
+        _runesGO = new List<GameObject>();
+
+        List<Element> elements = Element.GetElements();
+        for (int i = 0; i < elements.Count; i++)
+        {
+            GameObject orb = Resources.Load<GameObject>("VFX/-Runes_Orbs/Rune" + elements[i]._name);
+            Logger.Debug(elements[i]._id + " " + elements[i]._name);
+            GameObject newRune = Instantiate(orb);
+            _runesGO.Add(newRune);
+            newRune.SetActive(false);
+        }
+        Logger.Debug("Count " + _runesGO.Count);
     }
 
     void FixedUpdate()
@@ -108,13 +121,12 @@ public class Orbs : MonoBehaviour {
     public void ActivateRunes(bool active)
     {
         if(!_goingFail)
-            for (int i = 0; i < transform.childCount; ++i)
+        {
+            for (int i = 0; i < _elements.Count; i++)
             {
-                if (transform.GetChild(i).childCount != 0)
-                {
-                    transform.GetChild(i).GetChild(0).gameObject.SetActive(active);
-                }
+                _runesGO[_elements[i]._id].SetActive(active);
             }
+        }
     }
 
     private void GoToCenter()
@@ -179,10 +191,10 @@ public class Orbs : MonoBehaviour {
             if (!_elements.ContainsKey(i))
             {
                 _elements.Add(i, elem);
-                GameObject orb = Resources.Load<GameObject>("VFX/-Runes_Orbs/Rune" + elem._name);
-                GameObject newRune = Instantiate(orb);
-                newRune.transform.SetParent(gameObject.transform.GetChild(i));
-                newRune.transform.localPosition = Vector3.zero;
+                Logger.Debug("Get : " + elem._id);
+                _runesGO[elem._id].SetActive(true);
+                _runesGO[elem._id].transform.SetParent(gameObject.transform.GetChild(i));
+                _runesGO[elem._id].transform.localPosition = Vector3.zero;
                 break;
             }
         }
@@ -204,7 +216,9 @@ public class Orbs : MonoBehaviour {
             if (_elements[key] == elem)
             {
                 id = key;
-                Destroy(gameObject.transform.GetChild(key).GetChild(0).gameObject);
+                //Destroy(gameObject.transform.GetChild(key).GetChild(0).gameObject);
+                Logger.Debug("Delete : " + elem._id);
+                _runesGO[elem._id].SetActive(false);
                 Logger.Debug("Removed " + key);
                 break;
             }
@@ -219,11 +233,13 @@ public class Orbs : MonoBehaviour {
         
         for(int i = 0; i < diff.Count; ++i)
         {
+            Logger.Debug("Remove : " + diff[i]._name);
             RemoveElement(diff[i]);
         }
 
         for(int i = 0; i < elems.Count; ++i)
         {
+            Logger.Debug("Add : " + elems[i]._name);
             AddElement(elems[i]);
         }
     }

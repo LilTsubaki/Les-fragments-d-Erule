@@ -38,13 +38,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Mask
-        second:
-          m_Texture: {fileID: 2800000, guid: dfccb81249e986d4bac854b61ed71db0, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -85,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: dfccb81249e986d4bac854b61ed71db0, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -100,14 +100,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _MaskContrast
-        second: 3.05
-      data:
-        first:
-          name: _Opacity
-        second: 0.831
-      data:
-        first:
           name: _Strength
         second: 75.2
       data:
@@ -116,28 +108,16 @@ Material:
         second: 2.38
       data:
         first:
-          name: _TilingTexMoveSpeedV
-        second: 0.27
-      data:
-        first:
-          name: _TilingTexMoveSpeedU
-        second: -0.38
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
         first:
-          name: _InvFade
-        second: 3
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _Glossiness
         second: 0.5
-      data:
-        first:
-          name: _ZWrite
-        second: 1
       data:
         first:
           name: _BumpScale
@@ -162,6 +142,26 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 3
+      data:
+        first:
+          name: _MaskContrast
+        second: 3.05
+      data:
+        first:
+          name: _Opacity
+        second: 0.831
+      data:
+        first:
+          name: _TilingTexMoveSpeedV
+        second: 0.27
+      data:
+        first:
+          name: _TilingTexMoveSpeedU
+        second: -0.38
     m_Colors:
       data:
         first:
@@ -173,9 +173,9 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _Tint
-        second: {r: 0.6544118, g: 0, b: 0, a: 1}
+          name: _TintColor
+        second: {r: 0.97794116, g: 0.39058137, b: 0.071907446, a: 0.5}
       data:
         first:
-          name: _TintColor
-        second: {r: 0.1761574, g: 0.9338235, b: 0.07552986, a: 0.5}
+          name: _Tint
+        second: {r: 0.6544118, g: 0, b: 0, a: 1}

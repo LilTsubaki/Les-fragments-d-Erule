@@ -418,6 +418,7 @@ public class SpellManager : Manager<SpellManager>
                 foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
+                    EffectUIManager.GetInstance().Unpause(currentPlayer);
                 }
             }
         }
@@ -470,6 +471,7 @@ public class SpellManager : Manager<SpellManager>
                 foreach (var elem in _spellInit)
                 {
                     currentPlayer.ReceiveDamage(_failDamage[_spellInit.Count][elem], elem);
+                    EffectUIManager.GetInstance().Unpause(currentPlayer);
                 }
             }
         }

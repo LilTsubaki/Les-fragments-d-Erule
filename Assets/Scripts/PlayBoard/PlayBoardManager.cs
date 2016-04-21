@@ -106,7 +106,8 @@ public class PlayBoardManager : Manager<PlayBoardManager>
         if (_instance != null)
             throw new ManagerException();
 
-        _secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
+        //_secondPlayerStarted = EruleRandom.RangeValue(0,100) % 2 == 0;
+        _secondPlayerStarted = false;
         _turnNumber = 0;
         CanEndTurn = false;
     }
