@@ -39,7 +39,7 @@ public class Orbs : MonoBehaviour {
             _runesGO.Add(newRune);
             newRune.SetActive(false);
         }
-        Logger.Debug("Count " + _runesGO.Count);
+        //Logger.Debug("Count " + _runesGO.Count);
     }
 
     void FixedUpdate()
@@ -191,7 +191,7 @@ public class Orbs : MonoBehaviour {
             if (!_elements.ContainsKey(i))
             {
                 _elements.Add(i, elem);
-                Logger.Debug("Get : " + elem._id);
+                //Logger.Debug("Get : " + elem._id);
                 _runesGO[elem._id].SetActive(true);
                 _runesGO[elem._id].transform.SetParent(gameObject.transform.GetChild(i));
                 _runesGO[elem._id].transform.localPosition = Vector3.zero;
@@ -217,9 +217,9 @@ public class Orbs : MonoBehaviour {
             {
                 id = key;
                 //Destroy(gameObject.transform.GetChild(key).GetChild(0).gameObject);
-                Logger.Debug("Delete : " + elem._id);
+                //Logger.Debug("Delete : " + elem._id);
                 _runesGO[elem._id].SetActive(false);
-                Logger.Debug("Removed " + key);
+                //Logger.Debug("Removed " + key);
                 break;
             }
         }
@@ -233,13 +233,13 @@ public class Orbs : MonoBehaviour {
         
         for(int i = 0; i < diff.Count; ++i)
         {
-            Logger.Debug("Remove : " + diff[i]._name);
+            //Logger.Debug("Remove : " + diff[i]._name);
             RemoveElement(diff[i]);
         }
 
         for(int i = 0; i < elems.Count; ++i)
         {
-            Logger.Debug("Add : " + elems[i]._name);
+            //Logger.Debug("Add : " + elems[i]._name);
             AddElement(elems[i]);
         }
     }
