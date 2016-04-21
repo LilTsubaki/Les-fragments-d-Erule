@@ -111,7 +111,7 @@ public class CharacterHostUI : MonoBehaviour
 
     void UpdateActionPoints()
     {
-        Color colorActive = new Color(0, 0.2f, 1, 1);
+        Color colorActive = new Color(1, 1, 1, 1);
         Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
         if (Character != null)
@@ -135,7 +135,7 @@ public class CharacterHostUI : MonoBehaviour
 
     void UpdateMovementPoints()
     {
-        Color colorActive = new Color(0, 1, 0.2f, 1);
+        Color colorActive = new Color(1, 1, 1, 1);
         Color colorEmpty = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
         if (Character != null)

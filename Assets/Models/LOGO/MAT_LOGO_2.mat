@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MAT_LOGO_2
-  m_Shader: {fileID: 4800000, guid: 6f2e3dd9be6c3e94897b3ec985556a1e, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 3099
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   m_SavedProperties:
@@ -35,6 +35,13 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissiveTex
+        second:
+          m_Texture: {fileID: 2800000, guid: bf9c214363b929c48a4809d977212c98, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,13 +100,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _EmissiveTex
-        second:
-          m_Texture: {fileID: 2800000, guid: bf9c214363b929c48a4809d977212c98, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -115,6 +115,10 @@ Material:
         second: 24.5
       data:
         first:
+          name: _Strength
+        second: 0.251
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
@@ -124,7 +128,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 1
+        second: 0.489
       data:
         first:
           name: _BumpScale
@@ -148,11 +152,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _Strength
-        second: 0.251
+        second: 0.443
       data:
         first:
           name: _Opacity
