@@ -262,6 +262,7 @@ public class Character : Entity, Killable
         _shields.AddLast(new Shield(shield));
         _globalShieldValue += shield.ShieldValue;
         EffectUIManager.GetInstance().AddTextEffect(this, new TextShieldGain(shield.ShieldValue));
+        EffectUIManager.GetInstance().Unpause(this);
 
         DisplayShield(true);
     }

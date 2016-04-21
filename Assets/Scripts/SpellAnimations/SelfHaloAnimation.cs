@@ -27,11 +27,6 @@ public class SelfHaloAnimation : SpellAnimation {
             _play = !_play;
         }
 
-        if (_updateTimer)
-        {
-            timerUpdate();
-        }
-
         _haloMat.material.SetColor("_TintColor", new Color(_baseColor.r, _baseColor.g, _baseColor.b, _alpha));
     }
 
