@@ -80,28 +80,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DispMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ReflectionTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -115,7 +94,28 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _ReflectionTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _FoamTexture
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -135,7 +135,7 @@ Material:
         second: 0.405
       data:
         first:
-          name: _InvFade
+          name: _Contrast
         second: 1
       data:
         first:
@@ -173,26 +173,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _DispScrollSpeedX
-        second: 0
-      data:
-        first:
-          name: _DispScrollSpeedY
-        second: 0
-      data:
-        first:
-          name: _StrengthX
-        second: 1
-      data:
-        first:
-          name: _StrengthY
-        second: -1
-      data:
-        first:
-          name: _WaveSpeed
-        second: 40
       data:
         first:
           name: _NormalTiling
@@ -247,6 +227,10 @@ Material:
         second: 0.67
       data:
         first:
+          name: _WaveSpeed
+        second: 40
+      data:
+        first:
           name: _FoamTiling
         second: 3
       data:
@@ -271,8 +255,24 @@ Material:
         second: 120
       data:
         first:
-          name: _Contrast
+          name: _InvFade
         second: 1
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: 0
+      data:
+        first:
+          name: _StrengthX
+        second: 1
+      data:
+        first:
+          name: _StrengthY
+        second: -1
     m_Colors:
       data:
         first:
@@ -286,10 +286,6 @@ Material:
         first:
           name: _SpecColor
         second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
       data:
         first:
           name: _MainColor
@@ -306,3 +302,7 @@ Material:
         first:
           name: _FoamColor
         second: {r: 0.3382353, g: 0.3456964, b: 0.3456964, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
