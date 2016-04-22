@@ -27,8 +27,7 @@ public class WoodAnimation : SpellAnimation {
                 _idPlayerTrail = AudioManager.GetInstance().Play("spellWoodTrail", true, false);
                 _soundPlayed = true;
             }
-
-            Vector3 next = Vector3.MoveTowards(transform.position, _to + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
+            Vector3 next = Vector3.MoveTowards(transform.position, _to + new Vector3(0f,0.2f,0f) + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
             transform.position = next;
             if (!_timeToHitTargetRegistered)
             {
@@ -60,8 +59,8 @@ public class WoodAnimation : SpellAnimation {
 
     public override void Reset()
     {
-        transform.position = new Vector3(_from.x, _from.y, _from.z);
-        Vector3 look = new Vector3(_to.x, _from.y, _to.z);
+        transform.position = new Vector3(_from.x, _from.y + 0.2f, _from.z);
+        Vector3 look = new Vector3(_to.x, _from.y + 0.2f, _to.z);
         gameObject.transform.LookAt(look);
         _thorn1.SetActive(true);
         _thorn2.SetActive(true);
