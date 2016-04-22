@@ -69,6 +69,14 @@ public class EffectUIManager {
         }
     }
 
+    public void UnpauseAll()
+    {
+        foreach(EffectBuffer buffer in _buffers.Values)
+        {
+            buffer.Paused = false;
+        }
+    }
+
     public void Unpause(Entity entity)
     {
         EffectBuffer effectBuffer;

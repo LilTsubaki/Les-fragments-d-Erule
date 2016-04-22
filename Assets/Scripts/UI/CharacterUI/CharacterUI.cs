@@ -55,8 +55,9 @@ public class CharacterUI : MonoBehaviour {
                 pos.x = 15 + i * 300;
             else
                 pos.x = -15 - i * 300;
-            n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+            n.rectTransform.anchoredPosition3D = new Vector3(pos.x, pos.y, 0);
             n.rectTransform.localScale = Vector3.one;
+            n.rectTransform.Rotate(90, 0, 0);
 
             _listActionPoints.Add(n);
         }
@@ -72,8 +73,9 @@ public class CharacterUI : MonoBehaviour {
                 pos.x = 50 + i * 235;
             else
                 pos.x = -50 - i * 235;
-            n.rectTransform.anchoredPosition = new Vector2(pos.x, pos.y);
+            n.rectTransform.anchoredPosition3D = new Vector3(pos.x, pos.y, 0);
             n.rectTransform.localScale = Vector3.one;
+            n.rectTransform.Rotate(90, 0, 0);
 
             _listMovementPoints.Add(n);
         }

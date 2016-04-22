@@ -37,7 +37,7 @@ public class HistoricManager {
 
     public void AddText(string text)
     {
-        if (_isInit)
+        /*if (_isInit)
         {
             GameObject go;
             if (_texts.Count < _maxText)
@@ -62,6 +62,6 @@ public class HistoricManager {
             _textGO.transform.position -= new Vector3(0, 20, 0);
             _lastYPosition += 20;
             _content.GetComponent<RectTransform>().localPosition = Vector3.zero;
-        }
+        }*/
     }
 }
