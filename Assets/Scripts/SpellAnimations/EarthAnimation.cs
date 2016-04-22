@@ -21,6 +21,10 @@ public class EarthAnimation : SpellAnimation
     public ParticleSystem _ice;
     public ParticleSystem _rock;
 
+
+    private bool _soundPlayed;
+    private int _idPlayerQuake;
+
     public void Awake()
     {
         _raycastedHexagons = new List<HexagonBehaviour>();
@@ -48,6 +52,12 @@ public class EarthAnimation : SpellAnimation
     {
         if (_play)
         {
+            if(!_soundPlayed)
+            {
+                AudioManager.GetInstance().Play("spellEarthQuake", true, false);
+                _soundPlayed = true;
+            }
+
             _currentTime += Time.deltaTime;
 
             if (!_raycastDone)
@@ -97,12 +107,17 @@ public class EarthAnimation : SpellAnimation
                         particle.SetActive(true);
                         particle.transform.position = hexagonPosition;
                         earthBehaviour.Particles = particle;
+                        AudioManager.GetInstance().Play("spellEarth", true, false);
                     }
                     else
                     {
                         Logger.Debug("No prefab for underhex");
                     }
                     _currentIndex++;
+                }
+                else
+                {
+                    AudioManager.GetInstance().FadeOut(_idPlayerQuake);
                 }
             }
 

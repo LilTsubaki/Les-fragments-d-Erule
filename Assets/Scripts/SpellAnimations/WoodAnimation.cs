@@ -12,10 +12,22 @@ public class WoodAnimation : SpellAnimation {
     public float _speed;
     public bool _timeToHitTargetRegistered = false;
 
+    private bool _soundPlayed;
+    private int _idPlayerThorns;
+    private int _idPlayerTrail;
+
+
     void FixedUpdate()
     {
         if (_play)
         {
+            if (!_soundPlayed)
+            {
+                _idPlayerThorns = AudioManager.GetInstance().Play("spellWood", true, false);
+                _idPlayerTrail = AudioManager.GetInstance().Play("spellWoodTrail", true, false);
+                _soundPlayed = true;
+            }
+
             Vector3 next = Vector3.MoveTowards(transform.position, _to + gameObject.transform.forward * 0.5f, Time.deltaTime * _speed);
             transform.position = next;
             if (!_timeToHitTargetRegistered)
@@ -33,6 +45,11 @@ public class WoodAnimation : SpellAnimation {
                 _cracks.SetActive(false);
                 _clouds.Stop();
                 _rocks.Stop();
+
+                _soundPlayed = false;
+                AudioManager.GetInstance().FadeOut(_idPlayerThorns);
+                AudioManager.GetInstance().FadeOut(_idPlayerTrail);
+
             }
         }
         if(_updateTimer)
@@ -53,6 +70,7 @@ public class WoodAnimation : SpellAnimation {
         _clouds.Play();
         _rocks.Play();
         _timeToHitTargetRegistered = false;
+        _soundPlayed = false;
     }
 
 }

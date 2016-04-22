@@ -7,7 +7,11 @@ public class EruleRandom
 
     public static int RangeValue(int min, int max)
     {
-        return random.Next(min, max);
+        if(min == max)
+        {
+            return max;
+        }
+        return random.Next(min, max+1);
     }
     public static float RangeValue(float min, float max)
     {
