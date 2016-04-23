@@ -14,11 +14,14 @@
 
     public override void Reset()
     {
-        if(_server.Client1 != null)
-            _server.Client1.Stop();
-        if (_server.Client2 != null)
-            _server.Client2.Stop();
-        _server.Stop();
+        if (_server != null)
+        {
+            if (_server.Client1 != null)
+                _server.Client1.Stop();
+            if (_server.Client2 != null)
+                _server.Client2.Stop();
+            _server.Stop();
+        }
         base.Reset();
     }
 }
