@@ -39,6 +39,7 @@ public class EarthAnimation : SpellAnimation
         _raycastedHexagons.Clear();
         _currentTime = 0;
         _currentIndex = 0;
+        _soundPlayed = false;
     }
 
     private GameObject GetUnderHex(string hex)
@@ -54,7 +55,7 @@ public class EarthAnimation : SpellAnimation
         {
             if(!_soundPlayed)
             {
-                AudioManager.GetInstance().Play("spellEarthQuake", true, false);
+                _idPlayerQuake = AudioManager.GetInstance().Play("spellEarthQuake", true, false);
                 _soundPlayed = true;
             }
 

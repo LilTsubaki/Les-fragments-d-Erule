@@ -60,7 +60,6 @@ public class AudioData : MonoBehaviour
         if (random)
         {
             int id = EruleRandom.RangeValue(0, clips.Count - 1);
-            Logger.Debug(id);
             clip = clips[id];
         }
         else

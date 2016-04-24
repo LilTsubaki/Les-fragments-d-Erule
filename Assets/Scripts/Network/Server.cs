@@ -342,6 +342,7 @@ public class Server : MonoBehaviour{
         {
             _client2.RestartGame();
         }
+        AudioManager.GetInstance().Play("choixMap");
         ManagerManager.GetInstance().ResetAll();
         System.GC.Collect();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

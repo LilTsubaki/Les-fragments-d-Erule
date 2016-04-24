@@ -33,10 +33,12 @@ public class UIDeck : MonoBehaviour {
             UIManager.GetInstance().HidePanelNoStack("menuButton");
             UIManager.GetInstance().ShowPanelNoStack("menuButton");
             _deck.gameObject.SetActive(false);
+            AudioManager.GetInstance().Play("validate");
             ClientManager.GetInstance()._client.SearchHost();
         }
         else
         {
+            AudioManager.GetInstance().Play("error");
             Logger.Debug("Not enough runes : " + _deck.DeckSelection.RunesInHand.Count);
         }
     }

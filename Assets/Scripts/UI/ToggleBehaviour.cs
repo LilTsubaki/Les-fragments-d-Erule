@@ -45,6 +45,12 @@ public class ToggleBehaviour : MonoBehaviour
                 ClientManager.GetInstance()._client.SendMakeSpell();
             }
 
-        }   
+            AudioManager.GetInstance().Play("lockSpell", true, false);
+
+        }
+        else
+        {
+            AudioManager.GetInstance().Play("error", true, false);
+        }
     }
 }

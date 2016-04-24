@@ -329,6 +329,7 @@ public class Client : MonoBehaviour{
 
         _udpClient.Send(data, data.Length, ep);
 
+        AudioManager.GetInstance().Play("click");
         UIManager.GetInstance().ShowPanel("PanelServers");
 
         foreach(Transform child in _scrollPanel.transform)
@@ -497,6 +498,7 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         NetworkUtils.WriteInt(12, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
+        AudioManager.GetInstance().Play("endTurn", true, false);
         _isMainThreadReading = false;
     }
 
