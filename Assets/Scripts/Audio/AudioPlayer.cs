@@ -14,6 +14,10 @@ public class AudioPlayer : MonoBehaviour {
     /// </summary>
     public float _power;
     /// <summary>
+    /// Where is the sound played ? -1 left, 1 right.
+    /// </summary>
+    public float _panoramicPosition;
+    /// <summary>
     /// Is the sound being played in ?
     /// </summary>
     public bool _fadeIn;
@@ -38,9 +42,13 @@ public class AudioPlayer : MonoBehaviour {
     private float _distMax;
     private int _allocatedId;
 
+    internal float _nextPanoramicPostion;
+    private bool _changePan;
+
     // Use this for initialization
     void Start () {
-        _power = 1;
+        //_power = 1;
+        _panoramicPosition = 0;
 	}
 	
 	// Update is called once per frame
@@ -61,8 +69,24 @@ public class AudioPlayer : MonoBehaviour {
             _power = Mathf.Max(0, _power - Time.deltaTime);
             if (_power == 0)
             {
-                _audio.Stop();
+                if(!_loopClips)
+                    _audio.Stop();
                 _fadeOut = false;
+            }
+        }
+        if (_changePan)
+        {
+            if(_panoramicPosition < _nextPanoramicPostion)
+            {
+                _panoramicPosition = Mathf.Min(_nextPanoramicPostion, _panoramicPosition + Time.deltaTime);
+            }
+            else
+            {
+                _panoramicPosition = Mathf.Max(_nextPanoramicPostion, _panoramicPosition - Time.deltaTime);
+            }
+            if(_panoramicPosition == _nextPanoramicPostion)
+            {
+                _changePan = false;
             }
         }
 
@@ -75,6 +99,7 @@ public class AudioPlayer : MonoBehaviour {
         }
 
         _audio.volume = _power;
+        _audio.panStereo = _panoramicPosition;
     }
 
     /// <summary>
@@ -107,7 +132,7 @@ public class AudioPlayer : MonoBehaviour {
         _allocatedId = selfId;
     }
 
-    public void StopLooping()
+    public void StopLooping(bool fade)
     {
         _loopClips = false;
         _channelName = "";
@@ -115,5 +140,20 @@ public class AudioPlayer : MonoBehaviour {
         _pos = Vector3.zero;
         _distMin = 0;
         _distMax = 0;
+        if (!fade) {
+            _power = 0;
+            _audio.Stop();
+        }
+        else
+        {
+            FadeOut();
+        }
+        
+    }
+
+    public void GoToPanoramicPosition(float newPos)
+    {
+        _nextPanoramicPostion = newPos;
+        _changePan = true;
     }
 }

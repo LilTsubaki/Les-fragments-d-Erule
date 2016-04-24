@@ -466,7 +466,16 @@ public class AudioManager : Manager<AudioManager>
         {
             return ;
         }
-        _idPlayers[playerId].StopLooping();
+        _idPlayers[playerId].StopLooping(false);
+    }
+
+    public void StopPlayLoopingClipsFading(int playerId)
+    {
+        if (!_idPlayers.ContainsKey(playerId))
+        {
+            return;
+        }
+        _idPlayers[playerId].StopLooping(true);
     }
 
     public void StopPlayer(int idPlayer)
@@ -494,5 +503,32 @@ public class AudioManager : Manager<AudioManager>
             return -1;
         }
         return _idPlayers[idPlayer]._audio.clip.length;
+    }
+
+    public void SetPlayerPower(int playerId, float power)
+    {
+        if (!_idPlayers.ContainsKey(playerId))
+        {
+            return;
+        }
+        _idPlayers[playerId]._power = power;
+    }
+
+    public float GetPlayerPower(int playerId)
+    {
+        if (!_idPlayers.ContainsKey(playerId))
+        {
+            return -1;
+        }
+        return _idPlayers[playerId]._power;
+    }
+
+    public void FadePanoramicStereo(int playerId, float panStereo)
+    {
+        if (!_idPlayers.ContainsKey(playerId))
+        {
+            return;
+        }
+        _idPlayers[playerId].GoToPanoramicPosition(panStereo);
     }
 }
