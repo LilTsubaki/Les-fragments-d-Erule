@@ -32,6 +32,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &139178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 412024}
+  - 114: {fileID: 11453018}
+  m_Layer: 0
+  m_Name: ReleaseRune
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &142862
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +160,7 @@ Transform:
   - {fileID: 498588}
   - {fileID: 406784}
   - {fileID: 466268}
+  - {fileID: 412024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &406784
@@ -170,6 +187,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 404928}
   m_RootOrder: 0
+--- !u!4 &412024
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 404928}
+  m_RootOrder: 7
 --- !u!4 &437942
 Transform:
   m_ObjectHideFlags: 1
@@ -243,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: validate
   clips:
-  - {fileID: 8300000, guid: 51e9e65f433d0274d9cda222ee67c4f6, type: 3}
+  - {fileID: 8300000, guid: ce07839663837334791dcbb2e0656243, type: 3}
   random: 0
   priority: 0
   pitchMin: 1
@@ -262,11 +291,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: endTurn
   clips:
-  - {fileID: 8300000, guid: e1bb1001d2d59c44ea7e53d471da5919, type: 3}
+  - {fileID: 8300000, guid: 3931db9ef9355854f88c5f7683c49462, type: 3}
   random: 0
   priority: 0
   pitchMin: 1
   pitchMax: 1
+  group: {fileID: 24366410, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11453018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: releaseRune
+  clips:
+  - {fileID: 8300000, guid: 22fa867ee5e2a5847863bd3efd4986d6, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1.2
   group: {fileID: 24366410, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11459910
 MonoBehaviour:
@@ -281,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: lockSpell
   clips:
-  - {fileID: 8300000, guid: 54f673ad0c6c9c4428fcc79df84bc85a, type: 3}
+  - {fileID: 8300000, guid: 464b2e74bb240174b94e0c138437cb75, type: 3}
   random: 0
   priority: 0
   pitchMin: 0.9
@@ -300,8 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: click
   clips:
-  - {fileID: 8300000, guid: 0137ba9c97c9c5f458c5290379b82a16, type: 3}
-  - {fileID: 8300000, guid: 17292d0bdd9290f4994262c67256d89d, type: 3}
+  - {fileID: 8300000, guid: 348c03d05b70d374ea5609fbbb914c4d, type: 3}
+  - {fileID: 8300000, guid: d6125dc617b6b7443a30e3e47d8b195f, type: 3}
   random: 1
   priority: 0
   pitchMin: 0.9
@@ -320,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: choixMap
   clips:
-  - {fileID: 8300000, guid: 1c397c75b3fe6c845b17c15033dde159, type: 3}
+  - {fileID: 0}
   random: 0
   priority: 0
   pitchMin: 1
@@ -339,8 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: error
   clips:
-  - {fileID: 8300000, guid: 7085af7e53dbccd46ba8004c7902ccb5, type: 3}
-  - {fileID: 8300000, guid: ff61692f6a304424f913b62f6feaed0f, type: 3}
+  - {fileID: 8300000, guid: 7aca9fd8b964c5342bbeda0595435dab, type: 3}
+  - {fileID: 8300000, guid: 0bd8fb5d133606a438b10377586dda23, type: 3}
   random: 1
   priority: 0
   pitchMin: 0.9
@@ -359,11 +407,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: menu
   clips:
-  - {fileID: 8300000, guid: 0137ba9c97c9c5f458c5290379b82a16, type: 3}
+  - {fileID: 8300000, guid: 348c03d05b70d374ea5609fbbb914c4d, type: 3}
   random: 0
   priority: 0
-  pitchMin: 1
-  pitchMax: 1
+  pitchMin: 0.95
+  pitchMax: 1.05
   group: {fileID: 24366410, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!1001 &100100000
 Prefab:

@@ -171,6 +171,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
 
             runeBehaviour._state = RuneBehaviour.State.BeingReleased;
             _heldRune = null;
+            AudioManager.GetInstance().Play("releaseRune", true, false);
         }
     }
 
