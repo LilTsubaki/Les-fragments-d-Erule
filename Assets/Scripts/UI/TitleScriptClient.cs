@@ -22,7 +22,7 @@ public class TitleScriptClient : MonoBehaviour
     public FloatingObjects _logo;
 
     private int _eruleVoiceId;
-    private int logoId;
+    private int _idLogoSound;
 
     private string _chosenMap;
     private string _chosenEnvironment;
@@ -44,8 +44,8 @@ public class TitleScriptClient : MonoBehaviour
                 TitleDisappear();
 
                 AudioManager.GetInstance().FadeOut(_eruleVoiceId);
-                int idLogoSound = AudioManager.GetInstance().Play("Logo", true, false);
-                float logoSoundLength = AudioManager.GetInstance().GetPlayerDuration(idLogoSound);
+                _idLogoSound = AudioManager.GetInstance().Play("Logo", true, false);
+                float logoSoundLength = AudioManager.GetInstance().GetPlayerDuration(_idLogoSound);
                 _logoFinish = true;
             }
             else
@@ -56,6 +56,7 @@ public class TitleScriptClient : MonoBehaviour
                 planks.SetActive(true);
                 menu.SetActive(false);
                 Camera.main.gameObject.SetActive(false);
+                AudioManager.GetInstance().StopPlayer(_idLogoSound);
                 gameCamera.SetActive(true);
             }
                 
