@@ -40,6 +40,7 @@ public class DeckSelectionBehaviour : MonoBehaviour {
         runeGO.transform.localPosition = new Vector3(0, 0.3f, 0);
         runeGO.transform.rotation = prefab.transform.rotation;
         runeGO.GetComponent<RuneBehaviour>()._rune = new Rune(element, -1, -1);
+        runeGO.transform.localScale = new Vector3(4.5f,4.5f,4.5f);
     }
 
     void InstantiateRunes()
