@@ -29,14 +29,20 @@ public class UIDeck : MonoBehaviour {
             ClientManager.GetInstance()._client.Name = _inputField.text;
 
             UIManager.GetInstance().HidePanelNoStack("PanelRunicBoard");
-            UIManager.GetInstance().ShowPanelNoStack("PanelServers");
+            //UIManager.GetInstance().ShowPanelNoStack("PanelServers");
+
+            UIManager.GetInstance().ShowPanelNoStack("PanelWaitingMap");
             UIManager.GetInstance().HidePanelNoStack("menuButton");
             UIManager.GetInstance().ShowPanelNoStack("menuButton");
             _deck.gameObject.SetActive(false);
+            AudioManager.GetInstance().Play("validate");
+            ClientManager.GetInstance()._client._deckValidated = true;
             ClientManager.GetInstance()._client.SearchHost();
+            
         }
         else
         {
+            AudioManager.GetInstance().Play("error");
             Logger.Debug("Not enough runes : " + _deck.DeckSelection.RunesInHand.Count);
         }
     }

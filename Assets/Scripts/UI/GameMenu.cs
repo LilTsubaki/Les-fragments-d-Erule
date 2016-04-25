@@ -7,6 +7,7 @@ public class GameMenu : MonoBehaviour {
 
     public void OpenMenu()
     {
+        AudioManager.GetInstance().Play("menu");
         UIManager.GetInstance().ShowPanel("menu");
         MenuButton.interactable = false;
     }
@@ -14,14 +15,18 @@ public class GameMenu : MonoBehaviour {
     public void Quit()
     {
         Server server = ServerManager.GetInstance()._server;
-        if (server.Client1 != null)
+        if (server != null)
         {
-            server.Client1.RestartGame();
+            if (server.Client1 != null)
+            {
+                server.Client1.RestartGame();
+            }
+            if (server.Client2 != null)
+            {
+                server.Client2.RestartGame();
+            }
         }
-        if (server.Client2 != null)
-        {
-            server.Client2.RestartGame();
-        }
+        AudioManager.GetInstance().Play("choixMap");
         ManagerManager.GetInstance().ResetAll();
         #if( UNITY_EDITOR)
         UnityEditor.EditorApplication.isPlaying = false;
@@ -31,6 +36,7 @@ public class GameMenu : MonoBehaviour {
 
     public void CancelMenu()
     {
+        AudioManager.GetInstance().Play("menu");
         UIManager.GetInstance().HideLastOpen();
         MenuButton.interactable = true;
     }

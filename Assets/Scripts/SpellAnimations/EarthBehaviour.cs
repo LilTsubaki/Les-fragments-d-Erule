@@ -41,7 +41,6 @@ public class EarthBehaviour : MonoBehaviour {
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, _initialPosition, _speed);
                 if (Vector3.SqrMagnitude(transform.position - InitialPosition) < 0.0001)
                 {
-                    //Destroy(_particles);
                     Destroy(gameObject);
                 }
             }

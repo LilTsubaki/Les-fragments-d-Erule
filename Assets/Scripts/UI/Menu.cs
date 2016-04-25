@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
 
     private int _eruleVoiceId;
     private int logoId;
+    private int _musicId;
 
     private string _chosenMap;
     private string _chosenEnvironment;
@@ -45,8 +46,8 @@ public class Menu : MonoBehaviour
     void Start()
     {
         _eruleVoiceId = AudioManager.GetInstance().Play("EruleVoice");
-        buttonMap1.onClick.AddListener(delegate { LoadingScreen("iles_englouties_presentation", "Asset_Iles_englouties", "Iles"); });
-        buttonMap2.onClick.AddListener(delegate { LoadingScreen("sentiersGeles", "Asset_Sentiers_Geles", "Sentiers"); });
+        buttonMap1.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("iles_englouties_presentation", "Asset_Iles_englouties", "Iles"); });
+        buttonMap2.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("sentiersGeles", "Asset_Sentiers_Geles", "Sentiers"); });
 
     }
 
@@ -60,7 +61,7 @@ public class Menu : MonoBehaviour
             TitleDisappear();
 
             AudioManager.GetInstance().FadeOut(_eruleVoiceId);
-            int idLogoSound = AudioManager.GetInstance().Play("Logo");
+            int idLogoSound = AudioManager.GetInstance().Play("Logo", true, false);
             float logoSoundLength = AudioManager.GetInstance().GetPlayerDuration(idLogoSound);
 
             server.SetActive(true);
@@ -108,12 +109,12 @@ public class Menu : MonoBehaviour
 
     private void StartMenuMusic()
     {
-        AudioManager.GetInstance().PlayLoopingClips("MusicMenu");
-        
+        _musicId = AudioManager.GetInstance().PlayLoopingClips("MusicMenu");
     }
 
     void LoadingScreen(string path, string environment, string animation)
     {
+        AudioManager.GetInstance().StopPlayLoopingClips(_musicId);
         UIManager.GetInstance().FadeOutPanelNoStack("PanelChoiceMap");
         UIManager.GetInstance().FadeInPanelNoStack("Loading");
         _chosenMap = path;

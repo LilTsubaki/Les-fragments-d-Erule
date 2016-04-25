@@ -39,6 +39,10 @@ public class Client : MonoBehaviour{
     bool _restartGame;
     bool _gameOver;
     bool _panelGameOverShown = false;
+    public bool _deckValidated;
+
+    float _timeOut = 4;
+    float _currentTime = 0;
 
     Character _winner;
 
@@ -126,6 +130,7 @@ public class Client : MonoBehaviour{
 
     public void Awake()
     {
+        _deckValidated = false;
         _lockedMode = false;
         _tcpClient = new TcpClient();
         _tcpClient.NoDelay = true;
@@ -170,11 +175,24 @@ public class Client : MonoBehaviour{
             }
         }
 
+        if(_deckValidated && !_isConnected)
+        {
+            _currentTime += Time.fixedDeltaTime;
+            if(_currentTime > _timeOut)
+            {
+                SearchHost();
+                _currentTime = 0;
+            }
+        }
+
         if (_newHost)
         {
             foreach(KeyValuePair<string, int> host in _hostsReceived)
             {
-                AddHostToScene(host.Key, host.Value);
+                Connect(host.Key, host.Value);
+                JoinBobby();
+                break;
+                //AddHostToScene(host.Key, host.Value);
             }
 
             _hostsReceived.Clear();
@@ -329,6 +347,7 @@ public class Client : MonoBehaviour{
 
         _udpClient.Send(data, data.Length, ep);
 
+        AudioManager.GetInstance().Play("click");
         UIManager.GetInstance().ShowPanel("PanelServers");
 
         foreach(Transform child in _scrollPanel.transform)
@@ -337,7 +356,7 @@ public class Client : MonoBehaviour{
         }
     }
 
-    void WaitHosts()
+    public void WaitHosts()
     {
         while (_isRunning && _searchingHosts)
         {
@@ -356,7 +375,6 @@ public class Client : MonoBehaviour{
                 {
                     case 1:
                         Logger.Warning("Connect to " + ip.Address.ToString());
-                        //Connect(ip.Address.ToString(), playPort);
                         addHostToList(ip.Address.ToString(), playPort);
                         break;
                     default:
@@ -497,6 +515,7 @@ public class Client : MonoBehaviour{
         _isMainThreadReading = true;
         NetworkUtils.WriteInt(12, _tcpClient.GetStream());
         _tcpClient.GetStream().Flush();
+        AudioManager.GetInstance().Play("endTurn", true, false);
         _isMainThreadReading = false;
     }
 

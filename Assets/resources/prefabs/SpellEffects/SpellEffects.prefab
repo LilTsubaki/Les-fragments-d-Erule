@@ -146,7 +146,7 @@ GameObject:
   - 4: {fileID: 416920}
   - 114: {fileID: 11435498}
   m_Layer: 0
-  m_Name: Wood
+  m_Name: WoodThorns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,6 +246,21 @@ GameObject:
   - 114: {fileID: 11423006}
   m_Layer: 0
   m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119970
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402884}
+  m_Layer: 0
+  m_Name: Metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,6 +555,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &136506
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 410588}
+  - 114: {fileID: 11479168}
+  m_Layer: 0
+  m_Name: WoodTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &138656
 GameObject:
   m_ObjectHideFlags: 1
@@ -584,6 +615,22 @@ GameObject:
   - 114: {fileID: 11431454}
   m_Layer: 0
   m_Name: X-WeaponTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &141926
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455738}
+  - 114: {fileID: 11431488}
+  m_Layer: 0
+  m_Name: MetalSwing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,6 +686,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &145018
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 409836}
+  - 114: {fileID: 11444322}
+  m_Layer: 0
+  m_Name: EarthPillar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &145396
 GameObject:
   m_ObjectHideFlags: 1
@@ -702,6 +765,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &147868
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 462054}
+  - 114: {fileID: 11451696}
+  m_Layer: 0
+  m_Name: EarthQuake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &149280
 GameObject:
   m_ObjectHideFlags: 1
@@ -745,6 +824,21 @@ GameObject:
   - 4: {fileID: 459158}
   m_Layer: 0
   m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &154604
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 429928}
+  m_Layer: 0
+  m_Name: Earth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,6 +918,21 @@ GameObject:
   - 114: {fileID: 11463154}
   m_Layer: 0
   m_Name: Metal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &159262
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 462152}
+  m_Layer: 0
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1531,6 +1640,20 @@ Transform:
   - {fileID: 420350}
   m_Father: {fileID: 492684}
   m_RootOrder: 5
+--- !u!4 &402884
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 447464}
+  - {fileID: 455738}
+  m_Father: {fileID: 416230}
+  m_RootOrder: 4
 --- !u!4 &407090
 Transform:
   m_ObjectHideFlags: 1
@@ -1567,6 +1690,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 492746}
   m_RootOrder: 0
+--- !u!4 &409836
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 429928}
+  m_RootOrder: 0
+--- !u!4 &410588
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 462152}
+  m_RootOrder: 1
 --- !u!4 &413832
 Transform:
   m_ObjectHideFlags: 1
@@ -1617,10 +1764,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456818}
-  - {fileID: 447464}
   - {fileID: 478230}
   - {fileID: 491730}
-  - {fileID: 416920}
+  - {fileID: 462152}
+  - {fileID: 402884}
+  - {fileID: 429928}
   m_Father: {fileID: 492684}
   m_RootOrder: 11
 --- !u!4 &416920
@@ -1633,8 +1781,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 416230}
-  m_RootOrder: 4
+  m_Father: {fileID: 462152}
+  m_RootOrder: 0
 --- !u!4 &417454
 Transform:
   m_ObjectHideFlags: 1
@@ -1827,6 +1975,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 483174}
   m_RootOrder: 12
+--- !u!4 &429928
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 409836}
+  - {fileID: 462054}
+  m_Father: {fileID: 416230}
+  m_RootOrder: 5
 --- !u!4 &431396
 Transform:
   m_ObjectHideFlags: 1
@@ -2003,8 +2165,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 416230}
-  m_RootOrder: 1
+  m_Father: {fileID: 402884}
+  m_RootOrder: 0
 --- !u!4 &447592
 Transform:
   m_ObjectHideFlags: 1
@@ -2043,6 +2205,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 481328}
   m_RootOrder: 0
+--- !u!4 &455738
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402884}
+  m_RootOrder: 1
 --- !u!4 &456818
 Transform:
   m_ObjectHideFlags: 1
@@ -2116,6 +2290,32 @@ Transform:
   - {fileID: 426588}
   - {fileID: 476618}
   m_Father: {fileID: 443572}
+  m_RootOrder: 3
+--- !u!4 &462054
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 429928}
+  m_RootOrder: 1
+--- !u!4 &462152
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 416920}
+  - {fileID: 410588}
+  m_Father: {fileID: 416230}
   m_RootOrder: 3
 --- !u!4 &464512
 Transform:
@@ -2343,7 +2543,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 416230}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &478400
 Transform:
   m_ObjectHideFlags: 1
@@ -2568,7 +2768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 416230}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &492070
 Transform:
   m_ObjectHideFlags: 1
@@ -3803,12 +4003,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: spellWater
   clips:
-  - {fileID: 8300000, guid: 7a4b43fe63432a7478dc9d7f5b537c59, type: 3}
+  - {fileID: 8300000, guid: d49f8c9c278228f46b4e3a427de8c8a0, type: 3}
   random: 0
   priority: 0
-  pitchMin: 0
-  pitchMax: 0
-  group: {fileID: 0}
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11423006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3822,12 +4022,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: spellFire
   clips:
-  - {fileID: 8300000, guid: 172585a9a8b1f734babba9432d9cbd5d, type: 3}
+  - {fileID: 8300000, guid: cbc9dbd7fe77268419ae19b1408c20e4, type: 3}
   random: 0
   priority: 0
-  pitchMin: 0
-  pitchMax: 0
-  group: {fileID: 0}
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11423452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3915,6 +4115,25 @@ MonoBehaviour:
   Fps: 60
   MyColor: {r: 1, g: 1, b: 1, a: 1}
   MyMaterial: {fileID: 2100000, guid: 9db63a4774ae8954ab6f503f10fb20e4, type: 2}
+--- !u!114 &11431488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellMetalSwing
+  clips:
+  - {fileID: 8300000, guid: 2045eb2d6da08a54cb3fcd0a45763a07, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11431860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3955,12 +4174,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: spellWood
   clips:
-  - {fileID: 8300000, guid: c45aaa4b9e2807a4b806da66988a85c1, type: 3}
+  - {fileID: 8300000, guid: 6883836c2d0730b43ad33f8b8642d694, type: 3}
   random: 0
   priority: 0
-  pitchMin: 0
-  pitchMax: 0
-  group: {fileID: 0}
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11435674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4039,6 +4258,26 @@ MonoBehaviour:
   _axe: {fileID: 11477928}
   _trail: {fileID: 11422528}
   _trailDistort: {fileID: 11466950}
+--- !u!114 &11444322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellEarth
+  clips:
+  - {fileID: 8300000, guid: 5fc50907b3ab8fb48aedd3dc743a46d9, type: 3}
+  - {fileID: 8300000, guid: 7225c085d1fb77f43a29b9ef7b9e2ad2, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 0.9
+  pitchMax: 1.1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11449916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4067,6 +4306,25 @@ MonoBehaviour:
   _height: 1
   Trail1: {fileID: 11431454}
   Trail2: {fileID: 11494526}
+--- !u!114 &11451696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellEarthQuake
+  clips:
+  - {fileID: 8300000, guid: 4a5c08730dfb6734a894247b45d3a7f2, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11452752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4120,15 +4378,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: spellAir
   clips:
-  - {fileID: 8300000, guid: 1d03e7bb85f89bf47b0f1600ce525146, type: 3}
-  - {fileID: 8300000, guid: 3e999d0f7497c304289f7ca43c3733b7, type: 3}
-  - {fileID: 8300000, guid: f4595f51c6751e3439123fdd954ebb7f, type: 3}
-  - {fileID: 8300000, guid: a502f0b78dd7c0347bf28dff64e722b7, type: 3}
+  - {fileID: 8300000, guid: 86fb46d2ec2d5e2428298b2761f45afa, type: 3}
   random: 1
   priority: 0
   pitchMin: 0.5
   pitchMax: 1
-  group: {fileID: 0}
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11462088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4156,14 +4411,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: spellMetal
   clips:
-  - {fileID: 8300000, guid: dbc2be36c4c801843a244511f4cfce17, type: 3}
-  - {fileID: 8300000, guid: cf779907e3a00074dafef2b12dd5f935, type: 3}
-  - {fileID: 8300000, guid: 7108b916cc0e106478315ee1f07b22f8, type: 3}
+  - {fileID: 8300000, guid: 2a0118646e1e9b346bf3932d7e881ff3, type: 3}
+  - {fileID: 8300000, guid: 0c5cba2d6c6361e459503dffdbe60724, type: 3}
   random: 1
   priority: 0
-  pitchMin: 0
-  pitchMax: 0
-  group: {fileID: 0}
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11466036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4345,6 +4599,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed1: 4
   tiltSpeed1: 11
+--- !u!114 &11479168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: spellWoodTrail
+  clips:
+  - {fileID: 8300000, guid: 69063a9d037a62a49aa762494a9beacc, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24377266, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
 --- !u!114 &11484534
 MonoBehaviour:
   m_ObjectHideFlags: 1

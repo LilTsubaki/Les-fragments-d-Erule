@@ -8,7 +8,7 @@ public class ToggleBehaviour : MonoBehaviour
     void Awake()
     {
         UIManager.GetInstance().ToggleButton = gameObject.GetComponent<Button>();
-        gameObject.GetComponentInChildren<Text>().text = "Lock Spell";
+        gameObject.GetComponentInChildren<Text>().text = "Lancer le sort";
     }
 
 
@@ -21,11 +21,11 @@ public class ToggleBehaviour : MonoBehaviour
 	void Update () {
         if (!ClientManager.GetInstance()._client.LockedMode)
         {
-            gameObject.GetComponentInChildren<Text>().text = "Lock Spell";
+            gameObject.GetComponentInChildren<Text>().text = "Lancer le sort";
         }
         else
         {
-            gameObject.GetComponentInChildren<Text>().text = "Unlock Spell";
+            gameObject.GetComponentInChildren<Text>().text = "Annuler";
         }
     }
 
@@ -45,6 +45,12 @@ public class ToggleBehaviour : MonoBehaviour
                 ClientManager.GetInstance()._client.SendMakeSpell();
             }
 
-        }   
+            AudioManager.GetInstance().Play("lockSpell", true, false);
+
+        }
+        else
+        {
+            AudioManager.GetInstance().Play("error", true, false);
+        }
     }
 }

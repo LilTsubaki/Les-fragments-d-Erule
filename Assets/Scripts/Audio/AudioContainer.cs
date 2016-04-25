@@ -13,6 +13,7 @@ public class AudioContainer : Poolable<AudioContainer>
     public void Copy(AudioContainer t)
     {
         _audioGameObject = UnityEngine.Object.Instantiate(t._audioGameObject);
+        _audioGameObject.transform.parent = t._audioGameObject.transform.parent;
     }
 
     public bool IsReady()
@@ -27,6 +28,7 @@ public class AudioContainer : Poolable<AudioContainer>
     {
         AudioPlayer ap = _audioGameObject.GetComponent<AudioPlayer>();
         ap._power = 1;
+        ap._panoramicPosition = 0;
         ap._fadeIn = false;
         ap._fadeOut = false;
     }

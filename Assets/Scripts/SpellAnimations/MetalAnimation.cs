@@ -14,7 +14,7 @@ public class MetalAnimation : SpellAnimation
 
         if (_play)
         {
-            AudioManager.GetInstance().Play("spellMetalTrail", true, false);
+            AudioManager.GetInstance().Play("spellMetalSwing", true, false);
             _axe.RandomInclination();
             Reset();
             gameObject.transform.position = _to + new Vector3(0,.6f,0);
