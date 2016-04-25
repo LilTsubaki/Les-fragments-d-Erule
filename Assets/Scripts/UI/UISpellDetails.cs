@@ -14,6 +14,15 @@ public class UISpellDetails : MonoBehaviour
     public RawImage rawImage;
     public GameObject board;
 
+    private bool _alreadyCreated;
+    private List<Hexagon> hexas;
+
+    public void Awake()
+    {
+        _alreadyCreated = false;
+        hexas = new List<Hexagon>();
+    }
+
     public void Update()
     {
         UpdateRange();
@@ -26,68 +35,77 @@ public class UISpellDetails : MonoBehaviour
         if (sbr != null && sbr._area != null && sbr._updateArea)
         {
             
-            foreach (Transform child in board.transform)
+            /*foreach (Transform child in board.transform)
             {
                 Destroy(child.gameObject);
-            }
-            board.transform.localScale = new Vector3(1, 1, 1);
+            }*/
+            board.transform.localScale = new Vector3(0.308f, 0.308f, 0.308f);
             sbr._updateArea = false;
             List<Hexagon> _finalArea = new List<Hexagon>();
             Area area = sbr._area;
             PlayBoard playBoard = new PlayBoard(5, 5);
 
-            List<Hexagon> hexas = new List<Hexagon>();
+            
             GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
 
-            hexas.Add(new Hexagon(0, 2, playBoard));
-            hexas.Add(new Hexagon(1, 2, playBoard));
-            hexas.Add(new Hexagon(2, 2, playBoard)); //centre
-            hexas.Add(new Hexagon(3, 2, playBoard));
-            hexas.Add(new Hexagon(4, 2, playBoard));
+            if(!_alreadyCreated)
+            {               
+                hexas.Add(new Hexagon(0, 2, playBoard));
+                hexas.Add(new Hexagon(1, 2, playBoard));
+                hexas.Add(new Hexagon(2, 2, playBoard)); //centre
+                hexas.Add(new Hexagon(3, 2, playBoard));
+                hexas.Add(new Hexagon(4, 2, playBoard));
 
-            hexas.Add(new Hexagon(1, 3, playBoard));
-            hexas.Add(new Hexagon(2, 3, playBoard));
-            hexas.Add(new Hexagon(3, 3, playBoard));
-            hexas.Add(new Hexagon(4, 3, playBoard));
+                hexas.Add(new Hexagon(1, 3, playBoard));
+                hexas.Add(new Hexagon(2, 3, playBoard));
+                hexas.Add(new Hexagon(3, 3, playBoard));
+                hexas.Add(new Hexagon(4, 3, playBoard));
 
-            hexas.Add(new Hexagon(2, 4, playBoard));
-            hexas.Add(new Hexagon(3, 4, playBoard));
-            hexas.Add(new Hexagon(4, 4, playBoard));
+                hexas.Add(new Hexagon(2, 4, playBoard));
+                hexas.Add(new Hexagon(3, 4, playBoard));
+                hexas.Add(new Hexagon(4, 4, playBoard));
 
-            hexas.Add(new Hexagon(0, 1, playBoard));
-            hexas.Add(new Hexagon(1, 1, playBoard));
-            hexas.Add(new Hexagon(2, 1, playBoard));
-            hexas.Add(new Hexagon(3, 1, playBoard));
+                hexas.Add(new Hexagon(0, 1, playBoard));
+                hexas.Add(new Hexagon(1, 1, playBoard));
+                hexas.Add(new Hexagon(2, 1, playBoard));
+                hexas.Add(new Hexagon(3, 1, playBoard));
 
-            hexas.Add(new Hexagon(0, 0, playBoard));
-            hexas.Add(new Hexagon(1, 0, playBoard));
-            hexas.Add(new Hexagon(2, 0, playBoard));
+                hexas.Add(new Hexagon(0, 0, playBoard));
+                hexas.Add(new Hexagon(1, 0, playBoard));
+                hexas.Add(new Hexagon(2, 0, playBoard));
 
-            for (int i = 0; i < hexas.Count; i++)
+                for (int i = 0; i < hexas.Count; i++)
+                {
+                    Hexagon hexagon = playBoard.CreateHexagone(hexas[i]._posX, hexas[i]._posY);
+                    hexagon.GameObject = new GameObject("Hexagon");
+                    hexagon.GameObject.transform.parent = board.transform;
+                    hexagon.GameObject.transform.localPosition = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, 0.2f, 0.75f * hexagon._posY);
+                    hexagon.GameObject.transform.localScale = Vector3.one;
+
+                    hexagon.Glyph = GameObject.Instantiate(glyph);
+                    hexagon.Glyph.transform.parent = hexagon.GameObject.transform;
+                    hexagon.Glyph.transform.localPosition = new Vector3(0,0,0);
+                    hexagon.Glyph.transform.localScale = Vector3.one;
+
+                    hexagon.CurrentState = Hexagon.State.Targetable;
+                    hexagon.Orientation = hexas[i].Orientation;
+
+                    hexas[i] = hexagon;
+                }
+                _alreadyCreated = true;
+            }
+            
+            foreach(Hexagon hexa in hexas)
             {
-                Hexagon hexagon = playBoard.CreateHexagone(hexas[i]._posX, hexas[i]._posY);
-                hexagon.GameObject = new GameObject("Hexagon");
-                hexagon.GameObject.transform.parent = board.transform;
-
-
-                hexagon.Glyph = GameObject.Instantiate(glyph);
-                hexagon.Glyph.transform.parent = hexagon.GameObject.transform;
-                hexagon.Glyph.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, 0.2f, 0.75f * hexagon._posY);
-
-                hexagon.CurrentState = Hexagon.State.Targetable;
-                hexagon.Orientation = hexas[i].Orientation;
-
-                hexas[i] = hexagon;
-
+                hexa.CurrentState = Hexagon.State.Targetable;
+                hexa.GameObject.SetActive(true);
             }
 
             if (area.Orientation == Orientation.EnumOrientation.Line || area.Orientation == Orientation.EnumOrientation.Any)
                 _finalArea = area.AreaToHexa(Direction.EnumDirection.East, hexas[1]);
-
-
+            
             if (area.Orientation == Orientation.EnumOrientation.Diagonal)
                 _finalArea = area.AreaToHexa(Direction.EnumDirection.DiagonalNorthEast, hexas[1]);
-
 
             for (int i = 0; i < _finalArea.Count; i++)
             {
@@ -103,10 +121,10 @@ public class UISpellDetails : MonoBehaviour
                     hexas[i].GameObject.SetActive(false);
                 }
             }
-            hexas[1].GameObject.transform.parent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            //hexas[1].GameObject.transform.parent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
-            SetLayerRecursively(board, LayerMask.NameToLayer("Area"));
-            rawImage.material.mainTexture = Resources.Load<RenderTexture>("images/TextureArea");
+            //SetLayerRecursively(board, LayerMask.NameToLayer("Area"));
+            //rawImage.material.mainTexture = Resources.Load<RenderTexture>("images/TextureArea");
         }
     }
 
