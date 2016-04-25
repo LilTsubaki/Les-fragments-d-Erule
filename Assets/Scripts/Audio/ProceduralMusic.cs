@@ -3,12 +3,14 @@ using System.Collections.Generic;
 
 public class ProceduralMusic : MonoBehaviour {
 
+    public string _name;
+
     public int _minPlaying;
     public int _maxPlaying;
 
     public List<AudioData> _audios;
     private Dictionary<string, int> _players;
-    public int _nbPlaying = 0;
+    private int _nbPlaying = 0;
     private bool _playing;
 
     [Header("Strategy - Wait Time")]
@@ -25,8 +27,13 @@ public class ProceduralMusic : MonoBehaviour {
         _players = new Dictionary<string, int>();
 	}
 	
-	// Update is called once per frame
-	void FixedUpdate () {
+    void Awake()
+    {
+        AudioManager.GetInstance().RegisterMusic(_name, this);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         if (_playing)
         {
             _remainingTimeForWait += Time.deltaTime;

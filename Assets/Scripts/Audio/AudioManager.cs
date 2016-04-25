@@ -41,6 +41,8 @@ public class AudioManager : Manager<AudioManager>
     /// </summary>
     private Dictionary<int, AudioPlayer> _idPlayers;
 
+    private Dictionary<string, ProceduralMusic> _musics;
+
     /// <summary>
     /// Constructor of the AudioManager. Must only be called from GetInstance.
     /// </summary>
@@ -75,6 +77,7 @@ public class AudioManager : Manager<AudioManager>
 
         _nextIdPool = 0;
         _idPlayers = new Dictionary<int, AudioPlayer>();
+        _musics = new Dictionary<string, ProceduralMusic>();
     }
 
     /// <summary>
@@ -135,6 +138,22 @@ public class AudioManager : Manager<AudioManager>
             return false;
         }
         _sounds.Add(name, data);
+        return true;
+    }
+
+    /// <summary>
+    /// Registers a ProceduralMusic in _musics. Used by ProceduralMusic on Awake().
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="music"></param>
+    /// <returns></returns>
+    public bool RegisterMusic(string name, ProceduralMusic music)
+    {
+        if (_musics.ContainsKey(name))
+        {
+            return false;
+        }
+        _musics.Add(name, music);
         return true;
     }
 
@@ -530,5 +549,24 @@ public class AudioManager : Manager<AudioManager>
             return;
         }
         _idPlayers[playerId].GoToPanoramicPosition(panStereo);
+    }
+
+
+    public void PlayMusic(string music)
+    {
+        if (!_musics.ContainsKey(music))
+        {
+            return;
+        }
+        _musics[music].StartPlaying();
+    }
+
+    public void StopMusic(string music)
+    {
+        if (!_musics.ContainsKey(music))
+        {
+            return;
+        }
+        _musics[music].Stop();
     }
 }

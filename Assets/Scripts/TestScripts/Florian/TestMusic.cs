@@ -18,19 +18,25 @@ public class TestMusic : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            _music.StartPlaying();
+            AudioManager.GetInstance().PlayMusic("MusicBattleFull");
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _music.Stop();
-            AudioManager.GetInstance().Play("transition");
-            _music2.StartPlaying();
+            AudioManager.GetInstance().StopMusic("MusicBattleFull");
+            AudioManager.GetInstance().Play("MusicTransition");
+            AudioManager.GetInstance().PlayMusic("MusicBattleHalf");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            _music2.Stop();
-            AudioManager.GetInstance().Play("transition");
-            _music3.StartPlaying();
+            AudioManager.GetInstance().StopMusic("MusicBattleHalf");
+            AudioManager.GetInstance().Play("MusicTransition");
+            AudioManager.GetInstance().PlayMusic("MusicBattleEnd");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AudioManager.GetInstance().StopMusic("MusicBattleEnd");
+            AudioManager.GetInstance().Play("MusicTransition");
+            AudioManager.GetInstance().Play("MusicVictory");
         }
 
     }

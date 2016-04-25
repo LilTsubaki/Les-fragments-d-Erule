@@ -1,0 +1,1492 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100060
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 404620}
+  - 114: {fileID: 11452746}
+  m_Layer: 0
+  m_Name: Cello
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &102110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426468}
+  m_Layer: 0
+  m_Name: MusicInstruments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &102868
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 450076}
+  - 114: {fileID: 11422008}
+  m_Layer: 0
+  m_Name: Percu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &105432
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402462}
+  - 114: {fileID: 11409444}
+  m_Layer: 0
+  m_Name: BattleHalf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &106402
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 425020}
+  - 114: {fileID: 11492752}
+  m_Layer: 0
+  m_Name: Timpani
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &110738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 467944}
+  m_Layer: 0
+  m_Name: Battle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &114918
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 430682}
+  - 114: {fileID: 11430190}
+  m_Layer: 0
+  m_Name: Trombone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &118016
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 496576}
+  - 114: {fileID: 11439102}
+  m_Layer: 0
+  m_Name: Percu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &118572
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455068}
+  - 114: {fileID: 11425910}
+  m_Layer: 0
+  m_Name: Violin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119672
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 486408}
+  - 114: {fileID: 11406620}
+  m_Layer: 0
+  m_Name: Viola
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &132884
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470156}
+  - 114: {fileID: 11493964}
+  m_Layer: 0
+  m_Name: Violin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &137258
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 406142}
+  - 114: {fileID: 11414442}
+  m_Layer: 0
+  m_Name: Flute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &137990
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 405306}
+  - 114: {fileID: 11481908}
+  m_Layer: 0
+  m_Name: Bass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &148998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421530}
+  - 114: {fileID: 11403558}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &154918
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452318}
+  - 114: {fileID: 11430794}
+  m_Layer: 0
+  m_Name: Bass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &156124
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 450140}
+  - 114: {fileID: 11473324}
+  m_Layer: 0
+  m_Name: Trumpet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &157658
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 492214}
+  - 114: {fileID: 11487422}
+  m_Layer: 0
+  m_Name: Bass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &158916
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 418426}
+  - 114: {fileID: 11446454}
+  m_Layer: 0
+  m_Name: Percu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &160118
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 412790}
+  - 114: {fileID: 11437192}
+  m_Layer: 0
+  m_Name: BattleEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &160638
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440948}
+  - 114: {fileID: 11438612}
+  m_Layer: 0
+  m_Name: Violin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &160842
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 447624}
+  - 114: {fileID: 11447000}
+  m_Layer: 0
+  m_Name: Nappe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &175276
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470654}
+  - 114: {fileID: 11415958}
+  m_Layer: 0
+  m_Name: Harpe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &179090
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 464544}
+  - 114: {fileID: 11478286}
+  m_Layer: 0
+  m_Name: BattleFull
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &179578
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 433816}
+  - 114: {fileID: 11495816}
+  m_Layer: 0
+  m_Name: TomLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &184322
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 493668}
+  - 114: {fileID: 11497532}
+  m_Layer: 0
+  m_Name: Cello
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &191186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470910}
+  - 114: {fileID: 11406634}
+  m_Layer: 0
+  m_Name: Transition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &191650
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 493570}
+  - 114: {fileID: 11420784}
+  m_Layer: 0
+  m_Name: Trombone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &194102
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444634}
+  - 114: {fileID: 11452734}
+  m_Layer: 0
+  m_Name: Percussion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &196336
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 434302}
+  - 114: {fileID: 11428760}
+  m_Layer: 0
+  m_Name: Cello
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &197894
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 449928}
+  - 114: {fileID: 11458074}
+  m_Layer: 0
+  m_Name: TomLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490074}
+  - 114: {fileID: 11420624}
+  m_Layer: 0
+  m_Name: Victory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402462
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 405306}
+  - {fileID: 493668}
+  - {fileID: 496576}
+  - {fileID: 425020}
+  - {fileID: 449928}
+  - {fileID: 430682}
+  - {fileID: 450140}
+  - {fileID: 486408}
+  - {fileID: 455068}
+  m_Father: {fileID: 467944}
+  m_RootOrder: 1
+--- !u!4 &404620
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 1
+--- !u!4 &405306
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 0
+--- !u!4 &406142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 421530}
+  m_RootOrder: 0
+--- !u!4 &412790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 492214}
+  - {fileID: 404620}
+  - {fileID: 450076}
+  - {fileID: 433816}
+  - {fileID: 493570}
+  - {fileID: 470156}
+  m_Father: {fileID: 467944}
+  m_RootOrder: 2
+--- !u!4 &418426
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 464544}
+  m_RootOrder: 2
+--- !u!4 &421530
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 406142}
+  - {fileID: 470654}
+  - {fileID: 447624}
+  - {fileID: 444634}
+  m_Father: {fileID: 426468}
+  m_RootOrder: 0
+--- !u!4 &425020
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 3
+--- !u!4 &426468
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.339818, y: 6.511052, z: 19.555956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 421530}
+  - {fileID: 467944}
+  - {fileID: 470910}
+  - {fileID: 490074}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &430682
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 5
+--- !u!4 &433816
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 3
+--- !u!4 &434302
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 464544}
+  m_RootOrder: 1
+--- !u!4 &440948
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 464544}
+  m_RootOrder: 3
+--- !u!4 &444634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 421530}
+  m_RootOrder: 3
+--- !u!4 &447624
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 421530}
+  m_RootOrder: 2
+--- !u!4 &449928
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 4
+--- !u!4 &450076
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 2
+--- !u!4 &450140
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 6
+--- !u!4 &452318
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 464544}
+  m_RootOrder: 0
+--- !u!4 &455068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 8
+--- !u!4 &464544
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 452318}
+  - {fileID: 434302}
+  - {fileID: 418426}
+  - {fileID: 440948}
+  m_Father: {fileID: 467944}
+  m_RootOrder: 0
+--- !u!4 &467944
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 464544}
+  - {fileID: 402462}
+  - {fileID: 412790}
+  m_Father: {fileID: 426468}
+  m_RootOrder: 1
+--- !u!4 &470156
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 5
+--- !u!4 &470654
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 421530}
+  m_RootOrder: 1
+--- !u!4 &470910
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 426468}
+  m_RootOrder: 2
+--- !u!4 &486408
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 7
+--- !u!4 &490074
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 426468}
+  m_RootOrder: 3
+--- !u!4 &492214
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 0
+--- !u!4 &493570
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412790}
+  m_RootOrder: 4
+--- !u!4 &493668
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 1
+--- !u!4 &496576
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402462}
+  m_RootOrder: 2
+--- !u!114 &11403558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa055eed987f664ea4c1eb4fe6e8f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: MusicCamera
+  _minPlaying: 2
+  _maxPlaying: 4
+  _audios:
+  - {fileID: 11414442}
+  - {fileID: 11415958}
+  - {fileID: 11447000}
+  - {fileID: 11452734}
+  _waitTimeMin: 2
+  _waitTimeMax: 3
+  _nbPlayersToChange: 1
+  _initiated: 0
+--- !u!114 &11406620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfViola
+  clips:
+  - {fileID: 8300000, guid: 4602ec55243c99c4fb89e05477ab15d4, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11406634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicTransition
+  clips:
+  - {fileID: 8300000, guid: 95db1690f22baa54d9c49e367e8c32e1, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11409444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa055eed987f664ea4c1eb4fe6e8f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: MusicBattleHalf
+  _minPlaying: 4
+  _maxPlaying: 6
+  _audios:
+  - {fileID: 11481908}
+  - {fileID: 11497532}
+  - {fileID: 11439102}
+  - {fileID: 11492752}
+  - {fileID: 11458074}
+  - {fileID: 11473324}
+  - {fileID: 11406620}
+  - {fileID: 11425910}
+  _waitTimeMin: 16
+  _waitTimeMax: 16
+  _nbPlayersToChange: 4
+  _initiated: 0
+--- !u!114 &11414442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicCameraFlute
+  clips:
+  - {fileID: 8300000, guid: c48c9949df6278d4691a8ba5066c7345, type: 3}
+  - {fileID: 8300000, guid: 4878440cb36cf864ab5825cbbff10888, type: 3}
+  - {fileID: 8300000, guid: ddd4da61e84a7ba43ad0fdb083e4a741, type: 3}
+  - {fileID: 8300000, guid: e63ccbf38ebdbd64f82ffeeb44c4fc6f, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11415958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicCameraHarpe
+  clips:
+  - {fileID: 8300000, guid: 1d9a5fa79ade00f4a863ccf4ea35813a, type: 3}
+  - {fileID: 8300000, guid: d2893d2a050300845bcbaf96fb80b779, type: 3}
+  - {fileID: 8300000, guid: 8c05f831a290d6f419ab00cdcba84e2c, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11420624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicVictory
+  clips:
+  - {fileID: 8300000, guid: 05e28071015272349991e8d404c50eec, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11420784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndTrombone
+  clips:
+  - {fileID: 8300000, guid: 937e84469e8676e489540f1c55894572, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11422008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndPercu
+  clips:
+  - {fileID: 8300000, guid: 1a49394aa41af2d428163e3a19a7199a, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11425910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfViolin
+  clips:
+  - {fileID: 8300000, guid: e468f4f6079703440b30da9cc50bfcec, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11428760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleFullCello
+  clips:
+  - {fileID: 8300000, guid: 7573f459bb92b7d4f9038b8719e4bca3, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11430190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfTrombone
+  clips:
+  - {fileID: 8300000, guid: 3eca4caaea2c99547a295bdb94c20e01, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11430794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleFullBass
+  clips:
+  - {fileID: 8300000, guid: 8feb14277972c184ca5bee97abcb2c84, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11437192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa055eed987f664ea4c1eb4fe6e8f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: MusicBattleEnd
+  _minPlaying: 3
+  _maxPlaying: 4
+  _audios:
+  - {fileID: 11487422}
+  - {fileID: 11452746}
+  - {fileID: 11422008}
+  - {fileID: 11495816}
+  - {fileID: 11420784}
+  - {fileID: 11493964}
+  _waitTimeMin: 8
+  _waitTimeMax: 16
+  _nbPlayersToChange: 3
+  _initiated: 0
+--- !u!114 &11438612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleFullViolin
+  clips:
+  - {fileID: 8300000, guid: 1e81177e75c4e9e43ac73c741e65717c, type: 3}
+  - {fileID: 8300000, guid: b4220f9f95eeff842ad90c0ceab78343, type: 3}
+  - {fileID: 8300000, guid: 037cc8d4621443247a93539aa886749a, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11439102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfPercu
+  clips:
+  - {fileID: 8300000, guid: 55162b4fc2660be47a3e1bdc8cd904dc, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11446454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleFullPercu
+  clips:
+  - {fileID: 8300000, guid: 8a050b8455e1fca488f7fc60950c22b4, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11447000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicCameraNappe
+  clips:
+  - {fileID: 8300000, guid: 116a7e8197e3e4743861a6e917e56b5b, type: 3}
+  - {fileID: 8300000, guid: 234b2c22cd8689e4da3c229f2363bead, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11452734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicCameraPercussion
+  clips:
+  - {fileID: 8300000, guid: e851a2e8b61beac4d9d58e1692282a63, type: 3}
+  - {fileID: 8300000, guid: 54d4a6251715073498d5d29334dfa981, type: 3}
+  random: 1
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11452746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndCello
+  clips:
+  - {fileID: 8300000, guid: 74ee2c39687c052429d65b3255e21d2d, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11458074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfTomLow
+  clips:
+  - {fileID: 8300000, guid: fd2ef00f79d6c2548adac4533856f234, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11473324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfTrumpet
+  clips:
+  - {fileID: 8300000, guid: 38e6ff1fa4539fc4686b1c50db07aa05, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11478286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa055eed987f664ea4c1eb4fe6e8f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: MusicBattleFull
+  _minPlaying: 2
+  _maxPlaying: 4
+  _audios:
+  - {fileID: 11430794}
+  - {fileID: 11428760}
+  - {fileID: 11446454}
+  - {fileID: 11438612}
+  _waitTimeMin: 8
+  _waitTimeMax: 16
+  _nbPlayersToChange: 3
+  _initiated: 0
+--- !u!114 &11481908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfBass
+  clips:
+  - {fileID: 8300000, guid: f7010bf92462c4b4e836f9d0105db9f8, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11487422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndBass
+  clips:
+  - {fileID: 8300000, guid: f453c660f54c37e4c995e3a561fb770f, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11492752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfTimpani
+  clips:
+  - {fileID: 8300000, guid: b81fed3ff17ad054ba6d1bff0481a03d, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11493964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndViolin
+  clips:
+  - {fileID: 8300000, guid: 772784d4780358d409d2ee0baa31732c, type: 3}
+  - {fileID: 8300000, guid: 8215654627c30634fb4488763b5795f9, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11495816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleEndTomLow
+  clips:
+  - {fileID: 8300000, guid: 1a08ff1d919e22b4ebedf08417bf9b6b, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!114 &11497532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b75aee9b407e42bf49d842f57e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: MusicBattleHalfCello
+  clips:
+  - {fileID: 8300000, guid: 3748eeaf2bf317147a80f9cdfce8d2c5, type: 3}
+  random: 0
+  priority: 0
+  pitchMin: 1
+  pitchMax: 1
+  group: {fileID: 24397976, guid: ac767efd7af993b4f853d9ccbc1c26ef, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 102110}
+  m_IsPrefabParent: 1

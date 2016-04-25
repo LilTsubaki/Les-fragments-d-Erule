@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
 
     private int _eruleVoiceId;
     private int logoId;
+    private int _musicId;
 
     private string _chosenMap;
     private string _chosenEnvironment;
@@ -108,12 +109,12 @@ public class Menu : MonoBehaviour
 
     private void StartMenuMusic()
     {
-        AudioManager.GetInstance().PlayLoopingClips("MusicMenu");
-        
+        _musicId = AudioManager.GetInstance().PlayLoopingClips("MusicMenu");
     }
 
     void LoadingScreen(string path, string environment, string animation)
     {
+        AudioManager.GetInstance().StopPlayLoopingClips(_musicId);
         UIManager.GetInstance().FadeOutPanelNoStack("PanelChoiceMap");
         UIManager.GetInstance().FadeInPanelNoStack("Loading");
         _chosenMap = path;

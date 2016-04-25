@@ -47,7 +47,6 @@ public class AudioPlayer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //_power = 1;
         _panoramicPosition = 0;
 	}
 	
