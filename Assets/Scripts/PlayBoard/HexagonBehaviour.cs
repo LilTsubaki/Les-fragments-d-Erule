@@ -35,15 +35,22 @@ public class HexagonBehaviour : MonoBehaviour
     {
         if (_hexagon.GroundEffect != null && _hexagon.ShardEffect != null)
         {
-            _hexagon.GroundEffect.SetActive(false);
-            _hexagon.ShardEffect.SetActive(false);
+            
+            
             if (_hexagon._onTimeEffects.Count > 0)
             {
+                _hexagon.ShardEffect.SetActive(false);
                 _hexagon.GroundEffect.SetActive(true);
             }
             else if(_hexagon.IsActiveShardAround())
             {
+                _hexagon.GroundEffect.SetActive(false);
                 _hexagon.ShardEffect.SetActive(true);
+            }
+            else
+            {
+                _hexagon.GroundEffect.SetActive(false);
+                _hexagon.ShardEffect.SetActive(false);
             }
         }
 
