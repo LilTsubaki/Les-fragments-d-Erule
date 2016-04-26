@@ -1216,6 +1216,7 @@ public class JSONObject {
         JSONObject array = js.GetField("Hexagons");
 
         GameObject groundEffect = Resources.Load<GameObject>("VFX/Ground/Ground_Effect");
+        GameObject shardEffect = Resources.Load<GameObject>("VFX/Shard_Zone/Shard_Zone_Effect"); 
         GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
 
         JSONObject camera = js.GetField("Camera");
@@ -1266,6 +1267,12 @@ public class JSONObject {
             hexagon.GroundEffect.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.23f, 0.75f * hexagon._posY);
             hexagon.GroundEffect.SetActive(false);
             hexagon.GroundEffect.transform.rotation = Quaternion.Euler(0, EruleRandom.RangeValue(0.0f,360.0f), 0);
+
+            hexagon.ShardEffect = GameObject.Instantiate(shardEffect);
+            hexagon.ShardEffect.transform.parent = hexagon.GameObject.transform;
+            hexagon.ShardEffect.transform.position = new Vector3(0.866f * hexagon._posX - 0.433f * hexagon._posY, hexa.GetField("posZ").n + 0.23f, 0.75f * hexagon._posY);
+            hexagon.ShardEffect.SetActive(false);
+            hexagon.ShardEffect.transform.rotation = Quaternion.Euler(0, EruleRandom.RangeValue(0.0f, 360.0f), 0);
 
 
 

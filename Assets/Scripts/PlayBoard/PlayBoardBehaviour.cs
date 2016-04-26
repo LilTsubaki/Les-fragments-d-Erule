@@ -9,9 +9,13 @@ public class PlayBoardBehaviour : MonoBehaviour
     private float _currentTime = 0;
     private bool _isInDoubleClicWindow = false;
 
+    public Animator _musicAnimator;
+
     // Use this for initialization
     void Start () {
-	
+        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("sounds/MusicController");
+        _musicAnimator = gameObject.AddComponent<Animator>();
+        _musicAnimator.runtimeAnimatorController = controller;
 	}
 
     void UpdateDoubleClic()
@@ -59,20 +63,39 @@ public class PlayBoardBehaviour : MonoBehaviour
                 }      
             }
 
-            if (PlayBoardManager.GetInstance().Character1._lifeCurrent <= 0)
+            Character char1 = PlayBoardManager.GetInstance().Character1;
+            Character char2 = PlayBoardManager.GetInstance().Character2;
+            if ((char1._lifeCurrent <= char1._lifeMax * 0.5f && char1._lifeCurrent > char1._lifeMax * 0.2f) || (char2._lifeCurrent <= char2._lifeMax * 0.5f && char2._lifeCurrent > char2._lifeMax * 0.2f))
+            {
+                _musicAnimator.SetTrigger("BattleHalf");
+            }
+            if (char1._lifeCurrent <= char1._lifeMax * 0.2f || char2._lifeCurrent <= char2._lifeMax * 0.2f)
+            {
+                _musicAnimator.SetTrigger("BattleEnd");
+            }
+
+
+            if (char1._lifeCurrent <= 0)
             {
                 PlayBoardManager.GetInstance().Winner = PlayBoardManager.GetInstance().Character2;
                 ServerManager.GetInstance()._server.CurrentState = Server.State.gameOver;
             }
 
-            if (PlayBoardManager.GetInstance().Character2._lifeCurrent <= 0)
+            if (char2._lifeCurrent <= 0)
             {
                 PlayBoardManager.GetInstance().Winner = PlayBoardManager.GetInstance().Character1;
                 ServerManager.GetInstance()._server.CurrentState = Server.State.gameOver;
             }
 
+            if (ServerManager.GetInstance()._server.CurrentState == Server.State.gameOver)
+            {
+                _musicAnimator.SetTrigger("Victory");
+            }
+
             UpdateDoubleClic();
         }
+        
+
     }
 
     public void HighLight()

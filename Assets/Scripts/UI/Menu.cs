@@ -46,7 +46,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         _eruleVoiceId = AudioManager.GetInstance().Play("EruleVoice");
-        buttonMap1.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("iles_englouties_presentation", "Asset_Iles_englouties", "Iles"); });
+        buttonMap1.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("iles_englouties", "Asset_Iles_englouties", "Iles"); });
         buttonMap2.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("sentiersGeles", "Asset_Sentiers_Geles", "Sentiers"); });
 
     }
