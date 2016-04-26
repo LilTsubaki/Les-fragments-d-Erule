@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 0389d104f6b540b4a8e72907e0da6739, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3099
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: TransparentCutout
   m_SavedProperties:
@@ -83,7 +83,7 @@ Material:
         first:
           name: _MaskTex
         second:
-          m_Texture: {fileID: 2800000, guid: be96f8aa925182245a33926ab9dc57af, type: 3}
+          m_Texture: {fileID: 2800000, guid: b3a088f5256617f4a9664b3b72ae4c08, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -105,7 +105,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.496
+        second: 1
       data:
         first:
           name: _Parallax

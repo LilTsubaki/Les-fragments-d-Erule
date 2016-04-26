@@ -4,10 +4,9 @@ using System.Collections;
 
 public class UIPoles : MonoBehaviour {
 
-    public Text _valueSublimation;
-    public Text _valuePerfection;
-    public Text _valueStabilite;
-    public Text _valueReussite;
+    public Material _valueSublimation;
+    public Material _valuePerfection;
+    public Material _valueStabilite;
 
 
 	// Use this for initialization
@@ -25,12 +24,11 @@ public class UIPoles : MonoBehaviour {
 
         RunicBoardManager.GetInstance().GetPolesInfluence(out perf, out subli, out stab);
 
-        float totalStability = (baseChance - (malus / coef)) * 0.01f + stab;
+        float inv = (1f / 44f) * 100f;
 
-        _valueSublimation.text = Mathf.Ceil(subli*100f).ToString() + "%";
-        _valuePerfection.text = Mathf.Ceil(perf*100f).ToString() + "%";
-        _valueStabilite.text = Mathf.Ceil(stab*100f).ToString() + "%";
-        _valueReussite.text = Mathf.Clamp(Mathf.Ceil(totalStability * 100), 0, 100).ToString() + "%";
+        _valueSublimation.SetFloat("_Cutoff", 1 - subli*inv);
+        _valuePerfection.SetFloat("_Cutoff",  1 - perf*inv);
+        _valueStabilite.SetFloat("_Cutoff", 1 - stab*inv);
 
 	}
 }

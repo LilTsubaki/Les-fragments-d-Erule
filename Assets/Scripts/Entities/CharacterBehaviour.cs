@@ -38,7 +38,7 @@ public class CharacterBehaviour : MonoBehaviour
     void Update()
     {
 
-       // if (ServerManager.GetInstance()._server != null && ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
+        if (ServerManager.GetInstance()._server != null && ServerManager.GetInstance()._server.CurrentState == Server.State.playing)
         {
             if (Input.GetMouseButtonDown(0) && PlayBoardManager.GetInstance().isMyTurn(_character) && _character.CurrentState != Character.State.Moving && _character.CurrentState != Character.State.RotatingRight && _character.CurrentState != Character.State.RotatingLeft && _character.CurrentState != Character.State.RotatingLeftCasting && _character.CurrentState != Character.State.RotatingRightCasting)
             {
