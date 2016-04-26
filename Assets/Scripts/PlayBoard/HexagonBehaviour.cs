@@ -33,9 +33,18 @@ public class HexagonBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_hexagon.GroundEffect != null)
+        _hexagon.GroundEffect.SetActive(false);
+        _hexagon.ShardEffect.SetActive(false);
+        if (_hexagon.GroundEffect != null && _hexagon.ShardEffect != null)
         {
-            _hexagon.GroundEffect.SetActive(_hexagon._onTimeEffects.Count > 0 || _hexagon.IsActiveShardAround());
+            if (_hexagon._onTimeEffects.Count > 0)
+            {
+                _hexagon.GroundEffect.SetActive(true);
+            }
+            else if(_hexagon.IsActiveShardAround())
+            {
+                _hexagon.ShardEffect.SetActive(true);
+            }
         }
 
             if (_hexagon.StateChanged)

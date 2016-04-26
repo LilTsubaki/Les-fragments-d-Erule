@@ -47,7 +47,6 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
     {
         CameraManager.GetInstance().FadeTo("cameraBoard", 1);
         
-        
 
         _playBoard = JSONObject.JSONToBoard(ref _board, _boardName);
         if (_prefabEnvironmentName != "")
@@ -79,6 +78,7 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
     {
         UIManager.GetInstance().ShowPanel("PanelAroundMap");
         UIManager.GetInstance().FadeOutPanelNoStack("Loading");
+        AudioManager.GetInstance().PlayMusic("MusicCamera");
     }
 
     public void changeState()
@@ -103,6 +103,9 @@ public class SpawnAndGameBehaviour : MonoBehaviour {
                     UIManager.GetInstance().HideAll();
                     UIManager.GetInstance().ShowPanelNoStack("PanelPlayerBars");
                     UIManager.GetInstance().ShowPanelNoStack("menuButton");
+                    AudioManager.GetInstance().StopMusic("MusicCamera");
+                    AudioManager.GetInstance().Play("MusicTransition");
+                    AudioManager.GetInstance().PlayMusic("MusicBattleFull");
                 }
                 else
                     Logger.Debug(PlayBoardManager.GetInstance().GetOtherPlayer().Name + " didn't choose a position");
