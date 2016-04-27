@@ -171,6 +171,7 @@ public class Client : MonoBehaviour{
             }
             else
             {
+                UIManager.GetInstance().HidePanelNoStack("panelArea");
                 UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
             }
         }
