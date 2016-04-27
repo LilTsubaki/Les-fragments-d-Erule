@@ -7,12 +7,10 @@
 	}
 
 		SubShader{
-		Tags{ "Queue" = "Transparent+99" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
-		Cull Off
-		ZWrite Off
-		ZTest Always
+		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		ZWrite On
 		Lighting Off
-		//		Blend SrcAlpha OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
 		#pragma surface surf Lambert alpha
