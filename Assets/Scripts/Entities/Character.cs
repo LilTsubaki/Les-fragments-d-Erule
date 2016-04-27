@@ -297,7 +297,7 @@ public class Character : Entity, Killable
         HistoricManager.GetInstance().AddText(String.Format(StringsErule.heal, Name, value));
         EffectUIManager.GetInstance().Unpause(this);
 
-        GameObject.GetComponent<Animator>().SetFloat("Wound", ((float)(_lifeMax - _lifeCurrent) / (float)_lifeMax)*0.5f);
+        GameObject.GetComponent<Animator>().SetFloat("Wound", ((float)(_lifeMax - _lifeCurrent) / (float)_lifeMax)*0.3f);
     }
 
     public void DisplayShield(bool displayOn)

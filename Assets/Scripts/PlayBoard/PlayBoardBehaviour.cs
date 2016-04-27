@@ -65,11 +65,11 @@ public class PlayBoardBehaviour : MonoBehaviour
 
             Character char1 = PlayBoardManager.GetInstance().Character1;
             Character char2 = PlayBoardManager.GetInstance().Character2;
-            if ((char1._lifeCurrent <= char1._lifeMax * 0.5f && char1._lifeCurrent > char1._lifeMax * 0.2f) || (char2._lifeCurrent <= char2._lifeMax * 0.5f && char2._lifeCurrent > char2._lifeMax * 0.2f))
+            if ((char1._lifeCurrent <= 1250 && char1._lifeCurrent > 500) || (char2._lifeCurrent <= 1250 && char2._lifeCurrent > 500))
             {
                 _musicAnimator.SetTrigger("BattleHalf");
             }
-            if (char1._lifeCurrent <= char1._lifeMax * 0.2f || char2._lifeCurrent <= char2._lifeMax * 0.2f)
+            if (char1._lifeCurrent <= 500 || char2._lifeCurrent <= 500)
             {
                 _musicAnimator.SetTrigger("BattleEnd");
             }
