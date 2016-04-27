@@ -74,6 +74,7 @@ public class Menu : MonoBehaviour
         ServerManager manager = ServerManager.GetInstance();
         if (manager._server != null && !manager._server.SearchingClient)
         {
+            UIManager.GetInstance().HidePanelNoStack("WaitingPlayers");
             UIManager.GetInstance().ShowPanelNoStack("PanelChoiceMap");
         }
     }
