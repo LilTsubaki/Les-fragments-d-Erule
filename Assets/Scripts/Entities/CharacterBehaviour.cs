@@ -253,12 +253,14 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void CastSpellAnimations()
     {
-        SpellAnimationManager.GetInstance().PlaySavedCast();
+        //Server Only
+        //SpellAnimationManager.GetInstance().PlaySavedCast();
     }
 
     public void CastSelfSpellAnimations()
     {
-        SpellAnimationManager.GetInstance().PlaySavedSelfCast();
+        //Server Only
+        //SpellAnimationManager.GetInstance().PlaySavedSelfCast();
     }
 
     public void MakeOrbsDisappear(int appearing)

@@ -29,9 +29,6 @@ public class Client : MonoBehaviour{
     bool _resetBoard;
     bool _lockedMode;
     int _runeKept;
-
-    public GameObject _buttonHost;
-    public GameObject _scrollPanel;
     public Text timerText;
     Dictionary<string, int> _hostsReceived;
     bool _newHost;
@@ -219,19 +216,6 @@ public class Client : MonoBehaviour{
         Disconnect();
     }
 
-    private void AddHostToScene(string host, int port)
-    {
-        GameObject connectButton = Instantiate(_buttonHost);
-        connectButton.SetActive(true);
-        Button button = connectButton.GetComponent<Button>();
-        connectButton.transform.SetParent(_scrollPanel.transform);
-        connectButton.transform.localPosition = new Vector3(80, (_scrollPanel.transform.childCount) * -30);
-        connectButton.transform.localScale = Vector3.one;
-        connectButton.transform.Rotate(connectButton.transform.right, 90);
-        button.GetComponentInChildren<Text>().text = host + ":" + port;
-        button.onClick.AddListener(delegate { Connect(host, port); JoinBobby(); });
-    }
-
     private void addHostToList(string host, int port)
     {
         _hostsReceived.Add(host, port);
@@ -348,12 +332,6 @@ public class Client : MonoBehaviour{
         _udpClient.Send(data, data.Length, ep);
 
         AudioManager.GetInstance().Play("click");
-        UIManager.GetInstance().ShowPanel("PanelServers");
-
-        foreach(Transform child in _scrollPanel.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
     }
 
     public void WaitHosts()

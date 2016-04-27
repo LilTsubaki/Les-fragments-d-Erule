@@ -354,8 +354,9 @@ public class SpellManager : Manager<SpellManager>
             //SpellAnimationManager.GetInstance().PlayListSelf(_spellAnims, currentPlayer.GameObject.transform.position);
             List<Hexagon> targets = new List<Hexagon>();
             targets.Add(target);
-            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position, targets);
-            SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
+            //Server Only
+            //SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, currentPlayer.GameObject.transform.position, targets);
+            //SpellAnimationManager.GetInstance().PlayCharacterAnimationSelf(_spellAnims, currentPlayer);
 
             /*********************
 
@@ -429,8 +430,9 @@ public class SpellManager : Manager<SpellManager>
             **********************/
 
             //SpellAnimationManager.GetInstance().PlayList(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position);
-            SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position, finalArea);
-            SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
+            //Server Only
+            //SpellAnimationManager.GetInstance().SaveCast(_spellAnims, currentPlayer.GameObject.transform.position, target.GameObject.transform.position, finalArea);
+            //SpellAnimationManager.GetInstance().PlayCharacterAnimation(_spellAnims, currentPlayer);
             PlayBoardManager.GetInstance().GetCurrentPlayer().GameObject.GetComponent<CharacterBehaviour>().LookHexagonMakeSpell(target);
 
             /*********************
@@ -475,8 +477,8 @@ public class SpellManager : Manager<SpellManager>
                 }
             }
         }
-
-        SpellAnimationManager.GetInstance().PlayOrbsAnimation(currentPlayer, success);
+        //Server Only
+        //SpellAnimationManager.GetInstance().PlayOrbsAnimation(currentPlayer, success);
 
         if (runes > 0)
 		{

@@ -70,7 +70,8 @@ public class Character : Entity, Killable
     public Character(int lifeMax, GameObject go)
     {
         _gameObject = GameObject.Instantiate(go);
-        _gameObject.GetComponent<CharacterBehaviour>()._character = this;
+        //Server Only
+        //_gameObject.GetComponent<CharacterBehaviour>()._character = this;
         _gameObject.SetActive(false);
 
         Protections = new Dictionary<Element, int>();
@@ -117,7 +118,8 @@ public class Character : Entity, Killable
 	{
         _gameObject = GameObject.Instantiate(go);
         _gameObject.transform.position = position.GameObject.transform.position + new Vector3(0, 0.0f, 0);
-        _gameObject.GetComponent<CharacterBehaviour>()._character = this;
+        //Server Only
+        //_gameObject.GetComponent<CharacterBehaviour>()._character = this;
 
 		Protections = new Dictionary<Element, int> ();
 		ProtectionsNegative = new Dictionary<Element, int> ();
