@@ -126,25 +126,25 @@ public class UISpellDetails : MonoBehaviour
             _textRange.text = "Portée actuelle : " + range.MinRange + " - " + range.MaxRange;
 
             if (range.Piercing)
-                _textPiercing.text = "Ce sort traverse les obstacles";
+                _textPiercing.text = "Traverse les obstacles";
             else
-                _textPiercing.text = "Ce sort ne traverse pas les obstacles";
+                _textPiercing.text = "Ne traverse pas les obstacles";
 
             if (range.EnemyTargetable)
-                _textEnemyTargetable.text = "Ce sort peut être lancé sur l'adversaire";
+                _textEnemyTargetable.text = "Adversaire ciblable";
             else
-                _textEnemyTargetable.text = "Ce sort ne peut pas être lancé sur l'adversaire";
+                _textEnemyTargetable.text = "Adversaire non ciblable";
 
             switch(range.Orientation)
             {
                 case Orientation.EnumOrientation.Any:
-                    _textOrientation.text = "Ce sort peut être lancé dans n'importe quelle direction";
+                    _textOrientation.text = "Toutes directions";
                     break;
                 case Orientation.EnumOrientation.Diagonal:
-                    _textOrientation.text = "Ce sort ne peut être lancé qu'en diagonale";
+                    _textOrientation.text = "En diagonale";
                     break;
                 case Orientation.EnumOrientation.Line:
-                    _textOrientation.text = "Ce sort ne peut être lancé qu'en ligne";
+                    _textOrientation.text = "En ligne";
                     break;
             }
            

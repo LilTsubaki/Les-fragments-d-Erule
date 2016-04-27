@@ -21,4 +21,9 @@ public class UIGameOverServer : MonoBehaviour {
             _textSet = true;
         }
 	}
+
+    public void ShowCredits()
+    {
+        UIManager.GetInstance().ShowPanel("credits");
+    }
 }

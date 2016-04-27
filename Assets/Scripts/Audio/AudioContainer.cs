@@ -18,7 +18,14 @@ public class AudioContainer : Poolable<AudioContainer>
 
     public bool IsReady()
     {
-        return !_audioGameObject.GetComponent<AudioPlayer>()._audio.isPlaying;
+        if (_audioGameObject != null && _audioGameObject.GetComponent<AudioPlayer>() != null)
+        {
+            return !_audioGameObject.GetComponent<AudioPlayer>()._audio.isPlaying;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
