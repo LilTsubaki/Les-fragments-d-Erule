@@ -60,9 +60,10 @@ public class AudioManager : Manager<AudioManager>
         GameObject obj = new GameObject();
         AudioSource asource = obj.AddComponent<AudioSource>();
         AudioPlayer ap = obj.AddComponent<AudioPlayer>();
+        obj.AddComponent<DontDestroyOnLoad>();
         ap._audio = asource;
         obj.transform.name = "Audiosource";
-        obj.transform.parent = parent.transform;
+        //obj.transform.parent = parent.transform;
 
         // Creation of the initial AudioContainer
 
