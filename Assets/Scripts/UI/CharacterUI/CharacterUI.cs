@@ -16,7 +16,7 @@ public class CharacterUI : MonoBehaviour {
     }
 
     public Text _name;
-    public Image _characterImage;
+    public Image _turnImage;
     public Scrollbar _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
@@ -176,13 +176,13 @@ public class CharacterUI : MonoBehaviour {
     void UpdateTurn()
     {
         _name.text = _character.Name;
-        /*if (ClientManager.GetInstance()._client.IsMyTurn)
+        if (ClientManager.GetInstance()._client.IsMyTurn)
         {
-            _characterImage.color = Color.green;
+            _turnImage.enabled = true;
         }
         else
         {
-            _characterImage.color = Color.red;
-        }*/
+            _turnImage.enabled = false;
+        }
     }
 }

@@ -8,7 +8,7 @@ public class ToggleBehaviour : MonoBehaviour
     void Awake()
     {
         UIManager.GetInstance().ToggleButton = gameObject.GetComponent<Button>();
-        gameObject.GetComponentInChildren<Text>().text = "Lancer le sort";
+        gameObject.GetComponentInChildren<Text>().text = "Lancer\n    le sort";
     }
 
 
@@ -21,11 +21,11 @@ public class ToggleBehaviour : MonoBehaviour
 	void Update () {
         if (!ClientManager.GetInstance()._client.LockedMode)
         {
-            gameObject.GetComponentInChildren<Text>().text = "Lancer le sort";
+            gameObject.GetComponentInChildren<Text>().text = "Lancer\n    le sort";
         }
         else
         {
-            gameObject.GetComponentInChildren<Text>().text = "Annuler";
+            gameObject.GetComponentInChildren<Text>().text = " Annuler";
         }
     }
 
