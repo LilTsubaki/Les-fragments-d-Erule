@@ -114,20 +114,16 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Glossiness
-        second: 0.5
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
         first:
           name: _ZWrite
         second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -150,8 +146,12 @@ Material:
         second: 0
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _WaveSpeed
-        second: -40
+        second: -30
       data:
         first:
           name: _NormalTiling
@@ -203,7 +203,7 @@ Material:
       data:
         first:
           name: _Refraction
-        second: 0.478
+        second: 0.35
       data:
         first:
           name: _FoamTiling
@@ -227,7 +227,7 @@ Material:
       data:
         first:
           name: _FoamSpeed
-        second: -100
+        second: -70
       data:
         first:
           name: _UnderwaterMode

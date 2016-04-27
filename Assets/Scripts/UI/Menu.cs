@@ -40,13 +40,14 @@ public class Menu : MonoBehaviour
 
     public AroundMapScreen _around;
     public Text _textPlayerToPlace;
-
+    public Text _textTips;
+    public Text _waitingPlayers;
 
 
     void Start()
     {
         _eruleVoiceId = AudioManager.GetInstance().Play("EruleVoice");
-        buttonMap1.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("iles_englouties", "Asset_Iles_englouties", "Iles"); });
+        buttonMap1.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("iles_englouties_Presentation", "Asset_Iles_englouties", "Iles"); });
         buttonMap2.onClick.AddListener(delegate { AudioManager.GetInstance().Play("choixMap"); LoadingScreen("sentiersGeles", "Asset_Sentiers_Geles", "Sentiers"); });
 
     }
@@ -67,12 +68,13 @@ public class Menu : MonoBehaviour
             server.SetActive(true);
 
             Invoke("StartMenuMusic", logoSoundLength);
-
+            
             _logoFinish = true;
         }
         ServerManager manager = ServerManager.GetInstance();
         if (manager._server != null && !manager._server.SearchingClient)
         {
+            UIManager.GetInstance().HidePanelNoStack("WaitingPlayers");
             UIManager.GetInstance().ShowPanelNoStack("PanelChoiceMap");
         }
     }
@@ -94,6 +96,7 @@ public class Menu : MonoBehaviour
         Particle_Energy.Play();
         Particle_Energy.gameObject.GetComponent<Animator>().enabled = true;
         Invoke("BuildLogo", 4.3f);
+        UIManager.GetInstance().FadeInPanelNoStack("WaitingPlayers");
     }
 
     private void BuildLogo()
@@ -120,6 +123,7 @@ public class Menu : MonoBehaviour
         _chosenMap = path;
         _chosenEnvironment = environment;
         _cameraAnimation = animation;
+        _textTips.text = EruleTips.GetInstance().GetRandomTip();
         Invoke("LoadMap", 1);
     }
 
@@ -128,7 +132,7 @@ public class Menu : MonoBehaviour
         string path = _chosenMap;
         GameObject o = new GameObject();
         string name = Path.GetFileNameWithoutExtension(path);
-        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();
+        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();        
         tsn._button = _buttonValidation;
         tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;

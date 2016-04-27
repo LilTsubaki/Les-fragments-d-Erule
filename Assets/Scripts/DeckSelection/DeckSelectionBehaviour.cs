@@ -16,7 +16,12 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     public GameObject _waterRuneAsset;
     public GameObject _woodRuneAsset;
 
-    public Image _runeTooltip;
+    public Image _tooltipAir;
+    public Image _tooltipEau;
+    public Image _tooltipFeu;
+    public Image _tooltipBois;
+    public Image _tooltipMetal;
+    public Image _tooltipTerre;
 
     private GameObject _heldRune;
 
@@ -56,26 +61,33 @@ public class DeckSelectionBehaviour : MonoBehaviour {
     private void UpdateRuneToolTip(RuneBehaviour rb)
     {
         Element elem = rb._rune.Element;
-        _runeTooltip.gameObject.SetActive(true);
+
+        _tooltipAir.gameObject.SetActive(false);
+        _tooltipEau.gameObject.SetActive(false);
+        _tooltipFeu.gameObject.SetActive(false);
+        _tooltipBois.gameObject.SetActive(false);
+        _tooltipMetal.gameObject.SetActive(false);
+        _tooltipTerre.gameObject.SetActive(false);
+
         switch (elem._name)
         {
             case "Fire":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsFEU");
+                _tooltipFeu.gameObject.SetActive(true);
                 break;
             case "Water":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsEAU");
+                _tooltipEau.gameObject.SetActive(true);
                 break;
             case "Air":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsAIR");
+                _tooltipAir.gameObject.SetActive(true);
                 break;
             case "Earth":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsTERRE");
+                _tooltipTerre.gameObject.SetActive(true);
                 break;
             case "Wood":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsBOIS");
+                _tooltipBois.gameObject.SetActive(true);
                 break;
             case "Metal":
-                _runeTooltip.sprite = Resources.Load<Sprite>("images/ImagesDescription/RenseignementsMETAL");
+                _tooltipMetal.gameObject.SetActive(true);
                 break;
         }
     }
@@ -178,7 +190,12 @@ public class DeckSelectionBehaviour : MonoBehaviour {
 
     void Awake()
     {
-        _runeTooltip.gameObject.SetActive(false);
+        _tooltipAir.gameObject.SetActive(false);
+        _tooltipEau.gameObject.SetActive(false);
+        _tooltipFeu.gameObject.SetActive(false);
+        _tooltipBois.gameObject.SetActive(false);
+        _tooltipMetal.gameObject.SetActive(false);
+        _tooltipTerre.gameObject.SetActive(false);
         DeckSelection = new DeckSelection();
         InstantiateRunes();
     }

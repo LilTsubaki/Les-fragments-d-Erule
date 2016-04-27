@@ -171,6 +171,7 @@ public class Client : MonoBehaviour{
             }
             else
             {
+                UIManager.GetInstance().HidePanelNoStack("panelArea");
                 UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
             }
         }
@@ -446,19 +447,20 @@ public class Client : MonoBehaviour{
                                                                // isPiercing and isEnemyTargetable
                                                                NetworkUtils.ReadBool(_tcpClient.GetStream()), NetworkUtils.ReadBool(_tcpClient.GetStream()),
                                                                //orientation 
-
                                                                NetworkUtils.ReadOrientation(_tcpClient.GetStream()),
                                                                //area
                                                                NetworkUtils.ReadArea(_tcpClient.GetStream()));
                 sbr._updateArea = true;
                 Logger.Debug("update panel spell details");
                 UIManager.GetInstance().ShowPanelNoStack("panelSpellDetails");
+                UIManager.GetInstance().ShowPanelNoStack("panelArea");
 
             }
             else
             {
                 sbr = new SendBoardResponse(ifExist, NetworkUtils.ReadBool(_tcpClient.GetStream()));
                 UIManager.GetInstance().HidePanelNoStack("panelSpellDetails");
+                UIManager.GetInstance().HidePanelNoStack("panelArea");
             }
                 
             
