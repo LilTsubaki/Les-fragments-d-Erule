@@ -8,7 +8,7 @@ public class CharacterHostUI : MonoBehaviour
     private Character character;
 
     public Text _name;
-    public Image _characterImage;
+    public Image _turnImage;
     public Scrollbar _life;
     public Text _lifePointsText;
     public GameObject _actionPoints;
@@ -181,13 +181,13 @@ public class CharacterHostUI : MonoBehaviour
     void UpdateTurn()
     {
         _name.text = Character.Name;
-        /*if (PlayBoardManager.GetInstance().isMyTurn(Character))
+        if (PlayBoardManager.GetInstance().isMyTurn(Character))
         {
-            _characterImage.color = Color.green;
+            _turnImage.enabled = true;
         }
         else
         {
-            _characterImage.color = Color.red;
-        }*/
+            _turnImage.enabled = false;
+        }
     }
 }
