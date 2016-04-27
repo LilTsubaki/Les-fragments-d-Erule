@@ -33,19 +33,12 @@ public class UISpellDetails : MonoBehaviour
     {
         SendBoardResponse sbr = RunicBoardManager.GetInstance()._runicBoardBehaviour.LatestSendBoardResponse;
         if (sbr != null && sbr._area != null && sbr._updateArea)
-        {
-            
-            /*foreach (Transform child in board.transform)
-            {
-                Destroy(child.gameObject);
-            }*/
-            board.transform.localScale = new Vector3(0.308f, 0.308f, 0.308f);
+        {            
             sbr._updateArea = false;
             List<Hexagon> _finalArea = new List<Hexagon>();
             Area area = sbr._area;
             PlayBoard playBoard = new PlayBoard(5, 5);
 
-            
             GameObject glyph = Resources.Load<GameObject>("prefabs/SM_Glyphe_1");
 
             if(!_alreadyCreated)
@@ -121,10 +114,6 @@ public class UISpellDetails : MonoBehaviour
                     hexas[i].GameObject.SetActive(false);
                 }
             }
-            //hexas[1].GameObject.transform.parent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-            //SetLayerRecursively(board, LayerMask.NameToLayer("Area"));
-            //rawImage.material.mainTexture = Resources.Load<RenderTexture>("images/TextureArea");
         }
     }
 
