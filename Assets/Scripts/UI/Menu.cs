@@ -40,7 +40,7 @@ public class Menu : MonoBehaviour
 
     public AroundMapScreen _around;
     public Text _textPlayerToPlace;
-
+    public Text _textTips;
 
 
     void Start()
@@ -120,6 +120,7 @@ public class Menu : MonoBehaviour
         _chosenMap = path;
         _chosenEnvironment = environment;
         _cameraAnimation = animation;
+        _textTips.text = EruleTips.GetInstance().GetRandomTip();
         Invoke("LoadMap", 1);
     }
 
@@ -128,7 +129,7 @@ public class Menu : MonoBehaviour
         string path = _chosenMap;
         GameObject o = new GameObject();
         string name = Path.GetFileNameWithoutExtension(path);
-        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();
+        SpawnAndGameBehaviour tsn = o.AddComponent<SpawnAndGameBehaviour>();        
         tsn._button = _buttonValidation;
         tsn._button.GetComponent<Button>().onClick.AddListener(delegate { tsn.changeState(); });
         tsn._player1GameObject = _player1GameObject;
