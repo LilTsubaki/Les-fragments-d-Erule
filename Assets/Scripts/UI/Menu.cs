@@ -41,6 +41,7 @@ public class Menu : MonoBehaviour
     public AroundMapScreen _around;
     public Text _textPlayerToPlace;
     public Text _textTips;
+    public Text _waitingPlayers;
 
 
     void Start()
@@ -67,7 +68,7 @@ public class Menu : MonoBehaviour
             server.SetActive(true);
 
             Invoke("StartMenuMusic", logoSoundLength);
-
+            
             _logoFinish = true;
         }
         ServerManager manager = ServerManager.GetInstance();
@@ -94,6 +95,7 @@ public class Menu : MonoBehaviour
         Particle_Energy.Play();
         Particle_Energy.gameObject.GetComponent<Animator>().enabled = true;
         Invoke("BuildLogo", 4.3f);
+        UIManager.GetInstance().FadeInPanelNoStack("WaitingPlayers");
     }
 
     private void BuildLogo()
