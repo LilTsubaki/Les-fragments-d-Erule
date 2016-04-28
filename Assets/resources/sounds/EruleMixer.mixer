@@ -13,7 +13,19 @@ AudioMixerController:
   m_StartSnapshot: {fileID: 24500003}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 1dac5564599633844b5b92f28f780596
+    name: Environment
+  - guid: 44bd7e58a74c8404fa6bc9ad813f89bf
+    name: Interface
+  - guid: ffbd019b4e9e7b24abf8ba97f9c67caa
+    name: General
+  - guid: ec594ce727f74c0489939f970f12e170
+    name: Music
+  - guid: a110e852bf8372b46b454bd659100f89
+    name: SpellEffects
+  - guid: ca9275751d3806348a47745358dc6d28
+    name: Voice
   m_AudioMixerGroupViews:
   - guids:
     - 030a2ff094caa2e42a6504d8eaec7335
@@ -276,13 +288,14 @@ AudioMixerSnapshotController:
     069c6b473de187e439597fd41557098a: -3261
     c67e88c7c0b18164db871ec514d0b097: 1
     db450fc7e85e41c4598fbb9584b279c5: 0.0618
-    ec594ce727f74c0489939f970f12e170: -9.833291
+    ec594ce727f74c0489939f970f12e170: -19.928478
     44bd7e58a74c8404fa6bc9ad813f89bf: -19.928473
     c7f29ba8a3afadb4a96504fe09d1b9b5: 5.01
     c4c91989778dab144a3655a99ed29669: -726
     c4eca3e928d98c642aa550b62072f4d0: 0.162
     77dec03acc6d6ab48836ff213265f9c3: 100
     e70bec5be5a787845924643b32cd8bd8: 0.5
+    ffbd019b4e9e7b24abf8ba97f9c67caa: 0
     0337b89b9cd4fe74b835b3e4445f6732: -10000
     44cf135de84e0d948b9c523abb8f98f9: 91
     fa5d64bd90d77e2439f19bd0b6a00779: 0

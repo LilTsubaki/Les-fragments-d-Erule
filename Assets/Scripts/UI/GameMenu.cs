@@ -40,4 +40,16 @@ public class GameMenu : MonoBehaviour {
         UIManager.GetInstance().HideLastOpen();
         MenuButton.interactable = true;
     }
+
+    public void OpenVolumes()
+    {
+        AudioManager.GetInstance().Play("menu");
+        UIManager.GetInstance().ShowPanel("panelVolumes");
+    }
+
+    public void CancelVolume()
+    {
+        AudioManager.GetInstance().Play("menu");
+        UIManager.GetInstance().HideLastOpen();
+    }
 }

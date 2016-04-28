@@ -10,6 +10,7 @@ public class UIPanel : MonoBehaviour
     public string panelID;
     public bool hideOnLoad = true;
     public float fadeSpeed;
+    public bool _blockRaycast = true;
 
     private float _now;
     private bool _isFadingIn;
@@ -28,6 +29,7 @@ public class UIPanel : MonoBehaviour
         _isFadingOut = false;
 
         _group = gameObject.AddComponent<CanvasGroup>();
+        _group.blocksRaycasts = _blockRaycast;
     }
 
     void Update()
