@@ -243,7 +243,7 @@ public class SpellManager : Manager<SpellManager>
 
         LoadFailDamage();
     }
-
+    
     public void SetSpellToInit(Queue<Element> queue)
     {
         _spellToInit = queue;
@@ -494,7 +494,7 @@ public class SpellManager : Manager<SpellManager>
     /// <returns>The number of rune to keep.</returns>
     public int ProcessPerfection(float perfection)
     {
-        /*bool ignoreSecond = true;
+        bool ignoreSecond = true;
         float keepCentral = UnityEngine.Random.value;
         float keepSecond = 0;
 
@@ -514,8 +514,8 @@ public class SpellManager : Manager<SpellManager>
                 return 2;
             }
         }
-        return 0;*/
-        return perfection > 0.3 ? 2 : 0; 
+        return 0;
+        //return perfection > 0.3 ? 2 : 0; 
     }
 
     /// <summary>
@@ -525,8 +525,8 @@ public class SpellManager : Manager<SpellManager>
     /// <returns>True if effects are to be added. Else false.</returns>
     public bool ProcessSublimation(float sublimation)
     {
-        return sublimation > 0.22;
-        //return sublimation >= UnityEngine.Random.value;
+        //return sublimation > 0.22;
+        return sublimation >= UnityEngine.Random.value;
     }
 
     /// <summary>
@@ -541,8 +541,8 @@ public class SpellManager : Manager<SpellManager>
         float malus = RunicBoardManager.GetInstance().GetTotalCompatibilityMalus();
         float totalStability = (baseChance - (malus / coef)) * 0.01f + stability;
 
-        return totalStability > 0.54;
-        //return totalStability >= UnityEngine.Random.value;
+        //return totalStability > 0.54;
+        return totalStability >= UnityEngine.Random.value;
     }
 
 }
